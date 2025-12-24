@@ -88,22 +88,22 @@ class FirewallPolicy:
                     # Full exception details
                     error_dict["exception_type"] = type(e).__name__
                     if hasattr(e, "http_status"):
-                        error_dict["http_status"] = e.http_status  # type: ignore  # noqa: E501
+                        error_dict["http_status"] = getattr(e, "http_status")
                     if hasattr(e, "error_code"):
-                        error_dict["error_code"] = e.error_code  # type: ignore  # noqa: E501
+                        error_dict["error_code"] = getattr(e, "error_code")
                     if hasattr(e, "endpoint"):
-                        error_dict["endpoint"] = e.endpoint  # type: ignore  # noqa: E501
+                        error_dict["endpoint"] = getattr(e, "endpoint")
                     if hasattr(e, "method"):
-                        error_dict["method"] = e.method  # type: ignore
+                        error_dict["method"] = getattr(e, "method")
                 elif fmt == "simple":
                     # Just type and message
                     error_dict["exception_type"] = type(e).__name__
                     if hasattr(e, "error_code"):
-                        error_dict["error_code"] = e.error_code  # type: ignore  # noqa: E501
+                        error_dict["error_code"] = getattr(e, "error_code")
                 elif fmt == "code_only":
                     # Just the error code
                     if hasattr(e, "error_code"):
-                        error_dict["error_code"] = e.error_code  # type: ignore  # noqa: E501
+                        error_dict["error_code"] = getattr(e, "error_code")
                     else:
                         error_dict["error_code"] = -1  # Unknown error
 
@@ -118,7 +118,8 @@ class FirewallPolicy:
                     print(f"ERROR: {str(e)}", file=sys.stderr)
                 elif fmt == "code_only":
                     if hasattr(e, "error_code"):
-                        print(f"ERROR CODE: {e.error_code}", file=sys.stderr)  # type: ignore  # noqa: E501
+                        error_code = getattr(e, "error_code")
+                        print(f"ERROR CODE: {error_code}", file=sys.stderr)
                     else:
                         print("ERROR CODE: -1", file=sys.stderr)
                 return None

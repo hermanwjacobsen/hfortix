@@ -175,7 +175,7 @@ params = {
 ```python
 class APIError(FortinetError):
     """Generic API error with optional metadata"""
-    
+
     def __init__(
         self,
         message,
@@ -220,7 +220,7 @@ try:
 except ResourceNotFoundError as e:
     # New rich error message
     print(str(e))
-    
+
     # Access individual fields
     print(f"Endpoint: {e.endpoint}")
     print(f"Method: {e.method}")
@@ -245,7 +245,7 @@ try:
 except DuplicateEntryError as e:
     # Log the full formatted error
     logger.error(f"Failed to create policy: {e}")
-    
+
     # Or log specific fields
     logger.error(
         "Duplicate policy",

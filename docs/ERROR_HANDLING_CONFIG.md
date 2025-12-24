@@ -199,7 +199,7 @@ failures = []
 
 for policy in load_policies_from_csv():
     result = fgt.firewall.policy.create(**policy)
-    
+
     if result.get("status") == "error":
         failures.append({
             "name": policy["name"],

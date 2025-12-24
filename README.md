@@ -53,22 +53,22 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - `RetryableError` and `NonRetryableError` base classes for retry strategies
   - Helper functions: `is_retryable_error()`, `get_retry_delay()`
   - All exceptions updated with proper inheritance
-  
+
 - 🆕 **New Exception Types**: Better error classification
   - `ConfigurationError` - FortiOS instance misconfiguration
   - `VDOMError` - VDOM-specific errors with vdom attribute
   - `OperationNotSupportedError` - Unsupported operations on endpoints
-  
+
 - 📊 **Enhanced Exception Metadata**: Better debugging
   - `request_id` - Unique UUID for each request (auto-generated)
   - `timestamp` - ISO 8601 timestamp when error occurred
   - Enhanced `__str__()` with emoji hints (💡)
   - Added `__repr__()` for developer-friendly debugging
-  
+
 - 💡 **Recovery Suggestions**: Built-in error recovery guidance
   - `suggest_recovery()` method on common exceptions
   - Helps developers understand how to handle errors
-  
+
 - ✅ **Comprehensive Tests**: Full test coverage (14 new tests, all passing)
 
 **Features from v0.3.23 (December 23, 2025):**

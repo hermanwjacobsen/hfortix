@@ -699,14 +699,12 @@ class FortiOS:
     @property
     def error_mode(self) -> Literal["raise", "return", "print"]:
         """Default error handling mode for convenience wrappers"""
-        return cast(Literal["raise", "return", "print"], self._error_mode)
+        return self._error_mode
 
     @property
     def error_format(self) -> Literal["detailed", "simple", "code_only"]:
         """Default error message format for convenience wrappers"""
-        return cast(
-            Literal["detailed", "simple", "code_only"], self._error_format
-        )
+        return self._error_format
 
     def get_connection_stats(self) -> dict[str, Any]:
         """
