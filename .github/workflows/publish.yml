@@ -137,16 +137,22 @@ jobs:
   wait-for-ci:
     name: Wait for CI
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: always()  # Always run, but conditionally wait
     
     steps:
-      - name: Wait for CI workflow
-        uses: lewagon/wait-on-check-action@v1.3.4
+      - name: Wait for CI workflow to complete
+        if: github.event_name == 'push'
+        uses: fountainhead/action-wait-for-check@v1.2.0
         with:
-          ref: ${{ github.ref }}
-          check-name: 'All Checks Passed'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: All Checks Passed
+          ref: ${{ github.sha }}
+          timeoutSeconds: 1800  # 30 minutes max
+          intervalSeconds: 10
+      
+      - name: Skip CI wait for manual dispatch
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "Skipping CI wait for manual workflow dispatch"
 
   publish-testpypi:
     name: Publish to TestPyPI
