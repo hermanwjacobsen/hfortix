@@ -39,7 +39,7 @@ repos:
       - id: black
         language_version: python3
         args: [--line-length=79]
-        exclude: ^(docs/|X/|\.venv/|venv/|build/|dist/|hfortix/FortiOS/api/v2/cmdb/.*/_ helpers/)
+        exclude: ^(docs/|X/|\.venv/|venv/|build/|dist/|hfortix/FortiOS/api/v2/cmdb/|hfortix/FortiOS/api/v2/monitor/)
 
   # Import sorting with isort (compatible with Black)
   - repo: https://github.com/PyCQA/isort
@@ -52,7 +52,7 @@ repos:
   # Flake8 linting
   - repo: https://github.com/PyCQA/flake8
     rev: 7.0.0
-    hook1s:
+    hooks:
       - id: flake8
         # Config is in .flake8 file (max-line-length=79, ignores E203/W503, per-file-ignores for api/)
         # Exclude generated API code, docs, tests, and build artifacts
