@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.32] - 2025-12-24
+
+### Fixed
+
+- **CI/CD Pipeline**: Publishing now properly blocked if CI fails
+  - Removed `if: always()` from wait-for-ci job
+  - Job now fails if CI checks don't pass, preventing publishing
+  - Fixed trailing whitespace in workflow file
+
 ## [0.3.31] - 2025-12-24
 
 ### Fixed
