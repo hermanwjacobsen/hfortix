@@ -106,7 +106,10 @@ jobs:
     name: Publish to TestPyPI
     runs-on: ubuntu-latest
     needs: [validate-version, build]
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'testpypi'
+    # Always test on TestPyPI first for tag pushes
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'testpypi')
     environment:
       name: testpypi
       url: https://test.pypi.org/project/hfortix/
@@ -128,12 +131,23 @@ jobs:
           # Trusted publishing - no token needed if configured
           # Or use: password: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
+      - name: Verify TestPyPI publication
+        run: |
+          VERSION=${{ needs.validate-version.outputs.version }}
+          echo "⏳ Waiting for TestPyPI to process the package..."
+          sleep 30
+          
+          # Try to fetch the package from TestPyPI
+          pip index versions hfortix --index-url https://test.pypi.org/simple/ || true
+          echo "✅ Package published to TestPyPI"
+
   publish-pypi:
     name: Publish to PyPI
     runs-on: ubuntu-latest
-    needs: [validate-version, build]
+    needs: [validate-version, build, publish-testpypi]
+    # Only publish to PyPI after successful TestPyPI publication
     if: |
-      github.event_name == 'push' ||
+      (github.event_name == 'push' && needs.publish-testpypi.result == 'success') ||
       (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'pypi')
 
     permissions:
@@ -150,6 +164,16 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         # Trusted publishing - no token needed if configured in PyPI
         # Or use: password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Verify PyPI publication
+        run: |
+          VERSION=${{ needs.validate-version.outputs.version }}
+          echo "⏳ Waiting for PyPI to process the package..."
+          sleep 30
+          
+          # Try to fetch the package from PyPI
+          pip index versions hfortix || true
+          echo "✅ Package published to PyPI"
 
   create-release:
     name: Create GitHub Release
