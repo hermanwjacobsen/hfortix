@@ -96,7 +96,7 @@ jobs:
           ls -lh dist/
 
       - name: Upload distribution artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: dist-${{ needs.validate-version.outputs.version }}
           path: dist/
