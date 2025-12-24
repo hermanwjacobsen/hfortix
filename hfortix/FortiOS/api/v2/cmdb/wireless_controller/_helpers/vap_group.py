@@ -1,5 +1,5 @@
 """
-Validation helpers for ztna web_portal_bookmark endpoint.
+Validation helpers for wireless-controller vap_group endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -18,7 +18,7 @@ VALID_QUERY_ACTION = ["default", "schema"]
 # ============================================================================
 
 
-def validate_web_portal_bookmark_get(
+def validate_vap_group_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
     **params: Any,
@@ -55,11 +55,11 @@ def validate_web_portal_bookmark_get(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_post(
+def validate_vap_group_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating web_portal_bookmark.
+    Validate POST request payload for creating vap_group.
 
     Args:
         payload: The payload to validate
@@ -73,6 +73,12 @@ def validate_web_portal_bookmark_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate comment if present
+    if "comment" in payload:
+        value = payload.get("comment")
+        if value and isinstance(value, str) and len(value) > 255:
+            return (False, "comment cannot exceed 255 characters")
+
     return (True, None)
 
 
@@ -81,7 +87,7 @@ def validate_web_portal_bookmark_post(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_put(
+def validate_vap_group_put(
     name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
@@ -108,6 +114,12 @@ def validate_web_portal_bookmark_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate comment if present
+    if "comment" in payload:
+        value = payload.get("comment")
+        if value and isinstance(value, str) and len(value) > 255:
+            return (False, "comment cannot exceed 255 characters")
+
     return (True, None)
 
 
@@ -116,7 +128,7 @@ def validate_web_portal_bookmark_put(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_delete(
+def validate_vap_group_delete(
     name: str | None = None,
 ) -> tuple[bool, str | None]:
     """

@@ -1,5 +1,5 @@
 """
-Validation helpers for ztna reverse_connector endpoint.
+Validation helpers for wireless-controller mpsk_profile endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -11,8 +11,8 @@ Customize as needed for endpoint-specific business logic.
 from typing import Any
 
 # Valid enum values from API documentation
-VALID_BODY_STATUS = ["enable", "disable"]
-VALID_BODY_SSL_MAX_VERSION = ["tls-1.1", "tls-1.2", "tls-1.3"]
+VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH = ["enable", "disable"]
+VALID_BODY_MPSK_TYPE = ["wpa2-personal", "wpa3-sae", "wpa3-sae-transition"]
 VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
@@ -20,7 +20,7 @@ VALID_QUERY_ACTION = ["default", "schema"]
 # ============================================================================
 
 
-def validate_reverse_connector_get(
+def validate_mpsk_profile_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
     **params: Any,
@@ -57,11 +57,11 @@ def validate_reverse_connector_get(
 # ============================================================================
 
 
-def validate_reverse_connector_post(
+def validate_mpsk_profile_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating reverse_connector.
+    Validate POST request payload for creating mpsk_profile.
 
     Args:
         payload: The payload to validate
@@ -75,69 +75,46 @@ def validate_reverse_connector_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
-    # Validate status if present
-    if "status" in payload:
-        value = payload.get("status")
-        if value and value not in VALID_BODY_STATUS:
-            return (
-                False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
-            )
-
-    # Validate address if present
-    if "address" in payload:
-        value = payload.get("address")
-        if value and isinstance(value, str) and len(value) > 255:
-            return (False, "address cannot exceed 255 characters")
-
-    # Validate port if present
-    if "port" in payload:
-        value = payload.get("port")
+    # Validate mpsk-concurrent-clients if present
+    if "mpsk-concurrent-clients" in payload:
+        value = payload.get("mpsk-concurrent-clients")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, "port must be between 0 and 65535")
-            except (ValueError, TypeError):
-                return (False, f"port must be numeric, got: {value}")
-
-    # Validate health-check-interval if present
-    if "health-check-interval" in payload:
-        value = payload.get("health-check-interval")
-        if value is not None:
-            try:
-                int_val = int(value)
-                if int_val < 0 or int_val > 600:
                     return (
                         False,
-                        "health-check-interval must be between 0 and 600",
+                        "mpsk-concurrent-clients must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"health-check-interval must be numeric, got: {value}",
+                    f"mpsk-concurrent-clients must be numeric, got: {value}",
                 )
 
-    # Validate ssl-max-version if present
-    if "ssl-max-version" in payload:
-        value = payload.get("ssl-max-version")
-        if value and value not in VALID_BODY_SSL_MAX_VERSION:
+    # Validate mpsk-external-server-auth if present
+    if "mpsk-external-server-auth" in payload:
+        value = payload.get("mpsk-external-server-auth")
+        if value and value not in VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid mpsk-external-server-auth '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH)}",
             )
 
-    # Validate certificate if present
-    if "certificate" in payload:
-        value = payload.get("certificate")
+    # Validate mpsk-external-server if present
+    if "mpsk-external-server" in payload:
+        value = payload.get("mpsk-external-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, "certificate cannot exceed 35 characters")
+            return (False, "mpsk-external-server cannot exceed 35 characters")
 
-    # Validate trusted-server-ca if present
-    if "trusted-server-ca" in payload:
-        value = payload.get("trusted-server-ca")
-        if value and isinstance(value, str) and len(value) > 79:
-            return (False, "trusted-server-ca cannot exceed 79 characters")
+    # Validate mpsk-type if present
+    if "mpsk-type" in payload:
+        value = payload.get("mpsk-type")
+        if value and value not in VALID_BODY_MPSK_TYPE:
+            return (
+                False,
+                f"Invalid mpsk-type '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_TYPE)}",
+            )
 
     return (True, None)
 
@@ -147,7 +124,7 @@ def validate_reverse_connector_post(
 # ============================================================================
 
 
-def validate_reverse_connector_put(
+def validate_mpsk_profile_put(
     name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
@@ -174,69 +151,46 @@ def validate_reverse_connector_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
-    # Validate status if present
-    if "status" in payload:
-        value = payload.get("status")
-        if value and value not in VALID_BODY_STATUS:
-            return (
-                False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
-            )
-
-    # Validate address if present
-    if "address" in payload:
-        value = payload.get("address")
-        if value and isinstance(value, str) and len(value) > 255:
-            return (False, "address cannot exceed 255 characters")
-
-    # Validate port if present
-    if "port" in payload:
-        value = payload.get("port")
+    # Validate mpsk-concurrent-clients if present
+    if "mpsk-concurrent-clients" in payload:
+        value = payload.get("mpsk-concurrent-clients")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, "port must be between 0 and 65535")
-            except (ValueError, TypeError):
-                return (False, f"port must be numeric, got: {value}")
-
-    # Validate health-check-interval if present
-    if "health-check-interval" in payload:
-        value = payload.get("health-check-interval")
-        if value is not None:
-            try:
-                int_val = int(value)
-                if int_val < 0 or int_val > 600:
                     return (
                         False,
-                        "health-check-interval must be between 0 and 600",
+                        "mpsk-concurrent-clients must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"health-check-interval must be numeric, got: {value}",
+                    f"mpsk-concurrent-clients must be numeric, got: {value}",
                 )
 
-    # Validate ssl-max-version if present
-    if "ssl-max-version" in payload:
-        value = payload.get("ssl-max-version")
-        if value and value not in VALID_BODY_SSL_MAX_VERSION:
+    # Validate mpsk-external-server-auth if present
+    if "mpsk-external-server-auth" in payload:
+        value = payload.get("mpsk-external-server-auth")
+        if value and value not in VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid mpsk-external-server-auth '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH)}",
             )
 
-    # Validate certificate if present
-    if "certificate" in payload:
-        value = payload.get("certificate")
+    # Validate mpsk-external-server if present
+    if "mpsk-external-server" in payload:
+        value = payload.get("mpsk-external-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, "certificate cannot exceed 35 characters")
+            return (False, "mpsk-external-server cannot exceed 35 characters")
 
-    # Validate trusted-server-ca if present
-    if "trusted-server-ca" in payload:
-        value = payload.get("trusted-server-ca")
-        if value and isinstance(value, str) and len(value) > 79:
-            return (False, "trusted-server-ca cannot exceed 79 characters")
+    # Validate mpsk-type if present
+    if "mpsk-type" in payload:
+        value = payload.get("mpsk-type")
+        if value and value not in VALID_BODY_MPSK_TYPE:
+            return (
+                False,
+                f"Invalid mpsk-type '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_TYPE)}",
+            )
 
     return (True, None)
 
@@ -246,7 +200,7 @@ def validate_reverse_connector_put(
 # ============================================================================
 
 
-def validate_reverse_connector_delete(
+def validate_mpsk_profile_delete(
     name: str | None = None,
 ) -> tuple[bool, str | None]:
     """

@@ -1,5 +1,6 @@
 """
-Validation helpers for ztna web_portal_bookmark endpoint.
+Validation helpers for wireless-controller hotspot20_h2qp_osu_provider_nai
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -18,7 +19,7 @@ VALID_QUERY_ACTION = ["default", "schema"]
 # ============================================================================
 
 
-def validate_web_portal_bookmark_get(
+def validate_hotspot20_h2qp_osu_provider_nai_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
     **params: Any,
@@ -55,11 +56,11 @@ def validate_web_portal_bookmark_get(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_post(
+def validate_hotspot20_h2qp_osu_provider_nai_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating web_portal_bookmark.
+    Validate POST request payload for creating hotspot20_h2qp_osu_provider_nai.
 
     Args:
         payload: The payload to validate
@@ -81,7 +82,7 @@ def validate_web_portal_bookmark_post(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_put(
+def validate_hotspot20_h2qp_osu_provider_nai_put(
     name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
@@ -116,7 +117,7 @@ def validate_web_portal_bookmark_put(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_delete(
+def validate_hotspot20_h2qp_osu_provider_nai_delete(
     name: str | None = None,
 ) -> tuple[bool, str | None]:
     """

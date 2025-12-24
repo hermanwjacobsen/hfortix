@@ -47,8 +47,7 @@ def validate_web_proxy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -104,8 +103,7 @@ def validate_web_proxy_post(
         if value and value not in VALID_BODY_LOG_BLOCKED_TRAFFIC:
             return (
                 False,
-                f"Invalid log-blocked-traffic '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
+                f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
             )
 
     # Validate auth-portal if present
@@ -114,8 +112,7 @@ def validate_web_proxy_post(
         if value and value not in VALID_BODY_AUTH_PORTAL:
             return (
                 False,
-                f"Invalid auth-portal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_PORTAL)}",
+                f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}",
             )
 
     # Validate auth-virtual-host if present
@@ -136,8 +133,7 @@ def validate_web_proxy_post(
         if value and value not in VALID_BODY_SVR_POOL_MULTIPLEX:
             return (
                 False,
-                f"Invalid svr-pool-multiplex '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}",
+                f"Invalid svr-pool-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}",
             )
 
     # Validate svr-pool-ttl if present
@@ -250,8 +246,7 @@ def validate_web_proxy_put(
         if value and value not in VALID_BODY_LOG_BLOCKED_TRAFFIC:
             return (
                 False,
-                f"Invalid log-blocked-traffic '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
+                f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
             )
 
     # Validate auth-portal if present
@@ -260,8 +255,7 @@ def validate_web_proxy_put(
         if value and value not in VALID_BODY_AUTH_PORTAL:
             return (
                 False,
-                f"Invalid auth-portal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_PORTAL)}",
+                f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}",
             )
 
     # Validate auth-virtual-host if present
@@ -282,8 +276,7 @@ def validate_web_proxy_put(
         if value and value not in VALID_BODY_SVR_POOL_MULTIPLEX:
             return (
                 False,
-                f"Invalid svr-pool-multiplex '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}",
+                f"Invalid svr-pool-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}",
             )
 
     # Validate svr-pool-ttl if present

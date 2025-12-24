@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.26] - 2025-12-24
+
+### Fixed
+
+- **Syntax Errors**: Fixed 32 files with broken f-strings (E999 errors)
+  - f-strings now properly formatted on single lines
+  - All files pass flake8 syntax validation
+  - Pre-release workflow now catches syntax errors immediately
+
+### Changed
+
+- **Directory Naming**: Renamed hyphenated directories to follow Python conventions
+  - `wireless-controller` → `wireless_controller`
+  - `switch-controller` → `switch_controller`
+  - `extension-controller` → `extension_controller`
+  - `endpoint-control` → `endpoint_control`
+  - `web-proxy` → `web_proxy`
+  - **BREAKING CHANGE**: Import paths updated, users must update their code
+  - Mypy can now properly validate all API modules
+
+### Added
+
+- `X/scripts/fix_fstrings.py` - Utility to fix broken f-strings in generated code
+- `X/scripts/rename_hyphenated_dirs.py` - Utility for directory renaming
+
 ## [0.3.25] - 2025-12-24
 
 ### Added

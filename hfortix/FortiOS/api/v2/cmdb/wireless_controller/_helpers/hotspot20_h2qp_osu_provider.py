@@ -1,5 +1,6 @@
 """
-Validation helpers for ztna web_portal_bookmark endpoint.
+Validation helpers for wireless-controller hotspot20_h2qp_osu_provider
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -11,6 +12,7 @@ Customize as needed for endpoint-specific business logic.
 from typing import Any
 
 # Valid enum values from API documentation
+VALID_BODY_OSU_METHOD = ["oma-dm", "soap-xml-spp", "reserved"]
 VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
@@ -18,7 +20,7 @@ VALID_QUERY_ACTION = ["default", "schema"]
 # ============================================================================
 
 
-def validate_web_portal_bookmark_get(
+def validate_hotspot20_h2qp_osu_provider_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
     **params: Any,
@@ -55,11 +57,11 @@ def validate_web_portal_bookmark_get(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_post(
+def validate_hotspot20_h2qp_osu_provider_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating web_portal_bookmark.
+    Validate POST request payload for creating hotspot20_h2qp_osu_provider.
 
     Args:
         payload: The payload to validate
@@ -73,6 +75,33 @@ def validate_web_portal_bookmark_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate server-uri if present
+    if "server-uri" in payload:
+        value = payload.get("server-uri")
+        if value and isinstance(value, str) and len(value) > 255:
+            return (False, "server-uri cannot exceed 255 characters")
+
+    # Validate osu-method if present
+    if "osu-method" in payload:
+        value = payload.get("osu-method")
+        if value and value not in VALID_BODY_OSU_METHOD:
+            return (
+                False,
+                f"Invalid osu-method '{value}'. Must be one of: {', '.join(VALID_BODY_OSU_METHOD)}",
+            )
+
+    # Validate osu-nai if present
+    if "osu-nai" in payload:
+        value = payload.get("osu-nai")
+        if value and isinstance(value, str) and len(value) > 255:
+            return (False, "osu-nai cannot exceed 255 characters")
+
+    # Validate icon if present
+    if "icon" in payload:
+        value = payload.get("icon")
+        if value and isinstance(value, str) and len(value) > 35:
+            return (False, "icon cannot exceed 35 characters")
+
     return (True, None)
 
 
@@ -81,7 +110,7 @@ def validate_web_portal_bookmark_post(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_put(
+def validate_hotspot20_h2qp_osu_provider_put(
     name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
@@ -108,6 +137,33 @@ def validate_web_portal_bookmark_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate server-uri if present
+    if "server-uri" in payload:
+        value = payload.get("server-uri")
+        if value and isinstance(value, str) and len(value) > 255:
+            return (False, "server-uri cannot exceed 255 characters")
+
+    # Validate osu-method if present
+    if "osu-method" in payload:
+        value = payload.get("osu-method")
+        if value and value not in VALID_BODY_OSU_METHOD:
+            return (
+                False,
+                f"Invalid osu-method '{value}'. Must be one of: {', '.join(VALID_BODY_OSU_METHOD)}",
+            )
+
+    # Validate osu-nai if present
+    if "osu-nai" in payload:
+        value = payload.get("osu-nai")
+        if value and isinstance(value, str) and len(value) > 255:
+            return (False, "osu-nai cannot exceed 255 characters")
+
+    # Validate icon if present
+    if "icon" in payload:
+        value = payload.get("icon")
+        if value and isinstance(value, str) and len(value) > 35:
+            return (False, "icon cannot exceed 35 characters")
+
     return (True, None)
 
 
@@ -116,7 +172,7 @@ def validate_web_portal_bookmark_put(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_delete(
+def validate_hotspot20_h2qp_osu_provider_delete(
     name: str | None = None,
 ) -> tuple[bool, str | None]:
     """

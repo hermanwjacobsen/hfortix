@@ -1,5 +1,6 @@
 """
-Validation helpers for ztna web_portal_bookmark endpoint.
+Validation helpers for wireless-controller hotspot20_h2qp_terms_and_conditions
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -18,7 +19,7 @@ VALID_QUERY_ACTION = ["default", "schema"]
 # ============================================================================
 
 
-def validate_web_portal_bookmark_get(
+def validate_hotspot20_h2qp_terms_and_conditions_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
     **params: Any,
@@ -55,11 +56,12 @@ def validate_web_portal_bookmark_get(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_post(
+def validate_hotspot20_h2qp_terms_and_conditions_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating web_portal_bookmark.
+    Validate POST request payload for creating
+    hotspot20_h2qp_terms_and_conditions.
 
     Args:
         payload: The payload to validate
@@ -73,6 +75,32 @@ def validate_web_portal_bookmark_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate filename if present
+    if "filename" in payload:
+        value = payload.get("filename")
+        if value and isinstance(value, str) and len(value) > 254:
+            return (False, "filename cannot exceed 254 characters")
+
+    # Validate timestamp if present
+    if "timestamp" in payload:
+        value = payload.get("timestamp")
+        if value is not None:
+            try:
+                int_val = int(value)
+                if int_val < 0 or int_val > 4294967295:
+                    return (
+                        False,
+                        "timestamp must be between 0 and 4294967295",
+                    )
+            except (ValueError, TypeError):
+                return (False, f"timestamp must be numeric, got: {value}")
+
+    # Validate url if present
+    if "url" in payload:
+        value = payload.get("url")
+        if value and isinstance(value, str) and len(value) > 253:
+            return (False, "url cannot exceed 253 characters")
+
     return (True, None)
 
 
@@ -81,7 +109,7 @@ def validate_web_portal_bookmark_post(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_put(
+def validate_hotspot20_h2qp_terms_and_conditions_put(
     name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
@@ -108,6 +136,32 @@ def validate_web_portal_bookmark_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate filename if present
+    if "filename" in payload:
+        value = payload.get("filename")
+        if value and isinstance(value, str) and len(value) > 254:
+            return (False, "filename cannot exceed 254 characters")
+
+    # Validate timestamp if present
+    if "timestamp" in payload:
+        value = payload.get("timestamp")
+        if value is not None:
+            try:
+                int_val = int(value)
+                if int_val < 0 or int_val > 4294967295:
+                    return (
+                        False,
+                        "timestamp must be between 0 and 4294967295",
+                    )
+            except (ValueError, TypeError):
+                return (False, f"timestamp must be numeric, got: {value}")
+
+    # Validate url if present
+    if "url" in payload:
+        value = payload.get("url")
+        if value and isinstance(value, str) and len(value) > 253:
+            return (False, "url cannot exceed 253 characters")
+
     return (True, None)
 
 
@@ -116,7 +170,7 @@ def validate_web_portal_bookmark_put(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_delete(
+def validate_hotspot20_h2qp_terms_and_conditions_delete(
     name: str | None = None,
 ) -> tuple[bool, str | None]:
     """

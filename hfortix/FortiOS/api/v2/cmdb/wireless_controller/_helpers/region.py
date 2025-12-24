@@ -1,5 +1,5 @@
 """
-Validation helpers for ztna web_portal_bookmark endpoint.
+Validation helpers for wireless-controller region endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -11,6 +11,7 @@ Customize as needed for endpoint-specific business logic.
 from typing import Any
 
 # Valid enum values from API documentation
+VALID_BODY_GRAYSCALE = ["enable", "disable"]
 VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
@@ -18,7 +19,7 @@ VALID_QUERY_ACTION = ["default", "schema"]
 # ============================================================================
 
 
-def validate_web_portal_bookmark_get(
+def validate_region_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
     **params: Any,
@@ -55,11 +56,9 @@ def validate_web_portal_bookmark_get(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_post(
-    payload: dict[str, Any],
-) -> tuple[bool, str | None]:
+def validate_region_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating web_portal_bookmark.
+    Validate POST request payload for creating region.
 
     Args:
         payload: The payload to validate
@@ -73,6 +72,32 @@ def validate_web_portal_bookmark_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate comments if present
+    if "comments" in payload:
+        value = payload.get("comments")
+        if value and isinstance(value, str) and len(value) > 1027:
+            return (False, "comments cannot exceed 1027 characters")
+
+    # Validate grayscale if present
+    if "grayscale" in payload:
+        value = payload.get("grayscale")
+        if value and value not in VALID_BODY_GRAYSCALE:
+            return (
+                False,
+                f"Invalid grayscale '{value}'. Must be one of: {', '.join(VALID_BODY_GRAYSCALE)}",
+            )
+
+    # Validate opacity if present
+    if "opacity" in payload:
+        value = payload.get("opacity")
+        if value is not None:
+            try:
+                int_val = int(value)
+                if int_val < 0 or int_val > 100:
+                    return (False, "opacity must be between 0 and 100")
+            except (ValueError, TypeError):
+                return (False, f"opacity must be numeric, got: {value}")
+
     return (True, None)
 
 
@@ -81,7 +106,7 @@ def validate_web_portal_bookmark_post(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_put(
+def validate_region_put(
     name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
@@ -108,6 +133,32 @@ def validate_web_portal_bookmark_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate comments if present
+    if "comments" in payload:
+        value = payload.get("comments")
+        if value and isinstance(value, str) and len(value) > 1027:
+            return (False, "comments cannot exceed 1027 characters")
+
+    # Validate grayscale if present
+    if "grayscale" in payload:
+        value = payload.get("grayscale")
+        if value and value not in VALID_BODY_GRAYSCALE:
+            return (
+                False,
+                f"Invalid grayscale '{value}'. Must be one of: {', '.join(VALID_BODY_GRAYSCALE)}",
+            )
+
+    # Validate opacity if present
+    if "opacity" in payload:
+        value = payload.get("opacity")
+        if value is not None:
+            try:
+                int_val = int(value)
+                if int_val < 0 or int_val > 100:
+                    return (False, "opacity must be between 0 and 100")
+            except (ValueError, TypeError):
+                return (False, f"opacity must be numeric, got: {value}")
+
     return (True, None)
 
 
@@ -116,9 +167,7 @@ def validate_web_portal_bookmark_put(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_delete(
-    name: str | None = None,
-) -> tuple[bool, str | None]:
+def validate_region_delete(name: str | None = None) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
 

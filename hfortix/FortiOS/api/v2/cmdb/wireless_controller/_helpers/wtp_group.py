@@ -1,5 +1,5 @@
 """
-Validation helpers for ztna web_portal_bookmark endpoint.
+Validation helpers for wireless-controller wtp_group endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -11,6 +11,60 @@ Customize as needed for endpoint-specific business logic.
 from typing import Any
 
 # Valid enum values from API documentation
+VALID_BODY_PLATFORM_TYPE = [
+    "AP-11N",
+    "C24JE",
+    "421E",
+    "423E",
+    "221E",
+    "222E",
+    "223E",
+    "224E",
+    "231E",
+    "321E",
+    "431F",
+    "431FL",
+    "432F",
+    "432FR",
+    "433F",
+    "433FL",
+    "231F",
+    "231FL",
+    "234F",
+    "23JF",
+    "831F",
+    "231G",
+    "233G",
+    "234G",
+    "431G",
+    "432G",
+    "433G",
+    "231K",
+    "231KD",
+    "23JK",
+    "222KL",
+    "241K",
+    "243K",
+    "244K",
+    "441K",
+    "432K",
+    "443K",
+    "U421E",
+    "U422EV",
+    "U423E",
+    "U221EV",
+    "U223EV",
+    "U24JEV",
+    "U321EV",
+    "U323EV",
+    "U431F",
+    "U433F",
+    "U231F",
+    "U234F",
+    "U432F",
+    "U231G",
+    "MVP",
+]
 VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
@@ -18,7 +72,7 @@ VALID_QUERY_ACTION = ["default", "schema"]
 # ============================================================================
 
 
-def validate_web_portal_bookmark_get(
+def validate_wtp_group_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
     **params: Any,
@@ -55,11 +109,11 @@ def validate_web_portal_bookmark_get(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_post(
+def validate_wtp_group_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating web_portal_bookmark.
+    Validate POST request payload for creating wtp_group.
 
     Args:
         payload: The payload to validate
@@ -73,6 +127,26 @@ def validate_web_portal_bookmark_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate platform-type if present
+    if "platform-type" in payload:
+        value = payload.get("platform-type")
+        if value and value not in VALID_BODY_PLATFORM_TYPE:
+            return (
+                False,
+                f"Invalid platform-type '{value}'. Must be one of: {', '.join(VALID_BODY_PLATFORM_TYPE)}",
+            )
+
+    # Validate ble-major-id if present
+    if "ble-major-id" in payload:
+        value = payload.get("ble-major-id")
+        if value is not None:
+            try:
+                int_val = int(value)
+                if int_val < 0 or int_val > 65535:
+                    return (False, "ble-major-id must be between 0 and 65535")
+            except (ValueError, TypeError):
+                return (False, f"ble-major-id must be numeric, got: {value}")
+
     return (True, None)
 
 
@@ -81,7 +155,7 @@ def validate_web_portal_bookmark_post(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_put(
+def validate_wtp_group_put(
     name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
@@ -108,6 +182,26 @@ def validate_web_portal_bookmark_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
+    # Validate platform-type if present
+    if "platform-type" in payload:
+        value = payload.get("platform-type")
+        if value and value not in VALID_BODY_PLATFORM_TYPE:
+            return (
+                False,
+                f"Invalid platform-type '{value}'. Must be one of: {', '.join(VALID_BODY_PLATFORM_TYPE)}",
+            )
+
+    # Validate ble-major-id if present
+    if "ble-major-id" in payload:
+        value = payload.get("ble-major-id")
+        if value is not None:
+            try:
+                int_val = int(value)
+                if int_val < 0 or int_val > 65535:
+                    return (False, "ble-major-id must be between 0 and 65535")
+            except (ValueError, TypeError):
+                return (False, f"ble-major-id must be numeric, got: {value}")
+
     return (True, None)
 
 
@@ -116,7 +210,7 @@ def validate_web_portal_bookmark_put(
 # ============================================================================
 
 
-def validate_web_portal_bookmark_delete(
+def validate_wtp_group_delete(
     name: str | None = None,
 ) -> tuple[bool, str | None]:
     """
