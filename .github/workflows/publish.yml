@@ -1,4 +1,35 @@
 ---
+# ============================================================================
+# PyPI Publishing Workflow
+# ============================================================================
+# This workflow publishes the package to PyPI ONLY after CI checks pass.
+#
+# Publishing Flow:
+# 1. Tag pushed (v*.*.*)
+# 2. CI workflow runs (lint, type-check, security, build)
+# 3. Wait for CI to pass
+# 4. Publish to TestPyPI (validates package)
+# 5. Publish to PyPI (production)
+#
+# Authentication:
+# - TestPyPI: Uses TEST_PYPI_API_TOKEN secret (token-based auth)
+#   - Get token: https://test.pypi.org/manage/account/token/
+#   - Add to repo: Settings > Secrets > Actions > TEST_PYPI_API_TOKEN
+#
+# - PyPI: Uses trusted publishing (OIDC, no token needed)
+#   - Configured at: https://pypi.org/manage/project/hfortix/settings/publishing/
+#   - Publisher: GitHub Actions workflow in this repo
+#   - Environment: pypi
+#
+# To enable TestPyPI trusted publishing (optional):
+# 1. Go to: https://test.pypi.org/manage/project/hfortix/settings/publishing/
+# 2. Add publisher:
+#    - Owner: hermanwjacobsen
+#    - Repository: hfortix
+#    - Workflow: .github/workflows/publish.yml
+#    - Environment: testpypi
+# 3. Then remove the password line from publish-testpypi job
+# ============================================================================
 name: Publish to PyPI
 
 'on':
@@ -102,17 +133,30 @@ jobs:
           path: dist/
           retention-days: 30
 
+  # Wait for CI to pass before publishing
+  wait-for-ci:
+    name: Wait for CI
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+      - name: Wait for CI workflow
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'All Checks Passed'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
   publish-testpypi:
     name: Publish to TestPyPI
     runs-on: ubuntu-latest
-    needs: [validate-version, build]
-    # Always test on TestPyPI first for tag pushes
+    needs: [validate-version, build, wait-for-ci]
+    # Always test on TestPyPI first for tag pushes (after CI passes)
     if: |
-      github.event_name == 'push' ||
+      (github.event_name == 'push' && needs.wait-for-ci.result == 'success') ||
       (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'testpypi')
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/project/hfortix/
+    # No environment specified - matches TestPyPI publisher config "Environment name: (Any)"
 
     permissions:
       id-token: write  # IMPORTANT: for trusted publishing
@@ -128,8 +172,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-          # Trusted publishing - no token needed if configured
-          # Or use: password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          # Using trusted publishing - matches pending publisher on TestPyPI
 
       - name: Verify TestPyPI publication
         run: |
@@ -145,10 +188,13 @@ jobs:
     name: Publish to PyPI
     runs-on: ubuntu-latest
     needs: [validate-version, build, publish-testpypi]
-    # Only publish to PyPI after successful TestPyPI publication
+    # Only publish to PyPI after successful TestPyPI publication AND CI passing
     if: |
       (github.event_name == 'push' && needs.publish-testpypi.result == 'success') ||
       (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'pypi')
+    environment:
+      name: pypi
+      url: https://pypi.org/project/hfortix/
 
     permissions:
       id-token: write  # IMPORTANT: for trusted publishing
@@ -162,7 +208,7 @@ jobs:
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        # Trusted publishing - no token needed if configured in PyPI
+        # Using trusted publishing (configured in PyPI settings)
         # Or use: password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Verify PyPI publication
