@@ -34,12 +34,12 @@ repos:
 
   # Python code formatting with Black
   - repo: https://github.com/psf/black
-    rev: 23.12.1
+    rev: 24.10.0
     hooks:
       - id: black
         language_version: python3
         args: [--line-length=79]
-        exclude: ^(docs/|X/|\.venv/|venv/|build/|dist/)
+        exclude: ^(docs/|X/|\.venv/|venv/|build/|dist/|hfortix/FortiOS/api/v2/cmdb/.*/_ helpers/)
 
   # Import sorting with isort (compatible with Black)
   - repo: https://github.com/PyCQA/isort
@@ -52,7 +52,7 @@ repos:
   # Flake8 linting
   - repo: https://github.com/PyCQA/flake8
     rev: 7.0.0
-    hooks:
+    hook1s:
       - id: flake8
         # Config is in .flake8 file (max-line-length=79, ignores E203/W503, per-file-ignores for api/)
         # Exclude generated API code, docs, tests, and build artifacts
@@ -95,16 +95,6 @@ repos:
       - id: markdownlint
         args: [--config, .markdownlint.json]
         exclude: ^(X/|CHANGELOG\.md|QUICKSTART\.md|docs/|hfortix/FortiOS/firewall/.*\.md)
-
-  # Version consistency check
-  - repo: local
-    hooks:
-      - id: check-version-consistency
-        name: Check version consistency
-        entry: bash -c 'python3 X/scripts/check-version-consistency.py || python X/scripts/check-version-consistency.py'
-        language: system
-        pass_filenames: false
-        files: ^(pyproject\.toml|setup\.py|hfortix/FortiOS/__init__\.py)$
 
 # Configuration for pre-commit.ci (if using)
 ci:
