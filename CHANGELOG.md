@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.31] - 2025-12-24
+
+### Fixed
+
+- **CI/CD Pipeline**: Fixed wait-for-ci job to properly wait for CI completion
+  - Switched to `fountainhead/action-wait-for-check` for better reliability
+  - Added 30-minute timeout with 10-second polling interval
+  - Prevents race condition where publishing started before CI completed
+  - Job now always runs but conditionally waits based on trigger type
+
 ## [0.3.30] - 2025-12-24
 
 ### Changed
