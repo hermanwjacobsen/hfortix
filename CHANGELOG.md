@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.27] - 2025-12-24
+
+### Changed
+
+- **Import Refactoring**: Refactored monitor API imports for better code quality
+  - `hfortix/FortiOS/api/v2/monitor/firewall/__init__.py` now uses direct class imports
+  - Eliminated confusing module alias pattern (e.g., `sessions as sessions_module`)
+  - Imports are now alphabetically sorted and properly formatted
+  - Cleaner, more maintainable code that passes isort/black checks
+
+### Fixed
+
+- **Pre-commit Configuration**: Removed monitor API from exclusions
+  - Monitor API files now included in black, isort, flake8, and mypy checks
+  - Fixed yamllint errors (trailing blank lines in YAML files)
+  - All pre-commit hooks now pass successfully
+
 ## [0.3.26] - 2025-12-24
 
 ### Fixed

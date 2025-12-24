@@ -30,113 +30,93 @@ class Firewall:
         """
         self._client = client
 
-        # Simple .list() endpoints
-        # ZTNA policy
-        # Proxy sessions sub-endpoint
-        # Special operations endpoints
-        # .list() and .get() endpoints
-        from . import (
-            acl,
-            acl6,
-            address6_dynamic,
-            address_dynamic,
-            address_fqdns,
-            address_fqdns6,
-            central_snat_map,
+        # Import classes directly for cleaner code
+        from .acl import Acl
+        from .acl6 import Acl6
+        from .address6_dynamic import Address6Dynamic
+        from .address_dynamic import AddressDynamic
+        from .address_fqdns import AddressFqdns
+        from .address_fqdns6 import AddressFqdns6
+        from .central_snat_map import CentralSnatMap
+        from .check_addrgrp_exclude_mac_member import (
+            CheckAddrgrpExcludeMacMember,
         )
-        from . import (
-            check_addrgrp_exclude_mac_member as check_addrgrp_exclude_mac_member_module,
-        )
-        from . import (
-            clearpass_address,
-            dnat,
-            gtp,
-            gtp_runtime_statistics,
-            gtp_statistics,
-            health,
-            internet_service,
-            internet_service_basic,
-            internet_service_fqdn,
-            internet_service_fqdn_icon_ids,
-            ippool,
-            load_balance,
-            local_in,
-            local_in6,
-            multicast_policy,
-            multicast_policy6,
-            network_service_dynamic,
-            per_ip_shaper,
-            policy,
-            policy_lookup,
-            proxy,
-            proxy_policy,
-            saas_application,
-            sdn_connector_filters,
-            security_policy,
-        )
-        from . import sessions as sessions_module
-        from . import shaper, shaper_multi_class_shaper
-        from . import uuid as uuid_module
-        from . import vip_overlap, ztna_firewall_policy
+        from .clearpass_address import ClearpassAddress
+        from .dnat import Dnat
+        from .gtp import Gtp
+        from .gtp_runtime_statistics import GtpRuntimeStatistics
+        from .gtp_statistics import GtpStatistics
+        from .health import Health
+        from .internet_service import InternetService
+        from .internet_service_basic import InternetServiceBasic
+        from .internet_service_fqdn import InternetServiceFqdn
+        from .internet_service_fqdn_icon_ids import InternetServiceFqdnIconIds
+        from .ippool import Ippool
+        from .load_balance import LoadBalance
+        from .local_in import LocalIn
+        from .local_in6 import LocalIn6
+        from .multicast_policy import MulticastPolicy
+        from .multicast_policy6 import MulticastPolicy6
+        from .network_service_dynamic import NetworkServiceDynamic
+        from .per_ip_shaper import PerIpShaper
+        from .policy import Policy
+        from .policy_lookup import PolicyLookup
+        from .proxy import Proxy
+        from .proxy_policy import ProxyPolicy
+        from .saas_application import SaasApplication
+        from .sdn_connector_filters import SdnConnectorFilters
+        from .security_policy import SecurityPolicy
+        from .sessions import Sessions
+        from .shaper import Shaper
+        from .shaper_multi_class_shaper import ShaperMultiClassShaper
+        from .uuid import UUID
+        from .vip_overlap import VipOverlap
+        from .ztna_firewall_policy import ZtnaFirewallPolicy
 
         # Initialize all sub-endpoints
-        self._health = health.Health(client)
-        self._local_in = local_in.LocalIn(client)
-        self._local_in6 = local_in6.LocalIn6(client)
-        self._acl = acl.Acl(client)
-        self._acl6 = acl6.Acl6(client)
-        self._central_snat_map = central_snat_map.CentralSnatMap(client)
-        self._dnat = dnat.Dnat(client)
-        self._check_addrgrp_exclude_mac_member = check_addrgrp_exclude_mac_member_module.CheckAddrgrpExcludeMacMember(
+        self._health = Health(client)
+        self._local_in = LocalIn(client)
+        self._local_in6 = LocalIn6(client)
+        self._acl = Acl(client)
+        self._acl6 = Acl6(client)
+        self._central_snat_map = CentralSnatMap(client)
+        self._dnat = Dnat(client)
+        self._check_addrgrp_exclude_mac_member = CheckAddrgrpExcludeMacMember(
             client
         )
-        self._internet_service = internet_service.InternetService(client)
-        self._internet_service_fqdn = (
-            internet_service_fqdn.InternetServiceFqdn(client)
-        )
-        self._internet_service_fqdn_icon_ids = (
-            internet_service_fqdn_icon_ids.InternetServiceFqdnIconIds(client)
-        )
-        self._internet_service_basic = (
-            internet_service_basic.InternetServiceBasic(client)
-        )
-        self._network_service_dynamic = (
-            network_service_dynamic.NetworkServiceDynamic(client)
-        )
-        self._proxy = proxy.Proxy(client)
-        self._policy = policy.Policy(client)
-        self._security_policy = security_policy.SecurityPolicy(client)
-        self._proxy_policy = proxy_policy.ProxyPolicy(client)
-        self._multicast_policy = multicast_policy.MulticastPolicy(client)
-        self._multicast_policy6 = multicast_policy6.MulticastPolicy6(client)
-        self._saas_application = saas_application.SaasApplication(client)
-        self._policy_lookup = policy_lookup.PolicyLookup(client)
-        self._sessions = sessions_module.Sessions(client)
-        self._shaper = shaper.Shaper(client)
-        self._shaper_multi_class_shaper = (
-            shaper_multi_class_shaper.ShaperMultiClassShaper(client)
-        )
-        self._per_ip_shaper = per_ip_shaper.PerIpShaper(client)
-        self._load_balance = load_balance.LoadBalance(client)
-        self._vip_overlap = vip_overlap.VipOverlap(client)
-        self._address_fqdns = address_fqdns.AddressFqdns(client)
-        self._address_fqdns6 = address_fqdns6.AddressFqdns6(client)
-        self._clearpass_address = clearpass_address.ClearpassAddress(client)
-        self._ippool = ippool.Ippool(client)
-        self._uuid = uuid_module.UUID(client)
-        self._gtp = gtp.Gtp(client)
-        self._gtp_statistics = gtp_statistics.GtpStatistics(client)
-        self._gtp_runtime_statistics = (
-            gtp_runtime_statistics.GtpRuntimeStatistics(client)
-        )
-        self._address_dynamic = address_dynamic.AddressDynamic(client)
-        self._address6_dynamic = address6_dynamic.Address6Dynamic(client)
-        self._sdn_connector_filters = (
-            sdn_connector_filters.SdnConnectorFilters(client)
-        )
-        self._ztna_firewall_policy = ztna_firewall_policy.ZtnaFirewallPolicy(
+        self._internet_service = InternetService(client)
+        self._internet_service_fqdn = InternetServiceFqdn(client)
+        self._internet_service_fqdn_icon_ids = InternetServiceFqdnIconIds(
             client
         )
+        self._internet_service_basic = InternetServiceBasic(client)
+        self._network_service_dynamic = NetworkServiceDynamic(client)
+        self._proxy = Proxy(client)
+        self._policy = Policy(client)
+        self._security_policy = SecurityPolicy(client)
+        self._proxy_policy = ProxyPolicy(client)
+        self._multicast_policy = MulticastPolicy(client)
+        self._multicast_policy6 = MulticastPolicy6(client)
+        self._saas_application = SaasApplication(client)
+        self._policy_lookup = PolicyLookup(client)
+        self._sessions = Sessions(client)
+        self._shaper = Shaper(client)
+        self._shaper_multi_class_shaper = ShaperMultiClassShaper(client)
+        self._per_ip_shaper = PerIpShaper(client)
+        self._load_balance = LoadBalance(client)
+        self._vip_overlap = VipOverlap(client)
+        self._address_fqdns = AddressFqdns(client)
+        self._address_fqdns6 = AddressFqdns6(client)
+        self._clearpass_address = ClearpassAddress(client)
+        self._ippool = Ippool(client)
+        self._uuid = UUID(client)
+        self._gtp = Gtp(client)
+        self._gtp_statistics = GtpStatistics(client)
+        self._gtp_runtime_statistics = GtpRuntimeStatistics(client)
+        self._address_dynamic = AddressDynamic(client)
+        self._address6_dynamic = Address6Dynamic(client)
+        self._sdn_connector_filters = SdnConnectorFilters(client)
+        self._ztna_firewall_policy = ZtnaFirewallPolicy(client)
 
     @property
     def health(self):
