@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.29] - 2025-12-24
+
+### Changed
+
+- **CI/CD Pipeline**: Enhanced PyPI publication workflow
+  - Now publishes to TestPyPI first for validation
+  - Only publishes to production PyPI after successful TestPyPI verification
+  - Added package availability verification steps
+  - Prevents publishing broken packages to production
+
 ## [0.3.28] - 2025-12-24
 
 ### Fixed

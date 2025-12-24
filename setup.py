@@ -18,7 +18,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="hfortix",
-    version="0.3.28",
+    version="0.3.29",
     author="Herman W. Jacobsen",
     author_email="herman@wjacobsen.fo",
     description=(
