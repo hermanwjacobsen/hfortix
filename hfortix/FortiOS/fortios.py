@@ -103,6 +103,8 @@ class FortiOS:
         session_idle_timeout: Union[int, float, None] = 300,
         read_only: bool = False,
         track_operations: bool = False,
+        error_mode: Literal["raise", "return", "log"] = "raise",
+        error_format: Literal["detailed", "simple", "code_only"] = "detailed",
     ) -> None:
         """Synchronous FortiOS client (default)"""
         ...
@@ -132,6 +134,8 @@ class FortiOS:
         session_idle_timeout: Union[int, float, None] = 300,
         read_only: bool = False,
         track_operations: bool = False,
+        error_mode: Literal["raise", "return", "log"] = "raise",
+        error_format: Literal["detailed", "simple", "code_only"] = "detailed",
     ) -> None:
         """Asynchronous FortiOS client"""
         ...
@@ -161,6 +165,8 @@ class FortiOS:
         read_only: bool = False,
         track_operations: bool = False,
         adaptive_retry: bool = False,
+        error_mode: Literal["raise", "return", "log"] = "raise",
+        error_format: Literal["detailed", "simple", "code_only"] = "detailed",
     ) -> None:
         """
         Initialize FortiOS API client (sync or async mode)
@@ -272,6 +278,29 @@ class FortiOS:
                           retry delays based on
                           FortiGate health signals (slow responses, 503
                           errors). Increases retry
+                          delays when FortiGate is overloaded to prevent
+                          cascading failures.
+                          Access health metrics via get_health_metrics().
+            error_mode: How convenience wrappers handle errors (default:
+            "raise").
+                       - "raise": Raise exceptions (stops program unless
+                       caught with try/except)
+                       - "return": Return error dict instead of raising
+                       (program always continues)
+                       - "log": Log error and return None (program always
+                       continues)
+                       Can be overridden per method call. This only affects
+                       convenience wrappers
+                       (e.g., fgt.firewall.policy.create), not direct API
+                       calls (e.g., fgt.api.cmdb...).
+            error_format: Error message detail level (default: "detailed").
+                         - "detailed": Full context with endpoint, parameters,
+                         and helpful hints
+                         - "simple": Just error message and code
+                         - "code_only": Just the error code number
+                         Can be overridden per method call. Affects both raised
+                         exceptions and
+                         returned error dicts depending on error_mode.
                           delays when FortiGate is overloaded to prevent
                           cascading failures.
                           Access health metrics via get_health_metrics().
@@ -397,6 +426,8 @@ class FortiOS:
         self._vdom = vdom
         self._port = port
         self._mode = mode
+        self._error_mode = error_mode
+        self._error_format = error_format
 
         # Validate credentials if not using custom client
         if client is None:
@@ -664,6 +695,18 @@ class FortiOS:
     def vdom(self) -> Optional[str]:
         """Active virtual domain"""
         return self._vdom
+
+    @property
+    def error_mode(self) -> Literal["raise", "return", "log"]:
+        """Default error handling mode for convenience wrappers"""
+        return cast(Literal["raise", "return", "log"], self._error_mode)
+
+    @property
+    def error_format(self) -> Literal["detailed", "simple", "code_only"]:
+        """Default error message format for convenience wrappers"""
+        return cast(
+            Literal["detailed", "simple", "code_only"], self._error_format
+        )
 
     def get_connection_stats(self) -> dict[str, Any]:
         """

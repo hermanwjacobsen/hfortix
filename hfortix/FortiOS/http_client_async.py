@@ -325,8 +325,22 @@ class AsyncHTTPClient(BaseHTTPClient):
             "idle_connections": 0,
         }
 
-    def _handle_response_errors(self, response: httpx.Response) -> None:
-        """Handle HTTP response errors using FortiOS error handling"""
+    def _handle_response_errors(
+        self,
+        response: httpx.Response,
+        endpoint: Optional[str] = None,
+        method: Optional[str] = None,
+        params: Optional[dict[str, Any]] = None,
+    ) -> None:
+        """
+        Handle HTTP response errors using FortiOS error handling
+
+        Args:
+            response: httpx.Response object
+            endpoint: API endpoint path for better error context
+            method: HTTP method (GET, POST, PUT, DELETE)
+            params: Request parameters (will be sanitized in error messages)
+        """
         if not response.is_success:
             try:
                 from .exceptions_forti import (
@@ -360,8 +374,13 @@ class AsyncHTTPClient(BaseHTTPClient):
                     error_desc,
                 )
 
-                # Use FortiOS-specific error handling
-                raise_for_status(json_response)
+                # Use FortiOS-specific error handling with enhanced context
+                raise_for_status(
+                    json_response,
+                    endpoint=endpoint,
+                    method=method,
+                    params=params,
+                )
 
             except ValueError:
                 logger.error(
@@ -477,7 +496,12 @@ class AsyncHTTPClient(BaseHTTPClient):
                 self._record_response_time(endpoint_key, duration)
 
                 # Handle errors
-                self._handle_response_errors(res)
+                self._handle_response_errors(
+                    res,
+                    endpoint=full_path,
+                    method=method.upper(),
+                    params=params,
+                )
 
                 # Record success
                 self._record_circuit_breaker_success()
@@ -593,8 +617,16 @@ class AsyncHTTPClient(BaseHTTPClient):
         # Make async request
         res = await self._client.get(url, params=params if params else None)
 
+        # Build full endpoint path for error context
+        full_path = f"/api/v2/{api_type}/{path}"
+
         # Handle errors
-        self._handle_response_errors(res)
+        self._handle_response_errors(
+            res,
+            endpoint=full_path,
+            method="GET",
+            params=params,
+        )
 
         return res.content
 

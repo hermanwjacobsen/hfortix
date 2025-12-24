@@ -6,6 +6,55 @@ FortiOS error codes and product-specific exception handling
 from typing import Optional
 
 # ============================================================================
+# Helper Functions for Error Context
+# ============================================================================
+
+
+def _is_sensitive_param(param_name: str) -> bool:
+    """
+    Check if a parameter name contains sensitive data
+
+    Args:
+        param_name: Parameter name to check
+
+    Returns:
+        bool: True if parameter contains sensitive data
+    """
+    sensitive_keywords = {
+        "password", "passwd", "pwd", "secret", "token", "api_key",
+        "apikey", "key", "private", "credential", "auth"
+    }
+    param_lower = param_name.lower()
+    return any(keyword in param_lower for keyword in sensitive_keywords)
+
+
+def _sanitize_params(params: Optional[dict]) -> Optional[dict]:
+    """
+    Sanitize sensitive parameters for safe logging
+
+    Args:
+        params: Parameters dictionary to sanitize
+
+    Returns:
+        dict: Sanitized copy of parameters with sensitive values masked
+    """
+    if not params:
+        return params
+
+    sanitized = {}
+    for key, value in params.items():
+        if _is_sensitive_param(key):
+            sanitized[key] = "***REDACTED***"
+        else:
+            # Truncate long values
+            if isinstance(value, str) and len(value) > 100:
+                sanitized[key] = value[:97] + "..."
+            else:
+                sanitized[key] = value
+    return sanitized
+
+
+# ============================================================================
 # Base Exception Classes
 # ============================================================================
 
@@ -23,15 +72,68 @@ class APIError(FortinetError):
         http_status: HTTP status code (e.g., 400, 404, 500)
         error_code: FortiOS internal error code (e.g., -5, -3)
         response: Full API response dict
+        endpoint: API endpoint path (e.g., '/api/v2/cmdb/firewall/policy')
+        method: HTTP method (GET, POST, PUT, DELETE)
+        params: Request parameters (sanitized)
+        hint: Helpful suggestion for resolving the error
     """
 
     def __init__(
-        self, message, http_status=None, error_code=None, response=None
+        self,
+        message,
+        http_status=None,
+        error_code=None,
+        response=None,
+        endpoint=None,
+        method=None,
+        params=None,
+        hint=None,
     ):
         super().__init__(message)
         self.http_status = http_status
         self.error_code = error_code
         self.response = response
+        self.endpoint = endpoint
+        self.method = method
+        self.params = params
+        self.hint = hint
+        self._original_message = message
+
+    def __str__(self) -> str:
+        """Format error with full context for better debugging"""
+        parts = [self._original_message]
+
+        # Add endpoint and method context
+        if self.endpoint and self.method:
+            parts.append(f"  → {self.method} {self.endpoint}")
+        elif self.endpoint:
+            parts.append(f"  → Endpoint: {self.endpoint}")
+
+        # Add HTTP status if available
+        if self.http_status:
+            status_desc = get_http_status_description(self.http_status)
+            parts.append(f"  → HTTP Status: {self.http_status} ({status_desc})")
+
+        # Add FortiOS error code if available
+        if self.error_code:
+            error_desc = get_error_description(self.error_code)
+            parts.append(f"  → FortiOS Error: {self.error_code} ({error_desc})")
+
+        # Add parameters (sanitized) if available
+        if self.params:
+            sanitized = _sanitize_params(self.params)
+            if sanitized:
+                params_items = list(sanitized.items())[:5]
+                params_str = ", ".join(f"{k}={v}" for k, v in params_items)
+                if len(sanitized) > 5:
+                    params_str += f", ... (+{len(sanitized)-5} more)"
+                parts.append(f"  → Parameters: {params_str}")
+
+        # Add hint if available
+        if self.hint:
+            parts.append(f"  {self.hint}")
+
+        return "\n".join(parts)
 
 
 class BadRequestError(APIError):
@@ -635,10 +737,112 @@ def get_error_description(error_code: int) -> str:
     return FORTIOS_ERROR_CODES.get(error_code, "Unknown error")
 
 
+def _extract_resource_from_endpoint(endpoint: Optional[str]) -> Optional[str]:
+    """
+    Extract resource name from API endpoint path
+
+    Args:
+        endpoint: API endpoint path (e.g., '/api/v2/cmdb/firewall/address')
+
+    Returns:
+        Resource name (e.g., 'address') or None
+
+    Examples:
+        >>> _extract_resource_from_endpoint('/api/v2/cmdb/firewall/address')
+        'address'
+        >>> _extract_resource_from_endpoint('/api/v2/cmdb/system/interface')
+        'interface'
+    """
+    if not endpoint:
+        return None
+
+    # Remove leading/trailing slashes and split
+    parts = endpoint.strip("/").split("/")
+
+    # API endpoint format: api/v2/{api_type}/{category}/{resource}
+    # Example: api/v2/cmdb/firewall/address
+    if len(parts) >= 5:
+        return parts[4]  # Return resource name
+    elif len(parts) >= 4:
+        return parts[3]  # Some endpoints are shorter
+
+    return None
+
+
+def _check_validation_available(
+    endpoint: Optional[str], method: Optional[str]
+) -> bool:
+    """
+    Check if validation helper exists for this endpoint and method
+
+    Args:
+        endpoint: API endpoint path
+        method: HTTP method (GET, POST, PUT, DELETE)
+
+    Returns:
+        bool: True if validation helper exists
+    """
+    if not endpoint or not method:
+        return False
+
+    resource = _extract_resource_from_endpoint(endpoint)
+    if not resource:
+        return False
+
+    # Derive module path from endpoint
+    # Example: /api/v2/cmdb/firewall/address -> firewall._helpers.address
+    parts = endpoint.strip("/").split("/")
+    if len(parts) < 4:
+        return False
+
+    api_type = parts[2]  # cmdb, monitor, log, service
+    category = parts[3]  # firewall, system, user, etc.
+
+    if api_type != "cmdb":
+        # Currently, most validation helpers are for CMDB endpoints
+        return False
+
+    # Try to import the validation module
+    try:
+        module_path = f"hfortix.FortiOS.api.v2.{api_type}.{category}._helpers.{resource}"
+        __import__(module_path)
+        return True
+    except (ImportError, ModuleNotFoundError):
+        return False
+
+
+def _get_validation_hint(
+    endpoint: Optional[str],
+    method: Optional[str],
+    error_code: Optional[int],
+    http_status: Optional[int],
+) -> str:
+    """
+    Get validation-specific hint if validation helper exists
+
+    NOTE: Validation functions are for internal wrapper development.
+    This function is disabled for end-user error messages.
+    Validation is handled internally by wrapper classes.
+
+    Args:
+        endpoint: API endpoint path
+        method: HTTP method
+        error_code: FortiOS error code
+        http_status: HTTP status code
+
+    Returns:
+        Validation hint string (currently always empty)
+    """
+    # Validation hints removed - validation is internal to wrappers
+    # Users should use high-level wrapper methods that handle validation
+    return ""
+
+
 def _get_suggestion_for_error(
     error_code: Optional[int],
     http_status: Optional[int],
     endpoint: Optional[str] = None,
+    method: Optional[str] = None,
 ) -> str:
     """
     Get helpful suggestion based on error type
@@ -647,10 +851,12 @@ def _get_suggestion_for_error(
         error_code: FortiOS error code
         http_status: HTTP status code
         endpoint: API endpoint path (optional)
+        method: HTTP method (optional)
 
     Returns:
         str: Helpful suggestion for the user, or empty string
     """
+    # Enhanced suggestions with common fixes
     suggestions = {
         -3: "💡 Tip: Use .exists() to check if the object exists before accessing it.",  # noqa: E501
         -5: "💡 Tip: Use .exists() to check for duplicates before creating, or .update() to modify existing objects.",  # noqa: E501
@@ -660,14 +866,18 @@ def _get_suggestion_for_error(
         -95: "💡 Tip: Remove user group from PPTP configuration before deleting.",  # noqa: E501
         -14: "💡 Tip: Check VDOM access permissions and API token admin privileges.",  # noqa: E501
         -37: "💡 Tip: Ensure your API token or user has sufficient read/write permissions.",  # noqa: E501
-        -651: "💡 Tip: Verify parameter format and allowed values in API documentation.",  # noqa: E501
+        -651: "💡 Tip: Invalid value provided. Check parameter format and allowed values.",  # noqa: E501
         -1: "💡 Tip: Check string length limits and field format requirements.",
-        -50: "💡 Tip: Validate input format matches expected pattern (IP, MAC, etc.).",  # noqa: E501
+        -50: "💡 Tip: Input format is invalid. Validate format matches expected pattern (IP, MAC, etc.).",  # noqa: E501
+        -8: "💡 Tip: Invalid IP address format. Use format: x.x.x.x or x.x.x.x/mask",  # noqa: E501
+        -9: "💡 Tip: Invalid IP netmask. Use CIDR notation (e.g., /24) or dotted decimal (255.255.255.0)",  # noqa: E501
+        -33: "💡 Tip: Invalid MAC address format. Use format: xx:xx:xx:xx:xx:xx",
+        -72: "💡 Tip: Field value exceeds maximum length. Check character limits for this field.",  # noqa: E501
     }
 
     http_suggestions = {
         404: "💡 Tip: Verify the object name and endpoint path. Use .exists() to check availability.",  # noqa: E501
-        400: "💡 Tip: Check required parameters and their format. Review API documentation.",  # noqa: E501
+        400: "💡 Tip: Bad request - check required parameters and their format.",
         401: "💡 Tip: Verify API token is valid and not expired. Re-authenticate if needed.",  # noqa: E501
         403: "💡 Tip: Check VDOM access and ensure API user has required permissions.",  # noqa: E501
         429: "💡 Tip: Implement rate limiting in your code or increase delay between requests.",  # noqa: E501
@@ -675,32 +885,47 @@ def _get_suggestion_for_error(
         503: "💡 Tip: FortiGate may be busy or restarting. Wait and retry with exponential backoff.",  # noqa: E501
     }
 
+    hint_parts = []
+
     # Check error code first (more specific)
     if error_code in suggestions:
-        return f"\n{suggestions[error_code]}"
-
+        hint_parts.append(f"\n{suggestions[error_code]}")
     # Fall back to HTTP status
-    if http_status in http_suggestions:
-        return f"\n{http_suggestions[http_status]}"
+    elif http_status in http_suggestions:
+        hint_parts.append(f"\n{http_suggestions[http_status]}")
 
-    return ""
+    # Add validation hint if available
+    validation_hint = _get_validation_hint(
+        endpoint, method, error_code, http_status
+    )
+    if validation_hint:
+        hint_parts.append(validation_hint)
+
+    return "".join(hint_parts)
 
 
-def raise_for_status(response: dict, endpoint: Optional[str] = None) -> None:
+def raise_for_status(
+    response: dict,
+    endpoint: Optional[str] = None,
+    method: Optional[str] = None,
+    params: Optional[dict] = None,
+) -> None:
     """
     Raise appropriate exception based on FortiOS API response
 
     Args:
         response (dict): API response dictionary
         endpoint (str): Optional API endpoint for better error context
+        method (str): Optional HTTP method (GET, POST, PUT, DELETE)
+        params (dict): Optional request parameters (will be sanitized)
 
     Raises:
         APIError: If response indicates an error
 
     Examples:
         >>> response = {'status': 'error', 'http_status': 404, 'error': -3}
-        >>> raise_for_status(response)  # Raises ResourceNotFoundError with
-        helpful tip
+        >>> raise_for_status(response, endpoint='/api/v2/cmdb/firewall/address', method='GET')
+        # Raises ResourceNotFoundError with helpful context and tip
     """
     if not isinstance(response, dict):
         return
@@ -713,87 +938,58 @@ def raise_for_status(response: dict, endpoint: Optional[str] = None) -> None:
     error_code = response.get("error")
     message = response.get("error_description", "API request failed")
 
-    # Add helpful suggestion to message
-    suggestion = _get_suggestion_for_error(error_code, http_status, endpoint)
-    if suggestion:
-        message = f"{message}{suggestion}"
+    # Get helpful suggestion based on error type (now validation-aware)
+    hint = _get_suggestion_for_error(error_code, http_status, endpoint, method)
+
+    # Prepare common exception kwargs
+    exc_kwargs = {
+        "http_status": http_status,
+        "error_code": error_code,
+        "response": response,
+        "endpoint": endpoint,
+        "method": method,
+        "params": params,
+        "hint": hint,
+    }
 
     # Priority 1: Check error codes first (more specific than HTTP status)
     if error_code == -5 or error_code == -15 or error_code == -100:
-        raise DuplicateEntryError(
-            message,
-            http_status=http_status,
-            error_code=error_code,
-            response=response,
-        )
+        raise DuplicateEntryError(message, **exc_kwargs)
     elif (
         error_code == -23
         or error_code == -94
         or error_code == -95
         or error_code == -96
     ):
-        raise EntryInUseError(
-            message,
-            http_status=http_status,
-            error_code=error_code,
-            response=response,
-        )
+        raise EntryInUseError(message, **exc_kwargs)
     elif error_code == -14 or error_code == -37:
-        raise PermissionDeniedError(
-            message,
-            http_status=http_status,
-            error_code=error_code,
-            response=response,
-        )
+        raise PermissionDeniedError(message, **exc_kwargs)
     elif error_code == -651 or error_code == -1 or error_code == -50:
-        raise InvalidValueError(
-            message,
-            http_status=http_status,
-            error_code=error_code,
-            response=response,
-        )
+        raise InvalidValueError(message, **exc_kwargs)
     elif error_code == -3:
-        raise ResourceNotFoundError(
-            message,
-            http_status=http_status,
-            error_code=error_code,
-            response=response,
-        )
+        raise ResourceNotFoundError(message, **exc_kwargs)
 
     # Priority 2: Check HTTP status codes
     elif http_status == 404:
-        raise ResourceNotFoundError(
-            message, error_code=error_code, response=response
-        )
+        raise ResourceNotFoundError(message, **exc_kwargs)
     elif http_status == 400:
-        raise BadRequestError(
-            message, error_code=error_code, response=response
-        )
+        raise BadRequestError(message, **exc_kwargs)
     elif http_status == 401:
         raise AuthenticationError(message)
     elif http_status == 403:
         raise AuthorizationError(message)
     elif http_status == 405:
-        raise MethodNotAllowedError(
-            message, error_code=error_code, response=response
-        )
+        raise MethodNotAllowedError(message, **exc_kwargs)
     elif http_status == 429:
-        raise RateLimitError(message, error_code=error_code, response=response)
+        raise RateLimitError(message, **exc_kwargs)
     elif http_status == 500:
-        raise ServerError(message, error_code=error_code, response=response)
+        raise ServerError(message, **exc_kwargs)
     elif http_status == 503:
-        raise ServiceUnavailableError(
-            message, error_code=error_code, response=response
-        )
+        raise ServiceUnavailableError(message, **exc_kwargs)
 
     # Default: Generic APIError
     else:
-        raise APIError(
-            message,
-            http_status=http_status,
-            error_code=error_code,
-            response=response,
-        )
+        raise APIError(message, **exc_kwargs)
 
 
 # ============================================================================

@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Error Handling Configuration**: Configurable error handling for convenience wrappers
+  - Three error modes: `"raise"` (default), `"return"`, `"log"`
+    - `"raise"`: Raises exceptions (stops program unless caught with try/except)
+    - `"return"`: Returns error dict (program always continues)
+    - `"log"`: Logs error and returns None (program always continues)
+  - Three error formats: `"detailed"` (default), `"simple"`, `"code_only"`
+    - `"detailed"`: Full context with endpoint, parameters, HTTP status, and helpful hints
+    - `"simple"`: Just error message, exception type, and error code
+    - `"code_only"`: Just the error code number
+  - Configure at FortiOS instance level (affects all wrapper calls)
+  - Override per method call for granular control
+  - Currently implemented for: `FirewallPolicy.create()`
+  - Direct API calls (e.g., `fgt.api.cmdb.firewall.policy.post()`) are not affected
+  - See `docs/ERROR_HANDLING_CONFIG.md` for comprehensive guide
+  - Example usage:
+    ```python
+    # Set defaults for all operations
+    fgt = FortiOS(host="...", token="...", error_mode="return", error_format="simple")
+    
+    # Override for specific call
+    result = fgt.firewall.policy.create(
+        name="MyPolicy", ..., 
+        error_mode="raise",  # Override for this call
+        error_format="detailed"
+    )
+    ```
+
 ## [0.3.23] - 2025-12-23
 
 ### Added

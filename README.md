@@ -58,6 +58,12 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Reformatted 796 files with Black (79-char line limit)
   - Fixed 1000+ flake8 lint errors
   - Proper handling of long lines, imports, and f-strings
+- ⚙️ **Error Handling Configuration**: Configurable error handling for convenience wrappers
+  - Three error modes: `"raise"` (default), `"return"`, `"log"`
+  - Three error formats: `"detailed"` (default), `"simple"`, `"code_only"`
+  - Set defaults at FortiOS instance level or override per method call
+  - Currently for convenience wrappers only (e.g., `fgt.firewall.policy.create()`)
+  - See [docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md)
 
 **Features from v0.3.19:**
 
@@ -194,6 +200,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **[docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md)** - Using the validation framework (832 validators)
 - **[docs/BUILDER_PATTERN_GUIDE.md](docs/BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details
 - **[docs/FIREWALL_POLICY_WRAPPER.md](docs/FIREWALL_POLICY_WRAPPER.md)** - Firewall policy convenience wrappers
+- **[docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md)** - Configurable error handling for wrappers
 - **[docs/ASYNC_GUIDE.md](docs/ASYNC_GUIDE.md)** - Async/await patterns and best practices
 - **[docs/FILTERING_GUIDE.md](docs/FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
 - **[docs/PERFORMANCE_TESTING.md](docs/PERFORMANCE_TESTING.md)** - Performance testing and optimization

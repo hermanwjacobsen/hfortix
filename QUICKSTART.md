@@ -371,6 +371,7 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 - Use pagination for large datasets
 - Check error codes in exception handlers
 - Use async mode for concurrent operations (see ASYNC_GUIDE.md)
+- Configure error handling for convenience wrappers based on your use case
 
 ❌ **DON'T:**
 
@@ -380,6 +381,43 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 - Make too many rapid API calls (rate limiting)
 
 ## Advanced Features
+
+### Error Handling Configuration (NEW in v0.3.24!)
+
+Convenience wrappers support configurable error handling:
+
+```python
+from hfortix import FortiOS
+
+# Set defaults for all operations
+fgt = FortiOS(
+    host='192.168.1.1',
+    token='your-api-token',
+    error_mode="return",      # "raise" | "return" | "log"
+    error_format="simple"     # "detailed" | "simple" | "code_only"
+)
+
+# Batch operations - program continues on error
+for policy in policies_to_create:
+    result = fgt.firewall.policy.create(**policy)
+    if result.get("status") == "error":
+        print(f"Failed: {result['error_code']}")
+
+# Override for specific call
+result = fgt.firewall.policy.create(
+    name="CriticalPolicy",
+    ...,
+    error_mode="raise",      # Override to raise exception
+    error_format="detailed"  # Override to get full details
+)
+```
+
+**Error Modes:**
+- `"raise"` (default): Raises exception - program stops unless caught
+- `"return"`: Returns error dict - program always continues  
+- `"log"`: Logs error and returns None - program always continues
+
+See [docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md) for details.
 
 ### Firewall Policy Convenience Wrappers (NEW in v0.3.21!)
 

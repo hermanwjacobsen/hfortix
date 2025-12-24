@@ -6,12 +6,14 @@ Instead of: fgt.api.cmdb.firewall.policy.post(data)
 Use: fgt.firewall.policy.create(name='MyPolicy', srcintf=['port1'], ...)
 """
 
+import logging
 from typing import (  # noqa: F401
     TYPE_CHECKING,
     Any,
     Coroutine,
     Dict,
     List,
+    Literal,
     Optional,
     Union,
     cast,
@@ -36,6 +38,81 @@ class FirewallPolicy:
         """
         self._fgt = fortios_instance
         self._api = fortios_instance.api.cmdb.firewall.policy
+        self._logger = logging.getLogger("hfortix.firewall.policy")
+
+    def _handle_error(
+        self,
+        operation: Any,
+        error_mode: Optional[Literal["raise", "return", "log"]] = None,
+        error_format: Optional[Literal["detailed", "simple", "code_only"]] = None,  # noqa: E501
+    ) -> Any:
+        """
+        Execute operation with configurable error handling.
+
+        Args:
+            operation: Callable that performs the API operation
+            error_mode: Override default error mode ("raise", "return", "log")
+            error_format: Override default error format ("detailed", "simple", "code_only")  # noqa: E501
+
+        Returns:
+            Operation result or error dict depending on error_mode
+        """
+        # Use instance defaults if not overridden
+        mode = error_mode if error_mode is not None else self._fgt.error_mode
+        fmt = error_format if error_format is not None else self._fgt.error_format  # noqa: E501
+
+        try:
+            # Execute the operation
+            return operation()
+        except Exception as e:
+            # Handle based on error mode
+            if mode == "raise":
+                # Re-raise the exception (default behavior)
+                raise
+            elif mode == "return":
+                # Return error as dict
+                error_dict: Dict[str, Any] = {
+                    "status": "error",
+                    "error": str(e),
+                }
+                
+                # Add details based on format
+                if fmt == "detailed":
+                    # Full exception details
+                    error_dict["exception_type"] = type(e).__name__
+                    if hasattr(e, "http_status"):
+                        error_dict["http_status"] = e.http_status  # type: ignore  # noqa: E501
+                    if hasattr(e, "error_code"):
+                        error_dict["error_code"] = e.error_code  # type: ignore  # noqa: E501
+                    if hasattr(e, "endpoint"):
+                        error_dict["endpoint"] = e.endpoint  # type: ignore
+                    if hasattr(e, "method"):
+                        error_dict["method"] = e.method  # type: ignore
+                elif fmt == "simple":
+                    # Just type and message
+                    error_dict["exception_type"] = type(e).__name__
+                    if hasattr(e, "error_code"):
+                        error_dict["error_code"] = e.error_code  # type: ignore  # noqa: E501
+                elif fmt == "code_only":
+                    # Just the error code
+                    if hasattr(e, "error_code"):
+                        error_dict["error_code"] = e.error_code  # type: ignore  # noqa: E501
+                    else:
+                        error_dict["error_code"] = -1  # Unknown error
+
+                return error_dict
+            elif mode == "log":
+                # Log and return None
+                self._logger.error(
+                    "%s: %s",
+                    type(e).__name__,
+                    str(e),
+                    exc_info=fmt == "detailed",
+                )
+                return None
+            else:
+                # Shouldn't happen, but raise if invalid mode
+                raise ValueError(f"Invalid error_mode: {mode}")
 
     def create(
         self,
@@ -263,6 +340,9 @@ class FirewallPolicy:
         raw_json: Optional[bool] = None,
         # Catch-all for any additional fields
         data: Optional[Dict[str, Any]] = None,
+        # Error handling configuration
+        error_mode: Optional[Literal["raise", "return", "log"]] = None,
+        error_format: Optional[Literal["detailed", "simple", "code_only"]] = None,  # noqa: E501
     ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Create a new firewall policy with all available FortiOS parameters.
@@ -557,8 +637,25 @@ class FirewallPolicy:
             data: Additional fields as dictionary (merged with explicit
             parameters)
 
+            # Error Handling (can override FortiOS instance defaults)
+            error_mode: How to handle errors for this call only
+                - "raise": Raise exception (stops program unless caught)
+                - "return": Return error dict (program continues)
+                - "log": Log error and return None (program continues)
+                If not specified, uses the FortiOS instance default
+            error_format: Error message detail level for this call only
+                - "detailed": Full context with endpoint, hints, parameters
+                - "simple": Just error message and code
+                - "code_only": Just the error code number
+                If not specified, uses the FortiOS instance default
+
         Returns:
-            API response dictionary
+            API response dictionary (on success)
+            Error dictionary (if error_mode="return" and error occurs)
+            None (if error_mode="log" and error occurs)
+
+        Raises:
+            Various APIError exceptions (if error_mode="raise" and error occurs)
 
         Example:
             >>> # Simple policy
@@ -786,7 +883,12 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.post(payload_dict=policy_data, **api_params)
+        # Execute with error handling
+        return self._handle_error(
+            lambda: self._api.post(payload_dict=policy_data, **api_params),
+            error_mode=error_mode,
+            error_format=error_format,
+        )
 
     def get(
         self,
