@@ -48,7 +48,8 @@ def validate_npu_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_npu_put(
         if value and value not in VALID_BODY_DEDICATED_MANAGEMENT_CPU:
             return (
                 False,
-                f"Invalid dedicated-management-cpu '{value}'. Must be one of: {', '.join(VALID_BODY_DEDICATED_MANAGEMENT_CPU)}",
+                f"Invalid dedicated-management-cpu '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEDICATED_MANAGEMENT_CPU)}",
             )
 
     # Validate dedicated-management-affinity if present
@@ -99,7 +101,8 @@ def validate_npu_put(
         if value and value not in VALID_BODY_CAPWAP_OFFLOAD:
             return (
                 False,
-                f"Invalid capwap-offload '{value}'. Must be one of: {', '.join(VALID_BODY_CAPWAP_OFFLOAD)}",
+                f"Invalid capwap-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPWAP_OFFLOAD)}",
             )
 
     # Validate ipsec-mtu-override if present
@@ -108,7 +111,8 @@ def validate_npu_put(
         if value and value not in VALID_BODY_IPSEC_MTU_OVERRIDE:
             return (
                 False,
-                f"Invalid ipsec-mtu-override '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_MTU_OVERRIDE)}",
+                f"Invalid ipsec-mtu-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPSEC_MTU_OVERRIDE)}",
             )
 
     # Validate ipsec-ordering if present
@@ -117,7 +121,8 @@ def validate_npu_put(
         if value and value not in VALID_BODY_IPSEC_ORDERING:
             return (
                 False,
-                f"Invalid ipsec-ordering '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_ORDERING)}",
+                f"Invalid ipsec-ordering '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPSEC_ORDERING)}",
             )
 
     return (True, None)

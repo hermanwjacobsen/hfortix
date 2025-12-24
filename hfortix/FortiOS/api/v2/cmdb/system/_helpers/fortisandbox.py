@@ -57,7 +57,8 @@ def validate_fortisandbox_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,7 +91,8 @@ def validate_fortisandbox_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate forticloud if present
@@ -99,7 +101,8 @@ def validate_fortisandbox_put(
         if value and value not in VALID_BODY_FORTICLOUD:
             return (
                 False,
-                f"Invalid forticloud '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICLOUD)}",
+                f"Invalid forticloud '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTICLOUD)}",
             )
 
     # Validate server if present
@@ -120,7 +123,8 @@ def validate_fortisandbox_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -146,7 +150,8 @@ def validate_fortisandbox_put(
         if value and value not in VALID_BODY_ENC_ALGORITHM:
             return (
                 False,
-                f"Invalid enc-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_ENC_ALGORITHM)}",
+                f"Invalid enc-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENC_ALGORITHM)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -155,7 +160,8 @@ def validate_fortisandbox_put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate email if present
@@ -182,7 +188,8 @@ def validate_fortisandbox_put(
         if value and value not in VALID_BODY_CERTIFICATE_VERIFICATION:
             return (
                 False,
-                f"Invalid certificate-verification '{value}'. Must be one of: {', '.join(VALID_BODY_CERTIFICATE_VERIFICATION)}",
+                f"Invalid certificate-verification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CERTIFICATE_VERIFICATION)}",
             )
 
     return (True, None)

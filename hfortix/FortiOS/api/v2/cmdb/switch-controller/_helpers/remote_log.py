@@ -82,7 +82,8 @@ def validate_remote_log_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -117,7 +118,8 @@ def validate_remote_log_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate server if present
@@ -143,7 +145,8 @@ def validate_remote_log_post(
         if value and value not in VALID_BODY_SEVERITY:
             return (
                 False,
-                f"Invalid severity '{value}'. Must be one of: {', '.join(VALID_BODY_SEVERITY)}",
+                f"Invalid severity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEVERITY)}",
             )
 
     # Validate csv if present
@@ -152,7 +155,8 @@ def validate_remote_log_post(
         if value and value not in VALID_BODY_CSV:
             return (
                 False,
-                f"Invalid csv '{value}'. Must be one of: {', '.join(VALID_BODY_CSV)}",
+                f"Invalid csv '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CSV)}",
             )
 
     # Validate facility if present
@@ -161,7 +165,8 @@ def validate_remote_log_post(
         if value and value not in VALID_BODY_FACILITY:
             return (
                 False,
-                f"Invalid facility '{value}'. Must be one of: {', '.join(VALID_BODY_FACILITY)}",
+                f"Invalid facility '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FACILITY)}",
             )
 
     return (True, None)
@@ -205,7 +210,8 @@ def validate_remote_log_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate server if present
@@ -231,7 +237,8 @@ def validate_remote_log_put(
         if value and value not in VALID_BODY_SEVERITY:
             return (
                 False,
-                f"Invalid severity '{value}'. Must be one of: {', '.join(VALID_BODY_SEVERITY)}",
+                f"Invalid severity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEVERITY)}",
             )
 
     # Validate csv if present
@@ -240,7 +247,8 @@ def validate_remote_log_put(
         if value and value not in VALID_BODY_CSV:
             return (
                 False,
-                f"Invalid csv '{value}'. Must be one of: {', '.join(VALID_BODY_CSV)}",
+                f"Invalid csv '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CSV)}",
             )
 
     # Validate facility if present
@@ -249,7 +257,8 @@ def validate_remote_log_put(
         if value and value not in VALID_BODY_FACILITY:
             return (
                 False,
-                f"Invalid facility '{value}'. Must be one of: {', '.join(VALID_BODY_FACILITY)}",
+                f"Invalid facility '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FACILITY)}",
             )
 
     return (True, None)

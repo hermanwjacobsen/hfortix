@@ -48,7 +48,8 @@ def validate_custom_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -98,7 +99,8 @@ def validate_custom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate log if present
@@ -107,7 +109,8 @@ def validate_custom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOG:
             return (
                 False,
-                f"Invalid log '{value}'. Must be one of: {', '.join(VALID_BODY_LOG)}",
+                f"Invalid log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG)}",
             )
 
     # Validate log-packet if present
@@ -116,7 +119,8 @@ def validate_custom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOG_PACKET:
             return (
                 False,
-                f"Invalid log-packet '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_PACKET)}",
+                f"Invalid log-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_PACKET)}",
             )
 
     # Validate action if present
@@ -125,7 +129,8 @@ def validate_custom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate comment if present

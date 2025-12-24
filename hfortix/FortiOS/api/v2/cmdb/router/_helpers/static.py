@@ -49,7 +49,8 @@ def validate_static_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,7 +88,8 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate distance if present
@@ -141,7 +143,8 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BLACKHOLE:
             return (
                 False,
-                f"Invalid blackhole '{value}'. Must be one of: {', '.join(VALID_BODY_BLACKHOLE)}",
+                f"Invalid blackhole '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLACKHOLE)}",
             )
 
     # Validate dynamic-gateway if present
@@ -150,7 +153,8 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DYNAMIC_GATEWAY:
             return (
                 False,
-                f"Invalid dynamic-gateway '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_GATEWAY)}",
+                f"Invalid dynamic-gateway '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYNAMIC_GATEWAY)}",
             )
 
     # Validate dstaddr if present
@@ -200,7 +204,8 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LINK_MONITOR_EXEMPT:
             return (
                 False,
-                f"Invalid link-monitor-exempt '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_MONITOR_EXEMPT)}",
+                f"Invalid link-monitor-exempt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_MONITOR_EXEMPT)}",
             )
 
     # Validate tag if present
@@ -231,7 +236,8 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BFD:
             return (
                 False,
-                f"Invalid bfd '{value}'. Must be one of: {', '.join(VALID_BODY_BFD)}",
+                f"Invalid bfd '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BFD)}",
             )
 
     return (True, None)
@@ -275,7 +281,8 @@ def validate_static_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate distance if present
@@ -329,7 +336,8 @@ def validate_static_put(
         if value and value not in VALID_BODY_BLACKHOLE:
             return (
                 False,
-                f"Invalid blackhole '{value}'. Must be one of: {', '.join(VALID_BODY_BLACKHOLE)}",
+                f"Invalid blackhole '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLACKHOLE)}",
             )
 
     # Validate dynamic-gateway if present
@@ -338,7 +346,8 @@ def validate_static_put(
         if value and value not in VALID_BODY_DYNAMIC_GATEWAY:
             return (
                 False,
-                f"Invalid dynamic-gateway '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_GATEWAY)}",
+                f"Invalid dynamic-gateway '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYNAMIC_GATEWAY)}",
             )
 
     # Validate dstaddr if present
@@ -388,7 +397,8 @@ def validate_static_put(
         if value and value not in VALID_BODY_LINK_MONITOR_EXEMPT:
             return (
                 False,
-                f"Invalid link-monitor-exempt '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_MONITOR_EXEMPT)}",
+                f"Invalid link-monitor-exempt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_MONITOR_EXEMPT)}",
             )
 
     # Validate tag if present
@@ -419,7 +429,8 @@ def validate_static_put(
         if value and value not in VALID_BODY_BFD:
             return (
                 False,
-                f"Invalid bfd '{value}'. Must be one of: {', '.join(VALID_BODY_BFD)}",
+                f"Invalid bfd '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BFD)}",
             )
 
     return (True, None)

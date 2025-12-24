@@ -56,7 +56,8 @@ def validate_hotspot20_h2qp_conn_capability_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -91,7 +92,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_ICMP_PORT:
             return (
                 False,
-                f"Invalid icmp-port '{value}'. Must be one of: {', '.join(VALID_BODY_ICMP_PORT)}",
+                f"Invalid icmp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ICMP_PORT)}",
             )
 
     # Validate ftp-port if present
@@ -100,7 +102,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_FTP_PORT:
             return (
                 False,
-                f"Invalid ftp-port '{value}'. Must be one of: {', '.join(VALID_BODY_FTP_PORT)}",
+                f"Invalid ftp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FTP_PORT)}",
             )
 
     # Validate ssh-port if present
@@ -109,7 +112,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_SSH_PORT:
             return (
                 False,
-                f"Invalid ssh-port '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_PORT)}",
+                f"Invalid ssh-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_PORT)}",
             )
 
     # Validate http-port if present
@@ -118,7 +122,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_HTTP_PORT:
             return (
                 False,
-                f"Invalid http-port '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_PORT)}",
+                f"Invalid http-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_PORT)}",
             )
 
     # Validate tls-port if present
@@ -127,7 +132,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_TLS_PORT:
             return (
                 False,
-                f"Invalid tls-port '{value}'. Must be one of: {', '.join(VALID_BODY_TLS_PORT)}",
+                f"Invalid tls-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TLS_PORT)}",
             )
 
     # Validate pptp-vpn-port if present
@@ -136,7 +142,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_PPTP_VPN_PORT:
             return (
                 False,
-                f"Invalid pptp-vpn-port '{value}'. Must be one of: {', '.join(VALID_BODY_PPTP_VPN_PORT)}",
+                f"Invalid pptp-vpn-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PPTP_VPN_PORT)}",
             )
 
     # Validate voip-tcp-port if present
@@ -145,7 +152,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_VOIP_TCP_PORT:
             return (
                 False,
-                f"Invalid voip-tcp-port '{value}'. Must be one of: {', '.join(VALID_BODY_VOIP_TCP_PORT)}",
+                f"Invalid voip-tcp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VOIP_TCP_PORT)}",
             )
 
     # Validate voip-udp-port if present
@@ -154,7 +162,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_VOIP_UDP_PORT:
             return (
                 False,
-                f"Invalid voip-udp-port '{value}'. Must be one of: {', '.join(VALID_BODY_VOIP_UDP_PORT)}",
+                f"Invalid voip-udp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VOIP_UDP_PORT)}",
             )
 
     # Validate ikev2-port if present
@@ -163,7 +172,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_IKEV2_PORT:
             return (
                 False,
-                f"Invalid ikev2-port '{value}'. Must be one of: {', '.join(VALID_BODY_IKEV2_PORT)}",
+                f"Invalid ikev2-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKEV2_PORT)}",
             )
 
     # Validate ikev2-xx-port if present
@@ -172,7 +182,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_IKEV2_XX_PORT:
             return (
                 False,
-                f"Invalid ikev2-xx-port '{value}'. Must be one of: {', '.join(VALID_BODY_IKEV2_XX_PORT)}",
+                f"Invalid ikev2-xx-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKEV2_XX_PORT)}",
             )
 
     # Validate esp-port if present
@@ -181,7 +192,8 @@ def validate_hotspot20_h2qp_conn_capability_post(
         if value and value not in VALID_BODY_ESP_PORT:
             return (
                 False,
-                f"Invalid esp-port '{value}'. Must be one of: {', '.join(VALID_BODY_ESP_PORT)}",
+                f"Invalid esp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ESP_PORT)}",
             )
 
     return (True, None)
@@ -225,7 +237,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_ICMP_PORT:
             return (
                 False,
-                f"Invalid icmp-port '{value}'. Must be one of: {', '.join(VALID_BODY_ICMP_PORT)}",
+                f"Invalid icmp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ICMP_PORT)}",
             )
 
     # Validate ftp-port if present
@@ -234,7 +247,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_FTP_PORT:
             return (
                 False,
-                f"Invalid ftp-port '{value}'. Must be one of: {', '.join(VALID_BODY_FTP_PORT)}",
+                f"Invalid ftp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FTP_PORT)}",
             )
 
     # Validate ssh-port if present
@@ -243,7 +257,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_SSH_PORT:
             return (
                 False,
-                f"Invalid ssh-port '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_PORT)}",
+                f"Invalid ssh-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_PORT)}",
             )
 
     # Validate http-port if present
@@ -252,7 +267,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_HTTP_PORT:
             return (
                 False,
-                f"Invalid http-port '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_PORT)}",
+                f"Invalid http-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_PORT)}",
             )
 
     # Validate tls-port if present
@@ -261,7 +277,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_TLS_PORT:
             return (
                 False,
-                f"Invalid tls-port '{value}'. Must be one of: {', '.join(VALID_BODY_TLS_PORT)}",
+                f"Invalid tls-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TLS_PORT)}",
             )
 
     # Validate pptp-vpn-port if present
@@ -270,7 +287,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_PPTP_VPN_PORT:
             return (
                 False,
-                f"Invalid pptp-vpn-port '{value}'. Must be one of: {', '.join(VALID_BODY_PPTP_VPN_PORT)}",
+                f"Invalid pptp-vpn-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PPTP_VPN_PORT)}",
             )
 
     # Validate voip-tcp-port if present
@@ -279,7 +297,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_VOIP_TCP_PORT:
             return (
                 False,
-                f"Invalid voip-tcp-port '{value}'. Must be one of: {', '.join(VALID_BODY_VOIP_TCP_PORT)}",
+                f"Invalid voip-tcp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VOIP_TCP_PORT)}",
             )
 
     # Validate voip-udp-port if present
@@ -288,7 +307,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_VOIP_UDP_PORT:
             return (
                 False,
-                f"Invalid voip-udp-port '{value}'. Must be one of: {', '.join(VALID_BODY_VOIP_UDP_PORT)}",
+                f"Invalid voip-udp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VOIP_UDP_PORT)}",
             )
 
     # Validate ikev2-port if present
@@ -297,7 +317,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_IKEV2_PORT:
             return (
                 False,
-                f"Invalid ikev2-port '{value}'. Must be one of: {', '.join(VALID_BODY_IKEV2_PORT)}",
+                f"Invalid ikev2-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKEV2_PORT)}",
             )
 
     # Validate ikev2-xx-port if present
@@ -306,7 +327,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_IKEV2_XX_PORT:
             return (
                 False,
-                f"Invalid ikev2-xx-port '{value}'. Must be one of: {', '.join(VALID_BODY_IKEV2_XX_PORT)}",
+                f"Invalid ikev2-xx-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKEV2_XX_PORT)}",
             )
 
     # Validate esp-port if present
@@ -315,7 +337,8 @@ def validate_hotspot20_h2qp_conn_capability_put(
         if value and value not in VALID_BODY_ESP_PORT:
             return (
                 False,
-                f"Invalid esp-port '{value}'. Must be one of: {', '.join(VALID_BODY_ESP_PORT)}",
+                f"Invalid esp-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ESP_PORT)}",
             )
 
     return (True, None)

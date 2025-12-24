@@ -45,7 +45,8 @@ def validate_keyword_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,7 +96,8 @@ def validate_keyword_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MATCH:
             return (
                 False,
-                f"Invalid match '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH)}",
+                f"Invalid match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH)}",
             )
 
     return (True, None)
@@ -156,7 +158,8 @@ def validate_keyword_put(
         if value and value not in VALID_BODY_MATCH:
             return (
                 False,
-                f"Invalid match '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH)}",
+                f"Invalid match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH)}",
             )
 
     return (True, None)

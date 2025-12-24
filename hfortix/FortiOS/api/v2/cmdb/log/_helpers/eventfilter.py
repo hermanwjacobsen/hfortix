@@ -61,7 +61,8 @@ def validate_eventfilter_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -94,7 +95,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_EVENT:
             return (
                 False,
-                f"Invalid event '{value}'. Must be one of: {', '.join(VALID_BODY_EVENT)}",
+                f"Invalid event '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EVENT)}",
             )
 
     # Validate system if present
@@ -103,7 +105,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_SYSTEM:
             return (
                 False,
-                f"Invalid system '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM)}",
+                f"Invalid system '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SYSTEM)}",
             )
 
     # Validate vpn if present
@@ -112,7 +115,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_VPN:
             return (
                 False,
-                f"Invalid vpn '{value}'. Must be one of: {', '.join(VALID_BODY_VPN)}",
+                f"Invalid vpn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VPN)}",
             )
 
     # Validate user if present
@@ -121,7 +125,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_USER:
             return (
                 False,
-                f"Invalid user '{value}'. Must be one of: {', '.join(VALID_BODY_USER)}",
+                f"Invalid user '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USER)}",
             )
 
     # Validate router if present
@@ -130,7 +135,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_ROUTER:
             return (
                 False,
-                f"Invalid router '{value}'. Must be one of: {', '.join(VALID_BODY_ROUTER)}",
+                f"Invalid router '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROUTER)}",
             )
 
     # Validate wireless-activity if present
@@ -139,7 +145,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_WIRELESS_ACTIVITY:
             return (
                 False,
-                f"Invalid wireless-activity '{value}'. Must be one of: {', '.join(VALID_BODY_WIRELESS_ACTIVITY)}",
+                f"Invalid wireless-activity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIRELESS_ACTIVITY)}",
             )
 
     # Validate wan-opt if present
@@ -148,7 +155,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_WAN_OPT:
             return (
                 False,
-                f"Invalid wan-opt '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_OPT)}",
+                f"Invalid wan-opt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_OPT)}",
             )
 
     # Validate endpoint if present
@@ -157,7 +165,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_ENDPOINT:
             return (
                 False,
-                f"Invalid endpoint '{value}'. Must be one of: {', '.join(VALID_BODY_ENDPOINT)}",
+                f"Invalid endpoint '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENDPOINT)}",
             )
 
     # Validate ha if present
@@ -166,7 +175,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_HA:
             return (
                 False,
-                f"Invalid ha '{value}'. Must be one of: {', '.join(VALID_BODY_HA)}",
+                f"Invalid ha '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HA)}",
             )
 
     # Validate security-rating if present
@@ -175,7 +185,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_SECURITY_RATING:
             return (
                 False,
-                f"Invalid security-rating '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_RATING)}",
+                f"Invalid security-rating '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY_RATING)}",
             )
 
     # Validate fortiextender if present
@@ -184,7 +195,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_FORTIEXTENDER:
             return (
                 False,
-                f"Invalid fortiextender '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIEXTENDER)}",
+                f"Invalid fortiextender '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIEXTENDER)}",
             )
 
     # Validate connector if present
@@ -193,7 +205,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_CONNECTOR:
             return (
                 False,
-                f"Invalid connector '{value}'. Must be one of: {', '.join(VALID_BODY_CONNECTOR)}",
+                f"Invalid connector '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONNECTOR)}",
             )
 
     # Validate sdwan if present
@@ -202,7 +215,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_SDWAN:
             return (
                 False,
-                f"Invalid sdwan '{value}'. Must be one of: {', '.join(VALID_BODY_SDWAN)}",
+                f"Invalid sdwan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SDWAN)}",
             )
 
     # Validate cifs if present
@@ -211,7 +225,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_CIFS:
             return (
                 False,
-                f"Invalid cifs '{value}'. Must be one of: {', '.join(VALID_BODY_CIFS)}",
+                f"Invalid cifs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CIFS)}",
             )
 
     # Validate switch-controller if present
@@ -220,7 +235,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER:
             return (
                 False,
-                f"Invalid switch-controller '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER)}",
+                f"Invalid switch-controller '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SWITCH_CONTROLLER)}",
             )
 
     # Validate rest-api if present
@@ -229,7 +245,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_REST_API:
             return (
                 False,
-                f"Invalid rest-api '{value}'. Must be one of: {', '.join(VALID_BODY_REST_API)}",
+                f"Invalid rest-api '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REST_API)}",
             )
 
     # Validate web-svc if present
@@ -238,7 +255,8 @@ def validate_eventfilter_put(
         if value and value not in VALID_BODY_WEB_SVC:
             return (
                 False,
-                f"Invalid web-svc '{value}'. Must be one of: {', '.join(VALID_BODY_WEB_SVC)}",
+                f"Invalid web-svc '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WEB_SVC)}",
             )
 
     return (True, None)

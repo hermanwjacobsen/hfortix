@@ -82,7 +82,8 @@ def validate_address_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -115,7 +116,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate route-tag if present
@@ -138,7 +140,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SUB_TYPE:
             return (
                 False,
-                f"Invalid sub-type '{value}'. Must be one of: {', '.join(VALID_BODY_SUB_TYPE)}",
+                f"Invalid sub-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SUB_TYPE)}",
             )
 
     # Validate clearpass-spt if present
@@ -147,7 +150,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CLEARPASS_SPT:
             return (
                 False,
-                f"Invalid clearpass-spt '{value}'. Must be one of: {', '.join(VALID_BODY_CLEARPASS_SPT)}",
+                f"Invalid clearpass-spt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLEARPASS_SPT)}",
             )
 
     # Validate fqdn if present
@@ -239,7 +243,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OBJ_TYPE:
             return (
                 False,
-                f"Invalid obj-type '{value}'. Must be one of: {', '.join(VALID_BODY_OBJ_TYPE)}",
+                f"Invalid obj-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OBJ_TYPE)}",
             )
 
     # Validate tag-detection-level if present
@@ -313,7 +318,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SDN_ADDR_TYPE:
             return (
                 False,
-                f"Invalid sdn-addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SDN_ADDR_TYPE)}",
+                f"Invalid sdn-addr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SDN_ADDR_TYPE)}",
             )
 
     # Validate node-ip-only if present
@@ -322,7 +328,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NODE_IP_ONLY:
             return (
                 False,
-                f"Invalid node-ip-only '{value}'. Must be one of: {', '.join(VALID_BODY_NODE_IP_ONLY)}",
+                f"Invalid node-ip-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NODE_IP_ONLY)}",
             )
 
     # Validate obj-id if present
@@ -337,7 +344,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ALLOW_ROUTING:
             return (
                 False,
-                f"Invalid allow-routing '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_ROUTING)}",
+                f"Invalid allow-routing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_ROUTING)}",
             )
 
     # Validate passive-fqdn-learning if present
@@ -346,7 +354,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PASSIVE_FQDN_LEARNING:
             return (
                 False,
-                f"Invalid passive-fqdn-learning '{value}'. Must be one of: {', '.join(VALID_BODY_PASSIVE_FQDN_LEARNING)}",
+                f"Invalid passive-fqdn-learning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSIVE_FQDN_LEARNING)}",
             )
 
     # Validate fabric-object if present
@@ -355,7 +364,8 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)
@@ -399,7 +409,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate route-tag if present
@@ -422,7 +433,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_SUB_TYPE:
             return (
                 False,
-                f"Invalid sub-type '{value}'. Must be one of: {', '.join(VALID_BODY_SUB_TYPE)}",
+                f"Invalid sub-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SUB_TYPE)}",
             )
 
     # Validate clearpass-spt if present
@@ -431,7 +443,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_CLEARPASS_SPT:
             return (
                 False,
-                f"Invalid clearpass-spt '{value}'. Must be one of: {', '.join(VALID_BODY_CLEARPASS_SPT)}",
+                f"Invalid clearpass-spt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLEARPASS_SPT)}",
             )
 
     # Validate fqdn if present
@@ -523,7 +536,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_OBJ_TYPE:
             return (
                 False,
-                f"Invalid obj-type '{value}'. Must be one of: {', '.join(VALID_BODY_OBJ_TYPE)}",
+                f"Invalid obj-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OBJ_TYPE)}",
             )
 
     # Validate tag-detection-level if present
@@ -597,7 +611,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_SDN_ADDR_TYPE:
             return (
                 False,
-                f"Invalid sdn-addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SDN_ADDR_TYPE)}",
+                f"Invalid sdn-addr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SDN_ADDR_TYPE)}",
             )
 
     # Validate node-ip-only if present
@@ -606,7 +621,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_NODE_IP_ONLY:
             return (
                 False,
-                f"Invalid node-ip-only '{value}'. Must be one of: {', '.join(VALID_BODY_NODE_IP_ONLY)}",
+                f"Invalid node-ip-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NODE_IP_ONLY)}",
             )
 
     # Validate obj-id if present
@@ -621,7 +637,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_ALLOW_ROUTING:
             return (
                 False,
-                f"Invalid allow-routing '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_ROUTING)}",
+                f"Invalid allow-routing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_ROUTING)}",
             )
 
     # Validate passive-fqdn-learning if present
@@ -630,7 +647,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_PASSIVE_FQDN_LEARNING:
             return (
                 False,
-                f"Invalid passive-fqdn-learning '{value}'. Must be one of: {', '.join(VALID_BODY_PASSIVE_FQDN_LEARNING)}",
+                f"Invalid passive-fqdn-learning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSIVE_FQDN_LEARNING)}",
             )
 
     # Validate fabric-object if present
@@ -639,7 +657,8 @@ def validate_address_put(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)

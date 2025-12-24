@@ -46,7 +46,8 @@ def validate_vne_interface_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -93,7 +94,8 @@ def validate_vne_interface_post(
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     # Validate br if present
@@ -114,7 +116,8 @@ def validate_vne_interface_post(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate http-username if present
@@ -176,7 +179,8 @@ def validate_vne_interface_put(
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     # Validate br if present
@@ -197,7 +201,8 @@ def validate_vne_interface_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate http-username if present

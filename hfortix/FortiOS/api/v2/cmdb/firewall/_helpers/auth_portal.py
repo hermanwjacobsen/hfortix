@@ -45,7 +45,8 @@ def validate_auth_portal_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -96,7 +97,8 @@ def validate_auth_portal_put(
         if value and value not in VALID_BODY_PROXY_AUTH:
             return (
                 False,
-                f"Invalid proxy-auth '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_AUTH)}",
+                f"Invalid proxy-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_AUTH)}",
             )
 
     return (True, None)

@@ -46,7 +46,8 @@ def validate_utm_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,7 +88,8 @@ def validate_utm_profile_post(
         if value and value not in VALID_BODY_UTM_LOG:
             return (
                 False,
-                f"Invalid utm-log '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_LOG)}",
+                f"Invalid utm-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_LOG)}",
             )
 
     # Validate ips-sensor if present
@@ -120,7 +122,8 @@ def validate_utm_profile_post(
         if value and value not in VALID_BODY_SCAN_BOTNET_CONNECTIONS:
             return (
                 False,
-                f"Invalid scan-botnet-connections '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
+                f"Invalid scan-botnet-connections '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
             )
 
     return (True, None)
@@ -170,7 +173,8 @@ def validate_utm_profile_put(
         if value and value not in VALID_BODY_UTM_LOG:
             return (
                 False,
-                f"Invalid utm-log '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_LOG)}",
+                f"Invalid utm-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_LOG)}",
             )
 
     # Validate ips-sensor if present
@@ -203,7 +207,8 @@ def validate_utm_profile_put(
         if value and value not in VALID_BODY_SCAN_BOTNET_CONNECTIONS:
             return (
                 False,
-                f"Invalid scan-botnet-connections '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
+                f"Invalid scan-botnet-connections '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
             )
 
     return (True, None)

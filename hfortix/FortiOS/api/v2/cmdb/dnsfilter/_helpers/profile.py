@@ -52,7 +52,8 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -91,7 +92,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOG_ALL_DOMAIN:
             return (
                 False,
-                f"Invalid log-all-domain '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_ALL_DOMAIN)}",
+                f"Invalid log-all-domain '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_ALL_DOMAIN)}",
             )
 
     # Validate sdns-ftgd-err-log if present
@@ -100,7 +102,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SDNS_FTGD_ERR_LOG:
             return (
                 False,
-                f"Invalid sdns-ftgd-err-log '{value}'. Must be one of: {', '.join(VALID_BODY_SDNS_FTGD_ERR_LOG)}",
+                f"Invalid sdns-ftgd-err-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SDNS_FTGD_ERR_LOG)}",
             )
 
     # Validate sdns-domain-log if present
@@ -109,7 +112,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SDNS_DOMAIN_LOG:
             return (
                 False,
-                f"Invalid sdns-domain-log '{value}'. Must be one of: {', '.join(VALID_BODY_SDNS_DOMAIN_LOG)}",
+                f"Invalid sdns-domain-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SDNS_DOMAIN_LOG)}",
             )
 
     # Validate block-action if present
@@ -118,7 +122,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BLOCK_ACTION:
             return (
                 False,
-                f"Invalid block-action '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_ACTION)}",
+                f"Invalid block-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_ACTION)}",
             )
 
     # Validate block-botnet if present
@@ -127,7 +132,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BLOCK_BOTNET:
             return (
                 False,
-                f"Invalid block-botnet '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_BOTNET)}",
+                f"Invalid block-botnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_BOTNET)}",
             )
 
     # Validate safe-search if present
@@ -136,7 +142,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SAFE_SEARCH:
             return (
                 False,
-                f"Invalid safe-search '{value}'. Must be one of: {', '.join(VALID_BODY_SAFE_SEARCH)}",
+                f"Invalid safe-search '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAFE_SEARCH)}",
             )
 
     # Validate youtube-restrict if present
@@ -145,7 +152,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_YOUTUBE_RESTRICT:
             return (
                 False,
-                f"Invalid youtube-restrict '{value}'. Must be one of: {', '.join(VALID_BODY_YOUTUBE_RESTRICT)}",
+                f"Invalid youtube-restrict '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_YOUTUBE_RESTRICT)}",
             )
 
     # Validate strip-ech if present
@@ -154,7 +162,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STRIP_ECH:
             return (
                 False,
-                f"Invalid strip-ech '{value}'. Must be one of: {', '.join(VALID_BODY_STRIP_ECH)}",
+                f"Invalid strip-ech '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STRIP_ECH)}",
             )
 
     return (True, None)
@@ -204,7 +213,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_LOG_ALL_DOMAIN:
             return (
                 False,
-                f"Invalid log-all-domain '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_ALL_DOMAIN)}",
+                f"Invalid log-all-domain '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_ALL_DOMAIN)}",
             )
 
     # Validate sdns-ftgd-err-log if present
@@ -213,7 +223,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SDNS_FTGD_ERR_LOG:
             return (
                 False,
-                f"Invalid sdns-ftgd-err-log '{value}'. Must be one of: {', '.join(VALID_BODY_SDNS_FTGD_ERR_LOG)}",
+                f"Invalid sdns-ftgd-err-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SDNS_FTGD_ERR_LOG)}",
             )
 
     # Validate sdns-domain-log if present
@@ -222,7 +233,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SDNS_DOMAIN_LOG:
             return (
                 False,
-                f"Invalid sdns-domain-log '{value}'. Must be one of: {', '.join(VALID_BODY_SDNS_DOMAIN_LOG)}",
+                f"Invalid sdns-domain-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SDNS_DOMAIN_LOG)}",
             )
 
     # Validate block-action if present
@@ -231,7 +243,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_BLOCK_ACTION:
             return (
                 False,
-                f"Invalid block-action '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_ACTION)}",
+                f"Invalid block-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_ACTION)}",
             )
 
     # Validate block-botnet if present
@@ -240,7 +253,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_BLOCK_BOTNET:
             return (
                 False,
-                f"Invalid block-botnet '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_BOTNET)}",
+                f"Invalid block-botnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_BOTNET)}",
             )
 
     # Validate safe-search if present
@@ -249,7 +263,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SAFE_SEARCH:
             return (
                 False,
-                f"Invalid safe-search '{value}'. Must be one of: {', '.join(VALID_BODY_SAFE_SEARCH)}",
+                f"Invalid safe-search '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAFE_SEARCH)}",
             )
 
     # Validate youtube-restrict if present
@@ -258,7 +273,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_YOUTUBE_RESTRICT:
             return (
                 False,
-                f"Invalid youtube-restrict '{value}'. Must be one of: {', '.join(VALID_BODY_YOUTUBE_RESTRICT)}",
+                f"Invalid youtube-restrict '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_YOUTUBE_RESTRICT)}",
             )
 
     # Validate strip-ech if present
@@ -267,7 +283,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_STRIP_ECH:
             return (
                 False,
-                f"Invalid strip-ech '{value}'. Must be one of: {', '.join(VALID_BODY_STRIP_ECH)}",
+                f"Invalid strip-ech '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STRIP_ECH)}",
             )
 
     return (True, None)

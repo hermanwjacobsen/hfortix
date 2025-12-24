@@ -48,7 +48,8 @@ def validate_fabric_vpn_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_fabric_vpn_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate sync-mode if present
@@ -90,7 +92,8 @@ def validate_fabric_vpn_put(
         if value and value not in VALID_BODY_SYNC_MODE:
             return (
                 False,
-                f"Invalid sync-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SYNC_MODE)}",
+                f"Invalid sync-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SYNC_MODE)}",
             )
 
     # Validate branch-name if present
@@ -105,7 +108,8 @@ def validate_fabric_vpn_put(
         if value and value not in VALID_BODY_POLICY_RULE:
             return (
                 False,
-                f"Invalid policy-rule '{value}'. Must be one of: {', '.join(VALID_BODY_POLICY_RULE)}",
+                f"Invalid policy-rule '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POLICY_RULE)}",
             )
 
     # Validate vpn-role if present
@@ -114,7 +118,8 @@ def validate_fabric_vpn_put(
         if value and value not in VALID_BODY_VPN_ROLE:
             return (
                 False,
-                f"Invalid vpn-role '{value}'. Must be one of: {', '.join(VALID_BODY_VPN_ROLE)}",
+                f"Invalid vpn-role '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VPN_ROLE)}",
             )
 
     # Validate loopback-interface if present

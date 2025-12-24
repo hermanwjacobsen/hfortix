@@ -64,7 +64,8 @@ def validate_syslogd_filter_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,7 +98,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_SEVERITY:
             return (
                 False,
-                f"Invalid severity '{value}'. Must be one of: {', '.join(VALID_BODY_SEVERITY)}",
+                f"Invalid severity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEVERITY)}",
             )
 
     # Validate forward-traffic if present
@@ -106,7 +108,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_FORWARD_TRAFFIC:
             return (
                 False,
-                f"Invalid forward-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_FORWARD_TRAFFIC)}",
+                f"Invalid forward-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORWARD_TRAFFIC)}",
             )
 
     # Validate local-traffic if present
@@ -115,7 +118,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_LOCAL_TRAFFIC:
             return (
                 False,
-                f"Invalid local-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_TRAFFIC)}",
+                f"Invalid local-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_TRAFFIC)}",
             )
 
     # Validate multicast-traffic if present
@@ -124,7 +128,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_MULTICAST_TRAFFIC:
             return (
                 False,
-                f"Invalid multicast-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_TRAFFIC)}",
+                f"Invalid multicast-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_TRAFFIC)}",
             )
 
     # Validate sniffer-traffic if present
@@ -133,7 +138,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_SNIFFER_TRAFFIC:
             return (
                 False,
-                f"Invalid sniffer-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_SNIFFER_TRAFFIC)}",
+                f"Invalid sniffer-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SNIFFER_TRAFFIC)}",
             )
 
     # Validate ztna-traffic if present
@@ -142,7 +148,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_ZTNA_TRAFFIC:
             return (
                 False,
-                f"Invalid ztna-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_TRAFFIC)}",
+                f"Invalid ztna-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_TRAFFIC)}",
             )
 
     # Validate http-transaction if present
@@ -151,7 +158,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_HTTP_TRANSACTION:
             return (
                 False,
-                f"Invalid http-transaction '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_TRANSACTION)}",
+                f"Invalid http-transaction '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_TRANSACTION)}",
             )
 
     # Validate anomaly if present
@@ -160,7 +168,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_ANOMALY:
             return (
                 False,
-                f"Invalid anomaly '{value}'. Must be one of: {', '.join(VALID_BODY_ANOMALY)}",
+                f"Invalid anomaly '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ANOMALY)}",
             )
 
     # Validate voip if present
@@ -169,7 +178,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_VOIP:
             return (
                 False,
-                f"Invalid voip '{value}'. Must be one of: {', '.join(VALID_BODY_VOIP)}",
+                f"Invalid voip '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VOIP)}",
             )
 
     # Validate forti-switch if present
@@ -178,7 +188,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_FORTI_SWITCH:
             return (
                 False,
-                f"Invalid forti-switch '{value}'. Must be one of: {', '.join(VALID_BODY_FORTI_SWITCH)}",
+                f"Invalid forti-switch '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTI_SWITCH)}",
             )
 
     # Validate debug if present
@@ -187,7 +198,8 @@ def validate_syslogd_filter_put(
         if value and value not in VALID_BODY_DEBUG:
             return (
                 False,
-                f"Invalid debug '{value}'. Must be one of: {', '.join(VALID_BODY_DEBUG)}",
+                f"Invalid debug '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEBUG)}",
             )
 
     return (True, None)

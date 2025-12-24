@@ -149,7 +149,7 @@ class APIError(FortinetError):
                 params_items = list(sanitized.items())[:5]
                 params_str = ", ".join(f"{k}={v}" for k, v in params_items)
                 if len(sanitized) > 5:
-                    params_str += f", ... (+{len(sanitized)-5} more)"
+                    params_str += f", ... (+{len(sanitized) - 5} more)"
                 parts.append(f"  → Parameters: {params_str}")
 
         # Add hint if available

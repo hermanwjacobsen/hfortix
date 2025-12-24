@@ -66,7 +66,8 @@ def validate_web_portal_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -122,7 +123,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_LOG_BLOCKED_TRAFFIC:
             return (
                 False,
-                f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
+                f"Invalid log-blocked-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
             )
 
     # Validate auth-portal if present
@@ -131,7 +133,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_AUTH_PORTAL:
             return (
                 False,
-                f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}",
+                f"Invalid auth-portal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_PORTAL)}",
             )
 
     # Validate auth-virtual-host if present
@@ -158,7 +161,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_DISPLAY_BOOKMARK:
             return (
                 False,
-                f"Invalid display-bookmark '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_BOOKMARK)}",
+                f"Invalid display-bookmark '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_BOOKMARK)}",
             )
 
     # Validate focus-bookmark if present
@@ -167,7 +171,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_FOCUS_BOOKMARK:
             return (
                 False,
-                f"Invalid focus-bookmark '{value}'. Must be one of: {', '.join(VALID_BODY_FOCUS_BOOKMARK)}",
+                f"Invalid focus-bookmark '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FOCUS_BOOKMARK)}",
             )
 
     # Validate display-status if present
@@ -176,7 +181,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_DISPLAY_STATUS:
             return (
                 False,
-                f"Invalid display-status '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_STATUS)}",
+                f"Invalid display-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_STATUS)}",
             )
 
     # Validate display-history if present
@@ -185,7 +191,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_DISPLAY_HISTORY:
             return (
                 False,
-                f"Invalid display-history '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_HISTORY)}",
+                f"Invalid display-history '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_HISTORY)}",
             )
 
     # Validate policy-auth-sso if present
@@ -194,7 +201,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_POLICY_AUTH_SSO:
             return (
                 False,
-                f"Invalid policy-auth-sso '{value}'. Must be one of: {', '.join(VALID_BODY_POLICY_AUTH_SSO)}",
+                f"Invalid policy-auth-sso '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POLICY_AUTH_SSO)}",
             )
 
     # Validate heading if present
@@ -209,7 +217,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_THEME:
             return (
                 False,
-                f"Invalid theme '{value}'. Must be one of: {', '.join(VALID_BODY_THEME)}",
+                f"Invalid theme '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_THEME)}",
             )
 
     # Validate clipboard if present
@@ -218,7 +227,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_CLIPBOARD:
             return (
                 False,
-                f"Invalid clipboard '{value}'. Must be one of: {', '.join(VALID_BODY_CLIPBOARD)}",
+                f"Invalid clipboard '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIPBOARD)}",
             )
 
     # Validate default-window-width if present
@@ -272,7 +282,8 @@ def validate_web_portal_post(
         if value and value not in VALID_BODY_FORTICLIENT_DOWNLOAD:
             return (
                 False,
-                f"Invalid forticlient-download '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICLIENT_DOWNLOAD)}",
+                f"Invalid forticlient-download '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTICLIENT_DOWNLOAD)}",
             )
 
     # Validate customize-forticlient-download-url if present
@@ -284,7 +295,8 @@ def validate_web_portal_post(
         ):
             return (
                 False,
-                f"Invalid customize-forticlient-download-url '{value}'. Must be one of: {', '.join(VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL)}",
+                f"Invalid customize-forticlient-download-url '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL)}",
             )
 
     # Validate windows-forticlient-download-url if present
@@ -367,7 +379,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_LOG_BLOCKED_TRAFFIC:
             return (
                 False,
-                f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
+                f"Invalid log-blocked-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
             )
 
     # Validate auth-portal if present
@@ -376,7 +389,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_AUTH_PORTAL:
             return (
                 False,
-                f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}",
+                f"Invalid auth-portal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_PORTAL)}",
             )
 
     # Validate auth-virtual-host if present
@@ -403,7 +417,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_DISPLAY_BOOKMARK:
             return (
                 False,
-                f"Invalid display-bookmark '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_BOOKMARK)}",
+                f"Invalid display-bookmark '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_BOOKMARK)}",
             )
 
     # Validate focus-bookmark if present
@@ -412,7 +427,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_FOCUS_BOOKMARK:
             return (
                 False,
-                f"Invalid focus-bookmark '{value}'. Must be one of: {', '.join(VALID_BODY_FOCUS_BOOKMARK)}",
+                f"Invalid focus-bookmark '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FOCUS_BOOKMARK)}",
             )
 
     # Validate display-status if present
@@ -421,7 +437,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_DISPLAY_STATUS:
             return (
                 False,
-                f"Invalid display-status '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_STATUS)}",
+                f"Invalid display-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_STATUS)}",
             )
 
     # Validate display-history if present
@@ -430,7 +447,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_DISPLAY_HISTORY:
             return (
                 False,
-                f"Invalid display-history '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_HISTORY)}",
+                f"Invalid display-history '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_HISTORY)}",
             )
 
     # Validate policy-auth-sso if present
@@ -439,7 +457,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_POLICY_AUTH_SSO:
             return (
                 False,
-                f"Invalid policy-auth-sso '{value}'. Must be one of: {', '.join(VALID_BODY_POLICY_AUTH_SSO)}",
+                f"Invalid policy-auth-sso '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POLICY_AUTH_SSO)}",
             )
 
     # Validate heading if present
@@ -454,7 +473,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_THEME:
             return (
                 False,
-                f"Invalid theme '{value}'. Must be one of: {', '.join(VALID_BODY_THEME)}",
+                f"Invalid theme '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_THEME)}",
             )
 
     # Validate clipboard if present
@@ -463,7 +483,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_CLIPBOARD:
             return (
                 False,
-                f"Invalid clipboard '{value}'. Must be one of: {', '.join(VALID_BODY_CLIPBOARD)}",
+                f"Invalid clipboard '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIPBOARD)}",
             )
 
     # Validate default-window-width if present
@@ -517,7 +538,8 @@ def validate_web_portal_put(
         if value and value not in VALID_BODY_FORTICLIENT_DOWNLOAD:
             return (
                 False,
-                f"Invalid forticlient-download '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICLIENT_DOWNLOAD)}",
+                f"Invalid forticlient-download '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTICLIENT_DOWNLOAD)}",
             )
 
     # Validate customize-forticlient-download-url if present
@@ -529,7 +551,8 @@ def validate_web_portal_put(
         ):
             return (
                 False,
-                f"Invalid customize-forticlient-download-url '{value}'. Must be one of: {', '.join(VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL)}",
+                f"Invalid customize-forticlient-download-url '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL)}",
             )
 
     # Validate windows-forticlient-download-url if present

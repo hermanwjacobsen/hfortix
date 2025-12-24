@@ -54,7 +54,8 @@ def validate_local_in_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,7 +98,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_HA_MGMT_INTF_ONLY:
             return (
                 False,
-                f"Invalid ha-mgmt-intf-only '{value}'. Must be one of: {', '.join(VALID_BODY_HA_MGMT_INTF_ONLY)}",
+                f"Invalid ha-mgmt-intf-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HA_MGMT_INTF_ONLY)}",
             )
 
     # Validate srcaddr-negate if present
@@ -106,7 +108,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_SRCADDR_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR_NEGATE)}",
+                f"Invalid srcaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR_NEGATE)}",
             )
 
     # Validate internet-service-src if present
@@ -115,7 +118,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC:
             return (
                 False,
-                f"Invalid internet-service-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
+                f"Invalid internet-service-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
             )
 
     # Validate dstaddr-negate if present
@@ -124,7 +128,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_DSTADDR_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR_NEGATE)}",
+                f"Invalid dstaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR_NEGATE)}",
             )
 
     # Validate action if present
@@ -133,7 +138,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate service-negate if present
@@ -142,7 +148,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_NEGATE)}",
+                f"Invalid service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service-src-negate if present
@@ -151,7 +158,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
+                f"Invalid internet-service-src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
             )
 
     # Validate schedule if present
@@ -166,7 +174,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate virtual-patch if present
@@ -175,7 +184,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_VIRTUAL_PATCH:
             return (
                 False,
-                f"Invalid virtual-patch '{value}'. Must be one of: {', '.join(VALID_BODY_VIRTUAL_PATCH)}",
+                f"Invalid virtual-patch '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VIRTUAL_PATCH)}",
             )
 
     # Validate logtraffic if present
@@ -184,7 +194,8 @@ def validate_local_in_policy_post(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate comments if present
@@ -242,7 +253,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_HA_MGMT_INTF_ONLY:
             return (
                 False,
-                f"Invalid ha-mgmt-intf-only '{value}'. Must be one of: {', '.join(VALID_BODY_HA_MGMT_INTF_ONLY)}",
+                f"Invalid ha-mgmt-intf-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HA_MGMT_INTF_ONLY)}",
             )
 
     # Validate srcaddr-negate if present
@@ -251,7 +263,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_SRCADDR_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR_NEGATE)}",
+                f"Invalid srcaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR_NEGATE)}",
             )
 
     # Validate internet-service-src if present
@@ -260,7 +273,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC:
             return (
                 False,
-                f"Invalid internet-service-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
+                f"Invalid internet-service-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
             )
 
     # Validate dstaddr-negate if present
@@ -269,7 +283,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_DSTADDR_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR_NEGATE)}",
+                f"Invalid dstaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR_NEGATE)}",
             )
 
     # Validate action if present
@@ -278,7 +293,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate service-negate if present
@@ -287,7 +303,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_NEGATE)}",
+                f"Invalid service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service-src-negate if present
@@ -296,7 +313,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
+                f"Invalid internet-service-src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
             )
 
     # Validate schedule if present
@@ -311,7 +329,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate virtual-patch if present
@@ -320,7 +339,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_VIRTUAL_PATCH:
             return (
                 False,
-                f"Invalid virtual-patch '{value}'. Must be one of: {', '.join(VALID_BODY_VIRTUAL_PATCH)}",
+                f"Invalid virtual-patch '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VIRTUAL_PATCH)}",
             )
 
     # Validate logtraffic if present
@@ -329,7 +349,8 @@ def validate_local_in_policy_put(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate comments if present

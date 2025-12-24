@@ -52,7 +52,8 @@ def validate_shaping_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -104,7 +105,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate ip-version if present
@@ -113,7 +115,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate traffic-type if present
@@ -122,7 +125,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_TRAFFIC_TYPE:
             return (
                 False,
-                f"Invalid traffic-type '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_TYPE)}",
+                f"Invalid traffic-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRAFFIC_TYPE)}",
             )
 
     # Validate internet-service if present
@@ -131,7 +135,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE:
             return (
                 False,
-                f"Invalid internet-service '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE)}",
+                f"Invalid internet-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE)}",
             )
 
     # Validate internet-service-src if present
@@ -140,7 +145,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC:
             return (
                 False,
-                f"Invalid internet-service-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
+                f"Invalid internet-service-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
             )
 
     # Validate schedule if present
@@ -155,7 +161,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_TOS_NEGATE:
             return (
                 False,
-                f"Invalid tos-negate '{value}'. Must be one of: {', '.join(VALID_BODY_TOS_NEGATE)}",
+                f"Invalid tos-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TOS_NEGATE)}",
             )
 
     # Validate traffic-shaper if present
@@ -199,7 +206,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_DIFFSERV_FORWARD:
             return (
                 False,
-                f"Invalid diffserv-forward '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
+                f"Invalid diffserv-forward '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
             )
 
     # Validate diffserv-reverse if present
@@ -208,7 +216,8 @@ def validate_shaping_policy_post(
         if value and value not in VALID_BODY_DIFFSERV_REVERSE:
             return (
                 False,
-                f"Invalid diffserv-reverse '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
+                f"Invalid diffserv-reverse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
             )
 
     return (True, None)
@@ -269,7 +278,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate ip-version if present
@@ -278,7 +288,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate traffic-type if present
@@ -287,7 +298,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_TRAFFIC_TYPE:
             return (
                 False,
-                f"Invalid traffic-type '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_TYPE)}",
+                f"Invalid traffic-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRAFFIC_TYPE)}",
             )
 
     # Validate internet-service if present
@@ -296,7 +308,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE:
             return (
                 False,
-                f"Invalid internet-service '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE)}",
+                f"Invalid internet-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE)}",
             )
 
     # Validate internet-service-src if present
@@ -305,7 +318,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC:
             return (
                 False,
-                f"Invalid internet-service-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
+                f"Invalid internet-service-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
             )
 
     # Validate schedule if present
@@ -320,7 +334,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_TOS_NEGATE:
             return (
                 False,
-                f"Invalid tos-negate '{value}'. Must be one of: {', '.join(VALID_BODY_TOS_NEGATE)}",
+                f"Invalid tos-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TOS_NEGATE)}",
             )
 
     # Validate traffic-shaper if present
@@ -364,7 +379,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_DIFFSERV_FORWARD:
             return (
                 False,
-                f"Invalid diffserv-forward '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
+                f"Invalid diffserv-forward '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
             )
 
     # Validate diffserv-reverse if present
@@ -373,7 +389,8 @@ def validate_shaping_policy_put(
         if value and value not in VALID_BODY_DIFFSERV_REVERSE:
             return (
                 False,
-                f"Invalid diffserv-reverse '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
+                f"Invalid diffserv-reverse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
             )
 
     return (True, None)

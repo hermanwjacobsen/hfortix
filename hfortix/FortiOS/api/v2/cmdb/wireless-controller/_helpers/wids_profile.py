@@ -104,7 +104,8 @@ def validate_wids_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -145,7 +146,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_SENSOR_MODE:
             return (
                 False,
-                f"Invalid sensor-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SENSOR_MODE)}",
+                f"Invalid sensor-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SENSOR_MODE)}",
             )
 
     # Validate ap-scan if present
@@ -154,7 +156,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_AP_SCAN:
             return (
                 False,
-                f"Invalid ap-scan '{value}'. Must be one of: {', '.join(VALID_BODY_AP_SCAN)}",
+                f"Invalid ap-scan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_SCAN)}",
             )
 
     # Validate ap-bgscan-period if present
@@ -256,7 +259,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_AP_SCAN_PASSIVE:
             return (
                 False,
-                f"Invalid ap-scan-passive '{value}'. Must be one of: {', '.join(VALID_BODY_AP_SCAN_PASSIVE)}",
+                f"Invalid ap-scan-passive '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_SCAN_PASSIVE)}",
             )
 
     # Validate ap-scan-threshold if present
@@ -271,7 +275,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_AP_AUTO_SUPPRESS:
             return (
                 False,
-                f"Invalid ap-auto-suppress '{value}'. Must be one of: {', '.join(VALID_BODY_AP_AUTO_SUPPRESS)}",
+                f"Invalid ap-auto-suppress '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_AUTO_SUPPRESS)}",
             )
 
     # Validate wireless-bridge if present
@@ -280,7 +285,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_WIRELESS_BRIDGE:
             return (
                 False,
-                f"Invalid wireless-bridge '{value}'. Must be one of: {', '.join(VALID_BODY_WIRELESS_BRIDGE)}",
+                f"Invalid wireless-bridge '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIRELESS_BRIDGE)}",
             )
 
     # Validate deauth-broadcast if present
@@ -289,7 +295,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_DEAUTH_BROADCAST:
             return (
                 False,
-                f"Invalid deauth-broadcast '{value}'. Must be one of: {', '.join(VALID_BODY_DEAUTH_BROADCAST)}",
+                f"Invalid deauth-broadcast '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEAUTH_BROADCAST)}",
             )
 
     # Validate null-ssid-probe-resp if present
@@ -298,7 +305,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_NULL_SSID_PROBE_RESP:
             return (
                 False,
-                f"Invalid null-ssid-probe-resp '{value}'. Must be one of: {', '.join(VALID_BODY_NULL_SSID_PROBE_RESP)}",
+                f"Invalid null-ssid-probe-resp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NULL_SSID_PROBE_RESP)}",
             )
 
     # Validate long-duration-attack if present
@@ -307,7 +315,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_LONG_DURATION_ATTACK:
             return (
                 False,
-                f"Invalid long-duration-attack '{value}'. Must be one of: {', '.join(VALID_BODY_LONG_DURATION_ATTACK)}",
+                f"Invalid long-duration-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LONG_DURATION_ATTACK)}",
             )
 
     # Validate long-duration-thresh if present
@@ -333,7 +342,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_INVALID_MAC_OUI:
             return (
                 False,
-                f"Invalid invalid-mac-oui '{value}'. Must be one of: {', '.join(VALID_BODY_INVALID_MAC_OUI)}",
+                f"Invalid invalid-mac-oui '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INVALID_MAC_OUI)}",
             )
 
     # Validate weak-wep-iv if present
@@ -342,7 +352,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_WEAK_WEP_IV:
             return (
                 False,
-                f"Invalid weak-wep-iv '{value}'. Must be one of: {', '.join(VALID_BODY_WEAK_WEP_IV)}",
+                f"Invalid weak-wep-iv '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WEAK_WEP_IV)}",
             )
 
     # Validate auth-frame-flood if present
@@ -351,7 +362,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_AUTH_FRAME_FLOOD:
             return (
                 False,
-                f"Invalid auth-frame-flood '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_FRAME_FLOOD)}",
+                f"Invalid auth-frame-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_FRAME_FLOOD)}",
             )
 
     # Validate auth-flood-time if present
@@ -394,7 +406,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_ASSOC_FRAME_FLOOD:
             return (
                 False,
-                f"Invalid assoc-frame-flood '{value}'. Must be one of: {', '.join(VALID_BODY_ASSOC_FRAME_FLOOD)}",
+                f"Invalid assoc-frame-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASSOC_FRAME_FLOOD)}",
             )
 
     # Validate assoc-flood-time if present
@@ -437,7 +450,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_REASSOC_FLOOD:
             return (
                 False,
-                f"Invalid reassoc-flood '{value}'. Must be one of: {', '.join(VALID_BODY_REASSOC_FLOOD)}",
+                f"Invalid reassoc-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REASSOC_FLOOD)}",
             )
 
     # Validate reassoc-flood-time if present
@@ -480,7 +494,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_PROBE_FLOOD:
             return (
                 False,
-                f"Invalid probe-flood '{value}'. Must be one of: {', '.join(VALID_BODY_PROBE_FLOOD)}",
+                f"Invalid probe-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROBE_FLOOD)}",
             )
 
     # Validate probe-flood-time if present
@@ -523,7 +538,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_BCN_FLOOD:
             return (
                 False,
-                f"Invalid bcn-flood '{value}'. Must be one of: {', '.join(VALID_BODY_BCN_FLOOD)}",
+                f"Invalid bcn-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BCN_FLOOD)}",
             )
 
     # Validate bcn-flood-time if present
@@ -560,7 +576,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_RTS_FLOOD:
             return (
                 False,
-                f"Invalid rts-flood '{value}'. Must be one of: {', '.join(VALID_BODY_RTS_FLOOD)}",
+                f"Invalid rts-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RTS_FLOOD)}",
             )
 
     # Validate rts-flood-time if present
@@ -597,7 +614,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_CTS_FLOOD:
             return (
                 False,
-                f"Invalid cts-flood '{value}'. Must be one of: {', '.join(VALID_BODY_CTS_FLOOD)}",
+                f"Invalid cts-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CTS_FLOOD)}",
             )
 
     # Validate cts-flood-time if present
@@ -634,7 +652,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_CLIENT_FLOOD:
             return (
                 False,
-                f"Invalid client-flood '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_FLOOD)}",
+                f"Invalid client-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIENT_FLOOD)}",
             )
 
     # Validate client-flood-time if present
@@ -677,7 +696,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_BLOCK_ACK_FLOOD:
             return (
                 False,
-                f"Invalid block_ack-flood '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_ACK_FLOOD)}",
+                f"Invalid block_ack-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_ACK_FLOOD)}",
             )
 
     # Validate block_ack-flood-time if present
@@ -720,7 +740,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_PSPOLL_FLOOD:
             return (
                 False,
-                f"Invalid pspoll-flood '{value}'. Must be one of: {', '.join(VALID_BODY_PSPOLL_FLOOD)}",
+                f"Invalid pspoll-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PSPOLL_FLOOD)}",
             )
 
     # Validate pspoll-flood-time if present
@@ -763,7 +784,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_NETSTUMBLER:
             return (
                 False,
-                f"Invalid netstumbler '{value}'. Must be one of: {', '.join(VALID_BODY_NETSTUMBLER)}",
+                f"Invalid netstumbler '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NETSTUMBLER)}",
             )
 
     # Validate netstumbler-time if present
@@ -806,7 +828,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_WELLENREITER:
             return (
                 False,
-                f"Invalid wellenreiter '{value}'. Must be one of: {', '.join(VALID_BODY_WELLENREITER)}",
+                f"Invalid wellenreiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WELLENREITER)}",
             )
 
     # Validate wellenreiter-time if present
@@ -849,7 +872,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_SPOOFED_DEAUTH:
             return (
                 False,
-                f"Invalid spoofed-deauth '{value}'. Must be one of: {', '.join(VALID_BODY_SPOOFED_DEAUTH)}",
+                f"Invalid spoofed-deauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPOOFED_DEAUTH)}",
             )
 
     # Validate asleap-attack if present
@@ -858,7 +882,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_ASLEAP_ATTACK:
             return (
                 False,
-                f"Invalid asleap-attack '{value}'. Must be one of: {', '.join(VALID_BODY_ASLEAP_ATTACK)}",
+                f"Invalid asleap-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASLEAP_ATTACK)}",
             )
 
     # Validate eapol-start-flood if present
@@ -867,7 +892,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_EAPOL_START_FLOOD:
             return (
                 False,
-                f"Invalid eapol-start-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_START_FLOOD)}",
+                f"Invalid eapol-start-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_START_FLOOD)}",
             )
 
     # Validate eapol-start-thresh if present
@@ -910,7 +936,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_EAPOL_LOGOFF_FLOOD:
             return (
                 False,
-                f"Invalid eapol-logoff-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_LOGOFF_FLOOD)}",
+                f"Invalid eapol-logoff-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_LOGOFF_FLOOD)}",
             )
 
     # Validate eapol-logoff-thresh if present
@@ -953,7 +980,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_EAPOL_SUCC_FLOOD:
             return (
                 False,
-                f"Invalid eapol-succ-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_SUCC_FLOOD)}",
+                f"Invalid eapol-succ-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_SUCC_FLOOD)}",
             )
 
     # Validate eapol-succ-thresh if present
@@ -996,7 +1024,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_EAPOL_FAIL_FLOOD:
             return (
                 False,
-                f"Invalid eapol-fail-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_FAIL_FLOOD)}",
+                f"Invalid eapol-fail-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_FAIL_FLOOD)}",
             )
 
     # Validate eapol-fail-thresh if present
@@ -1039,7 +1068,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_EAPOL_PRE_SUCC_FLOOD:
             return (
                 False,
-                f"Invalid eapol-pre-succ-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_PRE_SUCC_FLOOD)}",
+                f"Invalid eapol-pre-succ-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_PRE_SUCC_FLOOD)}",
             )
 
     # Validate eapol-pre-succ-thresh if present
@@ -1082,7 +1112,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_EAPOL_PRE_FAIL_FLOOD:
             return (
                 False,
-                f"Invalid eapol-pre-fail-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_PRE_FAIL_FLOOD)}",
+                f"Invalid eapol-pre-fail-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_PRE_FAIL_FLOOD)}",
             )
 
     # Validate eapol-pre-fail-thresh if present
@@ -1142,7 +1173,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_WINDOWS_BRIDGE:
             return (
                 False,
-                f"Invalid windows-bridge '{value}'. Must be one of: {', '.join(VALID_BODY_WINDOWS_BRIDGE)}",
+                f"Invalid windows-bridge '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WINDOWS_BRIDGE)}",
             )
 
     # Validate disassoc-broadcast if present
@@ -1151,7 +1183,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_DISASSOC_BROADCAST:
             return (
                 False,
-                f"Invalid disassoc-broadcast '{value}'. Must be one of: {', '.join(VALID_BODY_DISASSOC_BROADCAST)}",
+                f"Invalid disassoc-broadcast '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISASSOC_BROADCAST)}",
             )
 
     # Validate ap-spoofing if present
@@ -1160,7 +1193,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_AP_SPOOFING:
             return (
                 False,
-                f"Invalid ap-spoofing '{value}'. Must be one of: {', '.join(VALID_BODY_AP_SPOOFING)}",
+                f"Invalid ap-spoofing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_SPOOFING)}",
             )
 
     # Validate chan-based-mitm if present
@@ -1169,7 +1203,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_CHAN_BASED_MITM:
             return (
                 False,
-                f"Invalid chan-based-mitm '{value}'. Must be one of: {', '.join(VALID_BODY_CHAN_BASED_MITM)}",
+                f"Invalid chan-based-mitm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHAN_BASED_MITM)}",
             )
 
     # Validate adhoc-valid-ssid if present
@@ -1178,7 +1213,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_ADHOC_VALID_SSID:
             return (
                 False,
-                f"Invalid adhoc-valid-ssid '{value}'. Must be one of: {', '.join(VALID_BODY_ADHOC_VALID_SSID)}",
+                f"Invalid adhoc-valid-ssid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADHOC_VALID_SSID)}",
             )
 
     # Validate adhoc-network if present
@@ -1187,7 +1223,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_ADHOC_NETWORK:
             return (
                 False,
-                f"Invalid adhoc-network '{value}'. Must be one of: {', '.join(VALID_BODY_ADHOC_NETWORK)}",
+                f"Invalid adhoc-network '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADHOC_NETWORK)}",
             )
 
     # Validate eapol-key-overflow if present
@@ -1196,7 +1233,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_EAPOL_KEY_OVERFLOW:
             return (
                 False,
-                f"Invalid eapol-key-overflow '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_KEY_OVERFLOW)}",
+                f"Invalid eapol-key-overflow '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_KEY_OVERFLOW)}",
             )
 
     # Validate ap-impersonation if present
@@ -1205,7 +1243,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_AP_IMPERSONATION:
             return (
                 False,
-                f"Invalid ap-impersonation '{value}'. Must be one of: {', '.join(VALID_BODY_AP_IMPERSONATION)}",
+                f"Invalid ap-impersonation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_IMPERSONATION)}",
             )
 
     # Validate invalid-addr-combination if present
@@ -1214,7 +1253,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_INVALID_ADDR_COMBINATION:
             return (
                 False,
-                f"Invalid invalid-addr-combination '{value}'. Must be one of: {', '.join(VALID_BODY_INVALID_ADDR_COMBINATION)}",
+                f"Invalid invalid-addr-combination '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INVALID_ADDR_COMBINATION)}",
             )
 
     # Validate beacon-wrong-channel if present
@@ -1223,7 +1263,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_BEACON_WRONG_CHANNEL:
             return (
                 False,
-                f"Invalid beacon-wrong-channel '{value}'. Must be one of: {', '.join(VALID_BODY_BEACON_WRONG_CHANNEL)}",
+                f"Invalid beacon-wrong-channel '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BEACON_WRONG_CHANNEL)}",
             )
 
     # Validate ht-greenfield if present
@@ -1232,7 +1273,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_HT_GREENFIELD:
             return (
                 False,
-                f"Invalid ht-greenfield '{value}'. Must be one of: {', '.join(VALID_BODY_HT_GREENFIELD)}",
+                f"Invalid ht-greenfield '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HT_GREENFIELD)}",
             )
 
     # Validate overflow-ie if present
@@ -1241,7 +1283,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_OVERFLOW_IE:
             return (
                 False,
-                f"Invalid overflow-ie '{value}'. Must be one of: {', '.join(VALID_BODY_OVERFLOW_IE)}",
+                f"Invalid overflow-ie '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERFLOW_IE)}",
             )
 
     # Validate malformed-ht-ie if present
@@ -1250,7 +1293,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_MALFORMED_HT_IE:
             return (
                 False,
-                f"Invalid malformed-ht-ie '{value}'. Must be one of: {', '.join(VALID_BODY_MALFORMED_HT_IE)}",
+                f"Invalid malformed-ht-ie '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MALFORMED_HT_IE)}",
             )
 
     # Validate malformed-auth if present
@@ -1259,7 +1303,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_MALFORMED_AUTH:
             return (
                 False,
-                f"Invalid malformed-auth '{value}'. Must be one of: {', '.join(VALID_BODY_MALFORMED_AUTH)}",
+                f"Invalid malformed-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MALFORMED_AUTH)}",
             )
 
     # Validate malformed-association if present
@@ -1268,7 +1313,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_MALFORMED_ASSOCIATION:
             return (
                 False,
-                f"Invalid malformed-association '{value}'. Must be one of: {', '.join(VALID_BODY_MALFORMED_ASSOCIATION)}",
+                f"Invalid malformed-association '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MALFORMED_ASSOCIATION)}",
             )
 
     # Validate ht-40mhz-intolerance if present
@@ -1277,7 +1323,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_HT_40MHZ_INTOLERANCE:
             return (
                 False,
-                f"Invalid ht-40mhz-intolerance '{value}'. Must be one of: {', '.join(VALID_BODY_HT_40MHZ_INTOLERANCE)}",
+                f"Invalid ht-40mhz-intolerance '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HT_40MHZ_INTOLERANCE)}",
             )
 
     # Validate valid-ssid-misuse if present
@@ -1286,7 +1333,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_VALID_SSID_MISUSE:
             return (
                 False,
-                f"Invalid valid-ssid-misuse '{value}'. Must be one of: {', '.join(VALID_BODY_VALID_SSID_MISUSE)}",
+                f"Invalid valid-ssid-misuse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VALID_SSID_MISUSE)}",
             )
 
     # Validate valid-client-misassociation if present
@@ -1295,7 +1343,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_VALID_CLIENT_MISASSOCIATION:
             return (
                 False,
-                f"Invalid valid-client-misassociation '{value}'. Must be one of: {', '.join(VALID_BODY_VALID_CLIENT_MISASSOCIATION)}",
+                f"Invalid valid-client-misassociation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VALID_CLIENT_MISASSOCIATION)}",
             )
 
     # Validate hotspotter-attack if present
@@ -1304,7 +1353,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_HOTSPOTTER_ATTACK:
             return (
                 False,
-                f"Invalid hotspotter-attack '{value}'. Must be one of: {', '.join(VALID_BODY_HOTSPOTTER_ATTACK)}",
+                f"Invalid hotspotter-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HOTSPOTTER_ATTACK)}",
             )
 
     # Validate pwsave-dos-attack if present
@@ -1313,7 +1363,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_PWSAVE_DOS_ATTACK:
             return (
                 False,
-                f"Invalid pwsave-dos-attack '{value}'. Must be one of: {', '.join(VALID_BODY_PWSAVE_DOS_ATTACK)}",
+                f"Invalid pwsave-dos-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PWSAVE_DOS_ATTACK)}",
             )
 
     # Validate omerta-attack if present
@@ -1322,7 +1373,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_OMERTA_ATTACK:
             return (
                 False,
-                f"Invalid omerta-attack '{value}'. Must be one of: {', '.join(VALID_BODY_OMERTA_ATTACK)}",
+                f"Invalid omerta-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OMERTA_ATTACK)}",
             )
 
     # Validate disconnect-station if present
@@ -1331,7 +1383,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_DISCONNECT_STATION:
             return (
                 False,
-                f"Invalid disconnect-station '{value}'. Must be one of: {', '.join(VALID_BODY_DISCONNECT_STATION)}",
+                f"Invalid disconnect-station '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCONNECT_STATION)}",
             )
 
     # Validate unencrypted-valid if present
@@ -1340,7 +1393,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_UNENCRYPTED_VALID:
             return (
                 False,
-                f"Invalid unencrypted-valid '{value}'. Must be one of: {', '.join(VALID_BODY_UNENCRYPTED_VALID)}",
+                f"Invalid unencrypted-valid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNENCRYPTED_VALID)}",
             )
 
     # Validate fata-jack if present
@@ -1349,7 +1403,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_FATA_JACK:
             return (
                 False,
-                f"Invalid fata-jack '{value}'. Must be one of: {', '.join(VALID_BODY_FATA_JACK)}",
+                f"Invalid fata-jack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FATA_JACK)}",
             )
 
     # Validate risky-encryption if present
@@ -1358,7 +1413,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_RISKY_ENCRYPTION:
             return (
                 False,
-                f"Invalid risky-encryption '{value}'. Must be one of: {', '.join(VALID_BODY_RISKY_ENCRYPTION)}",
+                f"Invalid risky-encryption '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RISKY_ENCRYPTION)}",
             )
 
     # Validate fuzzed-beacon if present
@@ -1367,7 +1423,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_FUZZED_BEACON:
             return (
                 False,
-                f"Invalid fuzzed-beacon '{value}'. Must be one of: {', '.join(VALID_BODY_FUZZED_BEACON)}",
+                f"Invalid fuzzed-beacon '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FUZZED_BEACON)}",
             )
 
     # Validate fuzzed-probe-request if present
@@ -1376,7 +1433,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_FUZZED_PROBE_REQUEST:
             return (
                 False,
-                f"Invalid fuzzed-probe-request '{value}'. Must be one of: {', '.join(VALID_BODY_FUZZED_PROBE_REQUEST)}",
+                f"Invalid fuzzed-probe-request '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FUZZED_PROBE_REQUEST)}",
             )
 
     # Validate fuzzed-probe-response if present
@@ -1385,7 +1443,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_FUZZED_PROBE_RESPONSE:
             return (
                 False,
-                f"Invalid fuzzed-probe-response '{value}'. Must be one of: {', '.join(VALID_BODY_FUZZED_PROBE_RESPONSE)}",
+                f"Invalid fuzzed-probe-response '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FUZZED_PROBE_RESPONSE)}",
             )
 
     # Validate air-jack if present
@@ -1394,7 +1453,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_AIR_JACK:
             return (
                 False,
-                f"Invalid air-jack '{value}'. Must be one of: {', '.join(VALID_BODY_AIR_JACK)}",
+                f"Invalid air-jack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AIR_JACK)}",
             )
 
     # Validate wpa-ft-attack if present
@@ -1403,7 +1463,8 @@ def validate_wids_profile_post(
         if value and value not in VALID_BODY_WPA_FT_ATTACK:
             return (
                 False,
-                f"Invalid wpa-ft-attack '{value}'. Must be one of: {', '.join(VALID_BODY_WPA_FT_ATTACK)}",
+                f"Invalid wpa-ft-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WPA_FT_ATTACK)}",
             )
 
     return (True, None)
@@ -1453,7 +1514,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_SENSOR_MODE:
             return (
                 False,
-                f"Invalid sensor-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SENSOR_MODE)}",
+                f"Invalid sensor-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SENSOR_MODE)}",
             )
 
     # Validate ap-scan if present
@@ -1462,7 +1524,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_AP_SCAN:
             return (
                 False,
-                f"Invalid ap-scan '{value}'. Must be one of: {', '.join(VALID_BODY_AP_SCAN)}",
+                f"Invalid ap-scan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_SCAN)}",
             )
 
     # Validate ap-bgscan-period if present
@@ -1564,7 +1627,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_AP_SCAN_PASSIVE:
             return (
                 False,
-                f"Invalid ap-scan-passive '{value}'. Must be one of: {', '.join(VALID_BODY_AP_SCAN_PASSIVE)}",
+                f"Invalid ap-scan-passive '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_SCAN_PASSIVE)}",
             )
 
     # Validate ap-scan-threshold if present
@@ -1579,7 +1643,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_AP_AUTO_SUPPRESS:
             return (
                 False,
-                f"Invalid ap-auto-suppress '{value}'. Must be one of: {', '.join(VALID_BODY_AP_AUTO_SUPPRESS)}",
+                f"Invalid ap-auto-suppress '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_AUTO_SUPPRESS)}",
             )
 
     # Validate wireless-bridge if present
@@ -1588,7 +1653,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_WIRELESS_BRIDGE:
             return (
                 False,
-                f"Invalid wireless-bridge '{value}'. Must be one of: {', '.join(VALID_BODY_WIRELESS_BRIDGE)}",
+                f"Invalid wireless-bridge '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIRELESS_BRIDGE)}",
             )
 
     # Validate deauth-broadcast if present
@@ -1597,7 +1663,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_DEAUTH_BROADCAST:
             return (
                 False,
-                f"Invalid deauth-broadcast '{value}'. Must be one of: {', '.join(VALID_BODY_DEAUTH_BROADCAST)}",
+                f"Invalid deauth-broadcast '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEAUTH_BROADCAST)}",
             )
 
     # Validate null-ssid-probe-resp if present
@@ -1606,7 +1673,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_NULL_SSID_PROBE_RESP:
             return (
                 False,
-                f"Invalid null-ssid-probe-resp '{value}'. Must be one of: {', '.join(VALID_BODY_NULL_SSID_PROBE_RESP)}",
+                f"Invalid null-ssid-probe-resp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NULL_SSID_PROBE_RESP)}",
             )
 
     # Validate long-duration-attack if present
@@ -1615,7 +1683,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_LONG_DURATION_ATTACK:
             return (
                 False,
-                f"Invalid long-duration-attack '{value}'. Must be one of: {', '.join(VALID_BODY_LONG_DURATION_ATTACK)}",
+                f"Invalid long-duration-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LONG_DURATION_ATTACK)}",
             )
 
     # Validate long-duration-thresh if present
@@ -1641,7 +1710,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_INVALID_MAC_OUI:
             return (
                 False,
-                f"Invalid invalid-mac-oui '{value}'. Must be one of: {', '.join(VALID_BODY_INVALID_MAC_OUI)}",
+                f"Invalid invalid-mac-oui '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INVALID_MAC_OUI)}",
             )
 
     # Validate weak-wep-iv if present
@@ -1650,7 +1720,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_WEAK_WEP_IV:
             return (
                 False,
-                f"Invalid weak-wep-iv '{value}'. Must be one of: {', '.join(VALID_BODY_WEAK_WEP_IV)}",
+                f"Invalid weak-wep-iv '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WEAK_WEP_IV)}",
             )
 
     # Validate auth-frame-flood if present
@@ -1659,7 +1730,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_AUTH_FRAME_FLOOD:
             return (
                 False,
-                f"Invalid auth-frame-flood '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_FRAME_FLOOD)}",
+                f"Invalid auth-frame-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_FRAME_FLOOD)}",
             )
 
     # Validate auth-flood-time if present
@@ -1702,7 +1774,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_ASSOC_FRAME_FLOOD:
             return (
                 False,
-                f"Invalid assoc-frame-flood '{value}'. Must be one of: {', '.join(VALID_BODY_ASSOC_FRAME_FLOOD)}",
+                f"Invalid assoc-frame-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASSOC_FRAME_FLOOD)}",
             )
 
     # Validate assoc-flood-time if present
@@ -1745,7 +1818,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_REASSOC_FLOOD:
             return (
                 False,
-                f"Invalid reassoc-flood '{value}'. Must be one of: {', '.join(VALID_BODY_REASSOC_FLOOD)}",
+                f"Invalid reassoc-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REASSOC_FLOOD)}",
             )
 
     # Validate reassoc-flood-time if present
@@ -1788,7 +1862,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_PROBE_FLOOD:
             return (
                 False,
-                f"Invalid probe-flood '{value}'. Must be one of: {', '.join(VALID_BODY_PROBE_FLOOD)}",
+                f"Invalid probe-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROBE_FLOOD)}",
             )
 
     # Validate probe-flood-time if present
@@ -1831,7 +1906,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_BCN_FLOOD:
             return (
                 False,
-                f"Invalid bcn-flood '{value}'. Must be one of: {', '.join(VALID_BODY_BCN_FLOOD)}",
+                f"Invalid bcn-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BCN_FLOOD)}",
             )
 
     # Validate bcn-flood-time if present
@@ -1868,7 +1944,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_RTS_FLOOD:
             return (
                 False,
-                f"Invalid rts-flood '{value}'. Must be one of: {', '.join(VALID_BODY_RTS_FLOOD)}",
+                f"Invalid rts-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RTS_FLOOD)}",
             )
 
     # Validate rts-flood-time if present
@@ -1905,7 +1982,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_CTS_FLOOD:
             return (
                 False,
-                f"Invalid cts-flood '{value}'. Must be one of: {', '.join(VALID_BODY_CTS_FLOOD)}",
+                f"Invalid cts-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CTS_FLOOD)}",
             )
 
     # Validate cts-flood-time if present
@@ -1942,7 +2020,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_CLIENT_FLOOD:
             return (
                 False,
-                f"Invalid client-flood '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_FLOOD)}",
+                f"Invalid client-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIENT_FLOOD)}",
             )
 
     # Validate client-flood-time if present
@@ -1985,7 +2064,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_BLOCK_ACK_FLOOD:
             return (
                 False,
-                f"Invalid block_ack-flood '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_ACK_FLOOD)}",
+                f"Invalid block_ack-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_ACK_FLOOD)}",
             )
 
     # Validate block_ack-flood-time if present
@@ -2028,7 +2108,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_PSPOLL_FLOOD:
             return (
                 False,
-                f"Invalid pspoll-flood '{value}'. Must be one of: {', '.join(VALID_BODY_PSPOLL_FLOOD)}",
+                f"Invalid pspoll-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PSPOLL_FLOOD)}",
             )
 
     # Validate pspoll-flood-time if present
@@ -2071,7 +2152,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_NETSTUMBLER:
             return (
                 False,
-                f"Invalid netstumbler '{value}'. Must be one of: {', '.join(VALID_BODY_NETSTUMBLER)}",
+                f"Invalid netstumbler '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NETSTUMBLER)}",
             )
 
     # Validate netstumbler-time if present
@@ -2114,7 +2196,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_WELLENREITER:
             return (
                 False,
-                f"Invalid wellenreiter '{value}'. Must be one of: {', '.join(VALID_BODY_WELLENREITER)}",
+                f"Invalid wellenreiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WELLENREITER)}",
             )
 
     # Validate wellenreiter-time if present
@@ -2157,7 +2240,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_SPOOFED_DEAUTH:
             return (
                 False,
-                f"Invalid spoofed-deauth '{value}'. Must be one of: {', '.join(VALID_BODY_SPOOFED_DEAUTH)}",
+                f"Invalid spoofed-deauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPOOFED_DEAUTH)}",
             )
 
     # Validate asleap-attack if present
@@ -2166,7 +2250,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_ASLEAP_ATTACK:
             return (
                 False,
-                f"Invalid asleap-attack '{value}'. Must be one of: {', '.join(VALID_BODY_ASLEAP_ATTACK)}",
+                f"Invalid asleap-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASLEAP_ATTACK)}",
             )
 
     # Validate eapol-start-flood if present
@@ -2175,7 +2260,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_EAPOL_START_FLOOD:
             return (
                 False,
-                f"Invalid eapol-start-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_START_FLOOD)}",
+                f"Invalid eapol-start-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_START_FLOOD)}",
             )
 
     # Validate eapol-start-thresh if present
@@ -2218,7 +2304,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_EAPOL_LOGOFF_FLOOD:
             return (
                 False,
-                f"Invalid eapol-logoff-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_LOGOFF_FLOOD)}",
+                f"Invalid eapol-logoff-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_LOGOFF_FLOOD)}",
             )
 
     # Validate eapol-logoff-thresh if present
@@ -2261,7 +2348,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_EAPOL_SUCC_FLOOD:
             return (
                 False,
-                f"Invalid eapol-succ-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_SUCC_FLOOD)}",
+                f"Invalid eapol-succ-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_SUCC_FLOOD)}",
             )
 
     # Validate eapol-succ-thresh if present
@@ -2304,7 +2392,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_EAPOL_FAIL_FLOOD:
             return (
                 False,
-                f"Invalid eapol-fail-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_FAIL_FLOOD)}",
+                f"Invalid eapol-fail-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_FAIL_FLOOD)}",
             )
 
     # Validate eapol-fail-thresh if present
@@ -2347,7 +2436,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_EAPOL_PRE_SUCC_FLOOD:
             return (
                 False,
-                f"Invalid eapol-pre-succ-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_PRE_SUCC_FLOOD)}",
+                f"Invalid eapol-pre-succ-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_PRE_SUCC_FLOOD)}",
             )
 
     # Validate eapol-pre-succ-thresh if present
@@ -2390,7 +2480,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_EAPOL_PRE_FAIL_FLOOD:
             return (
                 False,
-                f"Invalid eapol-pre-fail-flood '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_PRE_FAIL_FLOOD)}",
+                f"Invalid eapol-pre-fail-flood '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_PRE_FAIL_FLOOD)}",
             )
 
     # Validate eapol-pre-fail-thresh if present
@@ -2450,7 +2541,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_WINDOWS_BRIDGE:
             return (
                 False,
-                f"Invalid windows-bridge '{value}'. Must be one of: {', '.join(VALID_BODY_WINDOWS_BRIDGE)}",
+                f"Invalid windows-bridge '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WINDOWS_BRIDGE)}",
             )
 
     # Validate disassoc-broadcast if present
@@ -2459,7 +2551,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_DISASSOC_BROADCAST:
             return (
                 False,
-                f"Invalid disassoc-broadcast '{value}'. Must be one of: {', '.join(VALID_BODY_DISASSOC_BROADCAST)}",
+                f"Invalid disassoc-broadcast '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISASSOC_BROADCAST)}",
             )
 
     # Validate ap-spoofing if present
@@ -2468,7 +2561,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_AP_SPOOFING:
             return (
                 False,
-                f"Invalid ap-spoofing '{value}'. Must be one of: {', '.join(VALID_BODY_AP_SPOOFING)}",
+                f"Invalid ap-spoofing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_SPOOFING)}",
             )
 
     # Validate chan-based-mitm if present
@@ -2477,7 +2571,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_CHAN_BASED_MITM:
             return (
                 False,
-                f"Invalid chan-based-mitm '{value}'. Must be one of: {', '.join(VALID_BODY_CHAN_BASED_MITM)}",
+                f"Invalid chan-based-mitm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHAN_BASED_MITM)}",
             )
 
     # Validate adhoc-valid-ssid if present
@@ -2486,7 +2581,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_ADHOC_VALID_SSID:
             return (
                 False,
-                f"Invalid adhoc-valid-ssid '{value}'. Must be one of: {', '.join(VALID_BODY_ADHOC_VALID_SSID)}",
+                f"Invalid adhoc-valid-ssid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADHOC_VALID_SSID)}",
             )
 
     # Validate adhoc-network if present
@@ -2495,7 +2591,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_ADHOC_NETWORK:
             return (
                 False,
-                f"Invalid adhoc-network '{value}'. Must be one of: {', '.join(VALID_BODY_ADHOC_NETWORK)}",
+                f"Invalid adhoc-network '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADHOC_NETWORK)}",
             )
 
     # Validate eapol-key-overflow if present
@@ -2504,7 +2601,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_EAPOL_KEY_OVERFLOW:
             return (
                 False,
-                f"Invalid eapol-key-overflow '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_KEY_OVERFLOW)}",
+                f"Invalid eapol-key-overflow '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_KEY_OVERFLOW)}",
             )
 
     # Validate ap-impersonation if present
@@ -2513,7 +2611,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_AP_IMPERSONATION:
             return (
                 False,
-                f"Invalid ap-impersonation '{value}'. Must be one of: {', '.join(VALID_BODY_AP_IMPERSONATION)}",
+                f"Invalid ap-impersonation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_IMPERSONATION)}",
             )
 
     # Validate invalid-addr-combination if present
@@ -2522,7 +2621,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_INVALID_ADDR_COMBINATION:
             return (
                 False,
-                f"Invalid invalid-addr-combination '{value}'. Must be one of: {', '.join(VALID_BODY_INVALID_ADDR_COMBINATION)}",
+                f"Invalid invalid-addr-combination '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INVALID_ADDR_COMBINATION)}",
             )
 
     # Validate beacon-wrong-channel if present
@@ -2531,7 +2631,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_BEACON_WRONG_CHANNEL:
             return (
                 False,
-                f"Invalid beacon-wrong-channel '{value}'. Must be one of: {', '.join(VALID_BODY_BEACON_WRONG_CHANNEL)}",
+                f"Invalid beacon-wrong-channel '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BEACON_WRONG_CHANNEL)}",
             )
 
     # Validate ht-greenfield if present
@@ -2540,7 +2641,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_HT_GREENFIELD:
             return (
                 False,
-                f"Invalid ht-greenfield '{value}'. Must be one of: {', '.join(VALID_BODY_HT_GREENFIELD)}",
+                f"Invalid ht-greenfield '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HT_GREENFIELD)}",
             )
 
     # Validate overflow-ie if present
@@ -2549,7 +2651,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_OVERFLOW_IE:
             return (
                 False,
-                f"Invalid overflow-ie '{value}'. Must be one of: {', '.join(VALID_BODY_OVERFLOW_IE)}",
+                f"Invalid overflow-ie '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERFLOW_IE)}",
             )
 
     # Validate malformed-ht-ie if present
@@ -2558,7 +2661,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_MALFORMED_HT_IE:
             return (
                 False,
-                f"Invalid malformed-ht-ie '{value}'. Must be one of: {', '.join(VALID_BODY_MALFORMED_HT_IE)}",
+                f"Invalid malformed-ht-ie '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MALFORMED_HT_IE)}",
             )
 
     # Validate malformed-auth if present
@@ -2567,7 +2671,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_MALFORMED_AUTH:
             return (
                 False,
-                f"Invalid malformed-auth '{value}'. Must be one of: {', '.join(VALID_BODY_MALFORMED_AUTH)}",
+                f"Invalid malformed-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MALFORMED_AUTH)}",
             )
 
     # Validate malformed-association if present
@@ -2576,7 +2681,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_MALFORMED_ASSOCIATION:
             return (
                 False,
-                f"Invalid malformed-association '{value}'. Must be one of: {', '.join(VALID_BODY_MALFORMED_ASSOCIATION)}",
+                f"Invalid malformed-association '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MALFORMED_ASSOCIATION)}",
             )
 
     # Validate ht-40mhz-intolerance if present
@@ -2585,7 +2691,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_HT_40MHZ_INTOLERANCE:
             return (
                 False,
-                f"Invalid ht-40mhz-intolerance '{value}'. Must be one of: {', '.join(VALID_BODY_HT_40MHZ_INTOLERANCE)}",
+                f"Invalid ht-40mhz-intolerance '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HT_40MHZ_INTOLERANCE)}",
             )
 
     # Validate valid-ssid-misuse if present
@@ -2594,7 +2701,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_VALID_SSID_MISUSE:
             return (
                 False,
-                f"Invalid valid-ssid-misuse '{value}'. Must be one of: {', '.join(VALID_BODY_VALID_SSID_MISUSE)}",
+                f"Invalid valid-ssid-misuse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VALID_SSID_MISUSE)}",
             )
 
     # Validate valid-client-misassociation if present
@@ -2603,7 +2711,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_VALID_CLIENT_MISASSOCIATION:
             return (
                 False,
-                f"Invalid valid-client-misassociation '{value}'. Must be one of: {', '.join(VALID_BODY_VALID_CLIENT_MISASSOCIATION)}",
+                f"Invalid valid-client-misassociation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VALID_CLIENT_MISASSOCIATION)}",
             )
 
     # Validate hotspotter-attack if present
@@ -2612,7 +2721,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_HOTSPOTTER_ATTACK:
             return (
                 False,
-                f"Invalid hotspotter-attack '{value}'. Must be one of: {', '.join(VALID_BODY_HOTSPOTTER_ATTACK)}",
+                f"Invalid hotspotter-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HOTSPOTTER_ATTACK)}",
             )
 
     # Validate pwsave-dos-attack if present
@@ -2621,7 +2731,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_PWSAVE_DOS_ATTACK:
             return (
                 False,
-                f"Invalid pwsave-dos-attack '{value}'. Must be one of: {', '.join(VALID_BODY_PWSAVE_DOS_ATTACK)}",
+                f"Invalid pwsave-dos-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PWSAVE_DOS_ATTACK)}",
             )
 
     # Validate omerta-attack if present
@@ -2630,7 +2741,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_OMERTA_ATTACK:
             return (
                 False,
-                f"Invalid omerta-attack '{value}'. Must be one of: {', '.join(VALID_BODY_OMERTA_ATTACK)}",
+                f"Invalid omerta-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OMERTA_ATTACK)}",
             )
 
     # Validate disconnect-station if present
@@ -2639,7 +2751,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_DISCONNECT_STATION:
             return (
                 False,
-                f"Invalid disconnect-station '{value}'. Must be one of: {', '.join(VALID_BODY_DISCONNECT_STATION)}",
+                f"Invalid disconnect-station '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCONNECT_STATION)}",
             )
 
     # Validate unencrypted-valid if present
@@ -2648,7 +2761,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_UNENCRYPTED_VALID:
             return (
                 False,
-                f"Invalid unencrypted-valid '{value}'. Must be one of: {', '.join(VALID_BODY_UNENCRYPTED_VALID)}",
+                f"Invalid unencrypted-valid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNENCRYPTED_VALID)}",
             )
 
     # Validate fata-jack if present
@@ -2657,7 +2771,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_FATA_JACK:
             return (
                 False,
-                f"Invalid fata-jack '{value}'. Must be one of: {', '.join(VALID_BODY_FATA_JACK)}",
+                f"Invalid fata-jack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FATA_JACK)}",
             )
 
     # Validate risky-encryption if present
@@ -2666,7 +2781,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_RISKY_ENCRYPTION:
             return (
                 False,
-                f"Invalid risky-encryption '{value}'. Must be one of: {', '.join(VALID_BODY_RISKY_ENCRYPTION)}",
+                f"Invalid risky-encryption '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RISKY_ENCRYPTION)}",
             )
 
     # Validate fuzzed-beacon if present
@@ -2675,7 +2791,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_FUZZED_BEACON:
             return (
                 False,
-                f"Invalid fuzzed-beacon '{value}'. Must be one of: {', '.join(VALID_BODY_FUZZED_BEACON)}",
+                f"Invalid fuzzed-beacon '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FUZZED_BEACON)}",
             )
 
     # Validate fuzzed-probe-request if present
@@ -2684,7 +2801,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_FUZZED_PROBE_REQUEST:
             return (
                 False,
-                f"Invalid fuzzed-probe-request '{value}'. Must be one of: {', '.join(VALID_BODY_FUZZED_PROBE_REQUEST)}",
+                f"Invalid fuzzed-probe-request '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FUZZED_PROBE_REQUEST)}",
             )
 
     # Validate fuzzed-probe-response if present
@@ -2693,7 +2811,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_FUZZED_PROBE_RESPONSE:
             return (
                 False,
-                f"Invalid fuzzed-probe-response '{value}'. Must be one of: {', '.join(VALID_BODY_FUZZED_PROBE_RESPONSE)}",
+                f"Invalid fuzzed-probe-response '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FUZZED_PROBE_RESPONSE)}",
             )
 
     # Validate air-jack if present
@@ -2702,7 +2821,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_AIR_JACK:
             return (
                 False,
-                f"Invalid air-jack '{value}'. Must be one of: {', '.join(VALID_BODY_AIR_JACK)}",
+                f"Invalid air-jack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AIR_JACK)}",
             )
 
     # Validate wpa-ft-attack if present
@@ -2711,7 +2831,8 @@ def validate_wids_profile_put(
         if value and value not in VALID_BODY_WPA_FT_ATTACK:
             return (
                 False,
-                f"Invalid wpa-ft-attack '{value}'. Must be one of: {', '.join(VALID_BODY_WPA_FT_ATTACK)}",
+                f"Invalid wpa-ft-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WPA_FT_ATTACK)}",
             )
 
     return (True, None)

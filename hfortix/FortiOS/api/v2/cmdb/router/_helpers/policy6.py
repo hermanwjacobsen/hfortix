@@ -49,7 +49,8 @@ def validate_policy6_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,7 +88,8 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INPUT_DEVICE_NEGATE:
             return (
                 False,
-                f"Invalid input-device-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INPUT_DEVICE_NEGATE)}",
+                f"Invalid input-device-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INPUT_DEVICE_NEGATE)}",
             )
 
     # Validate src-negate if present
@@ -96,7 +98,8 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SRC_NEGATE:
             return (
                 False,
-                f"Invalid src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_NEGATE)}",
+                f"Invalid src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRC_NEGATE)}",
             )
 
     # Validate dst-negate if present
@@ -105,7 +108,8 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DST_NEGATE:
             return (
                 False,
-                f"Invalid dst-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DST_NEGATE)}",
+                f"Invalid dst-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DST_NEGATE)}",
             )
 
     # Validate action if present
@@ -114,7 +118,8 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate protocol if present
@@ -196,7 +201,8 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate comments if present
@@ -246,7 +252,8 @@ def validate_policy6_put(
         if value and value not in VALID_BODY_INPUT_DEVICE_NEGATE:
             return (
                 False,
-                f"Invalid input-device-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INPUT_DEVICE_NEGATE)}",
+                f"Invalid input-device-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INPUT_DEVICE_NEGATE)}",
             )
 
     # Validate src-negate if present
@@ -255,7 +262,8 @@ def validate_policy6_put(
         if value and value not in VALID_BODY_SRC_NEGATE:
             return (
                 False,
-                f"Invalid src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_NEGATE)}",
+                f"Invalid src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRC_NEGATE)}",
             )
 
     # Validate dst-negate if present
@@ -264,7 +272,8 @@ def validate_policy6_put(
         if value and value not in VALID_BODY_DST_NEGATE:
             return (
                 False,
-                f"Invalid dst-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DST_NEGATE)}",
+                f"Invalid dst-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DST_NEGATE)}",
             )
 
     # Validate action if present
@@ -273,7 +282,8 @@ def validate_policy6_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate protocol if present
@@ -355,7 +365,8 @@ def validate_policy6_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate comments if present

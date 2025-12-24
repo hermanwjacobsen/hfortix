@@ -57,7 +57,8 @@ def validate_email_server_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,7 +91,8 @@ def validate_email_server_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate server if present
@@ -116,7 +118,8 @@ def validate_email_server_put(
         if value and value not in VALID_BODY_AUTHENTICATE:
             return (
                 False,
-                f"Invalid authenticate '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHENTICATE)}",
+                f"Invalid authenticate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTHENTICATE)}",
             )
 
     # Validate validate-server if present
@@ -125,7 +128,8 @@ def validate_email_server_put(
         if value and value not in VALID_BODY_VALIDATE_SERVER:
             return (
                 False,
-                f"Invalid validate-server '{value}'. Must be one of: {', '.join(VALID_BODY_VALIDATE_SERVER)}",
+                f"Invalid validate-server '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VALIDATE_SERVER)}",
             )
 
     # Validate username if present
@@ -140,7 +144,8 @@ def validate_email_server_put(
         if value and value not in VALID_BODY_SECURITY:
             return (
                 False,
-                f"Invalid security '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY)}",
+                f"Invalid security '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -149,7 +154,8 @@ def validate_email_server_put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate interface-select-method if present
@@ -158,7 +164,8 @@ def validate_email_server_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present

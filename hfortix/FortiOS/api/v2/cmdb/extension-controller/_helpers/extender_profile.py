@@ -78,7 +78,8 @@ def validate_extender_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -124,7 +125,8 @@ def validate_extender_profile_post(
         if value and value not in VALID_BODY_MODEL:
             return (
                 False,
-                f"Invalid model '{value}'. Must be one of: {', '.join(VALID_BODY_MODEL)}",
+                f"Invalid model '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODEL)}",
             )
 
     # Validate extension if present
@@ -133,7 +135,8 @@ def validate_extender_profile_post(
         if value and value not in VALID_BODY_EXTENSION:
             return (
                 False,
-                f"Invalid extension '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION)}",
+                f"Invalid extension '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENSION)}",
             )
 
     # Validate allowaccess if present
@@ -142,7 +145,8 @@ def validate_extender_profile_post(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate login-password-change if present
@@ -151,7 +155,8 @@ def validate_extender_profile_post(
         if value and value not in VALID_BODY_LOGIN_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid login-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
+                f"Invalid login-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
             )
 
     # Validate enforce-bandwidth if present
@@ -160,7 +165,8 @@ def validate_extender_profile_post(
         if value and value not in VALID_BODY_ENFORCE_BANDWIDTH:
             return (
                 False,
-                f"Invalid enforce-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
+                f"Invalid enforce-bandwidth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
             )
 
     # Validate bandwidth-limit if present
@@ -232,7 +238,8 @@ def validate_extender_profile_put(
         if value and value not in VALID_BODY_MODEL:
             return (
                 False,
-                f"Invalid model '{value}'. Must be one of: {', '.join(VALID_BODY_MODEL)}",
+                f"Invalid model '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODEL)}",
             )
 
     # Validate extension if present
@@ -241,7 +248,8 @@ def validate_extender_profile_put(
         if value and value not in VALID_BODY_EXTENSION:
             return (
                 False,
-                f"Invalid extension '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION)}",
+                f"Invalid extension '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENSION)}",
             )
 
     # Validate allowaccess if present
@@ -250,7 +258,8 @@ def validate_extender_profile_put(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate login-password-change if present
@@ -259,7 +268,8 @@ def validate_extender_profile_put(
         if value and value not in VALID_BODY_LOGIN_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid login-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
+                f"Invalid login-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
             )
 
     # Validate enforce-bandwidth if present
@@ -268,7 +278,8 @@ def validate_extender_profile_put(
         if value and value not in VALID_BODY_ENFORCE_BANDWIDTH:
             return (
                 False,
-                f"Invalid enforce-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
+                f"Invalid enforce-bandwidth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
             )
 
     # Validate bandwidth-limit if present

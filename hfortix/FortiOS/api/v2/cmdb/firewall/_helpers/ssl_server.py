@@ -53,7 +53,8 @@ def validate_ssl_server_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -99,7 +100,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_SSL_MODE:
             return (
                 False,
-                f"Invalid ssl-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MODE)}",
+                f"Invalid ssl-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MODE)}",
             )
 
     # Validate add-header-x-forwarded-proto if present
@@ -108,7 +110,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO:
             return (
                 False,
-                f"Invalid add-header-x-forwarded-proto '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO)}",
+                f"Invalid add-header-x-forwarded-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO)}",
             )
 
     # Validate mapped-port if present
@@ -128,7 +131,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_SSL_DH_BITS:
             return (
                 False,
-                f"Invalid ssl-dh-bits '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_DH_BITS)}",
+                f"Invalid ssl-dh-bits '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_DH_BITS)}",
             )
 
     # Validate ssl-algorithm if present
@@ -137,7 +141,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_SSL_ALGORITHM:
             return (
                 False,
-                f"Invalid ssl-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ALGORITHM)}",
+                f"Invalid ssl-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_ALGORITHM)}",
             )
 
     # Validate ssl-client-renegotiation if present
@@ -146,7 +151,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_SSL_CLIENT_RENEGOTIATION:
             return (
                 False,
-                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
+                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
             )
 
     # Validate ssl-min-version if present
@@ -155,7 +161,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_SSL_MIN_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_VERSION)}",
+                f"Invalid ssl-min-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_VERSION)}",
             )
 
     # Validate ssl-max-version if present
@@ -164,7 +171,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_SSL_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid ssl-max-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MAX_VERSION)}",
             )
 
     # Validate ssl-send-empty-frags if present
@@ -173,7 +181,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_SSL_SEND_EMPTY_FRAGS:
             return (
                 False,
-                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
+                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
             )
 
     # Validate url-rewrite if present
@@ -182,7 +191,8 @@ def validate_ssl_server_post(
         if value and value not in VALID_BODY_URL_REWRITE:
             return (
                 False,
-                f"Invalid url-rewrite '{value}'. Must be one of: {', '.join(VALID_BODY_URL_REWRITE)}",
+                f"Invalid url-rewrite '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_URL_REWRITE)}",
             )
 
     return (True, None)
@@ -237,7 +247,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_SSL_MODE:
             return (
                 False,
-                f"Invalid ssl-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MODE)}",
+                f"Invalid ssl-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MODE)}",
             )
 
     # Validate add-header-x-forwarded-proto if present
@@ -246,7 +257,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO:
             return (
                 False,
-                f"Invalid add-header-x-forwarded-proto '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO)}",
+                f"Invalid add-header-x-forwarded-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO)}",
             )
 
     # Validate mapped-port if present
@@ -266,7 +278,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_SSL_DH_BITS:
             return (
                 False,
-                f"Invalid ssl-dh-bits '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_DH_BITS)}",
+                f"Invalid ssl-dh-bits '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_DH_BITS)}",
             )
 
     # Validate ssl-algorithm if present
@@ -275,7 +288,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_SSL_ALGORITHM:
             return (
                 False,
-                f"Invalid ssl-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ALGORITHM)}",
+                f"Invalid ssl-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_ALGORITHM)}",
             )
 
     # Validate ssl-client-renegotiation if present
@@ -284,7 +298,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_SSL_CLIENT_RENEGOTIATION:
             return (
                 False,
-                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
+                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
             )
 
     # Validate ssl-min-version if present
@@ -293,7 +308,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_SSL_MIN_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_VERSION)}",
+                f"Invalid ssl-min-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_VERSION)}",
             )
 
     # Validate ssl-max-version if present
@@ -302,7 +318,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_SSL_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid ssl-max-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MAX_VERSION)}",
             )
 
     # Validate ssl-send-empty-frags if present
@@ -311,7 +328,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_SSL_SEND_EMPTY_FRAGS:
             return (
                 False,
-                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
+                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
             )
 
     # Validate url-rewrite if present
@@ -320,7 +338,8 @@ def validate_ssl_server_put(
         if value and value not in VALID_BODY_URL_REWRITE:
             return (
                 False,
-                f"Invalid url-rewrite '{value}'. Must be one of: {', '.join(VALID_BODY_URL_REWRITE)}",
+                f"Invalid url-rewrite '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_URL_REWRITE)}",
             )
 
     return (True, None)

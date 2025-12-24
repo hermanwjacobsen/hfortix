@@ -284,13 +284,15 @@ class InternetServiceCustomGroup:
 
             async def _async():
                 try:
-                    # Runtime check confirms result is a coroutine, cast for mypy
+                    # Runtime check confirms result is a coroutine, cast for
+                    # mypy
                     await cast(Coroutine[Any, Any, dict[str, Any]], result)
                     return True
                 except ResourceNotFoundError:
                     return False
 
-            # Type ignore justified: mypy can't verify Union return type narrowing
+            # Type ignore justified: mypy can't verify Union return type
+            # narrowing
 
             return _async()
         # Sync mode - get() already executed, no exception means it exists

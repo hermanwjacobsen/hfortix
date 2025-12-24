@@ -45,7 +45,8 @@ def validate_vdom_sflow_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -78,7 +79,8 @@ def validate_vdom_sflow_put(
         if value and value not in VALID_BODY_VDOM_SFLOW:
             return (
                 False,
-                f"Invalid vdom-sflow '{value}'. Must be one of: {', '.join(VALID_BODY_VDOM_SFLOW)}",
+                f"Invalid vdom-sflow '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VDOM_SFLOW)}",
             )
 
     return (True, None)

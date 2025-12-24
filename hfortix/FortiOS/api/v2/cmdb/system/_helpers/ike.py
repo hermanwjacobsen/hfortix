@@ -48,7 +48,8 @@ def validate_ike_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -98,7 +99,8 @@ def validate_ike_put(
         if value and value not in VALID_BODY_DH_MULTIPROCESS:
             return (
                 False,
-                f"Invalid dh-multiprocess '{value}'. Must be one of: {', '.join(VALID_BODY_DH_MULTIPROCESS)}",
+                f"Invalid dh-multiprocess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DH_MULTIPROCESS)}",
             )
 
     # Validate dh-worker-count if present
@@ -121,7 +123,8 @@ def validate_ike_put(
         if value and value not in VALID_BODY_DH_MODE:
             return (
                 False,
-                f"Invalid dh-mode '{value}'. Must be one of: {', '.join(VALID_BODY_DH_MODE)}",
+                f"Invalid dh-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DH_MODE)}",
             )
 
     # Validate dh-keypair-cache if present
@@ -130,7 +133,8 @@ def validate_ike_put(
         if value and value not in VALID_BODY_DH_KEYPAIR_CACHE:
             return (
                 False,
-                f"Invalid dh-keypair-cache '{value}'. Must be one of: {', '.join(VALID_BODY_DH_KEYPAIR_CACHE)}",
+                f"Invalid dh-keypair-cache '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DH_KEYPAIR_CACHE)}",
             )
 
     # Validate dh-keypair-count if present
@@ -156,7 +160,8 @@ def validate_ike_put(
         if value and value not in VALID_BODY_DH_KEYPAIR_THROTTLE:
             return (
                 False,
-                f"Invalid dh-keypair-throttle '{value}'. Must be one of: {', '.join(VALID_BODY_DH_KEYPAIR_THROTTLE)}",
+                f"Invalid dh-keypair-throttle '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DH_KEYPAIR_THROTTLE)}",
             )
 
     return (True, None)

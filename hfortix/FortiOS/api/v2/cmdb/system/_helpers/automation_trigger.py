@@ -89,7 +89,8 @@ def validate_automation_trigger_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -130,7 +131,8 @@ def validate_automation_trigger_post(
         if value and value not in VALID_BODY_TRIGGER_TYPE:
             return (
                 False,
-                f"Invalid trigger-type '{value}'. Must be one of: {', '.join(VALID_BODY_TRIGGER_TYPE)}",
+                f"Invalid trigger-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRIGGER_TYPE)}",
             )
 
     # Validate event-type if present
@@ -139,7 +141,8 @@ def validate_automation_trigger_post(
         if value and value not in VALID_BODY_EVENT_TYPE:
             return (
                 False,
-                f"Invalid event-type '{value}'. Must be one of: {', '.join(VALID_BODY_EVENT_TYPE)}",
+                f"Invalid event-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EVENT_TYPE)}",
             )
 
     # Validate license-type if present
@@ -148,7 +151,8 @@ def validate_automation_trigger_post(
         if value and value not in VALID_BODY_LICENSE_TYPE:
             return (
                 False,
-                f"Invalid license-type '{value}'. Must be one of: {', '.join(VALID_BODY_LICENSE_TYPE)}",
+                f"Invalid license-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LICENSE_TYPE)}",
             )
 
     # Validate report-type if present
@@ -157,7 +161,8 @@ def validate_automation_trigger_post(
         if value and value not in VALID_BODY_REPORT_TYPE:
             return (
                 False,
-                f"Invalid report-type '{value}'. Must be one of: {', '.join(VALID_BODY_REPORT_TYPE)}",
+                f"Invalid report-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REPORT_TYPE)}",
             )
 
     # Validate stitch-name if present
@@ -172,7 +177,8 @@ def validate_automation_trigger_post(
         if value and value not in VALID_BODY_TRIGGER_FREQUENCY:
             return (
                 False,
-                f"Invalid trigger-frequency '{value}'. Must be one of: {', '.join(VALID_BODY_TRIGGER_FREQUENCY)}",
+                f"Invalid trigger-frequency '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRIGGER_FREQUENCY)}",
             )
 
     # Validate trigger-weekday if present
@@ -181,7 +187,8 @@ def validate_automation_trigger_post(
         if value and value not in VALID_BODY_TRIGGER_WEEKDAY:
             return (
                 False,
-                f"Invalid trigger-weekday '{value}'. Must be one of: {', '.join(VALID_BODY_TRIGGER_WEEKDAY)}",
+                f"Invalid trigger-weekday '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRIGGER_WEEKDAY)}",
             )
 
     # Validate trigger-day if present
@@ -303,7 +310,8 @@ def validate_automation_trigger_put(
         if value and value not in VALID_BODY_TRIGGER_TYPE:
             return (
                 False,
-                f"Invalid trigger-type '{value}'. Must be one of: {', '.join(VALID_BODY_TRIGGER_TYPE)}",
+                f"Invalid trigger-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRIGGER_TYPE)}",
             )
 
     # Validate event-type if present
@@ -312,7 +320,8 @@ def validate_automation_trigger_put(
         if value and value not in VALID_BODY_EVENT_TYPE:
             return (
                 False,
-                f"Invalid event-type '{value}'. Must be one of: {', '.join(VALID_BODY_EVENT_TYPE)}",
+                f"Invalid event-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EVENT_TYPE)}",
             )
 
     # Validate license-type if present
@@ -321,7 +330,8 @@ def validate_automation_trigger_put(
         if value and value not in VALID_BODY_LICENSE_TYPE:
             return (
                 False,
-                f"Invalid license-type '{value}'. Must be one of: {', '.join(VALID_BODY_LICENSE_TYPE)}",
+                f"Invalid license-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LICENSE_TYPE)}",
             )
 
     # Validate report-type if present
@@ -330,7 +340,8 @@ def validate_automation_trigger_put(
         if value and value not in VALID_BODY_REPORT_TYPE:
             return (
                 False,
-                f"Invalid report-type '{value}'. Must be one of: {', '.join(VALID_BODY_REPORT_TYPE)}",
+                f"Invalid report-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REPORT_TYPE)}",
             )
 
     # Validate stitch-name if present
@@ -345,7 +356,8 @@ def validate_automation_trigger_put(
         if value and value not in VALID_BODY_TRIGGER_FREQUENCY:
             return (
                 False,
-                f"Invalid trigger-frequency '{value}'. Must be one of: {', '.join(VALID_BODY_TRIGGER_FREQUENCY)}",
+                f"Invalid trigger-frequency '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRIGGER_FREQUENCY)}",
             )
 
     # Validate trigger-weekday if present
@@ -354,7 +366,8 @@ def validate_automation_trigger_put(
         if value and value not in VALID_BODY_TRIGGER_WEEKDAY:
             return (
                 False,
-                f"Invalid trigger-weekday '{value}'. Must be one of: {', '.join(VALID_BODY_TRIGGER_WEEKDAY)}",
+                f"Invalid trigger-weekday '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRIGGER_WEEKDAY)}",
             )
 
     # Validate trigger-day if present

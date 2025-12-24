@@ -77,7 +77,8 @@ def validate_ldap_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -139,7 +140,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SERVER_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid server-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
+                f"Invalid server-identity-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
             )
 
     # Validate source-ip if present
@@ -183,7 +185,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate two-factor if present
@@ -192,7 +195,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     # Validate two-factor-authentication if present
@@ -201,7 +205,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR_AUTHENTICATION:
             return (
                 False,
-                f"Invalid two-factor-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
+                f"Invalid two-factor-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
             )
 
     # Validate two-factor-notification if present
@@ -210,7 +215,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR_NOTIFICATION:
             return (
                 False,
-                f"Invalid two-factor-notification '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
+                f"Invalid two-factor-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
             )
 
     # Validate two-factor-filter if present
@@ -231,7 +237,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GROUP_MEMBER_CHECK:
             return (
                 False,
-                f"Invalid group-member-check '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_MEMBER_CHECK)}",
+                f"Invalid group-member-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_MEMBER_CHECK)}",
             )
 
     # Validate group-search-base if present
@@ -261,7 +268,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SECURE:
             return (
                 False,
-                f"Invalid secure '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE)}",
+                f"Invalid secure '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURE)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -270,7 +278,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate ca-cert if present
@@ -296,7 +305,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PASSWORD_EXPIRY_WARNING:
             return (
                 False,
-                f"Invalid password-expiry-warning '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_EXPIRY_WARNING)}",
+                f"Invalid password-expiry-warning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSWORD_EXPIRY_WARNING)}",
             )
 
     # Validate password-renewal if present
@@ -305,7 +315,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PASSWORD_RENEWAL:
             return (
                 False,
-                f"Invalid password-renewal '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
+                f"Invalid password-renewal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
             )
 
     # Validate member-attr if present
@@ -320,7 +331,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACCOUNT_KEY_PROCESSING:
             return (
                 False,
-                f"Invalid account-key-processing '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
+                f"Invalid account-key-processing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
             )
 
     # Validate account-key-cert-field if present
@@ -329,7 +341,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACCOUNT_KEY_CERT_FIELD:
             return (
                 False,
-                f"Invalid account-key-cert-field '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
+                f"Invalid account-key-cert-field '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
             )
 
     # Validate account-key-filter if present
@@ -344,7 +357,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SEARCH_TYPE:
             return (
                 False,
-                f"Invalid search-type '{value}'. Must be one of: {', '.join(VALID_BODY_SEARCH_TYPE)}",
+                f"Invalid search-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEARCH_TYPE)}",
             )
 
     # Validate client-cert-auth if present
@@ -353,7 +367,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CLIENT_CERT_AUTH:
             return (
                 False,
-                f"Invalid client-cert-auth '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_CERT_AUTH)}",
+                f"Invalid client-cert-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIENT_CERT_AUTH)}",
             )
 
     # Validate client-cert if present
@@ -368,7 +383,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OBTAIN_USER_INFO:
             return (
                 False,
-                f"Invalid obtain-user-info '{value}'. Must be one of: {', '.join(VALID_BODY_OBTAIN_USER_INFO)}",
+                f"Invalid obtain-user-info '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OBTAIN_USER_INFO)}",
             )
 
     # Validate user-info-exchange-server if present
@@ -386,7 +402,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -412,7 +429,8 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ANTIPHISH:
             return (
                 False,
-                f"Invalid antiphish '{value}'. Must be one of: {', '.join(VALID_BODY_ANTIPHISH)}",
+                f"Invalid antiphish '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ANTIPHISH)}",
             )
 
     # Validate password-attr if present
@@ -491,7 +509,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_SERVER_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid server-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
+                f"Invalid server-identity-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
             )
 
     # Validate source-ip if present
@@ -535,7 +554,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate two-factor if present
@@ -544,7 +564,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     # Validate two-factor-authentication if present
@@ -553,7 +574,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_TWO_FACTOR_AUTHENTICATION:
             return (
                 False,
-                f"Invalid two-factor-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
+                f"Invalid two-factor-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
             )
 
     # Validate two-factor-notification if present
@@ -562,7 +584,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_TWO_FACTOR_NOTIFICATION:
             return (
                 False,
-                f"Invalid two-factor-notification '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
+                f"Invalid two-factor-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
             )
 
     # Validate two-factor-filter if present
@@ -583,7 +606,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_GROUP_MEMBER_CHECK:
             return (
                 False,
-                f"Invalid group-member-check '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_MEMBER_CHECK)}",
+                f"Invalid group-member-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_MEMBER_CHECK)}",
             )
 
     # Validate group-search-base if present
@@ -613,7 +637,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_SECURE:
             return (
                 False,
-                f"Invalid secure '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE)}",
+                f"Invalid secure '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURE)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -622,7 +647,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate ca-cert if present
@@ -648,7 +674,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_PASSWORD_EXPIRY_WARNING:
             return (
                 False,
-                f"Invalid password-expiry-warning '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_EXPIRY_WARNING)}",
+                f"Invalid password-expiry-warning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSWORD_EXPIRY_WARNING)}",
             )
 
     # Validate password-renewal if present
@@ -657,7 +684,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_PASSWORD_RENEWAL:
             return (
                 False,
-                f"Invalid password-renewal '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
+                f"Invalid password-renewal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
             )
 
     # Validate member-attr if present
@@ -672,7 +700,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_ACCOUNT_KEY_PROCESSING:
             return (
                 False,
-                f"Invalid account-key-processing '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
+                f"Invalid account-key-processing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
             )
 
     # Validate account-key-cert-field if present
@@ -681,7 +710,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_ACCOUNT_KEY_CERT_FIELD:
             return (
                 False,
-                f"Invalid account-key-cert-field '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
+                f"Invalid account-key-cert-field '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
             )
 
     # Validate account-key-filter if present
@@ -696,7 +726,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_SEARCH_TYPE:
             return (
                 False,
-                f"Invalid search-type '{value}'. Must be one of: {', '.join(VALID_BODY_SEARCH_TYPE)}",
+                f"Invalid search-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEARCH_TYPE)}",
             )
 
     # Validate client-cert-auth if present
@@ -705,7 +736,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_CLIENT_CERT_AUTH:
             return (
                 False,
-                f"Invalid client-cert-auth '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_CERT_AUTH)}",
+                f"Invalid client-cert-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIENT_CERT_AUTH)}",
             )
 
     # Validate client-cert if present
@@ -720,7 +752,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_OBTAIN_USER_INFO:
             return (
                 False,
-                f"Invalid obtain-user-info '{value}'. Must be one of: {', '.join(VALID_BODY_OBTAIN_USER_INFO)}",
+                f"Invalid obtain-user-info '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OBTAIN_USER_INFO)}",
             )
 
     # Validate user-info-exchange-server if present
@@ -738,7 +771,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -764,7 +798,8 @@ def validate_ldap_put(
         if value and value not in VALID_BODY_ANTIPHISH:
             return (
                 False,
-                f"Invalid antiphish '{value}'. Must be one of: {', '.join(VALID_BODY_ANTIPHISH)}",
+                f"Invalid antiphish '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ANTIPHISH)}",
             )
 
     # Validate password-attr if present

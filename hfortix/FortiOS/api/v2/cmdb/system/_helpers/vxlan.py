@@ -51,7 +51,8 @@ def validate_vxlan_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,7 +102,8 @@ def validate_vxlan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate dstport if present
@@ -143,7 +145,8 @@ def validate_vxlan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LEARN_FROM_TRAFFIC:
             return (
                 False,
-                f"Invalid learn-from-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LEARN_FROM_TRAFFIC)}",
+                f"Invalid learn-from-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LEARN_FROM_TRAFFIC)}",
             )
 
     return (True, None)
@@ -204,7 +207,8 @@ def validate_vxlan_put(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate dstport if present
@@ -246,7 +250,8 @@ def validate_vxlan_put(
         if value and value not in VALID_BODY_LEARN_FROM_TRAFFIC:
             return (
                 False,
-                f"Invalid learn-from-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LEARN_FROM_TRAFFIC)}",
+                f"Invalid learn-from-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LEARN_FROM_TRAFFIC)}",
             )
 
     return (True, None)

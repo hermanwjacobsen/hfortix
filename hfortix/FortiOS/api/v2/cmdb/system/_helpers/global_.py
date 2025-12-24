@@ -260,7 +260,8 @@ def validate_global__get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -293,7 +294,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LANGUAGE:
             return (
                 False,
-                f"Invalid language '{value}'. Must be one of: {', '.join(VALID_BODY_LANGUAGE)}",
+                f"Invalid language '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LANGUAGE)}",
             )
 
     # Validate gui-allow-incompatible-fabric-fgt if present
@@ -302,7 +304,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_ALLOW_INCOMPATIBLE_FABRIC_FGT:
             return (
                 False,
-                f"Invalid gui-allow-incompatible-fabric-fgt '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ALLOW_INCOMPATIBLE_FABRIC_FGT)}",
+                f"Invalid gui-allow-incompatible-fabric-fgt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ALLOW_INCOMPATIBLE_FABRIC_FGT)}",
             )
 
     # Validate gui-ipv6 if present
@@ -311,7 +314,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_IPV6:
             return (
                 False,
-                f"Invalid gui-ipv6 '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_IPV6)}",
+                f"Invalid gui-ipv6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_IPV6)}",
             )
 
     # Validate gui-replacement-message-groups if present
@@ -320,7 +324,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_REPLACEMENT_MESSAGE_GROUPS:
             return (
                 False,
-                f"Invalid gui-replacement-message-groups '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_REPLACEMENT_MESSAGE_GROUPS)}",
+                f"Invalid gui-replacement-message-groups '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_REPLACEMENT_MESSAGE_GROUPS)}",
             )
 
     # Validate gui-local-out if present
@@ -329,7 +334,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_LOCAL_OUT:
             return (
                 False,
-                f"Invalid gui-local-out '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_LOCAL_OUT)}",
+                f"Invalid gui-local-out '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_LOCAL_OUT)}",
             )
 
     # Validate gui-certificates if present
@@ -338,7 +344,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_CERTIFICATES:
             return (
                 False,
-                f"Invalid gui-certificates '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_CERTIFICATES)}",
+                f"Invalid gui-certificates '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_CERTIFICATES)}",
             )
 
     # Validate gui-custom-language if present
@@ -347,7 +354,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_CUSTOM_LANGUAGE:
             return (
                 False,
-                f"Invalid gui-custom-language '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_CUSTOM_LANGUAGE)}",
+                f"Invalid gui-custom-language '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_CUSTOM_LANGUAGE)}",
             )
 
     # Validate gui-wireless-opensecurity if present
@@ -356,7 +364,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_WIRELESS_OPENSECURITY:
             return (
                 False,
-                f"Invalid gui-wireless-opensecurity '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_WIRELESS_OPENSECURITY)}",
+                f"Invalid gui-wireless-opensecurity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_WIRELESS_OPENSECURITY)}",
             )
 
     # Validate gui-app-detection-sdwan if present
@@ -365,7 +374,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_APP_DETECTION_SDWAN:
             return (
                 False,
-                f"Invalid gui-app-detection-sdwan '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_APP_DETECTION_SDWAN)}",
+                f"Invalid gui-app-detection-sdwan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_APP_DETECTION_SDWAN)}",
             )
 
     # Validate gui-display-hostname if present
@@ -374,7 +384,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_DISPLAY_HOSTNAME:
             return (
                 False,
-                f"Invalid gui-display-hostname '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DISPLAY_HOSTNAME)}",
+                f"Invalid gui-display-hostname '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DISPLAY_HOSTNAME)}",
             )
 
     # Validate gui-fortigate-cloud-sandbox if present
@@ -383,7 +394,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_FORTIGATE_CLOUD_SANDBOX:
             return (
                 False,
-                f"Invalid gui-fortigate-cloud-sandbox '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_FORTIGATE_CLOUD_SANDBOX)}",
+                f"Invalid gui-fortigate-cloud-sandbox '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_FORTIGATE_CLOUD_SANDBOX)}",
             )
 
     # Validate gui-firmware-upgrade-warning if present
@@ -392,7 +404,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_FIRMWARE_UPGRADE_WARNING:
             return (
                 False,
-                f"Invalid gui-firmware-upgrade-warning '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_FIRMWARE_UPGRADE_WARNING)}",
+                f"Invalid gui-firmware-upgrade-warning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_FIRMWARE_UPGRADE_WARNING)}",
             )
 
     # Validate gui-forticare-registration-setup-warning if present
@@ -405,7 +418,8 @@ def validate_global__put(
         ):
             return (
                 False,
-                f"Invalid gui-forticare-registration-setup-warning '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_FORTICARE_REGISTRATION_SETUP_WARNING)}",
+                f"Invalid gui-forticare-registration-setup-warning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_FORTICARE_REGISTRATION_SETUP_WARNING)}",
             )
 
     # Validate gui-auto-upgrade-setup-warning if present
@@ -414,7 +428,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_AUTO_UPGRADE_SETUP_WARNING:
             return (
                 False,
-                f"Invalid gui-auto-upgrade-setup-warning '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_AUTO_UPGRADE_SETUP_WARNING)}",
+                f"Invalid gui-auto-upgrade-setup-warning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_AUTO_UPGRADE_SETUP_WARNING)}",
             )
 
     # Validate gui-workflow-management if present
@@ -423,7 +438,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_WORKFLOW_MANAGEMENT:
             return (
                 False,
-                f"Invalid gui-workflow-management '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_WORKFLOW_MANAGEMENT)}",
+                f"Invalid gui-workflow-management '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_WORKFLOW_MANAGEMENT)}",
             )
 
     # Validate gui-cdn-usage if present
@@ -432,7 +448,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_CDN_USAGE:
             return (
                 False,
-                f"Invalid gui-cdn-usage '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_CDN_USAGE)}",
+                f"Invalid gui-cdn-usage '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_CDN_USAGE)}",
             )
 
     # Validate admin-https-ssl-versions if present
@@ -441,7 +458,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_HTTPS_SSL_VERSIONS:
             return (
                 False,
-                f"Invalid admin-https-ssl-versions '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_HTTPS_SSL_VERSIONS)}",
+                f"Invalid admin-https-ssl-versions '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_HTTPS_SSL_VERSIONS)}",
             )
 
     # Validate admin-https-ssl-ciphersuites if present
@@ -450,7 +468,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_HTTPS_SSL_CIPHERSUITES:
             return (
                 False,
-                f"Invalid admin-https-ssl-ciphersuites '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_HTTPS_SSL_CIPHERSUITES)}",
+                f"Invalid admin-https-ssl-ciphersuites '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_HTTPS_SSL_CIPHERSUITES)}",
             )
 
     # Validate admin-https-ssl-banned-ciphers if present
@@ -459,7 +478,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_HTTPS_SSL_BANNED_CIPHERS:
             return (
                 False,
-                f"Invalid admin-https-ssl-banned-ciphers '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_HTTPS_SSL_BANNED_CIPHERS)}",
+                f"Invalid admin-https-ssl-banned-ciphers '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_HTTPS_SSL_BANNED_CIPHERS)}",
             )
 
     # Validate admintimeout if present
@@ -496,7 +516,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SSD_TRIM_FREQ:
             return (
                 False,
-                f"Invalid ssd-trim-freq '{value}'. Must be one of: {', '.join(VALID_BODY_SSD_TRIM_FREQ)}",
+                f"Invalid ssd-trim-freq '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSD_TRIM_FREQ)}",
             )
 
     # Validate ssd-trim-hour if present
@@ -527,7 +548,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SSD_TRIM_WEEKDAY:
             return (
                 False,
-                f"Invalid ssd-trim-weekday '{value}'. Must be one of: {', '.join(VALID_BODY_SSD_TRIM_WEEKDAY)}",
+                f"Invalid ssd-trim-weekday '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSD_TRIM_WEEKDAY)}",
             )
 
     # Validate ssd-trim-date if present
@@ -547,7 +569,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_CONCURRENT:
             return (
                 False,
-                f"Invalid admin-concurrent '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_CONCURRENT)}",
+                f"Invalid admin-concurrent '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_CONCURRENT)}",
             )
 
     # Validate admin-lockout-threshold if present
@@ -629,7 +652,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PURDUE_LEVEL:
             return (
                 False,
-                f"Invalid purdue-level '{value}'. Must be one of: {', '.join(VALID_BODY_PURDUE_LEVEL)}",
+                f"Invalid purdue-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PURDUE_LEVEL)}",
             )
 
     # Validate daily-restart if present
@@ -638,7 +662,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DAILY_RESTART:
             return (
                 False,
-                f"Invalid daily-restart '{value}'. Must be one of: {', '.join(VALID_BODY_DAILY_RESTART)}",
+                f"Invalid daily-restart '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DAILY_RESTART)}",
             )
 
     # Validate wad-restart-mode if present
@@ -647,7 +672,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_WAD_RESTART_MODE:
             return (
                 False,
-                f"Invalid wad-restart-mode '{value}'. Must be one of: {', '.join(VALID_BODY_WAD_RESTART_MODE)}",
+                f"Invalid wad-restart-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAD_RESTART_MODE)}",
             )
 
     # Validate wad-p2s-max-body-size if present
@@ -769,7 +795,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_BATCH_CMDB:
             return (
                 False,
-                f"Invalid batch-cmdb '{value}'. Must be one of: {', '.join(VALID_BODY_BATCH_CMDB)}",
+                f"Invalid batch-cmdb '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BATCH_CMDB)}",
             )
 
     # Validate multi-factor-authentication if present
@@ -778,7 +805,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_MULTI_FACTOR_AUTHENTICATION:
             return (
                 False,
-                f"Invalid multi-factor-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_MULTI_FACTOR_AUTHENTICATION)}",
+                f"Invalid multi-factor-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTI_FACTOR_AUTHENTICATION)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -787,7 +815,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate autorun-log-fsck if present
@@ -796,7 +825,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AUTORUN_LOG_FSCK:
             return (
                 False,
-                f"Invalid autorun-log-fsck '{value}'. Must be one of: {', '.join(VALID_BODY_AUTORUN_LOG_FSCK)}",
+                f"Invalid autorun-log-fsck '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTORUN_LOG_FSCK)}",
             )
 
     # Validate timezone if present
@@ -811,7 +841,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_TRAFFIC_PRIORITY:
             return (
                 False,
-                f"Invalid traffic-priority '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_PRIORITY)}",
+                f"Invalid traffic-priority '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRAFFIC_PRIORITY)}",
             )
 
     # Validate traffic-priority-level if present
@@ -820,7 +851,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_TRAFFIC_PRIORITY_LEVEL:
             return (
                 False,
-                f"Invalid traffic-priority-level '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_PRIORITY_LEVEL)}",
+                f"Invalid traffic-priority-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRAFFIC_PRIORITY_LEVEL)}",
             )
 
     # Validate quic-congestion-control-algo if present
@@ -829,7 +861,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_QUIC_CONGESTION_CONTROL_ALGO:
             return (
                 False,
-                f"Invalid quic-congestion-control-algo '{value}'. Must be one of: {', '.join(VALID_BODY_QUIC_CONGESTION_CONTROL_ALGO)}",
+                f"Invalid quic-congestion-control-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUIC_CONGESTION_CONTROL_ALGO)}",
             )
 
     # Validate quic-max-datagram-size if present
@@ -858,7 +891,8 @@ def validate_global__put(
         ):
             return (
                 False,
-                f"Invalid quic-udp-payload-size-shaping-per-cid '{value}'. Must be one of: {', '.join(VALID_BODY_QUIC_UDP_PAYLOAD_SIZE_SHAPING_PER_CID)}",
+                f"Invalid quic-udp-payload-size-shaping-per-cid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUIC_UDP_PAYLOAD_SIZE_SHAPING_PER_CID)}",
             )
 
     # Validate quic-ack-thresold if present
@@ -884,7 +918,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_QUIC_PMTUD:
             return (
                 False,
-                f"Invalid quic-pmtud '{value}'. Must be one of: {', '.join(VALID_BODY_QUIC_PMTUD)}",
+                f"Invalid quic-pmtud '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUIC_PMTUD)}",
             )
 
     # Validate quic-tls-handshake-timeout if present
@@ -910,7 +945,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ANTI_REPLAY:
             return (
                 False,
-                f"Invalid anti-replay '{value}'. Must be one of: {', '.join(VALID_BODY_ANTI_REPLAY)}",
+                f"Invalid anti-replay '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ANTI_REPLAY)}",
             )
 
     # Validate send-pmtu-icmp if present
@@ -919,7 +955,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SEND_PMTU_ICMP:
             return (
                 False,
-                f"Invalid send-pmtu-icmp '{value}'. Must be one of: {', '.join(VALID_BODY_SEND_PMTU_ICMP)}",
+                f"Invalid send-pmtu-icmp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEND_PMTU_ICMP)}",
             )
 
     # Validate honor-df if present
@@ -928,7 +965,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_HONOR_DF:
             return (
                 False,
-                f"Invalid honor-df '{value}'. Must be one of: {', '.join(VALID_BODY_HONOR_DF)}",
+                f"Invalid honor-df '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HONOR_DF)}",
             )
 
     # Validate pmtu-discovery if present
@@ -937,7 +975,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PMTU_DISCOVERY:
             return (
                 False,
-                f"Invalid pmtu-discovery '{value}'. Must be one of: {', '.join(VALID_BODY_PMTU_DISCOVERY)}",
+                f"Invalid pmtu-discovery '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PMTU_DISCOVERY)}",
             )
 
     # Validate virtual-switch-vlan if present
@@ -946,7 +985,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_VIRTUAL_SWITCH_VLAN:
             return (
                 False,
-                f"Invalid virtual-switch-vlan '{value}'. Must be one of: {', '.join(VALID_BODY_VIRTUAL_SWITCH_VLAN)}",
+                f"Invalid virtual-switch-vlan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VIRTUAL_SWITCH_VLAN)}",
             )
 
     # Validate revision-image-auto-backup if present
@@ -955,7 +995,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_REVISION_IMAGE_AUTO_BACKUP:
             return (
                 False,
-                f"Invalid revision-image-auto-backup '{value}'. Must be one of: {', '.join(VALID_BODY_REVISION_IMAGE_AUTO_BACKUP)}",
+                f"Invalid revision-image-auto-backup '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REVISION_IMAGE_AUTO_BACKUP)}",
             )
 
     # Validate revision-backup-on-logout if present
@@ -964,7 +1005,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_REVISION_BACKUP_ON_LOGOUT:
             return (
                 False,
-                f"Invalid revision-backup-on-logout '{value}'. Must be one of: {', '.join(VALID_BODY_REVISION_BACKUP_ON_LOGOUT)}",
+                f"Invalid revision-backup-on-logout '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REVISION_BACKUP_ON_LOGOUT)}",
             )
 
     # Validate management-vdom if present
@@ -991,7 +1033,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_STRONG_CRYPTO:
             return (
                 False,
-                f"Invalid strong-crypto '{value}'. Must be one of: {', '.join(VALID_BODY_STRONG_CRYPTO)}",
+                f"Invalid strong-crypto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STRONG_CRYPTO)}",
             )
 
     # Validate ssl-static-key-ciphers if present
@@ -1000,7 +1043,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SSL_STATIC_KEY_CIPHERS:
             return (
                 False,
-                f"Invalid ssl-static-key-ciphers '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_STATIC_KEY_CIPHERS)}",
+                f"Invalid ssl-static-key-ciphers '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_STATIC_KEY_CIPHERS)}",
             )
 
     # Validate snat-route-change if present
@@ -1009,7 +1053,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SNAT_ROUTE_CHANGE:
             return (
                 False,
-                f"Invalid snat-route-change '{value}'. Must be one of: {', '.join(VALID_BODY_SNAT_ROUTE_CHANGE)}",
+                f"Invalid snat-route-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SNAT_ROUTE_CHANGE)}",
             )
 
     # Validate ipv6-snat-route-change if present
@@ -1018,7 +1063,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPV6_SNAT_ROUTE_CHANGE:
             return (
                 False,
-                f"Invalid ipv6-snat-route-change '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_SNAT_ROUTE_CHANGE)}",
+                f"Invalid ipv6-snat-route-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_SNAT_ROUTE_CHANGE)}",
             )
 
     # Validate speedtest-server if present
@@ -1027,7 +1073,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SPEEDTEST_SERVER:
             return (
                 False,
-                f"Invalid speedtest-server '{value}'. Must be one of: {', '.join(VALID_BODY_SPEEDTEST_SERVER)}",
+                f"Invalid speedtest-server '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPEEDTEST_SERVER)}",
             )
 
     # Validate cli-audit-log if present
@@ -1036,7 +1083,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CLI_AUDIT_LOG:
             return (
                 False,
-                f"Invalid cli-audit-log '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_AUDIT_LOG)}",
+                f"Invalid cli-audit-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLI_AUDIT_LOG)}",
             )
 
     # Validate dh-params if present
@@ -1045,7 +1093,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DH_PARAMS:
             return (
                 False,
-                f"Invalid dh-params '{value}'. Must be one of: {', '.join(VALID_BODY_DH_PARAMS)}",
+                f"Invalid dh-params '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DH_PARAMS)}",
             )
 
     # Validate fds-statistics if present
@@ -1054,7 +1103,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FDS_STATISTICS:
             return (
                 False,
-                f"Invalid fds-statistics '{value}'. Must be one of: {', '.join(VALID_BODY_FDS_STATISTICS)}",
+                f"Invalid fds-statistics '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FDS_STATISTICS)}",
             )
 
     # Validate fds-statistics-period if present
@@ -1080,7 +1130,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_TCP_OPTION:
             return (
                 False,
-                f"Invalid tcp-option '{value}'. Must be one of: {', '.join(VALID_BODY_TCP_OPTION)}",
+                f"Invalid tcp-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TCP_OPTION)}",
             )
 
     # Validate lldp-transmission if present
@@ -1089,7 +1140,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LLDP_TRANSMISSION:
             return (
                 False,
-                f"Invalid lldp-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
+                f"Invalid lldp-transmission '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
             )
 
     # Validate lldp-reception if present
@@ -1098,7 +1150,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LLDP_RECEPTION:
             return (
                 False,
-                f"Invalid lldp-reception '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_RECEPTION)}",
+                f"Invalid lldp-reception '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LLDP_RECEPTION)}",
             )
 
     # Validate proxy-auth-timeout if present
@@ -1124,7 +1177,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PROXY_KEEP_ALIVE_MODE:
             return (
                 False,
-                f"Invalid proxy-keep-alive-mode '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_KEEP_ALIVE_MODE)}",
+                f"Invalid proxy-keep-alive-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_KEEP_ALIVE_MODE)}",
             )
 
     # Validate proxy-re-authentication-time if present
@@ -1150,7 +1204,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PROXY_AUTH_LIFETIME:
             return (
                 False,
-                f"Invalid proxy-auth-lifetime '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_AUTH_LIFETIME)}",
+                f"Invalid proxy-auth-lifetime '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_AUTH_LIFETIME)}",
             )
 
     # Validate proxy-auth-lifetime-timeout if present
@@ -1176,7 +1231,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PROXY_RESOURCE_MODE:
             return (
                 False,
-                f"Invalid proxy-resource-mode '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_RESOURCE_MODE)}",
+                f"Invalid proxy-resource-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_RESOURCE_MODE)}",
             )
 
     # Validate proxy-cert-use-mgmt-vdom if present
@@ -1185,7 +1241,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PROXY_CERT_USE_MGMT_VDOM:
             return (
                 False,
-                f"Invalid proxy-cert-use-mgmt-vdom '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_CERT_USE_MGMT_VDOM)}",
+                f"Invalid proxy-cert-use-mgmt-vdom '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_CERT_USE_MGMT_VDOM)}",
             )
 
     # Validate sys-perf-log-interval if present
@@ -1211,7 +1268,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CHECK_PROTOCOL_HEADER:
             return (
                 False,
-                f"Invalid check-protocol-header '{value}'. Must be one of: {', '.join(VALID_BODY_CHECK_PROTOCOL_HEADER)}",
+                f"Invalid check-protocol-header '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECK_PROTOCOL_HEADER)}",
             )
 
     # Validate vip-arp-range if present
@@ -1220,7 +1278,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_VIP_ARP_RANGE:
             return (
                 False,
-                f"Invalid vip-arp-range '{value}'. Must be one of: {', '.join(VALID_BODY_VIP_ARP_RANGE)}",
+                f"Invalid vip-arp-range '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VIP_ARP_RANGE)}",
             )
 
     # Validate reset-sessionless-tcp if present
@@ -1229,7 +1288,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_RESET_SESSIONLESS_TCP:
             return (
                 False,
-                f"Invalid reset-sessionless-tcp '{value}'. Must be one of: {', '.join(VALID_BODY_RESET_SESSIONLESS_TCP)}",
+                f"Invalid reset-sessionless-tcp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RESET_SESSIONLESS_TCP)}",
             )
 
     # Validate allow-traffic-redirect if present
@@ -1238,7 +1298,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ALLOW_TRAFFIC_REDIRECT:
             return (
                 False,
-                f"Invalid allow-traffic-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_TRAFFIC_REDIRECT)}",
+                f"Invalid allow-traffic-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_TRAFFIC_REDIRECT)}",
             )
 
     # Validate ipv6-allow-traffic-redirect if present
@@ -1247,7 +1308,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPV6_ALLOW_TRAFFIC_REDIRECT:
             return (
                 False,
-                f"Invalid ipv6-allow-traffic-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_ALLOW_TRAFFIC_REDIRECT)}",
+                f"Invalid ipv6-allow-traffic-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_ALLOW_TRAFFIC_REDIRECT)}",
             )
 
     # Validate strict-dirty-session-check if present
@@ -1256,7 +1318,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_STRICT_DIRTY_SESSION_CHECK:
             return (
                 False,
-                f"Invalid strict-dirty-session-check '{value}'. Must be one of: {', '.join(VALID_BODY_STRICT_DIRTY_SESSION_CHECK)}",
+                f"Invalid strict-dirty-session-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STRICT_DIRTY_SESSION_CHECK)}",
             )
 
     # Validate tcp-halfclose-timer if present
@@ -1358,7 +1421,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PRE_LOGIN_BANNER:
             return (
                 False,
-                f"Invalid pre-login-banner '{value}'. Must be one of: {', '.join(VALID_BODY_PRE_LOGIN_BANNER)}",
+                f"Invalid pre-login-banner '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRE_LOGIN_BANNER)}",
             )
 
     # Validate post-login-banner if present
@@ -1367,7 +1431,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_POST_LOGIN_BANNER:
             return (
                 False,
-                f"Invalid post-login-banner '{value}'. Must be one of: {', '.join(VALID_BODY_POST_LOGIN_BANNER)}",
+                f"Invalid post-login-banner '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POST_LOGIN_BANNER)}",
             )
 
     # Validate tftp if present
@@ -1376,7 +1441,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_TFTP:
             return (
                 False,
-                f"Invalid tftp '{value}'. Must be one of: {', '.join(VALID_BODY_TFTP)}",
+                f"Invalid tftp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TFTP)}",
             )
 
     # Validate av-failopen if present
@@ -1385,7 +1451,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AV_FAILOPEN:
             return (
                 False,
-                f"Invalid av-failopen '{value}'. Must be one of: {', '.join(VALID_BODY_AV_FAILOPEN)}",
+                f"Invalid av-failopen '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AV_FAILOPEN)}",
             )
 
     # Validate av-failopen-session if present
@@ -1394,7 +1461,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AV_FAILOPEN_SESSION:
             return (
                 False,
-                f"Invalid av-failopen-session '{value}'. Must be one of: {', '.join(VALID_BODY_AV_FAILOPEN_SESSION)}",
+                f"Invalid av-failopen-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AV_FAILOPEN_SESSION)}",
             )
 
     # Validate memory-use-threshold-extreme if present
@@ -1522,7 +1590,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOG_SINGLE_CPU_HIGH:
             return (
                 False,
-                f"Invalid log-single-cpu-high '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_SINGLE_CPU_HIGH)}",
+                f"Invalid log-single-cpu-high '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_SINGLE_CPU_HIGH)}",
             )
 
     # Validate check-reset-range if present
@@ -1531,7 +1600,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CHECK_RESET_RANGE:
             return (
                 False,
-                f"Invalid check-reset-range '{value}'. Must be one of: {', '.join(VALID_BODY_CHECK_RESET_RANGE)}",
+                f"Invalid check-reset-range '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECK_RESET_RANGE)}",
             )
 
     # Validate single-vdom-npuvlink if present
@@ -1540,7 +1610,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SINGLE_VDOM_NPUVLINK:
             return (
                 False,
-                f"Invalid single-vdom-npuvlink '{value}'. Must be one of: {', '.join(VALID_BODY_SINGLE_VDOM_NPUVLINK)}",
+                f"Invalid single-vdom-npuvlink '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SINGLE_VDOM_NPUVLINK)}",
             )
 
     # Validate vdom-mode if present
@@ -1549,7 +1620,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_VDOM_MODE:
             return (
                 False,
-                f"Invalid vdom-mode '{value}'. Must be one of: {', '.join(VALID_BODY_VDOM_MODE)}",
+                f"Invalid vdom-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VDOM_MODE)}",
             )
 
     # Validate long-vdom-name if present
@@ -1558,7 +1630,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LONG_VDOM_NAME:
             return (
                 False,
-                f"Invalid long-vdom-name '{value}'. Must be one of: {', '.join(VALID_BODY_LONG_VDOM_NAME)}",
+                f"Invalid long-vdom-name '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LONG_VDOM_NAME)}",
             )
 
     # Validate upgrade-report if present
@@ -1567,7 +1640,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_UPGRADE_REPORT:
             return (
                 False,
-                f"Invalid upgrade-report '{value}'. Must be one of: {', '.join(VALID_BODY_UPGRADE_REPORT)}",
+                f"Invalid upgrade-report '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPGRADE_REPORT)}",
             )
 
     # Validate edit-vdom-prompt if present
@@ -1576,7 +1650,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_EDIT_VDOM_PROMPT:
             return (
                 False,
-                f"Invalid edit-vdom-prompt '{value}'. Must be one of: {', '.join(VALID_BODY_EDIT_VDOM_PROMPT)}",
+                f"Invalid edit-vdom-prompt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EDIT_VDOM_PROMPT)}",
             )
 
     # Validate admin-port if present
@@ -1613,7 +1688,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_HTTPS_REDIRECT:
             return (
                 False,
-                f"Invalid admin-https-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_HTTPS_REDIRECT)}",
+                f"Invalid admin-https-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_HTTPS_REDIRECT)}",
             )
 
     # Validate admin-hsts-max-age if present
@@ -1639,7 +1715,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_SSH_PASSWORD:
             return (
                 False,
-                f"Invalid admin-ssh-password '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_SSH_PASSWORD)}",
+                f"Invalid admin-ssh-password '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_SSH_PASSWORD)}",
             )
 
     # Validate admin-restrict-local if present
@@ -1648,7 +1725,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_RESTRICT_LOCAL:
             return (
                 False,
-                f"Invalid admin-restrict-local '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_RESTRICT_LOCAL)}",
+                f"Invalid admin-restrict-local '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_RESTRICT_LOCAL)}",
             )
 
     # Validate admin-ssh-port if present
@@ -1688,7 +1766,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_SSH_V1:
             return (
                 False,
-                f"Invalid admin-ssh-v1 '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_SSH_V1)}",
+                f"Invalid admin-ssh-v1 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_SSH_V1)}",
             )
 
     # Validate admin-telnet if present
@@ -1697,7 +1776,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_TELNET:
             return (
                 False,
-                f"Invalid admin-telnet '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_TELNET)}",
+                f"Invalid admin-telnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_TELNET)}",
             )
 
     # Validate admin-telnet-port if present
@@ -1723,7 +1803,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_FORTICLOUD_SSO_LOGIN:
             return (
                 False,
-                f"Invalid admin-forticloud-sso-login '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_FORTICLOUD_SSO_LOGIN)}",
+                f"Invalid admin-forticloud-sso-login '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_FORTICLOUD_SSO_LOGIN)}",
             )
 
     # Validate admin-forticloud-sso-default-profile if present
@@ -1741,7 +1822,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_RESET_BUTTON:
             return (
                 False,
-                f"Invalid admin-reset-button '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_RESET_BUTTON)}",
+                f"Invalid admin-reset-button '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_RESET_BUTTON)}",
             )
 
     # Validate admin-server-cert if present
@@ -1756,7 +1838,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_HTTPS_PKI_REQUIRED:
             return (
                 False,
-                f"Invalid admin-https-pki-required '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_HTTPS_PKI_REQUIRED)}",
+                f"Invalid admin-https-pki-required '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_HTTPS_PKI_REQUIRED)}",
             )
 
     # Validate wifi-certificate if present
@@ -1842,7 +1925,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AUTH_KEEPALIVE:
             return (
                 False,
-                f"Invalid auth-keepalive '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_KEEPALIVE)}",
+                f"Invalid auth-keepalive '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_KEEPALIVE)}",
             )
 
     # Validate policy-auth-concurrent if present
@@ -1868,7 +1952,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AUTH_SESSION_LIMIT:
             return (
                 False,
-                f"Invalid auth-session-limit '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SESSION_LIMIT)}",
+                f"Invalid auth-session-limit '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_SESSION_LIMIT)}",
             )
 
     # Validate auth-cert if present
@@ -1883,7 +1968,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CLT_CERT_REQ:
             return (
                 False,
-                f"Invalid clt-cert-req '{value}'. Must be one of: {', '.join(VALID_BODY_CLT_CERT_REQ)}",
+                f"Invalid clt-cert-req '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLT_CERT_REQ)}",
             )
 
     # Validate fortiservice-port if present
@@ -1909,7 +1995,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CFG_SAVE:
             return (
                 False,
-                f"Invalid cfg-save '{value}'. Must be one of: {', '.join(VALID_BODY_CFG_SAVE)}",
+                f"Invalid cfg-save '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CFG_SAVE)}",
             )
 
     # Validate cfg-revert-timeout if present
@@ -1935,7 +2022,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_REBOOT_UPON_CONFIG_RESTORE:
             return (
                 False,
-                f"Invalid reboot-upon-config-restore '{value}'. Must be one of: {', '.join(VALID_BODY_REBOOT_UPON_CONFIG_RESTORE)}",
+                f"Invalid reboot-upon-config-restore '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REBOOT_UPON_CONFIG_RESTORE)}",
             )
 
     # Validate admin-scp if present
@@ -1944,7 +2032,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ADMIN_SCP:
             return (
                 False,
-                f"Invalid admin-scp '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_SCP)}",
+                f"Invalid admin-scp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_SCP)}",
             )
 
     # Validate wireless-controller if present
@@ -1953,7 +2042,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_WIRELESS_CONTROLLER:
             return (
                 False,
-                f"Invalid wireless-controller '{value}'. Must be one of: {', '.join(VALID_BODY_WIRELESS_CONTROLLER)}",
+                f"Invalid wireless-controller '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIRELESS_CONTROLLER)}",
             )
 
     # Validate wireless-controller-port if present
@@ -1996,7 +2086,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTIEXTENDER:
             return (
                 False,
-                f"Invalid fortiextender '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIEXTENDER)}",
+                f"Invalid fortiextender '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIEXTENDER)}",
             )
 
     # Validate fortiextender-discovery-lockdown if present
@@ -2005,7 +2096,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTIEXTENDER_DISCOVERY_LOCKDOWN:
             return (
                 False,
-                f"Invalid fortiextender-discovery-lockdown '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIEXTENDER_DISCOVERY_LOCKDOWN)}",
+                f"Invalid fortiextender-discovery-lockdown '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIEXTENDER_DISCOVERY_LOCKDOWN)}",
             )
 
     # Validate fortiextender-vlan-mode if present
@@ -2014,7 +2106,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTIEXTENDER_VLAN_MODE:
             return (
                 False,
-                f"Invalid fortiextender-vlan-mode '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIEXTENDER_VLAN_MODE)}",
+                f"Invalid fortiextender-vlan-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIEXTENDER_VLAN_MODE)}",
             )
 
     # Validate fortiextender-provision-on-authorization if present
@@ -2027,7 +2120,8 @@ def validate_global__put(
         ):
             return (
                 False,
-                f"Invalid fortiextender-provision-on-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIEXTENDER_PROVISION_ON_AUTHORIZATION)}",
+                f"Invalid fortiextender-provision-on-authorization '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIEXTENDER_PROVISION_ON_AUTHORIZATION)}",
             )
 
     # Validate switch-controller if present
@@ -2036,7 +2130,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER:
             return (
                 False,
-                f"Invalid switch-controller '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER)}",
+                f"Invalid switch-controller '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SWITCH_CONTROLLER)}",
             )
 
     # Validate dnsproxy-worker-count if present
@@ -2121,7 +2216,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PROXY_HARDWARE_ACCELERATION:
             return (
                 False,
-                f"Invalid proxy-hardware-acceleration '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_HARDWARE_ACCELERATION)}",
+                f"Invalid proxy-hardware-acceleration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_HARDWARE_ACCELERATION)}",
             )
 
     # Validate fgd-alert-subscription if present
@@ -2130,7 +2226,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FGD_ALERT_SUBSCRIPTION:
             return (
                 False,
-                f"Invalid fgd-alert-subscription '{value}'. Must be one of: {', '.join(VALID_BODY_FGD_ALERT_SUBSCRIPTION)}",
+                f"Invalid fgd-alert-subscription '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FGD_ALERT_SUBSCRIPTION)}",
             )
 
     # Validate ipsec-hmac-offload if present
@@ -2139,7 +2236,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPSEC_HMAC_OFFLOAD:
             return (
                 False,
-                f"Invalid ipsec-hmac-offload '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_HMAC_OFFLOAD)}",
+                f"Invalid ipsec-hmac-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPSEC_HMAC_OFFLOAD)}",
             )
 
     # Validate ipv6-accept-dad if present
@@ -2162,7 +2260,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPV6_ALLOW_ANYCAST_PROBE:
             return (
                 False,
-                f"Invalid ipv6-allow-anycast-probe '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_ALLOW_ANYCAST_PROBE)}",
+                f"Invalid ipv6-allow-anycast-probe '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_ALLOW_ANYCAST_PROBE)}",
             )
 
     # Validate ipv6-allow-multicast-probe if present
@@ -2171,7 +2270,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPV6_ALLOW_MULTICAST_PROBE:
             return (
                 False,
-                f"Invalid ipv6-allow-multicast-probe '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_ALLOW_MULTICAST_PROBE)}",
+                f"Invalid ipv6-allow-multicast-probe '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_ALLOW_MULTICAST_PROBE)}",
             )
 
     # Validate ipv6-allow-local-in-silent-drop if present
@@ -2180,7 +2280,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPV6_ALLOW_LOCAL_IN_SILENT_DROP:
             return (
                 False,
-                f"Invalid ipv6-allow-local-in-silent-drop '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_ALLOW_LOCAL_IN_SILENT_DROP)}",
+                f"Invalid ipv6-allow-local-in-silent-drop '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_ALLOW_LOCAL_IN_SILENT_DROP)}",
             )
 
     # Validate csr-ca-attribute if present
@@ -2189,7 +2290,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CSR_CA_ATTRIBUTE:
             return (
                 False,
-                f"Invalid csr-ca-attribute '{value}'. Must be one of: {', '.join(VALID_BODY_CSR_CA_ATTRIBUTE)}",
+                f"Invalid csr-ca-attribute '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CSR_CA_ATTRIBUTE)}",
             )
 
     # Validate wimax-4g-usb if present
@@ -2198,7 +2300,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_WIMAX_4G_USB:
             return (
                 False,
-                f"Invalid wimax-4g-usb '{value}'. Must be one of: {', '.join(VALID_BODY_WIMAX_4G_USB)}",
+                f"Invalid wimax-4g-usb '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIMAX_4G_USB)}",
             )
 
     # Validate cert-chain-max if present
@@ -2371,7 +2474,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_WAD_SOURCE_AFFINITY:
             return (
                 False,
-                f"Invalid wad-source-affinity '{value}'. Must be one of: {', '.join(VALID_BODY_WAD_SOURCE_AFFINITY)}",
+                f"Invalid wad-source-affinity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAD_SOURCE_AFFINITY)}",
             )
 
     # Validate wad-memory-change-granularity if present
@@ -2397,7 +2501,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOGIN_TIMESTAMP:
             return (
                 False,
-                f"Invalid login-timestamp '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_TIMESTAMP)}",
+                f"Invalid login-timestamp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_TIMESTAMP)}",
             )
 
     # Validate ip-conflict-detection if present
@@ -2406,7 +2511,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IP_CONFLICT_DETECTION:
             return (
                 False,
-                f"Invalid ip-conflict-detection '{value}'. Must be one of: {', '.join(VALID_BODY_IP_CONFLICT_DETECTION)}",
+                f"Invalid ip-conflict-detection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_CONFLICT_DETECTION)}",
             )
 
     # Validate miglogd-children if present
@@ -2449,7 +2555,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SPECIAL_FILE_23_SUPPORT:
             return (
                 False,
-                f"Invalid special-file-23-support '{value}'. Must be one of: {', '.join(VALID_BODY_SPECIAL_FILE_23_SUPPORT)}",
+                f"Invalid special-file-23-support '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPECIAL_FILE_23_SUPPORT)}",
             )
 
     # Validate log-uuid-address if present
@@ -2458,7 +2565,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOG_UUID_ADDRESS:
             return (
                 False,
-                f"Invalid log-uuid-address '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_UUID_ADDRESS)}",
+                f"Invalid log-uuid-address '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_UUID_ADDRESS)}",
             )
 
     # Validate log-ssl-connection if present
@@ -2467,7 +2575,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOG_SSL_CONNECTION:
             return (
                 False,
-                f"Invalid log-ssl-connection '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_SSL_CONNECTION)}",
+                f"Invalid log-ssl-connection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_SSL_CONNECTION)}",
             )
 
     # Validate rest-api-key-url-query if present
@@ -2476,7 +2585,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_REST_API_KEY_URL_QUERY:
             return (
                 False,
-                f"Invalid rest-api-key-url-query '{value}'. Must be one of: {', '.join(VALID_BODY_REST_API_KEY_URL_QUERY)}",
+                f"Invalid rest-api-key-url-query '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REST_API_KEY_URL_QUERY)}",
             )
 
     # Validate gui-cdn-domain-override if present
@@ -2574,7 +2684,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPSEC_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid ipsec-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_ASIC_OFFLOAD)}",
+                f"Invalid ipsec-asic-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPSEC_ASIC_OFFLOAD)}",
             )
 
     # Validate device-idle-timeout if present
@@ -2680,7 +2791,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_PRIVATE_DATA_ENCRYPTION:
             return (
                 False,
-                f"Invalid private-data-encryption '{value}'. Must be one of: {', '.join(VALID_BODY_PRIVATE_DATA_ENCRYPTION)}",
+                f"Invalid private-data-encryption '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIVATE_DATA_ENCRYPTION)}",
             )
 
     # Validate auto-auth-extension-device if present
@@ -2689,7 +2801,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE:
             return (
                 False,
-                f"Invalid auto-auth-extension-device '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE)}",
+                f"Invalid auto-auth-extension-device '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE)}",
             )
 
     # Validate gui-theme if present
@@ -2698,7 +2811,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_THEME:
             return (
                 False,
-                f"Invalid gui-theme '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_THEME)}",
+                f"Invalid gui-theme '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_THEME)}",
             )
 
     # Validate gui-date-format if present
@@ -2707,7 +2821,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_DATE_FORMAT:
             return (
                 False,
-                f"Invalid gui-date-format '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DATE_FORMAT)}",
+                f"Invalid gui-date-format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DATE_FORMAT)}",
             )
 
     # Validate gui-date-time-source if present
@@ -2716,7 +2831,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GUI_DATE_TIME_SOURCE:
             return (
                 False,
-                f"Invalid gui-date-time-source '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DATE_TIME_SOURCE)}",
+                f"Invalid gui-date-time-source '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DATE_TIME_SOURCE)}",
             )
 
     # Validate igmp-state-limit if present
@@ -2742,7 +2858,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CLOUD_COMMUNICATION:
             return (
                 False,
-                f"Invalid cloud-communication '{value}'. Must be one of: {', '.join(VALID_BODY_CLOUD_COMMUNICATION)}",
+                f"Invalid cloud-communication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLOUD_COMMUNICATION)}",
             )
 
     # Validate ipsec-ha-seqjump-rate if present
@@ -2768,7 +2885,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTITOKEN_CLOUD:
             return (
                 False,
-                f"Invalid fortitoken-cloud '{value}'. Must be one of: {', '.join(VALID_BODY_FORTITOKEN_CLOUD)}",
+                f"Invalid fortitoken-cloud '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTITOKEN_CLOUD)}",
             )
 
     # Validate fortitoken-cloud-push-status if present
@@ -2777,7 +2895,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTITOKEN_CLOUD_PUSH_STATUS:
             return (
                 False,
-                f"Invalid fortitoken-cloud-push-status '{value}'. Must be one of: {', '.join(VALID_BODY_FORTITOKEN_CLOUD_PUSH_STATUS)}",
+                f"Invalid fortitoken-cloud-push-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTITOKEN_CLOUD_PUSH_STATUS)}",
             )
 
     # Validate fortitoken-cloud-region if present
@@ -2812,7 +2931,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IRQ_TIME_ACCOUNTING:
             return (
                 False,
-                f"Invalid irq-time-accounting '{value}'. Must be one of: {', '.join(VALID_BODY_IRQ_TIME_ACCOUNTING)}",
+                f"Invalid irq-time-accounting '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IRQ_TIME_ACCOUNTING)}",
             )
 
     # Validate management-ip if present
@@ -2844,7 +2964,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_MANAGEMENT_PORT_USE_ADMIN_SPORT:
             return (
                 False,
-                f"Invalid management-port-use-admin-sport '{value}'. Must be one of: {', '.join(VALID_BODY_MANAGEMENT_PORT_USE_ADMIN_SPORT)}",
+                f"Invalid management-port-use-admin-sport '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MANAGEMENT_PORT_USE_ADMIN_SPORT)}",
             )
 
     # Validate forticonverter-integration if present
@@ -2853,7 +2974,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTICONVERTER_INTEGRATION:
             return (
                 False,
-                f"Invalid forticonverter-integration '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICONVERTER_INTEGRATION)}",
+                f"Invalid forticonverter-integration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTICONVERTER_INTEGRATION)}",
             )
 
     # Validate forticonverter-config-upload if present
@@ -2862,7 +2984,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTICONVERTER_CONFIG_UPLOAD:
             return (
                 False,
-                f"Invalid forticonverter-config-upload '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICONVERTER_CONFIG_UPLOAD)}",
+                f"Invalid forticonverter-config-upload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTICONVERTER_CONFIG_UPLOAD)}",
             )
 
     # Validate internet-service-database if present
@@ -2871,7 +2994,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_DATABASE:
             return (
                 False,
-                f"Invalid internet-service-database '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_DATABASE)}",
+                f"Invalid internet-service-database '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_DATABASE)}",
             )
 
     # Validate geoip-full-db if present
@@ -2880,7 +3004,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_GEOIP_FULL_DB:
             return (
                 False,
-                f"Invalid geoip-full-db '{value}'. Must be one of: {', '.join(VALID_BODY_GEOIP_FULL_DB)}",
+                f"Invalid geoip-full-db '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GEOIP_FULL_DB)}",
             )
 
     # Validate early-tcp-npu-session if present
@@ -2889,7 +3014,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_EARLY_TCP_NPU_SESSION:
             return (
                 False,
-                f"Invalid early-tcp-npu-session '{value}'. Must be one of: {', '.join(VALID_BODY_EARLY_TCP_NPU_SESSION)}",
+                f"Invalid early-tcp-npu-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EARLY_TCP_NPU_SESSION)}",
             )
 
     # Validate npu-neighbor-update if present
@@ -2898,7 +3024,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_NPU_NEIGHBOR_UPDATE:
             return (
                 False,
-                f"Invalid npu-neighbor-update '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_NEIGHBOR_UPDATE)}",
+                f"Invalid npu-neighbor-update '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NPU_NEIGHBOR_UPDATE)}",
             )
 
     # Validate delay-tcp-npu-session if present
@@ -2907,7 +3034,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DELAY_TCP_NPU_SESSION:
             return (
                 False,
-                f"Invalid delay-tcp-npu-session '{value}'. Must be one of: {', '.join(VALID_BODY_DELAY_TCP_NPU_SESSION)}",
+                f"Invalid delay-tcp-npu-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DELAY_TCP_NPU_SESSION)}",
             )
 
     # Validate interface-subnet-usage if present
@@ -2916,7 +3044,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_INTERFACE_SUBNET_USAGE:
             return (
                 False,
-                f"Invalid interface-subnet-usage '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SUBNET_USAGE)}",
+                f"Invalid interface-subnet-usage '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SUBNET_USAGE)}",
             )
 
     # Validate sflowd-max-children-num if present
@@ -2942,7 +3071,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORTIGSLB_INTEGRATION:
             return (
                 False,
-                f"Invalid fortigslb-integration '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIGSLB_INTEGRATION)}",
+                f"Invalid fortigslb-integration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIGSLB_INTEGRATION)}",
             )
 
     # Validate user-history-password-threshold if present
@@ -2968,7 +3098,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AUTH_SESSION_AUTO_BACKUP:
             return (
                 False,
-                f"Invalid auth-session-auto-backup '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SESSION_AUTO_BACKUP)}",
+                f"Invalid auth-session-auto-backup '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_SESSION_AUTO_BACKUP)}",
             )
 
     # Validate auth-session-auto-backup-interval if present
@@ -2977,7 +3108,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AUTH_SESSION_AUTO_BACKUP_INTERVAL:
             return (
                 False,
-                f"Invalid auth-session-auto-backup-interval '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SESSION_AUTO_BACKUP_INTERVAL)}",
+                f"Invalid auth-session-auto-backup-interval '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_SESSION_AUTO_BACKUP_INTERVAL)}",
             )
 
     # Validate scim-https-port if present
@@ -3023,7 +3155,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_APPLICATION_BANDWIDTH_TRACKING:
             return (
                 False,
-                f"Invalid application-bandwidth-tracking '{value}'. Must be one of: {', '.join(VALID_BODY_APPLICATION_BANDWIDTH_TRACKING)}",
+                f"Invalid application-bandwidth-tracking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APPLICATION_BANDWIDTH_TRACKING)}",
             )
 
     # Validate tls-session-cache if present
@@ -3032,7 +3165,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_TLS_SESSION_CACHE:
             return (
                 False,
-                f"Invalid tls-session-cache '{value}'. Must be one of: {', '.join(VALID_BODY_TLS_SESSION_CACHE)}",
+                f"Invalid tls-session-cache '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TLS_SESSION_CACHE)}",
             )
 
     return (True, None)

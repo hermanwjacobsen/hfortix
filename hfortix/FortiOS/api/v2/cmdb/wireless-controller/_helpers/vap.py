@@ -297,7 +297,8 @@ def validate_vap_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -330,7 +331,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PRE_AUTH:
             return (
                 False,
-                f"Invalid pre-auth '{value}'. Must be one of: {', '.join(VALID_BODY_PRE_AUTH)}",
+                f"Invalid pre-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRE_AUTH)}",
             )
 
     # Validate external-pre-auth if present
@@ -339,7 +341,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTERNAL_PRE_AUTH:
             return (
                 False,
-                f"Invalid external-pre-auth '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL_PRE_AUTH)}",
+                f"Invalid external-pre-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL_PRE_AUTH)}",
             )
 
     # Validate mesh-backhaul if present
@@ -348,7 +351,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MESH_BACKHAUL:
             return (
                 False,
-                f"Invalid mesh-backhaul '{value}'. Must be one of: {', '.join(VALID_BODY_MESH_BACKHAUL)}",
+                f"Invalid mesh-backhaul '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MESH_BACKHAUL)}",
             )
 
     # Validate atf-weight if present
@@ -402,7 +406,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BROADCAST_SSID:
             return (
                 False,
-                f"Invalid broadcast-ssid '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_SSID)}",
+                f"Invalid broadcast-ssid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BROADCAST_SSID)}",
             )
 
     # Validate security if present
@@ -411,7 +416,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SECURITY:
             return (
                 False,
-                f"Invalid security '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY)}",
+                f"Invalid security '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY)}",
             )
 
     # Validate pmf if present
@@ -420,7 +426,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
-                f"Invalid pmf '{value}'. Must be one of: {', '.join(VALID_BODY_PMF)}",
+                f"Invalid pmf '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PMF)}",
             )
 
     # Validate pmf-assoc-comeback-timeout if present
@@ -463,7 +470,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BEACON_PROTECTION:
             return (
                 False,
-                f"Invalid beacon-protection '{value}'. Must be one of: {', '.join(VALID_BODY_BEACON_PROTECTION)}",
+                f"Invalid beacon-protection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BEACON_PROTECTION)}",
             )
 
     # Validate okc if present
@@ -472,7 +480,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OKC:
             return (
                 False,
-                f"Invalid okc '{value}'. Must be one of: {', '.join(VALID_BODY_OKC)}",
+                f"Invalid okc '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OKC)}",
             )
 
     # Validate mbo if present
@@ -481,7 +490,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MBO:
             return (
                 False,
-                f"Invalid mbo '{value}'. Must be one of: {', '.join(VALID_BODY_MBO)}",
+                f"Invalid mbo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MBO)}",
             )
 
     # Validate gas-comeback-delay if present
@@ -524,7 +534,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MBO_CELL_DATA_CONN_PREF:
             return (
                 False,
-                f"Invalid mbo-cell-data-conn-pref '{value}'. Must be one of: {', '.join(VALID_BODY_MBO_CELL_DATA_CONN_PREF)}",
+                f"Invalid mbo-cell-data-conn-pref '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MBO_CELL_DATA_CONN_PREF)}",
             )
 
     # Validate 80211k if present
@@ -533,7 +544,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_80211K:
             return (
                 False,
-                f"Invalid 80211k '{value}'. Must be one of: {', '.join(VALID_BODY_80211K)}",
+                f"Invalid 80211k '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_80211K)}",
             )
 
     # Validate 80211v if present
@@ -542,7 +554,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_80211V:
             return (
                 False,
-                f"Invalid 80211v '{value}'. Must be one of: {', '.join(VALID_BODY_80211V)}",
+                f"Invalid 80211v '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_80211V)}",
             )
 
     # Validate neighbor-report-dual-band if present
@@ -551,7 +564,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NEIGHBOR_REPORT_DUAL_BAND:
             return (
                 False,
-                f"Invalid neighbor-report-dual-band '{value}'. Must be one of: {', '.join(VALID_BODY_NEIGHBOR_REPORT_DUAL_BAND)}",
+                f"Invalid neighbor-report-dual-band '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NEIGHBOR_REPORT_DUAL_BAND)}",
             )
 
     # Validate fast-bss-transition if present
@@ -560,7 +574,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FAST_BSS_TRANSITION:
             return (
                 False,
-                f"Invalid fast-bss-transition '{value}'. Must be one of: {', '.join(VALID_BODY_FAST_BSS_TRANSITION)}",
+                f"Invalid fast-bss-transition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FAST_BSS_TRANSITION)}",
             )
 
     # Validate ft-mobility-domain if present
@@ -603,7 +618,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FT_OVER_DS:
             return (
                 False,
-                f"Invalid ft-over-ds '{value}'. Must be one of: {', '.join(VALID_BODY_FT_OVER_DS)}",
+                f"Invalid ft-over-ds '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FT_OVER_DS)}",
             )
 
     # Validate sae-groups if present
@@ -612,7 +628,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SAE_GROUPS:
             return (
                 False,
-                f"Invalid sae-groups '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_GROUPS)}",
+                f"Invalid sae-groups '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_GROUPS)}",
             )
 
     # Validate owe-groups if present
@@ -621,7 +638,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OWE_GROUPS:
             return (
                 False,
-                f"Invalid owe-groups '{value}'. Must be one of: {', '.join(VALID_BODY_OWE_GROUPS)}",
+                f"Invalid owe-groups '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OWE_GROUPS)}",
             )
 
     # Validate owe-transition if present
@@ -630,7 +648,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OWE_TRANSITION:
             return (
                 False,
-                f"Invalid owe-transition '{value}'. Must be one of: {', '.join(VALID_BODY_OWE_TRANSITION)}",
+                f"Invalid owe-transition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OWE_TRANSITION)}",
             )
 
     # Validate owe-transition-ssid if present
@@ -645,7 +664,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADDITIONAL_AKMS:
             return (
                 False,
-                f"Invalid additional-akms '{value}'. Must be one of: {', '.join(VALID_BODY_ADDITIONAL_AKMS)}",
+                f"Invalid additional-akms '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADDITIONAL_AKMS)}",
             )
 
     # Validate eapol-key-retries if present
@@ -654,7 +674,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EAPOL_KEY_RETRIES:
             return (
                 False,
-                f"Invalid eapol-key-retries '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_KEY_RETRIES)}",
+                f"Invalid eapol-key-retries '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_KEY_RETRIES)}",
             )
 
     # Validate tkip-counter-measure if present
@@ -663,7 +684,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TKIP_COUNTER_MEASURE:
             return (
                 False,
-                f"Invalid tkip-counter-measure '{value}'. Must be one of: {', '.join(VALID_BODY_TKIP_COUNTER_MEASURE)}",
+                f"Invalid tkip-counter-measure '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TKIP_COUNTER_MEASURE)}",
             )
 
     # Validate external-web if present
@@ -678,7 +700,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTERNAL_WEB_FORMAT:
             return (
                 False,
-                f"Invalid external-web-format '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL_WEB_FORMAT)}",
+                f"Invalid external-web-format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL_WEB_FORMAT)}",
             )
 
     # Validate external-logout if present
@@ -693,7 +716,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_USERNAME_DELIMITER:
             return (
                 False,
-                f"Invalid mac-username-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
+                f"Invalid mac-username-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
             )
 
     # Validate mac-password-delimiter if present
@@ -702,7 +726,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_PASSWORD_DELIMITER:
             return (
                 False,
-                f"Invalid mac-password-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
+                f"Invalid mac-password-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
             )
 
     # Validate mac-calling-station-delimiter if present
@@ -711,7 +736,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_CALLING_STATION_DELIMITER:
             return (
                 False,
-                f"Invalid mac-calling-station-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CALLING_STATION_DELIMITER)}",
+                f"Invalid mac-calling-station-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_CALLING_STATION_DELIMITER)}",
             )
 
     # Validate mac-called-station-delimiter if present
@@ -720,7 +746,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_CALLED_STATION_DELIMITER:
             return (
                 False,
-                f"Invalid mac-called-station-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CALLED_STATION_DELIMITER)}",
+                f"Invalid mac-called-station-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_CALLED_STATION_DELIMITER)}",
             )
 
     # Validate mac-case if present
@@ -729,7 +756,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_CASE:
             return (
                 False,
-                f"Invalid mac-case '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CASE)}",
+                f"Invalid mac-case '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_CASE)}",
             )
 
     # Validate called-station-id-type if present
@@ -738,7 +766,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CALLED_STATION_ID_TYPE:
             return (
                 False,
-                f"Invalid called-station-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_CALLED_STATION_ID_TYPE)}",
+                f"Invalid called-station-id-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CALLED_STATION_ID_TYPE)}",
             )
 
     # Validate mac-auth-bypass if present
@@ -747,7 +776,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid mac-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_AUTH_BYPASS)}",
+                f"Invalid mac-auth-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_AUTH_BYPASS)}",
             )
 
     # Validate radius-mac-auth if present
@@ -756,7 +786,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RADIUS_MAC_AUTH:
             return (
                 False,
-                f"Invalid radius-mac-auth '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_MAC_AUTH)}",
+                f"Invalid radius-mac-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_MAC_AUTH)}",
             )
 
     # Validate radius-mac-auth-server if present
@@ -791,7 +822,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RADIUS_MAC_MPSK_AUTH:
             return (
                 False,
-                f"Invalid radius-mac-mpsk-auth '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_MAC_MPSK_AUTH)}",
+                f"Invalid radius-mac-mpsk-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_MAC_MPSK_AUTH)}",
             )
 
     # Validate radius-mac-mpsk-timeout if present
@@ -817,7 +849,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH:
             return (
                 False,
-                f"Invalid auth '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH)}",
+                f"Invalid auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH)}",
             )
 
     # Validate encrypt if present
@@ -826,7 +859,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ENCRYPT:
             return (
                 False,
-                f"Invalid encrypt '{value}'. Must be one of: {', '.join(VALID_BODY_ENCRYPT)}",
+                f"Invalid encrypt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENCRYPT)}",
             )
 
     # Validate keyindex if present
@@ -846,7 +880,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SAE_H2E_ONLY:
             return (
                 False,
-                f"Invalid sae-h2e-only '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_H2E_ONLY)}",
+                f"Invalid sae-h2e-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_H2E_ONLY)}",
             )
 
     # Validate sae-hnp-only if present
@@ -855,7 +890,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SAE_HNP_ONLY:
             return (
                 False,
-                f"Invalid sae-hnp-only '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_HNP_ONLY)}",
+                f"Invalid sae-hnp-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_HNP_ONLY)}",
             )
 
     # Validate sae-pk if present
@@ -864,7 +900,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SAE_PK:
             return (
                 False,
-                f"Invalid sae-pk '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_PK)}",
+                f"Invalid sae-pk '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_PK)}",
             )
 
     # Validate sae-private-key if present
@@ -879,7 +916,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AKM24_ONLY:
             return (
                 False,
-                f"Invalid akm24-only '{value}'. Must be one of: {', '.join(VALID_BODY_AKM24_ONLY)}",
+                f"Invalid akm24-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AKM24_ONLY)}",
             )
 
     # Validate radius-server if present
@@ -894,7 +932,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAS_FILTER_RULE:
             return (
                 False,
-                f"Invalid nas-filter-rule '{value}'. Must be one of: {', '.join(VALID_BODY_NAS_FILTER_RULE)}",
+                f"Invalid nas-filter-rule '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAS_FILTER_RULE)}",
             )
 
     # Validate domain-name-stripping if present
@@ -903,7 +942,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DOMAIN_NAME_STRIPPING:
             return (
                 False,
-                f"Invalid domain-name-stripping '{value}'. Must be one of: {', '.join(VALID_BODY_DOMAIN_NAME_STRIPPING)}",
+                f"Invalid domain-name-stripping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DOMAIN_NAME_STRIPPING)}",
             )
 
     # Validate mlo if present
@@ -912,7 +952,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MLO:
             return (
                 False,
-                f"Invalid mlo '{value}'. Must be one of: {', '.join(VALID_BODY_MLO)}",
+                f"Invalid mlo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MLO)}",
             )
 
     # Validate local-standalone if present
@@ -921,7 +962,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOCAL_STANDALONE:
             return (
                 False,
-                f"Invalid local-standalone '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_STANDALONE)}",
+                f"Invalid local-standalone '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_STANDALONE)}",
             )
 
     # Validate local-standalone-nat if present
@@ -930,7 +972,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOCAL_STANDALONE_NAT:
             return (
                 False,
-                f"Invalid local-standalone-nat '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_STANDALONE_NAT)}",
+                f"Invalid local-standalone-nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_STANDALONE_NAT)}",
             )
 
     # Validate dhcp-lease-time if present
@@ -956,7 +999,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOCAL_STANDALONE_DNS:
             return (
                 False,
-                f"Invalid local-standalone-dns '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_STANDALONE_DNS)}",
+                f"Invalid local-standalone-dns '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_STANDALONE_DNS)}",
             )
 
     # Validate local-lan-partition if present
@@ -965,7 +1009,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOCAL_LAN_PARTITION:
             return (
                 False,
-                f"Invalid local-lan-partition '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_LAN_PARTITION)}",
+                f"Invalid local-lan-partition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_LAN_PARTITION)}",
             )
 
     # Validate local-bridging if present
@@ -974,7 +1019,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOCAL_BRIDGING:
             return (
                 False,
-                f"Invalid local-bridging '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_BRIDGING)}",
+                f"Invalid local-bridging '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_BRIDGING)}",
             )
 
     # Validate local-lan if present
@@ -983,7 +1029,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOCAL_LAN:
             return (
                 False,
-                f"Invalid local-lan '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_LAN)}",
+                f"Invalid local-lan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_LAN)}",
             )
 
     # Validate local-authentication if present
@@ -992,7 +1039,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOCAL_AUTHENTICATION:
             return (
                 False,
-                f"Invalid local-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_AUTHENTICATION)}",
+                f"Invalid local-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_AUTHENTICATION)}",
             )
 
     # Validate captive-portal if present
@@ -1001,7 +1049,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CAPTIVE_PORTAL:
             return (
                 False,
-                f"Invalid captive-portal '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_PORTAL)}",
+                f"Invalid captive-portal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_PORTAL)}",
             )
 
     # Validate captive-network-assistant-bypass if present
@@ -1010,7 +1059,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CAPTIVE_NETWORK_ASSISTANT_BYPASS:
             return (
                 False,
-                f"Invalid captive-network-assistant-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_NETWORK_ASSISTANT_BYPASS)}",
+                f"Invalid captive-network-assistant-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_NETWORK_ASSISTANT_BYPASS)}",
             )
 
     # Validate portal-message-override-group if present
@@ -1028,7 +1078,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PORTAL_TYPE:
             return (
                 False,
-                f"Invalid portal-type '{value}'. Must be one of: {', '.join(VALID_BODY_PORTAL_TYPE)}",
+                f"Invalid portal-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORTAL_TYPE)}",
             )
 
     # Validate security-exempt-list if present
@@ -1064,7 +1115,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTRA_VAP_PRIVACY:
             return (
                 False,
-                f"Invalid intra-vap-privacy '{value}'. Must be one of: {', '.join(VALID_BODY_INTRA_VAP_PRIVACY)}",
+                f"Invalid intra-vap-privacy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTRA_VAP_PRIVACY)}",
             )
 
     # Validate ldpc if present
@@ -1073,7 +1125,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LDPC:
             return (
                 False,
-                f"Invalid ldpc '{value}'. Must be one of: {', '.join(VALID_BODY_LDPC)}",
+                f"Invalid ldpc '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LDPC)}",
             )
 
     # Validate high-efficiency if present
@@ -1082,7 +1135,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HIGH_EFFICIENCY:
             return (
                 False,
-                f"Invalid high-efficiency '{value}'. Must be one of: {', '.join(VALID_BODY_HIGH_EFFICIENCY)}",
+                f"Invalid high-efficiency '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HIGH_EFFICIENCY)}",
             )
 
     # Validate target-wake-time if present
@@ -1091,7 +1145,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TARGET_WAKE_TIME:
             return (
                 False,
-                f"Invalid target-wake-time '{value}'. Must be one of: {', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
+                f"Invalid target-wake-time '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
             )
 
     # Validate port-macauth if present
@@ -1100,7 +1155,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PORT_MACAUTH:
             return (
                 False,
-                f"Invalid port-macauth '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_MACAUTH)}",
+                f"Invalid port-macauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORT_MACAUTH)}",
             )
 
     # Validate port-macauth-timeout if present
@@ -1143,7 +1199,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BSS_COLOR_PARTIAL:
             return (
                 False,
-                f"Invalid bss-color-partial '{value}'. Must be one of: {', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
+                f"Invalid bss-color-partial '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
             )
 
     # Validate mpsk-profile if present
@@ -1158,7 +1215,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SPLIT_TUNNELING:
             return (
                 False,
-                f"Invalid split-tunneling '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING)}",
+                f"Invalid split-tunneling '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING)}",
             )
 
     # Validate nac if present
@@ -1167,7 +1225,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAC:
             return (
                 False,
-                f"Invalid nac '{value}'. Must be one of: {', '.join(VALID_BODY_NAC)}",
+                f"Invalid nac '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAC)}",
             )
 
     # Validate nac-profile if present
@@ -1193,7 +1252,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_VLAN_AUTO:
             return (
                 False,
-                f"Invalid vlan-auto '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_AUTO)}",
+                f"Invalid vlan-auto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VLAN_AUTO)}",
             )
 
     # Validate dynamic-vlan if present
@@ -1202,7 +1262,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DYNAMIC_VLAN:
             return (
                 False,
-                f"Invalid dynamic-vlan '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_VLAN)}",
+                f"Invalid dynamic-vlan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYNAMIC_VLAN)}",
             )
 
     # Validate captive-portal-fw-accounting if present
@@ -1211,7 +1272,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CAPTIVE_PORTAL_FW_ACCOUNTING:
             return (
                 False,
-                f"Invalid captive-portal-fw-accounting '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_PORTAL_FW_ACCOUNTING)}",
+                f"Invalid captive-portal-fw-accounting '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_PORTAL_FW_ACCOUNTING)}",
             )
 
     # Validate captive-portal-ac-name if present
@@ -1246,7 +1308,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MULTICAST_RATE:
             return (
                 False,
-                f"Invalid multicast-rate '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_RATE)}",
+                f"Invalid multicast-rate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_RATE)}",
             )
 
     # Validate multicast-enhance if present
@@ -1255,7 +1318,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MULTICAST_ENHANCE:
             return (
                 False,
-                f"Invalid multicast-enhance '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_ENHANCE)}",
+                f"Invalid multicast-enhance '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_ENHANCE)}",
             )
 
     # Validate igmp-snooping if present
@@ -1264,7 +1328,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IGMP_SNOOPING:
             return (
                 False,
-                f"Invalid igmp-snooping '{value}'. Must be one of: {', '.join(VALID_BODY_IGMP_SNOOPING)}",
+                f"Invalid igmp-snooping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IGMP_SNOOPING)}",
             )
 
     # Validate dhcp-address-enforcement if present
@@ -1273,7 +1338,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DHCP_ADDRESS_ENFORCEMENT:
             return (
                 False,
-                f"Invalid dhcp-address-enforcement '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_ADDRESS_ENFORCEMENT)}",
+                f"Invalid dhcp-address-enforcement '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_ADDRESS_ENFORCEMENT)}",
             )
 
     # Validate broadcast-suppression if present
@@ -1282,7 +1348,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BROADCAST_SUPPRESSION:
             return (
                 False,
-                f"Invalid broadcast-suppression '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_SUPPRESSION)}",
+                f"Invalid broadcast-suppression '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BROADCAST_SUPPRESSION)}",
             )
 
     # Validate ipv6-rules if present
@@ -1291,7 +1358,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPV6_RULES:
             return (
                 False,
-                f"Invalid ipv6-rules '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_RULES)}",
+                f"Invalid ipv6-rules '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_RULES)}",
             )
 
     # Validate me-disable-thresh if present
@@ -1317,7 +1385,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MU_MIMO:
             return (
                 False,
-                f"Invalid mu-mimo '{value}'. Must be one of: {', '.join(VALID_BODY_MU_MIMO)}",
+                f"Invalid mu-mimo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MU_MIMO)}",
             )
 
     # Validate probe-resp-suppression if present
@@ -1326,7 +1395,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PROBE_RESP_SUPPRESSION:
             return (
                 False,
-                f"Invalid probe-resp-suppression '{value}'. Must be one of: {', '.join(VALID_BODY_PROBE_RESP_SUPPRESSION)}",
+                f"Invalid probe-resp-suppression '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROBE_RESP_SUPPRESSION)}",
             )
 
     # Validate probe-resp-threshold if present
@@ -1341,7 +1411,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RADIO_SENSITIVITY:
             return (
                 False,
-                f"Invalid radio-sensitivity '{value}'. Must be one of: {', '.join(VALID_BODY_RADIO_SENSITIVITY)}",
+                f"Invalid radio-sensitivity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIO_SENSITIVITY)}",
             )
 
     # Validate quarantine if present
@@ -1350,7 +1421,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_QUARANTINE:
             return (
                 False,
-                f"Invalid quarantine '{value}'. Must be one of: {', '.join(VALID_BODY_QUARANTINE)}",
+                f"Invalid quarantine '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUARANTINE)}",
             )
 
     # Validate radio-5g-threshold if present
@@ -1371,7 +1443,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_VLAN_POOLING:
             return (
                 False,
-                f"Invalid vlan-pooling '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_POOLING)}",
+                f"Invalid vlan-pooling '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VLAN_POOLING)}",
             )
 
     # Validate dhcp-option43-insertion if present
@@ -1380,7 +1453,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DHCP_OPTION43_INSERTION:
             return (
                 False,
-                f"Invalid dhcp-option43-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION43_INSERTION)}",
+                f"Invalid dhcp-option43-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION43_INSERTION)}",
             )
 
     # Validate dhcp-option82-insertion if present
@@ -1389,7 +1463,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DHCP_OPTION82_INSERTION:
             return (
                 False,
-                f"Invalid dhcp-option82-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_INSERTION)}",
+                f"Invalid dhcp-option82-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_INSERTION)}",
             )
 
     # Validate dhcp-option82-circuit-id-insertion if present
@@ -1401,7 +1476,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         ):
             return (
                 False,
-                f"Invalid dhcp-option82-circuit-id-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION)}",
+                f"Invalid dhcp-option82-circuit-id-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION)}",
             )
 
     # Validate dhcp-option82-remote-id-insertion if present
@@ -1410,7 +1486,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DHCP_OPTION82_REMOTE_ID_INSERTION:
             return (
                 False,
-                f"Invalid dhcp-option82-remote-id-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_REMOTE_ID_INSERTION)}",
+                f"Invalid dhcp-option82-remote-id-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_REMOTE_ID_INSERTION)}",
             )
 
     # Validate ptk-rekey if present
@@ -1419,7 +1496,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PTK_REKEY:
             return (
                 False,
-                f"Invalid ptk-rekey '{value}'. Must be one of: {', '.join(VALID_BODY_PTK_REKEY)}",
+                f"Invalid ptk-rekey '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PTK_REKEY)}",
             )
 
     # Validate ptk-rekey-intv if present
@@ -1442,7 +1520,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GTK_REKEY:
             return (
                 False,
-                f"Invalid gtk-rekey '{value}'. Must be one of: {', '.join(VALID_BODY_GTK_REKEY)}",
+                f"Invalid gtk-rekey '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GTK_REKEY)}",
             )
 
     # Validate gtk-rekey-intv if present
@@ -1465,7 +1544,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EAP_REAUTH:
             return (
                 False,
-                f"Invalid eap-reauth '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_REAUTH)}",
+                f"Invalid eap-reauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAP_REAUTH)}",
             )
 
     # Validate eap-reauth-intv if present
@@ -1491,7 +1571,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ROAMING_ACCT_INTERIM_UPDATE:
             return (
                 False,
-                f"Invalid roaming-acct-interim-update '{value}'. Must be one of: {', '.join(VALID_BODY_ROAMING_ACCT_INTERIM_UPDATE)}",
+                f"Invalid roaming-acct-interim-update '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROAMING_ACCT_INTERIM_UPDATE)}",
             )
 
     # Validate qos-profile if present
@@ -1567,7 +1648,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RATES_11A:
             return (
                 False,
-                f"Invalid rates-11a '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11A)}",
+                f"Invalid rates-11a '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11A)}",
             )
 
     # Validate rates-11bg if present
@@ -1576,7 +1658,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RATES_11BG:
             return (
                 False,
-                f"Invalid rates-11bg '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11BG)}",
+                f"Invalid rates-11bg '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11BG)}",
             )
 
     # Validate rates-11n-ss12 if present
@@ -1585,7 +1668,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RATES_11N_SS12:
             return (
                 False,
-                f"Invalid rates-11n-ss12 '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11N_SS12)}",
+                f"Invalid rates-11n-ss12 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11N_SS12)}",
             )
 
     # Validate rates-11n-ss34 if present
@@ -1594,7 +1678,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RATES_11N_SS34:
             return (
                 False,
-                f"Invalid rates-11n-ss34 '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11N_SS34)}",
+                f"Invalid rates-11n-ss34 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11N_SS34)}",
             )
 
     # Validate rates-11ac-mcs-map if present
@@ -1645,7 +1730,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate utm-log if present
@@ -1654,7 +1740,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_UTM_LOG:
             return (
                 False,
-                f"Invalid utm-log '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_LOG)}",
+                f"Invalid utm-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_LOG)}",
             )
 
     # Validate ips-sensor if present
@@ -1687,7 +1774,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCAN_BOTNET_CONNECTIONS:
             return (
                 False,
-                f"Invalid scan-botnet-connections '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
+                f"Invalid scan-botnet-connections '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
             )
 
     # Validate address-group if present
@@ -1702,7 +1790,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADDRESS_GROUP_POLICY:
             return (
                 False,
-                f"Invalid address-group-policy '{value}'. Must be one of: {', '.join(VALID_BODY_ADDRESS_GROUP_POLICY)}",
+                f"Invalid address-group-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADDRESS_GROUP_POLICY)}",
             )
 
     # Validate sticky-client-remove if present
@@ -1711,7 +1800,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STICKY_CLIENT_REMOVE:
             return (
                 False,
-                f"Invalid sticky-client-remove '{value}'. Must be one of: {', '.join(VALID_BODY_STICKY_CLIENT_REMOVE)}",
+                f"Invalid sticky-client-remove '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STICKY_CLIENT_REMOVE)}",
             )
 
     # Validate sticky-client-threshold-5g if present
@@ -1781,7 +1871,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BSTM_DISASSOCIATION_IMMINENT:
             return (
                 False,
-                f"Invalid bstm-disassociation-imminent '{value}'. Must be one of: {', '.join(VALID_BODY_BSTM_DISASSOCIATION_IMMINENT)}",
+                f"Invalid bstm-disassociation-imminent '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSTM_DISASSOCIATION_IMMINENT)}",
             )
 
     # Validate beacon-advertising if present
@@ -1790,7 +1881,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BEACON_ADVERTISING:
             return (
                 False,
-                f"Invalid beacon-advertising '{value}'. Must be one of: {', '.join(VALID_BODY_BEACON_ADVERTISING)}",
+                f"Invalid beacon-advertising '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BEACON_ADVERTISING)}",
             )
 
     # Validate osen if present
@@ -1799,7 +1891,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OSEN:
             return (
                 False,
-                f"Invalid osen '{value}'. Must be one of: {', '.join(VALID_BODY_OSEN)}",
+                f"Invalid osen '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OSEN)}",
             )
 
     # Validate application-detection-engine if present
@@ -1808,7 +1901,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_APPLICATION_DETECTION_ENGINE:
             return (
                 False,
-                f"Invalid application-detection-engine '{value}'. Must be one of: {', '.join(VALID_BODY_APPLICATION_DETECTION_ENGINE)}",
+                f"Invalid application-detection-engine '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APPLICATION_DETECTION_ENGINE)}",
             )
 
     # Validate application-dscp-marking if present
@@ -1817,7 +1911,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_APPLICATION_DSCP_MARKING:
             return (
                 False,
-                f"Invalid application-dscp-marking '{value}'. Must be one of: {', '.join(VALID_BODY_APPLICATION_DSCP_MARKING)}",
+                f"Invalid application-dscp-marking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APPLICATION_DSCP_MARKING)}",
             )
 
     # Validate application-report-intv if present
@@ -1843,7 +1938,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_L3_ROAMING:
             return (
                 False,
-                f"Invalid l3-roaming '{value}'. Must be one of: {', '.join(VALID_BODY_L3_ROAMING)}",
+                f"Invalid l3-roaming '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_L3_ROAMING)}",
             )
 
     # Validate l3-roaming-mode if present
@@ -1852,7 +1948,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_L3_ROAMING_MODE:
             return (
                 False,
-                f"Invalid l3-roaming-mode '{value}'. Must be one of: {', '.join(VALID_BODY_L3_ROAMING_MODE)}",
+                f"Invalid l3-roaming-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_L3_ROAMING_MODE)}",
             )
 
     return (True, None)
@@ -1896,7 +1993,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_PRE_AUTH:
             return (
                 False,
-                f"Invalid pre-auth '{value}'. Must be one of: {', '.join(VALID_BODY_PRE_AUTH)}",
+                f"Invalid pre-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRE_AUTH)}",
             )
 
     # Validate external-pre-auth if present
@@ -1905,7 +2003,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_EXTERNAL_PRE_AUTH:
             return (
                 False,
-                f"Invalid external-pre-auth '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL_PRE_AUTH)}",
+                f"Invalid external-pre-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL_PRE_AUTH)}",
             )
 
     # Validate mesh-backhaul if present
@@ -1914,7 +2013,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MESH_BACKHAUL:
             return (
                 False,
-                f"Invalid mesh-backhaul '{value}'. Must be one of: {', '.join(VALID_BODY_MESH_BACKHAUL)}",
+                f"Invalid mesh-backhaul '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MESH_BACKHAUL)}",
             )
 
     # Validate atf-weight if present
@@ -1968,7 +2068,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_BROADCAST_SSID:
             return (
                 False,
-                f"Invalid broadcast-ssid '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_SSID)}",
+                f"Invalid broadcast-ssid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BROADCAST_SSID)}",
             )
 
     # Validate security if present
@@ -1977,7 +2078,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_SECURITY:
             return (
                 False,
-                f"Invalid security '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY)}",
+                f"Invalid security '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY)}",
             )
 
     # Validate pmf if present
@@ -1986,7 +2088,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
-                f"Invalid pmf '{value}'. Must be one of: {', '.join(VALID_BODY_PMF)}",
+                f"Invalid pmf '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PMF)}",
             )
 
     # Validate pmf-assoc-comeback-timeout if present
@@ -2029,7 +2132,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_BEACON_PROTECTION:
             return (
                 False,
-                f"Invalid beacon-protection '{value}'. Must be one of: {', '.join(VALID_BODY_BEACON_PROTECTION)}",
+                f"Invalid beacon-protection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BEACON_PROTECTION)}",
             )
 
     # Validate okc if present
@@ -2038,7 +2142,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_OKC:
             return (
                 False,
-                f"Invalid okc '{value}'. Must be one of: {', '.join(VALID_BODY_OKC)}",
+                f"Invalid okc '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OKC)}",
             )
 
     # Validate mbo if present
@@ -2047,7 +2152,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MBO:
             return (
                 False,
-                f"Invalid mbo '{value}'. Must be one of: {', '.join(VALID_BODY_MBO)}",
+                f"Invalid mbo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MBO)}",
             )
 
     # Validate gas-comeback-delay if present
@@ -2090,7 +2196,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MBO_CELL_DATA_CONN_PREF:
             return (
                 False,
-                f"Invalid mbo-cell-data-conn-pref '{value}'. Must be one of: {', '.join(VALID_BODY_MBO_CELL_DATA_CONN_PREF)}",
+                f"Invalid mbo-cell-data-conn-pref '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MBO_CELL_DATA_CONN_PREF)}",
             )
 
     # Validate 80211k if present
@@ -2099,7 +2206,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_80211K:
             return (
                 False,
-                f"Invalid 80211k '{value}'. Must be one of: {', '.join(VALID_BODY_80211K)}",
+                f"Invalid 80211k '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_80211K)}",
             )
 
     # Validate 80211v if present
@@ -2108,7 +2216,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_80211V:
             return (
                 False,
-                f"Invalid 80211v '{value}'. Must be one of: {', '.join(VALID_BODY_80211V)}",
+                f"Invalid 80211v '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_80211V)}",
             )
 
     # Validate neighbor-report-dual-band if present
@@ -2117,7 +2226,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_NEIGHBOR_REPORT_DUAL_BAND:
             return (
                 False,
-                f"Invalid neighbor-report-dual-band '{value}'. Must be one of: {', '.join(VALID_BODY_NEIGHBOR_REPORT_DUAL_BAND)}",
+                f"Invalid neighbor-report-dual-band '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NEIGHBOR_REPORT_DUAL_BAND)}",
             )
 
     # Validate fast-bss-transition if present
@@ -2126,7 +2236,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_FAST_BSS_TRANSITION:
             return (
                 False,
-                f"Invalid fast-bss-transition '{value}'. Must be one of: {', '.join(VALID_BODY_FAST_BSS_TRANSITION)}",
+                f"Invalid fast-bss-transition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FAST_BSS_TRANSITION)}",
             )
 
     # Validate ft-mobility-domain if present
@@ -2169,7 +2280,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_FT_OVER_DS:
             return (
                 False,
-                f"Invalid ft-over-ds '{value}'. Must be one of: {', '.join(VALID_BODY_FT_OVER_DS)}",
+                f"Invalid ft-over-ds '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FT_OVER_DS)}",
             )
 
     # Validate sae-groups if present
@@ -2178,7 +2290,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_SAE_GROUPS:
             return (
                 False,
-                f"Invalid sae-groups '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_GROUPS)}",
+                f"Invalid sae-groups '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_GROUPS)}",
             )
 
     # Validate owe-groups if present
@@ -2187,7 +2300,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_OWE_GROUPS:
             return (
                 False,
-                f"Invalid owe-groups '{value}'. Must be one of: {', '.join(VALID_BODY_OWE_GROUPS)}",
+                f"Invalid owe-groups '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OWE_GROUPS)}",
             )
 
     # Validate owe-transition if present
@@ -2196,7 +2310,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_OWE_TRANSITION:
             return (
                 False,
-                f"Invalid owe-transition '{value}'. Must be one of: {', '.join(VALID_BODY_OWE_TRANSITION)}",
+                f"Invalid owe-transition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OWE_TRANSITION)}",
             )
 
     # Validate owe-transition-ssid if present
@@ -2211,7 +2326,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_ADDITIONAL_AKMS:
             return (
                 False,
-                f"Invalid additional-akms '{value}'. Must be one of: {', '.join(VALID_BODY_ADDITIONAL_AKMS)}",
+                f"Invalid additional-akms '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADDITIONAL_AKMS)}",
             )
 
     # Validate eapol-key-retries if present
@@ -2220,7 +2336,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_EAPOL_KEY_RETRIES:
             return (
                 False,
-                f"Invalid eapol-key-retries '{value}'. Must be one of: {', '.join(VALID_BODY_EAPOL_KEY_RETRIES)}",
+                f"Invalid eapol-key-retries '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAPOL_KEY_RETRIES)}",
             )
 
     # Validate tkip-counter-measure if present
@@ -2229,7 +2346,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_TKIP_COUNTER_MEASURE:
             return (
                 False,
-                f"Invalid tkip-counter-measure '{value}'. Must be one of: {', '.join(VALID_BODY_TKIP_COUNTER_MEASURE)}",
+                f"Invalid tkip-counter-measure '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TKIP_COUNTER_MEASURE)}",
             )
 
     # Validate external-web if present
@@ -2244,7 +2362,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_EXTERNAL_WEB_FORMAT:
             return (
                 False,
-                f"Invalid external-web-format '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL_WEB_FORMAT)}",
+                f"Invalid external-web-format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL_WEB_FORMAT)}",
             )
 
     # Validate external-logout if present
@@ -2259,7 +2378,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MAC_USERNAME_DELIMITER:
             return (
                 False,
-                f"Invalid mac-username-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
+                f"Invalid mac-username-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
             )
 
     # Validate mac-password-delimiter if present
@@ -2268,7 +2388,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MAC_PASSWORD_DELIMITER:
             return (
                 False,
-                f"Invalid mac-password-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
+                f"Invalid mac-password-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
             )
 
     # Validate mac-calling-station-delimiter if present
@@ -2277,7 +2398,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MAC_CALLING_STATION_DELIMITER:
             return (
                 False,
-                f"Invalid mac-calling-station-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CALLING_STATION_DELIMITER)}",
+                f"Invalid mac-calling-station-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_CALLING_STATION_DELIMITER)}",
             )
 
     # Validate mac-called-station-delimiter if present
@@ -2286,7 +2408,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MAC_CALLED_STATION_DELIMITER:
             return (
                 False,
-                f"Invalid mac-called-station-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CALLED_STATION_DELIMITER)}",
+                f"Invalid mac-called-station-delimiter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_CALLED_STATION_DELIMITER)}",
             )
 
     # Validate mac-case if present
@@ -2295,7 +2418,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MAC_CASE:
             return (
                 False,
-                f"Invalid mac-case '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CASE)}",
+                f"Invalid mac-case '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_CASE)}",
             )
 
     # Validate called-station-id-type if present
@@ -2304,7 +2428,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_CALLED_STATION_ID_TYPE:
             return (
                 False,
-                f"Invalid called-station-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_CALLED_STATION_ID_TYPE)}",
+                f"Invalid called-station-id-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CALLED_STATION_ID_TYPE)}",
             )
 
     # Validate mac-auth-bypass if present
@@ -2313,7 +2438,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MAC_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid mac-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_AUTH_BYPASS)}",
+                f"Invalid mac-auth-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_AUTH_BYPASS)}",
             )
 
     # Validate radius-mac-auth if present
@@ -2322,7 +2448,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_RADIUS_MAC_AUTH:
             return (
                 False,
-                f"Invalid radius-mac-auth '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_MAC_AUTH)}",
+                f"Invalid radius-mac-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_MAC_AUTH)}",
             )
 
     # Validate radius-mac-auth-server if present
@@ -2357,7 +2484,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_RADIUS_MAC_MPSK_AUTH:
             return (
                 False,
-                f"Invalid radius-mac-mpsk-auth '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_MAC_MPSK_AUTH)}",
+                f"Invalid radius-mac-mpsk-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_MAC_MPSK_AUTH)}",
             )
 
     # Validate radius-mac-mpsk-timeout if present
@@ -2383,7 +2511,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_AUTH:
             return (
                 False,
-                f"Invalid auth '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH)}",
+                f"Invalid auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH)}",
             )
 
     # Validate encrypt if present
@@ -2392,7 +2521,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_ENCRYPT:
             return (
                 False,
-                f"Invalid encrypt '{value}'. Must be one of: {', '.join(VALID_BODY_ENCRYPT)}",
+                f"Invalid encrypt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENCRYPT)}",
             )
 
     # Validate keyindex if present
@@ -2412,7 +2542,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_SAE_H2E_ONLY:
             return (
                 False,
-                f"Invalid sae-h2e-only '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_H2E_ONLY)}",
+                f"Invalid sae-h2e-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_H2E_ONLY)}",
             )
 
     # Validate sae-hnp-only if present
@@ -2421,7 +2552,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_SAE_HNP_ONLY:
             return (
                 False,
-                f"Invalid sae-hnp-only '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_HNP_ONLY)}",
+                f"Invalid sae-hnp-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_HNP_ONLY)}",
             )
 
     # Validate sae-pk if present
@@ -2430,7 +2562,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_SAE_PK:
             return (
                 False,
-                f"Invalid sae-pk '{value}'. Must be one of: {', '.join(VALID_BODY_SAE_PK)}",
+                f"Invalid sae-pk '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAE_PK)}",
             )
 
     # Validate sae-private-key if present
@@ -2445,7 +2578,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_AKM24_ONLY:
             return (
                 False,
-                f"Invalid akm24-only '{value}'. Must be one of: {', '.join(VALID_BODY_AKM24_ONLY)}",
+                f"Invalid akm24-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AKM24_ONLY)}",
             )
 
     # Validate radius-server if present
@@ -2460,7 +2594,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_NAS_FILTER_RULE:
             return (
                 False,
-                f"Invalid nas-filter-rule '{value}'. Must be one of: {', '.join(VALID_BODY_NAS_FILTER_RULE)}",
+                f"Invalid nas-filter-rule '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAS_FILTER_RULE)}",
             )
 
     # Validate domain-name-stripping if present
@@ -2469,7 +2604,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_DOMAIN_NAME_STRIPPING:
             return (
                 False,
-                f"Invalid domain-name-stripping '{value}'. Must be one of: {', '.join(VALID_BODY_DOMAIN_NAME_STRIPPING)}",
+                f"Invalid domain-name-stripping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DOMAIN_NAME_STRIPPING)}",
             )
 
     # Validate mlo if present
@@ -2478,7 +2614,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MLO:
             return (
                 False,
-                f"Invalid mlo '{value}'. Must be one of: {', '.join(VALID_BODY_MLO)}",
+                f"Invalid mlo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MLO)}",
             )
 
     # Validate local-standalone if present
@@ -2487,7 +2624,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LOCAL_STANDALONE:
             return (
                 False,
-                f"Invalid local-standalone '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_STANDALONE)}",
+                f"Invalid local-standalone '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_STANDALONE)}",
             )
 
     # Validate local-standalone-nat if present
@@ -2496,7 +2634,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LOCAL_STANDALONE_NAT:
             return (
                 False,
-                f"Invalid local-standalone-nat '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_STANDALONE_NAT)}",
+                f"Invalid local-standalone-nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_STANDALONE_NAT)}",
             )
 
     # Validate dhcp-lease-time if present
@@ -2522,7 +2661,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LOCAL_STANDALONE_DNS:
             return (
                 False,
-                f"Invalid local-standalone-dns '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_STANDALONE_DNS)}",
+                f"Invalid local-standalone-dns '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_STANDALONE_DNS)}",
             )
 
     # Validate local-lan-partition if present
@@ -2531,7 +2671,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LOCAL_LAN_PARTITION:
             return (
                 False,
-                f"Invalid local-lan-partition '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_LAN_PARTITION)}",
+                f"Invalid local-lan-partition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_LAN_PARTITION)}",
             )
 
     # Validate local-bridging if present
@@ -2540,7 +2681,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LOCAL_BRIDGING:
             return (
                 False,
-                f"Invalid local-bridging '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_BRIDGING)}",
+                f"Invalid local-bridging '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_BRIDGING)}",
             )
 
     # Validate local-lan if present
@@ -2549,7 +2691,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LOCAL_LAN:
             return (
                 False,
-                f"Invalid local-lan '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_LAN)}",
+                f"Invalid local-lan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_LAN)}",
             )
 
     # Validate local-authentication if present
@@ -2558,7 +2701,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LOCAL_AUTHENTICATION:
             return (
                 False,
-                f"Invalid local-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_AUTHENTICATION)}",
+                f"Invalid local-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOCAL_AUTHENTICATION)}",
             )
 
     # Validate captive-portal if present
@@ -2567,7 +2711,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_CAPTIVE_PORTAL:
             return (
                 False,
-                f"Invalid captive-portal '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_PORTAL)}",
+                f"Invalid captive-portal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_PORTAL)}",
             )
 
     # Validate captive-network-assistant-bypass if present
@@ -2576,7 +2721,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_CAPTIVE_NETWORK_ASSISTANT_BYPASS:
             return (
                 False,
-                f"Invalid captive-network-assistant-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_NETWORK_ASSISTANT_BYPASS)}",
+                f"Invalid captive-network-assistant-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_NETWORK_ASSISTANT_BYPASS)}",
             )
 
     # Validate portal-message-override-group if present
@@ -2594,7 +2740,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_PORTAL_TYPE:
             return (
                 False,
-                f"Invalid portal-type '{value}'. Must be one of: {', '.join(VALID_BODY_PORTAL_TYPE)}",
+                f"Invalid portal-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORTAL_TYPE)}",
             )
 
     # Validate security-exempt-list if present
@@ -2630,7 +2777,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_INTRA_VAP_PRIVACY:
             return (
                 False,
-                f"Invalid intra-vap-privacy '{value}'. Must be one of: {', '.join(VALID_BODY_INTRA_VAP_PRIVACY)}",
+                f"Invalid intra-vap-privacy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTRA_VAP_PRIVACY)}",
             )
 
     # Validate ldpc if present
@@ -2639,7 +2787,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_LDPC:
             return (
                 False,
-                f"Invalid ldpc '{value}'. Must be one of: {', '.join(VALID_BODY_LDPC)}",
+                f"Invalid ldpc '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LDPC)}",
             )
 
     # Validate high-efficiency if present
@@ -2648,7 +2797,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_HIGH_EFFICIENCY:
             return (
                 False,
-                f"Invalid high-efficiency '{value}'. Must be one of: {', '.join(VALID_BODY_HIGH_EFFICIENCY)}",
+                f"Invalid high-efficiency '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HIGH_EFFICIENCY)}",
             )
 
     # Validate target-wake-time if present
@@ -2657,7 +2807,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_TARGET_WAKE_TIME:
             return (
                 False,
-                f"Invalid target-wake-time '{value}'. Must be one of: {', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
+                f"Invalid target-wake-time '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
             )
 
     # Validate port-macauth if present
@@ -2666,7 +2817,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_PORT_MACAUTH:
             return (
                 False,
-                f"Invalid port-macauth '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_MACAUTH)}",
+                f"Invalid port-macauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORT_MACAUTH)}",
             )
 
     # Validate port-macauth-timeout if present
@@ -2709,7 +2861,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_BSS_COLOR_PARTIAL:
             return (
                 False,
-                f"Invalid bss-color-partial '{value}'. Must be one of: {', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
+                f"Invalid bss-color-partial '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
             )
 
     # Validate mpsk-profile if present
@@ -2724,7 +2877,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_SPLIT_TUNNELING:
             return (
                 False,
-                f"Invalid split-tunneling '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING)}",
+                f"Invalid split-tunneling '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING)}",
             )
 
     # Validate nac if present
@@ -2733,7 +2887,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_NAC:
             return (
                 False,
-                f"Invalid nac '{value}'. Must be one of: {', '.join(VALID_BODY_NAC)}",
+                f"Invalid nac '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAC)}",
             )
 
     # Validate nac-profile if present
@@ -2759,7 +2914,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_VLAN_AUTO:
             return (
                 False,
-                f"Invalid vlan-auto '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_AUTO)}",
+                f"Invalid vlan-auto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VLAN_AUTO)}",
             )
 
     # Validate dynamic-vlan if present
@@ -2768,7 +2924,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_DYNAMIC_VLAN:
             return (
                 False,
-                f"Invalid dynamic-vlan '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_VLAN)}",
+                f"Invalid dynamic-vlan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYNAMIC_VLAN)}",
             )
 
     # Validate captive-portal-fw-accounting if present
@@ -2777,7 +2934,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_CAPTIVE_PORTAL_FW_ACCOUNTING:
             return (
                 False,
-                f"Invalid captive-portal-fw-accounting '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_PORTAL_FW_ACCOUNTING)}",
+                f"Invalid captive-portal-fw-accounting '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_PORTAL_FW_ACCOUNTING)}",
             )
 
     # Validate captive-portal-ac-name if present
@@ -2812,7 +2970,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MULTICAST_RATE:
             return (
                 False,
-                f"Invalid multicast-rate '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_RATE)}",
+                f"Invalid multicast-rate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_RATE)}",
             )
 
     # Validate multicast-enhance if present
@@ -2821,7 +2980,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MULTICAST_ENHANCE:
             return (
                 False,
-                f"Invalid multicast-enhance '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_ENHANCE)}",
+                f"Invalid multicast-enhance '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_ENHANCE)}",
             )
 
     # Validate igmp-snooping if present
@@ -2830,7 +2990,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_IGMP_SNOOPING:
             return (
                 False,
-                f"Invalid igmp-snooping '{value}'. Must be one of: {', '.join(VALID_BODY_IGMP_SNOOPING)}",
+                f"Invalid igmp-snooping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IGMP_SNOOPING)}",
             )
 
     # Validate dhcp-address-enforcement if present
@@ -2839,7 +3000,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_DHCP_ADDRESS_ENFORCEMENT:
             return (
                 False,
-                f"Invalid dhcp-address-enforcement '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_ADDRESS_ENFORCEMENT)}",
+                f"Invalid dhcp-address-enforcement '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_ADDRESS_ENFORCEMENT)}",
             )
 
     # Validate broadcast-suppression if present
@@ -2848,7 +3010,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_BROADCAST_SUPPRESSION:
             return (
                 False,
-                f"Invalid broadcast-suppression '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_SUPPRESSION)}",
+                f"Invalid broadcast-suppression '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BROADCAST_SUPPRESSION)}",
             )
 
     # Validate ipv6-rules if present
@@ -2857,7 +3020,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_IPV6_RULES:
             return (
                 False,
-                f"Invalid ipv6-rules '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_RULES)}",
+                f"Invalid ipv6-rules '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_RULES)}",
             )
 
     # Validate me-disable-thresh if present
@@ -2883,7 +3047,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_MU_MIMO:
             return (
                 False,
-                f"Invalid mu-mimo '{value}'. Must be one of: {', '.join(VALID_BODY_MU_MIMO)}",
+                f"Invalid mu-mimo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MU_MIMO)}",
             )
 
     # Validate probe-resp-suppression if present
@@ -2892,7 +3057,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_PROBE_RESP_SUPPRESSION:
             return (
                 False,
-                f"Invalid probe-resp-suppression '{value}'. Must be one of: {', '.join(VALID_BODY_PROBE_RESP_SUPPRESSION)}",
+                f"Invalid probe-resp-suppression '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROBE_RESP_SUPPRESSION)}",
             )
 
     # Validate probe-resp-threshold if present
@@ -2907,7 +3073,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_RADIO_SENSITIVITY:
             return (
                 False,
-                f"Invalid radio-sensitivity '{value}'. Must be one of: {', '.join(VALID_BODY_RADIO_SENSITIVITY)}",
+                f"Invalid radio-sensitivity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIO_SENSITIVITY)}",
             )
 
     # Validate quarantine if present
@@ -2916,7 +3083,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_QUARANTINE:
             return (
                 False,
-                f"Invalid quarantine '{value}'. Must be one of: {', '.join(VALID_BODY_QUARANTINE)}",
+                f"Invalid quarantine '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUARANTINE)}",
             )
 
     # Validate radio-5g-threshold if present
@@ -2937,7 +3105,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_VLAN_POOLING:
             return (
                 False,
-                f"Invalid vlan-pooling '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_POOLING)}",
+                f"Invalid vlan-pooling '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VLAN_POOLING)}",
             )
 
     # Validate dhcp-option43-insertion if present
@@ -2946,7 +3115,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_DHCP_OPTION43_INSERTION:
             return (
                 False,
-                f"Invalid dhcp-option43-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION43_INSERTION)}",
+                f"Invalid dhcp-option43-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION43_INSERTION)}",
             )
 
     # Validate dhcp-option82-insertion if present
@@ -2955,7 +3125,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_DHCP_OPTION82_INSERTION:
             return (
                 False,
-                f"Invalid dhcp-option82-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_INSERTION)}",
+                f"Invalid dhcp-option82-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_INSERTION)}",
             )
 
     # Validate dhcp-option82-circuit-id-insertion if present
@@ -2967,7 +3138,8 @@ def validate_vap_put(
         ):
             return (
                 False,
-                f"Invalid dhcp-option82-circuit-id-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION)}",
+                f"Invalid dhcp-option82-circuit-id-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION)}",
             )
 
     # Validate dhcp-option82-remote-id-insertion if present
@@ -2976,7 +3148,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_DHCP_OPTION82_REMOTE_ID_INSERTION:
             return (
                 False,
-                f"Invalid dhcp-option82-remote-id-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_REMOTE_ID_INSERTION)}",
+                f"Invalid dhcp-option82-remote-id-insertion '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_REMOTE_ID_INSERTION)}",
             )
 
     # Validate ptk-rekey if present
@@ -2985,7 +3158,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_PTK_REKEY:
             return (
                 False,
-                f"Invalid ptk-rekey '{value}'. Must be one of: {', '.join(VALID_BODY_PTK_REKEY)}",
+                f"Invalid ptk-rekey '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PTK_REKEY)}",
             )
 
     # Validate ptk-rekey-intv if present
@@ -3008,7 +3182,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_GTK_REKEY:
             return (
                 False,
-                f"Invalid gtk-rekey '{value}'. Must be one of: {', '.join(VALID_BODY_GTK_REKEY)}",
+                f"Invalid gtk-rekey '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GTK_REKEY)}",
             )
 
     # Validate gtk-rekey-intv if present
@@ -3031,7 +3206,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_EAP_REAUTH:
             return (
                 False,
-                f"Invalid eap-reauth '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_REAUTH)}",
+                f"Invalid eap-reauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EAP_REAUTH)}",
             )
 
     # Validate eap-reauth-intv if present
@@ -3057,7 +3233,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_ROAMING_ACCT_INTERIM_UPDATE:
             return (
                 False,
-                f"Invalid roaming-acct-interim-update '{value}'. Must be one of: {', '.join(VALID_BODY_ROAMING_ACCT_INTERIM_UPDATE)}",
+                f"Invalid roaming-acct-interim-update '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROAMING_ACCT_INTERIM_UPDATE)}",
             )
 
     # Validate qos-profile if present
@@ -3133,7 +3310,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_RATES_11A:
             return (
                 False,
-                f"Invalid rates-11a '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11A)}",
+                f"Invalid rates-11a '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11A)}",
             )
 
     # Validate rates-11bg if present
@@ -3142,7 +3320,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_RATES_11BG:
             return (
                 False,
-                f"Invalid rates-11bg '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11BG)}",
+                f"Invalid rates-11bg '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11BG)}",
             )
 
     # Validate rates-11n-ss12 if present
@@ -3151,7 +3330,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_RATES_11N_SS12:
             return (
                 False,
-                f"Invalid rates-11n-ss12 '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11N_SS12)}",
+                f"Invalid rates-11n-ss12 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11N_SS12)}",
             )
 
     # Validate rates-11n-ss34 if present
@@ -3160,7 +3340,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_RATES_11N_SS34:
             return (
                 False,
-                f"Invalid rates-11n-ss34 '{value}'. Must be one of: {', '.join(VALID_BODY_RATES_11N_SS34)}",
+                f"Invalid rates-11n-ss34 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RATES_11N_SS34)}",
             )
 
     # Validate rates-11ac-mcs-map if present
@@ -3211,7 +3392,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate utm-log if present
@@ -3220,7 +3402,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_UTM_LOG:
             return (
                 False,
-                f"Invalid utm-log '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_LOG)}",
+                f"Invalid utm-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_LOG)}",
             )
 
     # Validate ips-sensor if present
@@ -3253,7 +3436,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_SCAN_BOTNET_CONNECTIONS:
             return (
                 False,
-                f"Invalid scan-botnet-connections '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
+                f"Invalid scan-botnet-connections '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
             )
 
     # Validate address-group if present
@@ -3268,7 +3452,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_ADDRESS_GROUP_POLICY:
             return (
                 False,
-                f"Invalid address-group-policy '{value}'. Must be one of: {', '.join(VALID_BODY_ADDRESS_GROUP_POLICY)}",
+                f"Invalid address-group-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADDRESS_GROUP_POLICY)}",
             )
 
     # Validate sticky-client-remove if present
@@ -3277,7 +3462,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_STICKY_CLIENT_REMOVE:
             return (
                 False,
-                f"Invalid sticky-client-remove '{value}'. Must be one of: {', '.join(VALID_BODY_STICKY_CLIENT_REMOVE)}",
+                f"Invalid sticky-client-remove '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STICKY_CLIENT_REMOVE)}",
             )
 
     # Validate sticky-client-threshold-5g if present
@@ -3347,7 +3533,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_BSTM_DISASSOCIATION_IMMINENT:
             return (
                 False,
-                f"Invalid bstm-disassociation-imminent '{value}'. Must be one of: {', '.join(VALID_BODY_BSTM_DISASSOCIATION_IMMINENT)}",
+                f"Invalid bstm-disassociation-imminent '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSTM_DISASSOCIATION_IMMINENT)}",
             )
 
     # Validate beacon-advertising if present
@@ -3356,7 +3543,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_BEACON_ADVERTISING:
             return (
                 False,
-                f"Invalid beacon-advertising '{value}'. Must be one of: {', '.join(VALID_BODY_BEACON_ADVERTISING)}",
+                f"Invalid beacon-advertising '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BEACON_ADVERTISING)}",
             )
 
     # Validate osen if present
@@ -3365,7 +3553,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_OSEN:
             return (
                 False,
-                f"Invalid osen '{value}'. Must be one of: {', '.join(VALID_BODY_OSEN)}",
+                f"Invalid osen '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OSEN)}",
             )
 
     # Validate application-detection-engine if present
@@ -3374,7 +3563,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_APPLICATION_DETECTION_ENGINE:
             return (
                 False,
-                f"Invalid application-detection-engine '{value}'. Must be one of: {', '.join(VALID_BODY_APPLICATION_DETECTION_ENGINE)}",
+                f"Invalid application-detection-engine '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APPLICATION_DETECTION_ENGINE)}",
             )
 
     # Validate application-dscp-marking if present
@@ -3383,7 +3573,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_APPLICATION_DSCP_MARKING:
             return (
                 False,
-                f"Invalid application-dscp-marking '{value}'. Must be one of: {', '.join(VALID_BODY_APPLICATION_DSCP_MARKING)}",
+                f"Invalid application-dscp-marking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APPLICATION_DSCP_MARKING)}",
             )
 
     # Validate application-report-intv if present
@@ -3409,7 +3600,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_L3_ROAMING:
             return (
                 False,
-                f"Invalid l3-roaming '{value}'. Must be one of: {', '.join(VALID_BODY_L3_ROAMING)}",
+                f"Invalid l3-roaming '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_L3_ROAMING)}",
             )
 
     # Validate l3-roaming-mode if present
@@ -3418,7 +3610,8 @@ def validate_vap_put(
         if value and value not in VALID_BODY_L3_ROAMING_MODE:
             return (
                 False,
-                f"Invalid l3-roaming-mode '{value}'. Must be one of: {', '.join(VALID_BODY_L3_ROAMING_MODE)}",
+                f"Invalid l3-roaming-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_L3_ROAMING_MODE)}",
             )
 
     return (True, None)

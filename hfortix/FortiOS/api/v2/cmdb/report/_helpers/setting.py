@@ -51,7 +51,8 @@ def validate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,7 +85,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_PDF_REPORT:
             return (
                 False,
-                f"Invalid pdf-report '{value}'. Must be one of: {', '.join(VALID_BODY_PDF_REPORT)}",
+                f"Invalid pdf-report '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PDF_REPORT)}",
             )
 
     # Validate fortiview if present
@@ -93,7 +95,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FORTIVIEW:
             return (
                 False,
-                f"Invalid fortiview '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIVIEW)}",
+                f"Invalid fortiview '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIVIEW)}",
             )
 
     # Validate report-source if present
@@ -102,7 +105,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_REPORT_SOURCE:
             return (
                 False,
-                f"Invalid report-source '{value}'. Must be one of: {', '.join(VALID_BODY_REPORT_SOURCE)}",
+                f"Invalid report-source '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REPORT_SOURCE)}",
             )
 
     # Validate web-browsing-threshold if present

@@ -47,7 +47,8 @@ def validate_hotspot20_h2qp_wan_metric_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,7 +83,8 @@ def validate_hotspot20_h2qp_wan_metric_post(
         if value and value not in VALID_BODY_LINK_STATUS:
             return (
                 False,
-                f"Invalid link-status '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_STATUS)}",
+                f"Invalid link-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_STATUS)}",
             )
 
     # Validate symmetric-wan-link if present
@@ -91,7 +93,8 @@ def validate_hotspot20_h2qp_wan_metric_post(
         if value and value not in VALID_BODY_SYMMETRIC_WAN_LINK:
             return (
                 False,
-                f"Invalid symmetric-wan-link '{value}'. Must be one of: {', '.join(VALID_BODY_SYMMETRIC_WAN_LINK)}",
+                f"Invalid symmetric-wan-link '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SYMMETRIC_WAN_LINK)}",
             )
 
     # Validate link-at-capacity if present
@@ -100,7 +103,8 @@ def validate_hotspot20_h2qp_wan_metric_post(
         if value and value not in VALID_BODY_LINK_AT_CAPACITY:
             return (
                 False,
-                f"Invalid link-at-capacity '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_AT_CAPACITY)}",
+                f"Invalid link-at-capacity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_AT_CAPACITY)}",
             )
 
     # Validate uplink-speed if present
@@ -211,7 +215,8 @@ def validate_hotspot20_h2qp_wan_metric_put(
         if value and value not in VALID_BODY_LINK_STATUS:
             return (
                 False,
-                f"Invalid link-status '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_STATUS)}",
+                f"Invalid link-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_STATUS)}",
             )
 
     # Validate symmetric-wan-link if present
@@ -220,7 +225,8 @@ def validate_hotspot20_h2qp_wan_metric_put(
         if value and value not in VALID_BODY_SYMMETRIC_WAN_LINK:
             return (
                 False,
-                f"Invalid symmetric-wan-link '{value}'. Must be one of: {', '.join(VALID_BODY_SYMMETRIC_WAN_LINK)}",
+                f"Invalid symmetric-wan-link '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SYMMETRIC_WAN_LINK)}",
             )
 
     # Validate link-at-capacity if present
@@ -229,7 +235,8 @@ def validate_hotspot20_h2qp_wan_metric_put(
         if value and value not in VALID_BODY_LINK_AT_CAPACITY:
             return (
                 False,
-                f"Invalid link-at-capacity '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_AT_CAPACITY)}",
+                f"Invalid link-at-capacity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_AT_CAPACITY)}",
             )
 
     # Validate uplink-speed if present

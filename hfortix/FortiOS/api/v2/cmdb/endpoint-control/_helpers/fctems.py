@@ -69,7 +69,8 @@ def validate_fctems_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -107,7 +108,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate name if present
@@ -122,7 +124,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DIRTY_REASON:
             return (
                 False,
-                f"Invalid dirty-reason '{value}'. Must be one of: {', '.join(VALID_BODY_DIRTY_REASON)}",
+                f"Invalid dirty-reason '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIRTY_REASON)}",
             )
 
     # Validate fortinetone-cloud-authentication if present
@@ -131,7 +134,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FORTINETONE_CLOUD_AUTHENTICATION:
             return (
                 False,
-                f"Invalid fortinetone-cloud-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_FORTINETONE_CLOUD_AUTHENTICATION)}",
+                f"Invalid fortinetone-cloud-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTINETONE_CLOUD_AUTHENTICATION)}",
             )
 
     # Validate server if present
@@ -169,7 +173,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PULL_SYSINFO:
             return (
                 False,
-                f"Invalid pull-sysinfo '{value}'. Must be one of: {', '.join(VALID_BODY_PULL_SYSINFO)}",
+                f"Invalid pull-sysinfo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PULL_SYSINFO)}",
             )
 
     # Validate pull-vulnerabilities if present
@@ -178,7 +183,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PULL_VULNERABILITIES:
             return (
                 False,
-                f"Invalid pull-vulnerabilities '{value}'. Must be one of: {', '.join(VALID_BODY_PULL_VULNERABILITIES)}",
+                f"Invalid pull-vulnerabilities '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PULL_VULNERABILITIES)}",
             )
 
     # Validate pull-tags if present
@@ -187,7 +193,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PULL_TAGS:
             return (
                 False,
-                f"Invalid pull-tags '{value}'. Must be one of: {', '.join(VALID_BODY_PULL_TAGS)}",
+                f"Invalid pull-tags '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PULL_TAGS)}",
             )
 
     # Validate pull-malware-hash if present
@@ -196,7 +203,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PULL_MALWARE_HASH:
             return (
                 False,
-                f"Invalid pull-malware-hash '{value}'. Must be one of: {', '.join(VALID_BODY_PULL_MALWARE_HASH)}",
+                f"Invalid pull-malware-hash '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PULL_MALWARE_HASH)}",
             )
 
     # Validate capabilities if present
@@ -205,7 +213,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CAPABILITIES:
             return (
                 False,
-                f"Invalid capabilities '{value}'. Must be one of: {', '.join(VALID_BODY_CAPABILITIES)}",
+                f"Invalid capabilities '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPABILITIES)}",
             )
 
     # Validate call-timeout if present
@@ -242,7 +251,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SEND_TAGS_TO_ALL_VDOMS:
             return (
                 False,
-                f"Invalid send-tags-to-all-vdoms '{value}'. Must be one of: {', '.join(VALID_BODY_SEND_TAGS_TO_ALL_VDOMS)}",
+                f"Invalid send-tags-to-all-vdoms '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEND_TAGS_TO_ALL_VDOMS)}",
             )
 
     # Validate websocket-override if present
@@ -251,7 +261,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WEBSOCKET_OVERRIDE:
             return (
                 False,
-                f"Invalid websocket-override '{value}'. Must be one of: {', '.join(VALID_BODY_WEBSOCKET_OVERRIDE)}",
+                f"Invalid websocket-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WEBSOCKET_OVERRIDE)}",
             )
 
     # Validate interface-select-method if present
@@ -260,7 +271,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -275,7 +287,8 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TRUST_CA_CN:
             return (
                 False,
-                f"Invalid trust-ca-cn '{value}'. Must be one of: {', '.join(VALID_BODY_TRUST_CA_CN)}",
+                f"Invalid trust-ca-cn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRUST_CA_CN)}",
             )
 
     # Validate verifying-ca if present

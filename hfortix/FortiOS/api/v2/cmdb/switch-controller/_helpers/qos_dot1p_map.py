@@ -125,7 +125,8 @@ def validate_qos_dot1p_map_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -166,7 +167,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_EGRESS_PRI_TAGGING:
             return (
                 False,
-                f"Invalid egress-pri-tagging '{value}'. Must be one of: {', '.join(VALID_BODY_EGRESS_PRI_TAGGING)}",
+                f"Invalid egress-pri-tagging '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EGRESS_PRI_TAGGING)}",
             )
 
     # Validate priority-0 if present
@@ -175,7 +177,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_0:
             return (
                 False,
-                f"Invalid priority-0 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_0)}",
+                f"Invalid priority-0 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_0)}",
             )
 
     # Validate priority-1 if present
@@ -184,7 +187,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_1:
             return (
                 False,
-                f"Invalid priority-1 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_1)}",
+                f"Invalid priority-1 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_1)}",
             )
 
     # Validate priority-2 if present
@@ -193,7 +197,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_2:
             return (
                 False,
-                f"Invalid priority-2 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_2)}",
+                f"Invalid priority-2 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_2)}",
             )
 
     # Validate priority-3 if present
@@ -202,7 +207,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_3:
             return (
                 False,
-                f"Invalid priority-3 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_3)}",
+                f"Invalid priority-3 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_3)}",
             )
 
     # Validate priority-4 if present
@@ -211,7 +217,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_4:
             return (
                 False,
-                f"Invalid priority-4 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_4)}",
+                f"Invalid priority-4 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_4)}",
             )
 
     # Validate priority-5 if present
@@ -220,7 +227,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_5:
             return (
                 False,
-                f"Invalid priority-5 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_5)}",
+                f"Invalid priority-5 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_5)}",
             )
 
     # Validate priority-6 if present
@@ -229,7 +237,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_6:
             return (
                 False,
-                f"Invalid priority-6 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_6)}",
+                f"Invalid priority-6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_6)}",
             )
 
     # Validate priority-7 if present
@@ -238,7 +247,8 @@ def validate_qos_dot1p_map_post(
         if value and value not in VALID_BODY_PRIORITY_7:
             return (
                 False,
-                f"Invalid priority-7 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_7)}",
+                f"Invalid priority-7 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_7)}",
             )
 
     return (True, None)
@@ -288,7 +298,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_EGRESS_PRI_TAGGING:
             return (
                 False,
-                f"Invalid egress-pri-tagging '{value}'. Must be one of: {', '.join(VALID_BODY_EGRESS_PRI_TAGGING)}",
+                f"Invalid egress-pri-tagging '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EGRESS_PRI_TAGGING)}",
             )
 
     # Validate priority-0 if present
@@ -297,7 +308,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_0:
             return (
                 False,
-                f"Invalid priority-0 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_0)}",
+                f"Invalid priority-0 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_0)}",
             )
 
     # Validate priority-1 if present
@@ -306,7 +318,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_1:
             return (
                 False,
-                f"Invalid priority-1 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_1)}",
+                f"Invalid priority-1 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_1)}",
             )
 
     # Validate priority-2 if present
@@ -315,7 +328,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_2:
             return (
                 False,
-                f"Invalid priority-2 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_2)}",
+                f"Invalid priority-2 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_2)}",
             )
 
     # Validate priority-3 if present
@@ -324,7 +338,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_3:
             return (
                 False,
-                f"Invalid priority-3 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_3)}",
+                f"Invalid priority-3 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_3)}",
             )
 
     # Validate priority-4 if present
@@ -333,7 +348,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_4:
             return (
                 False,
-                f"Invalid priority-4 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_4)}",
+                f"Invalid priority-4 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_4)}",
             )
 
     # Validate priority-5 if present
@@ -342,7 +358,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_5:
             return (
                 False,
-                f"Invalid priority-5 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_5)}",
+                f"Invalid priority-5 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_5)}",
             )
 
     # Validate priority-6 if present
@@ -351,7 +368,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_6:
             return (
                 False,
-                f"Invalid priority-6 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_6)}",
+                f"Invalid priority-6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_6)}",
             )
 
     # Validate priority-7 if present
@@ -360,7 +378,8 @@ def validate_qos_dot1p_map_put(
         if value and value not in VALID_BODY_PRIORITY_7:
             return (
                 False,
-                f"Invalid priority-7 '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_7)}",
+                f"Invalid priority-7 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY_7)}",
             )
 
     return (True, None)

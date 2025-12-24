@@ -47,7 +47,8 @@ def validate_server_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,7 +81,8 @@ def validate_server_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADDR_TYPE:
             return (
                 False,
-                f"Invalid addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_TYPE)}",
+                f"Invalid addr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADDR_TYPE)}",
             )
 
     # Validate fqdn if present
@@ -123,7 +125,8 @@ def validate_server_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SECURE:
             return (
                 False,
-                f"Invalid secure '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE)}",
+                f"Invalid secure '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURE)}",
             )
 
     # Validate ssl-cert if present
@@ -138,7 +141,8 @@ def validate_server_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEALTHCHECK:
             return (
                 False,
-                f"Invalid healthcheck '{value}'. Must be one of: {', '.join(VALID_BODY_HEALTHCHECK)}",
+                f"Invalid healthcheck '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HEALTHCHECK)}",
             )
 
     # Validate healthcheck-service if present
@@ -188,7 +192,8 @@ def validate_server_put(
         if value and value not in VALID_BODY_ADDR_TYPE:
             return (
                 False,
-                f"Invalid addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_TYPE)}",
+                f"Invalid addr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADDR_TYPE)}",
             )
 
     # Validate fqdn if present
@@ -231,7 +236,8 @@ def validate_server_put(
         if value and value not in VALID_BODY_SECURE:
             return (
                 False,
-                f"Invalid secure '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE)}",
+                f"Invalid secure '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURE)}",
             )
 
     # Validate ssl-cert if present
@@ -246,7 +252,8 @@ def validate_server_put(
         if value and value not in VALID_BODY_HEALTHCHECK:
             return (
                 False,
-                f"Invalid healthcheck '{value}'. Must be one of: {', '.join(VALID_BODY_HEALTHCHECK)}",
+                f"Invalid healthcheck '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HEALTHCHECK)}",
             )
 
     # Validate healthcheck-service if present

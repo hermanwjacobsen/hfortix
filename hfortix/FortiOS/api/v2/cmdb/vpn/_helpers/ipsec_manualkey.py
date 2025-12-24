@@ -65,7 +65,8 @@ def validate_ipsec_manualkey_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -106,7 +107,8 @@ def validate_ipsec_manualkey_post(
         if value and value not in VALID_BODY_AUTHENTICATION:
             return (
                 False,
-                f"Invalid authentication '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHENTICATION)}",
+                f"Invalid authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTHENTICATION)}",
             )
 
     # Validate encryption if present
@@ -115,7 +117,8 @@ def validate_ipsec_manualkey_post(
         if value and value not in VALID_BODY_ENCRYPTION:
             return (
                 False,
-                f"Invalid encryption '{value}'. Must be one of: {', '.join(VALID_BODY_ENCRYPTION)}",
+                f"Invalid encryption '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENCRYPTION)}",
             )
 
     # Validate npu-offload if present
@@ -124,7 +127,8 @@ def validate_ipsec_manualkey_post(
         if value and value not in VALID_BODY_NPU_OFFLOAD:
             return (
                 False,
-                f"Invalid npu-offload '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_OFFLOAD)}",
+                f"Invalid npu-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NPU_OFFLOAD)}",
             )
 
     return (True, None)
@@ -174,7 +178,8 @@ def validate_ipsec_manualkey_put(
         if value and value not in VALID_BODY_AUTHENTICATION:
             return (
                 False,
-                f"Invalid authentication '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHENTICATION)}",
+                f"Invalid authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTHENTICATION)}",
             )
 
     # Validate encryption if present
@@ -183,7 +188,8 @@ def validate_ipsec_manualkey_put(
         if value and value not in VALID_BODY_ENCRYPTION:
             return (
                 False,
-                f"Invalid encryption '{value}'. Must be one of: {', '.join(VALID_BODY_ENCRYPTION)}",
+                f"Invalid encryption '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENCRYPTION)}",
             )
 
     # Validate npu-offload if present
@@ -192,7 +198,8 @@ def validate_ipsec_manualkey_put(
         if value and value not in VALID_BODY_NPU_OFFLOAD:
             return (
                 False,
-                f"Invalid npu-offload '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_OFFLOAD)}",
+                f"Invalid npu-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NPU_OFFLOAD)}",
             )
 
     return (True, None)

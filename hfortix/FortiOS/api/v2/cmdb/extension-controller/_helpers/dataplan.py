@@ -51,7 +51,8 @@ def validate_dataplan_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,7 +85,8 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MODEM_ID:
             return (
                 False,
-                f"Invalid modem-id '{value}'. Must be one of: {', '.join(VALID_BODY_MODEM_ID)}",
+                f"Invalid modem-id '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODEM_ID)}",
             )
 
     # Validate type if present
@@ -93,7 +95,8 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate slot if present
@@ -102,7 +105,8 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SLOT:
             return (
                 False,
-                f"Invalid slot '{value}'. Must be one of: {', '.join(VALID_BODY_SLOT)}",
+                f"Invalid slot '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SLOT)}",
             )
 
     # Validate iccid if present
@@ -129,7 +133,8 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate username if present
@@ -144,7 +149,8 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PDN:
             return (
                 False,
-                f"Invalid pdn '{value}'. Must be one of: {', '.join(VALID_BODY_PDN)}",
+                f"Invalid pdn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PDN)}",
             )
 
     # Validate signal-threshold if present
@@ -220,7 +226,8 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERAGE:
             return (
                 False,
-                f"Invalid overage '{value}'. Must be one of: {', '.join(VALID_BODY_OVERAGE)}",
+                f"Invalid overage '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERAGE)}",
             )
 
     # Validate preferred-subnet if present
@@ -246,7 +253,8 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PRIVATE_NETWORK:
             return (
                 False,
-                f"Invalid private-network '{value}'. Must be one of: {', '.join(VALID_BODY_PRIVATE_NETWORK)}",
+                f"Invalid private-network '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIVATE_NETWORK)}",
             )
 
     return (True, None)
@@ -290,7 +298,8 @@ def validate_dataplan_put(
         if value and value not in VALID_BODY_MODEM_ID:
             return (
                 False,
-                f"Invalid modem-id '{value}'. Must be one of: {', '.join(VALID_BODY_MODEM_ID)}",
+                f"Invalid modem-id '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODEM_ID)}",
             )
 
     # Validate type if present
@@ -299,7 +308,8 @@ def validate_dataplan_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate slot if present
@@ -308,7 +318,8 @@ def validate_dataplan_put(
         if value and value not in VALID_BODY_SLOT:
             return (
                 False,
-                f"Invalid slot '{value}'. Must be one of: {', '.join(VALID_BODY_SLOT)}",
+                f"Invalid slot '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SLOT)}",
             )
 
     # Validate iccid if present
@@ -335,7 +346,8 @@ def validate_dataplan_put(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate username if present
@@ -350,7 +362,8 @@ def validate_dataplan_put(
         if value and value not in VALID_BODY_PDN:
             return (
                 False,
-                f"Invalid pdn '{value}'. Must be one of: {', '.join(VALID_BODY_PDN)}",
+                f"Invalid pdn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PDN)}",
             )
 
     # Validate signal-threshold if present
@@ -426,7 +439,8 @@ def validate_dataplan_put(
         if value and value not in VALID_BODY_OVERAGE:
             return (
                 False,
-                f"Invalid overage '{value}'. Must be one of: {', '.join(VALID_BODY_OVERAGE)}",
+                f"Invalid overage '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERAGE)}",
             )
 
     # Validate preferred-subnet if present
@@ -452,7 +466,8 @@ def validate_dataplan_put(
         if value and value not in VALID_BODY_PRIVATE_NETWORK:
             return (
                 False,
-                f"Invalid private-network '{value}'. Must be one of: {', '.join(VALID_BODY_PRIVATE_NETWORK)}",
+                f"Invalid private-network '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIVATE_NETWORK)}",
             )
 
     return (True, None)

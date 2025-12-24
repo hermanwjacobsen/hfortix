@@ -165,7 +165,8 @@ def validate_log_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -198,7 +199,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate addrgrp-log if present
@@ -207,7 +209,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_ADDRGRP_LOG:
             return (
                 False,
-                f"Invalid addrgrp-log '{value}'. Must be one of: {', '.join(VALID_BODY_ADDRGRP_LOG)}",
+                f"Invalid addrgrp-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADDRGRP_LOG)}",
             )
 
     # Validate ble-log if present
@@ -216,7 +219,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_BLE_LOG:
             return (
                 False,
-                f"Invalid ble-log '{value}'. Must be one of: {', '.join(VALID_BODY_BLE_LOG)}",
+                f"Invalid ble-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLE_LOG)}",
             )
 
     # Validate clb-log if present
@@ -225,7 +229,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_CLB_LOG:
             return (
                 False,
-                f"Invalid clb-log '{value}'. Must be one of: {', '.join(VALID_BODY_CLB_LOG)}",
+                f"Invalid clb-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLB_LOG)}",
             )
 
     # Validate dhcp-starv-log if present
@@ -234,7 +239,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_DHCP_STARV_LOG:
             return (
                 False,
-                f"Invalid dhcp-starv-log '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_STARV_LOG)}",
+                f"Invalid dhcp-starv-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_STARV_LOG)}",
             )
 
     # Validate led-sched-log if present
@@ -243,7 +249,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_LED_SCHED_LOG:
             return (
                 False,
-                f"Invalid led-sched-log '{value}'. Must be one of: {', '.join(VALID_BODY_LED_SCHED_LOG)}",
+                f"Invalid led-sched-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LED_SCHED_LOG)}",
             )
 
     # Validate radio-event-log if present
@@ -252,7 +259,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_RADIO_EVENT_LOG:
             return (
                 False,
-                f"Invalid radio-event-log '{value}'. Must be one of: {', '.join(VALID_BODY_RADIO_EVENT_LOG)}",
+                f"Invalid radio-event-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIO_EVENT_LOG)}",
             )
 
     # Validate rogue-event-log if present
@@ -261,7 +269,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_ROGUE_EVENT_LOG:
             return (
                 False,
-                f"Invalid rogue-event-log '{value}'. Must be one of: {', '.join(VALID_BODY_ROGUE_EVENT_LOG)}",
+                f"Invalid rogue-event-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROGUE_EVENT_LOG)}",
             )
 
     # Validate sta-event-log if present
@@ -270,7 +279,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_STA_EVENT_LOG:
             return (
                 False,
-                f"Invalid sta-event-log '{value}'. Must be one of: {', '.join(VALID_BODY_STA_EVENT_LOG)}",
+                f"Invalid sta-event-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STA_EVENT_LOG)}",
             )
 
     # Validate sta-locate-log if present
@@ -279,7 +289,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_STA_LOCATE_LOG:
             return (
                 False,
-                f"Invalid sta-locate-log '{value}'. Must be one of: {', '.join(VALID_BODY_STA_LOCATE_LOG)}",
+                f"Invalid sta-locate-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STA_LOCATE_LOG)}",
             )
 
     # Validate wids-log if present
@@ -288,7 +299,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_WIDS_LOG:
             return (
                 False,
-                f"Invalid wids-log '{value}'. Must be one of: {', '.join(VALID_BODY_WIDS_LOG)}",
+                f"Invalid wids-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIDS_LOG)}",
             )
 
     # Validate wtp-event-log if present
@@ -297,7 +309,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_WTP_EVENT_LOG:
             return (
                 False,
-                f"Invalid wtp-event-log '{value}'. Must be one of: {', '.join(VALID_BODY_WTP_EVENT_LOG)}",
+                f"Invalid wtp-event-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WTP_EVENT_LOG)}",
             )
 
     # Validate wtp-fips-event-log if present
@@ -306,7 +319,8 @@ def validate_log_put(
         if value and value not in VALID_BODY_WTP_FIPS_EVENT_LOG:
             return (
                 False,
-                f"Invalid wtp-fips-event-log '{value}'. Must be one of: {', '.join(VALID_BODY_WTP_FIPS_EVENT_LOG)}",
+                f"Invalid wtp-fips-event-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WTP_FIPS_EVENT_LOG)}",
             )
 
     return (True, None)

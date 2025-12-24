@@ -64,7 +64,8 @@ def validate_layout_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -121,7 +122,8 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OPTIONS:
             return (
                 False,
-                f"Invalid options '{value}'. Must be one of: {', '.join(VALID_BODY_OPTIONS)}",
+                f"Invalid options '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OPTIONS)}",
             )
 
     # Validate format if present
@@ -130,7 +132,8 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FORMAT:
             return (
                 False,
-                f"Invalid format '{value}'. Must be one of: {', '.join(VALID_BODY_FORMAT)}",
+                f"Invalid format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORMAT)}",
             )
 
     # Validate schedule-type if present
@@ -139,7 +142,8 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCHEDULE_TYPE:
             return (
                 False,
-                f"Invalid schedule-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE_TYPE)}",
+                f"Invalid schedule-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCHEDULE_TYPE)}",
             )
 
     # Validate day if present
@@ -148,7 +152,8 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DAY:
             return (
                 False,
-                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
+                f"Invalid day '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DAY)}",
             )
 
     # Validate cutoff-option if present
@@ -157,7 +162,8 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CUTOFF_OPTION:
             return (
                 False,
-                f"Invalid cutoff-option '{value}'. Must be one of: {', '.join(VALID_BODY_CUTOFF_OPTION)}",
+                f"Invalid cutoff-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CUTOFF_OPTION)}",
             )
 
     # Validate email-send if present
@@ -166,7 +172,8 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EMAIL_SEND:
             return (
                 False,
-                f"Invalid email-send '{value}'. Must be one of: {', '.join(VALID_BODY_EMAIL_SEND)}",
+                f"Invalid email-send '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMAIL_SEND)}",
             )
 
     # Validate email-recipients if present
@@ -251,7 +258,8 @@ def validate_layout_put(
         if value and value not in VALID_BODY_OPTIONS:
             return (
                 False,
-                f"Invalid options '{value}'. Must be one of: {', '.join(VALID_BODY_OPTIONS)}",
+                f"Invalid options '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OPTIONS)}",
             )
 
     # Validate format if present
@@ -260,7 +268,8 @@ def validate_layout_put(
         if value and value not in VALID_BODY_FORMAT:
             return (
                 False,
-                f"Invalid format '{value}'. Must be one of: {', '.join(VALID_BODY_FORMAT)}",
+                f"Invalid format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORMAT)}",
             )
 
     # Validate schedule-type if present
@@ -269,7 +278,8 @@ def validate_layout_put(
         if value and value not in VALID_BODY_SCHEDULE_TYPE:
             return (
                 False,
-                f"Invalid schedule-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE_TYPE)}",
+                f"Invalid schedule-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCHEDULE_TYPE)}",
             )
 
     # Validate day if present
@@ -278,7 +288,8 @@ def validate_layout_put(
         if value and value not in VALID_BODY_DAY:
             return (
                 False,
-                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
+                f"Invalid day '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DAY)}",
             )
 
     # Validate cutoff-option if present
@@ -287,7 +298,8 @@ def validate_layout_put(
         if value and value not in VALID_BODY_CUTOFF_OPTION:
             return (
                 False,
-                f"Invalid cutoff-option '{value}'. Must be one of: {', '.join(VALID_BODY_CUTOFF_OPTION)}",
+                f"Invalid cutoff-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CUTOFF_OPTION)}",
             )
 
     # Validate email-send if present
@@ -296,7 +308,8 @@ def validate_layout_put(
         if value and value not in VALID_BODY_EMAIL_SEND:
             return (
                 False,
-                f"Invalid email-send '{value}'. Must be one of: {', '.join(VALID_BODY_EMAIL_SEND)}",
+                f"Invalid email-send '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMAIL_SEND)}",
             )
 
     # Validate email-recipients if present

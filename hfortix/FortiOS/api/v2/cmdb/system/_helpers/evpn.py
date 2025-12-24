@@ -46,7 +46,8 @@ def validate_evpn_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,7 +91,8 @@ def validate_evpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IP_LOCAL_LEARNING:
             return (
                 False,
-                f"Invalid ip-local-learning '{value}'. Must be one of: {', '.join(VALID_BODY_IP_LOCAL_LEARNING)}",
+                f"Invalid ip-local-learning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_LOCAL_LEARNING)}",
             )
 
     # Validate arp-suppression if present
@@ -99,7 +101,8 @@ def validate_evpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ARP_SUPPRESSION:
             return (
                 False,
-                f"Invalid arp-suppression '{value}'. Must be one of: {', '.join(VALID_BODY_ARP_SUPPRESSION)}",
+                f"Invalid arp-suppression '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ARP_SUPPRESSION)}",
             )
 
     return (True, None)
@@ -154,7 +157,8 @@ def validate_evpn_put(
         if value and value not in VALID_BODY_IP_LOCAL_LEARNING:
             return (
                 False,
-                f"Invalid ip-local-learning '{value}'. Must be one of: {', '.join(VALID_BODY_IP_LOCAL_LEARNING)}",
+                f"Invalid ip-local-learning '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_LOCAL_LEARNING)}",
             )
 
     # Validate arp-suppression if present
@@ -163,7 +167,8 @@ def validate_evpn_put(
         if value and value not in VALID_BODY_ARP_SUPPRESSION:
             return (
                 False,
-                f"Invalid arp-suppression '{value}'. Must be one of: {', '.join(VALID_BODY_ARP_SUPPRESSION)}",
+                f"Invalid arp-suppression '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ARP_SUPPRESSION)}",
             )
 
     return (True, None)

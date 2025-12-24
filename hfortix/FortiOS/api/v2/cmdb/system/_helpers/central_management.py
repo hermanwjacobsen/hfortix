@@ -57,7 +57,8 @@ def validate_central_management_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,7 +91,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate type if present
@@ -99,7 +101,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate fortigate-cloud-sso-default-profile if present
@@ -117,7 +120,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_SCHEDULE_CONFIG_RESTORE:
             return (
                 False,
-                f"Invalid schedule-config-restore '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE_CONFIG_RESTORE)}",
+                f"Invalid schedule-config-restore '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCHEDULE_CONFIG_RESTORE)}",
             )
 
     # Validate schedule-script-restore if present
@@ -126,7 +130,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_SCHEDULE_SCRIPT_RESTORE:
             return (
                 False,
-                f"Invalid schedule-script-restore '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE_SCRIPT_RESTORE)}",
+                f"Invalid schedule-script-restore '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCHEDULE_SCRIPT_RESTORE)}",
             )
 
     # Validate allow-push-configuration if present
@@ -135,7 +140,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_ALLOW_PUSH_CONFIGURATION:
             return (
                 False,
-                f"Invalid allow-push-configuration '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_PUSH_CONFIGURATION)}",
+                f"Invalid allow-push-configuration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_PUSH_CONFIGURATION)}",
             )
 
     # Validate allow-push-firmware if present
@@ -144,7 +150,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_ALLOW_PUSH_FIRMWARE:
             return (
                 False,
-                f"Invalid allow-push-firmware '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_PUSH_FIRMWARE)}",
+                f"Invalid allow-push-firmware '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_PUSH_FIRMWARE)}",
             )
 
     # Validate allow-remote-firmware-upgrade if present
@@ -153,7 +160,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_ALLOW_REMOTE_FIRMWARE_UPGRADE:
             return (
                 False,
-                f"Invalid allow-remote-firmware-upgrade '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_REMOTE_FIRMWARE_UPGRADE)}",
+                f"Invalid allow-remote-firmware-upgrade '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_REMOTE_FIRMWARE_UPGRADE)}",
             )
 
     # Validate allow-monitor if present
@@ -162,7 +170,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_ALLOW_MONITOR:
             return (
                 False,
-                f"Invalid allow-monitor '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_MONITOR)}",
+                f"Invalid allow-monitor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_MONITOR)}",
             )
 
     # Validate local-cert if present
@@ -183,7 +192,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_FMG_UPDATE_PORT:
             return (
                 False,
-                f"Invalid fmg-update-port '{value}'. Must be one of: {', '.join(VALID_BODY_FMG_UPDATE_PORT)}",
+                f"Invalid fmg-update-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FMG_UPDATE_PORT)}",
             )
 
     # Validate fmg-update-http-header if present
@@ -192,7 +202,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_FMG_UPDATE_HTTP_HEADER:
             return (
                 False,
-                f"Invalid fmg-update-http-header '{value}'. Must be one of: {', '.join(VALID_BODY_FMG_UPDATE_HTTP_HEADER)}",
+                f"Invalid fmg-update-http-header '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FMG_UPDATE_HTTP_HEADER)}",
             )
 
     # Validate include-default-servers if present
@@ -201,7 +212,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_INCLUDE_DEFAULT_SERVERS:
             return (
                 False,
-                f"Invalid include-default-servers '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_DEFAULT_SERVERS)}",
+                f"Invalid include-default-servers '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INCLUDE_DEFAULT_SERVERS)}",
             )
 
     # Validate enc-algorithm if present
@@ -210,7 +222,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_ENC_ALGORITHM:
             return (
                 False,
-                f"Invalid enc-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_ENC_ALGORITHM)}",
+                f"Invalid enc-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENC_ALGORITHM)}",
             )
 
     # Validate interface-select-method if present
@@ -219,7 +232,8 @@ def validate_central_management_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present

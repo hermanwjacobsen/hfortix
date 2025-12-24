@@ -52,7 +52,8 @@ def validate_certificate_local_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -99,7 +100,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_RANGE:
             return (
                 False,
-                f"Invalid range '{value}'. Must be one of: {', '.join(VALID_BODY_RANGE)}",
+                f"Invalid range '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RANGE)}",
             )
 
     # Validate source if present
@@ -108,7 +110,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_SOURCE:
             return (
                 False,
-                f"Invalid source '{value}'. Must be one of: {', '.join(VALID_BODY_SOURCE)}",
+                f"Invalid source '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SOURCE)}",
             )
 
     # Validate auto-regenerate-days if present
@@ -157,7 +160,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_NAME_ENCODING:
             return (
                 False,
-                f"Invalid name-encoding '{value}'. Must be one of: {', '.join(VALID_BODY_NAME_ENCODING)}",
+                f"Invalid name-encoding '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAME_ENCODING)}",
             )
 
     # Validate ike-localid if present
@@ -172,7 +176,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_IKE_LOCALID_TYPE:
             return (
                 False,
-                f"Invalid ike-localid-type '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_LOCALID_TYPE)}",
+                f"Invalid ike-localid-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKE_LOCALID_TYPE)}",
             )
 
     # Validate enroll-protocol if present
@@ -181,7 +186,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_ENROLL_PROTOCOL:
             return (
                 False,
-                f"Invalid enroll-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_ENROLL_PROTOCOL)}",
+                f"Invalid enroll-protocol '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENROLL_PROTOCOL)}",
             )
 
     # Validate private-key-retain if present
@@ -190,7 +196,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_PRIVATE_KEY_RETAIN:
             return (
                 False,
-                f"Invalid private-key-retain '{value}'. Must be one of: {', '.join(VALID_BODY_PRIVATE_KEY_RETAIN)}",
+                f"Invalid private-key-retain '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIVATE_KEY_RETAIN)}",
             )
 
     # Validate cmp-server if present
@@ -217,7 +224,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_CMP_REGENERATION_METHOD:
             return (
                 False,
-                f"Invalid cmp-regeneration-method '{value}'. Must be one of: {', '.join(VALID_BODY_CMP_REGENERATION_METHOD)}",
+                f"Invalid cmp-regeneration-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CMP_REGENERATION_METHOD)}",
             )
 
     # Validate acme-ca-url if present
@@ -320,7 +328,8 @@ def validate_certificate_local_post(
         if value and value not in VALID_BODY_EST_REGENERATION_METHOD:
             return (
                 False,
-                f"Invalid est-regeneration-method '{value}'. Must be one of: {', '.join(VALID_BODY_EST_REGENERATION_METHOD)}",
+                f"Invalid est-regeneration-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EST_REGENERATION_METHOD)}",
             )
 
     return (True, None)

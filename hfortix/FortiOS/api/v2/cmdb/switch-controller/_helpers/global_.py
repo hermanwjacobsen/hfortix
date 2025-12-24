@@ -74,7 +74,8 @@ def validate_global__get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -124,7 +125,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_HTTPS_IMAGE_PUSH:
             return (
                 False,
-                f"Invalid https-image-push '{value}'. Must be one of: {', '.join(VALID_BODY_HTTPS_IMAGE_PUSH)}",
+                f"Invalid https-image-push '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTPS_IMAGE_PUSH)}",
             )
 
     # Validate vlan-all-mode if present
@@ -133,7 +135,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_VLAN_ALL_MODE:
             return (
                 False,
-                f"Invalid vlan-all-mode '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_ALL_MODE)}",
+                f"Invalid vlan-all-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VLAN_ALL_MODE)}",
             )
 
     # Validate vlan-optimization if present
@@ -142,7 +145,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_VLAN_OPTIMIZATION:
             return (
                 False,
-                f"Invalid vlan-optimization '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_OPTIMIZATION)}",
+                f"Invalid vlan-optimization '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VLAN_OPTIMIZATION)}",
             )
 
     # Validate vlan-identity if present
@@ -151,7 +155,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_VLAN_IDENTITY:
             return (
                 False,
-                f"Invalid vlan-identity '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_IDENTITY)}",
+                f"Invalid vlan-identity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VLAN_IDENTITY)}",
             )
 
     # Validate mac-retention-period if present
@@ -186,7 +191,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DHCP_SERVER_ACCESS_LIST:
             return (
                 False,
-                f"Invalid dhcp-server-access-list '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER_ACCESS_LIST)}",
+                f"Invalid dhcp-server-access-list '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_SERVER_ACCESS_LIST)}",
             )
 
     # Validate dhcp-option82-format if present
@@ -195,7 +201,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DHCP_OPTION82_FORMAT:
             return (
                 False,
-                f"Invalid dhcp-option82-format '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_FORMAT)}",
+                f"Invalid dhcp-option82-format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_FORMAT)}",
             )
 
     # Validate dhcp-option82-circuit-id if present
@@ -204,7 +211,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DHCP_OPTION82_CIRCUIT_ID:
             return (
                 False,
-                f"Invalid dhcp-option82-circuit-id '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID)}",
+                f"Invalid dhcp-option82-circuit-id '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID)}",
             )
 
     # Validate dhcp-option82-remote-id if present
@@ -213,7 +221,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DHCP_OPTION82_REMOTE_ID:
             return (
                 False,
-                f"Invalid dhcp-option82-remote-id '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_REMOTE_ID)}",
+                f"Invalid dhcp-option82-remote-id '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_OPTION82_REMOTE_ID)}",
             )
 
     # Validate dhcp-snoop-client-req if present
@@ -222,7 +231,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DHCP_SNOOP_CLIENT_REQ:
             return (
                 False,
-                f"Invalid dhcp-snoop-client-req '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SNOOP_CLIENT_REQ)}",
+                f"Invalid dhcp-snoop-client-req '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_SNOOP_CLIENT_REQ)}",
             )
 
     # Validate dhcp-snoop-client-db-exp if present
@@ -265,7 +275,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOG_MAC_LIMIT_VIOLATIONS:
             return (
                 False,
-                f"Invalid log-mac-limit-violations '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_MAC_LIMIT_VIOLATIONS)}",
+                f"Invalid log-mac-limit-violations '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_MAC_LIMIT_VIOLATIONS)}",
             )
 
     # Validate mac-violation-timer if present
@@ -291,7 +302,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SN_DNS_RESOLUTION:
             return (
                 False,
-                f"Invalid sn-dns-resolution '{value}'. Must be one of: {', '.join(VALID_BODY_SN_DNS_RESOLUTION)}",
+                f"Invalid sn-dns-resolution '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SN_DNS_RESOLUTION)}",
             )
 
     # Validate mac-event-logging if present
@@ -300,7 +312,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_MAC_EVENT_LOGGING:
             return (
                 False,
-                f"Invalid mac-event-logging '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_EVENT_LOGGING)}",
+                f"Invalid mac-event-logging '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_EVENT_LOGGING)}",
             )
 
     # Validate bounce-quarantined-link if present
@@ -309,7 +322,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_BOUNCE_QUARANTINED_LINK:
             return (
                 False,
-                f"Invalid bounce-quarantined-link '{value}'. Must be one of: {', '.join(VALID_BODY_BOUNCE_QUARANTINED_LINK)}",
+                f"Invalid bounce-quarantined-link '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BOUNCE_QUARANTINED_LINK)}",
             )
 
     # Validate quarantine-mode if present
@@ -318,7 +332,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_QUARANTINE_MODE:
             return (
                 False,
-                f"Invalid quarantine-mode '{value}'. Must be one of: {', '.join(VALID_BODY_QUARANTINE_MODE)}",
+                f"Invalid quarantine-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUARANTINE_MODE)}",
             )
 
     # Validate update-user-device if present
@@ -327,7 +342,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_UPDATE_USER_DEVICE:
             return (
                 False,
-                f"Invalid update-user-device '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_USER_DEVICE)}",
+                f"Invalid update-user-device '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPDATE_USER_DEVICE)}",
             )
 
     # Validate fips-enforce if present
@@ -336,7 +352,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_FIPS_ENFORCE:
             return (
                 False,
-                f"Invalid fips-enforce '{value}'. Must be one of: {', '.join(VALID_BODY_FIPS_ENFORCE)}",
+                f"Invalid fips-enforce '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIPS_ENFORCE)}",
             )
 
     # Validate firmware-provision-on-authorization if present
@@ -348,7 +365,8 @@ def validate_global__put(
         ):
             return (
                 False,
-                f"Invalid firmware-provision-on-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION_ON_AUTHORIZATION)}",
+                f"Invalid firmware-provision-on-authorization '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIRMWARE_PROVISION_ON_AUTHORIZATION)}",
             )
 
     # Validate switch-on-deauth if present
@@ -357,7 +375,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_SWITCH_ON_DEAUTH:
             return (
                 False,
-                f"Invalid switch-on-deauth '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_ON_DEAUTH)}",
+                f"Invalid switch-on-deauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SWITCH_ON_DEAUTH)}",
             )
 
     # Validate firewall-auth-user-hold-period if present

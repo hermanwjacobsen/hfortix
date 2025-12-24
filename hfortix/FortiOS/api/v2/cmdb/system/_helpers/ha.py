@@ -103,7 +103,8 @@ def validate_ha_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -153,7 +154,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate sync-packet-balance if present
@@ -162,7 +164,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SYNC_PACKET_BALANCE:
             return (
                 False,
-                f"Invalid sync-packet-balance '{value}'. Must be one of: {', '.join(VALID_BODY_SYNC_PACKET_BALANCE)}",
+                f"Invalid sync-packet-balance '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SYNC_PACKET_BALANCE)}",
             )
 
     # Validate route-ttl if present
@@ -226,7 +229,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_LOAD_BALANCE_ALL:
             return (
                 False,
-                f"Invalid load-balance-all '{value}'. Must be one of: {', '.join(VALID_BODY_LOAD_BALANCE_ALL)}",
+                f"Invalid load-balance-all '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOAD_BALANCE_ALL)}",
             )
 
     # Validate sync-config if present
@@ -235,7 +239,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SYNC_CONFIG:
             return (
                 False,
-                f"Invalid sync-config '{value}'. Must be one of: {', '.join(VALID_BODY_SYNC_CONFIG)}",
+                f"Invalid sync-config '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SYNC_CONFIG)}",
             )
 
     # Validate encryption if present
@@ -244,7 +249,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_ENCRYPTION:
             return (
                 False,
-                f"Invalid encryption '{value}'. Must be one of: {', '.join(VALID_BODY_ENCRYPTION)}",
+                f"Invalid encryption '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENCRYPTION)}",
             )
 
     # Validate authentication if present
@@ -253,7 +259,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_AUTHENTICATION:
             return (
                 False,
-                f"Invalid authentication '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHENTICATION)}",
+                f"Invalid authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTHENTICATION)}",
             )
 
     # Validate hb-interval if present
@@ -273,7 +280,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_HB_INTERVAL_IN_MILLISECONDS:
             return (
                 False,
-                f"Invalid hb-interval-in-milliseconds '{value}'. Must be one of: {', '.join(VALID_BODY_HB_INTERVAL_IN_MILLISECONDS)}",
+                f"Invalid hb-interval-in-milliseconds '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HB_INTERVAL_IN_MILLISECONDS)}",
             )
 
     # Validate hb-lost-threshold if present
@@ -310,7 +318,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_GRATUITOUS_ARPS:
             return (
                 False,
-                f"Invalid gratuitous-arps '{value}'. Must be one of: {', '.join(VALID_BODY_GRATUITOUS_ARPS)}",
+                f"Invalid gratuitous-arps '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GRATUITOUS_ARPS)}",
             )
 
     # Validate arps if present
@@ -341,7 +350,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SESSION_PICKUP:
             return (
                 False,
-                f"Invalid session-pickup '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_PICKUP)}",
+                f"Invalid session-pickup '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SESSION_PICKUP)}",
             )
 
     # Validate session-pickup-connectionless if present
@@ -350,7 +360,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SESSION_PICKUP_CONNECTIONLESS:
             return (
                 False,
-                f"Invalid session-pickup-connectionless '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_PICKUP_CONNECTIONLESS)}",
+                f"Invalid session-pickup-connectionless '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SESSION_PICKUP_CONNECTIONLESS)}",
             )
 
     # Validate session-pickup-expectation if present
@@ -359,7 +370,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SESSION_PICKUP_EXPECTATION:
             return (
                 False,
-                f"Invalid session-pickup-expectation '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_PICKUP_EXPECTATION)}",
+                f"Invalid session-pickup-expectation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SESSION_PICKUP_EXPECTATION)}",
             )
 
     # Validate session-pickup-nat if present
@@ -368,7 +380,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SESSION_PICKUP_NAT:
             return (
                 False,
-                f"Invalid session-pickup-nat '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_PICKUP_NAT)}",
+                f"Invalid session-pickup-nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SESSION_PICKUP_NAT)}",
             )
 
     # Validate session-pickup-delay if present
@@ -377,7 +390,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SESSION_PICKUP_DELAY:
             return (
                 False,
-                f"Invalid session-pickup-delay '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_PICKUP_DELAY)}",
+                f"Invalid session-pickup-delay '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SESSION_PICKUP_DELAY)}",
             )
 
     # Validate link-failed-signal if present
@@ -386,7 +400,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_LINK_FAILED_SIGNAL:
             return (
                 False,
-                f"Invalid link-failed-signal '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_FAILED_SIGNAL)}",
+                f"Invalid link-failed-signal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_FAILED_SIGNAL)}",
             )
 
     # Validate upgrade-mode if present
@@ -395,7 +410,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_UPGRADE_MODE:
             return (
                 False,
-                f"Invalid upgrade-mode '{value}'. Must be one of: {', '.join(VALID_BODY_UPGRADE_MODE)}",
+                f"Invalid upgrade-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPGRADE_MODE)}",
             )
 
     # Validate uninterruptible-primary-wait if present
@@ -421,7 +437,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_STANDALONE_MGMT_VDOM:
             return (
                 False,
-                f"Invalid standalone-mgmt-vdom '{value}'. Must be one of: {', '.join(VALID_BODY_STANDALONE_MGMT_VDOM)}",
+                f"Invalid standalone-mgmt-vdom '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STANDALONE_MGMT_VDOM)}",
             )
 
     # Validate ha-mgmt-status if present
@@ -430,7 +447,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_HA_MGMT_STATUS:
             return (
                 False,
-                f"Invalid ha-mgmt-status '{value}'. Must be one of: {', '.join(VALID_BODY_HA_MGMT_STATUS)}",
+                f"Invalid ha-mgmt-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HA_MGMT_STATUS)}",
             )
 
     # Validate ha-eth-type if present
@@ -474,7 +492,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_STANDALONE_CONFIG_SYNC:
             return (
                 False,
-                f"Invalid standalone-config-sync '{value}'. Must be one of: {', '.join(VALID_BODY_STANDALONE_CONFIG_SYNC)}",
+                f"Invalid standalone-config-sync '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STANDALONE_CONFIG_SYNC)}",
             )
 
     # Validate logical-sn if present
@@ -483,7 +502,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_LOGICAL_SN:
             return (
                 False,
-                f"Invalid logical-sn '{value}'. Must be one of: {', '.join(VALID_BODY_LOGICAL_SN)}",
+                f"Invalid logical-sn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGICAL_SN)}",
             )
 
     # Validate schedule if present
@@ -492,7 +512,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SCHEDULE:
             return (
                 False,
-                f"Invalid schedule '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE)}",
+                f"Invalid schedule '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCHEDULE)}",
             )
 
     # Validate override if present
@@ -501,7 +522,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_OVERRIDE:
             return (
                 False,
-                f"Invalid override '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE)}",
+                f"Invalid override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE)}",
             )
 
     # Validate priority if present
@@ -555,7 +577,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_PINGSERVER_SECONDARY_FORCE_RESET:
             return (
                 False,
-                f"Invalid pingserver-secondary-force-reset '{value}'. Must be one of: {', '.join(VALID_BODY_PINGSERVER_SECONDARY_FORCE_RESET)}",
+                f"Invalid pingserver-secondary-force-reset '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PINGSERVER_SECONDARY_FORCE_RESET)}",
             )
 
     # Validate pingserver-flip-timeout if present
@@ -581,7 +604,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_VCLUSTER_STATUS:
             return (
                 False,
-                f"Invalid vcluster-status '{value}'. Must be one of: {', '.join(VALID_BODY_VCLUSTER_STATUS)}",
+                f"Invalid vcluster-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VCLUSTER_STATUS)}",
             )
 
     # Validate ha-direct if present
@@ -590,7 +614,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_HA_DIRECT:
             return (
                 False,
-                f"Invalid ha-direct '{value}'. Must be one of: {', '.join(VALID_BODY_HA_DIRECT)}",
+                f"Invalid ha-direct '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HA_DIRECT)}",
             )
 
     # Validate ssd-failover if present
@@ -599,7 +624,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_SSD_FAILOVER:
             return (
                 False,
-                f"Invalid ssd-failover '{value}'. Must be one of: {', '.join(VALID_BODY_SSD_FAILOVER)}",
+                f"Invalid ssd-failover '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSD_FAILOVER)}",
             )
 
     # Validate memory-compatible-mode if present
@@ -608,7 +634,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_MEMORY_COMPATIBLE_MODE:
             return (
                 False,
-                f"Invalid memory-compatible-mode '{value}'. Must be one of: {', '.join(VALID_BODY_MEMORY_COMPATIBLE_MODE)}",
+                f"Invalid memory-compatible-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MEMORY_COMPATIBLE_MODE)}",
             )
 
     # Validate memory-based-failover if present
@@ -617,7 +644,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_MEMORY_BASED_FAILOVER:
             return (
                 False,
-                f"Invalid memory-based-failover '{value}'. Must be one of: {', '.join(VALID_BODY_MEMORY_BASED_FAILOVER)}",
+                f"Invalid memory-based-failover '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MEMORY_BASED_FAILOVER)}",
             )
 
     # Validate memory-failover-threshold if present
@@ -711,7 +739,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_CHECK_SECONDARY_DEV_HEALTH:
             return (
                 False,
-                f"Invalid check-secondary-dev-health '{value}'. Must be one of: {', '.join(VALID_BODY_CHECK_SECONDARY_DEV_HEALTH)}",
+                f"Invalid check-secondary-dev-health '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECK_SECONDARY_DEV_HEALTH)}",
             )
 
     # Validate ipsec-phase2-proposal if present
@@ -720,7 +749,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_IPSEC_PHASE2_PROPOSAL:
             return (
                 False,
-                f"Invalid ipsec-phase2-proposal '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_PHASE2_PROPOSAL)}",
+                f"Invalid ipsec-phase2-proposal '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPSEC_PHASE2_PROPOSAL)}",
             )
 
     # Validate bounce-intf-upon-failover if present
@@ -729,7 +759,8 @@ def validate_ha_put(
         if value and value not in VALID_BODY_BOUNCE_INTF_UPON_FAILOVER:
             return (
                 False,
-                f"Invalid bounce-intf-upon-failover '{value}'. Must be one of: {', '.join(VALID_BODY_BOUNCE_INTF_UPON_FAILOVER)}",
+                f"Invalid bounce-intf-upon-failover '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BOUNCE_INTF_UPON_FAILOVER)}",
             )
 
     return (True, None)

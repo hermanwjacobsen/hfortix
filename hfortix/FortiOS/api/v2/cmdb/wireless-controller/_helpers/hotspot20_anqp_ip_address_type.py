@@ -56,7 +56,8 @@ def validate_hotspot20_anqp_ip_address_type_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -91,7 +92,8 @@ def validate_hotspot20_anqp_ip_address_type_post(
         if value and value not in VALID_BODY_IPV6_ADDRESS_TYPE:
             return (
                 False,
-                f"Invalid ipv6-address-type '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_ADDRESS_TYPE)}",
+                f"Invalid ipv6-address-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_ADDRESS_TYPE)}",
             )
 
     # Validate ipv4-address-type if present
@@ -100,7 +102,8 @@ def validate_hotspot20_anqp_ip_address_type_post(
         if value and value not in VALID_BODY_IPV4_ADDRESS_TYPE:
             return (
                 False,
-                f"Invalid ipv4-address-type '{value}'. Must be one of: {', '.join(VALID_BODY_IPV4_ADDRESS_TYPE)}",
+                f"Invalid ipv4-address-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV4_ADDRESS_TYPE)}",
             )
 
     return (True, None)
@@ -144,7 +147,8 @@ def validate_hotspot20_anqp_ip_address_type_put(
         if value and value not in VALID_BODY_IPV6_ADDRESS_TYPE:
             return (
                 False,
-                f"Invalid ipv6-address-type '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_ADDRESS_TYPE)}",
+                f"Invalid ipv6-address-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_ADDRESS_TYPE)}",
             )
 
     # Validate ipv4-address-type if present
@@ -153,7 +157,8 @@ def validate_hotspot20_anqp_ip_address_type_put(
         if value and value not in VALID_BODY_IPV4_ADDRESS_TYPE:
             return (
                 False,
-                f"Invalid ipv4-address-type '{value}'. Must be one of: {', '.join(VALID_BODY_IPV4_ADDRESS_TYPE)}",
+                f"Invalid ipv4-address-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV4_ADDRESS_TYPE)}",
             )
 
     return (True, None)

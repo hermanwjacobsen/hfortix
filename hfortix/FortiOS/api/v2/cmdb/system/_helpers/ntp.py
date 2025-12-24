@@ -49,7 +49,8 @@ def validate_ntp_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,7 +83,8 @@ def validate_ntp_put(
         if value and value not in VALID_BODY_NTPSYNC:
             return (
                 False,
-                f"Invalid ntpsync '{value}'. Must be one of: {', '.join(VALID_BODY_NTPSYNC)}",
+                f"Invalid ntpsync '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NTPSYNC)}",
             )
 
     # Validate type if present
@@ -91,7 +93,8 @@ def validate_ntp_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate syncinterval if present
@@ -111,7 +114,8 @@ def validate_ntp_put(
         if value and value not in VALID_BODY_SERVER_MODE:
             return (
                 False,
-                f"Invalid server-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_MODE)}",
+                f"Invalid server-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_MODE)}",
             )
 
     # Validate authentication if present
@@ -120,7 +124,8 @@ def validate_ntp_put(
         if value and value not in VALID_BODY_AUTHENTICATION:
             return (
                 False,
-                f"Invalid authentication '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHENTICATION)}",
+                f"Invalid authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTHENTICATION)}",
             )
 
     # Validate key-type if present
@@ -129,7 +134,8 @@ def validate_ntp_put(
         if value and value not in VALID_BODY_KEY_TYPE:
             return (
                 False,
-                f"Invalid key-type '{value}'. Must be one of: {', '.join(VALID_BODY_KEY_TYPE)}",
+                f"Invalid key-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_KEY_TYPE)}",
             )
 
     # Validate key-id if present

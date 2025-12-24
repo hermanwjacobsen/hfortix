@@ -54,7 +54,8 @@ def validate_nac_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,7 +96,8 @@ def validate_nac_policy_post(
         if value and value not in VALID_BODY_CATEGORY:
             return (
                 False,
-                f"Invalid category '{value}'. Must be one of: {', '.join(VALID_BODY_CATEGORY)}",
+                f"Invalid category '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CATEGORY)}",
             )
 
     # Validate status if present
@@ -104,7 +106,8 @@ def validate_nac_policy_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate match-type if present
@@ -113,7 +116,8 @@ def validate_nac_policy_post(
         if value and value not in VALID_BODY_MATCH_TYPE:
             return (
                 False,
-                f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}",
+                f"Invalid match-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_TYPE)}",
             )
 
     # Validate match-period if present
@@ -133,7 +137,8 @@ def validate_nac_policy_post(
         if value and value not in VALID_BODY_MATCH_REMOVE:
             return (
                 False,
-                f"Invalid match-remove '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_REMOVE)}",
+                f"Invalid match-remove '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_REMOVE)}",
             )
 
     # Validate mac if present
@@ -285,7 +290,8 @@ def validate_nac_policy_put(
         if value and value not in VALID_BODY_CATEGORY:
             return (
                 False,
-                f"Invalid category '{value}'. Must be one of: {', '.join(VALID_BODY_CATEGORY)}",
+                f"Invalid category '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CATEGORY)}",
             )
 
     # Validate status if present
@@ -294,7 +300,8 @@ def validate_nac_policy_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate match-type if present
@@ -303,7 +310,8 @@ def validate_nac_policy_put(
         if value and value not in VALID_BODY_MATCH_TYPE:
             return (
                 False,
-                f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}",
+                f"Invalid match-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_TYPE)}",
             )
 
     # Validate match-period if present
@@ -323,7 +331,8 @@ def validate_nac_policy_put(
         if value and value not in VALID_BODY_MATCH_REMOVE:
             return (
                 False,
-                f"Invalid match-remove '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_REMOVE)}",
+                f"Invalid match-remove '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_REMOVE)}",
             )
 
     # Validate mac if present

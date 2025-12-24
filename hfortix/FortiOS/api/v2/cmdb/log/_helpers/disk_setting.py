@@ -84,7 +84,8 @@ def validate_disk_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -117,7 +118,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate ips-archive if present
@@ -126,7 +128,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_IPS_ARCHIVE:
             return (
                 False,
-                f"Invalid ips-archive '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_ARCHIVE)}",
+                f"Invalid ips-archive '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPS_ARCHIVE)}",
             )
 
     # Validate max-log-file-size if present
@@ -169,7 +172,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_ROLL_SCHEDULE:
             return (
                 False,
-                f"Invalid roll-schedule '{value}'. Must be one of: {', '.join(VALID_BODY_ROLL_SCHEDULE)}",
+                f"Invalid roll-schedule '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROLL_SCHEDULE)}",
             )
 
     # Validate roll-day if present
@@ -178,7 +182,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_ROLL_DAY:
             return (
                 False,
-                f"Invalid roll-day '{value}'. Must be one of: {', '.join(VALID_BODY_ROLL_DAY)}",
+                f"Invalid roll-day '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROLL_DAY)}",
             )
 
     # Validate diskfull if present
@@ -187,7 +192,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_DISKFULL:
             return (
                 False,
-                f"Invalid diskfull '{value}'. Must be one of: {', '.join(VALID_BODY_DISKFULL)}",
+                f"Invalid diskfull '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISKFULL)}",
             )
 
     # Validate log-quota if present
@@ -258,7 +264,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_UPLOAD:
             return (
                 False,
-                f"Invalid upload '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOAD)}",
+                f"Invalid upload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPLOAD)}",
             )
 
     # Validate upload-destination if present
@@ -267,7 +274,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_UPLOAD_DESTINATION:
             return (
                 False,
-                f"Invalid upload-destination '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOAD_DESTINATION)}",
+                f"Invalid upload-destination '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPLOAD_DESTINATION)}",
             )
 
     # Validate uploadport if present
@@ -299,7 +307,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_UPLOADTYPE:
             return (
                 False,
-                f"Invalid uploadtype '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOADTYPE)}",
+                f"Invalid uploadtype '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPLOADTYPE)}",
             )
 
     # Validate uploadsched if present
@@ -308,7 +317,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_UPLOADSCHED:
             return (
                 False,
-                f"Invalid uploadsched '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOADSCHED)}",
+                f"Invalid uploadsched '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPLOADSCHED)}",
             )
 
     # Validate upload-delete-files if present
@@ -317,7 +327,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_UPLOAD_DELETE_FILES:
             return (
                 False,
-                f"Invalid upload-delete-files '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOAD_DELETE_FILES)}",
+                f"Invalid upload-delete-files '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPLOAD_DELETE_FILES)}",
             )
 
     # Validate upload-ssl-conn if present
@@ -326,7 +337,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_UPLOAD_SSL_CONN:
             return (
                 False,
-                f"Invalid upload-ssl-conn '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOAD_SSL_CONN)}",
+                f"Invalid upload-ssl-conn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UPLOAD_SSL_CONN)}",
             )
 
     # Validate full-first-warning-threshold if present
@@ -386,7 +398,8 @@ def validate_disk_setting_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present

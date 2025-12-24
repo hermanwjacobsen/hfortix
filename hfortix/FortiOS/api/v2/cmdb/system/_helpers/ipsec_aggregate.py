@@ -51,7 +51,8 @@ def validate_ipsec_aggregate_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -86,7 +87,8 @@ def validate_ipsec_aggregate_post(
         if value and value not in VALID_BODY_ALGORITHM:
             return (
                 False,
-                f"Invalid algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_ALGORITHM)}",
+                f"Invalid algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALGORITHM)}",
             )
 
     return (True, None)
@@ -130,7 +132,8 @@ def validate_ipsec_aggregate_put(
         if value and value not in VALID_BODY_ALGORITHM:
             return (
                 False,
-                f"Invalid algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_ALGORITHM)}",
+                f"Invalid algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALGORITHM)}",
             )
 
     return (True, None)

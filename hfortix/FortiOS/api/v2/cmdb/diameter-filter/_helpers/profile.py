@@ -53,7 +53,8 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -92,7 +93,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MONITOR_ALL_MESSAGES:
             return (
                 False,
-                f"Invalid monitor-all-messages '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_ALL_MESSAGES)}",
+                f"Invalid monitor-all-messages '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MONITOR_ALL_MESSAGES)}",
             )
 
     # Validate log-packet if present
@@ -101,7 +103,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOG_PACKET:
             return (
                 False,
-                f"Invalid log-packet '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_PACKET)}",
+                f"Invalid log-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_PACKET)}",
             )
 
     # Validate track-requests-answers if present
@@ -110,7 +113,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TRACK_REQUESTS_ANSWERS:
             return (
                 False,
-                f"Invalid track-requests-answers '{value}'. Must be one of: {', '.join(VALID_BODY_TRACK_REQUESTS_ANSWERS)}",
+                f"Invalid track-requests-answers '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRACK_REQUESTS_ANSWERS)}",
             )
 
     # Validate missing-request-action if present
@@ -119,7 +123,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MISSING_REQUEST_ACTION:
             return (
                 False,
-                f"Invalid missing-request-action '{value}'. Must be one of: {', '.join(VALID_BODY_MISSING_REQUEST_ACTION)}",
+                f"Invalid missing-request-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MISSING_REQUEST_ACTION)}",
             )
 
     # Validate protocol-version-invalid if present
@@ -128,7 +133,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PROTOCOL_VERSION_INVALID:
             return (
                 False,
-                f"Invalid protocol-version-invalid '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL_VERSION_INVALID)}",
+                f"Invalid protocol-version-invalid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROTOCOL_VERSION_INVALID)}",
             )
 
     # Validate message-length-invalid if present
@@ -137,7 +143,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MESSAGE_LENGTH_INVALID:
             return (
                 False,
-                f"Invalid message-length-invalid '{value}'. Must be one of: {', '.join(VALID_BODY_MESSAGE_LENGTH_INVALID)}",
+                f"Invalid message-length-invalid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MESSAGE_LENGTH_INVALID)}",
             )
 
     # Validate request-error-flag-set if present
@@ -146,7 +153,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REQUEST_ERROR_FLAG_SET:
             return (
                 False,
-                f"Invalid request-error-flag-set '{value}'. Must be one of: {', '.join(VALID_BODY_REQUEST_ERROR_FLAG_SET)}",
+                f"Invalid request-error-flag-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REQUEST_ERROR_FLAG_SET)}",
             )
 
     # Validate cmd-flags-reserve-set if present
@@ -155,7 +163,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CMD_FLAGS_RESERVE_SET:
             return (
                 False,
-                f"Invalid cmd-flags-reserve-set '{value}'. Must be one of: {', '.join(VALID_BODY_CMD_FLAGS_RESERVE_SET)}",
+                f"Invalid cmd-flags-reserve-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CMD_FLAGS_RESERVE_SET)}",
             )
 
     # Validate command-code-invalid if present
@@ -164,7 +173,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_COMMAND_CODE_INVALID:
             return (
                 False,
-                f"Invalid command-code-invalid '{value}'. Must be one of: {', '.join(VALID_BODY_COMMAND_CODE_INVALID)}",
+                f"Invalid command-code-invalid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_COMMAND_CODE_INVALID)}",
             )
 
     return (True, None)
@@ -214,7 +224,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_MONITOR_ALL_MESSAGES:
             return (
                 False,
-                f"Invalid monitor-all-messages '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_ALL_MESSAGES)}",
+                f"Invalid monitor-all-messages '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MONITOR_ALL_MESSAGES)}",
             )
 
     # Validate log-packet if present
@@ -223,7 +234,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_LOG_PACKET:
             return (
                 False,
-                f"Invalid log-packet '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_PACKET)}",
+                f"Invalid log-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_PACKET)}",
             )
 
     # Validate track-requests-answers if present
@@ -232,7 +244,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_TRACK_REQUESTS_ANSWERS:
             return (
                 False,
-                f"Invalid track-requests-answers '{value}'. Must be one of: {', '.join(VALID_BODY_TRACK_REQUESTS_ANSWERS)}",
+                f"Invalid track-requests-answers '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRACK_REQUESTS_ANSWERS)}",
             )
 
     # Validate missing-request-action if present
@@ -241,7 +254,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_MISSING_REQUEST_ACTION:
             return (
                 False,
-                f"Invalid missing-request-action '{value}'. Must be one of: {', '.join(VALID_BODY_MISSING_REQUEST_ACTION)}",
+                f"Invalid missing-request-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MISSING_REQUEST_ACTION)}",
             )
 
     # Validate protocol-version-invalid if present
@@ -250,7 +264,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_PROTOCOL_VERSION_INVALID:
             return (
                 False,
-                f"Invalid protocol-version-invalid '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL_VERSION_INVALID)}",
+                f"Invalid protocol-version-invalid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROTOCOL_VERSION_INVALID)}",
             )
 
     # Validate message-length-invalid if present
@@ -259,7 +274,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_MESSAGE_LENGTH_INVALID:
             return (
                 False,
-                f"Invalid message-length-invalid '{value}'. Must be one of: {', '.join(VALID_BODY_MESSAGE_LENGTH_INVALID)}",
+                f"Invalid message-length-invalid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MESSAGE_LENGTH_INVALID)}",
             )
 
     # Validate request-error-flag-set if present
@@ -268,7 +284,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_REQUEST_ERROR_FLAG_SET:
             return (
                 False,
-                f"Invalid request-error-flag-set '{value}'. Must be one of: {', '.join(VALID_BODY_REQUEST_ERROR_FLAG_SET)}",
+                f"Invalid request-error-flag-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REQUEST_ERROR_FLAG_SET)}",
             )
 
     # Validate cmd-flags-reserve-set if present
@@ -277,7 +294,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_CMD_FLAGS_RESERVE_SET:
             return (
                 False,
-                f"Invalid cmd-flags-reserve-set '{value}'. Must be one of: {', '.join(VALID_BODY_CMD_FLAGS_RESERVE_SET)}",
+                f"Invalid cmd-flags-reserve-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CMD_FLAGS_RESERVE_SET)}",
             )
 
     # Validate command-code-invalid if present
@@ -286,7 +304,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_COMMAND_CODE_INVALID:
             return (
                 False,
-                f"Invalid command-code-invalid '{value}'. Must be one of: {', '.join(VALID_BODY_COMMAND_CODE_INVALID)}",
+                f"Invalid command-code-invalid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_COMMAND_CODE_INVALID)}",
             )
 
     return (True, None)

@@ -62,7 +62,8 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,7 +102,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FEATURE_SET:
             return (
                 False,
-                f"Invalid feature-set '{value}'. Must be one of: {', '.join(VALID_BODY_FEATURE_SET)}",
+                f"Invalid feature-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FEATURE_SET)}",
             )
 
     # Validate replacemsg-group if present
@@ -116,7 +118,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SPAM_LOG:
             return (
                 False,
-                f"Invalid spam-log '{value}'. Must be one of: {', '.join(VALID_BODY_SPAM_LOG)}",
+                f"Invalid spam-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPAM_LOG)}",
             )
 
     # Validate spam-log-fortiguard-response if present
@@ -125,7 +128,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SPAM_LOG_FORTIGUARD_RESPONSE:
             return (
                 False,
-                f"Invalid spam-log-fortiguard-response '{value}'. Must be one of: {', '.join(VALID_BODY_SPAM_LOG_FORTIGUARD_RESPONSE)}",
+                f"Invalid spam-log-fortiguard-response '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPAM_LOG_FORTIGUARD_RESPONSE)}",
             )
 
     # Validate spam-filtering if present
@@ -134,7 +138,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SPAM_FILTERING:
             return (
                 False,
-                f"Invalid spam-filtering '{value}'. Must be one of: {', '.join(VALID_BODY_SPAM_FILTERING)}",
+                f"Invalid spam-filtering '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPAM_FILTERING)}",
             )
 
     # Validate external if present
@@ -143,7 +148,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTERNAL:
             return (
                 False,
-                f"Invalid external '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL)}",
+                f"Invalid external '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL)}",
             )
 
     # Validate options if present
@@ -152,7 +158,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OPTIONS:
             return (
                 False,
-                f"Invalid options '{value}'. Must be one of: {', '.join(VALID_BODY_OPTIONS)}",
+                f"Invalid options '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OPTIONS)}",
             )
 
     # Validate spam-bword-threshold if present
@@ -298,7 +305,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FEATURE_SET:
             return (
                 False,
-                f"Invalid feature-set '{value}'. Must be one of: {', '.join(VALID_BODY_FEATURE_SET)}",
+                f"Invalid feature-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FEATURE_SET)}",
             )
 
     # Validate replacemsg-group if present
@@ -313,7 +321,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SPAM_LOG:
             return (
                 False,
-                f"Invalid spam-log '{value}'. Must be one of: {', '.join(VALID_BODY_SPAM_LOG)}",
+                f"Invalid spam-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPAM_LOG)}",
             )
 
     # Validate spam-log-fortiguard-response if present
@@ -322,7 +331,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SPAM_LOG_FORTIGUARD_RESPONSE:
             return (
                 False,
-                f"Invalid spam-log-fortiguard-response '{value}'. Must be one of: {', '.join(VALID_BODY_SPAM_LOG_FORTIGUARD_RESPONSE)}",
+                f"Invalid spam-log-fortiguard-response '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPAM_LOG_FORTIGUARD_RESPONSE)}",
             )
 
     # Validate spam-filtering if present
@@ -331,7 +341,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SPAM_FILTERING:
             return (
                 False,
-                f"Invalid spam-filtering '{value}'. Must be one of: {', '.join(VALID_BODY_SPAM_FILTERING)}",
+                f"Invalid spam-filtering '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPAM_FILTERING)}",
             )
 
     # Validate external if present
@@ -340,7 +351,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EXTERNAL:
             return (
                 False,
-                f"Invalid external '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL)}",
+                f"Invalid external '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL)}",
             )
 
     # Validate options if present
@@ -349,7 +361,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_OPTIONS:
             return (
                 False,
-                f"Invalid options '{value}'. Must be one of: {', '.join(VALID_BODY_OPTIONS)}",
+                f"Invalid options '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OPTIONS)}",
             )
 
     # Validate spam-bword-threshold if present

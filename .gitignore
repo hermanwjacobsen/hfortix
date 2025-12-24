@@ -64,8 +64,16 @@ htmlcov/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Local test files
+# Local test files and internal development
 X/
+
+# Development tools (local only, not for public release)
+Makefile
+.editorconfig
+DEVELOPER_NOTES.md
+CONTRIBUTING.md
+SECURITY.md
+QUICK_WINS_SUMMARY.md
 
 # Credentials and secrets
 *token*

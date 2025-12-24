@@ -46,7 +46,8 @@ def validate_rip_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -79,7 +80,8 @@ def validate_rip_put(
         if value and value not in VALID_BODY_DEFAULT_INFORMATION_ORIGINATE:
             return (
                 False,
-                f"Invalid default-information-originate '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_INFORMATION_ORIGINATE)}",
+                f"Invalid default-information-originate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_INFORMATION_ORIGINATE)}",
             )
 
     # Validate default-metric if present
@@ -152,7 +154,8 @@ def validate_rip_put(
         if value and value not in VALID_BODY_VERSION:
             return (
                 False,
-                f"Invalid version '{value}'. Must be one of: {', '.join(VALID_BODY_VERSION)}",
+                f"Invalid version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VERSION)}",
             )
 
     return (True, None)

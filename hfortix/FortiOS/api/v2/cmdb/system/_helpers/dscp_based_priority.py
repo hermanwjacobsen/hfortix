@@ -45,7 +45,8 @@ def validate_dscp_based_priority_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -96,7 +97,8 @@ def validate_dscp_based_priority_post(
         if value and value not in VALID_BODY_PRIORITY:
             return (
                 False,
-                f"Invalid priority '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY)}",
+                f"Invalid priority '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY)}",
             )
 
     return (True, None)
@@ -156,7 +158,8 @@ def validate_dscp_based_priority_put(
         if value and value not in VALID_BODY_PRIORITY:
             return (
                 False,
-                f"Invalid priority '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY)}",
+                f"Invalid priority '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY)}",
             )
 
     return (True, None)

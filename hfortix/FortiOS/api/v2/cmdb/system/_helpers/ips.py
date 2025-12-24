@@ -45,7 +45,8 @@ def validate_ips_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -78,7 +79,8 @@ def validate_ips_put(
         if value and value not in VALID_BODY_OVERRIDE_SIGNATURE_HOLD_BY_ID:
             return (
                 False,
-                f"Invalid override-signature-hold-by-id '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_SIGNATURE_HOLD_BY_ID)}",
+                f"Invalid override-signature-hold-by-id '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_SIGNATURE_HOLD_BY_ID)}",
             )
 
     return (True, None)

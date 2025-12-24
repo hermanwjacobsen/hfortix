@@ -78,7 +78,8 @@ def validate_isis_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -111,7 +112,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_IS_TYPE:
             return (
                 False,
-                f"Invalid is-type '{value}'. Must be one of: {', '.join(VALID_BODY_IS_TYPE)}",
+                f"Invalid is-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IS_TYPE)}",
             )
 
     # Validate adv-passive-only if present
@@ -120,7 +122,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_ADV_PASSIVE_ONLY:
             return (
                 False,
-                f"Invalid adv-passive-only '{value}'. Must be one of: {', '.join(VALID_BODY_ADV_PASSIVE_ONLY)}",
+                f"Invalid adv-passive-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADV_PASSIVE_ONLY)}",
             )
 
     # Validate adv-passive-only6 if present
@@ -129,7 +132,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_ADV_PASSIVE_ONLY6:
             return (
                 False,
-                f"Invalid adv-passive-only6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADV_PASSIVE_ONLY6)}",
+                f"Invalid adv-passive-only6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADV_PASSIVE_ONLY6)}",
             )
 
     # Validate auth-mode-l1 if present
@@ -138,7 +142,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_AUTH_MODE_L1:
             return (
                 False,
-                f"Invalid auth-mode-l1 '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_MODE_L1)}",
+                f"Invalid auth-mode-l1 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_MODE_L1)}",
             )
 
     # Validate auth-mode-l2 if present
@@ -147,7 +152,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_AUTH_MODE_L2:
             return (
                 False,
-                f"Invalid auth-mode-l2 '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_MODE_L2)}",
+                f"Invalid auth-mode-l2 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_MODE_L2)}",
             )
 
     # Validate auth-keychain-l1 if present
@@ -168,7 +174,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_AUTH_SENDONLY_L1:
             return (
                 False,
-                f"Invalid auth-sendonly-l1 '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SENDONLY_L1)}",
+                f"Invalid auth-sendonly-l1 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_SENDONLY_L1)}",
             )
 
     # Validate auth-sendonly-l2 if present
@@ -177,7 +184,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_AUTH_SENDONLY_L2:
             return (
                 False,
-                f"Invalid auth-sendonly-l2 '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SENDONLY_L2)}",
+                f"Invalid auth-sendonly-l2 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_SENDONLY_L2)}",
             )
 
     # Validate ignore-lsp-errors if present
@@ -186,7 +194,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_IGNORE_LSP_ERRORS:
             return (
                 False,
-                f"Invalid ignore-lsp-errors '{value}'. Must be one of: {', '.join(VALID_BODY_IGNORE_LSP_ERRORS)}",
+                f"Invalid ignore-lsp-errors '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IGNORE_LSP_ERRORS)}",
             )
 
     # Validate lsp-gen-interval-l1 if present
@@ -263,7 +272,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_DYNAMIC_HOSTNAME:
             return (
                 False,
-                f"Invalid dynamic-hostname '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_HOSTNAME)}",
+                f"Invalid dynamic-hostname '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYNAMIC_HOSTNAME)}",
             )
 
     # Validate adjacency-check if present
@@ -272,7 +282,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_ADJACENCY_CHECK:
             return (
                 False,
-                f"Invalid adjacency-check '{value}'. Must be one of: {', '.join(VALID_BODY_ADJACENCY_CHECK)}",
+                f"Invalid adjacency-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADJACENCY_CHECK)}",
             )
 
     # Validate adjacency-check6 if present
@@ -281,7 +292,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_ADJACENCY_CHECK6:
             return (
                 False,
-                f"Invalid adjacency-check6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADJACENCY_CHECK6)}",
+                f"Invalid adjacency-check6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADJACENCY_CHECK6)}",
             )
 
     # Validate overload-bit if present
@@ -290,7 +302,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_OVERLOAD_BIT:
             return (
                 False,
-                f"Invalid overload-bit '{value}'. Must be one of: {', '.join(VALID_BODY_OVERLOAD_BIT)}",
+                f"Invalid overload-bit '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERLOAD_BIT)}",
             )
 
     # Validate overload-bit-suppress if present
@@ -299,7 +312,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_OVERLOAD_BIT_SUPPRESS:
             return (
                 False,
-                f"Invalid overload-bit-suppress '{value}'. Must be one of: {', '.join(VALID_BODY_OVERLOAD_BIT_SUPPRESS)}",
+                f"Invalid overload-bit-suppress '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERLOAD_BIT_SUPPRESS)}",
             )
 
     # Validate overload-bit-on-startup if present
@@ -325,7 +339,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_DEFAULT_ORIGINATE:
             return (
                 False,
-                f"Invalid default-originate '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_ORIGINATE)}",
+                f"Invalid default-originate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_ORIGINATE)}",
             )
 
     # Validate default-originate6 if present
@@ -334,7 +349,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_DEFAULT_ORIGINATE6:
             return (
                 False,
-                f"Invalid default-originate6 '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_ORIGINATE6)}",
+                f"Invalid default-originate6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_ORIGINATE6)}",
             )
 
     # Validate metric-style if present
@@ -343,7 +359,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_METRIC_STYLE:
             return (
                 False,
-                f"Invalid metric-style '{value}'. Must be one of: {', '.join(VALID_BODY_METRIC_STYLE)}",
+                f"Invalid metric-style '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_METRIC_STYLE)}",
             )
 
     # Validate redistribute-l1 if present
@@ -352,7 +369,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_REDISTRIBUTE_L1:
             return (
                 False,
-                f"Invalid redistribute-l1 '{value}'. Must be one of: {', '.join(VALID_BODY_REDISTRIBUTE_L1)}",
+                f"Invalid redistribute-l1 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REDISTRIBUTE_L1)}",
             )
 
     # Validate redistribute-l1-list if present
@@ -367,7 +385,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_REDISTRIBUTE_L2:
             return (
                 False,
-                f"Invalid redistribute-l2 '{value}'. Must be one of: {', '.join(VALID_BODY_REDISTRIBUTE_L2)}",
+                f"Invalid redistribute-l2 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REDISTRIBUTE_L2)}",
             )
 
     # Validate redistribute-l2-list if present
@@ -382,7 +401,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_REDISTRIBUTE6_L1:
             return (
                 False,
-                f"Invalid redistribute6-l1 '{value}'. Must be one of: {', '.join(VALID_BODY_REDISTRIBUTE6_L1)}",
+                f"Invalid redistribute6-l1 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REDISTRIBUTE6_L1)}",
             )
 
     # Validate redistribute6-l1-list if present
@@ -400,7 +420,8 @@ def validate_isis_put(
         if value and value not in VALID_BODY_REDISTRIBUTE6_L2:
             return (
                 False,
-                f"Invalid redistribute6-l2 '{value}'. Must be one of: {', '.join(VALID_BODY_REDISTRIBUTE6_L2)}",
+                f"Invalid redistribute6-l2 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REDISTRIBUTE6_L2)}",
             )
 
     # Validate redistribute6-l2-list if present

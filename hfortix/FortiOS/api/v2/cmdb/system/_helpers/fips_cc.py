@@ -46,7 +46,8 @@ def validate_fips_cc_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -79,7 +80,8 @@ def validate_fips_cc_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate self-test-period if present
@@ -105,7 +107,8 @@ def validate_fips_cc_put(
         if value and value not in VALID_BODY_KEY_GENERATION_SELF_TEST:
             return (
                 False,
-                f"Invalid key-generation-self-test '{value}'. Must be one of: {', '.join(VALID_BODY_KEY_GENERATION_SELF_TEST)}",
+                f"Invalid key-generation-self-test '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_KEY_GENERATION_SELF_TEST)}",
             )
 
     return (True, None)

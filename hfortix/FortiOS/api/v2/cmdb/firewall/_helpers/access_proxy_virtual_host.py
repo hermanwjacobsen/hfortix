@@ -48,7 +48,8 @@ def validate_access_proxy_virtual_host_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -89,7 +90,8 @@ def validate_access_proxy_virtual_host_post(
         if value and value not in VALID_BODY_HOST_TYPE:
             return (
                 False,
-                f"Invalid host-type '{value}'. Must be one of: {', '.join(VALID_BODY_HOST_TYPE)}",
+                f"Invalid host-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HOST_TYPE)}",
             )
 
     # Validate replacemsg-group if present
@@ -104,7 +106,8 @@ def validate_access_proxy_virtual_host_post(
         if value and value not in VALID_BODY_EMPTY_CERT_ACTION:
             return (
                 False,
-                f"Invalid empty-cert-action '{value}'. Must be one of: {', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
+                f"Invalid empty-cert-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
             )
 
     # Validate user-agent-detect if present
@@ -113,7 +116,8 @@ def validate_access_proxy_virtual_host_post(
         if value and value not in VALID_BODY_USER_AGENT_DETECT:
             return (
                 False,
-                f"Invalid user-agent-detect '{value}'. Must be one of: {', '.join(VALID_BODY_USER_AGENT_DETECT)}",
+                f"Invalid user-agent-detect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USER_AGENT_DETECT)}",
             )
 
     # Validate client-cert if present
@@ -122,7 +126,8 @@ def validate_access_proxy_virtual_host_post(
         if value and value not in VALID_BODY_CLIENT_CERT:
             return (
                 False,
-                f"Invalid client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_CERT)}",
+                f"Invalid client-cert '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIENT_CERT)}",
             )
 
     return (True, None)
@@ -172,7 +177,8 @@ def validate_access_proxy_virtual_host_put(
         if value and value not in VALID_BODY_HOST_TYPE:
             return (
                 False,
-                f"Invalid host-type '{value}'. Must be one of: {', '.join(VALID_BODY_HOST_TYPE)}",
+                f"Invalid host-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HOST_TYPE)}",
             )
 
     # Validate replacemsg-group if present
@@ -187,7 +193,8 @@ def validate_access_proxy_virtual_host_put(
         if value and value not in VALID_BODY_EMPTY_CERT_ACTION:
             return (
                 False,
-                f"Invalid empty-cert-action '{value}'. Must be one of: {', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
+                f"Invalid empty-cert-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
             )
 
     # Validate user-agent-detect if present
@@ -196,7 +203,8 @@ def validate_access_proxy_virtual_host_put(
         if value and value not in VALID_BODY_USER_AGENT_DETECT:
             return (
                 False,
-                f"Invalid user-agent-detect '{value}'. Must be one of: {', '.join(VALID_BODY_USER_AGENT_DETECT)}",
+                f"Invalid user-agent-detect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USER_AGENT_DETECT)}",
             )
 
     # Validate client-cert if present
@@ -205,7 +213,8 @@ def validate_access_proxy_virtual_host_put(
         if value and value not in VALID_BODY_CLIENT_CERT:
             return (
                 False,
-                f"Invalid client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_CERT)}",
+                f"Invalid client-cert '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLIENT_CERT)}",
             )
 
     return (True, None)

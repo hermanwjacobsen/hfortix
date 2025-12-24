@@ -46,7 +46,8 @@ def validate_reverse_connector_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_reverse_connector_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate address if present
@@ -124,7 +126,8 @@ def validate_reverse_connector_post(
         if value and value not in VALID_BODY_SSL_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid ssl-max-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MAX_VERSION)}",
             )
 
     # Validate certificate if present
@@ -180,7 +183,8 @@ def validate_reverse_connector_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate address if present
@@ -223,7 +227,8 @@ def validate_reverse_connector_put(
         if value and value not in VALID_BODY_SSL_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid ssl-max-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MAX_VERSION)}",
             )
 
     # Validate certificate if present

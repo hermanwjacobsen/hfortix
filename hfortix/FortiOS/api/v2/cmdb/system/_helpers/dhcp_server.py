@@ -61,7 +61,8 @@ def validate_dhcp_server_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,7 +102,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate lease-time if present
@@ -124,7 +126,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_MAC_ACL_DEFAULT_ACTION:
             return (
                 False,
-                f"Invalid mac-acl-default-action '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_ACL_DEFAULT_ACTION)}",
+                f"Invalid mac-acl-default-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_ACL_DEFAULT_ACTION)}",
             )
 
     # Validate forticlient-on-net-status if present
@@ -133,7 +136,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_FORTICLIENT_ON_NET_STATUS:
             return (
                 False,
-                f"Invalid forticlient-on-net-status '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICLIENT_ON_NET_STATUS)}",
+                f"Invalid forticlient-on-net-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTICLIENT_ON_NET_STATUS)}",
             )
 
     # Validate dns-service if present
@@ -142,7 +146,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_DNS_SERVICE:
             return (
                 False,
-                f"Invalid dns-service '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVICE)}",
+                f"Invalid dns-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DNS_SERVICE)}",
             )
 
     # Validate wifi-ac-service if present
@@ -151,7 +156,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_WIFI_AC_SERVICE:
             return (
                 False,
-                f"Invalid wifi-ac-service '{value}'. Must be one of: {', '.join(VALID_BODY_WIFI_AC_SERVICE)}",
+                f"Invalid wifi-ac-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIFI_AC_SERVICE)}",
             )
 
     # Validate ntp-service if present
@@ -160,7 +166,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_NTP_SERVICE:
             return (
                 False,
-                f"Invalid ntp-service '{value}'. Must be one of: {', '.join(VALID_BODY_NTP_SERVICE)}",
+                f"Invalid ntp-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NTP_SERVICE)}",
             )
 
     # Validate domain if present
@@ -181,7 +188,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_TIMEZONE_OPTION:
             return (
                 False,
-                f"Invalid timezone-option '{value}'. Must be one of: {', '.join(VALID_BODY_TIMEZONE_OPTION)}",
+                f"Invalid timezone-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TIMEZONE_OPTION)}",
             )
 
     # Validate timezone if present
@@ -202,7 +210,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate ip-mode if present
@@ -211,7 +220,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_IP_MODE:
             return (
                 False,
-                f"Invalid ip-mode '{value}'. Must be one of: {', '.join(VALID_BODY_IP_MODE)}",
+                f"Invalid ip-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_MODE)}",
             )
 
     # Validate conflicted-ip-timeout if present
@@ -254,7 +264,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_AUTO_CONFIGURATION:
             return (
                 False,
-                f"Invalid auto-configuration '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_CONFIGURATION)}",
+                f"Invalid auto-configuration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_CONFIGURATION)}",
             )
 
     # Validate dhcp-settings-from-fortiipam if present
@@ -263,7 +274,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_DHCP_SETTINGS_FROM_FORTIIPAM:
             return (
                 False,
-                f"Invalid dhcp-settings-from-fortiipam '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SETTINGS_FROM_FORTIIPAM)}",
+                f"Invalid dhcp-settings-from-fortiipam '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_SETTINGS_FROM_FORTIIPAM)}",
             )
 
     # Validate auto-managed-status if present
@@ -272,7 +284,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_AUTO_MANAGED_STATUS:
             return (
                 False,
-                f"Invalid auto-managed-status '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_MANAGED_STATUS)}",
+                f"Invalid auto-managed-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_MANAGED_STATUS)}",
             )
 
     # Validate ddns-update if present
@@ -281,7 +294,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_DDNS_UPDATE:
             return (
                 False,
-                f"Invalid ddns-update '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_UPDATE)}",
+                f"Invalid ddns-update '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DDNS_UPDATE)}",
             )
 
     # Validate ddns-update-override if present
@@ -290,7 +304,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_DDNS_UPDATE_OVERRIDE:
             return (
                 False,
-                f"Invalid ddns-update-override '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_UPDATE_OVERRIDE)}",
+                f"Invalid ddns-update-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DDNS_UPDATE_OVERRIDE)}",
             )
 
     # Validate ddns-zone if present
@@ -305,7 +320,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_DDNS_AUTH:
             return (
                 False,
-                f"Invalid ddns-auth '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_AUTH)}",
+                f"Invalid ddns-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DDNS_AUTH)}",
             )
 
     # Validate ddns-keyname if present
@@ -331,7 +347,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_VCI_MATCH:
             return (
                 False,
-                f"Invalid vci-match '{value}'. Must be one of: {', '.join(VALID_BODY_VCI_MATCH)}",
+                f"Invalid vci-match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VCI_MATCH)}",
             )
 
     # Validate shared-subnet if present
@@ -340,7 +357,8 @@ def validate_dhcp_server_post(
         if value and value not in VALID_BODY_SHARED_SUBNET:
             return (
                 False,
-                f"Invalid shared-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SHARED_SUBNET)}",
+                f"Invalid shared-subnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SHARED_SUBNET)}",
             )
 
     return (True, None)
@@ -389,7 +407,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate lease-time if present
@@ -412,7 +431,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_MAC_ACL_DEFAULT_ACTION:
             return (
                 False,
-                f"Invalid mac-acl-default-action '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_ACL_DEFAULT_ACTION)}",
+                f"Invalid mac-acl-default-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MAC_ACL_DEFAULT_ACTION)}",
             )
 
     # Validate forticlient-on-net-status if present
@@ -421,7 +441,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_FORTICLIENT_ON_NET_STATUS:
             return (
                 False,
-                f"Invalid forticlient-on-net-status '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICLIENT_ON_NET_STATUS)}",
+                f"Invalid forticlient-on-net-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTICLIENT_ON_NET_STATUS)}",
             )
 
     # Validate dns-service if present
@@ -430,7 +451,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_DNS_SERVICE:
             return (
                 False,
-                f"Invalid dns-service '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVICE)}",
+                f"Invalid dns-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DNS_SERVICE)}",
             )
 
     # Validate wifi-ac-service if present
@@ -439,7 +461,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_WIFI_AC_SERVICE:
             return (
                 False,
-                f"Invalid wifi-ac-service '{value}'. Must be one of: {', '.join(VALID_BODY_WIFI_AC_SERVICE)}",
+                f"Invalid wifi-ac-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WIFI_AC_SERVICE)}",
             )
 
     # Validate ntp-service if present
@@ -448,7 +471,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_NTP_SERVICE:
             return (
                 False,
-                f"Invalid ntp-service '{value}'. Must be one of: {', '.join(VALID_BODY_NTP_SERVICE)}",
+                f"Invalid ntp-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NTP_SERVICE)}",
             )
 
     # Validate domain if present
@@ -469,7 +493,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_TIMEZONE_OPTION:
             return (
                 False,
-                f"Invalid timezone-option '{value}'. Must be one of: {', '.join(VALID_BODY_TIMEZONE_OPTION)}",
+                f"Invalid timezone-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TIMEZONE_OPTION)}",
             )
 
     # Validate timezone if present
@@ -490,7 +515,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate ip-mode if present
@@ -499,7 +525,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_IP_MODE:
             return (
                 False,
-                f"Invalid ip-mode '{value}'. Must be one of: {', '.join(VALID_BODY_IP_MODE)}",
+                f"Invalid ip-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_MODE)}",
             )
 
     # Validate conflicted-ip-timeout if present
@@ -542,7 +569,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_AUTO_CONFIGURATION:
             return (
                 False,
-                f"Invalid auto-configuration '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_CONFIGURATION)}",
+                f"Invalid auto-configuration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_CONFIGURATION)}",
             )
 
     # Validate dhcp-settings-from-fortiipam if present
@@ -551,7 +579,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_DHCP_SETTINGS_FROM_FORTIIPAM:
             return (
                 False,
-                f"Invalid dhcp-settings-from-fortiipam '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SETTINGS_FROM_FORTIIPAM)}",
+                f"Invalid dhcp-settings-from-fortiipam '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_SETTINGS_FROM_FORTIIPAM)}",
             )
 
     # Validate auto-managed-status if present
@@ -560,7 +589,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_AUTO_MANAGED_STATUS:
             return (
                 False,
-                f"Invalid auto-managed-status '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_MANAGED_STATUS)}",
+                f"Invalid auto-managed-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_MANAGED_STATUS)}",
             )
 
     # Validate ddns-update if present
@@ -569,7 +599,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_DDNS_UPDATE:
             return (
                 False,
-                f"Invalid ddns-update '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_UPDATE)}",
+                f"Invalid ddns-update '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DDNS_UPDATE)}",
             )
 
     # Validate ddns-update-override if present
@@ -578,7 +609,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_DDNS_UPDATE_OVERRIDE:
             return (
                 False,
-                f"Invalid ddns-update-override '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_UPDATE_OVERRIDE)}",
+                f"Invalid ddns-update-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DDNS_UPDATE_OVERRIDE)}",
             )
 
     # Validate ddns-zone if present
@@ -593,7 +625,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_DDNS_AUTH:
             return (
                 False,
-                f"Invalid ddns-auth '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_AUTH)}",
+                f"Invalid ddns-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DDNS_AUTH)}",
             )
 
     # Validate ddns-keyname if present
@@ -619,7 +652,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_VCI_MATCH:
             return (
                 False,
-                f"Invalid vci-match '{value}'. Must be one of: {', '.join(VALID_BODY_VCI_MATCH)}",
+                f"Invalid vci-match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VCI_MATCH)}",
             )
 
     # Validate shared-subnet if present
@@ -628,7 +662,8 @@ def validate_dhcp_server_put(
         if value and value not in VALID_BODY_SHARED_SUBNET:
             return (
                 False,
-                f"Invalid shared-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SHARED_SUBNET)}",
+                f"Invalid shared-subnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SHARED_SUBNET)}",
             )
 
     return (True, None)

@@ -47,7 +47,8 @@ def validate_flow_tracking_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,7 +81,8 @@ def validate_flow_tracking_put(
         if value and value not in VALID_BODY_SAMPLE_MODE:
             return (
                 False,
-                f"Invalid sample-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SAMPLE_MODE)}",
+                f"Invalid sample-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SAMPLE_MODE)}",
             )
 
     # Validate sample-rate if present
@@ -100,7 +102,8 @@ def validate_flow_tracking_put(
         if value and value not in VALID_BODY_FORMAT:
             return (
                 False,
-                f"Invalid format '{value}'. Must be one of: {', '.join(VALID_BODY_FORMAT)}",
+                f"Invalid format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORMAT)}",
             )
 
     # Validate level if present
@@ -109,7 +112,8 @@ def validate_flow_tracking_put(
         if value and value not in VALID_BODY_LEVEL:
             return (
                 False,
-                f"Invalid level '{value}'. Must be one of: {', '.join(VALID_BODY_LEVEL)}",
+                f"Invalid level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LEVEL)}",
             )
 
     # Validate max-export-pkt-size if present

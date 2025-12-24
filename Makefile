@@ -25,6 +25,12 @@ help:
 	@echo "  make publish-test   - Publish to TestPyPI"
 	@echo "  make docs           - Generate documentation (future)"
 	@echo "  make all            - Run format, lint, type-check, and test"
+	@echo "  make version-check  - Check version consistency across files"
+	@echo "  make bump-version   - Bump version (use VERSION=0.3.25 or TYPE=patch/minor/major)"
+	@echo "  make pre-release    - Auto-fix issues, then run all pre-release checks"
+	@echo "  make pre-release-check - Run pre-release checks only (no auto-fix)"
+	@echo "  make fix            - Auto-fix formatting and import issues"
+	@echo "  make fix-check      - Check what would be fixed (without making changes)"
 	@echo ""
 
 # Installation
@@ -51,7 +57,7 @@ test-coverage:
 # Code Quality
 lint:
 	@echo "Running flake8..."
-	flake8 hfortix --max-line-length=79 --extend-ignore=E203,W503
+	flake8 hfortix
 	@echo "Checking black formatting..."
 	black --check --line-length=79 hfortix
 	@echo "Checking isort..."
@@ -124,10 +130,43 @@ docs:
 all: format lint type-check test
 	@echo "✅ All checks passed! Ready to commit."
 
-# Version bump helpers
+# Version management
+version-check:
+	@echo "Checking version consistency..."
+	@python3 X/scripts/check-version-consistency.py
+
+bump-version:
+	@if [ -n "$(VERSION)" ]; then \
+		python3 X/scripts/bump_version.py $(VERSION); \
+	elif [ -n "$(TYPE)" ]; then \
+		python3 X/scripts/bump_version.py --$(TYPE); \
+	else \
+		echo "Usage: make bump-version VERSION=0.3.25"; \
+		echo "   or: make bump-version TYPE=patch|minor|major"; \
+		exit 1; \
+	fi
+
+pre-release:
+	@echo "Running pre-release workflow..."
+	@.venv/bin/python X/scripts/pre_release_check.py --auto-fix
+
+pre-release-check:
+	@echo "Running pre-release checks only (no auto-fix)..."
+	@.venv/bin/python X/scripts/pre_release_check.py
+
+# Auto-fix code issues
+fix:
+	@echo "Auto-fixing code issues..."
+	@.venv/bin/python X/scripts/pre_release_fix.py
+
+fix-check:
+	@echo "Checking what would be fixed..."
+	@.venv/bin/python X/scripts/pre_release_fix.py --check-only
+
+# Version bump helpers (legacy - use bump-version instead)
 bump-patch:
 	@echo "Current version: $$(grep '^version' pyproject.toml | cut -d'"' -f2)"
-	@echo "To bump version, edit pyproject.toml, setup.py, and hfortix/FortiOS/__init__.py"
+	@echo "Use: make bump-version TYPE=patch"
 
 bump-minor:
 	@echo "Current version: $$(grep '^version' pyproject.toml | cut -d'"' -f2)"

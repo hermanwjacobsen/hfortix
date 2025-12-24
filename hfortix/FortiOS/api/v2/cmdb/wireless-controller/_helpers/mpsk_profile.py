@@ -46,7 +46,8 @@ def validate_mpsk_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -98,7 +99,8 @@ def validate_mpsk_profile_post(
         if value and value not in VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH:
             return (
                 False,
-                f"Invalid mpsk-external-server-auth '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH)}",
+                f"Invalid mpsk-external-server-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH)}",
             )
 
     # Validate mpsk-external-server if present
@@ -113,7 +115,8 @@ def validate_mpsk_profile_post(
         if value and value not in VALID_BODY_MPSK_TYPE:
             return (
                 False,
-                f"Invalid mpsk-type '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_TYPE)}",
+                f"Invalid mpsk-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MPSK_TYPE)}",
             )
 
     return (True, None)
@@ -174,7 +177,8 @@ def validate_mpsk_profile_put(
         if value and value not in VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH:
             return (
                 False,
-                f"Invalid mpsk-external-server-auth '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH)}",
+                f"Invalid mpsk-external-server-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MPSK_EXTERNAL_SERVER_AUTH)}",
             )
 
     # Validate mpsk-external-server if present
@@ -189,7 +193,8 @@ def validate_mpsk_profile_put(
         if value and value not in VALID_BODY_MPSK_TYPE:
             return (
                 False,
-                f"Invalid mpsk-type '{value}'. Must be one of: {', '.join(VALID_BODY_MPSK_TYPE)}",
+                f"Invalid mpsk-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MPSK_TYPE)}",
             )
 
     return (True, None)

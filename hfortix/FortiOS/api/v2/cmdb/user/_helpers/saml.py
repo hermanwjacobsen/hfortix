@@ -100,7 +100,8 @@ def validate_saml_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -193,7 +194,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCIM_USER_ATTR_TYPE:
             return (
                 False,
-                f"Invalid scim-user-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCIM_USER_ATTR_TYPE)}",
+                f"Invalid scim-user-attr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCIM_USER_ATTR_TYPE)}",
             )
 
     # Validate scim-group-attr-type if present
@@ -202,7 +204,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCIM_GROUP_ATTR_TYPE:
             return (
                 False,
-                f"Invalid scim-group-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCIM_GROUP_ATTR_TYPE)}",
+                f"Invalid scim-group-attr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCIM_GROUP_ATTR_TYPE)}",
             )
 
     # Validate user-name if present
@@ -223,7 +226,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DIGEST_METHOD:
             return (
                 False,
-                f"Invalid digest-method '{value}'. Must be one of: {', '.join(VALID_BODY_DIGEST_METHOD)}",
+                f"Invalid digest-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIGEST_METHOD)}",
             )
 
     # Validate require-signed-resp-and-asrt if present
@@ -232,7 +236,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT:
             return (
                 False,
-                f"Invalid require-signed-resp-and-asrt '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT)}",
+                f"Invalid require-signed-resp-and-asrt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT)}",
             )
 
     # Validate limit-relaystate if present
@@ -241,7 +246,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LIMIT_RELAYSTATE:
             return (
                 False,
-                f"Invalid limit-relaystate '{value}'. Must be one of: {', '.join(VALID_BODY_LIMIT_RELAYSTATE)}",
+                f"Invalid limit-relaystate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LIMIT_RELAYSTATE)}",
             )
 
     # Validate clock-tolerance if present
@@ -267,7 +273,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADFS_CLAIM:
             return (
                 False,
-                f"Invalid adfs-claim '{value}'. Must be one of: {', '.join(VALID_BODY_ADFS_CLAIM)}",
+                f"Invalid adfs-claim '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADFS_CLAIM)}",
             )
 
     # Validate user-claim-type if present
@@ -276,7 +283,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USER_CLAIM_TYPE:
             return (
                 False,
-                f"Invalid user-claim-type '{value}'. Must be one of: {', '.join(VALID_BODY_USER_CLAIM_TYPE)}",
+                f"Invalid user-claim-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USER_CLAIM_TYPE)}",
             )
 
     # Validate group-claim-type if present
@@ -285,7 +293,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GROUP_CLAIM_TYPE:
             return (
                 False,
-                f"Invalid group-claim-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_CLAIM_TYPE)}",
+                f"Invalid group-claim-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_CLAIM_TYPE)}",
             )
 
     # Validate reauth if present
@@ -294,7 +303,8 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REAUTH:
             return (
                 False,
-                f"Invalid reauth '{value}'. Must be one of: {', '.join(VALID_BODY_REAUTH)}",
+                f"Invalid reauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REAUTH)}",
             )
 
     return (True, None)
@@ -398,7 +408,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_SCIM_USER_ATTR_TYPE:
             return (
                 False,
-                f"Invalid scim-user-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCIM_USER_ATTR_TYPE)}",
+                f"Invalid scim-user-attr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCIM_USER_ATTR_TYPE)}",
             )
 
     # Validate scim-group-attr-type if present
@@ -407,7 +418,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_SCIM_GROUP_ATTR_TYPE:
             return (
                 False,
-                f"Invalid scim-group-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCIM_GROUP_ATTR_TYPE)}",
+                f"Invalid scim-group-attr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCIM_GROUP_ATTR_TYPE)}",
             )
 
     # Validate user-name if present
@@ -428,7 +440,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_DIGEST_METHOD:
             return (
                 False,
-                f"Invalid digest-method '{value}'. Must be one of: {', '.join(VALID_BODY_DIGEST_METHOD)}",
+                f"Invalid digest-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIGEST_METHOD)}",
             )
 
     # Validate require-signed-resp-and-asrt if present
@@ -437,7 +450,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT:
             return (
                 False,
-                f"Invalid require-signed-resp-and-asrt '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT)}",
+                f"Invalid require-signed-resp-and-asrt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT)}",
             )
 
     # Validate limit-relaystate if present
@@ -446,7 +460,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_LIMIT_RELAYSTATE:
             return (
                 False,
-                f"Invalid limit-relaystate '{value}'. Must be one of: {', '.join(VALID_BODY_LIMIT_RELAYSTATE)}",
+                f"Invalid limit-relaystate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LIMIT_RELAYSTATE)}",
             )
 
     # Validate clock-tolerance if present
@@ -472,7 +487,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_ADFS_CLAIM:
             return (
                 False,
-                f"Invalid adfs-claim '{value}'. Must be one of: {', '.join(VALID_BODY_ADFS_CLAIM)}",
+                f"Invalid adfs-claim '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADFS_CLAIM)}",
             )
 
     # Validate user-claim-type if present
@@ -481,7 +497,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_USER_CLAIM_TYPE:
             return (
                 False,
-                f"Invalid user-claim-type '{value}'. Must be one of: {', '.join(VALID_BODY_USER_CLAIM_TYPE)}",
+                f"Invalid user-claim-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USER_CLAIM_TYPE)}",
             )
 
     # Validate group-claim-type if present
@@ -490,7 +507,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_GROUP_CLAIM_TYPE:
             return (
                 False,
-                f"Invalid group-claim-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_CLAIM_TYPE)}",
+                f"Invalid group-claim-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_CLAIM_TYPE)}",
             )
 
     # Validate reauth if present
@@ -499,7 +517,8 @@ def validate_saml_put(
         if value and value not in VALID_BODY_REAUTH:
             return (
                 False,
-                f"Invalid reauth '{value}'. Must be one of: {', '.join(VALID_BODY_REAUTH)}",
+                f"Invalid reauth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REAUTH)}",
             )
 
     return (True, None)

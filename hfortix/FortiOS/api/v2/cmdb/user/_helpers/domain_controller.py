@@ -48,7 +48,8 @@ def validate_domain_controller_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -83,7 +84,8 @@ def validate_domain_controller_post(
         if value and value not in VALID_BODY_AD_MODE:
             return (
                 False,
-                f"Invalid ad-mode '{value}'. Must be one of: {', '.join(VALID_BODY_AD_MODE)}",
+                f"Invalid ad-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AD_MODE)}",
             )
 
     # Validate hostname if present
@@ -126,7 +128,8 @@ def validate_domain_controller_post(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -164,7 +167,8 @@ def validate_domain_controller_post(
         if value and value not in VALID_BODY_CHANGE_DETECTION:
             return (
                 False,
-                f"Invalid change-detection '{value}'. Must be one of: {', '.join(VALID_BODY_CHANGE_DETECTION)}",
+                f"Invalid change-detection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHANGE_DETECTION)}",
             )
 
     # Validate change-detection-period if present
@@ -190,7 +194,8 @@ def validate_domain_controller_post(
         if value and value not in VALID_BODY_DNS_SRV_LOOKUP:
             return (
                 False,
-                f"Invalid dns-srv-lookup '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SRV_LOOKUP)}",
+                f"Invalid dns-srv-lookup '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DNS_SRV_LOOKUP)}",
             )
 
     # Validate adlds-dn if present
@@ -251,7 +256,8 @@ def validate_domain_controller_put(
         if value and value not in VALID_BODY_AD_MODE:
             return (
                 False,
-                f"Invalid ad-mode '{value}'. Must be one of: {', '.join(VALID_BODY_AD_MODE)}",
+                f"Invalid ad-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AD_MODE)}",
             )
 
     # Validate hostname if present
@@ -294,7 +300,8 @@ def validate_domain_controller_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -332,7 +339,8 @@ def validate_domain_controller_put(
         if value and value not in VALID_BODY_CHANGE_DETECTION:
             return (
                 False,
-                f"Invalid change-detection '{value}'. Must be one of: {', '.join(VALID_BODY_CHANGE_DETECTION)}",
+                f"Invalid change-detection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHANGE_DETECTION)}",
             )
 
     # Validate change-detection-period if present
@@ -358,7 +366,8 @@ def validate_domain_controller_put(
         if value and value not in VALID_BODY_DNS_SRV_LOOKUP:
             return (
                 False,
-                f"Invalid dns-srv-lookup '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SRV_LOOKUP)}",
+                f"Invalid dns-srv-lookup '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DNS_SRV_LOOKUP)}",
             )
 
     # Validate adlds-dn if present

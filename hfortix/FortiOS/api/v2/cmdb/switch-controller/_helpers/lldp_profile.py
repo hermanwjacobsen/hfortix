@@ -56,7 +56,8 @@ def validate_lldp_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -91,7 +92,8 @@ def validate_lldp_profile_post(
         if value and value not in VALID_BODY_MED_TLVS:
             return (
                 False,
-                f"Invalid med-tlvs '{value}'. Must be one of: {', '.join(VALID_BODY_MED_TLVS)}",
+                f"Invalid med-tlvs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MED_TLVS)}",
             )
 
     # Validate 802.1-tlvs if present
@@ -100,7 +102,8 @@ def validate_lldp_profile_post(
         if value and value not in VALID_BODY_802_1_TLVS:
             return (
                 False,
-                f"Invalid 802.1-tlvs '{value}'. Must be one of: {', '.join(VALID_BODY_802_1_TLVS)}",
+                f"Invalid 802.1-tlvs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_802_1_TLVS)}",
             )
 
     # Validate 802.3-tlvs if present
@@ -109,7 +112,8 @@ def validate_lldp_profile_post(
         if value and value not in VALID_BODY_802_3_TLVS:
             return (
                 False,
-                f"Invalid 802.3-tlvs '{value}'. Must be one of: {', '.join(VALID_BODY_802_3_TLVS)}",
+                f"Invalid 802.3-tlvs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_802_3_TLVS)}",
             )
 
     # Validate auto-isl if present
@@ -118,7 +122,8 @@ def validate_lldp_profile_post(
         if value and value not in VALID_BODY_AUTO_ISL:
             return (
                 False,
-                f"Invalid auto-isl '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ISL)}",
+                f"Invalid auto-isl '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ISL)}",
             )
 
     # Validate auto-isl-hello-timer if present
@@ -178,7 +183,8 @@ def validate_lldp_profile_post(
         if value and value not in VALID_BODY_AUTO_MCLAG_ICL:
             return (
                 False,
-                f"Invalid auto-mclag-icl '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_MCLAG_ICL)}",
+                f"Invalid auto-mclag-icl '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_MCLAG_ICL)}",
             )
 
     # Validate auto-isl-auth if present
@@ -187,7 +193,8 @@ def validate_lldp_profile_post(
         if value and value not in VALID_BODY_AUTO_ISL_AUTH:
             return (
                 False,
-                f"Invalid auto-isl-auth '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ISL_AUTH)}",
+                f"Invalid auto-isl-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ISL_AUTH)}",
             )
 
     # Validate auto-isl-auth-user if present
@@ -228,7 +235,8 @@ def validate_lldp_profile_post(
         if value and value not in VALID_BODY_AUTO_ISL_AUTH_ENCRYPT:
             return (
                 False,
-                f"Invalid auto-isl-auth-encrypt '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ISL_AUTH_ENCRYPT)}",
+                f"Invalid auto-isl-auth-encrypt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ISL_AUTH_ENCRYPT)}",
             )
 
     # Validate auto-isl-auth-macsec-profile if present
@@ -281,7 +289,8 @@ def validate_lldp_profile_put(
         if value and value not in VALID_BODY_MED_TLVS:
             return (
                 False,
-                f"Invalid med-tlvs '{value}'. Must be one of: {', '.join(VALID_BODY_MED_TLVS)}",
+                f"Invalid med-tlvs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MED_TLVS)}",
             )
 
     # Validate 802.1-tlvs if present
@@ -290,7 +299,8 @@ def validate_lldp_profile_put(
         if value and value not in VALID_BODY_802_1_TLVS:
             return (
                 False,
-                f"Invalid 802.1-tlvs '{value}'. Must be one of: {', '.join(VALID_BODY_802_1_TLVS)}",
+                f"Invalid 802.1-tlvs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_802_1_TLVS)}",
             )
 
     # Validate 802.3-tlvs if present
@@ -299,7 +309,8 @@ def validate_lldp_profile_put(
         if value and value not in VALID_BODY_802_3_TLVS:
             return (
                 False,
-                f"Invalid 802.3-tlvs '{value}'. Must be one of: {', '.join(VALID_BODY_802_3_TLVS)}",
+                f"Invalid 802.3-tlvs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_802_3_TLVS)}",
             )
 
     # Validate auto-isl if present
@@ -308,7 +319,8 @@ def validate_lldp_profile_put(
         if value and value not in VALID_BODY_AUTO_ISL:
             return (
                 False,
-                f"Invalid auto-isl '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ISL)}",
+                f"Invalid auto-isl '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ISL)}",
             )
 
     # Validate auto-isl-hello-timer if present
@@ -368,7 +380,8 @@ def validate_lldp_profile_put(
         if value and value not in VALID_BODY_AUTO_MCLAG_ICL:
             return (
                 False,
-                f"Invalid auto-mclag-icl '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_MCLAG_ICL)}",
+                f"Invalid auto-mclag-icl '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_MCLAG_ICL)}",
             )
 
     # Validate auto-isl-auth if present
@@ -377,7 +390,8 @@ def validate_lldp_profile_put(
         if value and value not in VALID_BODY_AUTO_ISL_AUTH:
             return (
                 False,
-                f"Invalid auto-isl-auth '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ISL_AUTH)}",
+                f"Invalid auto-isl-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ISL_AUTH)}",
             )
 
     # Validate auto-isl-auth-user if present
@@ -418,7 +432,8 @@ def validate_lldp_profile_put(
         if value and value not in VALID_BODY_AUTO_ISL_AUTH_ENCRYPT:
             return (
                 False,
-                f"Invalid auto-isl-auth-encrypt '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ISL_AUTH_ENCRYPT)}",
+                f"Invalid auto-isl-auth-encrypt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ISL_AUTH_ENCRYPT)}",
             )
 
     # Validate auto-isl-auth-macsec-profile if present

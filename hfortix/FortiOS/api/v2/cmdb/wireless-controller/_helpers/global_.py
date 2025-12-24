@@ -63,7 +63,8 @@ def validate_global__get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -147,7 +148,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_IMAGE_DOWNLOAD:
             return (
                 False,
-                f"Invalid image-download '{value}'. Must be one of: {', '.join(VALID_BODY_IMAGE_DOWNLOAD)}",
+                f"Invalid image-download '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IMAGE_DOWNLOAD)}",
             )
 
     # Validate rolling-wtp-upgrade if present
@@ -156,7 +158,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_ROLLING_WTP_UPGRADE:
             return (
                 False,
-                f"Invalid rolling-wtp-upgrade '{value}'. Must be one of: {', '.join(VALID_BODY_ROLLING_WTP_UPGRADE)}",
+                f"Invalid rolling-wtp-upgrade '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROLLING_WTP_UPGRADE)}",
             )
 
     # Validate rolling-wtp-upgrade-threshold if present
@@ -185,7 +188,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_CONTROL_MESSAGE_OFFLOAD:
             return (
                 False,
-                f"Invalid control-message-offload '{value}'. Must be one of: {', '.join(VALID_BODY_CONTROL_MESSAGE_OFFLOAD)}",
+                f"Invalid control-message-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONTROL_MESSAGE_OFFLOAD)}",
             )
 
     # Validate data-ethernet-II if present
@@ -194,7 +198,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DATA_ETHERNET_II:
             return (
                 False,
-                f"Invalid data-ethernet-II '{value}'. Must be one of: {', '.join(VALID_BODY_DATA_ETHERNET_II)}",
+                f"Invalid data-ethernet-II '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DATA_ETHERNET_II)}",
             )
 
     # Validate link-aggregation if present
@@ -203,7 +208,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_LINK_AGGREGATION:
             return (
                 False,
-                f"Invalid link-aggregation '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_AGGREGATION)}",
+                f"Invalid link-aggregation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_AGGREGATION)}",
             )
 
     # Validate mesh-eth-type if present
@@ -271,7 +277,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_WTP_SHARE:
             return (
                 False,
-                f"Invalid wtp-share '{value}'. Must be one of: {', '.join(VALID_BODY_WTP_SHARE)}",
+                f"Invalid wtp-share '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WTP_SHARE)}",
             )
 
     # Validate tunnel-mode if present
@@ -280,7 +287,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_TUNNEL_MODE:
             return (
                 False,
-                f"Invalid tunnel-mode '{value}'. Must be one of: {', '.join(VALID_BODY_TUNNEL_MODE)}",
+                f"Invalid tunnel-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TUNNEL_MODE)}",
             )
 
     # Validate nac-interval if present
@@ -300,7 +308,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_AP_LOG_SERVER:
             return (
                 False,
-                f"Invalid ap-log-server '{value}'. Must be one of: {', '.join(VALID_BODY_AP_LOG_SERVER)}",
+                f"Invalid ap-log-server '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_LOG_SERVER)}",
             )
 
     # Validate ap-log-server-port if present
@@ -461,7 +470,8 @@ def validate_global__put(
         if value and value not in VALID_BODY_DFS_LAB_TEST:
             return (
                 False,
-                f"Invalid dfs-lab-test '{value}'. Must be one of: {', '.join(VALID_BODY_DFS_LAB_TEST)}",
+                f"Invalid dfs-lab-test '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DFS_LAB_TEST)}",
             )
 
     return (True, None)

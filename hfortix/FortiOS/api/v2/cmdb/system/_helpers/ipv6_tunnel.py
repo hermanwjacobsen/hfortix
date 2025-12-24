@@ -46,7 +46,8 @@ def validate_ipv6_tunnel_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,7 +88,8 @@ def validate_ipv6_tunnel_post(
         if value and value not in VALID_BODY_USE_SDWAN:
             return (
                 False,
-                f"Invalid use-sdwan '{value}'. Must be one of: {', '.join(VALID_BODY_USE_SDWAN)}",
+                f"Invalid use-sdwan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USE_SDWAN)}",
             )
 
     # Validate auto-asic-offload if present
@@ -96,7 +98,8 @@ def validate_ipv6_tunnel_post(
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     return (True, None)
@@ -146,7 +149,8 @@ def validate_ipv6_tunnel_put(
         if value and value not in VALID_BODY_USE_SDWAN:
             return (
                 False,
-                f"Invalid use-sdwan '{value}'. Must be one of: {', '.join(VALID_BODY_USE_SDWAN)}",
+                f"Invalid use-sdwan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USE_SDWAN)}",
             )
 
     # Validate auto-asic-offload if present
@@ -155,7 +159,8 @@ def validate_ipv6_tunnel_put(
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     return (True, None)

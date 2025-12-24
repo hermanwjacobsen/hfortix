@@ -45,7 +45,8 @@ def validate_bonjour_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -86,7 +87,8 @@ def validate_bonjour_profile_post(
         if value and value not in VALID_BODY_MICRO_LOCATION:
             return (
                 False,
-                f"Invalid micro-location '{value}'. Must be one of: {', '.join(VALID_BODY_MICRO_LOCATION)}",
+                f"Invalid micro-location '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MICRO_LOCATION)}",
             )
 
     return (True, None)
@@ -136,7 +138,8 @@ def validate_bonjour_profile_put(
         if value and value not in VALID_BODY_MICRO_LOCATION:
             return (
                 False,
-                f"Invalid micro-location '{value}'. Must be one of: {', '.join(VALID_BODY_MICRO_LOCATION)}",
+                f"Invalid micro-location '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MICRO_LOCATION)}",
             )
 
     return (True, None)

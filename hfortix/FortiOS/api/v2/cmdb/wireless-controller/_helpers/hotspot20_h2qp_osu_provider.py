@@ -46,7 +46,8 @@ def validate_hotspot20_h2qp_osu_provider_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,7 +88,8 @@ def validate_hotspot20_h2qp_osu_provider_post(
         if value and value not in VALID_BODY_OSU_METHOD:
             return (
                 False,
-                f"Invalid osu-method '{value}'. Must be one of: {', '.join(VALID_BODY_OSU_METHOD)}",
+                f"Invalid osu-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OSU_METHOD)}",
             )
 
     # Validate osu-nai if present
@@ -149,7 +151,8 @@ def validate_hotspot20_h2qp_osu_provider_put(
         if value and value not in VALID_BODY_OSU_METHOD:
             return (
                 False,
-                f"Invalid osu-method '{value}'. Must be one of: {', '.join(VALID_BODY_OSU_METHOD)}",
+                f"Invalid osu-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OSU_METHOD)}",
             )
 
     # Validate osu-nai if present

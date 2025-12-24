@@ -125,7 +125,8 @@ def validate_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -166,7 +167,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate name if present
@@ -181,7 +183,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate nat64 if present
@@ -190,7 +193,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate nat46 if present
@@ -199,7 +203,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT46:
             return (
                 False,
-                f"Invalid nat46 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46)}",
+                f"Invalid nat46 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT46)}",
             )
 
     # Validate ztna-status if present
@@ -208,7 +213,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ZTNA_STATUS:
             return (
                 False,
-                f"Invalid ztna-status '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_STATUS)}",
+                f"Invalid ztna-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_STATUS)}",
             )
 
     # Validate ztna-device-ownership if present
@@ -217,7 +223,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ZTNA_DEVICE_OWNERSHIP:
             return (
                 False,
-                f"Invalid ztna-device-ownership '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_DEVICE_OWNERSHIP)}",
+                f"Invalid ztna-device-ownership '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_DEVICE_OWNERSHIP)}",
             )
 
     # Validate ztna-tags-match-logic if present
@@ -226,7 +233,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ZTNA_TAGS_MATCH_LOGIC:
             return (
                 False,
-                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
+                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
             )
 
     # Validate internet-service if present
@@ -235,7 +243,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE:
             return (
                 False,
-                f"Invalid internet-service '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE)}",
+                f"Invalid internet-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE)}",
             )
 
     # Validate internet-service-src if present
@@ -244,7 +253,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC:
             return (
                 False,
-                f"Invalid internet-service-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
+                f"Invalid internet-service-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
             )
 
     # Validate reputation-minimum if present
@@ -270,7 +280,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REPUTATION_DIRECTION:
             return (
                 False,
-                f"Invalid reputation-direction '{value}'. Must be one of: {', '.join(VALID_BODY_REPUTATION_DIRECTION)}",
+                f"Invalid reputation-direction '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REPUTATION_DIRECTION)}",
             )
 
     # Validate internet-service6 if present
@@ -279,7 +290,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE6:
             return (
                 False,
-                f"Invalid internet-service6 '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6)}",
+                f"Invalid internet-service6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6)}",
             )
 
     # Validate internet-service6-src if present
@@ -288,7 +300,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE6_SRC:
             return (
                 False,
-                f"Invalid internet-service6-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_SRC)}",
+                f"Invalid internet-service6-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_SRC)}",
             )
 
     # Validate reputation-minimum6 if present
@@ -314,7 +327,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REPUTATION_DIRECTION6:
             return (
                 False,
-                f"Invalid reputation-direction6 '{value}'. Must be one of: {', '.join(VALID_BODY_REPUTATION_DIRECTION6)}",
+                f"Invalid reputation-direction6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REPUTATION_DIRECTION6)}",
             )
 
     # Validate rtp-nat if present
@@ -323,7 +337,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RTP_NAT:
             return (
                 False,
-                f"Invalid rtp-nat '{value}'. Must be one of: {', '.join(VALID_BODY_RTP_NAT)}",
+                f"Invalid rtp-nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RTP_NAT)}",
             )
 
     # Validate send-deny-packet if present
@@ -332,7 +347,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SEND_DENY_PACKET:
             return (
                 False,
-                f"Invalid send-deny-packet '{value}'. Must be one of: {', '.join(VALID_BODY_SEND_DENY_PACKET)}",
+                f"Invalid send-deny-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEND_DENY_PACKET)}",
             )
 
     # Validate firewall-session-dirty if present
@@ -341,7 +357,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FIREWALL_SESSION_DIRTY:
             return (
                 False,
-                f"Invalid firewall-session-dirty '{value}'. Must be one of: {', '.join(VALID_BODY_FIREWALL_SESSION_DIRTY)}",
+                f"Invalid firewall-session-dirty '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIREWALL_SESSION_DIRTY)}",
             )
 
     # Validate schedule if present
@@ -356,7 +373,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCHEDULE_TIMEOUT:
             return (
                 False,
-                f"Invalid schedule-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE_TIMEOUT)}",
+                f"Invalid schedule-timeout '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCHEDULE_TIMEOUT)}",
             )
 
     # Validate policy-expiry if present
@@ -365,7 +383,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_POLICY_EXPIRY:
             return (
                 False,
-                f"Invalid policy-expiry '{value}'. Must be one of: {', '.join(VALID_BODY_POLICY_EXPIRY)}",
+                f"Invalid policy-expiry '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POLICY_EXPIRY)}",
             )
 
     # Validate tos-negate if present
@@ -374,7 +393,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TOS_NEGATE:
             return (
                 False,
-                f"Invalid tos-negate '{value}'. Must be one of: {', '.join(VALID_BODY_TOS_NEGATE)}",
+                f"Invalid tos-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TOS_NEGATE)}",
             )
 
     # Validate anti-replay if present
@@ -383,7 +403,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ANTI_REPLAY:
             return (
                 False,
-                f"Invalid anti-replay '{value}'. Must be one of: {', '.join(VALID_BODY_ANTI_REPLAY)}",
+                f"Invalid anti-replay '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ANTI_REPLAY)}",
             )
 
     # Validate tcp-session-without-syn if present
@@ -392,7 +413,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TCP_SESSION_WITHOUT_SYN:
             return (
                 False,
-                f"Invalid tcp-session-without-syn '{value}'. Must be one of: {', '.join(VALID_BODY_TCP_SESSION_WITHOUT_SYN)}",
+                f"Invalid tcp-session-without-syn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TCP_SESSION_WITHOUT_SYN)}",
             )
 
     # Validate geoip-anycast if present
@@ -401,7 +423,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GEOIP_ANYCAST:
             return (
                 False,
-                f"Invalid geoip-anycast '{value}'. Must be one of: {', '.join(VALID_BODY_GEOIP_ANYCAST)}",
+                f"Invalid geoip-anycast '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GEOIP_ANYCAST)}",
             )
 
     # Validate geoip-match if present
@@ -410,7 +433,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GEOIP_MATCH:
             return (
                 False,
-                f"Invalid geoip-match '{value}'. Must be one of: {', '.join(VALID_BODY_GEOIP_MATCH)}",
+                f"Invalid geoip-match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GEOIP_MATCH)}",
             )
 
     # Validate dynamic-shaping if present
@@ -419,7 +443,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DYNAMIC_SHAPING:
             return (
                 False,
-                f"Invalid dynamic-shaping '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_SHAPING)}",
+                f"Invalid dynamic-shaping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYNAMIC_SHAPING)}",
             )
 
     # Validate passive-wan-health-measurement if present
@@ -428,7 +453,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PASSIVE_WAN_HEALTH_MEASUREMENT:
             return (
                 False,
-                f"Invalid passive-wan-health-measurement '{value}'. Must be one of: {', '.join(VALID_BODY_PASSIVE_WAN_HEALTH_MEASUREMENT)}",
+                f"Invalid passive-wan-health-measurement '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSIVE_WAN_HEALTH_MEASUREMENT)}",
             )
 
     # Validate app-monitor if present
@@ -437,7 +463,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_APP_MONITOR:
             return (
                 False,
-                f"Invalid app-monitor '{value}'. Must be one of: {', '.join(VALID_BODY_APP_MONITOR)}",
+                f"Invalid app-monitor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APP_MONITOR)}",
             )
 
     # Validate utm-status if present
@@ -446,7 +473,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate inspection-mode if present
@@ -455,7 +483,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INSPECTION_MODE:
             return (
                 False,
-                f"Invalid inspection-mode '{value}'. Must be one of: {', '.join(VALID_BODY_INSPECTION_MODE)}",
+                f"Invalid inspection-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INSPECTION_MODE)}",
             )
 
     # Validate http-policy-redirect if present
@@ -464,7 +493,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTP_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid http-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_POLICY_REDIRECT)}",
+                f"Invalid http-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_POLICY_REDIRECT)}",
             )
 
     # Validate ssh-policy-redirect if present
@@ -473,7 +503,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSH_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
+                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
             )
 
     # Validate ztna-policy-redirect if present
@@ -482,7 +513,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ZTNA_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid ztna-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_POLICY_REDIRECT)}",
+                f"Invalid ztna-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_POLICY_REDIRECT)}",
             )
 
     # Validate webproxy-profile if present
@@ -497,7 +529,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PROFILE_TYPE:
             return (
                 False,
-                f"Invalid profile-type '{value}'. Must be one of: {', '.join(VALID_BODY_PROFILE_TYPE)}",
+                f"Invalid profile-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROFILE_TYPE)}",
             )
 
     # Validate profile-group if present
@@ -641,7 +674,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate logtraffic-start if present
@@ -650,7 +684,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOGTRAFFIC_START:
             return (
                 False,
-                f"Invalid logtraffic-start '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC_START)}",
+                f"Invalid logtraffic-start '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC_START)}",
             )
 
     # Validate log-http-transaction if present
@@ -659,7 +694,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOG_HTTP_TRANSACTION:
             return (
                 False,
-                f"Invalid log-http-transaction '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
+                f"Invalid log-http-transaction '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
             )
 
     # Validate capture-packet if present
@@ -668,7 +704,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CAPTURE_PACKET:
             return (
                 False,
-                f"Invalid capture-packet '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTURE_PACKET)}",
+                f"Invalid capture-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTURE_PACKET)}",
             )
 
     # Validate auto-asic-offload if present
@@ -677,7 +714,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     # Validate np-acceleration if present
@@ -686,7 +724,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NP_ACCELERATION:
             return (
                 False,
-                f"Invalid np-acceleration '{value}'. Must be one of: {', '.join(VALID_BODY_NP_ACCELERATION)}",
+                f"Invalid np-acceleration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NP_ACCELERATION)}",
             )
 
     # Validate webproxy-forward-server if present
@@ -725,7 +764,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT:
             return (
                 False,
-                f"Invalid nat '{value}'. Must be one of: {', '.join(VALID_BODY_NAT)}",
+                f"Invalid nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT)}",
             )
 
     # Validate pcp-outbound if present
@@ -734,7 +774,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PCP_OUTBOUND:
             return (
                 False,
-                f"Invalid pcp-outbound '{value}'. Must be one of: {', '.join(VALID_BODY_PCP_OUTBOUND)}",
+                f"Invalid pcp-outbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PCP_OUTBOUND)}",
             )
 
     # Validate pcp-inbound if present
@@ -743,7 +784,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PCP_INBOUND:
             return (
                 False,
-                f"Invalid pcp-inbound '{value}'. Must be one of: {', '.join(VALID_BODY_PCP_INBOUND)}",
+                f"Invalid pcp-inbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PCP_INBOUND)}",
             )
 
     # Validate permit-any-host if present
@@ -752,7 +794,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PERMIT_ANY_HOST:
             return (
                 False,
-                f"Invalid permit-any-host '{value}'. Must be one of: {', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
+                f"Invalid permit-any-host '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
             )
 
     # Validate permit-stun-host if present
@@ -761,7 +804,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PERMIT_STUN_HOST:
             return (
                 False,
-                f"Invalid permit-stun-host '{value}'. Must be one of: {', '.join(VALID_BODY_PERMIT_STUN_HOST)}",
+                f"Invalid permit-stun-host '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PERMIT_STUN_HOST)}",
             )
 
     # Validate fixedport if present
@@ -770,7 +814,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FIXEDPORT:
             return (
                 False,
-                f"Invalid fixedport '{value}'. Must be one of: {', '.join(VALID_BODY_FIXEDPORT)}",
+                f"Invalid fixedport '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIXEDPORT)}",
             )
 
     # Validate port-preserve if present
@@ -779,7 +824,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PORT_PRESERVE:
             return (
                 False,
-                f"Invalid port-preserve '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_PRESERVE)}",
+                f"Invalid port-preserve '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORT_PRESERVE)}",
             )
 
     # Validate port-random if present
@@ -788,7 +834,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PORT_RANDOM:
             return (
                 False,
-                f"Invalid port-random '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_RANDOM)}",
+                f"Invalid port-random '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORT_RANDOM)}",
             )
 
     # Validate ippool if present
@@ -797,7 +844,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPPOOL:
             return (
                 False,
-                f"Invalid ippool '{value}'. Must be one of: {', '.join(VALID_BODY_IPPOOL)}",
+                f"Invalid ippool '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPPOOL)}",
             )
 
     # Validate vlan-cos-fwd if present
@@ -828,7 +876,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INBOUND:
             return (
                 False,
-                f"Invalid inbound '{value}'. Must be one of: {', '.join(VALID_BODY_INBOUND)}",
+                f"Invalid inbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INBOUND)}",
             )
 
     # Validate outbound if present
@@ -837,7 +886,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OUTBOUND:
             return (
                 False,
-                f"Invalid outbound '{value}'. Must be one of: {', '.join(VALID_BODY_OUTBOUND)}",
+                f"Invalid outbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OUTBOUND)}",
             )
 
     # Validate natinbound if present
@@ -846,7 +896,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NATINBOUND:
             return (
                 False,
-                f"Invalid natinbound '{value}'. Must be one of: {', '.join(VALID_BODY_NATINBOUND)}",
+                f"Invalid natinbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NATINBOUND)}",
             )
 
     # Validate natoutbound if present
@@ -855,7 +906,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NATOUTBOUND:
             return (
                 False,
-                f"Invalid natoutbound '{value}'. Must be one of: {', '.join(VALID_BODY_NATOUTBOUND)}",
+                f"Invalid natoutbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NATOUTBOUND)}",
             )
 
     # Validate fec if present
@@ -864,7 +916,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FEC:
             return (
                 False,
-                f"Invalid fec '{value}'. Must be one of: {', '.join(VALID_BODY_FEC)}",
+                f"Invalid fec '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FEC)}",
             )
 
     # Validate wccp if present
@@ -873,7 +926,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WCCP:
             return (
                 False,
-                f"Invalid wccp '{value}'. Must be one of: {', '.join(VALID_BODY_WCCP)}",
+                f"Invalid wccp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WCCP)}",
             )
 
     # Validate ntlm if present
@@ -882,7 +936,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NTLM:
             return (
                 False,
-                f"Invalid ntlm '{value}'. Must be one of: {', '.join(VALID_BODY_NTLM)}",
+                f"Invalid ntlm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NTLM)}",
             )
 
     # Validate ntlm-guest if present
@@ -891,7 +946,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NTLM_GUEST:
             return (
                 False,
-                f"Invalid ntlm-guest '{value}'. Must be one of: {', '.join(VALID_BODY_NTLM_GUEST)}",
+                f"Invalid ntlm-guest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NTLM_GUEST)}",
             )
 
     # Validate fsso-agent-for-ntlm if present
@@ -906,7 +962,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_PATH:
             return (
                 False,
-                f"Invalid auth-path '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PATH)}",
+                f"Invalid auth-path '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_PATH)}",
             )
 
     # Validate disclaimer if present
@@ -915,7 +972,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DISCLAIMER:
             return (
                 False,
-                f"Invalid disclaimer '{value}'. Must be one of: {', '.join(VALID_BODY_DISCLAIMER)}",
+                f"Invalid disclaimer '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCLAIMER)}",
             )
 
     # Validate email-collect if present
@@ -924,7 +982,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EMAIL_COLLECT:
             return (
                 False,
-                f"Invalid email-collect '{value}'. Must be one of: {', '.join(VALID_BODY_EMAIL_COLLECT)}",
+                f"Invalid email-collect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMAIL_COLLECT)}",
             )
 
     # Validate vpntunnel if present
@@ -939,7 +998,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MATCH_VIP:
             return (
                 False,
-                f"Invalid match-vip '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_VIP)}",
+                f"Invalid match-vip '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_VIP)}",
             )
 
     # Validate match-vip-only if present
@@ -948,7 +1008,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MATCH_VIP_ONLY:
             return (
                 False,
-                f"Invalid match-vip-only '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_VIP_ONLY)}",
+                f"Invalid match-vip-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_VIP_ONLY)}",
             )
 
     # Validate diffserv-copy if present
@@ -957,7 +1018,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DIFFSERV_COPY:
             return (
                 False,
-                f"Invalid diffserv-copy '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_COPY)}",
+                f"Invalid diffserv-copy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_COPY)}",
             )
 
     # Validate diffserv-forward if present
@@ -966,7 +1028,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DIFFSERV_FORWARD:
             return (
                 False,
-                f"Invalid diffserv-forward '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
+                f"Invalid diffserv-forward '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
             )
 
     # Validate diffserv-reverse if present
@@ -975,7 +1038,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DIFFSERV_REVERSE:
             return (
                 False,
-                f"Invalid diffserv-reverse '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
+                f"Invalid diffserv-reverse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
             )
 
     # Validate tcp-mss-sender if present
@@ -1045,7 +1109,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BLOCK_NOTIFICATION:
             return (
                 False,
-                f"Invalid block-notification '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
+                f"Invalid block-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
             )
 
     # Validate replacemsg-override-group if present
@@ -1063,7 +1128,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SRCADDR_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR_NEGATE)}",
+                f"Invalid srcaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR_NEGATE)}",
             )
 
     # Validate srcaddr6-negate if present
@@ -1072,7 +1138,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SRCADDR6_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR6_NEGATE)}",
+                f"Invalid srcaddr6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR6_NEGATE)}",
             )
 
     # Validate dstaddr-negate if present
@@ -1081,7 +1148,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DSTADDR_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR_NEGATE)}",
+                f"Invalid dstaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR_NEGATE)}",
             )
 
     # Validate dstaddr6-negate if present
@@ -1090,7 +1158,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DSTADDR6_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR6_NEGATE)}",
+                f"Invalid dstaddr6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR6_NEGATE)}",
             )
 
     # Validate ztna-ems-tag-negate if present
@@ -1099,7 +1168,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ZTNA_EMS_TAG_NEGATE:
             return (
                 False,
-                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
+                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
             )
 
     # Validate service-negate if present
@@ -1108,7 +1178,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_NEGATE)}",
+                f"Invalid service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service-negate if present
@@ -1117,7 +1188,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
+                f"Invalid internet-service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service-src-negate if present
@@ -1126,7 +1198,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
+                f"Invalid internet-service-src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
             )
 
     # Validate internet-service6-negate if present
@@ -1135,7 +1208,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE6_NEGATE:
             return (
                 False,
-                f"Invalid internet-service6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
+                f"Invalid internet-service6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
             )
 
     # Validate internet-service6-src-negate if present
@@ -1144,7 +1218,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERNET_SERVICE6_SRC_NEGATE:
             return (
                 False,
-                f"Invalid internet-service6-src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_SRC_NEGATE)}",
+                f"Invalid internet-service6-src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_SRC_NEGATE)}",
             )
 
     # Validate timeout-send-rst if present
@@ -1153,7 +1228,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TIMEOUT_SEND_RST:
             return (
                 False,
-                f"Invalid timeout-send-rst '{value}'. Must be one of: {', '.join(VALID_BODY_TIMEOUT_SEND_RST)}",
+                f"Invalid timeout-send-rst '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TIMEOUT_SEND_RST)}",
             )
 
     # Validate captive-portal-exempt if present
@@ -1162,7 +1238,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CAPTIVE_PORTAL_EXEMPT:
             return (
                 False,
-                f"Invalid captive-portal-exempt '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_PORTAL_EXEMPT)}",
+                f"Invalid captive-portal-exempt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_PORTAL_EXEMPT)}",
             )
 
     # Validate decrypted-traffic-mirror if present
@@ -1180,7 +1257,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DSRI:
             return (
                 False,
-                f"Invalid dsri '{value}'. Must be one of: {', '.join(VALID_BODY_DSRI)}",
+                f"Invalid dsri '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSRI)}",
             )
 
     # Validate radius-mac-auth-bypass if present
@@ -1189,7 +1267,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RADIUS_MAC_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid radius-mac-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_MAC_AUTH_BYPASS)}",
+                f"Invalid radius-mac-auth-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_MAC_AUTH_BYPASS)}",
             )
 
     # Validate radius-ip-auth-bypass if present
@@ -1198,7 +1277,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RADIUS_IP_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid radius-ip-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_IP_AUTH_BYPASS)}",
+                f"Invalid radius-ip-auth-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_IP_AUTH_BYPASS)}",
             )
 
     # Validate delay-tcp-npu-session if present
@@ -1207,7 +1287,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DELAY_TCP_NPU_SESSION:
             return (
                 False,
-                f"Invalid delay-tcp-npu-session '{value}'. Must be one of: {', '.join(VALID_BODY_DELAY_TCP_NPU_SESSION)}",
+                f"Invalid delay-tcp-npu-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DELAY_TCP_NPU_SESSION)}",
             )
 
     # Validate sgt-check if present
@@ -1216,7 +1297,8 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SGT_CHECK:
             return (
                 False,
-                f"Invalid sgt-check '{value}'. Must be one of: {', '.join(VALID_BODY_SGT_CHECK)}",
+                f"Invalid sgt-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SGT_CHECK)}",
             )
 
     return (True, None)
@@ -1268,7 +1350,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate name if present
@@ -1283,7 +1366,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate nat64 if present
@@ -1292,7 +1376,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate nat46 if present
@@ -1301,7 +1386,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NAT46:
             return (
                 False,
-                f"Invalid nat46 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46)}",
+                f"Invalid nat46 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT46)}",
             )
 
     # Validate ztna-status if present
@@ -1310,7 +1396,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_ZTNA_STATUS:
             return (
                 False,
-                f"Invalid ztna-status '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_STATUS)}",
+                f"Invalid ztna-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_STATUS)}",
             )
 
     # Validate ztna-device-ownership if present
@@ -1319,7 +1406,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_ZTNA_DEVICE_OWNERSHIP:
             return (
                 False,
-                f"Invalid ztna-device-ownership '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_DEVICE_OWNERSHIP)}",
+                f"Invalid ztna-device-ownership '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_DEVICE_OWNERSHIP)}",
             )
 
     # Validate ztna-tags-match-logic if present
@@ -1328,7 +1416,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_ZTNA_TAGS_MATCH_LOGIC:
             return (
                 False,
-                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
+                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
             )
 
     # Validate internet-service if present
@@ -1337,7 +1426,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE:
             return (
                 False,
-                f"Invalid internet-service '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE)}",
+                f"Invalid internet-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE)}",
             )
 
     # Validate internet-service-src if present
@@ -1346,7 +1436,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC:
             return (
                 False,
-                f"Invalid internet-service-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
+                f"Invalid internet-service-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC)}",
             )
 
     # Validate reputation-minimum if present
@@ -1372,7 +1463,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_REPUTATION_DIRECTION:
             return (
                 False,
-                f"Invalid reputation-direction '{value}'. Must be one of: {', '.join(VALID_BODY_REPUTATION_DIRECTION)}",
+                f"Invalid reputation-direction '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REPUTATION_DIRECTION)}",
             )
 
     # Validate internet-service6 if present
@@ -1381,7 +1473,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE6:
             return (
                 False,
-                f"Invalid internet-service6 '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6)}",
+                f"Invalid internet-service6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6)}",
             )
 
     # Validate internet-service6-src if present
@@ -1390,7 +1483,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE6_SRC:
             return (
                 False,
-                f"Invalid internet-service6-src '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_SRC)}",
+                f"Invalid internet-service6-src '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_SRC)}",
             )
 
     # Validate reputation-minimum6 if present
@@ -1416,7 +1510,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_REPUTATION_DIRECTION6:
             return (
                 False,
-                f"Invalid reputation-direction6 '{value}'. Must be one of: {', '.join(VALID_BODY_REPUTATION_DIRECTION6)}",
+                f"Invalid reputation-direction6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REPUTATION_DIRECTION6)}",
             )
 
     # Validate rtp-nat if present
@@ -1425,7 +1520,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_RTP_NAT:
             return (
                 False,
-                f"Invalid rtp-nat '{value}'. Must be one of: {', '.join(VALID_BODY_RTP_NAT)}",
+                f"Invalid rtp-nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RTP_NAT)}",
             )
 
     # Validate send-deny-packet if present
@@ -1434,7 +1530,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_SEND_DENY_PACKET:
             return (
                 False,
-                f"Invalid send-deny-packet '{value}'. Must be one of: {', '.join(VALID_BODY_SEND_DENY_PACKET)}",
+                f"Invalid send-deny-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEND_DENY_PACKET)}",
             )
 
     # Validate firewall-session-dirty if present
@@ -1443,7 +1540,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_FIREWALL_SESSION_DIRTY:
             return (
                 False,
-                f"Invalid firewall-session-dirty '{value}'. Must be one of: {', '.join(VALID_BODY_FIREWALL_SESSION_DIRTY)}",
+                f"Invalid firewall-session-dirty '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIREWALL_SESSION_DIRTY)}",
             )
 
     # Validate schedule if present
@@ -1458,7 +1556,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_SCHEDULE_TIMEOUT:
             return (
                 False,
-                f"Invalid schedule-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE_TIMEOUT)}",
+                f"Invalid schedule-timeout '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCHEDULE_TIMEOUT)}",
             )
 
     # Validate policy-expiry if present
@@ -1467,7 +1566,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_POLICY_EXPIRY:
             return (
                 False,
-                f"Invalid policy-expiry '{value}'. Must be one of: {', '.join(VALID_BODY_POLICY_EXPIRY)}",
+                f"Invalid policy-expiry '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POLICY_EXPIRY)}",
             )
 
     # Validate tos-negate if present
@@ -1476,7 +1576,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_TOS_NEGATE:
             return (
                 False,
-                f"Invalid tos-negate '{value}'. Must be one of: {', '.join(VALID_BODY_TOS_NEGATE)}",
+                f"Invalid tos-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TOS_NEGATE)}",
             )
 
     # Validate anti-replay if present
@@ -1485,7 +1586,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_ANTI_REPLAY:
             return (
                 False,
-                f"Invalid anti-replay '{value}'. Must be one of: {', '.join(VALID_BODY_ANTI_REPLAY)}",
+                f"Invalid anti-replay '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ANTI_REPLAY)}",
             )
 
     # Validate tcp-session-without-syn if present
@@ -1494,7 +1596,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_TCP_SESSION_WITHOUT_SYN:
             return (
                 False,
-                f"Invalid tcp-session-without-syn '{value}'. Must be one of: {', '.join(VALID_BODY_TCP_SESSION_WITHOUT_SYN)}",
+                f"Invalid tcp-session-without-syn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TCP_SESSION_WITHOUT_SYN)}",
             )
 
     # Validate geoip-anycast if present
@@ -1503,7 +1606,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_GEOIP_ANYCAST:
             return (
                 False,
-                f"Invalid geoip-anycast '{value}'. Must be one of: {', '.join(VALID_BODY_GEOIP_ANYCAST)}",
+                f"Invalid geoip-anycast '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GEOIP_ANYCAST)}",
             )
 
     # Validate geoip-match if present
@@ -1512,7 +1616,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_GEOIP_MATCH:
             return (
                 False,
-                f"Invalid geoip-match '{value}'. Must be one of: {', '.join(VALID_BODY_GEOIP_MATCH)}",
+                f"Invalid geoip-match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GEOIP_MATCH)}",
             )
 
     # Validate dynamic-shaping if present
@@ -1521,7 +1626,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DYNAMIC_SHAPING:
             return (
                 False,
-                f"Invalid dynamic-shaping '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_SHAPING)}",
+                f"Invalid dynamic-shaping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYNAMIC_SHAPING)}",
             )
 
     # Validate passive-wan-health-measurement if present
@@ -1530,7 +1636,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PASSIVE_WAN_HEALTH_MEASUREMENT:
             return (
                 False,
-                f"Invalid passive-wan-health-measurement '{value}'. Must be one of: {', '.join(VALID_BODY_PASSIVE_WAN_HEALTH_MEASUREMENT)}",
+                f"Invalid passive-wan-health-measurement '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PASSIVE_WAN_HEALTH_MEASUREMENT)}",
             )
 
     # Validate app-monitor if present
@@ -1539,7 +1646,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_APP_MONITOR:
             return (
                 False,
-                f"Invalid app-monitor '{value}'. Must be one of: {', '.join(VALID_BODY_APP_MONITOR)}",
+                f"Invalid app-monitor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APP_MONITOR)}",
             )
 
     # Validate utm-status if present
@@ -1548,7 +1656,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate inspection-mode if present
@@ -1557,7 +1666,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INSPECTION_MODE:
             return (
                 False,
-                f"Invalid inspection-mode '{value}'. Must be one of: {', '.join(VALID_BODY_INSPECTION_MODE)}",
+                f"Invalid inspection-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INSPECTION_MODE)}",
             )
 
     # Validate http-policy-redirect if present
@@ -1566,7 +1676,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_HTTP_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid http-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_POLICY_REDIRECT)}",
+                f"Invalid http-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_POLICY_REDIRECT)}",
             )
 
     # Validate ssh-policy-redirect if present
@@ -1575,7 +1686,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_SSH_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
+                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
             )
 
     # Validate ztna-policy-redirect if present
@@ -1584,7 +1696,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_ZTNA_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid ztna-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_POLICY_REDIRECT)}",
+                f"Invalid ztna-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_POLICY_REDIRECT)}",
             )
 
     # Validate webproxy-profile if present
@@ -1599,7 +1712,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PROFILE_TYPE:
             return (
                 False,
-                f"Invalid profile-type '{value}'. Must be one of: {', '.join(VALID_BODY_PROFILE_TYPE)}",
+                f"Invalid profile-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROFILE_TYPE)}",
             )
 
     # Validate profile-group if present
@@ -1743,7 +1857,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate logtraffic-start if present
@@ -1752,7 +1867,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_LOGTRAFFIC_START:
             return (
                 False,
-                f"Invalid logtraffic-start '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC_START)}",
+                f"Invalid logtraffic-start '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC_START)}",
             )
 
     # Validate log-http-transaction if present
@@ -1761,7 +1877,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_LOG_HTTP_TRANSACTION:
             return (
                 False,
-                f"Invalid log-http-transaction '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
+                f"Invalid log-http-transaction '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
             )
 
     # Validate capture-packet if present
@@ -1770,7 +1887,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_CAPTURE_PACKET:
             return (
                 False,
-                f"Invalid capture-packet '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTURE_PACKET)}",
+                f"Invalid capture-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTURE_PACKET)}",
             )
 
     # Validate auto-asic-offload if present
@@ -1779,7 +1897,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     # Validate np-acceleration if present
@@ -1788,7 +1907,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NP_ACCELERATION:
             return (
                 False,
-                f"Invalid np-acceleration '{value}'. Must be one of: {', '.join(VALID_BODY_NP_ACCELERATION)}",
+                f"Invalid np-acceleration '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NP_ACCELERATION)}",
             )
 
     # Validate webproxy-forward-server if present
@@ -1827,7 +1947,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NAT:
             return (
                 False,
-                f"Invalid nat '{value}'. Must be one of: {', '.join(VALID_BODY_NAT)}",
+                f"Invalid nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT)}",
             )
 
     # Validate pcp-outbound if present
@@ -1836,7 +1957,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PCP_OUTBOUND:
             return (
                 False,
-                f"Invalid pcp-outbound '{value}'. Must be one of: {', '.join(VALID_BODY_PCP_OUTBOUND)}",
+                f"Invalid pcp-outbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PCP_OUTBOUND)}",
             )
 
     # Validate pcp-inbound if present
@@ -1845,7 +1967,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PCP_INBOUND:
             return (
                 False,
-                f"Invalid pcp-inbound '{value}'. Must be one of: {', '.join(VALID_BODY_PCP_INBOUND)}",
+                f"Invalid pcp-inbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PCP_INBOUND)}",
             )
 
     # Validate permit-any-host if present
@@ -1854,7 +1977,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PERMIT_ANY_HOST:
             return (
                 False,
-                f"Invalid permit-any-host '{value}'. Must be one of: {', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
+                f"Invalid permit-any-host '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
             )
 
     # Validate permit-stun-host if present
@@ -1863,7 +1987,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PERMIT_STUN_HOST:
             return (
                 False,
-                f"Invalid permit-stun-host '{value}'. Must be one of: {', '.join(VALID_BODY_PERMIT_STUN_HOST)}",
+                f"Invalid permit-stun-host '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PERMIT_STUN_HOST)}",
             )
 
     # Validate fixedport if present
@@ -1872,7 +1997,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_FIXEDPORT:
             return (
                 False,
-                f"Invalid fixedport '{value}'. Must be one of: {', '.join(VALID_BODY_FIXEDPORT)}",
+                f"Invalid fixedport '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIXEDPORT)}",
             )
 
     # Validate port-preserve if present
@@ -1881,7 +2007,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PORT_PRESERVE:
             return (
                 False,
-                f"Invalid port-preserve '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_PRESERVE)}",
+                f"Invalid port-preserve '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORT_PRESERVE)}",
             )
 
     # Validate port-random if present
@@ -1890,7 +2017,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_PORT_RANDOM:
             return (
                 False,
-                f"Invalid port-random '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_RANDOM)}",
+                f"Invalid port-random '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PORT_RANDOM)}",
             )
 
     # Validate ippool if present
@@ -1899,7 +2027,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_IPPOOL:
             return (
                 False,
-                f"Invalid ippool '{value}'. Must be one of: {', '.join(VALID_BODY_IPPOOL)}",
+                f"Invalid ippool '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPPOOL)}",
             )
 
     # Validate vlan-cos-fwd if present
@@ -1930,7 +2059,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INBOUND:
             return (
                 False,
-                f"Invalid inbound '{value}'. Must be one of: {', '.join(VALID_BODY_INBOUND)}",
+                f"Invalid inbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INBOUND)}",
             )
 
     # Validate outbound if present
@@ -1939,7 +2069,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_OUTBOUND:
             return (
                 False,
-                f"Invalid outbound '{value}'. Must be one of: {', '.join(VALID_BODY_OUTBOUND)}",
+                f"Invalid outbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OUTBOUND)}",
             )
 
     # Validate natinbound if present
@@ -1948,7 +2079,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NATINBOUND:
             return (
                 False,
-                f"Invalid natinbound '{value}'. Must be one of: {', '.join(VALID_BODY_NATINBOUND)}",
+                f"Invalid natinbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NATINBOUND)}",
             )
 
     # Validate natoutbound if present
@@ -1957,7 +2089,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NATOUTBOUND:
             return (
                 False,
-                f"Invalid natoutbound '{value}'. Must be one of: {', '.join(VALID_BODY_NATOUTBOUND)}",
+                f"Invalid natoutbound '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NATOUTBOUND)}",
             )
 
     # Validate fec if present
@@ -1966,7 +2099,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_FEC:
             return (
                 False,
-                f"Invalid fec '{value}'. Must be one of: {', '.join(VALID_BODY_FEC)}",
+                f"Invalid fec '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FEC)}",
             )
 
     # Validate wccp if present
@@ -1975,7 +2109,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_WCCP:
             return (
                 False,
-                f"Invalid wccp '{value}'. Must be one of: {', '.join(VALID_BODY_WCCP)}",
+                f"Invalid wccp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WCCP)}",
             )
 
     # Validate ntlm if present
@@ -1984,7 +2119,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NTLM:
             return (
                 False,
-                f"Invalid ntlm '{value}'. Must be one of: {', '.join(VALID_BODY_NTLM)}",
+                f"Invalid ntlm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NTLM)}",
             )
 
     # Validate ntlm-guest if present
@@ -1993,7 +2129,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_NTLM_GUEST:
             return (
                 False,
-                f"Invalid ntlm-guest '{value}'. Must be one of: {', '.join(VALID_BODY_NTLM_GUEST)}",
+                f"Invalid ntlm-guest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NTLM_GUEST)}",
             )
 
     # Validate fsso-agent-for-ntlm if present
@@ -2008,7 +2145,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_AUTH_PATH:
             return (
                 False,
-                f"Invalid auth-path '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PATH)}",
+                f"Invalid auth-path '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_PATH)}",
             )
 
     # Validate disclaimer if present
@@ -2017,7 +2155,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DISCLAIMER:
             return (
                 False,
-                f"Invalid disclaimer '{value}'. Must be one of: {', '.join(VALID_BODY_DISCLAIMER)}",
+                f"Invalid disclaimer '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCLAIMER)}",
             )
 
     # Validate email-collect if present
@@ -2026,7 +2165,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_EMAIL_COLLECT:
             return (
                 False,
-                f"Invalid email-collect '{value}'. Must be one of: {', '.join(VALID_BODY_EMAIL_COLLECT)}",
+                f"Invalid email-collect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMAIL_COLLECT)}",
             )
 
     # Validate vpntunnel if present
@@ -2041,7 +2181,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_MATCH_VIP:
             return (
                 False,
-                f"Invalid match-vip '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_VIP)}",
+                f"Invalid match-vip '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_VIP)}",
             )
 
     # Validate match-vip-only if present
@@ -2050,7 +2191,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_MATCH_VIP_ONLY:
             return (
                 False,
-                f"Invalid match-vip-only '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_VIP_ONLY)}",
+                f"Invalid match-vip-only '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_VIP_ONLY)}",
             )
 
     # Validate diffserv-copy if present
@@ -2059,7 +2201,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DIFFSERV_COPY:
             return (
                 False,
-                f"Invalid diffserv-copy '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_COPY)}",
+                f"Invalid diffserv-copy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_COPY)}",
             )
 
     # Validate diffserv-forward if present
@@ -2068,7 +2211,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DIFFSERV_FORWARD:
             return (
                 False,
-                f"Invalid diffserv-forward '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
+                f"Invalid diffserv-forward '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
             )
 
     # Validate diffserv-reverse if present
@@ -2077,7 +2221,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DIFFSERV_REVERSE:
             return (
                 False,
-                f"Invalid diffserv-reverse '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
+                f"Invalid diffserv-reverse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
             )
 
     # Validate tcp-mss-sender if present
@@ -2147,7 +2292,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_BLOCK_NOTIFICATION:
             return (
                 False,
-                f"Invalid block-notification '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
+                f"Invalid block-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
             )
 
     # Validate replacemsg-override-group if present
@@ -2165,7 +2311,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_SRCADDR_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR_NEGATE)}",
+                f"Invalid srcaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR_NEGATE)}",
             )
 
     # Validate srcaddr6-negate if present
@@ -2174,7 +2321,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_SRCADDR6_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR6_NEGATE)}",
+                f"Invalid srcaddr6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR6_NEGATE)}",
             )
 
     # Validate dstaddr-negate if present
@@ -2183,7 +2331,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DSTADDR_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR_NEGATE)}",
+                f"Invalid dstaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR_NEGATE)}",
             )
 
     # Validate dstaddr6-negate if present
@@ -2192,7 +2341,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DSTADDR6_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR6_NEGATE)}",
+                f"Invalid dstaddr6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR6_NEGATE)}",
             )
 
     # Validate ztna-ems-tag-negate if present
@@ -2201,7 +2351,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_ZTNA_EMS_TAG_NEGATE:
             return (
                 False,
-                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
+                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
             )
 
     # Validate service-negate if present
@@ -2210,7 +2361,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_NEGATE)}",
+                f"Invalid service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service-negate if present
@@ -2219,7 +2371,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
+                f"Invalid internet-service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service-src-negate if present
@@ -2228,7 +2381,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_SRC_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
+                f"Invalid internet-service-src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_SRC_NEGATE)}",
             )
 
     # Validate internet-service6-negate if present
@@ -2237,7 +2391,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE6_NEGATE:
             return (
                 False,
-                f"Invalid internet-service6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
+                f"Invalid internet-service6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
             )
 
     # Validate internet-service6-src-negate if present
@@ -2246,7 +2401,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE6_SRC_NEGATE:
             return (
                 False,
-                f"Invalid internet-service6-src-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_SRC_NEGATE)}",
+                f"Invalid internet-service6-src-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_SRC_NEGATE)}",
             )
 
     # Validate timeout-send-rst if present
@@ -2255,7 +2411,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_TIMEOUT_SEND_RST:
             return (
                 False,
-                f"Invalid timeout-send-rst '{value}'. Must be one of: {', '.join(VALID_BODY_TIMEOUT_SEND_RST)}",
+                f"Invalid timeout-send-rst '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TIMEOUT_SEND_RST)}",
             )
 
     # Validate captive-portal-exempt if present
@@ -2264,7 +2421,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_CAPTIVE_PORTAL_EXEMPT:
             return (
                 False,
-                f"Invalid captive-portal-exempt '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_PORTAL_EXEMPT)}",
+                f"Invalid captive-portal-exempt '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CAPTIVE_PORTAL_EXEMPT)}",
             )
 
     # Validate decrypted-traffic-mirror if present
@@ -2282,7 +2440,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DSRI:
             return (
                 False,
-                f"Invalid dsri '{value}'. Must be one of: {', '.join(VALID_BODY_DSRI)}",
+                f"Invalid dsri '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSRI)}",
             )
 
     # Validate radius-mac-auth-bypass if present
@@ -2291,7 +2450,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_RADIUS_MAC_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid radius-mac-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_MAC_AUTH_BYPASS)}",
+                f"Invalid radius-mac-auth-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_MAC_AUTH_BYPASS)}",
             )
 
     # Validate radius-ip-auth-bypass if present
@@ -2300,7 +2460,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_RADIUS_IP_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid radius-ip-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_IP_AUTH_BYPASS)}",
+                f"Invalid radius-ip-auth-bypass '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RADIUS_IP_AUTH_BYPASS)}",
             )
 
     # Validate delay-tcp-npu-session if present
@@ -2309,7 +2470,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_DELAY_TCP_NPU_SESSION:
             return (
                 False,
-                f"Invalid delay-tcp-npu-session '{value}'. Must be one of: {', '.join(VALID_BODY_DELAY_TCP_NPU_SESSION)}",
+                f"Invalid delay-tcp-npu-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DELAY_TCP_NPU_SESSION)}",
             )
 
     # Validate sgt-check if present
@@ -2318,7 +2480,8 @@ def validate_policy_put(
         if value and value not in VALID_BODY_SGT_CHECK:
             return (
                 False,
-                f"Invalid sgt-check '{value}'. Must be one of: {', '.join(VALID_BODY_SGT_CHECK)}",
+                f"Invalid sgt-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SGT_CHECK)}",
             )
 
     return (True, None)

@@ -100,7 +100,8 @@ def validate_snmp_user_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -135,7 +136,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate trap-status if present
@@ -144,7 +146,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_TRAP_STATUS:
             return (
                 False,
-                f"Invalid trap-status '{value}'. Must be one of: {', '.join(VALID_BODY_TRAP_STATUS)}",
+                f"Invalid trap-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRAP_STATUS)}",
             )
 
     # Validate trap-lport if present
@@ -175,7 +178,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_QUERIES:
             return (
                 False,
-                f"Invalid queries '{value}'. Must be one of: {', '.join(VALID_BODY_QUERIES)}",
+                f"Invalid queries '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUERIES)}",
             )
 
     # Validate query-port if present
@@ -195,7 +199,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_HA_DIRECT:
             return (
                 False,
-                f"Invalid ha-direct '{value}'. Must be one of: {', '.join(VALID_BODY_HA_DIRECT)}",
+                f"Invalid ha-direct '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HA_DIRECT)}",
             )
 
     # Validate events if present
@@ -204,7 +209,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_EVENTS:
             return (
                 False,
-                f"Invalid events '{value}'. Must be one of: {', '.join(VALID_BODY_EVENTS)}",
+                f"Invalid events '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EVENTS)}",
             )
 
     # Validate mib-view if present
@@ -219,7 +225,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_SECURITY_LEVEL:
             return (
                 False,
-                f"Invalid security-level '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_LEVEL)}",
+                f"Invalid security-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY_LEVEL)}",
             )
 
     # Validate auth-proto if present
@@ -228,7 +235,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_AUTH_PROTO:
             return (
                 False,
-                f"Invalid auth-proto '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PROTO)}",
+                f"Invalid auth-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_PROTO)}",
             )
 
     # Validate priv-proto if present
@@ -237,7 +245,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_PRIV_PROTO:
             return (
                 False,
-                f"Invalid priv-proto '{value}'. Must be one of: {', '.join(VALID_BODY_PRIV_PROTO)}",
+                f"Invalid priv-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIV_PROTO)}",
             )
 
     # Validate interface-select-method if present
@@ -246,7 +255,8 @@ def validate_snmp_user_post(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -307,7 +317,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate trap-status if present
@@ -316,7 +327,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_TRAP_STATUS:
             return (
                 False,
-                f"Invalid trap-status '{value}'. Must be one of: {', '.join(VALID_BODY_TRAP_STATUS)}",
+                f"Invalid trap-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRAP_STATUS)}",
             )
 
     # Validate trap-lport if present
@@ -347,7 +359,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_QUERIES:
             return (
                 False,
-                f"Invalid queries '{value}'. Must be one of: {', '.join(VALID_BODY_QUERIES)}",
+                f"Invalid queries '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_QUERIES)}",
             )
 
     # Validate query-port if present
@@ -367,7 +380,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_HA_DIRECT:
             return (
                 False,
-                f"Invalid ha-direct '{value}'. Must be one of: {', '.join(VALID_BODY_HA_DIRECT)}",
+                f"Invalid ha-direct '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HA_DIRECT)}",
             )
 
     # Validate events if present
@@ -376,7 +390,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_EVENTS:
             return (
                 False,
-                f"Invalid events '{value}'. Must be one of: {', '.join(VALID_BODY_EVENTS)}",
+                f"Invalid events '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EVENTS)}",
             )
 
     # Validate mib-view if present
@@ -391,7 +406,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_SECURITY_LEVEL:
             return (
                 False,
-                f"Invalid security-level '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_LEVEL)}",
+                f"Invalid security-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY_LEVEL)}",
             )
 
     # Validate auth-proto if present
@@ -400,7 +416,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_AUTH_PROTO:
             return (
                 False,
-                f"Invalid auth-proto '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PROTO)}",
+                f"Invalid auth-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_PROTO)}",
             )
 
     # Validate priv-proto if present
@@ -409,7 +426,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_PRIV_PROTO:
             return (
                 False,
-                f"Invalid priv-proto '{value}'. Must be one of: {', '.join(VALID_BODY_PRIV_PROTO)}",
+                f"Invalid priv-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIV_PROTO)}",
             )
 
     # Validate interface-select-method if present
@@ -418,7 +436,8 @@ def validate_snmp_user_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present

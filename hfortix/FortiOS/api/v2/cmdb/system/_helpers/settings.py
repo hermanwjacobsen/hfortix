@@ -159,7 +159,8 @@ def validate_settings_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -198,7 +199,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_VDOM_TYPE:
             return (
                 False,
-                f"Invalid vdom-type '{value}'. Must be one of: {', '.join(VALID_BODY_VDOM_TYPE)}",
+                f"Invalid vdom-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VDOM_TYPE)}",
             )
 
     # Validate lan-extension-controller-addr if present
@@ -233,7 +235,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_OPMODE:
             return (
                 False,
-                f"Invalid opmode '{value}'. Must be one of: {', '.join(VALID_BODY_OPMODE)}",
+                f"Invalid opmode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OPMODE)}",
             )
 
     # Validate ngfw-mode if present
@@ -242,7 +245,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_NGFW_MODE:
             return (
                 False,
-                f"Invalid ngfw-mode '{value}'. Must be one of: {', '.join(VALID_BODY_NGFW_MODE)}",
+                f"Invalid ngfw-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NGFW_MODE)}",
             )
 
     # Validate http-external-dest if present
@@ -251,7 +255,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_HTTP_EXTERNAL_DEST:
             return (
                 False,
-                f"Invalid http-external-dest '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_EXTERNAL_DEST)}",
+                f"Invalid http-external-dest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_EXTERNAL_DEST)}",
             )
 
     # Validate firewall-session-dirty if present
@@ -260,7 +265,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_FIREWALL_SESSION_DIRTY:
             return (
                 False,
-                f"Invalid firewall-session-dirty '{value}'. Must be one of: {', '.join(VALID_BODY_FIREWALL_SESSION_DIRTY)}",
+                f"Invalid firewall-session-dirty '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIREWALL_SESSION_DIRTY)}",
             )
 
     # Validate device if present
@@ -275,7 +281,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_BFD:
             return (
                 False,
-                f"Invalid bfd '{value}'. Must be one of: {', '.join(VALID_BODY_BFD)}",
+                f"Invalid bfd '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BFD)}",
             )
 
     # Validate bfd-desired-min-tx if present
@@ -332,7 +339,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_BFD_DONT_ENFORCE_SRC_PORT:
             return (
                 False,
-                f"Invalid bfd-dont-enforce-src-port '{value}'. Must be one of: {', '.join(VALID_BODY_BFD_DONT_ENFORCE_SRC_PORT)}",
+                f"Invalid bfd-dont-enforce-src-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BFD_DONT_ENFORCE_SRC_PORT)}",
             )
 
     # Validate utf8-spam-tagging if present
@@ -341,7 +349,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_UTF8_SPAM_TAGGING:
             return (
                 False,
-                f"Invalid utf8-spam-tagging '{value}'. Must be one of: {', '.join(VALID_BODY_UTF8_SPAM_TAGGING)}",
+                f"Invalid utf8-spam-tagging '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTF8_SPAM_TAGGING)}",
             )
 
     # Validate wccp-cache-engine if present
@@ -350,7 +359,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_WCCP_CACHE_ENGINE:
             return (
                 False,
-                f"Invalid wccp-cache-engine '{value}'. Must be one of: {', '.join(VALID_BODY_WCCP_CACHE_ENGINE)}",
+                f"Invalid wccp-cache-engine '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WCCP_CACHE_ENGINE)}",
             )
 
     # Validate vpn-stats-log if present
@@ -359,7 +369,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_VPN_STATS_LOG:
             return (
                 False,
-                f"Invalid vpn-stats-log '{value}'. Must be one of: {', '.join(VALID_BODY_VPN_STATS_LOG)}",
+                f"Invalid vpn-stats-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VPN_STATS_LOG)}",
             )
 
     # Validate vpn-stats-period if present
@@ -385,7 +396,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_V4_ECMP_MODE:
             return (
                 False,
-                f"Invalid v4-ecmp-mode '{value}'. Must be one of: {', '.join(VALID_BODY_V4_ECMP_MODE)}",
+                f"Invalid v4-ecmp-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_V4_ECMP_MODE)}",
             )
 
     # Validate mac-ttl if present
@@ -405,7 +417,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_FW_SESSION_HAIRPIN:
             return (
                 False,
-                f"Invalid fw-session-hairpin '{value}'. Must be one of: {', '.join(VALID_BODY_FW_SESSION_HAIRPIN)}",
+                f"Invalid fw-session-hairpin '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FW_SESSION_HAIRPIN)}",
             )
 
     # Validate prp-trailer-action if present
@@ -414,7 +427,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_PRP_TRAILER_ACTION:
             return (
                 False,
-                f"Invalid prp-trailer-action '{value}'. Must be one of: {', '.join(VALID_BODY_PRP_TRAILER_ACTION)}",
+                f"Invalid prp-trailer-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRP_TRAILER_ACTION)}",
             )
 
     # Validate snat-hairpin-traffic if present
@@ -423,7 +437,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_SNAT_HAIRPIN_TRAFFIC:
             return (
                 False,
-                f"Invalid snat-hairpin-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_SNAT_HAIRPIN_TRAFFIC)}",
+                f"Invalid snat-hairpin-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SNAT_HAIRPIN_TRAFFIC)}",
             )
 
     # Validate dhcp-proxy if present
@@ -432,7 +447,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_DHCP_PROXY:
             return (
                 False,
-                f"Invalid dhcp-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_PROXY)}",
+                f"Invalid dhcp-proxy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_PROXY)}",
             )
 
     # Validate dhcp-proxy-interface-select-method if present
@@ -444,7 +460,8 @@ def validate_settings_put(
         ):
             return (
                 False,
-                f"Invalid dhcp-proxy-interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_PROXY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid dhcp-proxy-interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DHCP_PROXY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate dhcp-proxy-interface if present
@@ -476,7 +493,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_CENTRAL_NAT:
             return (
                 False,
-                f"Invalid central-nat '{value}'. Must be one of: {', '.join(VALID_BODY_CENTRAL_NAT)}",
+                f"Invalid central-nat '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CENTRAL_NAT)}",
             )
 
     # Validate lldp-reception if present
@@ -485,7 +503,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_LLDP_RECEPTION:
             return (
                 False,
-                f"Invalid lldp-reception '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_RECEPTION)}",
+                f"Invalid lldp-reception '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LLDP_RECEPTION)}",
             )
 
     # Validate lldp-transmission if present
@@ -494,7 +513,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_LLDP_TRANSMISSION:
             return (
                 False,
-                f"Invalid lldp-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
+                f"Invalid lldp-transmission '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
             )
 
     # Validate link-down-access if present
@@ -503,7 +523,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_LINK_DOWN_ACCESS:
             return (
                 False,
-                f"Invalid link-down-access '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_DOWN_ACCESS)}",
+                f"Invalid link-down-access '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LINK_DOWN_ACCESS)}",
             )
 
     # Validate nat46-generate-ipv6-fragment-header if present
@@ -515,7 +536,8 @@ def validate_settings_put(
         ):
             return (
                 False,
-                f"Invalid nat46-generate-ipv6-fragment-header '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46_GENERATE_IPV6_FRAGMENT_HEADER)}",
+                f"Invalid nat46-generate-ipv6-fragment-header '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT46_GENERATE_IPV6_FRAGMENT_HEADER)}",
             )
 
     # Validate nat46-force-ipv4-packet-forwarding if present
@@ -527,7 +549,8 @@ def validate_settings_put(
         ):
             return (
                 False,
-                f"Invalid nat46-force-ipv4-packet-forwarding '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46_FORCE_IPV4_PACKET_FORWARDING)}",
+                f"Invalid nat46-force-ipv4-packet-forwarding '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT46_FORCE_IPV4_PACKET_FORWARDING)}",
             )
 
     # Validate nat64-force-ipv6-packet-forwarding if present
@@ -539,7 +562,8 @@ def validate_settings_put(
         ):
             return (
                 False,
-                f"Invalid nat64-force-ipv6-packet-forwarding '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64_FORCE_IPV6_PACKET_FORWARDING)}",
+                f"Invalid nat64-force-ipv6-packet-forwarding '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT64_FORCE_IPV6_PACKET_FORWARDING)}",
             )
 
     # Validate detect-unknown-esp if present
@@ -548,7 +572,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_DETECT_UNKNOWN_ESP:
             return (
                 False,
-                f"Invalid detect-unknown-esp '{value}'. Must be one of: {', '.join(VALID_BODY_DETECT_UNKNOWN_ESP)}",
+                f"Invalid detect-unknown-esp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DETECT_UNKNOWN_ESP)}",
             )
 
     # Validate intree-ses-best-route if present
@@ -557,7 +582,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_INTREE_SES_BEST_ROUTE:
             return (
                 False,
-                f"Invalid intree-ses-best-route '{value}'. Must be one of: {', '.join(VALID_BODY_INTREE_SES_BEST_ROUTE)}",
+                f"Invalid intree-ses-best-route '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTREE_SES_BEST_ROUTE)}",
             )
 
     # Validate auxiliary-session if present
@@ -566,7 +592,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_AUXILIARY_SESSION:
             return (
                 False,
-                f"Invalid auxiliary-session '{value}'. Must be one of: {', '.join(VALID_BODY_AUXILIARY_SESSION)}",
+                f"Invalid auxiliary-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUXILIARY_SESSION)}",
             )
 
     # Validate asymroute if present
@@ -575,7 +602,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_ASYMROUTE:
             return (
                 False,
-                f"Invalid asymroute '{value}'. Must be one of: {', '.join(VALID_BODY_ASYMROUTE)}",
+                f"Invalid asymroute '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASYMROUTE)}",
             )
 
     # Validate asymroute-icmp if present
@@ -584,7 +612,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_ASYMROUTE_ICMP:
             return (
                 False,
-                f"Invalid asymroute-icmp '{value}'. Must be one of: {', '.join(VALID_BODY_ASYMROUTE_ICMP)}",
+                f"Invalid asymroute-icmp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASYMROUTE_ICMP)}",
             )
 
     # Validate tcp-session-without-syn if present
@@ -593,7 +622,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_TCP_SESSION_WITHOUT_SYN:
             return (
                 False,
-                f"Invalid tcp-session-without-syn '{value}'. Must be one of: {', '.join(VALID_BODY_TCP_SESSION_WITHOUT_SYN)}",
+                f"Invalid tcp-session-without-syn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TCP_SESSION_WITHOUT_SYN)}",
             )
 
     # Validate ses-denied-traffic if present
@@ -602,7 +632,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_SES_DENIED_TRAFFIC:
             return (
                 False,
-                f"Invalid ses-denied-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_SES_DENIED_TRAFFIC)}",
+                f"Invalid ses-denied-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SES_DENIED_TRAFFIC)}",
             )
 
     # Validate ses-denied-multicast-traffic if present
@@ -611,7 +642,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_SES_DENIED_MULTICAST_TRAFFIC:
             return (
                 False,
-                f"Invalid ses-denied-multicast-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_SES_DENIED_MULTICAST_TRAFFIC)}",
+                f"Invalid ses-denied-multicast-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SES_DENIED_MULTICAST_TRAFFIC)}",
             )
 
     # Validate strict-src-check if present
@@ -620,7 +652,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_STRICT_SRC_CHECK:
             return (
                 False,
-                f"Invalid strict-src-check '{value}'. Must be one of: {', '.join(VALID_BODY_STRICT_SRC_CHECK)}",
+                f"Invalid strict-src-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STRICT_SRC_CHECK)}",
             )
 
     # Validate allow-linkdown-path if present
@@ -629,7 +662,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_ALLOW_LINKDOWN_PATH:
             return (
                 False,
-                f"Invalid allow-linkdown-path '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_LINKDOWN_PATH)}",
+                f"Invalid allow-linkdown-path '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_LINKDOWN_PATH)}",
             )
 
     # Validate asymroute6 if present
@@ -638,7 +672,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_ASYMROUTE6:
             return (
                 False,
-                f"Invalid asymroute6 '{value}'. Must be one of: {', '.join(VALID_BODY_ASYMROUTE6)}",
+                f"Invalid asymroute6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASYMROUTE6)}",
             )
 
     # Validate asymroute6-icmp if present
@@ -647,7 +682,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_ASYMROUTE6_ICMP:
             return (
                 False,
-                f"Invalid asymroute6-icmp '{value}'. Must be one of: {', '.join(VALID_BODY_ASYMROUTE6_ICMP)}",
+                f"Invalid asymroute6-icmp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ASYMROUTE6_ICMP)}",
             )
 
     # Validate sctp-session-without-init if present
@@ -656,7 +692,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_SCTP_SESSION_WITHOUT_INIT:
             return (
                 False,
-                f"Invalid sctp-session-without-init '{value}'. Must be one of: {', '.join(VALID_BODY_SCTP_SESSION_WITHOUT_INIT)}",
+                f"Invalid sctp-session-without-init '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCTP_SESSION_WITHOUT_INIT)}",
             )
 
     # Validate sip-expectation if present
@@ -665,7 +702,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_SIP_EXPECTATION:
             return (
                 False,
-                f"Invalid sip-expectation '{value}'. Must be one of: {', '.join(VALID_BODY_SIP_EXPECTATION)}",
+                f"Invalid sip-expectation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SIP_EXPECTATION)}",
             )
 
     # Validate sip-nat-trace if present
@@ -674,7 +712,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_SIP_NAT_TRACE:
             return (
                 False,
-                f"Invalid sip-nat-trace '{value}'. Must be one of: {', '.join(VALID_BODY_SIP_NAT_TRACE)}",
+                f"Invalid sip-nat-trace '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SIP_NAT_TRACE)}",
             )
 
     # Validate h323-direct-model if present
@@ -683,7 +722,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_H323_DIRECT_MODEL:
             return (
                 False,
-                f"Invalid h323-direct-model '{value}'. Must be one of: {', '.join(VALID_BODY_H323_DIRECT_MODEL)}",
+                f"Invalid h323-direct-model '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_H323_DIRECT_MODEL)}",
             )
 
     # Validate status if present
@@ -692,7 +732,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate sip-tcp-port if present
@@ -745,7 +786,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_MULTICAST_FORWARD:
             return (
                 False,
-                f"Invalid multicast-forward '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_FORWARD)}",
+                f"Invalid multicast-forward '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_FORWARD)}",
             )
 
     # Validate multicast-ttl-notchange if present
@@ -754,7 +796,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_MULTICAST_TTL_NOTCHANGE:
             return (
                 False,
-                f"Invalid multicast-ttl-notchange '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_TTL_NOTCHANGE)}",
+                f"Invalid multicast-ttl-notchange '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_TTL_NOTCHANGE)}",
             )
 
     # Validate multicast-skip-policy if present
@@ -763,7 +806,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_MULTICAST_SKIP_POLICY:
             return (
                 False,
-                f"Invalid multicast-skip-policy '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_SKIP_POLICY)}",
+                f"Invalid multicast-skip-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MULTICAST_SKIP_POLICY)}",
             )
 
     # Validate allow-subnet-overlap if present
@@ -772,7 +816,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_ALLOW_SUBNET_OVERLAP:
             return (
                 False,
-                f"Invalid allow-subnet-overlap '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_SUBNET_OVERLAP)}",
+                f"Invalid allow-subnet-overlap '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_SUBNET_OVERLAP)}",
             )
 
     # Validate deny-tcp-with-icmp if present
@@ -781,7 +826,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_DENY_TCP_WITH_ICMP:
             return (
                 False,
-                f"Invalid deny-tcp-with-icmp '{value}'. Must be one of: {', '.join(VALID_BODY_DENY_TCP_WITH_ICMP)}",
+                f"Invalid deny-tcp-with-icmp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DENY_TCP_WITH_ICMP)}",
             )
 
     # Validate ecmp-max-paths if present
@@ -818,7 +864,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_EMAIL_PORTAL_CHECK_DNS:
             return (
                 False,
-                f"Invalid email-portal-check-dns '{value}'. Must be one of: {', '.join(VALID_BODY_EMAIL_PORTAL_CHECK_DNS)}",
+                f"Invalid email-portal-check-dns '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMAIL_PORTAL_CHECK_DNS)}",
             )
 
     # Validate default-voip-alg-mode if present
@@ -827,7 +874,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_DEFAULT_VOIP_ALG_MODE:
             return (
                 False,
-                f"Invalid default-voip-alg-mode '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_VOIP_ALG_MODE)}",
+                f"Invalid default-voip-alg-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_VOIP_ALG_MODE)}",
             )
 
     # Validate gui-icap if present
@@ -836,7 +884,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ICAP:
             return (
                 False,
-                f"Invalid gui-icap '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ICAP)}",
+                f"Invalid gui-icap '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ICAP)}",
             )
 
     # Validate gui-implicit-policy if present
@@ -845,7 +894,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_IMPLICIT_POLICY:
             return (
                 False,
-                f"Invalid gui-implicit-policy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_IMPLICIT_POLICY)}",
+                f"Invalid gui-implicit-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_IMPLICIT_POLICY)}",
             )
 
     # Validate gui-dns-database if present
@@ -854,7 +904,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DNS_DATABASE:
             return (
                 False,
-                f"Invalid gui-dns-database '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DNS_DATABASE)}",
+                f"Invalid gui-dns-database '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DNS_DATABASE)}",
             )
 
     # Validate gui-load-balance if present
@@ -863,7 +914,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_LOAD_BALANCE:
             return (
                 False,
-                f"Invalid gui-load-balance '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_LOAD_BALANCE)}",
+                f"Invalid gui-load-balance '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_LOAD_BALANCE)}",
             )
 
     # Validate gui-multicast-policy if present
@@ -872,7 +924,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_MULTICAST_POLICY:
             return (
                 False,
-                f"Invalid gui-multicast-policy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_MULTICAST_POLICY)}",
+                f"Invalid gui-multicast-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_MULTICAST_POLICY)}",
             )
 
     # Validate gui-dos-policy if present
@@ -881,7 +934,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DOS_POLICY:
             return (
                 False,
-                f"Invalid gui-dos-policy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DOS_POLICY)}",
+                f"Invalid gui-dos-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DOS_POLICY)}",
             )
 
     # Validate gui-object-colors if present
@@ -890,7 +944,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_OBJECT_COLORS:
             return (
                 False,
-                f"Invalid gui-object-colors '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_OBJECT_COLORS)}",
+                f"Invalid gui-object-colors '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_OBJECT_COLORS)}",
             )
 
     # Validate gui-route-tag-address-creation if present
@@ -899,7 +954,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ROUTE_TAG_ADDRESS_CREATION:
             return (
                 False,
-                f"Invalid gui-route-tag-address-creation '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ROUTE_TAG_ADDRESS_CREATION)}",
+                f"Invalid gui-route-tag-address-creation '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ROUTE_TAG_ADDRESS_CREATION)}",
             )
 
     # Validate gui-voip-profile if present
@@ -908,7 +964,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_VOIP_PROFILE:
             return (
                 False,
-                f"Invalid gui-voip-profile '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_VOIP_PROFILE)}",
+                f"Invalid gui-voip-profile '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_VOIP_PROFILE)}",
             )
 
     # Validate gui-ap-profile if present
@@ -917,7 +974,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_AP_PROFILE:
             return (
                 False,
-                f"Invalid gui-ap-profile '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_AP_PROFILE)}",
+                f"Invalid gui-ap-profile '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_AP_PROFILE)}",
             )
 
     # Validate gui-security-profile-group if present
@@ -926,7 +984,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_SECURITY_PROFILE_GROUP:
             return (
                 False,
-                f"Invalid gui-security-profile-group '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_SECURITY_PROFILE_GROUP)}",
+                f"Invalid gui-security-profile-group '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_SECURITY_PROFILE_GROUP)}",
             )
 
     # Validate gui-local-in-policy if present
@@ -935,7 +994,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_LOCAL_IN_POLICY:
             return (
                 False,
-                f"Invalid gui-local-in-policy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_LOCAL_IN_POLICY)}",
+                f"Invalid gui-local-in-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_LOCAL_IN_POLICY)}",
             )
 
     # Validate gui-explicit-proxy if present
@@ -944,7 +1004,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_EXPLICIT_PROXY:
             return (
                 False,
-                f"Invalid gui-explicit-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_EXPLICIT_PROXY)}",
+                f"Invalid gui-explicit-proxy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_EXPLICIT_PROXY)}",
             )
 
     # Validate gui-dynamic-routing if present
@@ -953,7 +1014,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DYNAMIC_ROUTING:
             return (
                 False,
-                f"Invalid gui-dynamic-routing '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DYNAMIC_ROUTING)}",
+                f"Invalid gui-dynamic-routing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DYNAMIC_ROUTING)}",
             )
 
     # Validate gui-policy-based-ipsec if present
@@ -962,7 +1024,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_POLICY_BASED_IPSEC:
             return (
                 False,
-                f"Invalid gui-policy-based-ipsec '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_POLICY_BASED_IPSEC)}",
+                f"Invalid gui-policy-based-ipsec '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_POLICY_BASED_IPSEC)}",
             )
 
     # Validate gui-threat-weight if present
@@ -971,7 +1034,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_THREAT_WEIGHT:
             return (
                 False,
-                f"Invalid gui-threat-weight '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_THREAT_WEIGHT)}",
+                f"Invalid gui-threat-weight '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_THREAT_WEIGHT)}",
             )
 
     # Validate gui-spamfilter if present
@@ -980,7 +1044,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_SPAMFILTER:
             return (
                 False,
-                f"Invalid gui-spamfilter '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_SPAMFILTER)}",
+                f"Invalid gui-spamfilter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_SPAMFILTER)}",
             )
 
     # Validate gui-file-filter if present
@@ -989,7 +1054,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_FILE_FILTER:
             return (
                 False,
-                f"Invalid gui-file-filter '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_FILE_FILTER)}",
+                f"Invalid gui-file-filter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_FILE_FILTER)}",
             )
 
     # Validate gui-application-control if present
@@ -998,7 +1064,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_APPLICATION_CONTROL:
             return (
                 False,
-                f"Invalid gui-application-control '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_APPLICATION_CONTROL)}",
+                f"Invalid gui-application-control '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_APPLICATION_CONTROL)}",
             )
 
     # Validate gui-ips if present
@@ -1007,7 +1074,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_IPS:
             return (
                 False,
-                f"Invalid gui-ips '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_IPS)}",
+                f"Invalid gui-ips '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_IPS)}",
             )
 
     # Validate gui-dhcp-advanced if present
@@ -1016,7 +1084,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DHCP_ADVANCED:
             return (
                 False,
-                f"Invalid gui-dhcp-advanced '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DHCP_ADVANCED)}",
+                f"Invalid gui-dhcp-advanced '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DHCP_ADVANCED)}",
             )
 
     # Validate gui-vpn if present
@@ -1025,7 +1094,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_VPN:
             return (
                 False,
-                f"Invalid gui-vpn '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_VPN)}",
+                f"Invalid gui-vpn '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_VPN)}",
             )
 
     # Validate gui-wireless-controller if present
@@ -1034,7 +1104,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_WIRELESS_CONTROLLER:
             return (
                 False,
-                f"Invalid gui-wireless-controller '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_WIRELESS_CONTROLLER)}",
+                f"Invalid gui-wireless-controller '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_WIRELESS_CONTROLLER)}",
             )
 
     # Validate gui-advanced-wireless-features if present
@@ -1043,7 +1114,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ADVANCED_WIRELESS_FEATURES:
             return (
                 False,
-                f"Invalid gui-advanced-wireless-features '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ADVANCED_WIRELESS_FEATURES)}",
+                f"Invalid gui-advanced-wireless-features '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ADVANCED_WIRELESS_FEATURES)}",
             )
 
     # Validate gui-switch-controller if present
@@ -1052,7 +1124,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_SWITCH_CONTROLLER:
             return (
                 False,
-                f"Invalid gui-switch-controller '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_SWITCH_CONTROLLER)}",
+                f"Invalid gui-switch-controller '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_SWITCH_CONTROLLER)}",
             )
 
     # Validate gui-fortiap-split-tunneling if present
@@ -1061,7 +1134,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_FORTIAP_SPLIT_TUNNELING:
             return (
                 False,
-                f"Invalid gui-fortiap-split-tunneling '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_FORTIAP_SPLIT_TUNNELING)}",
+                f"Invalid gui-fortiap-split-tunneling '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_FORTIAP_SPLIT_TUNNELING)}",
             )
 
     # Validate gui-webfilter-advanced if present
@@ -1070,7 +1144,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_WEBFILTER_ADVANCED:
             return (
                 False,
-                f"Invalid gui-webfilter-advanced '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_WEBFILTER_ADVANCED)}",
+                f"Invalid gui-webfilter-advanced '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_WEBFILTER_ADVANCED)}",
             )
 
     # Validate gui-traffic-shaping if present
@@ -1079,7 +1154,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_TRAFFIC_SHAPING:
             return (
                 False,
-                f"Invalid gui-traffic-shaping '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_TRAFFIC_SHAPING)}",
+                f"Invalid gui-traffic-shaping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_TRAFFIC_SHAPING)}",
             )
 
     # Validate gui-wan-load-balancing if present
@@ -1088,7 +1164,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_WAN_LOAD_BALANCING:
             return (
                 False,
-                f"Invalid gui-wan-load-balancing '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_WAN_LOAD_BALANCING)}",
+                f"Invalid gui-wan-load-balancing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_WAN_LOAD_BALANCING)}",
             )
 
     # Validate gui-antivirus if present
@@ -1097,7 +1174,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ANTIVIRUS:
             return (
                 False,
-                f"Invalid gui-antivirus '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ANTIVIRUS)}",
+                f"Invalid gui-antivirus '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ANTIVIRUS)}",
             )
 
     # Validate gui-webfilter if present
@@ -1106,7 +1184,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_WEBFILTER:
             return (
                 False,
-                f"Invalid gui-webfilter '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_WEBFILTER)}",
+                f"Invalid gui-webfilter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_WEBFILTER)}",
             )
 
     # Validate gui-videofilter if present
@@ -1115,7 +1194,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_VIDEOFILTER:
             return (
                 False,
-                f"Invalid gui-videofilter '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_VIDEOFILTER)}",
+                f"Invalid gui-videofilter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_VIDEOFILTER)}",
             )
 
     # Validate gui-dnsfilter if present
@@ -1124,7 +1204,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DNSFILTER:
             return (
                 False,
-                f"Invalid gui-dnsfilter '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DNSFILTER)}",
+                f"Invalid gui-dnsfilter '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DNSFILTER)}",
             )
 
     # Validate gui-waf-profile if present
@@ -1133,7 +1214,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_WAF_PROFILE:
             return (
                 False,
-                f"Invalid gui-waf-profile '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_WAF_PROFILE)}",
+                f"Invalid gui-waf-profile '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_WAF_PROFILE)}",
             )
 
     # Validate gui-dlp-profile if present
@@ -1142,7 +1224,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DLP_PROFILE:
             return (
                 False,
-                f"Invalid gui-dlp-profile '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DLP_PROFILE)}",
+                f"Invalid gui-dlp-profile '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DLP_PROFILE)}",
             )
 
     # Validate gui-dlp-advanced if present
@@ -1151,7 +1234,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DLP_ADVANCED:
             return (
                 False,
-                f"Invalid gui-dlp-advanced '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DLP_ADVANCED)}",
+                f"Invalid gui-dlp-advanced '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DLP_ADVANCED)}",
             )
 
     # Validate gui-virtual-patch-profile if present
@@ -1160,7 +1244,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_VIRTUAL_PATCH_PROFILE:
             return (
                 False,
-                f"Invalid gui-virtual-patch-profile '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_VIRTUAL_PATCH_PROFILE)}",
+                f"Invalid gui-virtual-patch-profile '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_VIRTUAL_PATCH_PROFILE)}",
             )
 
     # Validate gui-casb if present
@@ -1169,7 +1254,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_CASB:
             return (
                 False,
-                f"Invalid gui-casb '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_CASB)}",
+                f"Invalid gui-casb '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_CASB)}",
             )
 
     # Validate gui-fortiextender-controller if present
@@ -1178,7 +1264,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_FORTIEXTENDER_CONTROLLER:
             return (
                 False,
-                f"Invalid gui-fortiextender-controller '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_FORTIEXTENDER_CONTROLLER)}",
+                f"Invalid gui-fortiextender-controller '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_FORTIEXTENDER_CONTROLLER)}",
             )
 
     # Validate gui-advanced-policy if present
@@ -1187,7 +1274,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ADVANCED_POLICY:
             return (
                 False,
-                f"Invalid gui-advanced-policy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ADVANCED_POLICY)}",
+                f"Invalid gui-advanced-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ADVANCED_POLICY)}",
             )
 
     # Validate gui-allow-unnamed-policy if present
@@ -1196,7 +1284,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ALLOW_UNNAMED_POLICY:
             return (
                 False,
-                f"Invalid gui-allow-unnamed-policy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ALLOW_UNNAMED_POLICY)}",
+                f"Invalid gui-allow-unnamed-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ALLOW_UNNAMED_POLICY)}",
             )
 
     # Validate gui-email-collection if present
@@ -1205,7 +1294,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_EMAIL_COLLECTION:
             return (
                 False,
-                f"Invalid gui-email-collection '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_EMAIL_COLLECTION)}",
+                f"Invalid gui-email-collection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_EMAIL_COLLECTION)}",
             )
 
     # Validate gui-multiple-interface-policy if present
@@ -1214,7 +1304,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_MULTIPLE_INTERFACE_POLICY:
             return (
                 False,
-                f"Invalid gui-multiple-interface-policy '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_MULTIPLE_INTERFACE_POLICY)}",
+                f"Invalid gui-multiple-interface-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_MULTIPLE_INTERFACE_POLICY)}",
             )
 
     # Validate gui-policy-disclaimer if present
@@ -1223,7 +1314,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_POLICY_DISCLAIMER:
             return (
                 False,
-                f"Invalid gui-policy-disclaimer '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_POLICY_DISCLAIMER)}",
+                f"Invalid gui-policy-disclaimer '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_POLICY_DISCLAIMER)}",
             )
 
     # Validate gui-ztna if present
@@ -1232,7 +1324,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ZTNA:
             return (
                 False,
-                f"Invalid gui-ztna '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ZTNA)}",
+                f"Invalid gui-ztna '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ZTNA)}",
             )
 
     # Validate gui-ot if present
@@ -1241,7 +1334,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_OT:
             return (
                 False,
-                f"Invalid gui-ot '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_OT)}",
+                f"Invalid gui-ot '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_OT)}",
             )
 
     # Validate gui-dynamic-device-os-id if present
@@ -1250,7 +1344,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_DYNAMIC_DEVICE_OS_ID:
             return (
                 False,
-                f"Invalid gui-dynamic-device-os-id '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_DYNAMIC_DEVICE_OS_ID)}",
+                f"Invalid gui-dynamic-device-os-id '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_DYNAMIC_DEVICE_OS_ID)}",
             )
 
     # Validate ike-session-resume if present
@@ -1259,7 +1354,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_IKE_SESSION_RESUME:
             return (
                 False,
-                f"Invalid ike-session-resume '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_SESSION_RESUME)}",
+                f"Invalid ike-session-resume '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKE_SESSION_RESUME)}",
             )
 
     # Validate ike-quick-crash-detect if present
@@ -1268,7 +1364,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_IKE_QUICK_CRASH_DETECT:
             return (
                 False,
-                f"Invalid ike-quick-crash-detect '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_QUICK_CRASH_DETECT)}",
+                f"Invalid ike-quick-crash-detect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKE_QUICK_CRASH_DETECT)}",
             )
 
     # Validate ike-dn-format if present
@@ -1277,7 +1374,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_IKE_DN_FORMAT:
             return (
                 False,
-                f"Invalid ike-dn-format '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_DN_FORMAT)}",
+                f"Invalid ike-dn-format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKE_DN_FORMAT)}",
             )
 
     # Validate ike-port if present
@@ -1308,7 +1406,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_IKE_POLICY_ROUTE:
             return (
                 False,
-                f"Invalid ike-policy-route '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_POLICY_ROUTE)}",
+                f"Invalid ike-policy-route '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKE_POLICY_ROUTE)}",
             )
 
     # Validate ike-detailed-event-logs if present
@@ -1317,7 +1416,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_IKE_DETAILED_EVENT_LOGS:
             return (
                 False,
-                f"Invalid ike-detailed-event-logs '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_DETAILED_EVENT_LOGS)}",
+                f"Invalid ike-detailed-event-logs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IKE_DETAILED_EVENT_LOGS)}",
             )
 
     # Validate block-land-attack if present
@@ -1326,7 +1426,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_BLOCK_LAND_ATTACK:
             return (
                 False,
-                f"Invalid block-land-attack '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_LAND_ATTACK)}",
+                f"Invalid block-land-attack '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_LAND_ATTACK)}",
             )
 
     # Validate default-app-port-as-service if present
@@ -1335,7 +1436,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_DEFAULT_APP_PORT_AS_SERVICE:
             return (
                 False,
-                f"Invalid default-app-port-as-service '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_APP_PORT_AS_SERVICE)}",
+                f"Invalid default-app-port-as-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_APP_PORT_AS_SERVICE)}",
             )
 
     # Validate fqdn-session-check if present
@@ -1344,7 +1446,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_FQDN_SESSION_CHECK:
             return (
                 False,
-                f"Invalid fqdn-session-check '{value}'. Must be one of: {', '.join(VALID_BODY_FQDN_SESSION_CHECK)}",
+                f"Invalid fqdn-session-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FQDN_SESSION_CHECK)}",
             )
 
     # Validate ext-resource-session-check if present
@@ -1353,7 +1456,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_EXT_RESOURCE_SESSION_CHECK:
             return (
                 False,
-                f"Invalid ext-resource-session-check '{value}'. Must be one of: {', '.join(VALID_BODY_EXT_RESOURCE_SESSION_CHECK)}",
+                f"Invalid ext-resource-session-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXT_RESOURCE_SESSION_CHECK)}",
             )
 
     # Validate dyn-addr-session-check if present
@@ -1362,7 +1466,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_DYN_ADDR_SESSION_CHECK:
             return (
                 False,
-                f"Invalid dyn-addr-session-check '{value}'. Must be one of: {', '.join(VALID_BODY_DYN_ADDR_SESSION_CHECK)}",
+                f"Invalid dyn-addr-session-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DYN_ADDR_SESSION_CHECK)}",
             )
 
     # Validate default-policy-expiry-days if present
@@ -1388,7 +1493,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GUI_ENFORCE_CHANGE_SUMMARY:
             return (
                 False,
-                f"Invalid gui-enforce-change-summary '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_ENFORCE_CHANGE_SUMMARY)}",
+                f"Invalid gui-enforce-change-summary '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUI_ENFORCE_CHANGE_SUMMARY)}",
             )
 
     # Validate internet-service-database-cache if present
@@ -1397,7 +1503,8 @@ def validate_settings_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_DATABASE_CACHE:
             return (
                 False,
-                f"Invalid internet-service-database-cache '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_DATABASE_CACHE)}",
+                f"Invalid internet-service-database-cache '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_DATABASE_CACHE)}",
             )
 
     # Validate internet-service-app-ctrl-size if present

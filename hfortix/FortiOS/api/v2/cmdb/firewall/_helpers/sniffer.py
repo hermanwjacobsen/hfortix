@@ -58,7 +58,8 @@ def validate_sniffer_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -96,7 +97,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate logtraffic if present
@@ -105,7 +107,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate ipv6 if present
@@ -114,7 +117,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPV6:
             return (
                 False,
-                f"Invalid ipv6 '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6)}",
+                f"Invalid ipv6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6)}",
             )
 
     # Validate non-ip if present
@@ -123,7 +127,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NON_IP:
             return (
                 False,
-                f"Invalid non-ip '{value}'. Must be one of: {', '.join(VALID_BODY_NON_IP)}",
+                f"Invalid non-ip '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NON_IP)}",
             )
 
     # Validate interface if present
@@ -162,7 +167,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_APPLICATION_LIST_STATUS:
             return (
                 False,
-                f"Invalid application-list-status '{value}'. Must be one of: {', '.join(VALID_BODY_APPLICATION_LIST_STATUS)}",
+                f"Invalid application-list-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APPLICATION_LIST_STATUS)}",
             )
 
     # Validate application-list if present
@@ -177,7 +183,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPS_SENSOR_STATUS:
             return (
                 False,
-                f"Invalid ips-sensor-status '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_SENSOR_STATUS)}",
+                f"Invalid ips-sensor-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPS_SENSOR_STATUS)}",
             )
 
     # Validate ips-sensor if present
@@ -192,7 +199,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DSRI:
             return (
                 False,
-                f"Invalid dsri '{value}'. Must be one of: {', '.join(VALID_BODY_DSRI)}",
+                f"Invalid dsri '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSRI)}",
             )
 
     # Validate av-profile-status if present
@@ -201,7 +209,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AV_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid av-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_AV_PROFILE_STATUS)}",
+                f"Invalid av-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AV_PROFILE_STATUS)}",
             )
 
     # Validate av-profile if present
@@ -216,7 +225,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WEBFILTER_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid webfilter-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_WEBFILTER_PROFILE_STATUS)}",
+                f"Invalid webfilter-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WEBFILTER_PROFILE_STATUS)}",
             )
 
     # Validate webfilter-profile if present
@@ -231,7 +241,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EMAILFILTER_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid emailfilter-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_EMAILFILTER_PROFILE_STATUS)}",
+                f"Invalid emailfilter-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMAILFILTER_PROFILE_STATUS)}",
             )
 
     # Validate emailfilter-profile if present
@@ -246,7 +257,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DLP_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid dlp-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_DLP_PROFILE_STATUS)}",
+                f"Invalid dlp-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DLP_PROFILE_STATUS)}",
             )
 
     # Validate dlp-profile if present
@@ -261,7 +273,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IP_THREATFEED_STATUS:
             return (
                 False,
-                f"Invalid ip-threatfeed-status '{value}'. Must be one of: {', '.join(VALID_BODY_IP_THREATFEED_STATUS)}",
+                f"Invalid ip-threatfeed-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_THREATFEED_STATUS)}",
             )
 
     # Validate file-filter-profile-status if present
@@ -270,7 +283,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FILE_FILTER_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid file-filter-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_FILTER_PROFILE_STATUS)}",
+                f"Invalid file-filter-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FILE_FILTER_PROFILE_STATUS)}",
             )
 
     # Validate file-filter-profile if present
@@ -285,7 +299,8 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPS_DOS_STATUS:
             return (
                 False,
-                f"Invalid ips-dos-status '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_DOS_STATUS)}",
+                f"Invalid ips-dos-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPS_DOS_STATUS)}",
             )
 
     return (True, None)
@@ -334,7 +349,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate logtraffic if present
@@ -343,7 +359,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate ipv6 if present
@@ -352,7 +369,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_IPV6:
             return (
                 False,
-                f"Invalid ipv6 '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6)}",
+                f"Invalid ipv6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6)}",
             )
 
     # Validate non-ip if present
@@ -361,7 +379,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_NON_IP:
             return (
                 False,
-                f"Invalid non-ip '{value}'. Must be one of: {', '.join(VALID_BODY_NON_IP)}",
+                f"Invalid non-ip '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NON_IP)}",
             )
 
     # Validate interface if present
@@ -400,7 +419,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_APPLICATION_LIST_STATUS:
             return (
                 False,
-                f"Invalid application-list-status '{value}'. Must be one of: {', '.join(VALID_BODY_APPLICATION_LIST_STATUS)}",
+                f"Invalid application-list-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APPLICATION_LIST_STATUS)}",
             )
 
     # Validate application-list if present
@@ -415,7 +435,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_IPS_SENSOR_STATUS:
             return (
                 False,
-                f"Invalid ips-sensor-status '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_SENSOR_STATUS)}",
+                f"Invalid ips-sensor-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPS_SENSOR_STATUS)}",
             )
 
     # Validate ips-sensor if present
@@ -430,7 +451,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_DSRI:
             return (
                 False,
-                f"Invalid dsri '{value}'. Must be one of: {', '.join(VALID_BODY_DSRI)}",
+                f"Invalid dsri '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSRI)}",
             )
 
     # Validate av-profile-status if present
@@ -439,7 +461,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_AV_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid av-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_AV_PROFILE_STATUS)}",
+                f"Invalid av-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AV_PROFILE_STATUS)}",
             )
 
     # Validate av-profile if present
@@ -454,7 +477,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_WEBFILTER_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid webfilter-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_WEBFILTER_PROFILE_STATUS)}",
+                f"Invalid webfilter-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WEBFILTER_PROFILE_STATUS)}",
             )
 
     # Validate webfilter-profile if present
@@ -469,7 +493,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_EMAILFILTER_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid emailfilter-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_EMAILFILTER_PROFILE_STATUS)}",
+                f"Invalid emailfilter-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMAILFILTER_PROFILE_STATUS)}",
             )
 
     # Validate emailfilter-profile if present
@@ -484,7 +509,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_DLP_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid dlp-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_DLP_PROFILE_STATUS)}",
+                f"Invalid dlp-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DLP_PROFILE_STATUS)}",
             )
 
     # Validate dlp-profile if present
@@ -499,7 +525,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_IP_THREATFEED_STATUS:
             return (
                 False,
-                f"Invalid ip-threatfeed-status '{value}'. Must be one of: {', '.join(VALID_BODY_IP_THREATFEED_STATUS)}",
+                f"Invalid ip-threatfeed-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_THREATFEED_STATUS)}",
             )
 
     # Validate file-filter-profile-status if present
@@ -508,7 +535,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_FILE_FILTER_PROFILE_STATUS:
             return (
                 False,
-                f"Invalid file-filter-profile-status '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_FILTER_PROFILE_STATUS)}",
+                f"Invalid file-filter-profile-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FILE_FILTER_PROFILE_STATUS)}",
             )
 
     # Validate file-filter-profile if present
@@ -523,7 +551,8 @@ def validate_sniffer_put(
         if value and value not in VALID_BODY_IPS_DOS_STATUS:
             return (
                 False,
-                f"Invalid ips-dos-status '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_DOS_STATUS)}",
+                f"Invalid ips-dos-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPS_DOS_STATUS)}",
             )
 
     return (True, None)

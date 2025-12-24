@@ -51,7 +51,8 @@ def validate_shaper_traffic_shaper_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -120,7 +121,8 @@ def validate_shaper_traffic_shaper_post(
         if value and value not in VALID_BODY_BANDWIDTH_UNIT:
             return (
                 False,
-                f"Invalid bandwidth-unit '{value}'. Must be one of: {', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
+                f"Invalid bandwidth-unit '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
             )
 
     # Validate priority if present
@@ -129,7 +131,8 @@ def validate_shaper_traffic_shaper_post(
         if value and value not in VALID_BODY_PRIORITY:
             return (
                 False,
-                f"Invalid priority '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY)}",
+                f"Invalid priority '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY)}",
             )
 
     # Validate per-policy if present
@@ -138,7 +141,8 @@ def validate_shaper_traffic_shaper_post(
         if value and value not in VALID_BODY_PER_POLICY:
             return (
                 False,
-                f"Invalid per-policy '{value}'. Must be one of: {', '.join(VALID_BODY_PER_POLICY)}",
+                f"Invalid per-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PER_POLICY)}",
             )
 
     # Validate diffserv if present
@@ -147,7 +151,8 @@ def validate_shaper_traffic_shaper_post(
         if value and value not in VALID_BODY_DIFFSERV:
             return (
                 False,
-                f"Invalid diffserv '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV)}",
+                f"Invalid diffserv '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV)}",
             )
 
     # Validate dscp-marking-method if present
@@ -156,7 +161,8 @@ def validate_shaper_traffic_shaper_post(
         if value and value not in VALID_BODY_DSCP_MARKING_METHOD:
             return (
                 False,
-                f"Invalid dscp-marking-method '{value}'. Must be one of: {', '.join(VALID_BODY_DSCP_MARKING_METHOD)}",
+                f"Invalid dscp-marking-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSCP_MARKING_METHOD)}",
             )
 
     # Validate exceed-bandwidth if present
@@ -182,7 +188,8 @@ def validate_shaper_traffic_shaper_post(
         if value and value not in VALID_BODY_COS_MARKING:
             return (
                 False,
-                f"Invalid cos-marking '{value}'. Must be one of: {', '.join(VALID_BODY_COS_MARKING)}",
+                f"Invalid cos-marking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_COS_MARKING)}",
             )
 
     # Validate cos-marking-method if present
@@ -191,7 +198,8 @@ def validate_shaper_traffic_shaper_post(
         if value and value not in VALID_BODY_COS_MARKING_METHOD:
             return (
                 False,
-                f"Invalid cos-marking-method '{value}'. Must be one of: {', '.join(VALID_BODY_COS_MARKING_METHOD)}",
+                f"Invalid cos-marking-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_COS_MARKING_METHOD)}",
             )
 
     # Validate overhead if present
@@ -297,7 +305,8 @@ def validate_shaper_traffic_shaper_put(
         if value and value not in VALID_BODY_BANDWIDTH_UNIT:
             return (
                 False,
-                f"Invalid bandwidth-unit '{value}'. Must be one of: {', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
+                f"Invalid bandwidth-unit '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
             )
 
     # Validate priority if present
@@ -306,7 +315,8 @@ def validate_shaper_traffic_shaper_put(
         if value and value not in VALID_BODY_PRIORITY:
             return (
                 False,
-                f"Invalid priority '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY)}",
+                f"Invalid priority '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY)}",
             )
 
     # Validate per-policy if present
@@ -315,7 +325,8 @@ def validate_shaper_traffic_shaper_put(
         if value and value not in VALID_BODY_PER_POLICY:
             return (
                 False,
-                f"Invalid per-policy '{value}'. Must be one of: {', '.join(VALID_BODY_PER_POLICY)}",
+                f"Invalid per-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PER_POLICY)}",
             )
 
     # Validate diffserv if present
@@ -324,7 +335,8 @@ def validate_shaper_traffic_shaper_put(
         if value and value not in VALID_BODY_DIFFSERV:
             return (
                 False,
-                f"Invalid diffserv '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV)}",
+                f"Invalid diffserv '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV)}",
             )
 
     # Validate dscp-marking-method if present
@@ -333,7 +345,8 @@ def validate_shaper_traffic_shaper_put(
         if value and value not in VALID_BODY_DSCP_MARKING_METHOD:
             return (
                 False,
-                f"Invalid dscp-marking-method '{value}'. Must be one of: {', '.join(VALID_BODY_DSCP_MARKING_METHOD)}",
+                f"Invalid dscp-marking-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSCP_MARKING_METHOD)}",
             )
 
     # Validate exceed-bandwidth if present
@@ -359,7 +372,8 @@ def validate_shaper_traffic_shaper_put(
         if value and value not in VALID_BODY_COS_MARKING:
             return (
                 False,
-                f"Invalid cos-marking '{value}'. Must be one of: {', '.join(VALID_BODY_COS_MARKING)}",
+                f"Invalid cos-marking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_COS_MARKING)}",
             )
 
     # Validate cos-marking-method if present
@@ -368,7 +382,8 @@ def validate_shaper_traffic_shaper_put(
         if value and value not in VALID_BODY_COS_MARKING_METHOD:
             return (
                 False,
-                f"Invalid cos-marking-method '{value}'. Must be one of: {', '.join(VALID_BODY_COS_MARKING_METHOD)}",
+                f"Invalid cos-marking-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_COS_MARKING_METHOD)}",
             )
 
     # Validate overhead if present

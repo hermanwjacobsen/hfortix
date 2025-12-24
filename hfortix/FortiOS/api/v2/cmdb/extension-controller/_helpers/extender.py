@@ -53,7 +53,8 @@ def validate_extender_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -92,7 +93,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTHORIZED:
             return (
                 False,
-                f"Invalid authorized '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHORIZED)}",
+                f"Invalid authorized '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTHORIZED)}",
             )
 
     # Validate ext-name if present
@@ -138,7 +140,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTENSION_TYPE:
             return (
                 False,
-                f"Invalid extension-type '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION_TYPE)}",
+                f"Invalid extension-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENSION_TYPE)}",
             )
 
     # Validate profile if present
@@ -153,7 +156,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_ALLOWACCESS:
             return (
                 False,
-                f"Invalid override-allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_ALLOWACCESS)}",
+                f"Invalid override-allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_ALLOWACCESS)}",
             )
 
     # Validate allowaccess if present
@@ -162,7 +166,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate override-login-password-change if present
@@ -171,7 +176,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_LOGIN_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid override-login-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_LOGIN_PASSWORD_CHANGE)}",
+                f"Invalid override-login-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_LOGIN_PASSWORD_CHANGE)}",
             )
 
     # Validate login-password-change if present
@@ -180,7 +186,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOGIN_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid login-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
+                f"Invalid login-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
             )
 
     # Validate override-enforce-bandwidth if present
@@ -189,7 +196,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_ENFORCE_BANDWIDTH:
             return (
                 False,
-                f"Invalid override-enforce-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_ENFORCE_BANDWIDTH)}",
+                f"Invalid override-enforce-bandwidth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_ENFORCE_BANDWIDTH)}",
             )
 
     # Validate enforce-bandwidth if present
@@ -198,7 +206,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ENFORCE_BANDWIDTH:
             return (
                 False,
-                f"Invalid enforce-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
+                f"Invalid enforce-bandwidth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
             )
 
     # Validate bandwidth-limit if present
@@ -224,7 +233,8 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FIRMWARE_PROVISION_LATEST:
             return (
                 False,
-                f"Invalid firmware-provision-latest '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
+                f"Invalid firmware-provision-latest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
             )
 
     return (True, None)
@@ -274,7 +284,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_AUTHORIZED:
             return (
                 False,
-                f"Invalid authorized '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHORIZED)}",
+                f"Invalid authorized '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTHORIZED)}",
             )
 
     # Validate ext-name if present
@@ -320,7 +331,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_EXTENSION_TYPE:
             return (
                 False,
-                f"Invalid extension-type '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION_TYPE)}",
+                f"Invalid extension-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENSION_TYPE)}",
             )
 
     # Validate profile if present
@@ -335,7 +347,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_OVERRIDE_ALLOWACCESS:
             return (
                 False,
-                f"Invalid override-allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_ALLOWACCESS)}",
+                f"Invalid override-allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_ALLOWACCESS)}",
             )
 
     # Validate allowaccess if present
@@ -344,7 +357,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate override-login-password-change if present
@@ -353,7 +367,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_OVERRIDE_LOGIN_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid override-login-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_LOGIN_PASSWORD_CHANGE)}",
+                f"Invalid override-login-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_LOGIN_PASSWORD_CHANGE)}",
             )
 
     # Validate login-password-change if present
@@ -362,7 +377,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_LOGIN_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid login-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
+                f"Invalid login-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWORD_CHANGE)}",
             )
 
     # Validate override-enforce-bandwidth if present
@@ -371,7 +387,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_OVERRIDE_ENFORCE_BANDWIDTH:
             return (
                 False,
-                f"Invalid override-enforce-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_ENFORCE_BANDWIDTH)}",
+                f"Invalid override-enforce-bandwidth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_ENFORCE_BANDWIDTH)}",
             )
 
     # Validate enforce-bandwidth if present
@@ -380,7 +397,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_ENFORCE_BANDWIDTH:
             return (
                 False,
-                f"Invalid enforce-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
+                f"Invalid enforce-bandwidth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENFORCE_BANDWIDTH)}",
             )
 
     # Validate bandwidth-limit if present
@@ -406,7 +424,8 @@ def validate_extender_put(
         if value and value not in VALID_BODY_FIRMWARE_PROVISION_LATEST:
             return (
                 False,
-                f"Invalid firmware-provision-latest '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
+                f"Invalid firmware-provision-latest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
             )
 
     return (True, None)

@@ -71,7 +71,8 @@ def validate_vdom_exception_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -111,7 +112,8 @@ def validate_vdom_exception_post(
         if value and value not in VALID_BODY_OBJECT:
             return (
                 False,
-                f"Invalid object '{value}'. Must be one of: {', '.join(VALID_BODY_OBJECT)}",
+                f"Invalid object '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OBJECT)}",
             )
 
     # Validate scope if present
@@ -120,7 +122,8 @@ def validate_vdom_exception_post(
         if value and value not in VALID_BODY_SCOPE:
             return (
                 False,
-                f"Invalid scope '{value}'. Must be one of: {', '.join(VALID_BODY_SCOPE)}",
+                f"Invalid scope '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCOPE)}",
             )
 
     return (True, None)
@@ -169,7 +172,8 @@ def validate_vdom_exception_put(
         if value and value not in VALID_BODY_OBJECT:
             return (
                 False,
-                f"Invalid object '{value}'. Must be one of: {', '.join(VALID_BODY_OBJECT)}",
+                f"Invalid object '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OBJECT)}",
             )
 
     # Validate scope if present
@@ -178,7 +182,8 @@ def validate_vdom_exception_put(
         if value and value not in VALID_BODY_SCOPE:
             return (
                 False,
-                f"Invalid scope '{value}'. Must be one of: {', '.join(VALID_BODY_SCOPE)}",
+                f"Invalid scope '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCOPE)}",
             )
 
     return (True, None)

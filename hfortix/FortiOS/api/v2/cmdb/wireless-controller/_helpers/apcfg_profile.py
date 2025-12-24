@@ -46,7 +46,8 @@ def validate_apcfg_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_apcfg_profile_post(
         if value and value not in VALID_BODY_AP_FAMILY:
             return (
                 False,
-                f"Invalid ap-family '{value}'. Must be one of: {', '.join(VALID_BODY_AP_FAMILY)}",
+                f"Invalid ap-family '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_FAMILY)}",
             )
 
     # Validate comment if present
@@ -96,7 +98,8 @@ def validate_apcfg_profile_post(
         if value and value not in VALID_BODY_AC_TYPE:
             return (
                 False,
-                f"Invalid ac-type '{value}'. Must be one of: {', '.join(VALID_BODY_AC_TYPE)}",
+                f"Invalid ac-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AC_TYPE)}",
             )
 
     # Validate ac-timer if present
@@ -162,7 +165,8 @@ def validate_apcfg_profile_put(
         if value and value not in VALID_BODY_AP_FAMILY:
             return (
                 False,
-                f"Invalid ap-family '{value}'. Must be one of: {', '.join(VALID_BODY_AP_FAMILY)}",
+                f"Invalid ap-family '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_FAMILY)}",
             )
 
     # Validate comment if present
@@ -177,7 +181,8 @@ def validate_apcfg_profile_put(
         if value and value not in VALID_BODY_AC_TYPE:
             return (
                 False,
-                f"Invalid ac-type '{value}'. Must be one of: {', '.join(VALID_BODY_AC_TYPE)}",
+                f"Invalid ac-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AC_TYPE)}",
             )
 
     # Validate ac-timer if present

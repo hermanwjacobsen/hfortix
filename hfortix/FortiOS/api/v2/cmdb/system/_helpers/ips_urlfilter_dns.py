@@ -46,7 +46,8 @@ def validate_ips_urlfilter_dns_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -75,7 +76,8 @@ def validate_ips_urlfilter_dns_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate ipv6-capability if present
@@ -84,7 +86,8 @@ def validate_ips_urlfilter_dns_post(
         if value and value not in VALID_BODY_IPV6_CAPABILITY:
             return (
                 False,
-                f"Invalid ipv6-capability '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_CAPABILITY)}",
+                f"Invalid ipv6-capability '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IPV6_CAPABILITY)}",
             )
 
     return (True, None)

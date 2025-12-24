@@ -45,7 +45,8 @@ def validate_wag_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -86,7 +87,8 @@ def validate_wag_profile_post(
         if value and value not in VALID_BODY_TUNNEL_TYPE:
             return (
                 False,
-                f"Invalid tunnel-type '{value}'. Must be one of: {', '.join(VALID_BODY_TUNNEL_TYPE)}",
+                f"Invalid tunnel-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TUNNEL_TYPE)}",
             )
 
     # Validate wag-port if present
@@ -189,7 +191,8 @@ def validate_wag_profile_put(
         if value and value not in VALID_BODY_TUNNEL_TYPE:
             return (
                 False,
-                f"Invalid tunnel-type '{value}'. Must be one of: {', '.join(VALID_BODY_TUNNEL_TYPE)}",
+                f"Invalid tunnel-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TUNNEL_TYPE)}",
             )
 
     # Validate wag-port if present

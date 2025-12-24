@@ -45,7 +45,8 @@ def validate_attribute_match_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -86,7 +87,8 @@ def validate_attribute_match_post(
         if value and value not in VALID_BODY_MATCH_STRATEGY:
             return (
                 False,
-                f"Invalid match-strategy '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_STRATEGY)}",
+                f"Invalid match-strategy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_STRATEGY)}",
             )
 
     return (True, None)
@@ -136,7 +138,8 @@ def validate_attribute_match_put(
         if value and value not in VALID_BODY_MATCH_STRATEGY:
             return (
                 False,
-                f"Invalid match-strategy '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_STRATEGY)}",
+                f"Invalid match-strategy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_STRATEGY)}",
             )
 
     return (True, None)

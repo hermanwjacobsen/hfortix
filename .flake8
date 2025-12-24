@@ -1,0 +1,18 @@
+[flake8]
+max-line-length = 79
+extend-ignore = E203, W503, B009, B036
+# Exclude auto-generated API code from line-length checks (E501)
+per-file-ignores =
+    hfortix/FortiOS/api/*:E501
+    hfortix/FortiManager/api/*:E501
+    hfortix/FortiAnalyzer/api/*:E501
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    .venv,
+    venv,
+    *.egg-info,
+    X/,
+    docs/

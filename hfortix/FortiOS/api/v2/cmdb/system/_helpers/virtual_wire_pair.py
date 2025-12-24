@@ -45,7 +45,8 @@ def validate_virtual_wire_pair_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,7 +81,8 @@ def validate_virtual_wire_pair_post(
         if value and value not in VALID_BODY_WILDCARD_VLAN:
             return (
                 False,
-                f"Invalid wildcard-vlan '{value}'. Must be one of: {', '.join(VALID_BODY_WILDCARD_VLAN)}",
+                f"Invalid wildcard-vlan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WILDCARD_VLAN)}",
             )
 
     return (True, None)
@@ -124,7 +126,8 @@ def validate_virtual_wire_pair_put(
         if value and value not in VALID_BODY_WILDCARD_VLAN:
             return (
                 False,
-                f"Invalid wildcard-vlan '{value}'. Must be one of: {', '.join(VALID_BODY_WILDCARD_VLAN)}",
+                f"Invalid wildcard-vlan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WILDCARD_VLAN)}",
             )
 
     return (True, None)

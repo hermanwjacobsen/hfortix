@@ -49,7 +49,8 @@ def validate_fsso_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,7 +83,8 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate server if present
@@ -210,7 +212,8 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LDAP_POLL:
             return (
                 False,
-                f"Invalid ldap-poll '{value}'. Must be one of: {', '.join(VALID_BODY_LDAP_POLL)}",
+                f"Invalid ldap-poll '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LDAP_POLL)}",
             )
 
     # Validate ldap-poll-interval if present
@@ -248,7 +251,8 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL:
             return (
                 False,
-                f"Invalid ssl '{value}'. Must be one of: {', '.join(VALID_BODY_SSL)}",
+                f"Invalid ssl '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL)}",
             )
 
     # Validate sni if present
@@ -263,7 +267,8 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_SERVER_HOST_IP_CHECK:
             return (
                 False,
-                f"Invalid ssl-server-host-ip-check '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_HOST_IP_CHECK)}",
+                f"Invalid ssl-server-host-ip-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_SERVER_HOST_IP_CHECK)}",
             )
 
     # Validate ssl-trusted-cert if present
@@ -278,7 +283,8 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -339,7 +345,8 @@ def validate_fsso_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate server if present
@@ -467,7 +474,8 @@ def validate_fsso_put(
         if value and value not in VALID_BODY_LDAP_POLL:
             return (
                 False,
-                f"Invalid ldap-poll '{value}'. Must be one of: {', '.join(VALID_BODY_LDAP_POLL)}",
+                f"Invalid ldap-poll '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LDAP_POLL)}",
             )
 
     # Validate ldap-poll-interval if present
@@ -505,7 +513,8 @@ def validate_fsso_put(
         if value and value not in VALID_BODY_SSL:
             return (
                 False,
-                f"Invalid ssl '{value}'. Must be one of: {', '.join(VALID_BODY_SSL)}",
+                f"Invalid ssl '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL)}",
             )
 
     # Validate sni if present
@@ -520,7 +529,8 @@ def validate_fsso_put(
         if value and value not in VALID_BODY_SSL_SERVER_HOST_IP_CHECK:
             return (
                 False,
-                f"Invalid ssl-server-host-ip-check '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_HOST_IP_CHECK)}",
+                f"Invalid ssl-server-host-ip-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_SERVER_HOST_IP_CHECK)}",
             )
 
     # Validate ssl-trusted-cert if present
@@ -535,7 +545,8 @@ def validate_fsso_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present

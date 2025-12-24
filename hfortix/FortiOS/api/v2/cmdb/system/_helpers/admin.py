@@ -62,7 +62,8 @@ def validate_admin_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,7 +96,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REMOTE_AUTH:
             return (
                 False,
-                f"Invalid remote-auth '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_AUTH)}",
+                f"Invalid remote-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REMOTE_AUTH)}",
             )
 
     # Validate remote-group if present
@@ -110,7 +112,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WILDCARD:
             return (
                 False,
-                f"Invalid wildcard '{value}'. Must be one of: {', '.join(VALID_BODY_WILDCARD)}",
+                f"Invalid wildcard '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WILDCARD)}",
             )
 
     # Validate peer-auth if present
@@ -119,7 +122,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PEER_AUTH:
             return (
                 False,
-                f"Invalid peer-auth '{value}'. Must be one of: {', '.join(VALID_BODY_PEER_AUTH)}",
+                f"Invalid peer-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PEER_AUTH)}",
             )
 
     # Validate peer-group if present
@@ -140,7 +144,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ALLOW_REMOVE_ADMIN_SESSION:
             return (
                 False,
-                f"Invalid allow-remove-admin-session '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_REMOVE_ADMIN_SESSION)}",
+                f"Invalid allow-remove-admin-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_REMOVE_ADMIN_SESSION)}",
             )
 
     # Validate comments if present
@@ -167,7 +172,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACCPROFILE_OVERRIDE:
             return (
                 False,
-                f"Invalid accprofile-override '{value}'. Must be one of: {', '.join(VALID_BODY_ACCPROFILE_OVERRIDE)}",
+                f"Invalid accprofile-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCPROFILE_OVERRIDE)}",
             )
 
     # Validate vdom-override if present
@@ -176,7 +182,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_VDOM_OVERRIDE:
             return (
                 False,
-                f"Invalid vdom-override '{value}'. Must be one of: {', '.join(VALID_BODY_VDOM_OVERRIDE)}",
+                f"Invalid vdom-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VDOM_OVERRIDE)}",
             )
 
     # Validate force-password-change if present
@@ -185,7 +192,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FORCE_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid force-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_FORCE_PASSWORD_CHANGE)}",
+                f"Invalid force-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORCE_PASSWORD_CHANGE)}",
             )
 
     # Validate two-factor if present
@@ -194,7 +202,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     # Validate two-factor-authentication if present
@@ -203,7 +212,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR_AUTHENTICATION:
             return (
                 False,
-                f"Invalid two-factor-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
+                f"Invalid two-factor-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
             )
 
     # Validate two-factor-notification if present
@@ -212,7 +222,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR_NOTIFICATION:
             return (
                 False,
-                f"Invalid two-factor-notification '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
+                f"Invalid two-factor-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
             )
 
     # Validate fortitoken if present
@@ -233,7 +244,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SMS_SERVER:
             return (
                 False,
-                f"Invalid sms-server '{value}'. Must be one of: {', '.join(VALID_BODY_SMS_SERVER)}",
+                f"Invalid sms-server '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SMS_SERVER)}",
             )
 
     # Validate sms-custom-server if present
@@ -254,7 +266,8 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GUEST_AUTH:
             return (
                 False,
-                f"Invalid guest-auth '{value}'. Must be one of: {', '.join(VALID_BODY_GUEST_AUTH)}",
+                f"Invalid guest-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUEST_AUTH)}",
             )
 
     # Validate guest-lang if present
@@ -304,7 +317,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_REMOTE_AUTH:
             return (
                 False,
-                f"Invalid remote-auth '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_AUTH)}",
+                f"Invalid remote-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REMOTE_AUTH)}",
             )
 
     # Validate remote-group if present
@@ -319,7 +333,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_WILDCARD:
             return (
                 False,
-                f"Invalid wildcard '{value}'. Must be one of: {', '.join(VALID_BODY_WILDCARD)}",
+                f"Invalid wildcard '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WILDCARD)}",
             )
 
     # Validate peer-auth if present
@@ -328,7 +343,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_PEER_AUTH:
             return (
                 False,
-                f"Invalid peer-auth '{value}'. Must be one of: {', '.join(VALID_BODY_PEER_AUTH)}",
+                f"Invalid peer-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PEER_AUTH)}",
             )
 
     # Validate peer-group if present
@@ -349,7 +365,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_ALLOW_REMOVE_ADMIN_SESSION:
             return (
                 False,
-                f"Invalid allow-remove-admin-session '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_REMOVE_ADMIN_SESSION)}",
+                f"Invalid allow-remove-admin-session '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOW_REMOVE_ADMIN_SESSION)}",
             )
 
     # Validate comments if present
@@ -376,7 +393,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_ACCPROFILE_OVERRIDE:
             return (
                 False,
-                f"Invalid accprofile-override '{value}'. Must be one of: {', '.join(VALID_BODY_ACCPROFILE_OVERRIDE)}",
+                f"Invalid accprofile-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCPROFILE_OVERRIDE)}",
             )
 
     # Validate vdom-override if present
@@ -385,7 +403,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_VDOM_OVERRIDE:
             return (
                 False,
-                f"Invalid vdom-override '{value}'. Must be one of: {', '.join(VALID_BODY_VDOM_OVERRIDE)}",
+                f"Invalid vdom-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VDOM_OVERRIDE)}",
             )
 
     # Validate force-password-change if present
@@ -394,7 +413,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_FORCE_PASSWORD_CHANGE:
             return (
                 False,
-                f"Invalid force-password-change '{value}'. Must be one of: {', '.join(VALID_BODY_FORCE_PASSWORD_CHANGE)}",
+                f"Invalid force-password-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORCE_PASSWORD_CHANGE)}",
             )
 
     # Validate two-factor if present
@@ -403,7 +423,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     # Validate two-factor-authentication if present
@@ -412,7 +433,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_TWO_FACTOR_AUTHENTICATION:
             return (
                 False,
-                f"Invalid two-factor-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
+                f"Invalid two-factor-authentication '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
             )
 
     # Validate two-factor-notification if present
@@ -421,7 +443,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_TWO_FACTOR_NOTIFICATION:
             return (
                 False,
-                f"Invalid two-factor-notification '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
+                f"Invalid two-factor-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
             )
 
     # Validate fortitoken if present
@@ -442,7 +465,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_SMS_SERVER:
             return (
                 False,
-                f"Invalid sms-server '{value}'. Must be one of: {', '.join(VALID_BODY_SMS_SERVER)}",
+                f"Invalid sms-server '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SMS_SERVER)}",
             )
 
     # Validate sms-custom-server if present
@@ -463,7 +487,8 @@ def validate_admin_put(
         if value and value not in VALID_BODY_GUEST_AUTH:
             return (
                 False,
-                f"Invalid guest-auth '{value}'. Must be one of: {', '.join(VALID_BODY_GUEST_AUTH)}",
+                f"Invalid guest-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GUEST_AUTH)}",
             )
 
     # Validate guest-lang if present

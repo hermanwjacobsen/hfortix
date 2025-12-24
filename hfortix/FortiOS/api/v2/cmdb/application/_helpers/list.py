@@ -56,7 +56,8 @@ def validate_list_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,7 +102,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate other-application-action if present
@@ -110,7 +112,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OTHER_APPLICATION_ACTION:
             return (
                 False,
-                f"Invalid other-application-action '{value}'. Must be one of: {', '.join(VALID_BODY_OTHER_APPLICATION_ACTION)}",
+                f"Invalid other-application-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OTHER_APPLICATION_ACTION)}",
             )
 
     # Validate app-replacemsg if present
@@ -119,7 +122,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_APP_REPLACEMSG:
             return (
                 False,
-                f"Invalid app-replacemsg '{value}'. Must be one of: {', '.join(VALID_BODY_APP_REPLACEMSG)}",
+                f"Invalid app-replacemsg '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APP_REPLACEMSG)}",
             )
 
     # Validate other-application-log if present
@@ -128,7 +132,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OTHER_APPLICATION_LOG:
             return (
                 False,
-                f"Invalid other-application-log '{value}'. Must be one of: {', '.join(VALID_BODY_OTHER_APPLICATION_LOG)}",
+                f"Invalid other-application-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OTHER_APPLICATION_LOG)}",
             )
 
     # Validate enforce-default-app-port if present
@@ -137,7 +142,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ENFORCE_DEFAULT_APP_PORT:
             return (
                 False,
-                f"Invalid enforce-default-app-port '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_DEFAULT_APP_PORT)}",
+                f"Invalid enforce-default-app-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENFORCE_DEFAULT_APP_PORT)}",
             )
 
     # Validate force-inclusion-ssl-di-sigs if present
@@ -146,7 +152,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FORCE_INCLUSION_SSL_DI_SIGS:
             return (
                 False,
-                f"Invalid force-inclusion-ssl-di-sigs '{value}'. Must be one of: {', '.join(VALID_BODY_FORCE_INCLUSION_SSL_DI_SIGS)}",
+                f"Invalid force-inclusion-ssl-di-sigs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORCE_INCLUSION_SSL_DI_SIGS)}",
             )
 
     # Validate unknown-application-action if present
@@ -155,7 +162,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_UNKNOWN_APPLICATION_ACTION:
             return (
                 False,
-                f"Invalid unknown-application-action '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_APPLICATION_ACTION)}",
+                f"Invalid unknown-application-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNKNOWN_APPLICATION_ACTION)}",
             )
 
     # Validate unknown-application-log if present
@@ -164,7 +172,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_UNKNOWN_APPLICATION_LOG:
             return (
                 False,
-                f"Invalid unknown-application-log '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_APPLICATION_LOG)}",
+                f"Invalid unknown-application-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNKNOWN_APPLICATION_LOG)}",
             )
 
     # Validate p2p-block-list if present
@@ -173,7 +182,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_P2P_BLOCK_LIST:
             return (
                 False,
-                f"Invalid p2p-block-list '{value}'. Must be one of: {', '.join(VALID_BODY_P2P_BLOCK_LIST)}",
+                f"Invalid p2p-block-list '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_P2P_BLOCK_LIST)}",
             )
 
     # Validate deep-app-inspection if present
@@ -182,7 +192,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DEEP_APP_INSPECTION:
             return (
                 False,
-                f"Invalid deep-app-inspection '{value}'. Must be one of: {', '.join(VALID_BODY_DEEP_APP_INSPECTION)}",
+                f"Invalid deep-app-inspection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEEP_APP_INSPECTION)}",
             )
 
     # Validate options if present
@@ -191,7 +202,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OPTIONS:
             return (
                 False,
-                f"Invalid options '{value}'. Must be one of: {', '.join(VALID_BODY_OPTIONS)}",
+                f"Invalid options '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OPTIONS)}",
             )
 
     # Validate control-default-network-services if present
@@ -200,7 +212,8 @@ def validate_list_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CONTROL_DEFAULT_NETWORK_SERVICES:
             return (
                 False,
-                f"Invalid control-default-network-services '{value}'. Must be one of: {', '.join(VALID_BODY_CONTROL_DEFAULT_NETWORK_SERVICES)}",
+                f"Invalid control-default-network-services '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONTROL_DEFAULT_NETWORK_SERVICES)}",
             )
 
     return (True, None)
@@ -256,7 +269,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate other-application-action if present
@@ -265,7 +279,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_OTHER_APPLICATION_ACTION:
             return (
                 False,
-                f"Invalid other-application-action '{value}'. Must be one of: {', '.join(VALID_BODY_OTHER_APPLICATION_ACTION)}",
+                f"Invalid other-application-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OTHER_APPLICATION_ACTION)}",
             )
 
     # Validate app-replacemsg if present
@@ -274,7 +289,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_APP_REPLACEMSG:
             return (
                 False,
-                f"Invalid app-replacemsg '{value}'. Must be one of: {', '.join(VALID_BODY_APP_REPLACEMSG)}",
+                f"Invalid app-replacemsg '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APP_REPLACEMSG)}",
             )
 
     # Validate other-application-log if present
@@ -283,7 +299,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_OTHER_APPLICATION_LOG:
             return (
                 False,
-                f"Invalid other-application-log '{value}'. Must be one of: {', '.join(VALID_BODY_OTHER_APPLICATION_LOG)}",
+                f"Invalid other-application-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OTHER_APPLICATION_LOG)}",
             )
 
     # Validate enforce-default-app-port if present
@@ -292,7 +309,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_ENFORCE_DEFAULT_APP_PORT:
             return (
                 False,
-                f"Invalid enforce-default-app-port '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_DEFAULT_APP_PORT)}",
+                f"Invalid enforce-default-app-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENFORCE_DEFAULT_APP_PORT)}",
             )
 
     # Validate force-inclusion-ssl-di-sigs if present
@@ -301,7 +319,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_FORCE_INCLUSION_SSL_DI_SIGS:
             return (
                 False,
-                f"Invalid force-inclusion-ssl-di-sigs '{value}'. Must be one of: {', '.join(VALID_BODY_FORCE_INCLUSION_SSL_DI_SIGS)}",
+                f"Invalid force-inclusion-ssl-di-sigs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORCE_INCLUSION_SSL_DI_SIGS)}",
             )
 
     # Validate unknown-application-action if present
@@ -310,7 +329,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_UNKNOWN_APPLICATION_ACTION:
             return (
                 False,
-                f"Invalid unknown-application-action '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_APPLICATION_ACTION)}",
+                f"Invalid unknown-application-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNKNOWN_APPLICATION_ACTION)}",
             )
 
     # Validate unknown-application-log if present
@@ -319,7 +339,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_UNKNOWN_APPLICATION_LOG:
             return (
                 False,
-                f"Invalid unknown-application-log '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_APPLICATION_LOG)}",
+                f"Invalid unknown-application-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNKNOWN_APPLICATION_LOG)}",
             )
 
     # Validate p2p-block-list if present
@@ -328,7 +349,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_P2P_BLOCK_LIST:
             return (
                 False,
-                f"Invalid p2p-block-list '{value}'. Must be one of: {', '.join(VALID_BODY_P2P_BLOCK_LIST)}",
+                f"Invalid p2p-block-list '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_P2P_BLOCK_LIST)}",
             )
 
     # Validate deep-app-inspection if present
@@ -337,7 +359,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_DEEP_APP_INSPECTION:
             return (
                 False,
-                f"Invalid deep-app-inspection '{value}'. Must be one of: {', '.join(VALID_BODY_DEEP_APP_INSPECTION)}",
+                f"Invalid deep-app-inspection '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEEP_APP_INSPECTION)}",
             )
 
     # Validate options if present
@@ -346,7 +369,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_OPTIONS:
             return (
                 False,
-                f"Invalid options '{value}'. Must be one of: {', '.join(VALID_BODY_OPTIONS)}",
+                f"Invalid options '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OPTIONS)}",
             )
 
     # Validate control-default-network-services if present
@@ -355,7 +379,8 @@ def validate_list_put(
         if value and value not in VALID_BODY_CONTROL_DEFAULT_NETWORK_SERVICES:
             return (
                 False,
-                f"Invalid control-default-network-services '{value}'. Must be one of: {', '.join(VALID_BODY_CONTROL_DEFAULT_NETWORK_SERVICES)}",
+                f"Invalid control-default-network-services '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONTROL_DEFAULT_NETWORK_SERVICES)}",
             )
 
     return (True, None)

@@ -62,7 +62,8 @@ def validate_exchange_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -113,7 +114,8 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CONNECT_PROTOCOL:
             return (
                 False,
-                f"Invalid connect-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_CONNECT_PROTOCOL)}",
+                f"Invalid connect-protocol '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONNECT_PROTOCOL)}",
             )
 
     # Validate validate-server-certificate if present
@@ -122,7 +124,8 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_VALIDATE_SERVER_CERTIFICATE:
             return (
                 False,
-                f"Invalid validate-server-certificate '{value}'. Must be one of: {', '.join(VALID_BODY_VALIDATE_SERVER_CERTIFICATE)}",
+                f"Invalid validate-server-certificate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VALIDATE_SERVER_CERTIFICATE)}",
             )
 
     # Validate auth-type if present
@@ -131,7 +134,8 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate auth-level if present
@@ -140,7 +144,8 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_LEVEL:
             return (
                 False,
-                f"Invalid auth-level '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_LEVEL)}",
+                f"Invalid auth-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_LEVEL)}",
             )
 
     # Validate http-auth-type if present
@@ -149,7 +154,8 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTP_AUTH_TYPE:
             return (
                 False,
-                f"Invalid http-auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_AUTH_TYPE)}",
+                f"Invalid http-auth-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_AUTH_TYPE)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -158,7 +164,8 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate auto-discover-kdc if present
@@ -167,7 +174,8 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTO_DISCOVER_KDC:
             return (
                 False,
-                f"Invalid auto-discover-kdc '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVER_KDC)}",
+                f"Invalid auto-discover-kdc '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_DISCOVER_KDC)}",
             )
 
     return (True, None)
@@ -229,7 +237,8 @@ def validate_exchange_put(
         if value and value not in VALID_BODY_CONNECT_PROTOCOL:
             return (
                 False,
-                f"Invalid connect-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_CONNECT_PROTOCOL)}",
+                f"Invalid connect-protocol '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONNECT_PROTOCOL)}",
             )
 
     # Validate validate-server-certificate if present
@@ -238,7 +247,8 @@ def validate_exchange_put(
         if value and value not in VALID_BODY_VALIDATE_SERVER_CERTIFICATE:
             return (
                 False,
-                f"Invalid validate-server-certificate '{value}'. Must be one of: {', '.join(VALID_BODY_VALIDATE_SERVER_CERTIFICATE)}",
+                f"Invalid validate-server-certificate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VALIDATE_SERVER_CERTIFICATE)}",
             )
 
     # Validate auth-type if present
@@ -247,7 +257,8 @@ def validate_exchange_put(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate auth-level if present
@@ -256,7 +267,8 @@ def validate_exchange_put(
         if value and value not in VALID_BODY_AUTH_LEVEL:
             return (
                 False,
-                f"Invalid auth-level '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_LEVEL)}",
+                f"Invalid auth-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTH_LEVEL)}",
             )
 
     # Validate http-auth-type if present
@@ -265,7 +277,8 @@ def validate_exchange_put(
         if value and value not in VALID_BODY_HTTP_AUTH_TYPE:
             return (
                 False,
-                f"Invalid http-auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_AUTH_TYPE)}",
+                f"Invalid http-auth-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_AUTH_TYPE)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -274,7 +287,8 @@ def validate_exchange_put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate auto-discover-kdc if present
@@ -283,7 +297,8 @@ def validate_exchange_put(
         if value and value not in VALID_BODY_AUTO_DISCOVER_KDC:
             return (
                 False,
-                f"Invalid auto-discover-kdc '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVER_KDC)}",
+                f"Invalid auto-discover-kdc '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AUTO_DISCOVER_KDC)}",
             )
 
     return (True, None)

@@ -65,7 +65,8 @@ def validate_wtp_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -109,7 +110,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADMIN:
             return (
                 False,
-                f"Invalid admin '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN)}",
+                f"Invalid admin '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN)}",
             )
 
     # Validate name if present
@@ -160,7 +162,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FIRMWARE_PROVISION_LATEST:
             return (
                 False,
-                f"Invalid firmware-provision-latest '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
+                f"Invalid firmware-provision-latest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
             )
 
     # Validate wtp-profile if present
@@ -209,7 +212,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_LED_STATE:
             return (
                 False,
-                f"Invalid override-led-state '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_LED_STATE)}",
+                f"Invalid override-led-state '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_LED_STATE)}",
             )
 
     # Validate led-state if present
@@ -218,7 +222,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LED_STATE:
             return (
                 False,
-                f"Invalid led-state '{value}'. Must be one of: {', '.join(VALID_BODY_LED_STATE)}",
+                f"Invalid led-state '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LED_STATE)}",
             )
 
     # Validate override-wan-port-mode if present
@@ -227,7 +232,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_WAN_PORT_MODE:
             return (
                 False,
-                f"Invalid override-wan-port-mode '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_WAN_PORT_MODE)}",
+                f"Invalid override-wan-port-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_WAN_PORT_MODE)}",
             )
 
     # Validate wan-port-mode if present
@@ -236,7 +242,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WAN_PORT_MODE:
             return (
                 False,
-                f"Invalid wan-port-mode '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_MODE)}",
+                f"Invalid wan-port-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_MODE)}",
             )
 
     # Validate override-ip-fragment if present
@@ -245,7 +252,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_IP_FRAGMENT:
             return (
                 False,
-                f"Invalid override-ip-fragment '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_IP_FRAGMENT)}",
+                f"Invalid override-ip-fragment '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_IP_FRAGMENT)}",
             )
 
     # Validate ip-fragment-preventing if present
@@ -254,7 +262,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IP_FRAGMENT_PREVENTING:
             return (
                 False,
-                f"Invalid ip-fragment-preventing '{value}'. Must be one of: {', '.join(VALID_BODY_IP_FRAGMENT_PREVENTING)}",
+                f"Invalid ip-fragment-preventing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_FRAGMENT_PREVENTING)}",
             )
 
     # Validate tun-mtu-uplink if present
@@ -294,7 +303,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_SPLIT_TUNNEL:
             return (
                 False,
-                f"Invalid override-split-tunnel '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_SPLIT_TUNNEL)}",
+                f"Invalid override-split-tunnel '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_SPLIT_TUNNEL)}",
             )
 
     # Validate split-tunneling-acl-path if present
@@ -303,7 +313,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SPLIT_TUNNELING_ACL_PATH:
             return (
                 False,
-                f"Invalid split-tunneling-acl-path '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_PATH)}",
+                f"Invalid split-tunneling-acl-path '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_PATH)}",
             )
 
     # Validate split-tunneling-acl-local-ap-subnet if present
@@ -315,7 +326,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         ):
             return (
                 False,
-                f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",
+                f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",
             )
 
     # Validate override-lan if present
@@ -324,7 +336,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_LAN:
             return (
                 False,
-                f"Invalid override-lan '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_LAN)}",
+                f"Invalid override-lan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_LAN)}",
             )
 
     # Validate override-allowaccess if present
@@ -333,7 +346,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_ALLOWACCESS:
             return (
                 False,
-                f"Invalid override-allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_ALLOWACCESS)}",
+                f"Invalid override-allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_ALLOWACCESS)}",
             )
 
     # Validate allowaccess if present
@@ -342,7 +356,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate override-login-passwd-change if present
@@ -351,7 +366,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_LOGIN_PASSWD_CHANGE:
             return (
                 False,
-                f"Invalid override-login-passwd-change '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_LOGIN_PASSWD_CHANGE)}",
+                f"Invalid override-login-passwd-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_LOGIN_PASSWD_CHANGE)}",
             )
 
     # Validate login-passwd-change if present
@@ -360,7 +376,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOGIN_PASSWD_CHANGE:
             return (
                 False,
-                f"Invalid login-passwd-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWD_CHANGE)}",
+                f"Invalid login-passwd-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWD_CHANGE)}",
             )
 
     # Validate override-default-mesh-root if present
@@ -369,7 +386,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OVERRIDE_DEFAULT_MESH_ROOT:
             return (
                 False,
-                f"Invalid override-default-mesh-root '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_DEFAULT_MESH_ROOT)}",
+                f"Invalid override-default-mesh-root '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVERRIDE_DEFAULT_MESH_ROOT)}",
             )
 
     # Validate default-mesh-root if present
@@ -378,7 +396,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DEFAULT_MESH_ROOT:
             return (
                 False,
-                f"Invalid default-mesh-root '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_MESH_ROOT)}",
+                f"Invalid default-mesh-root '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_MESH_ROOT)}",
             )
 
     # Validate image-download if present
@@ -387,7 +406,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IMAGE_DOWNLOAD:
             return (
                 False,
-                f"Invalid image-download '{value}'. Must be one of: {', '.join(VALID_BODY_IMAGE_DOWNLOAD)}",
+                f"Invalid image-download '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IMAGE_DOWNLOAD)}",
             )
 
     # Validate mesh-bridge-enable if present
@@ -396,7 +416,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MESH_BRIDGE_ENABLE:
             return (
                 False,
-                f"Invalid mesh-bridge-enable '{value}'. Must be one of: {', '.join(VALID_BODY_MESH_BRIDGE_ENABLE)}",
+                f"Invalid mesh-bridge-enable '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MESH_BRIDGE_ENABLE)}",
             )
 
     # Validate purdue-level if present
@@ -405,7 +426,8 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PURDUE_LEVEL:
             return (
                 False,
-                f"Invalid purdue-level '{value}'. Must be one of: {', '.join(VALID_BODY_PURDUE_LEVEL)}",
+                f"Invalid purdue-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PURDUE_LEVEL)}",
             )
 
     # Validate coordinate-latitude if present

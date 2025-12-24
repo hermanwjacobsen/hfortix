@@ -50,7 +50,8 @@ def validate_explicit_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -83,7 +84,8 @@ def validate_explicit_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate sec-default-action if present
@@ -92,7 +94,8 @@ def validate_explicit_put(
         if value and value not in VALID_BODY_SEC_DEFAULT_ACTION:
             return (
                 False,
-                f"Invalid sec-default-action '{value}'. Must be one of: {', '.join(VALID_BODY_SEC_DEFAULT_ACTION)}",
+                f"Invalid sec-default-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEC_DEFAULT_ACTION)}",
             )
 
     # Validate server-data-mode if present
@@ -101,7 +104,8 @@ def validate_explicit_put(
         if value and value not in VALID_BODY_SERVER_DATA_MODE:
             return (
                 False,
-                f"Invalid server-data-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_DATA_MODE)}",
+                f"Invalid server-data-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_DATA_MODE)}",
             )
 
     # Validate ssl if present
@@ -110,7 +114,8 @@ def validate_explicit_put(
         if value and value not in VALID_BODY_SSL:
             return (
                 False,
-                f"Invalid ssl '{value}'. Must be one of: {', '.join(VALID_BODY_SSL)}",
+                f"Invalid ssl '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL)}",
             )
 
     # Validate ssl-dh-bits if present
@@ -119,7 +124,8 @@ def validate_explicit_put(
         if value and value not in VALID_BODY_SSL_DH_BITS:
             return (
                 False,
-                f"Invalid ssl-dh-bits '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_DH_BITS)}",
+                f"Invalid ssl-dh-bits '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_DH_BITS)}",
             )
 
     # Validate ssl-algorithm if present
@@ -128,7 +134,8 @@ def validate_explicit_put(
         if value and value not in VALID_BODY_SSL_ALGORITHM:
             return (
                 False,
-                f"Invalid ssl-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ALGORITHM)}",
+                f"Invalid ssl-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_ALGORITHM)}",
             )
 
     return (True, None)

@@ -47,7 +47,8 @@ def validate_gui_display_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,7 +81,8 @@ def validate_gui_display_put(
         if value and value not in VALID_BODY_RESOLVE_HOSTS:
             return (
                 False,
-                f"Invalid resolve-hosts '{value}'. Must be one of: {', '.join(VALID_BODY_RESOLVE_HOSTS)}",
+                f"Invalid resolve-hosts '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RESOLVE_HOSTS)}",
             )
 
     # Validate resolve-apps if present
@@ -89,7 +91,8 @@ def validate_gui_display_put(
         if value and value not in VALID_BODY_RESOLVE_APPS:
             return (
                 False,
-                f"Invalid resolve-apps '{value}'. Must be one of: {', '.join(VALID_BODY_RESOLVE_APPS)}",
+                f"Invalid resolve-apps '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RESOLVE_APPS)}",
             )
 
     # Validate fortiview-unscanned-apps if present
@@ -98,7 +101,8 @@ def validate_gui_display_put(
         if value and value not in VALID_BODY_FORTIVIEW_UNSCANNED_APPS:
             return (
                 False,
-                f"Invalid fortiview-unscanned-apps '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIVIEW_UNSCANNED_APPS)}",
+                f"Invalid fortiview-unscanned-apps '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIVIEW_UNSCANNED_APPS)}",
             )
 
     return (True, None)

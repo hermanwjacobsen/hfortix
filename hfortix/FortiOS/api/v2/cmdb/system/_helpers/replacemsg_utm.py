@@ -46,7 +46,8 @@ def validate_replacemsg_utm_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,7 +88,8 @@ def validate_replacemsg_utm_post(
         if value and value not in VALID_BODY_HEADER:
             return (
                 False,
-                f"Invalid header '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER)}",
+                f"Invalid header '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HEADER)}",
             )
 
     # Validate format if present
@@ -96,7 +98,8 @@ def validate_replacemsg_utm_post(
         if value and value not in VALID_BODY_FORMAT:
             return (
                 False,
-                f"Invalid format '{value}'. Must be one of: {', '.join(VALID_BODY_FORMAT)}",
+                f"Invalid format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORMAT)}",
             )
 
     return (True, None)

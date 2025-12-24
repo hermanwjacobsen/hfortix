@@ -136,7 +136,8 @@ def validate_hotspot20_hs_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -182,7 +183,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_ACCESS_NETWORK_TYPE:
             return (
                 False,
-                f"Invalid access-network-type '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_TYPE)}",
+                f"Invalid access-network-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_TYPE)}",
             )
 
     # Validate access-network-internet if present
@@ -191,7 +193,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_ACCESS_NETWORK_INTERNET:
             return (
                 False,
-                f"Invalid access-network-internet '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_INTERNET)}",
+                f"Invalid access-network-internet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_INTERNET)}",
             )
 
     # Validate access-network-asra if present
@@ -200,7 +203,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_ACCESS_NETWORK_ASRA:
             return (
                 False,
-                f"Invalid access-network-asra '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_ASRA)}",
+                f"Invalid access-network-asra '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_ASRA)}",
             )
 
     # Validate access-network-esr if present
@@ -209,7 +213,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_ACCESS_NETWORK_ESR:
             return (
                 False,
-                f"Invalid access-network-esr '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_ESR)}",
+                f"Invalid access-network-esr '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_ESR)}",
             )
 
     # Validate access-network-uesa if present
@@ -218,7 +223,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_ACCESS_NETWORK_UESA:
             return (
                 False,
-                f"Invalid access-network-uesa '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_UESA)}",
+                f"Invalid access-network-uesa '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_UESA)}",
             )
 
     # Validate venue-group if present
@@ -227,7 +233,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_VENUE_GROUP:
             return (
                 False,
-                f"Invalid venue-group '{value}'. Must be one of: {', '.join(VALID_BODY_VENUE_GROUP)}",
+                f"Invalid venue-group '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VENUE_GROUP)}",
             )
 
     # Validate venue-type if present
@@ -236,7 +243,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_VENUE_TYPE:
             return (
                 False,
-                f"Invalid venue-type '{value}'. Must be one of: {', '.join(VALID_BODY_VENUE_TYPE)}",
+                f"Invalid venue-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VENUE_TYPE)}",
             )
 
     # Validate proxy-arp if present
@@ -245,7 +253,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_PROXY_ARP:
             return (
                 False,
-                f"Invalid proxy-arp '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_ARP)}",
+                f"Invalid proxy-arp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_ARP)}",
             )
 
     # Validate l2tif if present
@@ -254,7 +263,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_L2TIF:
             return (
                 False,
-                f"Invalid l2tif '{value}'. Must be one of: {', '.join(VALID_BODY_L2TIF)}",
+                f"Invalid l2tif '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_L2TIF)}",
             )
 
     # Validate pame-bi if present
@@ -263,7 +273,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_PAME_BI:
             return (
                 False,
-                f"Invalid pame-bi '{value}'. Must be one of: {', '.join(VALID_BODY_PAME_BI)}",
+                f"Invalid pame-bi '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PAME_BI)}",
             )
 
     # Validate anqp-domain-id if present
@@ -332,7 +343,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_DGAF:
             return (
                 False,
-                f"Invalid dgaf '{value}'. Must be one of: {', '.join(VALID_BODY_DGAF)}",
+                f"Invalid dgaf '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DGAF)}",
             )
 
     # Validate deauth-request-timeout if present
@@ -358,7 +370,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_WNM_SLEEP_MODE:
             return (
                 False,
-                f"Invalid wnm-sleep-mode '{value}'. Must be one of: {', '.join(VALID_BODY_WNM_SLEEP_MODE)}",
+                f"Invalid wnm-sleep-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WNM_SLEEP_MODE)}",
             )
 
     # Validate bss-transition if present
@@ -367,7 +380,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_BSS_TRANSITION:
             return (
                 False,
-                f"Invalid bss-transition '{value}'. Must be one of: {', '.join(VALID_BODY_BSS_TRANSITION)}",
+                f"Invalid bss-transition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSS_TRANSITION)}",
             )
 
     # Validate venue-name if present
@@ -466,7 +480,8 @@ def validate_hotspot20_hs_profile_post(
         if value and value not in VALID_BODY_WBA_OPEN_ROAMING:
             return (
                 False,
-                f"Invalid wba-open-roaming '{value}'. Must be one of: {', '.join(VALID_BODY_WBA_OPEN_ROAMING)}",
+                f"Invalid wba-open-roaming '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WBA_OPEN_ROAMING)}",
             )
 
     # Validate wba-financial-clearing-provider if present
@@ -562,7 +577,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_ACCESS_NETWORK_TYPE:
             return (
                 False,
-                f"Invalid access-network-type '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_TYPE)}",
+                f"Invalid access-network-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_TYPE)}",
             )
 
     # Validate access-network-internet if present
@@ -571,7 +587,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_ACCESS_NETWORK_INTERNET:
             return (
                 False,
-                f"Invalid access-network-internet '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_INTERNET)}",
+                f"Invalid access-network-internet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_INTERNET)}",
             )
 
     # Validate access-network-asra if present
@@ -580,7 +597,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_ACCESS_NETWORK_ASRA:
             return (
                 False,
-                f"Invalid access-network-asra '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_ASRA)}",
+                f"Invalid access-network-asra '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_ASRA)}",
             )
 
     # Validate access-network-esr if present
@@ -589,7 +607,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_ACCESS_NETWORK_ESR:
             return (
                 False,
-                f"Invalid access-network-esr '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_ESR)}",
+                f"Invalid access-network-esr '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_ESR)}",
             )
 
     # Validate access-network-uesa if present
@@ -598,7 +617,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_ACCESS_NETWORK_UESA:
             return (
                 False,
-                f"Invalid access-network-uesa '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_NETWORK_UESA)}",
+                f"Invalid access-network-uesa '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACCESS_NETWORK_UESA)}",
             )
 
     # Validate venue-group if present
@@ -607,7 +627,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_VENUE_GROUP:
             return (
                 False,
-                f"Invalid venue-group '{value}'. Must be one of: {', '.join(VALID_BODY_VENUE_GROUP)}",
+                f"Invalid venue-group '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VENUE_GROUP)}",
             )
 
     # Validate venue-type if present
@@ -616,7 +637,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_VENUE_TYPE:
             return (
                 False,
-                f"Invalid venue-type '{value}'. Must be one of: {', '.join(VALID_BODY_VENUE_TYPE)}",
+                f"Invalid venue-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VENUE_TYPE)}",
             )
 
     # Validate proxy-arp if present
@@ -625,7 +647,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_PROXY_ARP:
             return (
                 False,
-                f"Invalid proxy-arp '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_ARP)}",
+                f"Invalid proxy-arp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY_ARP)}",
             )
 
     # Validate l2tif if present
@@ -634,7 +657,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_L2TIF:
             return (
                 False,
-                f"Invalid l2tif '{value}'. Must be one of: {', '.join(VALID_BODY_L2TIF)}",
+                f"Invalid l2tif '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_L2TIF)}",
             )
 
     # Validate pame-bi if present
@@ -643,7 +667,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_PAME_BI:
             return (
                 False,
-                f"Invalid pame-bi '{value}'. Must be one of: {', '.join(VALID_BODY_PAME_BI)}",
+                f"Invalid pame-bi '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PAME_BI)}",
             )
 
     # Validate anqp-domain-id if present
@@ -712,7 +737,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_DGAF:
             return (
                 False,
-                f"Invalid dgaf '{value}'. Must be one of: {', '.join(VALID_BODY_DGAF)}",
+                f"Invalid dgaf '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DGAF)}",
             )
 
     # Validate deauth-request-timeout if present
@@ -738,7 +764,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_WNM_SLEEP_MODE:
             return (
                 False,
-                f"Invalid wnm-sleep-mode '{value}'. Must be one of: {', '.join(VALID_BODY_WNM_SLEEP_MODE)}",
+                f"Invalid wnm-sleep-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WNM_SLEEP_MODE)}",
             )
 
     # Validate bss-transition if present
@@ -747,7 +774,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_BSS_TRANSITION:
             return (
                 False,
-                f"Invalid bss-transition '{value}'. Must be one of: {', '.join(VALID_BODY_BSS_TRANSITION)}",
+                f"Invalid bss-transition '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSS_TRANSITION)}",
             )
 
     # Validate venue-name if present
@@ -846,7 +874,8 @@ def validate_hotspot20_hs_profile_put(
         if value and value not in VALID_BODY_WBA_OPEN_ROAMING:
             return (
                 False,
-                f"Invalid wba-open-roaming '{value}'. Must be one of: {', '.join(VALID_BODY_WBA_OPEN_ROAMING)}",
+                f"Invalid wba-open-roaming '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WBA_OPEN_ROAMING)}",
             )
 
     # Validate wba-financial-clearing-provider if present

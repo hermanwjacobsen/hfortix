@@ -46,7 +46,8 @@ def validate_security_rating_controls_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_security_rating_controls_post(
         if value and value not in VALID_BODY_DISPLAY_REPORT:
             return (
                 False,
-                f"Invalid display-report '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_REPORT)}",
+                f"Invalid display-report '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_REPORT)}",
             )
 
     # Validate display-insight if present
@@ -90,7 +92,8 @@ def validate_security_rating_controls_post(
         if value and value not in VALID_BODY_DISPLAY_INSIGHT:
             return (
                 False,
-                f"Invalid display-insight '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_INSIGHT)}",
+                f"Invalid display-insight '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_INSIGHT)}",
             )
 
     return (True, None)
@@ -134,7 +137,8 @@ def validate_security_rating_controls_put(
         if value and value not in VALID_BODY_DISPLAY_REPORT:
             return (
                 False,
-                f"Invalid display-report '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_REPORT)}",
+                f"Invalid display-report '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_REPORT)}",
             )
 
     # Validate display-insight if present
@@ -143,7 +147,8 @@ def validate_security_rating_controls_put(
         if value and value not in VALID_BODY_DISPLAY_INSIGHT:
             return (
                 False,
-                f"Invalid display-insight '{value}'. Must be one of: {', '.join(VALID_BODY_DISPLAY_INSIGHT)}",
+                f"Invalid display-insight '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISPLAY_INSIGHT)}",
             )
 
     return (True, None)

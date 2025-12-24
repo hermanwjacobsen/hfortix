@@ -46,7 +46,8 @@ def validate_dictionary_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_dictionary_post(
         if value and value not in VALID_BODY_MATCH_TYPE:
             return (
                 False,
-                f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}",
+                f"Invalid match-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_TYPE)}",
             )
 
     # Validate match-around if present
@@ -90,7 +92,8 @@ def validate_dictionary_post(
         if value and value not in VALID_BODY_MATCH_AROUND:
             return (
                 False,
-                f"Invalid match-around '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_AROUND)}",
+                f"Invalid match-around '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_AROUND)}",
             )
 
     # Validate comment if present
@@ -140,7 +143,8 @@ def validate_dictionary_put(
         if value and value not in VALID_BODY_MATCH_TYPE:
             return (
                 False,
-                f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}",
+                f"Invalid match-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_TYPE)}",
             )
 
     # Validate match-around if present
@@ -149,7 +153,8 @@ def validate_dictionary_put(
         if value and value not in VALID_BODY_MATCH_AROUND:
             return (
                 False,
-                f"Invalid match-around '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_AROUND)}",
+                f"Invalid match-around '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MATCH_AROUND)}",
             )
 
     # Validate comment if present

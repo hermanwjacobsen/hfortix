@@ -47,7 +47,8 @@ def validate_auto_config_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -94,7 +95,8 @@ def validate_auto_config_policy_post(
         if value and value not in VALID_BODY_POE_STATUS:
             return (
                 False,
-                f"Invalid poe-status '{value}'. Must be one of: {', '.join(VALID_BODY_POE_STATUS)}",
+                f"Invalid poe-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POE_STATUS)}",
             )
 
     # Validate igmp-flood-report if present
@@ -103,7 +105,8 @@ def validate_auto_config_policy_post(
         if value and value not in VALID_BODY_IGMP_FLOOD_REPORT:
             return (
                 False,
-                f"Invalid igmp-flood-report '{value}'. Must be one of: {', '.join(VALID_BODY_IGMP_FLOOD_REPORT)}",
+                f"Invalid igmp-flood-report '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IGMP_FLOOD_REPORT)}",
             )
 
     # Validate igmp-flood-traffic if present
@@ -112,7 +115,8 @@ def validate_auto_config_policy_post(
         if value and value not in VALID_BODY_IGMP_FLOOD_TRAFFIC:
             return (
                 False,
-                f"Invalid igmp-flood-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_IGMP_FLOOD_TRAFFIC)}",
+                f"Invalid igmp-flood-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IGMP_FLOOD_TRAFFIC)}",
             )
 
     return (True, None)
@@ -168,7 +172,8 @@ def validate_auto_config_policy_put(
         if value and value not in VALID_BODY_POE_STATUS:
             return (
                 False,
-                f"Invalid poe-status '{value}'. Must be one of: {', '.join(VALID_BODY_POE_STATUS)}",
+                f"Invalid poe-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POE_STATUS)}",
             )
 
     # Validate igmp-flood-report if present
@@ -177,7 +182,8 @@ def validate_auto_config_policy_put(
         if value and value not in VALID_BODY_IGMP_FLOOD_REPORT:
             return (
                 False,
-                f"Invalid igmp-flood-report '{value}'. Must be one of: {', '.join(VALID_BODY_IGMP_FLOOD_REPORT)}",
+                f"Invalid igmp-flood-report '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IGMP_FLOOD_REPORT)}",
             )
 
     # Validate igmp-flood-traffic if present
@@ -186,7 +192,8 @@ def validate_auto_config_policy_put(
         if value and value not in VALID_BODY_IGMP_FLOOD_TRAFFIC:
             return (
                 False,
-                f"Invalid igmp-flood-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_IGMP_FLOOD_TRAFFIC)}",
+                f"Invalid igmp-flood-traffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IGMP_FLOOD_TRAFFIC)}",
             )
 
     return (True, None)

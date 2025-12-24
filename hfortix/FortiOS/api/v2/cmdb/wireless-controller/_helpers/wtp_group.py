@@ -98,7 +98,8 @@ def validate_wtp_group_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -133,7 +134,8 @@ def validate_wtp_group_post(
         if value and value not in VALID_BODY_PLATFORM_TYPE:
             return (
                 False,
-                f"Invalid platform-type '{value}'. Must be one of: {', '.join(VALID_BODY_PLATFORM_TYPE)}",
+                f"Invalid platform-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PLATFORM_TYPE)}",
             )
 
     # Validate ble-major-id if present
@@ -188,7 +190,8 @@ def validate_wtp_group_put(
         if value and value not in VALID_BODY_PLATFORM_TYPE:
             return (
                 False,
-                f"Invalid platform-type '{value}'. Must be one of: {', '.join(VALID_BODY_PLATFORM_TYPE)}",
+                f"Invalid platform-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PLATFORM_TYPE)}",
             )
 
     # Validate ble-major-id if present

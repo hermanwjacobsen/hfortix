@@ -47,7 +47,8 @@ def validate_forward_server_group_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,7 +83,8 @@ def validate_forward_server_group_post(
         if value and value not in VALID_BODY_AFFINITY:
             return (
                 False,
-                f"Invalid affinity '{value}'. Must be one of: {', '.join(VALID_BODY_AFFINITY)}",
+                f"Invalid affinity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AFFINITY)}",
             )
 
     # Validate ldb-method if present
@@ -91,7 +93,8 @@ def validate_forward_server_group_post(
         if value and value not in VALID_BODY_LDB_METHOD:
             return (
                 False,
-                f"Invalid ldb-method '{value}'. Must be one of: {', '.join(VALID_BODY_LDB_METHOD)}",
+                f"Invalid ldb-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LDB_METHOD)}",
             )
 
     # Validate group-down-option if present
@@ -100,7 +103,8 @@ def validate_forward_server_group_post(
         if value and value not in VALID_BODY_GROUP_DOWN_OPTION:
             return (
                 False,
-                f"Invalid group-down-option '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_DOWN_OPTION)}",
+                f"Invalid group-down-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_DOWN_OPTION)}",
             )
 
     return (True, None)
@@ -144,7 +148,8 @@ def validate_forward_server_group_put(
         if value and value not in VALID_BODY_AFFINITY:
             return (
                 False,
-                f"Invalid affinity '{value}'. Must be one of: {', '.join(VALID_BODY_AFFINITY)}",
+                f"Invalid affinity '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AFFINITY)}",
             )
 
     # Validate ldb-method if present
@@ -153,7 +158,8 @@ def validate_forward_server_group_put(
         if value and value not in VALID_BODY_LDB_METHOD:
             return (
                 False,
-                f"Invalid ldb-method '{value}'. Must be one of: {', '.join(VALID_BODY_LDB_METHOD)}",
+                f"Invalid ldb-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LDB_METHOD)}",
             )
 
     # Validate group-down-option if present
@@ -162,7 +168,8 @@ def validate_forward_server_group_put(
         if value and value not in VALID_BODY_GROUP_DOWN_OPTION:
             return (
                 False,
-                f"Invalid group-down-option '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_DOWN_OPTION)}",
+                f"Invalid group-down-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_DOWN_OPTION)}",
             )
 
     return (True, None)

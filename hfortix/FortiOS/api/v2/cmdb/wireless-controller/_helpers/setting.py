@@ -250,7 +250,8 @@ def validate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -289,7 +290,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_COUNTRY:
             return (
                 False,
-                f"Invalid country '{value}'. Must be one of: {', '.join(VALID_BODY_COUNTRY)}",
+                f"Invalid country '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_COUNTRY)}",
             )
 
     # Validate duplicate-ssid if present
@@ -298,7 +300,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_DUPLICATE_SSID:
             return (
                 False,
-                f"Invalid duplicate-ssid '{value}'. Must be one of: {', '.join(VALID_BODY_DUPLICATE_SSID)}",
+                f"Invalid duplicate-ssid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DUPLICATE_SSID)}",
             )
 
     # Validate fapc-compatibility if present
@@ -307,7 +310,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FAPC_COMPATIBILITY:
             return (
                 False,
-                f"Invalid fapc-compatibility '{value}'. Must be one of: {', '.join(VALID_BODY_FAPC_COMPATIBILITY)}",
+                f"Invalid fapc-compatibility '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FAPC_COMPATIBILITY)}",
             )
 
     # Validate wfa-compatibility if present
@@ -316,7 +320,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_WFA_COMPATIBILITY:
             return (
                 False,
-                f"Invalid wfa-compatibility '{value}'. Must be one of: {', '.join(VALID_BODY_WFA_COMPATIBILITY)}",
+                f"Invalid wfa-compatibility '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WFA_COMPATIBILITY)}",
             )
 
     # Validate phishing-ssid-detect if present
@@ -325,7 +330,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_PHISHING_SSID_DETECT:
             return (
                 False,
-                f"Invalid phishing-ssid-detect '{value}'. Must be one of: {', '.join(VALID_BODY_PHISHING_SSID_DETECT)}",
+                f"Invalid phishing-ssid-detect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PHISHING_SSID_DETECT)}",
             )
 
     # Validate fake-ssid-action if present
@@ -334,7 +340,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FAKE_SSID_ACTION:
             return (
                 False,
-                f"Invalid fake-ssid-action '{value}'. Must be one of: {', '.join(VALID_BODY_FAKE_SSID_ACTION)}",
+                f"Invalid fake-ssid-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FAKE_SSID_ACTION)}",
             )
 
     # Validate device-weight if present
@@ -379,7 +386,8 @@ def validate_setting_put(
         ):
             return (
                 False,
-                f"Invalid firmware-provision-on-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION_ON_AUTHORIZATION)}",
+                f"Invalid firmware-provision-on-authorization '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FIRMWARE_PROVISION_ON_AUTHORIZATION)}",
             )
 
     # Validate rolling-wtp-upgrade if present
@@ -388,7 +396,8 @@ def validate_setting_put(
         if value and value not in VALID_BODY_ROLLING_WTP_UPGRADE:
             return (
                 False,
-                f"Invalid rolling-wtp-upgrade '{value}'. Must be one of: {', '.join(VALID_BODY_ROLLING_WTP_UPGRADE)}",
+                f"Invalid rolling-wtp-upgrade '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROLLING_WTP_UPGRADE)}",
             )
 
     # Validate darrp-optimize if present

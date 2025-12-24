@@ -61,7 +61,8 @@ def validate_hsm_local_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -102,7 +103,8 @@ def validate_hsm_local_post(
         if value and value not in VALID_BODY_VENDOR:
             return (
                 False,
-                f"Invalid vendor '{value}'. Must be one of: {', '.join(VALID_BODY_VENDOR)}",
+                f"Invalid vendor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VENDOR)}",
             )
 
     # Validate api-version if present
@@ -111,7 +113,8 @@ def validate_hsm_local_post(
         if value and value not in VALID_BODY_API_VERSION:
             return (
                 False,
-                f"Invalid api-version '{value}'. Must be one of: {', '.join(VALID_BODY_API_VERSION)}",
+                f"Invalid api-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_API_VERSION)}",
             )
 
     # Validate range if present
@@ -120,7 +123,8 @@ def validate_hsm_local_post(
         if value and value not in VALID_BODY_RANGE:
             return (
                 False,
-                f"Invalid range '{value}'. Must be one of: {', '.join(VALID_BODY_RANGE)}",
+                f"Invalid range '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RANGE)}",
             )
 
     # Validate source if present
@@ -129,7 +133,8 @@ def validate_hsm_local_post(
         if value and value not in VALID_BODY_SOURCE:
             return (
                 False,
-                f"Invalid source '{value}'. Must be one of: {', '.join(VALID_BODY_SOURCE)}",
+                f"Invalid source '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SOURCE)}",
             )
 
     # Validate gch-url if present
@@ -186,7 +191,8 @@ def validate_hsm_local_post(
         if value and value not in VALID_BODY_GCH_CRYPTOKEY_ALGORITHM:
             return (
                 False,
-                f"Invalid gch-cryptokey-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_GCH_CRYPTOKEY_ALGORITHM)}",
+                f"Invalid gch-cryptokey-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GCH_CRYPTOKEY_ALGORITHM)}",
             )
 
     return (True, None)
@@ -236,7 +242,8 @@ def validate_hsm_local_put(
         if value and value not in VALID_BODY_VENDOR:
             return (
                 False,
-                f"Invalid vendor '{value}'. Must be one of: {', '.join(VALID_BODY_VENDOR)}",
+                f"Invalid vendor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VENDOR)}",
             )
 
     # Validate api-version if present
@@ -245,7 +252,8 @@ def validate_hsm_local_put(
         if value and value not in VALID_BODY_API_VERSION:
             return (
                 False,
-                f"Invalid api-version '{value}'. Must be one of: {', '.join(VALID_BODY_API_VERSION)}",
+                f"Invalid api-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_API_VERSION)}",
             )
 
     # Validate range if present
@@ -254,7 +262,8 @@ def validate_hsm_local_put(
         if value and value not in VALID_BODY_RANGE:
             return (
                 False,
-                f"Invalid range '{value}'. Must be one of: {', '.join(VALID_BODY_RANGE)}",
+                f"Invalid range '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_RANGE)}",
             )
 
     # Validate source if present
@@ -263,7 +272,8 @@ def validate_hsm_local_put(
         if value and value not in VALID_BODY_SOURCE:
             return (
                 False,
-                f"Invalid source '{value}'. Must be one of: {', '.join(VALID_BODY_SOURCE)}",
+                f"Invalid source '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SOURCE)}",
             )
 
     # Validate gch-url if present
@@ -320,7 +330,8 @@ def validate_hsm_local_put(
         if value and value not in VALID_BODY_GCH_CRYPTOKEY_ALGORITHM:
             return (
                 False,
-                f"Invalid gch-cryptokey-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_GCH_CRYPTOKEY_ALGORITHM)}",
+                f"Invalid gch-cryptokey-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GCH_CRYPTOKEY_ALGORITHM)}",
             )
 
     return (True, None)

@@ -104,7 +104,8 @@ def validate_ssh_config_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -137,7 +138,8 @@ def validate_ssh_config_put(
         if value and value not in VALID_BODY_SSH_KEX_ALGO:
             return (
                 False,
-                f"Invalid ssh-kex-algo '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_KEX_ALGO)}",
+                f"Invalid ssh-kex-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_KEX_ALGO)}",
             )
 
     # Validate ssh-enc-algo if present
@@ -146,7 +148,8 @@ def validate_ssh_config_put(
         if value and value not in VALID_BODY_SSH_ENC_ALGO:
             return (
                 False,
-                f"Invalid ssh-enc-algo '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_ENC_ALGO)}",
+                f"Invalid ssh-enc-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_ENC_ALGO)}",
             )
 
     # Validate ssh-mac-algo if present
@@ -155,7 +158,8 @@ def validate_ssh_config_put(
         if value and value not in VALID_BODY_SSH_MAC_ALGO:
             return (
                 False,
-                f"Invalid ssh-mac-algo '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_MAC_ALGO)}",
+                f"Invalid ssh-mac-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_MAC_ALGO)}",
             )
 
     # Validate ssh-hsk-algo if present
@@ -164,7 +168,8 @@ def validate_ssh_config_put(
         if value and value not in VALID_BODY_SSH_HSK_ALGO:
             return (
                 False,
-                f"Invalid ssh-hsk-algo '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_HSK_ALGO)}",
+                f"Invalid ssh-hsk-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_HSK_ALGO)}",
             )
 
     # Validate ssh-hsk-override if present
@@ -173,7 +178,8 @@ def validate_ssh_config_put(
         if value and value not in VALID_BODY_SSH_HSK_OVERRIDE:
             return (
                 False,
-                f"Invalid ssh-hsk-override '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_HSK_OVERRIDE)}",
+                f"Invalid ssh-hsk-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_HSK_OVERRIDE)}",
             )
 
     return (True, None)

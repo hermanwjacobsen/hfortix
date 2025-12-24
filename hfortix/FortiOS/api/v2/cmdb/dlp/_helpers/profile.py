@@ -73,7 +73,8 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -112,7 +113,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FEATURE_SET:
             return (
                 False,
-                f"Invalid feature-set '{value}'. Must be one of: {', '.join(VALID_BODY_FEATURE_SET)}",
+                f"Invalid feature-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FEATURE_SET)}",
             )
 
     # Validate replacemsg-group if present
@@ -127,7 +129,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DLP_LOG:
             return (
                 False,
-                f"Invalid dlp-log '{value}'. Must be one of: {', '.join(VALID_BODY_DLP_LOG)}",
+                f"Invalid dlp-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DLP_LOG)}",
             )
 
     # Validate extended-log if present
@@ -136,7 +139,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate nac-quar-log if present
@@ -145,7 +149,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAC_QUAR_LOG:
             return (
                 False,
-                f"Invalid nac-quar-log '{value}'. Must be one of: {', '.join(VALID_BODY_NAC_QUAR_LOG)}",
+                f"Invalid nac-quar-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAC_QUAR_LOG)}",
             )
 
     # Validate full-archive-proto if present
@@ -154,7 +159,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FULL_ARCHIVE_PROTO:
             return (
                 False,
-                f"Invalid full-archive-proto '{value}'. Must be one of: {', '.join(VALID_BODY_FULL_ARCHIVE_PROTO)}",
+                f"Invalid full-archive-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FULL_ARCHIVE_PROTO)}",
             )
 
     # Validate summary-proto if present
@@ -163,7 +169,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SUMMARY_PROTO:
             return (
                 False,
-                f"Invalid summary-proto '{value}'. Must be one of: {', '.join(VALID_BODY_SUMMARY_PROTO)}",
+                f"Invalid summary-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SUMMARY_PROTO)}",
             )
 
     # Validate fortidata-error-action if present
@@ -172,7 +179,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FORTIDATA_ERROR_ACTION:
             return (
                 False,
-                f"Invalid fortidata-error-action '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIDATA_ERROR_ACTION)}",
+                f"Invalid fortidata-error-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIDATA_ERROR_ACTION)}",
             )
 
     return (True, None)
@@ -222,7 +230,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FEATURE_SET:
             return (
                 False,
-                f"Invalid feature-set '{value}'. Must be one of: {', '.join(VALID_BODY_FEATURE_SET)}",
+                f"Invalid feature-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FEATURE_SET)}",
             )
 
     # Validate replacemsg-group if present
@@ -237,7 +246,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_DLP_LOG:
             return (
                 False,
-                f"Invalid dlp-log '{value}'. Must be one of: {', '.join(VALID_BODY_DLP_LOG)}",
+                f"Invalid dlp-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DLP_LOG)}",
             )
 
     # Validate extended-log if present
@@ -246,7 +256,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate nac-quar-log if present
@@ -255,7 +266,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_NAC_QUAR_LOG:
             return (
                 False,
-                f"Invalid nac-quar-log '{value}'. Must be one of: {', '.join(VALID_BODY_NAC_QUAR_LOG)}",
+                f"Invalid nac-quar-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAC_QUAR_LOG)}",
             )
 
     # Validate full-archive-proto if present
@@ -264,7 +276,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FULL_ARCHIVE_PROTO:
             return (
                 False,
-                f"Invalid full-archive-proto '{value}'. Must be one of: {', '.join(VALID_BODY_FULL_ARCHIVE_PROTO)}",
+                f"Invalid full-archive-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FULL_ARCHIVE_PROTO)}",
             )
 
     # Validate summary-proto if present
@@ -273,7 +286,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SUMMARY_PROTO:
             return (
                 False,
-                f"Invalid summary-proto '{value}'. Must be one of: {', '.join(VALID_BODY_SUMMARY_PROTO)}",
+                f"Invalid summary-proto '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SUMMARY_PROTO)}",
             )
 
     # Validate fortidata-error-action if present
@@ -282,7 +296,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FORTIDATA_ERROR_ACTION:
             return (
                 False,
-                f"Invalid fortidata-error-action '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIDATA_ERROR_ACTION)}",
+                f"Invalid fortidata-error-action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORTIDATA_ERROR_ACTION)}",
             )
 
     return (True, None)

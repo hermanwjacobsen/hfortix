@@ -45,7 +45,8 @@ def validate_zone_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,7 +85,8 @@ def validate_zone_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTRAZONE:
             return (
                 False,
-                f"Invalid intrazone '{value}'. Must be one of: {', '.join(VALID_BODY_INTRAZONE)}",
+                f"Invalid intrazone '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTRAZONE)}",
             )
 
     return (True, None)
@@ -134,7 +136,8 @@ def validate_zone_put(
         if value and value not in VALID_BODY_INTRAZONE:
             return (
                 False,
-                f"Invalid intrazone '{value}'. Must be one of: {', '.join(VALID_BODY_INTRAZONE)}",
+                f"Invalid intrazone '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTRAZONE)}",
             )
 
     return (True, None)

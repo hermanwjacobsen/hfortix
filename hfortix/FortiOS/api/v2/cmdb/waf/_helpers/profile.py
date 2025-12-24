@@ -46,7 +46,8 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -79,7 +80,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTERNAL:
             return (
                 False,
-                f"Invalid external '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL)}",
+                f"Invalid external '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL)}",
             )
 
     # Validate extended-log if present
@@ -88,7 +90,8 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate comment if present
@@ -138,7 +141,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EXTERNAL:
             return (
                 False,
-                f"Invalid external '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL)}",
+                f"Invalid external '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTERNAL)}",
             )
 
     # Validate extended-log if present
@@ -147,7 +151,8 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate comment if present

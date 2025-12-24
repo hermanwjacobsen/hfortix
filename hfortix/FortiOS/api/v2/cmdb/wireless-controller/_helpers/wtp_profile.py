@@ -317,7 +317,8 @@ def validate_wtp_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -358,7 +359,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_CONTROL_MESSAGE_OFFLOAD:
             return (
                 False,
-                f"Invalid control-message-offload '{value}'. Must be one of: {', '.join(VALID_BODY_CONTROL_MESSAGE_OFFLOAD)}",
+                f"Invalid control-message-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONTROL_MESSAGE_OFFLOAD)}",
             )
 
     # Validate bonjour-profile if present
@@ -379,7 +381,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_MESH:
             return (
                 False,
-                f"Invalid apcfg-mesh '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_MESH)}",
+                f"Invalid apcfg-mesh '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_MESH)}",
             )
 
     # Validate apcfg-mesh-ap-type if present
@@ -388,7 +391,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_MESH_AP_TYPE:
             return (
                 False,
-                f"Invalid apcfg-mesh-ap-type '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_MESH_AP_TYPE)}",
+                f"Invalid apcfg-mesh-ap-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_MESH_AP_TYPE)}",
             )
 
     # Validate apcfg-mesh-ssid if present
@@ -403,7 +407,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_MESH_ETH_BRIDGE:
             return (
                 False,
-                f"Invalid apcfg-mesh-eth-bridge '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_MESH_ETH_BRIDGE)}",
+                f"Invalid apcfg-mesh-eth-bridge '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_MESH_ETH_BRIDGE)}",
             )
 
     # Validate ble-profile if present
@@ -430,7 +435,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_WAN_PORT_MODE:
             return (
                 False,
-                f"Invalid wan-port-mode '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_MODE)}",
+                f"Invalid wan-port-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_MODE)}",
             )
 
     # Validate energy-efficient-ethernet if present
@@ -439,7 +445,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_ENERGY_EFFICIENT_ETHERNET:
             return (
                 False,
-                f"Invalid energy-efficient-ethernet '{value}'. Must be one of: {', '.join(VALID_BODY_ENERGY_EFFICIENT_ETHERNET)}",
+                f"Invalid energy-efficient-ethernet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENERGY_EFFICIENT_ETHERNET)}",
             )
 
     # Validate led-state if present
@@ -448,7 +455,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_LED_STATE:
             return (
                 False,
-                f"Invalid led-state '{value}'. Must be one of: {', '.join(VALID_BODY_LED_STATE)}",
+                f"Invalid led-state '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LED_STATE)}",
             )
 
     # Validate dtls-policy if present
@@ -457,7 +465,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_DTLS_POLICY:
             return (
                 False,
-                f"Invalid dtls-policy '{value}'. Must be one of: {', '.join(VALID_BODY_DTLS_POLICY)}",
+                f"Invalid dtls-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DTLS_POLICY)}",
             )
 
     # Validate dtls-in-kernel if present
@@ -466,7 +475,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_DTLS_IN_KERNEL:
             return (
                 False,
-                f"Invalid dtls-in-kernel '{value}'. Must be one of: {', '.join(VALID_BODY_DTLS_IN_KERNEL)}",
+                f"Invalid dtls-in-kernel '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DTLS_IN_KERNEL)}",
             )
 
     # Validate max-clients if present
@@ -517,7 +527,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_HANDOFF_ROAMING:
             return (
                 False,
-                f"Invalid handoff-roaming '{value}'. Must be one of: {', '.join(VALID_BODY_HANDOFF_ROAMING)}",
+                f"Invalid handoff-roaming '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HANDOFF_ROAMING)}",
             )
 
     # Validate ap-country if present
@@ -526,7 +537,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_AP_COUNTRY:
             return (
                 False,
-                f"Invalid ap-country '{value}'. Must be one of: {', '.join(VALID_BODY_AP_COUNTRY)}",
+                f"Invalid ap-country '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_COUNTRY)}",
             )
 
     # Validate ip-fragment-preventing if present
@@ -535,7 +547,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_IP_FRAGMENT_PREVENTING:
             return (
                 False,
-                f"Invalid ip-fragment-preventing '{value}'. Must be one of: {', '.join(VALID_BODY_IP_FRAGMENT_PREVENTING)}",
+                f"Invalid ip-fragment-preventing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_FRAGMENT_PREVENTING)}",
             )
 
     # Validate tun-mtu-uplink if present
@@ -575,7 +588,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_SPLIT_TUNNELING_ACL_PATH:
             return (
                 False,
-                f"Invalid split-tunneling-acl-path '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_PATH)}",
+                f"Invalid split-tunneling-acl-path '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_PATH)}",
             )
 
     # Validate split-tunneling-acl-local-ap-subnet if present
@@ -587,7 +601,8 @@ def validate_wtp_profile_post(
         ):
             return (
                 False,
-                f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",
+                f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",
             )
 
     # Validate allowaccess if present
@@ -596,7 +611,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate login-passwd-change if present
@@ -605,7 +621,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_LOGIN_PASSWD_CHANGE:
             return (
                 False,
-                f"Invalid login-passwd-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWD_CHANGE)}",
+                f"Invalid login-passwd-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWD_CHANGE)}",
             )
 
     # Validate lldp if present
@@ -614,7 +631,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_LLDP:
             return (
                 False,
-                f"Invalid lldp '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP)}",
+                f"Invalid lldp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LLDP)}",
             )
 
     # Validate poe-mode if present
@@ -623,7 +641,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_POE_MODE:
             return (
                 False,
-                f"Invalid poe-mode '{value}'. Must be one of: {', '.join(VALID_BODY_POE_MODE)}",
+                f"Invalid poe-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POE_MODE)}",
             )
 
     # Validate usb-port if present
@@ -632,7 +651,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_USB_PORT:
             return (
                 False,
-                f"Invalid usb-port '{value}'. Must be one of: {', '.join(VALID_BODY_USB_PORT)}",
+                f"Invalid usb-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USB_PORT)}",
             )
 
     # Validate frequency-handoff if present
@@ -641,7 +661,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_FREQUENCY_HANDOFF:
             return (
                 False,
-                f"Invalid frequency-handoff '{value}'. Must be one of: {', '.join(VALID_BODY_FREQUENCY_HANDOFF)}",
+                f"Invalid frequency-handoff '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FREQUENCY_HANDOFF)}",
             )
 
     # Validate ap-handoff if present
@@ -650,7 +671,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_AP_HANDOFF:
             return (
                 False,
-                f"Invalid ap-handoff '{value}'. Must be one of: {', '.join(VALID_BODY_AP_HANDOFF)}",
+                f"Invalid ap-handoff '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_HANDOFF)}",
             )
 
     # Validate default-mesh-root if present
@@ -659,7 +681,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_DEFAULT_MESH_ROOT:
             return (
                 False,
-                f"Invalid default-mesh-root '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_MESH_ROOT)}",
+                f"Invalid default-mesh-root '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_MESH_ROOT)}",
             )
 
     # Validate ext-info-enable if present
@@ -668,7 +691,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_EXT_INFO_ENABLE:
             return (
                 False,
-                f"Invalid ext-info-enable '{value}'. Must be one of: {', '.join(VALID_BODY_EXT_INFO_ENABLE)}",
+                f"Invalid ext-info-enable '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXT_INFO_ENABLE)}",
             )
 
     # Validate indoor-outdoor-deployment if present
@@ -677,7 +701,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_INDOOR_OUTDOOR_DEPLOYMENT:
             return (
                 False,
-                f"Invalid indoor-outdoor-deployment '{value}'. Must be one of: {', '.join(VALID_BODY_INDOOR_OUTDOOR_DEPLOYMENT)}",
+                f"Invalid indoor-outdoor-deployment '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INDOOR_OUTDOOR_DEPLOYMENT)}",
             )
 
     # Validate console-login if present
@@ -686,7 +711,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_CONSOLE_LOGIN:
             return (
                 False,
-                f"Invalid console-login '{value}'. Must be one of: {', '.join(VALID_BODY_CONSOLE_LOGIN)}",
+                f"Invalid console-login '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONSOLE_LOGIN)}",
             )
 
     # Validate wan-port-auth if present
@@ -695,7 +721,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_WAN_PORT_AUTH:
             return (
                 False,
-                f"Invalid wan-port-auth '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_AUTH)}",
+                f"Invalid wan-port-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_AUTH)}",
             )
 
     # Validate wan-port-auth-usrname if present
@@ -713,7 +740,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_WAN_PORT_AUTH_METHODS:
             return (
                 False,
-                f"Invalid wan-port-auth-methods '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_AUTH_METHODS)}",
+                f"Invalid wan-port-auth-methods '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_AUTH_METHODS)}",
             )
 
     # Validate wan-port-auth-macsec if present
@@ -722,7 +750,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_WAN_PORT_AUTH_MACSEC:
             return (
                 False,
-                f"Invalid wan-port-auth-macsec '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_AUTH_MACSEC)}",
+                f"Invalid wan-port-auth-macsec '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_AUTH_MACSEC)}",
             )
 
     # Validate apcfg-auto-cert if present
@@ -731,7 +760,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT:
             return (
                 False,
-                f"Invalid apcfg-auto-cert '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT)}",
+                f"Invalid apcfg-auto-cert '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT)}",
             )
 
     # Validate apcfg-auto-cert-enroll-protocol if present
@@ -740,7 +770,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_ENROLL_PROTOCOL:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-enroll-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_ENROLL_PROTOCOL)}",
+                f"Invalid apcfg-auto-cert-enroll-protocol '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_ENROLL_PROTOCOL)}",
             )
 
     # Validate apcfg-auto-cert-crypto-algo if present
@@ -749,7 +780,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_CRYPTO_ALGO:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-crypto-algo '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_CRYPTO_ALGO)}",
+                f"Invalid apcfg-auto-cert-crypto-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_CRYPTO_ALGO)}",
             )
 
     # Validate apcfg-auto-cert-est-server if present
@@ -829,7 +861,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYTYPE:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-scep-keytype '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYTYPE)}",
+                f"Invalid apcfg-auto-cert-scep-keytype '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYTYPE)}",
             )
 
     # Validate apcfg-auto-cert-scep-keysize if present
@@ -838,7 +871,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYSIZE:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-scep-keysize '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYSIZE)}",
+                f"Invalid apcfg-auto-cert-scep-keysize '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYSIZE)}",
             )
 
     # Validate apcfg-auto-cert-scep-ec-name if present
@@ -847,7 +881,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_SCEP_EC_NAME:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-scep-ec-name '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_EC_NAME)}",
+                f"Invalid apcfg-auto-cert-scep-ec-name '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_EC_NAME)}",
             )
 
     # Validate apcfg-auto-cert-scep-sub-fully-dn if present
@@ -901,7 +936,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_UNII_4_5GHZ_BAND:
             return (
                 False,
-                f"Invalid unii-4-5ghz-band '{value}'. Must be one of: {', '.join(VALID_BODY_UNII_4_5GHZ_BAND)}",
+                f"Invalid unii-4-5ghz-band '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNII_4_5GHZ_BAND)}",
             )
 
     # Validate admin-auth-tacacs+ if present
@@ -916,7 +952,8 @@ def validate_wtp_profile_post(
         if value and value not in VALID_BODY_ADMIN_RESTRICT_LOCAL:
             return (
                 False,
-                f"Invalid admin-restrict-local '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_RESTRICT_LOCAL)}",
+                f"Invalid admin-restrict-local '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_RESTRICT_LOCAL)}",
             )
 
     return (True, None)
@@ -966,7 +1003,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_CONTROL_MESSAGE_OFFLOAD:
             return (
                 False,
-                f"Invalid control-message-offload '{value}'. Must be one of: {', '.join(VALID_BODY_CONTROL_MESSAGE_OFFLOAD)}",
+                f"Invalid control-message-offload '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONTROL_MESSAGE_OFFLOAD)}",
             )
 
     # Validate bonjour-profile if present
@@ -987,7 +1025,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_MESH:
             return (
                 False,
-                f"Invalid apcfg-mesh '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_MESH)}",
+                f"Invalid apcfg-mesh '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_MESH)}",
             )
 
     # Validate apcfg-mesh-ap-type if present
@@ -996,7 +1035,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_MESH_AP_TYPE:
             return (
                 False,
-                f"Invalid apcfg-mesh-ap-type '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_MESH_AP_TYPE)}",
+                f"Invalid apcfg-mesh-ap-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_MESH_AP_TYPE)}",
             )
 
     # Validate apcfg-mesh-ssid if present
@@ -1011,7 +1051,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_MESH_ETH_BRIDGE:
             return (
                 False,
-                f"Invalid apcfg-mesh-eth-bridge '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_MESH_ETH_BRIDGE)}",
+                f"Invalid apcfg-mesh-eth-bridge '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_MESH_ETH_BRIDGE)}",
             )
 
     # Validate ble-profile if present
@@ -1038,7 +1079,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_WAN_PORT_MODE:
             return (
                 False,
-                f"Invalid wan-port-mode '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_MODE)}",
+                f"Invalid wan-port-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_MODE)}",
             )
 
     # Validate energy-efficient-ethernet if present
@@ -1047,7 +1089,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_ENERGY_EFFICIENT_ETHERNET:
             return (
                 False,
-                f"Invalid energy-efficient-ethernet '{value}'. Must be one of: {', '.join(VALID_BODY_ENERGY_EFFICIENT_ETHERNET)}",
+                f"Invalid energy-efficient-ethernet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENERGY_EFFICIENT_ETHERNET)}",
             )
 
     # Validate led-state if present
@@ -1056,7 +1099,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_LED_STATE:
             return (
                 False,
-                f"Invalid led-state '{value}'. Must be one of: {', '.join(VALID_BODY_LED_STATE)}",
+                f"Invalid led-state '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LED_STATE)}",
             )
 
     # Validate dtls-policy if present
@@ -1065,7 +1109,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_DTLS_POLICY:
             return (
                 False,
-                f"Invalid dtls-policy '{value}'. Must be one of: {', '.join(VALID_BODY_DTLS_POLICY)}",
+                f"Invalid dtls-policy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DTLS_POLICY)}",
             )
 
     # Validate dtls-in-kernel if present
@@ -1074,7 +1119,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_DTLS_IN_KERNEL:
             return (
                 False,
-                f"Invalid dtls-in-kernel '{value}'. Must be one of: {', '.join(VALID_BODY_DTLS_IN_KERNEL)}",
+                f"Invalid dtls-in-kernel '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DTLS_IN_KERNEL)}",
             )
 
     # Validate max-clients if present
@@ -1125,7 +1171,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_HANDOFF_ROAMING:
             return (
                 False,
-                f"Invalid handoff-roaming '{value}'. Must be one of: {', '.join(VALID_BODY_HANDOFF_ROAMING)}",
+                f"Invalid handoff-roaming '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HANDOFF_ROAMING)}",
             )
 
     # Validate ap-country if present
@@ -1134,7 +1181,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_AP_COUNTRY:
             return (
                 False,
-                f"Invalid ap-country '{value}'. Must be one of: {', '.join(VALID_BODY_AP_COUNTRY)}",
+                f"Invalid ap-country '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_COUNTRY)}",
             )
 
     # Validate ip-fragment-preventing if present
@@ -1143,7 +1191,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_IP_FRAGMENT_PREVENTING:
             return (
                 False,
-                f"Invalid ip-fragment-preventing '{value}'. Must be one of: {', '.join(VALID_BODY_IP_FRAGMENT_PREVENTING)}",
+                f"Invalid ip-fragment-preventing '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_FRAGMENT_PREVENTING)}",
             )
 
     # Validate tun-mtu-uplink if present
@@ -1183,7 +1232,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_SPLIT_TUNNELING_ACL_PATH:
             return (
                 False,
-                f"Invalid split-tunneling-acl-path '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_PATH)}",
+                f"Invalid split-tunneling-acl-path '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_PATH)}",
             )
 
     # Validate split-tunneling-acl-local-ap-subnet if present
@@ -1195,7 +1245,8 @@ def validate_wtp_profile_put(
         ):
             return (
                 False,
-                f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",
+                f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",
             )
 
     # Validate allowaccess if present
@@ -1204,7 +1255,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate login-passwd-change if present
@@ -1213,7 +1265,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_LOGIN_PASSWD_CHANGE:
             return (
                 False,
-                f"Invalid login-passwd-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWD_CHANGE)}",
+                f"Invalid login-passwd-change '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWD_CHANGE)}",
             )
 
     # Validate lldp if present
@@ -1222,7 +1275,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_LLDP:
             return (
                 False,
-                f"Invalid lldp '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP)}",
+                f"Invalid lldp '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LLDP)}",
             )
 
     # Validate poe-mode if present
@@ -1231,7 +1285,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_POE_MODE:
             return (
                 False,
-                f"Invalid poe-mode '{value}'. Must be one of: {', '.join(VALID_BODY_POE_MODE)}",
+                f"Invalid poe-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POE_MODE)}",
             )
 
     # Validate usb-port if present
@@ -1240,7 +1295,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_USB_PORT:
             return (
                 False,
-                f"Invalid usb-port '{value}'. Must be one of: {', '.join(VALID_BODY_USB_PORT)}",
+                f"Invalid usb-port '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USB_PORT)}",
             )
 
     # Validate frequency-handoff if present
@@ -1249,7 +1305,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_FREQUENCY_HANDOFF:
             return (
                 False,
-                f"Invalid frequency-handoff '{value}'. Must be one of: {', '.join(VALID_BODY_FREQUENCY_HANDOFF)}",
+                f"Invalid frequency-handoff '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FREQUENCY_HANDOFF)}",
             )
 
     # Validate ap-handoff if present
@@ -1258,7 +1315,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_AP_HANDOFF:
             return (
                 False,
-                f"Invalid ap-handoff '{value}'. Must be one of: {', '.join(VALID_BODY_AP_HANDOFF)}",
+                f"Invalid ap-handoff '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_AP_HANDOFF)}",
             )
 
     # Validate default-mesh-root if present
@@ -1267,7 +1325,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_DEFAULT_MESH_ROOT:
             return (
                 False,
-                f"Invalid default-mesh-root '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_MESH_ROOT)}",
+                f"Invalid default-mesh-root '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEFAULT_MESH_ROOT)}",
             )
 
     # Validate ext-info-enable if present
@@ -1276,7 +1335,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_EXT_INFO_ENABLE:
             return (
                 False,
-                f"Invalid ext-info-enable '{value}'. Must be one of: {', '.join(VALID_BODY_EXT_INFO_ENABLE)}",
+                f"Invalid ext-info-enable '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EXT_INFO_ENABLE)}",
             )
 
     # Validate indoor-outdoor-deployment if present
@@ -1285,7 +1345,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_INDOOR_OUTDOOR_DEPLOYMENT:
             return (
                 False,
-                f"Invalid indoor-outdoor-deployment '{value}'. Must be one of: {', '.join(VALID_BODY_INDOOR_OUTDOOR_DEPLOYMENT)}",
+                f"Invalid indoor-outdoor-deployment '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INDOOR_OUTDOOR_DEPLOYMENT)}",
             )
 
     # Validate console-login if present
@@ -1294,7 +1355,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_CONSOLE_LOGIN:
             return (
                 False,
-                f"Invalid console-login '{value}'. Must be one of: {', '.join(VALID_BODY_CONSOLE_LOGIN)}",
+                f"Invalid console-login '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CONSOLE_LOGIN)}",
             )
 
     # Validate wan-port-auth if present
@@ -1303,7 +1365,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_WAN_PORT_AUTH:
             return (
                 False,
-                f"Invalid wan-port-auth '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_AUTH)}",
+                f"Invalid wan-port-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_AUTH)}",
             )
 
     # Validate wan-port-auth-usrname if present
@@ -1321,7 +1384,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_WAN_PORT_AUTH_METHODS:
             return (
                 False,
-                f"Invalid wan-port-auth-methods '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_AUTH_METHODS)}",
+                f"Invalid wan-port-auth-methods '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_AUTH_METHODS)}",
             )
 
     # Validate wan-port-auth-macsec if present
@@ -1330,7 +1394,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_WAN_PORT_AUTH_MACSEC:
             return (
                 False,
-                f"Invalid wan-port-auth-macsec '{value}'. Must be one of: {', '.join(VALID_BODY_WAN_PORT_AUTH_MACSEC)}",
+                f"Invalid wan-port-auth-macsec '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WAN_PORT_AUTH_MACSEC)}",
             )
 
     # Validate apcfg-auto-cert if present
@@ -1339,7 +1404,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT:
             return (
                 False,
-                f"Invalid apcfg-auto-cert '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT)}",
+                f"Invalid apcfg-auto-cert '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT)}",
             )
 
     # Validate apcfg-auto-cert-enroll-protocol if present
@@ -1348,7 +1414,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_ENROLL_PROTOCOL:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-enroll-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_ENROLL_PROTOCOL)}",
+                f"Invalid apcfg-auto-cert-enroll-protocol '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_ENROLL_PROTOCOL)}",
             )
 
     # Validate apcfg-auto-cert-crypto-algo if present
@@ -1357,7 +1424,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_CRYPTO_ALGO:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-crypto-algo '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_CRYPTO_ALGO)}",
+                f"Invalid apcfg-auto-cert-crypto-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_CRYPTO_ALGO)}",
             )
 
     # Validate apcfg-auto-cert-est-server if present
@@ -1437,7 +1505,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYTYPE:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-scep-keytype '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYTYPE)}",
+                f"Invalid apcfg-auto-cert-scep-keytype '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYTYPE)}",
             )
 
     # Validate apcfg-auto-cert-scep-keysize if present
@@ -1446,7 +1515,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYSIZE:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-scep-keysize '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYSIZE)}",
+                f"Invalid apcfg-auto-cert-scep-keysize '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_KEYSIZE)}",
             )
 
     # Validate apcfg-auto-cert-scep-ec-name if present
@@ -1455,7 +1525,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_APCFG_AUTO_CERT_SCEP_EC_NAME:
             return (
                 False,
-                f"Invalid apcfg-auto-cert-scep-ec-name '{value}'. Must be one of: {', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_EC_NAME)}",
+                f"Invalid apcfg-auto-cert-scep-ec-name '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_APCFG_AUTO_CERT_SCEP_EC_NAME)}",
             )
 
     # Validate apcfg-auto-cert-scep-sub-fully-dn if present
@@ -1509,7 +1580,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_UNII_4_5GHZ_BAND:
             return (
                 False,
-                f"Invalid unii-4-5ghz-band '{value}'. Must be one of: {', '.join(VALID_BODY_UNII_4_5GHZ_BAND)}",
+                f"Invalid unii-4-5ghz-band '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UNII_4_5GHZ_BAND)}",
             )
 
     # Validate admin-auth-tacacs+ if present
@@ -1524,7 +1596,8 @@ def validate_wtp_profile_put(
         if value and value not in VALID_BODY_ADMIN_RESTRICT_LOCAL:
             return (
                 False,
-                f"Invalid admin-restrict-local '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_RESTRICT_LOCAL)}",
+                f"Invalid admin-restrict-local '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADMIN_RESTRICT_LOCAL)}",
             )
 
     return (True, None)

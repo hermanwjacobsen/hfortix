@@ -48,7 +48,8 @@ def validate_switch_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -83,7 +84,8 @@ def validate_switch_profile_post(
         if value and value not in VALID_BODY_LOGIN_PASSWD_OVERRIDE:
             return (
                 False,
-                f"Invalid login-passwd-override '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWD_OVERRIDE)}",
+                f"Invalid login-passwd-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWD_OVERRIDE)}",
             )
 
     # Validate login if present
@@ -92,7 +94,8 @@ def validate_switch_profile_post(
         if value and value not in VALID_BODY_LOGIN:
             return (
                 False,
-                f"Invalid login '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN)}",
+                f"Invalid login '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN)}",
             )
 
     # Validate revision-backup-on-logout if present
@@ -101,7 +104,8 @@ def validate_switch_profile_post(
         if value and value not in VALID_BODY_REVISION_BACKUP_ON_LOGOUT:
             return (
                 False,
-                f"Invalid revision-backup-on-logout '{value}'. Must be one of: {', '.join(VALID_BODY_REVISION_BACKUP_ON_LOGOUT)}",
+                f"Invalid revision-backup-on-logout '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REVISION_BACKUP_ON_LOGOUT)}",
             )
 
     # Validate revision-backup-on-upgrade if present
@@ -110,7 +114,8 @@ def validate_switch_profile_post(
         if value and value not in VALID_BODY_REVISION_BACKUP_ON_UPGRADE:
             return (
                 False,
-                f"Invalid revision-backup-on-upgrade '{value}'. Must be one of: {', '.join(VALID_BODY_REVISION_BACKUP_ON_UPGRADE)}",
+                f"Invalid revision-backup-on-upgrade '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REVISION_BACKUP_ON_UPGRADE)}",
             )
 
     return (True, None)
@@ -154,7 +159,8 @@ def validate_switch_profile_put(
         if value and value not in VALID_BODY_LOGIN_PASSWD_OVERRIDE:
             return (
                 False,
-                f"Invalid login-passwd-override '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN_PASSWD_OVERRIDE)}",
+                f"Invalid login-passwd-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN_PASSWD_OVERRIDE)}",
             )
 
     # Validate login if present
@@ -163,7 +169,8 @@ def validate_switch_profile_put(
         if value and value not in VALID_BODY_LOGIN:
             return (
                 False,
-                f"Invalid login '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN)}",
+                f"Invalid login '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGIN)}",
             )
 
     # Validate revision-backup-on-logout if present
@@ -172,7 +179,8 @@ def validate_switch_profile_put(
         if value and value not in VALID_BODY_REVISION_BACKUP_ON_LOGOUT:
             return (
                 False,
-                f"Invalid revision-backup-on-logout '{value}'. Must be one of: {', '.join(VALID_BODY_REVISION_BACKUP_ON_LOGOUT)}",
+                f"Invalid revision-backup-on-logout '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REVISION_BACKUP_ON_LOGOUT)}",
             )
 
     # Validate revision-backup-on-upgrade if present
@@ -181,7 +189,8 @@ def validate_switch_profile_put(
         if value and value not in VALID_BODY_REVISION_BACKUP_ON_UPGRADE:
             return (
                 False,
-                f"Invalid revision-backup-on-upgrade '{value}'. Must be one of: {', '.join(VALID_BODY_REVISION_BACKUP_ON_UPGRADE)}",
+                f"Invalid revision-backup-on-upgrade '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REVISION_BACKUP_ON_UPGRADE)}",
             )
 
     return (True, None)

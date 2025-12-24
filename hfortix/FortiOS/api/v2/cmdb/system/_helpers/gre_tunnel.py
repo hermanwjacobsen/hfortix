@@ -51,7 +51,8 @@ def validate_gre_tunnel_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -92,7 +93,8 @@ def validate_gre_tunnel_post(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate use-sdwan if present
@@ -101,7 +103,8 @@ def validate_gre_tunnel_post(
         if value and value not in VALID_BODY_USE_SDWAN:
             return (
                 False,
-                f"Invalid use-sdwan '{value}'. Must be one of: {', '.join(VALID_BODY_USE_SDWAN)}",
+                f"Invalid use-sdwan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USE_SDWAN)}",
             )
 
     # Validate sequence-number-transmission if present
@@ -110,7 +113,8 @@ def validate_gre_tunnel_post(
         if value and value not in VALID_BODY_SEQUENCE_NUMBER_TRANSMISSION:
             return (
                 False,
-                f"Invalid sequence-number-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_SEQUENCE_NUMBER_TRANSMISSION)}",
+                f"Invalid sequence-number-transmission '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEQUENCE_NUMBER_TRANSMISSION)}",
             )
 
     # Validate sequence-number-reception if present
@@ -119,7 +123,8 @@ def validate_gre_tunnel_post(
         if value and value not in VALID_BODY_SEQUENCE_NUMBER_RECEPTION:
             return (
                 False,
-                f"Invalid sequence-number-reception '{value}'. Must be one of: {', '.join(VALID_BODY_SEQUENCE_NUMBER_RECEPTION)}",
+                f"Invalid sequence-number-reception '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEQUENCE_NUMBER_RECEPTION)}",
             )
 
     # Validate checksum-transmission if present
@@ -128,7 +133,8 @@ def validate_gre_tunnel_post(
         if value and value not in VALID_BODY_CHECKSUM_TRANSMISSION:
             return (
                 False,
-                f"Invalid checksum-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_CHECKSUM_TRANSMISSION)}",
+                f"Invalid checksum-transmission '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECKSUM_TRANSMISSION)}",
             )
 
     # Validate checksum-reception if present
@@ -137,7 +143,8 @@ def validate_gre_tunnel_post(
         if value and value not in VALID_BODY_CHECKSUM_RECEPTION:
             return (
                 False,
-                f"Invalid checksum-reception '{value}'. Must be one of: {', '.join(VALID_BODY_CHECKSUM_RECEPTION)}",
+                f"Invalid checksum-reception '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECKSUM_RECEPTION)}",
             )
 
     # Validate key-outbound if present
@@ -174,7 +181,8 @@ def validate_gre_tunnel_post(
         if value and value not in VALID_BODY_DSCP_COPYING:
             return (
                 False,
-                f"Invalid dscp-copying '{value}'. Must be one of: {', '.join(VALID_BODY_DSCP_COPYING)}",
+                f"Invalid dscp-copying '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSCP_COPYING)}",
             )
 
     # Validate keepalive-interval if present
@@ -258,7 +266,8 @@ def validate_gre_tunnel_put(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate use-sdwan if present
@@ -267,7 +276,8 @@ def validate_gre_tunnel_put(
         if value and value not in VALID_BODY_USE_SDWAN:
             return (
                 False,
-                f"Invalid use-sdwan '{value}'. Must be one of: {', '.join(VALID_BODY_USE_SDWAN)}",
+                f"Invalid use-sdwan '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USE_SDWAN)}",
             )
 
     # Validate sequence-number-transmission if present
@@ -276,7 +286,8 @@ def validate_gre_tunnel_put(
         if value and value not in VALID_BODY_SEQUENCE_NUMBER_TRANSMISSION:
             return (
                 False,
-                f"Invalid sequence-number-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_SEQUENCE_NUMBER_TRANSMISSION)}",
+                f"Invalid sequence-number-transmission '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEQUENCE_NUMBER_TRANSMISSION)}",
             )
 
     # Validate sequence-number-reception if present
@@ -285,7 +296,8 @@ def validate_gre_tunnel_put(
         if value and value not in VALID_BODY_SEQUENCE_NUMBER_RECEPTION:
             return (
                 False,
-                f"Invalid sequence-number-reception '{value}'. Must be one of: {', '.join(VALID_BODY_SEQUENCE_NUMBER_RECEPTION)}",
+                f"Invalid sequence-number-reception '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SEQUENCE_NUMBER_RECEPTION)}",
             )
 
     # Validate checksum-transmission if present
@@ -294,7 +306,8 @@ def validate_gre_tunnel_put(
         if value and value not in VALID_BODY_CHECKSUM_TRANSMISSION:
             return (
                 False,
-                f"Invalid checksum-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_CHECKSUM_TRANSMISSION)}",
+                f"Invalid checksum-transmission '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECKSUM_TRANSMISSION)}",
             )
 
     # Validate checksum-reception if present
@@ -303,7 +316,8 @@ def validate_gre_tunnel_put(
         if value and value not in VALID_BODY_CHECKSUM_RECEPTION:
             return (
                 False,
-                f"Invalid checksum-reception '{value}'. Must be one of: {', '.join(VALID_BODY_CHECKSUM_RECEPTION)}",
+                f"Invalid checksum-reception '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECKSUM_RECEPTION)}",
             )
 
     # Validate key-outbound if present
@@ -340,7 +354,8 @@ def validate_gre_tunnel_put(
         if value and value not in VALID_BODY_DSCP_COPYING:
             return (
                 False,
-                f"Invalid dscp-copying '{value}'. Must be one of: {', '.join(VALID_BODY_DSCP_COPYING)}",
+                f"Invalid dscp-copying '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSCP_COPYING)}",
             )
 
     # Validate keepalive-interval if present

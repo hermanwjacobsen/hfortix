@@ -77,7 +77,8 @@ def validate_proxy_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -126,7 +127,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_PROXY:
             return (
                 False,
-                f"Invalid proxy '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY)}",
+                f"Invalid proxy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY)}",
             )
 
     # Validate ztna-tags-match-logic if present
@@ -135,7 +137,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_ZTNA_TAGS_MATCH_LOGIC:
             return (
                 False,
-                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
+                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
             )
 
     # Validate device-ownership if present
@@ -144,7 +147,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_DEVICE_OWNERSHIP:
             return (
                 False,
-                f"Invalid device-ownership '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_OWNERSHIP)}",
+                f"Invalid device-ownership '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEVICE_OWNERSHIP)}",
             )
 
     # Validate internet-service if present
@@ -153,7 +157,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE:
             return (
                 False,
-                f"Invalid internet-service '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE)}",
+                f"Invalid internet-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE)}",
             )
 
     # Validate internet-service-negate if present
@@ -162,7 +167,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
+                f"Invalid internet-service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service6 if present
@@ -171,7 +177,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE6:
             return (
                 False,
-                f"Invalid internet-service6 '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6)}",
+                f"Invalid internet-service6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6)}",
             )
 
     # Validate internet-service6-negate if present
@@ -180,7 +187,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_INTERNET_SERVICE6_NEGATE:
             return (
                 False,
-                f"Invalid internet-service6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
+                f"Invalid internet-service6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
             )
 
     # Validate srcaddr-negate if present
@@ -189,7 +197,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_SRCADDR_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR_NEGATE)}",
+                f"Invalid srcaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR_NEGATE)}",
             )
 
     # Validate dstaddr-negate if present
@@ -198,7 +207,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_DSTADDR_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR_NEGATE)}",
+                f"Invalid dstaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR_NEGATE)}",
             )
 
     # Validate ztna-ems-tag-negate if present
@@ -207,7 +217,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_ZTNA_EMS_TAG_NEGATE:
             return (
                 False,
-                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
+                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
             )
 
     # Validate service-negate if present
@@ -216,7 +227,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_NEGATE)}",
+                f"Invalid service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVICE_NEGATE)}",
             )
 
     # Validate action if present
@@ -225,7 +237,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate status if present
@@ -234,7 +247,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate schedule if present
@@ -249,7 +263,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate session-ttl if present
@@ -272,7 +287,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_HTTP_TUNNEL_AUTH:
             return (
                 False,
-                f"Invalid http-tunnel-auth '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_TUNNEL_AUTH)}",
+                f"Invalid http-tunnel-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_TUNNEL_AUTH)}",
             )
 
     # Validate ssh-policy-redirect if present
@@ -281,7 +297,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_SSH_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
+                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
             )
 
     # Validate webproxy-forward-server if present
@@ -311,7 +328,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_TRANSPARENT:
             return (
                 False,
-                f"Invalid transparent '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPARENT)}",
+                f"Invalid transparent '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRANSPARENT)}",
             )
 
     # Validate disclaimer if present
@@ -320,7 +338,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_DISCLAIMER:
             return (
                 False,
-                f"Invalid disclaimer '{value}'. Must be one of: {', '.join(VALID_BODY_DISCLAIMER)}",
+                f"Invalid disclaimer '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCLAIMER)}",
             )
 
     # Validate utm-status if present
@@ -329,7 +348,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate profile-type if present
@@ -338,7 +358,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_PROFILE_TYPE:
             return (
                 False,
-                f"Invalid profile-type '{value}'. Must be one of: {', '.join(VALID_BODY_PROFILE_TYPE)}",
+                f"Invalid profile-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROFILE_TYPE)}",
             )
 
     # Validate profile-group if present
@@ -467,7 +488,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_LOGTRAFFIC_START:
             return (
                 False,
-                f"Invalid logtraffic-start '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC_START)}",
+                f"Invalid logtraffic-start '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC_START)}",
             )
 
     # Validate log-http-transaction if present
@@ -476,7 +498,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_LOG_HTTP_TRANSACTION:
             return (
                 False,
-                f"Invalid log-http-transaction '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
+                f"Invalid log-http-transaction '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
             )
 
     # Validate comments if present
@@ -491,7 +514,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_BLOCK_NOTIFICATION:
             return (
                 False,
-                f"Invalid block-notification '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
+                f"Invalid block-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
             )
 
     # Validate redirect-url if present
@@ -506,7 +530,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_HTTPS_SUB_CATEGORY:
             return (
                 False,
-                f"Invalid https-sub-category '{value}'. Must be one of: {', '.join(VALID_BODY_HTTPS_SUB_CATEGORY)}",
+                f"Invalid https-sub-category '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTPS_SUB_CATEGORY)}",
             )
 
     # Validate decrypted-traffic-mirror if present
@@ -524,7 +549,8 @@ def validate_proxy_policy_post(
         if value and value not in VALID_BODY_DETECT_HTTPS_IN_HTTP_REQUEST:
             return (
                 False,
-                f"Invalid detect-https-in-http-request '{value}'. Must be one of: {', '.join(VALID_BODY_DETECT_HTTPS_IN_HTTP_REQUEST)}",
+                f"Invalid detect-https-in-http-request '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DETECT_HTTPS_IN_HTTP_REQUEST)}",
             )
 
     return (True, None)
@@ -582,7 +608,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_PROXY:
             return (
                 False,
-                f"Invalid proxy '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY)}",
+                f"Invalid proxy '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROXY)}",
             )
 
     # Validate ztna-tags-match-logic if present
@@ -591,7 +618,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_ZTNA_TAGS_MATCH_LOGIC:
             return (
                 False,
-                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
+                f"Invalid ztna-tags-match-logic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_TAGS_MATCH_LOGIC)}",
             )
 
     # Validate device-ownership if present
@@ -600,7 +628,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_DEVICE_OWNERSHIP:
             return (
                 False,
-                f"Invalid device-ownership '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_OWNERSHIP)}",
+                f"Invalid device-ownership '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DEVICE_OWNERSHIP)}",
             )
 
     # Validate internet-service if present
@@ -609,7 +638,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE:
             return (
                 False,
-                f"Invalid internet-service '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE)}",
+                f"Invalid internet-service '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE)}",
             )
 
     # Validate internet-service-negate if present
@@ -618,7 +648,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid internet-service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
+                f"Invalid internet-service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE_NEGATE)}",
             )
 
     # Validate internet-service6 if present
@@ -627,7 +658,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE6:
             return (
                 False,
-                f"Invalid internet-service6 '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6)}",
+                f"Invalid internet-service6 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6)}",
             )
 
     # Validate internet-service6-negate if present
@@ -636,7 +668,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_INTERNET_SERVICE6_NEGATE:
             return (
                 False,
-                f"Invalid internet-service6-negate '{value}'. Must be one of: {', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
+                f"Invalid internet-service6-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERNET_SERVICE6_NEGATE)}",
             )
 
     # Validate srcaddr-negate if present
@@ -645,7 +678,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_SRCADDR_NEGATE:
             return (
                 False,
-                f"Invalid srcaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SRCADDR_NEGATE)}",
+                f"Invalid srcaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SRCADDR_NEGATE)}",
             )
 
     # Validate dstaddr-negate if present
@@ -654,7 +688,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_DSTADDR_NEGATE:
             return (
                 False,
-                f"Invalid dstaddr-negate '{value}'. Must be one of: {', '.join(VALID_BODY_DSTADDR_NEGATE)}",
+                f"Invalid dstaddr-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSTADDR_NEGATE)}",
             )
 
     # Validate ztna-ems-tag-negate if present
@@ -663,7 +698,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_ZTNA_EMS_TAG_NEGATE:
             return (
                 False,
-                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
+                f"Invalid ztna-ems-tag-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ZTNA_EMS_TAG_NEGATE)}",
             )
 
     # Validate service-negate if present
@@ -672,7 +708,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_SERVICE_NEGATE:
             return (
                 False,
-                f"Invalid service-negate '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_NEGATE)}",
+                f"Invalid service-negate '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVICE_NEGATE)}",
             )
 
     # Validate action if present
@@ -681,7 +718,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate status if present
@@ -690,7 +728,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate schedule if present
@@ -705,7 +744,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate session-ttl if present
@@ -728,7 +768,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_HTTP_TUNNEL_AUTH:
             return (
                 False,
-                f"Invalid http-tunnel-auth '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_TUNNEL_AUTH)}",
+                f"Invalid http-tunnel-auth '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTP_TUNNEL_AUTH)}",
             )
 
     # Validate ssh-policy-redirect if present
@@ -737,7 +778,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_SSH_POLICY_REDIRECT:
             return (
                 False,
-                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
+                f"Invalid ssh-policy-redirect '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSH_POLICY_REDIRECT)}",
             )
 
     # Validate webproxy-forward-server if present
@@ -767,7 +809,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_TRANSPARENT:
             return (
                 False,
-                f"Invalid transparent '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPARENT)}",
+                f"Invalid transparent '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TRANSPARENT)}",
             )
 
     # Validate disclaimer if present
@@ -776,7 +819,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_DISCLAIMER:
             return (
                 False,
-                f"Invalid disclaimer '{value}'. Must be one of: {', '.join(VALID_BODY_DISCLAIMER)}",
+                f"Invalid disclaimer '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCLAIMER)}",
             )
 
     # Validate utm-status if present
@@ -785,7 +829,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate profile-type if present
@@ -794,7 +839,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_PROFILE_TYPE:
             return (
                 False,
-                f"Invalid profile-type '{value}'. Must be one of: {', '.join(VALID_BODY_PROFILE_TYPE)}",
+                f"Invalid profile-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROFILE_TYPE)}",
             )
 
     # Validate profile-group if present
@@ -923,7 +969,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_LOGTRAFFIC_START:
             return (
                 False,
-                f"Invalid logtraffic-start '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC_START)}",
+                f"Invalid logtraffic-start '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOGTRAFFIC_START)}",
             )
 
     # Validate log-http-transaction if present
@@ -932,7 +979,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_LOG_HTTP_TRANSACTION:
             return (
                 False,
-                f"Invalid log-http-transaction '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
+                f"Invalid log-http-transaction '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_HTTP_TRANSACTION)}",
             )
 
     # Validate comments if present
@@ -947,7 +995,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_BLOCK_NOTIFICATION:
             return (
                 False,
-                f"Invalid block-notification '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
+                f"Invalid block-notification '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BLOCK_NOTIFICATION)}",
             )
 
     # Validate redirect-url if present
@@ -962,7 +1011,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_HTTPS_SUB_CATEGORY:
             return (
                 False,
-                f"Invalid https-sub-category '{value}'. Must be one of: {', '.join(VALID_BODY_HTTPS_SUB_CATEGORY)}",
+                f"Invalid https-sub-category '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_HTTPS_SUB_CATEGORY)}",
             )
 
     # Validate decrypted-traffic-mirror if present
@@ -980,7 +1030,8 @@ def validate_proxy_policy_put(
         if value and value not in VALID_BODY_DETECT_HTTPS_IN_HTTP_REQUEST:
             return (
                 False,
-                f"Invalid detect-https-in-http-request '{value}'. Must be one of: {', '.join(VALID_BODY_DETECT_HTTPS_IN_HTTP_REQUEST)}",
+                f"Invalid detect-https-in-http-request '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DETECT_HTTPS_IN_HTTP_REQUEST)}",
             )
 
     return (True, None)

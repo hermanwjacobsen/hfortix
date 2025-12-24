@@ -46,7 +46,8 @@ def validate_traffic_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,7 +88,8 @@ def validate_traffic_policy_post(
         if value and value not in VALID_BODY_POLICER_STATUS:
             return (
                 False,
-                f"Invalid policer-status '{value}'. Must be one of: {', '.join(VALID_BODY_POLICER_STATUS)}",
+                f"Invalid policer-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POLICER_STATUS)}",
             )
 
     # Validate guaranteed-bandwidth if present
@@ -144,7 +146,8 @@ def validate_traffic_policy_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate cos-queue if present
@@ -205,7 +208,8 @@ def validate_traffic_policy_put(
         if value and value not in VALID_BODY_POLICER_STATUS:
             return (
                 False,
-                f"Invalid policer-status '{value}'. Must be one of: {', '.join(VALID_BODY_POLICER_STATUS)}",
+                f"Invalid policer-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_POLICER_STATUS)}",
             )
 
     # Validate guaranteed-bandwidth if present
@@ -262,7 +266,8 @@ def validate_traffic_policy_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate cos-queue if present

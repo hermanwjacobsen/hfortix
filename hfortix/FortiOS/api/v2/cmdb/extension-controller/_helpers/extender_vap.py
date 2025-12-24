@@ -62,7 +62,8 @@ def validate_extender_vap_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,7 +98,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate ssid if present
@@ -123,7 +125,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_BROADCAST_SSID:
             return (
                 False,
-                f"Invalid broadcast-ssid '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_SSID)}",
+                f"Invalid broadcast-ssid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BROADCAST_SSID)}",
             )
 
     # Validate security if present
@@ -132,7 +135,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_SECURITY:
             return (
                 False,
-                f"Invalid security '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY)}",
+                f"Invalid security '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY)}",
             )
 
     # Validate dtim if present
@@ -166,7 +170,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
-                f"Invalid pmf '{value}'. Must be one of: {', '.join(VALID_BODY_PMF)}",
+                f"Invalid pmf '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PMF)}",
             )
 
     # Validate target-wake-time if present
@@ -175,7 +180,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_TARGET_WAKE_TIME:
             return (
                 False,
-                f"Invalid target-wake-time '{value}'. Must be one of: {', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
+                f"Invalid target-wake-time '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
             )
 
     # Validate bss-color-partial if present
@@ -184,7 +190,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_BSS_COLOR_PARTIAL:
             return (
                 False,
-                f"Invalid bss-color-partial '{value}'. Must be one of: {', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
+                f"Invalid bss-color-partial '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
             )
 
     # Validate mu-mimo if present
@@ -193,7 +200,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_MU_MIMO:
             return (
                 False,
-                f"Invalid mu-mimo '{value}'. Must be one of: {', '.join(VALID_BODY_MU_MIMO)}",
+                f"Invalid mu-mimo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MU_MIMO)}",
             )
 
     # Validate auth-server-address if present
@@ -231,7 +239,8 @@ def validate_extender_vap_post(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     return (True, None)
@@ -275,7 +284,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate ssid if present
@@ -301,7 +311,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_BROADCAST_SSID:
             return (
                 False,
-                f"Invalid broadcast-ssid '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_SSID)}",
+                f"Invalid broadcast-ssid '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BROADCAST_SSID)}",
             )
 
     # Validate security if present
@@ -310,7 +321,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_SECURITY:
             return (
                 False,
-                f"Invalid security '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY)}",
+                f"Invalid security '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SECURITY)}",
             )
 
     # Validate dtim if present
@@ -344,7 +356,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
-                f"Invalid pmf '{value}'. Must be one of: {', '.join(VALID_BODY_PMF)}",
+                f"Invalid pmf '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PMF)}",
             )
 
     # Validate target-wake-time if present
@@ -353,7 +366,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_TARGET_WAKE_TIME:
             return (
                 False,
-                f"Invalid target-wake-time '{value}'. Must be one of: {', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
+                f"Invalid target-wake-time '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TARGET_WAKE_TIME)}",
             )
 
     # Validate bss-color-partial if present
@@ -362,7 +376,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_BSS_COLOR_PARTIAL:
             return (
                 False,
-                f"Invalid bss-color-partial '{value}'. Must be one of: {', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
+                f"Invalid bss-color-partial '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BSS_COLOR_PARTIAL)}",
             )
 
     # Validate mu-mimo if present
@@ -371,7 +386,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_MU_MIMO:
             return (
                 False,
-                f"Invalid mu-mimo '{value}'. Must be one of: {', '.join(VALID_BODY_MU_MIMO)}",
+                f"Invalid mu-mimo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MU_MIMO)}",
             )
 
     # Validate auth-server-address if present
@@ -409,7 +425,8 @@ def validate_extender_vap_put(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     return (True, None)

@@ -51,7 +51,8 @@ def validate_qos_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -139,7 +140,8 @@ def validate_qos_profile_post(
         if value and value not in VALID_BODY_BURST:
             return (
                 False,
-                f"Invalid burst '{value}'. Must be one of: {', '.join(VALID_BODY_BURST)}",
+                f"Invalid burst '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BURST)}",
             )
 
     # Validate wmm if present
@@ -148,7 +150,8 @@ def validate_qos_profile_post(
         if value and value not in VALID_BODY_WMM:
             return (
                 False,
-                f"Invalid wmm '{value}'. Must be one of: {', '.join(VALID_BODY_WMM)}",
+                f"Invalid wmm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WMM)}",
             )
 
     # Validate wmm-uapsd if present
@@ -157,7 +160,8 @@ def validate_qos_profile_post(
         if value and value not in VALID_BODY_WMM_UAPSD:
             return (
                 False,
-                f"Invalid wmm-uapsd '{value}'. Must be one of: {', '.join(VALID_BODY_WMM_UAPSD)}",
+                f"Invalid wmm-uapsd '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WMM_UAPSD)}",
             )
 
     # Validate call-admission-control if present
@@ -166,7 +170,8 @@ def validate_qos_profile_post(
         if value and value not in VALID_BODY_CALL_ADMISSION_CONTROL:
             return (
                 False,
-                f"Invalid call-admission-control '{value}'. Must be one of: {', '.join(VALID_BODY_CALL_ADMISSION_CONTROL)}",
+                f"Invalid call-admission-control '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CALL_ADMISSION_CONTROL)}",
             )
 
     # Validate call-capacity if present
@@ -186,7 +191,8 @@ def validate_qos_profile_post(
         if value and value not in VALID_BODY_BANDWIDTH_ADMISSION_CONTROL:
             return (
                 False,
-                f"Invalid bandwidth-admission-control '{value}'. Must be one of: {', '.join(VALID_BODY_BANDWIDTH_ADMISSION_CONTROL)}",
+                f"Invalid bandwidth-admission-control '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BANDWIDTH_ADMISSION_CONTROL)}",
             )
 
     # Validate bandwidth-capacity if present
@@ -212,7 +218,8 @@ def validate_qos_profile_post(
         if value and value not in VALID_BODY_DSCP_WMM_MAPPING:
             return (
                 False,
-                f"Invalid dscp-wmm-mapping '{value}'. Must be one of: {', '.join(VALID_BODY_DSCP_WMM_MAPPING)}",
+                f"Invalid dscp-wmm-mapping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSCP_WMM_MAPPING)}",
             )
 
     # Validate wmm-dscp-marking if present
@@ -221,7 +228,8 @@ def validate_qos_profile_post(
         if value and value not in VALID_BODY_WMM_DSCP_MARKING:
             return (
                 False,
-                f"Invalid wmm-dscp-marking '{value}'. Must be one of: {', '.join(VALID_BODY_WMM_DSCP_MARKING)}",
+                f"Invalid wmm-dscp-marking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WMM_DSCP_MARKING)}",
             )
 
     # Validate wmm-vo-dscp if present
@@ -362,7 +370,8 @@ def validate_qos_profile_put(
         if value and value not in VALID_BODY_BURST:
             return (
                 False,
-                f"Invalid burst '{value}'. Must be one of: {', '.join(VALID_BODY_BURST)}",
+                f"Invalid burst '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BURST)}",
             )
 
     # Validate wmm if present
@@ -371,7 +380,8 @@ def validate_qos_profile_put(
         if value and value not in VALID_BODY_WMM:
             return (
                 False,
-                f"Invalid wmm '{value}'. Must be one of: {', '.join(VALID_BODY_WMM)}",
+                f"Invalid wmm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WMM)}",
             )
 
     # Validate wmm-uapsd if present
@@ -380,7 +390,8 @@ def validate_qos_profile_put(
         if value and value not in VALID_BODY_WMM_UAPSD:
             return (
                 False,
-                f"Invalid wmm-uapsd '{value}'. Must be one of: {', '.join(VALID_BODY_WMM_UAPSD)}",
+                f"Invalid wmm-uapsd '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WMM_UAPSD)}",
             )
 
     # Validate call-admission-control if present
@@ -389,7 +400,8 @@ def validate_qos_profile_put(
         if value and value not in VALID_BODY_CALL_ADMISSION_CONTROL:
             return (
                 False,
-                f"Invalid call-admission-control '{value}'. Must be one of: {', '.join(VALID_BODY_CALL_ADMISSION_CONTROL)}",
+                f"Invalid call-admission-control '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CALL_ADMISSION_CONTROL)}",
             )
 
     # Validate call-capacity if present
@@ -409,7 +421,8 @@ def validate_qos_profile_put(
         if value and value not in VALID_BODY_BANDWIDTH_ADMISSION_CONTROL:
             return (
                 False,
-                f"Invalid bandwidth-admission-control '{value}'. Must be one of: {', '.join(VALID_BODY_BANDWIDTH_ADMISSION_CONTROL)}",
+                f"Invalid bandwidth-admission-control '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BANDWIDTH_ADMISSION_CONTROL)}",
             )
 
     # Validate bandwidth-capacity if present
@@ -435,7 +448,8 @@ def validate_qos_profile_put(
         if value and value not in VALID_BODY_DSCP_WMM_MAPPING:
             return (
                 False,
-                f"Invalid dscp-wmm-mapping '{value}'. Must be one of: {', '.join(VALID_BODY_DSCP_WMM_MAPPING)}",
+                f"Invalid dscp-wmm-mapping '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DSCP_WMM_MAPPING)}",
             )
 
     # Validate wmm-dscp-marking if present
@@ -444,7 +458,8 @@ def validate_qos_profile_put(
         if value and value not in VALID_BODY_WMM_DSCP_MARKING:
             return (
                 False,
-                f"Invalid wmm-dscp-marking '{value}'. Must be one of: {', '.join(VALID_BODY_WMM_DSCP_MARKING)}",
+                f"Invalid wmm-dscp-marking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WMM_DSCP_MARKING)}",
             )
 
     # Validate wmm-vo-dscp if present

@@ -61,7 +61,8 @@ def validate_session_helper_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,7 +102,8 @@ def validate_session_helper_post(
         if value and value not in VALID_BODY_NAME:
             return (
                 False,
-                f"Invalid name '{value}'. Must be one of: {', '.join(VALID_BODY_NAME)}",
+                f"Invalid name '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAME)}",
             )
 
     # Validate protocol if present
@@ -172,7 +174,8 @@ def validate_session_helper_put(
         if value and value not in VALID_BODY_NAME:
             return (
                 False,
-                f"Invalid name '{value}'. Must be one of: {', '.join(VALID_BODY_NAME)}",
+                f"Invalid name '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAME)}",
             )
 
     # Validate protocol if present

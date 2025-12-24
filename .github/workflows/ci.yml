@@ -29,15 +29,16 @@ jobs:
 
       - name: Check formatting with Black
         run: |
-          black --check --line-length=79 hfortix --exclude 'hfortix/FortiOS/api/v2'
+          black --check --line-length=79 hfortix
 
       - name: Check import sorting with isort
         run: |
-          isort --check-only --profile=black --line-length=79 hfortix --skip hfortix/FortiOS/api/v2
+          isort --check-only --profile=black --line-length=79 hfortix
 
       - name: Lint with flake8
         run: |
-          flake8 hfortix --max-line-length=79 --extend-ignore=E203,W503 --exclude=hfortix/FortiOS/api/v2 --statistics
+          # Uses .flake8 config file (79 chars, ignores E501 for api/* folders)
+          flake8 hfortix --statistics
 
   type-check:
     name: Type Checking

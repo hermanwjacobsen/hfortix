@@ -47,7 +47,8 @@ def validate_ippool6_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,7 +81,8 @@ def validate_ippool6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate comments if present
@@ -95,7 +97,8 @@ def validate_ippool6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT46:
             return (
                 False,
-                f"Invalid nat46 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46)}",
+                f"Invalid nat46 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT46)}",
             )
 
     # Validate add-nat46-route if present
@@ -104,7 +107,8 @@ def validate_ippool6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADD_NAT46_ROUTE:
             return (
                 False,
-                f"Invalid add-nat46-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_NAT46_ROUTE)}",
+                f"Invalid add-nat46-route '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADD_NAT46_ROUTE)}",
             )
 
     return (True, None)
@@ -148,7 +152,8 @@ def validate_ippool6_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate comments if present
@@ -163,7 +168,8 @@ def validate_ippool6_put(
         if value and value not in VALID_BODY_NAT46:
             return (
                 False,
-                f"Invalid nat46 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46)}",
+                f"Invalid nat46 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NAT46)}",
             )
 
     # Validate add-nat46-route if present
@@ -172,7 +178,8 @@ def validate_ippool6_put(
         if value and value not in VALID_BODY_ADD_NAT46_ROUTE:
             return (
                 False,
-                f"Invalid add-nat46-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_NAT46_ROUTE)}",
+                f"Invalid add-nat46-route '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ADD_NAT46_ROUTE)}",
             )
 
     return (True, None)

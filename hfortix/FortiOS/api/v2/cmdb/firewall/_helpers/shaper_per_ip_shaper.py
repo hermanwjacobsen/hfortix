@@ -47,7 +47,8 @@ def validate_shaper_per_ip_shaper_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -96,7 +97,8 @@ def validate_shaper_per_ip_shaper_post(
         if value and value not in VALID_BODY_BANDWIDTH_UNIT:
             return (
                 False,
-                f"Invalid bandwidth-unit '{value}'. Must be one of: {', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
+                f"Invalid bandwidth-unit '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
             )
 
     # Validate max-concurrent-session if present
@@ -156,7 +158,8 @@ def validate_shaper_per_ip_shaper_post(
         if value and value not in VALID_BODY_DIFFSERV_FORWARD:
             return (
                 False,
-                f"Invalid diffserv-forward '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
+                f"Invalid diffserv-forward '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
             )
 
     # Validate diffserv-reverse if present
@@ -165,7 +168,8 @@ def validate_shaper_per_ip_shaper_post(
         if value and value not in VALID_BODY_DIFFSERV_REVERSE:
             return (
                 False,
-                f"Invalid diffserv-reverse '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
+                f"Invalid diffserv-reverse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
             )
 
     return (True, None)
@@ -223,7 +227,8 @@ def validate_shaper_per_ip_shaper_put(
         if value and value not in VALID_BODY_BANDWIDTH_UNIT:
             return (
                 False,
-                f"Invalid bandwidth-unit '{value}'. Must be one of: {', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
+                f"Invalid bandwidth-unit '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_BANDWIDTH_UNIT)}",
             )
 
     # Validate max-concurrent-session if present
@@ -283,7 +288,8 @@ def validate_shaper_per_ip_shaper_put(
         if value and value not in VALID_BODY_DIFFSERV_FORWARD:
             return (
                 False,
-                f"Invalid diffserv-forward '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
+                f"Invalid diffserv-forward '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_FORWARD)}",
             )
 
     # Validate diffserv-reverse if present
@@ -292,7 +298,8 @@ def validate_shaper_per_ip_shaper_put(
         if value and value not in VALID_BODY_DIFFSERV_REVERSE:
             return (
                 False,
-                f"Invalid diffserv-reverse '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
+                f"Invalid diffserv-reverse '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIFFSERV_REVERSE)}",
             )
 
     return (True, None)

@@ -45,7 +45,8 @@ def validate_netflow_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -146,7 +147,8 @@ def validate_netflow_put(
         if value and value not in VALID_BODY_SESSION_CACHE_SIZE:
             return (
                 False,
-                f"Invalid session-cache-size '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_CACHE_SIZE)}",
+                f"Invalid session-cache-size '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SESSION_CACHE_SIZE)}",
             )
 
     return (True, None)

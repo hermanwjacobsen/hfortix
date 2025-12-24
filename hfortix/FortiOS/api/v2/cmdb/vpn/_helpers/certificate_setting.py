@@ -64,7 +64,8 @@ def validate_certificate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,7 +98,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_OCSP_STATUS:
             return (
                 False,
-                f"Invalid ocsp-status '{value}'. Must be one of: {', '.join(VALID_BODY_OCSP_STATUS)}",
+                f"Invalid ocsp-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OCSP_STATUS)}",
             )
 
     # Validate ocsp-option if present
@@ -106,7 +108,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_OCSP_OPTION:
             return (
                 False,
-                f"Invalid ocsp-option '{value}'. Must be one of: {', '.join(VALID_BODY_OCSP_OPTION)}",
+                f"Invalid ocsp-option '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OCSP_OPTION)}",
             )
 
     # Validate proxy if present
@@ -150,7 +153,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -176,7 +180,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_CHECK_CA_CERT:
             return (
                 False,
-                f"Invalid check-ca-cert '{value}'. Must be one of: {', '.join(VALID_BODY_CHECK_CA_CERT)}",
+                f"Invalid check-ca-cert '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECK_CA_CERT)}",
             )
 
     # Validate check-ca-chain if present
@@ -185,7 +190,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_CHECK_CA_CHAIN:
             return (
                 False,
-                f"Invalid check-ca-chain '{value}'. Must be one of: {', '.join(VALID_BODY_CHECK_CA_CHAIN)}",
+                f"Invalid check-ca-chain '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CHECK_CA_CHAIN)}",
             )
 
     # Validate subject-match if present
@@ -194,7 +200,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_SUBJECT_MATCH:
             return (
                 False,
-                f"Invalid subject-match '{value}'. Must be one of: {', '.join(VALID_BODY_SUBJECT_MATCH)}",
+                f"Invalid subject-match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SUBJECT_MATCH)}",
             )
 
     # Validate subject-set if present
@@ -203,7 +210,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_SUBJECT_SET:
             return (
                 False,
-                f"Invalid subject-set '{value}'. Must be one of: {', '.join(VALID_BODY_SUBJECT_SET)}",
+                f"Invalid subject-set '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SUBJECT_SET)}",
             )
 
     # Validate cn-match if present
@@ -212,7 +220,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_CN_MATCH:
             return (
                 False,
-                f"Invalid cn-match '{value}'. Must be one of: {', '.join(VALID_BODY_CN_MATCH)}",
+                f"Invalid cn-match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CN_MATCH)}",
             )
 
     # Validate cn-allow-multi if present
@@ -221,7 +230,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_CN_ALLOW_MULTI:
             return (
                 False,
-                f"Invalid cn-allow-multi '{value}'. Must be one of: {', '.join(VALID_BODY_CN_ALLOW_MULTI)}",
+                f"Invalid cn-allow-multi '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CN_ALLOW_MULTI)}",
             )
 
     # Validate strict-ocsp-check if present
@@ -230,7 +240,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_STRICT_OCSP_CHECK:
             return (
                 False,
-                f"Invalid strict-ocsp-check '{value}'. Must be one of: {', '.join(VALID_BODY_STRICT_OCSP_CHECK)}",
+                f"Invalid strict-ocsp-check '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STRICT_OCSP_CHECK)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -239,7 +250,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate cmp-save-extra-certs if present
@@ -248,7 +260,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_CMP_SAVE_EXTRA_CERTS:
             return (
                 False,
-                f"Invalid cmp-save-extra-certs '{value}'. Must be one of: {', '.join(VALID_BODY_CMP_SAVE_EXTRA_CERTS)}",
+                f"Invalid cmp-save-extra-certs '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CMP_SAVE_EXTRA_CERTS)}",
             )
 
     # Validate cmp-key-usage-checking if present
@@ -257,7 +270,8 @@ def validate_certificate_setting_put(
         if value and value not in VALID_BODY_CMP_KEY_USAGE_CHECKING:
             return (
                 False,
-                f"Invalid cmp-key-usage-checking '{value}'. Must be one of: {', '.join(VALID_BODY_CMP_KEY_USAGE_CHECKING)}",
+                f"Invalid cmp-key-usage-checking '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CMP_KEY_USAGE_CHECKING)}",
             )
 
     # Validate cert-expire-warning if present

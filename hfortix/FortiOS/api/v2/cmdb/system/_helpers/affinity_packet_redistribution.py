@@ -45,7 +45,8 @@ def validate_affinity_packet_redistribution_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -102,7 +103,8 @@ def validate_affinity_packet_redistribution_post(
         if value and value not in VALID_BODY_ROUND_ROBIN:
             return (
                 False,
-                f"Invalid round-robin '{value}'. Must be one of: {', '.join(VALID_BODY_ROUND_ROBIN)}",
+                f"Invalid round-robin '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROUND_ROBIN)}",
             )
 
     # Validate affinity-cpumask if present
@@ -174,7 +176,8 @@ def validate_affinity_packet_redistribution_put(
         if value and value not in VALID_BODY_ROUND_ROBIN:
             return (
                 False,
-                f"Invalid round-robin '{value}'. Must be one of: {', '.join(VALID_BODY_ROUND_ROBIN)}",
+                f"Invalid round-robin '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ROUND_ROBIN)}",
             )
 
     # Validate affinity-cpumask if present

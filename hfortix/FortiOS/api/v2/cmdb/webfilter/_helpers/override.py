@@ -46,7 +46,8 @@ def validate_override_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,7 +85,8 @@ def validate_override_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate scope if present
@@ -93,7 +95,8 @@ def validate_override_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCOPE:
             return (
                 False,
-                f"Invalid scope '{value}'. Must be one of: {', '.join(VALID_BODY_SCOPE)}",
+                f"Invalid scope '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCOPE)}",
             )
 
     # Validate user if present
@@ -172,7 +175,8 @@ def validate_override_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate scope if present
@@ -181,7 +185,8 @@ def validate_override_put(
         if value and value not in VALID_BODY_SCOPE:
             return (
                 False,
-                f"Invalid scope '{value}'. Must be one of: {', '.join(VALID_BODY_SCOPE)}",
+                f"Invalid scope '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SCOPE)}",
             )
 
     # Validate user if present

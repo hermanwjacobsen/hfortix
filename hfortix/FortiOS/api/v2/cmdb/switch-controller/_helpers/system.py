@@ -46,7 +46,8 @@ def validate_system_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -79,7 +80,8 @@ def validate_system_put(
         if value and value not in VALID_BODY_PARALLEL_PROCESS_OVERRIDE:
             return (
                 False,
-                f"Invalid parallel-process-override '{value}'. Must be one of: {', '.join(VALID_BODY_PARALLEL_PROCESS_OVERRIDE)}",
+                f"Invalid parallel-process-override '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PARALLEL_PROCESS_OVERRIDE)}",
             )
 
     # Validate parallel-process if present
@@ -212,7 +214,8 @@ def validate_system_put(
         if value and value not in VALID_BODY_TUNNEL_MODE:
             return (
                 False,
-                f"Invalid tunnel-mode '{value}'. Must be one of: {', '.join(VALID_BODY_TUNNEL_MODE)}",
+                f"Invalid tunnel-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TUNNEL_MODE)}",
             )
 
     # Validate caputp-echo-interval if present

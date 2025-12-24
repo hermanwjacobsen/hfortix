@@ -50,7 +50,8 @@ def validate_fortiguard_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -83,7 +84,8 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_CACHE_MODE:
             return (
                 False,
-                f"Invalid cache-mode '{value}'. Must be one of: {', '.join(VALID_BODY_CACHE_MODE)}",
+                f"Invalid cache-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CACHE_MODE)}",
             )
 
     # Validate cache-prefix-match if present
@@ -92,7 +94,8 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_CACHE_PREFIX_MATCH:
             return (
                 False,
-                f"Invalid cache-prefix-match '{value}'. Must be one of: {', '.join(VALID_BODY_CACHE_PREFIX_MATCH)}",
+                f"Invalid cache-prefix-match '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CACHE_PREFIX_MATCH)}",
             )
 
     # Validate cache-mem-permille if present
@@ -186,7 +189,8 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_OVRD_AUTH_HTTPS:
             return (
                 False,
-                f"Invalid ovrd-auth-https '{value}'. Must be one of: {', '.join(VALID_BODY_OVRD_AUTH_HTTPS)}",
+                f"Invalid ovrd-auth-https '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_OVRD_AUTH_HTTPS)}",
             )
 
     # Validate warn-auth-https if present
@@ -195,7 +199,8 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_WARN_AUTH_HTTPS:
             return (
                 False,
-                f"Invalid warn-auth-https '{value}'. Must be one of: {', '.join(VALID_BODY_WARN_AUTH_HTTPS)}",
+                f"Invalid warn-auth-https '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_WARN_AUTH_HTTPS)}",
             )
 
     # Validate close-ports if present
@@ -204,7 +209,8 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_CLOSE_PORTS:
             return (
                 False,
-                f"Invalid close-ports '{value}'. Must be one of: {', '.join(VALID_BODY_CLOSE_PORTS)}",
+                f"Invalid close-ports '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CLOSE_PORTS)}",
             )
 
     # Validate request-packet-size-limit if present
@@ -230,7 +236,8 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_EMBED_IMAGE:
             return (
                 False,
-                f"Invalid embed-image '{value}'. Must be one of: {', '.join(VALID_BODY_EMBED_IMAGE)}",
+                f"Invalid embed-image '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_EMBED_IMAGE)}",
             )
 
     return (True, None)

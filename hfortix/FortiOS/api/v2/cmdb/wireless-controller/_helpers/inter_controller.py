@@ -47,7 +47,8 @@ def validate_inter_controller_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,7 +81,8 @@ def validate_inter_controller_put(
         if value and value not in VALID_BODY_INTER_CONTROLLER_MODE:
             return (
                 False,
-                f"Invalid inter-controller-mode '{value}'. Must be one of: {', '.join(VALID_BODY_INTER_CONTROLLER_MODE)}",
+                f"Invalid inter-controller-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTER_CONTROLLER_MODE)}",
             )
 
     # Validate l3-roaming if present
@@ -89,7 +91,8 @@ def validate_inter_controller_put(
         if value and value not in VALID_BODY_L3_ROAMING:
             return (
                 False,
-                f"Invalid l3-roaming '{value}'. Must be one of: {', '.join(VALID_BODY_L3_ROAMING)}",
+                f"Invalid l3-roaming '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_L3_ROAMING)}",
             )
 
     # Validate inter-controller-pri if present
@@ -98,7 +101,8 @@ def validate_inter_controller_put(
         if value and value not in VALID_BODY_INTER_CONTROLLER_PRI:
             return (
                 False,
-                f"Invalid inter-controller-pri '{value}'. Must be one of: {', '.join(VALID_BODY_INTER_CONTROLLER_PRI)}",
+                f"Invalid inter-controller-pri '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTER_CONTROLLER_PRI)}",
             )
 
     # Validate fast-failover-max if present

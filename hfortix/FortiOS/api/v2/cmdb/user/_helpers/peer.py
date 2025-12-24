@@ -48,7 +48,8 @@ def validate_peer_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_peer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MANDATORY_CA_VERIFY:
             return (
                 False,
-                f"Invalid mandatory-ca-verify '{value}'. Must be one of: {', '.join(VALID_BODY_MANDATORY_CA_VERIFY)}",
+                f"Invalid mandatory-ca-verify '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MANDATORY_CA_VERIFY)}",
             )
 
     # Validate ca if present
@@ -108,7 +110,8 @@ def validate_peer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CN_TYPE:
             return (
                 False,
-                f"Invalid cn-type '{value}'. Must be one of: {', '.join(VALID_BODY_CN_TYPE)}",
+                f"Invalid cn-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CN_TYPE)}",
             )
 
     # Validate mfa-mode if present
@@ -117,7 +120,8 @@ def validate_peer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MFA_MODE:
             return (
                 False,
-                f"Invalid mfa-mode '{value}'. Must be one of: {', '.join(VALID_BODY_MFA_MODE)}",
+                f"Invalid mfa-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MFA_MODE)}",
             )
 
     # Validate mfa-server if present
@@ -144,7 +148,8 @@ def validate_peer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     return (True, None)
@@ -188,7 +193,8 @@ def validate_peer_put(
         if value and value not in VALID_BODY_MANDATORY_CA_VERIFY:
             return (
                 False,
-                f"Invalid mandatory-ca-verify '{value}'. Must be one of: {', '.join(VALID_BODY_MANDATORY_CA_VERIFY)}",
+                f"Invalid mandatory-ca-verify '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MANDATORY_CA_VERIFY)}",
             )
 
     # Validate ca if present
@@ -215,7 +221,8 @@ def validate_peer_put(
         if value and value not in VALID_BODY_CN_TYPE:
             return (
                 False,
-                f"Invalid cn-type '{value}'. Must be one of: {', '.join(VALID_BODY_CN_TYPE)}",
+                f"Invalid cn-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CN_TYPE)}",
             )
 
     # Validate mfa-mode if present
@@ -224,7 +231,8 @@ def validate_peer_put(
         if value and value not in VALID_BODY_MFA_MODE:
             return (
                 False,
-                f"Invalid mfa-mode '{value}'. Must be one of: {', '.join(VALID_BODY_MFA_MODE)}",
+                f"Invalid mfa-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MFA_MODE)}",
             )
 
     # Validate mfa-server if present
@@ -251,7 +259,8 @@ def validate_peer_put(
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     return (True, None)

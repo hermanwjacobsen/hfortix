@@ -56,7 +56,8 @@ def validate_syslog_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,7 +98,8 @@ def validate_syslog_profile_post(
         if value and value not in VALID_BODY_SERVER_STATUS:
             return (
                 False,
-                f"Invalid server-status '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_STATUS)}",
+                f"Invalid server-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_STATUS)}",
             )
 
     # Validate server if present
@@ -123,7 +125,8 @@ def validate_syslog_profile_post(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate log-level if present
@@ -132,7 +135,8 @@ def validate_syslog_profile_post(
         if value and value not in VALID_BODY_LOG_LEVEL:
             return (
                 False,
-                f"Invalid log-level '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_LEVEL)}",
+                f"Invalid log-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_LEVEL)}",
             )
 
     return (True, None)
@@ -182,7 +186,8 @@ def validate_syslog_profile_put(
         if value and value not in VALID_BODY_SERVER_STATUS:
             return (
                 False,
-                f"Invalid server-status '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_STATUS)}",
+                f"Invalid server-status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_STATUS)}",
             )
 
     # Validate server if present
@@ -208,7 +213,8 @@ def validate_syslog_profile_put(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate log-level if present
@@ -217,7 +223,8 @@ def validate_syslog_profile_put(
         if value and value not in VALID_BODY_LOG_LEVEL:
             return (
                 False,
-                f"Invalid log-level '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_LEVEL)}",
+                f"Invalid log-level '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_LOG_LEVEL)}",
             )
 
     return (True, None)

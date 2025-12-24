@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.25] - 2025-12-24
+
+### Added
+
+- **Pre-Release Workflow**: Comprehensive code quality automation
+  - `make pre-release` - Auto-fix and validate code before release
+  - `make fix` - Auto-fix formatting and import issues
+  - `make fix-check` - Dry-run to see what would be fixed
+  - `X/scripts/pre_release_fix.py` - Auto-fix script with Black and isort
+  - `X/scripts/pre_release_check.py` - Validation script with all quality checks
+
+### Changed
+
+- **Code Quality Configuration**: Centralized and consistent settings
+  - Created `.flake8` config file with PEP 8 standards (79 char line length)
+  - API folders excluded from E501 line-length checks (auto-generated code)
+  - Updated `.pre-commit-config.yaml` to use `.flake8` config
+  - Updated GitHub Actions CI to use `.flake8` config
+  - All tools (Makefile, scripts, pre-commit, CI) now use same configuration
+
+- **Pre-commit Hooks**: Improved configuration
+  - Excluded `X/` directory from all checks (development tools, not package code)
+  - Consistent exclude patterns across all hooks
+  - Pre-commit check added to pre-release workflow (warning only)
+
+### Fixed
+
+- **Test Execution**: Tests excluded from pre-release workflow
+  - Pre-release checks no longer run tests (run separately with `make test`)
+  - Focus on code quality, formatting, and linting only
+
+### Documentation
+
+- `X/scripts/README.md` - Pre-release workflow guide
+- `X/CODE_QUALITY_CONFIG.md` - Comprehensive configuration documentation
+
 ## [0.3.24] - 2025-12-24
 
 ### Added

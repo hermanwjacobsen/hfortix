@@ -84,7 +84,8 @@ def validate_syslogd2_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -117,7 +118,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate server if present
@@ -132,7 +134,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate port if present
@@ -152,7 +155,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_FACILITY:
             return (
                 False,
-                f"Invalid facility '{value}'. Must be one of: {', '.join(VALID_BODY_FACILITY)}",
+                f"Invalid facility '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FACILITY)}",
             )
 
     # Validate source-ip-interface if present
@@ -173,7 +177,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_FORMAT:
             return (
                 False,
-                f"Invalid format '{value}'. Must be one of: {', '.join(VALID_BODY_FORMAT)}",
+                f"Invalid format '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FORMAT)}",
             )
 
     # Validate priority if present
@@ -182,7 +187,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_PRIORITY:
             return (
                 False,
-                f"Invalid priority '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY)}",
+                f"Invalid priority '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PRIORITY)}",
             )
 
     # Validate max-log-rate if present
@@ -205,7 +211,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_ENC_ALGORITHM:
             return (
                 False,
-                f"Invalid enc-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_ENC_ALGORITHM)}",
+                f"Invalid enc-algorithm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ENC_ALGORITHM)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -214,7 +221,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate certificate if present
@@ -229,7 +237,8 @@ def validate_syslogd2_setting_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present

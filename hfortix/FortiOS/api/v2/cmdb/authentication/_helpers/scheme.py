@@ -65,7 +65,8 @@ def validate_scheme_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -98,7 +99,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_METHOD:
             return (
                 False,
-                f"Invalid method '{value}'. Must be one of: {', '.join(VALID_BODY_METHOD)}",
+                f"Invalid method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_METHOD)}",
             )
 
     # Validate negotiate-ntlm if present
@@ -107,7 +109,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NEGOTIATE_NTLM:
             return (
                 False,
-                f"Invalid negotiate-ntlm '{value}'. Must be one of: {', '.join(VALID_BODY_NEGOTIATE_NTLM)}",
+                f"Invalid negotiate-ntlm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NEGOTIATE_NTLM)}",
             )
 
     # Validate kerberos-keytab if present
@@ -151,7 +154,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REQUIRE_TFA:
             return (
                 False,
-                f"Invalid require-tfa '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_TFA)}",
+                f"Invalid require-tfa '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REQUIRE_TFA)}",
             )
 
     # Validate fsso-guest if present
@@ -160,7 +164,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FSSO_GUEST:
             return (
                 False,
-                f"Invalid fsso-guest '{value}'. Must be one of: {', '.join(VALID_BODY_FSSO_GUEST)}",
+                f"Invalid fsso-guest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FSSO_GUEST)}",
             )
 
     # Validate user-cert if present
@@ -169,7 +174,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USER_CERT:
             return (
                 False,
-                f"Invalid user-cert '{value}'. Must be one of: {', '.join(VALID_BODY_USER_CERT)}",
+                f"Invalid user-cert '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USER_CERT)}",
             )
 
     # Validate cert-http-header if present
@@ -178,7 +184,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CERT_HTTP_HEADER:
             return (
                 False,
-                f"Invalid cert-http-header '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_HTTP_HEADER)}",
+                f"Invalid cert-http-header '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CERT_HTTP_HEADER)}",
             )
 
     # Validate ssh-ca if present
@@ -199,7 +206,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GROUP_ATTR_TYPE:
             return (
                 False,
-                f"Invalid group-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_ATTR_TYPE)}",
+                f"Invalid group-attr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_ATTR_TYPE)}",
             )
 
     # Validate digest-algo if present
@@ -208,7 +216,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DIGEST_ALGO:
             return (
                 False,
-                f"Invalid digest-algo '{value}'. Must be one of: {', '.join(VALID_BODY_DIGEST_ALGO)}",
+                f"Invalid digest-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIGEST_ALGO)}",
             )
 
     # Validate digest-rfc2069 if present
@@ -217,7 +226,8 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DIGEST_RFC2069:
             return (
                 False,
-                f"Invalid digest-rfc2069 '{value}'. Must be one of: {', '.join(VALID_BODY_DIGEST_RFC2069)}",
+                f"Invalid digest-rfc2069 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIGEST_RFC2069)}",
             )
 
     return (True, None)
@@ -261,7 +271,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_METHOD:
             return (
                 False,
-                f"Invalid method '{value}'. Must be one of: {', '.join(VALID_BODY_METHOD)}",
+                f"Invalid method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_METHOD)}",
             )
 
     # Validate negotiate-ntlm if present
@@ -270,7 +281,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_NEGOTIATE_NTLM:
             return (
                 False,
-                f"Invalid negotiate-ntlm '{value}'. Must be one of: {', '.join(VALID_BODY_NEGOTIATE_NTLM)}",
+                f"Invalid negotiate-ntlm '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NEGOTIATE_NTLM)}",
             )
 
     # Validate kerberos-keytab if present
@@ -314,7 +326,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_REQUIRE_TFA:
             return (
                 False,
-                f"Invalid require-tfa '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_TFA)}",
+                f"Invalid require-tfa '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_REQUIRE_TFA)}",
             )
 
     # Validate fsso-guest if present
@@ -323,7 +336,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_FSSO_GUEST:
             return (
                 False,
-                f"Invalid fsso-guest '{value}'. Must be one of: {', '.join(VALID_BODY_FSSO_GUEST)}",
+                f"Invalid fsso-guest '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_FSSO_GUEST)}",
             )
 
     # Validate user-cert if present
@@ -332,7 +346,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_USER_CERT:
             return (
                 False,
-                f"Invalid user-cert '{value}'. Must be one of: {', '.join(VALID_BODY_USER_CERT)}",
+                f"Invalid user-cert '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_USER_CERT)}",
             )
 
     # Validate cert-http-header if present
@@ -341,7 +356,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_CERT_HTTP_HEADER:
             return (
                 False,
-                f"Invalid cert-http-header '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_HTTP_HEADER)}",
+                f"Invalid cert-http-header '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_CERT_HTTP_HEADER)}",
             )
 
     # Validate ssh-ca if present
@@ -362,7 +378,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_GROUP_ATTR_TYPE:
             return (
                 False,
-                f"Invalid group-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_ATTR_TYPE)}",
+                f"Invalid group-attr-type '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_GROUP_ATTR_TYPE)}",
             )
 
     # Validate digest-algo if present
@@ -371,7 +388,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_DIGEST_ALGO:
             return (
                 False,
-                f"Invalid digest-algo '{value}'. Must be one of: {', '.join(VALID_BODY_DIGEST_ALGO)}",
+                f"Invalid digest-algo '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIGEST_ALGO)}",
             )
 
     # Validate digest-rfc2069 if present
@@ -380,7 +398,8 @@ def validate_scheme_put(
         if value and value not in VALID_BODY_DIGEST_RFC2069:
             return (
                 False,
-                f"Invalid digest-rfc2069 '{value}'. Must be one of: {', '.join(VALID_BODY_DIGEST_RFC2069)}",
+                f"Invalid digest-rfc2069 '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DIGEST_RFC2069)}",
             )
 
     return (True, None)

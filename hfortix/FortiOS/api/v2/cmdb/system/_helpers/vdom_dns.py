@@ -48,7 +48,8 @@ def validate_vdom_dns_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,7 +82,8 @@ def validate_vdom_dns_put(
         if value and value not in VALID_BODY_VDOM_DNS:
             return (
                 False,
-                f"Invalid vdom-dns '{value}'. Must be one of: {', '.join(VALID_BODY_VDOM_DNS)}",
+                f"Invalid vdom-dns '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_VDOM_DNS)}",
             )
 
     # Validate protocol if present
@@ -90,7 +92,8 @@ def validate_vdom_dns_put(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate ssl-certificate if present
@@ -111,7 +114,8 @@ def validate_vdom_dns_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -137,7 +141,8 @@ def validate_vdom_dns_put(
         if value and value not in VALID_BODY_SERVER_SELECT_METHOD:
             return (
                 False,
-                f"Invalid server-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_SELECT_METHOD)}",
+                f"Invalid server-select-method '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_SERVER_SELECT_METHOD)}",
             )
 
     return (True, None)

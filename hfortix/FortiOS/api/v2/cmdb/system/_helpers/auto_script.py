@@ -45,7 +45,8 @@ def validate_auto_script_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -102,7 +103,8 @@ def validate_auto_script_post(
         if value and value not in VALID_BODY_START:
             return (
                 False,
-                f"Invalid start '{value}'. Must be one of: {', '.join(VALID_BODY_START)}",
+                f"Invalid start '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_START)}",
             )
 
     # Validate script if present
@@ -196,7 +198,8 @@ def validate_auto_script_put(
         if value and value not in VALID_BODY_START:
             return (
                 False,
-                f"Invalid start '{value}'. Must be one of: {', '.join(VALID_BODY_START)}",
+                f"Invalid start '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_START)}",
             )
 
     # Validate script if present

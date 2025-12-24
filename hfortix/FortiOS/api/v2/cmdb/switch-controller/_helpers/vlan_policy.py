@@ -46,7 +46,8 @@ def validate_vlan_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -99,7 +100,8 @@ def validate_vlan_policy_post(
         if value and value not in VALID_BODY_ALLOWED_VLANS_ALL:
             return (
                 False,
-                f"Invalid allowed-vlans-all '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWED_VLANS_ALL)}",
+                f"Invalid allowed-vlans-all '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWED_VLANS_ALL)}",
             )
 
     # Validate discard-mode if present
@@ -108,7 +110,8 @@ def validate_vlan_policy_post(
         if value and value not in VALID_BODY_DISCARD_MODE:
             return (
                 False,
-                f"Invalid discard-mode '{value}'. Must be one of: {', '.join(VALID_BODY_DISCARD_MODE)}",
+                f"Invalid discard-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCARD_MODE)}",
             )
 
     return (True, None)
@@ -170,7 +173,8 @@ def validate_vlan_policy_put(
         if value and value not in VALID_BODY_ALLOWED_VLANS_ALL:
             return (
                 False,
-                f"Invalid allowed-vlans-all '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWED_VLANS_ALL)}",
+                f"Invalid allowed-vlans-all '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_ALLOWED_VLANS_ALL)}",
             )
 
     # Validate discard-mode if present
@@ -179,7 +183,8 @@ def validate_vlan_policy_put(
         if value and value not in VALID_BODY_DISCARD_MODE:
             return (
                 False,
-                f"Invalid discard-mode '{value}'. Must be one of: {', '.join(VALID_BODY_DISCARD_MODE)}",
+                f"Invalid discard-mode '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_DISCARD_MODE)}",
             )
 
     return (True, None)

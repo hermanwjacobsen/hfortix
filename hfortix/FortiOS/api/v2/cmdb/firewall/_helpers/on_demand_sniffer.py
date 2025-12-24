@@ -45,7 +45,8 @@ def validate_on_demand_sniffer_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {
+                    ', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -103,7 +104,8 @@ def validate_on_demand_sniffer_post(
         if value and value not in VALID_BODY_NON_IP_PACKET:
             return (
                 False,
-                f"Invalid non-ip-packet '{value}'. Must be one of: {', '.join(VALID_BODY_NON_IP_PACKET)}",
+                f"Invalid non-ip-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NON_IP_PACKET)}",
             )
 
     # Validate advanced-filter if present
@@ -176,7 +178,8 @@ def validate_on_demand_sniffer_put(
         if value and value not in VALID_BODY_NON_IP_PACKET:
             return (
                 False,
-                f"Invalid non-ip-packet '{value}'. Must be one of: {', '.join(VALID_BODY_NON_IP_PACKET)}",
+                f"Invalid non-ip-packet '{value}'. Must be one of: {
+                    ', '.join(VALID_BODY_NON_IP_PACKET)}",
             )
 
     # Validate advanced-filter if present
