@@ -232,9 +232,9 @@ class Hotspot20H2qpWanMetric:
         if downlink_load is not None:
             data_payload["downlink-load"] = downlink_load
         if load_measurement_duration is not None:
-            data_payload["load-measurement-duration"] = (
-                load_measurement_duration
-            )
+            data_payload[
+                "load-measurement-duration"
+            ] = load_measurement_duration
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
@@ -356,9 +356,9 @@ class Hotspot20H2qpWanMetric:
         if downlink_load is not None:
             data_payload["downlink-load"] = downlink_load
         if load_measurement_duration is not None:
-            data_payload["load-measurement-duration"] = (
-                load_measurement_duration
-            )
+            data_payload[
+                "load-measurement-duration"
+            ] = load_measurement_duration
         data_payload.update(kwargs)
         return self._client.post(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json

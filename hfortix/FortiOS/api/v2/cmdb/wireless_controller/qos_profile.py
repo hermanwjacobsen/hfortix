@@ -282,9 +282,9 @@ class QosProfile:
         if call_capacity is not None:
             data_payload["call-capacity"] = call_capacity
         if bandwidth_admission_control is not None:
-            data_payload["bandwidth-admission-control"] = (
-                bandwidth_admission_control
-            )
+            data_payload[
+                "bandwidth-admission-control"
+            ] = bandwidth_admission_control
         if bandwidth_capacity is not None:
             data_payload["bandwidth-capacity"] = bandwidth_capacity
         if dscp_wmm_mapping is not None:
@@ -526,9 +526,9 @@ class QosProfile:
         if call_capacity is not None:
             data_payload["call-capacity"] = call_capacity
         if bandwidth_admission_control is not None:
-            data_payload["bandwidth-admission-control"] = (
-                bandwidth_admission_control
-            )
+            data_payload[
+                "bandwidth-admission-control"
+            ] = bandwidth_admission_control
         if bandwidth_capacity is not None:
             data_payload["bandwidth-capacity"] = bandwidth_capacity
         if dscp_wmm_mapping is not None:

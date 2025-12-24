@@ -284,9 +284,9 @@ class Global:
         if rolling_wtp_upgrade is not None:
             data_payload["rolling-wtp-upgrade"] = rolling_wtp_upgrade
         if rolling_wtp_upgrade_threshold is not None:
-            data_payload["rolling-wtp-upgrade-threshold"] = (
-                rolling_wtp_upgrade_threshold
-            )
+            data_payload[
+                "rolling-wtp-upgrade-threshold"
+            ] = rolling_wtp_upgrade_threshold
         if max_retransmit is not None:
             data_payload["max-retransmit"] = max_retransmit
         if control_message_offload is not None:
