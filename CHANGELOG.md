@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.28] - 2025-12-24
+
+### Fixed
+
+- **Critical Syntax Errors**: Fixed 512 broken f-strings in CMDB _helpers files
+  - Black formatter had incorrectly reformatted multi-line f-strings
+  - Caused 511 E999 syntax errors across all _helpers files
+  - Used regex pattern to rejoin broken f-string expressions
+  - All files now pass flake8 validation
+
+### Changed
+
+- **Pre-commit Configuration**: Enhanced Black exclusion documentation
+  - Added critical warning comment about _helpers exclusion
+  - Documented why exclusion must be maintained (prevents 500+ syntax errors)
+  - Prevents accidental removal of necessary exclusion pattern
+
 ## [0.3.27] - 2025-12-24
 
 ### Changed
