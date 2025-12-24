@@ -426,8 +426,10 @@ class FortiOS:
         self._vdom = vdom
         self._port = port
         self._mode = mode
-        self._error_mode = error_mode
-        self._error_format = error_format
+        self._error_mode: Literal["raise", "return", "print"] = error_mode
+        self._error_format: Literal["detailed", "simple", "code_only"] = (
+            error_format
+        )
 
         # Validate credentials if not using custom client
         if client is None:
