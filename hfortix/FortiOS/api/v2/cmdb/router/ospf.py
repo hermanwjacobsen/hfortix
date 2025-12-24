@@ -254,29 +254,29 @@ class Ospf:
         if database_overflow is not None:
             data_payload["database-overflow"] = database_overflow
         if database_overflow_max_lsas is not None:
-            data_payload[
-                "database-overflow-max-lsas"
-            ] = database_overflow_max_lsas
+            data_payload["database-overflow-max-lsas"] = (
+                database_overflow_max_lsas
+            )
         if database_overflow_time_to_recover is not None:
-            data_payload[
-                "database-overflow-time-to-recover"
-            ] = database_overflow_time_to_recover
+            data_payload["database-overflow-time-to-recover"] = (
+                database_overflow_time_to_recover
+            )
         if default_information_originate is not None:
-            data_payload[
-                "default-information-originate"
-            ] = default_information_originate
+            data_payload["default-information-originate"] = (
+                default_information_originate
+            )
         if default_information_metric is not None:
-            data_payload[
-                "default-information-metric"
-            ] = default_information_metric
+            data_payload["default-information-metric"] = (
+                default_information_metric
+            )
         if default_information_metric_type is not None:
-            data_payload[
-                "default-information-metric-type"
-            ] = default_information_metric_type
+            data_payload["default-information-metric-type"] = (
+                default_information_metric_type
+            )
         if default_information_route_map is not None:
-            data_payload[
-                "default-information-route-map"
-            ] = default_information_route_map
+            data_payload["default-information-route-map"] = (
+                default_information_route_map
+            )
         if default_metric is not None:
             data_payload["default-metric"] = default_metric
         if distance is not None:
@@ -302,9 +302,9 @@ class Ospf:
         if restart_period is not None:
             data_payload["restart-period"] = restart_period
         if restart_on_topology_change is not None:
-            data_payload[
-                "restart-on-topology-change"
-            ] = restart_on_topology_change
+            data_payload["restart-on-topology-change"] = (
+                restart_on_topology_change
+            )
         if area is not None:
             data_payload["area"] = area
         if ospf_interface is not None:

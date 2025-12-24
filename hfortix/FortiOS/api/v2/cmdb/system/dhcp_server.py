@@ -331,9 +331,9 @@ class DhcpServer:
         if mac_acl_default_action is not None:
             data_payload["mac-acl-default-action"] = mac_acl_default_action
         if forticlient_on_net_status is not None:
-            data_payload[
-                "forticlient-on-net-status"
-            ] = forticlient_on_net_status
+            data_payload["forticlient-on-net-status"] = (
+                forticlient_on_net_status
+            )
         if dns_service is not None:
             data_payload["dns-service"] = dns_service
         if dns_server1 is not None:
@@ -397,9 +397,9 @@ class DhcpServer:
         if auto_configuration is not None:
             data_payload["auto-configuration"] = auto_configuration
         if dhcp_settings_from_fortiipam is not None:
-            data_payload[
-                "dhcp-settings-from-fortiipam"
-            ] = dhcp_settings_from_fortiipam
+            data_payload["dhcp-settings-from-fortiipam"] = (
+                dhcp_settings_from_fortiipam
+            )
         if auto_managed_status is not None:
             data_payload["auto-managed-status"] = auto_managed_status
         if ddns_update is not None:
@@ -701,9 +701,9 @@ class DhcpServer:
         if mac_acl_default_action is not None:
             data_payload["mac-acl-default-action"] = mac_acl_default_action
         if forticlient_on_net_status is not None:
-            data_payload[
-                "forticlient-on-net-status"
-            ] = forticlient_on_net_status
+            data_payload["forticlient-on-net-status"] = (
+                forticlient_on_net_status
+            )
         if dns_service is not None:
             data_payload["dns-service"] = dns_service
         if dns_server1 is not None:
@@ -767,9 +767,9 @@ class DhcpServer:
         if auto_configuration is not None:
             data_payload["auto-configuration"] = auto_configuration
         if dhcp_settings_from_fortiipam is not None:
-            data_payload[
-                "dhcp-settings-from-fortiipam"
-            ] = dhcp_settings_from_fortiipam
+            data_payload["dhcp-settings-from-fortiipam"] = (
+                dhcp_settings_from_fortiipam
+            )
         if auto_managed_status is not None:
             data_payload["auto-managed-status"] = auto_managed_status
         if ddns_update is not None:

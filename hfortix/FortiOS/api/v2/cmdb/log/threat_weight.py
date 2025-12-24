@@ -201,9 +201,9 @@ class ThreatWeight:
         if url_block_detected is not None:
             data_payload["url-block-detected"] = url_block_detected
         if botnet_connection_detected is not None:
-            data_payload[
-                "botnet-connection-detected"
-            ] = botnet_connection_detected
+            data_payload["botnet-connection-detected"] = (
+                botnet_connection_detected
+            )
         if malware is not None:
             data_payload["malware"] = malware
         if ips is not None:

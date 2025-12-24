@@ -311,9 +311,9 @@ class Profile:
         if web_filter_activex_log is not None:
             data_payload["web-filter-activex-log"] = web_filter_activex_log
         if web_filter_command_block_log is not None:
-            data_payload[
-                "web-filter-command-block-log"
-            ] = web_filter_command_block_log
+            data_payload["web-filter-command-block-log"] = (
+                web_filter_command_block_log
+            )
         if web_filter_cookie_log is not None:
             data_payload["web-filter-cookie-log"] = web_filter_cookie_log
         if web_filter_applet_log is not None:
@@ -329,9 +329,9 @@ class Profile:
         if web_filter_referer_log is not None:
             data_payload["web-filter-referer-log"] = web_filter_referer_log
         if web_filter_cookie_removal_log is not None:
-            data_payload[
-                "web-filter-cookie-removal-log"
-            ] = web_filter_cookie_removal_log
+            data_payload["web-filter-cookie-removal-log"] = (
+                web_filter_cookie_removal_log
+            )
         if web_url_log is not None:
             data_payload["web-url-log"] = web_url_log
         if web_invalid_domain_log is not None:
@@ -343,9 +343,9 @@ class Profile:
         if extended_log is not None:
             data_payload["extended-log"] = extended_log
         if web_extended_all_action_log is not None:
-            data_payload[
-                "web-extended-all-action-log"
-            ] = web_extended_all_action_log
+            data_payload["web-extended-all-action-log"] = (
+                web_extended_all_action_log
+            )
         if web_antiphishing_log is not None:
             data_payload["web-antiphishing-log"] = web_antiphishing_log
         data_payload.update(kwargs)
@@ -599,9 +599,9 @@ class Profile:
         if web_filter_activex_log is not None:
             data_payload["web-filter-activex-log"] = web_filter_activex_log
         if web_filter_command_block_log is not None:
-            data_payload[
-                "web-filter-command-block-log"
-            ] = web_filter_command_block_log
+            data_payload["web-filter-command-block-log"] = (
+                web_filter_command_block_log
+            )
         if web_filter_cookie_log is not None:
             data_payload["web-filter-cookie-log"] = web_filter_cookie_log
         if web_filter_applet_log is not None:
@@ -617,9 +617,9 @@ class Profile:
         if web_filter_referer_log is not None:
             data_payload["web-filter-referer-log"] = web_filter_referer_log
         if web_filter_cookie_removal_log is not None:
-            data_payload[
-                "web-filter-cookie-removal-log"
-            ] = web_filter_cookie_removal_log
+            data_payload["web-filter-cookie-removal-log"] = (
+                web_filter_cookie_removal_log
+            )
         if web_url_log is not None:
             data_payload["web-url-log"] = web_url_log
         if web_invalid_domain_log is not None:
@@ -631,9 +631,9 @@ class Profile:
         if extended_log is not None:
             data_payload["extended-log"] = extended_log
         if web_extended_all_action_log is not None:
-            data_payload[
-                "web-extended-all-action-log"
-            ] = web_extended_all_action_log
+            data_payload["web-extended-all-action-log"] = (
+                web_extended_all_action_log
+            )
         if web_antiphishing_log is not None:
             data_payload["web-antiphishing-log"] = web_antiphishing_log
         data_payload.update(kwargs)

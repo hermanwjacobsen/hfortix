@@ -225,9 +225,9 @@ class Sdwan:
         if duplication_max_num is not None:
             data_payload["duplication-max-num"] = duplication_max_num
         if duplication_max_discrepancy is not None:
-            data_payload[
-                "duplication-max-discrepancy"
-            ] = duplication_max_discrepancy
+            data_payload["duplication-max-discrepancy"] = (
+                duplication_max_discrepancy
+            )
         if neighbor_hold_down is not None:
             data_payload["neighbor-hold-down"] = neighbor_hold_down
         if neighbor_hold_down_time is not None:

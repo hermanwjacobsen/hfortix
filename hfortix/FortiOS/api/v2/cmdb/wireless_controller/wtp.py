@@ -344,9 +344,9 @@ class Wtp:
         if firmware_provision is not None:
             data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_latest is not None:
-            data_payload[
-                "firmware-provision-latest"
-            ] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         if wtp_profile is not None:
             data_payload["wtp-profile"] = wtp_profile
         if apcfg_profile is not None:
@@ -378,9 +378,9 @@ class Wtp:
         if split_tunneling_acl_path is not None:
             data_payload["split-tunneling-acl-path"] = split_tunneling_acl_path
         if split_tunneling_acl_local_ap_subnet is not None:
-            data_payload[
-                "split-tunneling-acl-local-ap-subnet"
-            ] = split_tunneling_acl_local_ap_subnet
+            data_payload["split-tunneling-acl-local-ap-subnet"] = (
+                split_tunneling_acl_local_ap_subnet
+            )
         if split_tunneling_acl is not None:
             data_payload["split-tunneling-acl"] = split_tunneling_acl
         if override_lan is not None:
@@ -392,17 +392,17 @@ class Wtp:
         if allowaccess is not None:
             data_payload["allowaccess"] = allowaccess
         if override_login_passwd_change is not None:
-            data_payload[
-                "override-login-passwd-change"
-            ] = override_login_passwd_change
+            data_payload["override-login-passwd-change"] = (
+                override_login_passwd_change
+            )
         if login_passwd_change is not None:
             data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
             data_payload["login-passwd"] = login_passwd
         if override_default_mesh_root is not None:
-            data_payload[
-                "override-default-mesh-root"
-            ] = override_default_mesh_root
+            data_payload["override-default-mesh-root"] = (
+                override_default_mesh_root
+            )
         if default_mesh_root is not None:
             data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
@@ -706,9 +706,9 @@ class Wtp:
         if firmware_provision is not None:
             data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_latest is not None:
-            data_payload[
-                "firmware-provision-latest"
-            ] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         if wtp_profile is not None:
             data_payload["wtp-profile"] = wtp_profile
         if apcfg_profile is not None:
@@ -740,9 +740,9 @@ class Wtp:
         if split_tunneling_acl_path is not None:
             data_payload["split-tunneling-acl-path"] = split_tunneling_acl_path
         if split_tunneling_acl_local_ap_subnet is not None:
-            data_payload[
-                "split-tunneling-acl-local-ap-subnet"
-            ] = split_tunneling_acl_local_ap_subnet
+            data_payload["split-tunneling-acl-local-ap-subnet"] = (
+                split_tunneling_acl_local_ap_subnet
+            )
         if split_tunneling_acl is not None:
             data_payload["split-tunneling-acl"] = split_tunneling_acl
         if override_lan is not None:
@@ -754,17 +754,17 @@ class Wtp:
         if allowaccess is not None:
             data_payload["allowaccess"] = allowaccess
         if override_login_passwd_change is not None:
-            data_payload[
-                "override-login-passwd-change"
-            ] = override_login_passwd_change
+            data_payload["override-login-passwd-change"] = (
+                override_login_passwd_change
+            )
         if login_passwd_change is not None:
             data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
             data_payload["login-passwd"] = login_passwd
         if override_default_mesh_root is not None:
-            data_payload[
-                "override-default-mesh-root"
-            ] = override_default_mesh_root
+            data_payload["override-default-mesh-root"] = (
+                override_default_mesh_root
+            )
         if default_mesh_root is not None:
             data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:

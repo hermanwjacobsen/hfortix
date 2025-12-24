@@ -248,13 +248,13 @@ class WebProxy:
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload[
-                "svr-pool-server-max-request"
-            ] = svr_pool_server_max_request
+            data_payload["svr-pool-server-max-request"] = (
+                svr_pool_server_max_request
+            )
         if svr_pool_server_max_concurrent_request is not None:
-            data_payload[
-                "svr-pool-server-max-concurrent-request"
-            ] = svr_pool_server_max_concurrent_request
+            data_payload["svr-pool-server-max-concurrent-request"] = (
+                svr_pool_server_max_concurrent_request
+            )
         if api_gateway is not None:
             data_payload["api-gateway"] = api_gateway
         if api_gateway6 is not None:
@@ -402,13 +402,13 @@ class WebProxy:
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload[
-                "svr-pool-server-max-request"
-            ] = svr_pool_server_max_request
+            data_payload["svr-pool-server-max-request"] = (
+                svr_pool_server_max_request
+            )
         if svr_pool_server_max_concurrent_request is not None:
-            data_payload[
-                "svr-pool-server-max-concurrent-request"
-            ] = svr_pool_server_max_concurrent_request
+            data_payload["svr-pool-server-max-concurrent-request"] = (
+                svr_pool_server_max_concurrent_request
+            )
         if api_gateway is not None:
             data_payload["api-gateway"] = api_gateway
         if api_gateway6 is not None:

@@ -214,17 +214,17 @@ class SslSetting:
         if ssl_send_empty_frags is not None:
             data_payload["ssl-send-empty-frags"] = ssl_send_empty_frags
         if no_matching_cipher_action is not None:
-            data_payload[
-                "no-matching-cipher-action"
-            ] = no_matching_cipher_action
+            data_payload["no-matching-cipher-action"] = (
+                no_matching_cipher_action
+            )
         if cert_manager_cache_timeout is not None:
-            data_payload[
-                "cert-manager-cache-timeout"
-            ] = cert_manager_cache_timeout
+            data_payload["cert-manager-cache-timeout"] = (
+                cert_manager_cache_timeout
+            )
         if resigned_short_lived_certificate is not None:
-            data_payload[
-                "resigned-short-lived-certificate"
-            ] = resigned_short_lived_certificate
+            data_payload["resigned-short-lived-certificate"] = (
+                resigned_short_lived_certificate
+            )
         if cert_cache_capacity is not None:
             data_payload["cert-cache-capacity"] = cert_cache_capacity
         if cert_cache_timeout is not None:

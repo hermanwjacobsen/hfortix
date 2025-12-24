@@ -209,13 +209,13 @@ class Eight02OneXSettings:
         if mac_password_delimiter is not None:
             data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_calling_station_delimiter is not None:
-            data_payload[
-                "mac-calling-station-delimiter"
-            ] = mac_calling_station_delimiter
+            data_payload["mac-calling-station-delimiter"] = (
+                mac_calling_station_delimiter
+            )
         if mac_called_station_delimiter is not None:
-            data_payload[
-                "mac-called-station-delimiter"
-            ] = mac_called_station_delimiter
+            data_payload["mac-called-station-delimiter"] = (
+                mac_called_station_delimiter
+            )
         if mac_case is not None:
             data_payload["mac-case"] = mac_case
         data_payload.update(kwargs)

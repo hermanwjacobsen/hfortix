@@ -217,17 +217,17 @@ class StandaloneCluster:
         if psksecret is not None:
             data_payload["psksecret"] = psksecret
         if asymmetric_traffic_control is not None:
-            data_payload[
-                "asymmetric-traffic-control"
-            ] = asymmetric_traffic_control
+            data_payload["asymmetric-traffic-control"] = (
+                asymmetric_traffic_control
+            )
         if cluster_peer is not None:
             data_payload["cluster-peer"] = cluster_peer
         if monitor_interface is not None:
             data_payload["monitor-interface"] = monitor_interface
         if pingsvr_monitor_interface is not None:
-            data_payload[
-                "pingsvr-monitor-interface"
-            ] = pingsvr_monitor_interface
+            data_payload["pingsvr-monitor-interface"] = (
+                pingsvr_monitor_interface
+            )
         if monitor_prefix is not None:
             data_payload["monitor-prefix"] = monitor_prefix
         if helper_traffic_bounce is not None:

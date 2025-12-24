@@ -201,9 +201,9 @@ class System:
         if after is not None:
             data_payload["after"] = after
         if parallel_process_override is not None:
-            data_payload[
-                "parallel-process-override"
-            ] = parallel_process_override
+            data_payload["parallel-process-override"] = (
+                parallel_process_override
+            )
         if parallel_process is not None:
             data_payload["parallel-process"] = parallel_process
         if data_sync_interval is not None:
@@ -219,9 +219,9 @@ class System:
         if nac_periodic_interval is not None:
             data_payload["nac-periodic-interval"] = nac_periodic_interval
         if dynamic_periodic_interval is not None:
-            data_payload[
-                "dynamic-periodic-interval"
-            ] = dynamic_periodic_interval
+            data_payload["dynamic-periodic-interval"] = (
+                dynamic_periodic_interval
+            )
         if tunnel_mode is not None:
             data_payload["tunnel-mode"] = tunnel_mode
         if caputp_echo_interval is not None:

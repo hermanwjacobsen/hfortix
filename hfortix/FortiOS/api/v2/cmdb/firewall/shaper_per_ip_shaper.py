@@ -234,13 +234,13 @@ class ShaperPerIpShaper:
         if max_concurrent_session is not None:
             data_payload["max-concurrent-session"] = max_concurrent_session
         if max_concurrent_tcp_session is not None:
-            data_payload[
-                "max-concurrent-tcp-session"
-            ] = max_concurrent_tcp_session
+            data_payload["max-concurrent-tcp-session"] = (
+                max_concurrent_tcp_session
+            )
         if max_concurrent_udp_session is not None:
-            data_payload[
-                "max-concurrent-udp-session"
-            ] = max_concurrent_udp_session
+            data_payload["max-concurrent-udp-session"] = (
+                max_concurrent_udp_session
+            )
         if diffserv_forward is not None:
             data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
@@ -422,13 +422,13 @@ class ShaperPerIpShaper:
         if max_concurrent_session is not None:
             data_payload["max-concurrent-session"] = max_concurrent_session
         if max_concurrent_tcp_session is not None:
-            data_payload[
-                "max-concurrent-tcp-session"
-            ] = max_concurrent_tcp_session
+            data_payload["max-concurrent-tcp-session"] = (
+                max_concurrent_tcp_session
+            )
         if max_concurrent_udp_session is not None:
-            data_payload[
-                "max-concurrent-udp-session"
-            ] = max_concurrent_udp_session
+            data_payload["max-concurrent-udp-session"] = (
+                max_concurrent_udp_session
+            )
         if diffserv_forward is not None:
             data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:

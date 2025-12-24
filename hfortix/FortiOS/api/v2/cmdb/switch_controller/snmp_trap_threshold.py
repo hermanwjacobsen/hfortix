@@ -178,9 +178,9 @@ class SnmpTrapThreshold:
         if trap_high_cpu_threshold is not None:
             data_payload["trap-high-cpu-threshold"] = trap_high_cpu_threshold
         if trap_low_memory_threshold is not None:
-            data_payload[
-                "trap-low-memory-threshold"
-            ] = trap_low_memory_threshold
+            data_payload["trap-low-memory-threshold"] = (
+                trap_low_memory_threshold
+            )
         if trap_log_full_threshold is not None:
             data_payload["trap-log-full-threshold"] = trap_log_full_threshold
         data_payload.update(kwargs)

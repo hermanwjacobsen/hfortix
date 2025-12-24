@@ -182,9 +182,9 @@ class NgfwSettings:
         if tcp_match_timeout is not None:
             data_payload["tcp-match-timeout"] = tcp_match_timeout
         if tcp_halfopen_match_timeout is not None:
-            data_payload[
-                "tcp-halfopen-match-timeout"
-            ] = tcp_halfopen_match_timeout
+            data_payload["tcp-halfopen-match-timeout"] = (
+                tcp_halfopen_match_timeout
+            )
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json

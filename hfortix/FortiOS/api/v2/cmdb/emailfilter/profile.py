@@ -241,9 +241,9 @@ class Profile:
         if spam_log is not None:
             data_payload["spam-log"] = spam_log
         if spam_log_fortiguard_response is not None:
-            data_payload[
-                "spam-log-fortiguard-response"
-            ] = spam_log_fortiguard_response
+            data_payload["spam-log-fortiguard-response"] = (
+                spam_log_fortiguard_response
+            )
         if spam_filtering is not None:
             data_payload["spam-filtering"] = spam_filtering
         if external is not None:
@@ -451,9 +451,9 @@ class Profile:
         if spam_log is not None:
             data_payload["spam-log"] = spam_log
         if spam_log_fortiguard_response is not None:
-            data_payload[
-                "spam-log-fortiguard-response"
-            ] = spam_log_fortiguard_response
+            data_payload["spam-log-fortiguard-response"] = (
+                spam_log_fortiguard_response
+            )
         if spam_filtering is not None:
             data_payload["spam-filtering"] = spam_filtering
         if external is not None:

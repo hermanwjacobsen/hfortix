@@ -215,9 +215,9 @@ class MpskProfile:
         if mpsk_concurrent_clients is not None:
             data_payload["mpsk-concurrent-clients"] = mpsk_concurrent_clients
         if mpsk_external_server_auth is not None:
-            data_payload[
-                "mpsk-external-server-auth"
-            ] = mpsk_external_server_auth
+            data_payload["mpsk-external-server-auth"] = (
+                mpsk_external_server_auth
+            )
         if mpsk_external_server is not None:
             data_payload["mpsk-external-server"] = mpsk_external_server
         if mpsk_type is not None:
@@ -376,9 +376,9 @@ class MpskProfile:
         if mpsk_concurrent_clients is not None:
             data_payload["mpsk-concurrent-clients"] = mpsk_concurrent_clients
         if mpsk_external_server_auth is not None:
-            data_payload[
-                "mpsk-external-server-auth"
-            ] = mpsk_external_server_auth
+            data_payload["mpsk-external-server-auth"] = (
+                mpsk_external_server_auth
+            )
         if mpsk_external_server is not None:
             data_payload["mpsk-external-server"] = mpsk_external_server
         if mpsk_type is not None:

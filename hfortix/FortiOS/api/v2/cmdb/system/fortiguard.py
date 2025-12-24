@@ -354,9 +354,9 @@ class Fortiguard:
         if fortiguard_anycast is not None:
             data_payload["fortiguard-anycast"] = fortiguard_anycast
         if fortiguard_anycast_source is not None:
-            data_payload[
-                "fortiguard-anycast-source"
-            ] = fortiguard_anycast_source
+            data_payload["fortiguard-anycast-source"] = (
+                fortiguard_anycast_source
+            )
         if protocol is not None:
             data_payload["protocol"] = protocol
         if port is not None:
@@ -386,29 +386,29 @@ class Fortiguard:
         if auto_firmware_upgrade is not None:
             data_payload["auto-firmware-upgrade"] = auto_firmware_upgrade
         if auto_firmware_upgrade_day is not None:
-            data_payload[
-                "auto-firmware-upgrade-day"
-            ] = auto_firmware_upgrade_day
+            data_payload["auto-firmware-upgrade-day"] = (
+                auto_firmware_upgrade_day
+            )
         if auto_firmware_upgrade_delay is not None:
-            data_payload[
-                "auto-firmware-upgrade-delay"
-            ] = auto_firmware_upgrade_delay
+            data_payload["auto-firmware-upgrade-delay"] = (
+                auto_firmware_upgrade_delay
+            )
         if auto_firmware_upgrade_start_hour is not None:
-            data_payload[
-                "auto-firmware-upgrade-start-hour"
-            ] = auto_firmware_upgrade_start_hour
+            data_payload["auto-firmware-upgrade-start-hour"] = (
+                auto_firmware_upgrade_start_hour
+            )
         if auto_firmware_upgrade_end_hour is not None:
-            data_payload[
-                "auto-firmware-upgrade-end-hour"
-            ] = auto_firmware_upgrade_end_hour
+            data_payload["auto-firmware-upgrade-end-hour"] = (
+                auto_firmware_upgrade_end_hour
+            )
         if FDS_license_expiring_days is not None:
-            data_payload[
-                "FDS-license-expiring-days"
-            ] = FDS_license_expiring_days
+            data_payload["FDS-license-expiring-days"] = (
+                FDS_license_expiring_days
+            )
         if subscribe_update_notification is not None:
-            data_payload[
-                "subscribe-update-notification"
-            ] = subscribe_update_notification
+            data_payload["subscribe-update-notification"] = (
+                subscribe_update_notification
+            )
         if antispam_force_off is not None:
             data_payload["antispam-force-of"] = antispam_force_off
         if antispam_cache is not None:
@@ -424,33 +424,33 @@ class Fortiguard:
         if antispam_timeout is not None:
             data_payload["antispam-timeout"] = antispam_timeout
         if outbreak_prevention_force_off is not None:
-            data_payload[
-                "outbreak-prevention-force-of"
-            ] = outbreak_prevention_force_off
+            data_payload["outbreak-prevention-force-of"] = (
+                outbreak_prevention_force_off
+            )
         if outbreak_prevention_cache is not None:
-            data_payload[
-                "outbreak-prevention-cache"
-            ] = outbreak_prevention_cache
+            data_payload["outbreak-prevention-cache"] = (
+                outbreak_prevention_cache
+            )
         if outbreak_prevention_cache_ttl is not None:
-            data_payload[
-                "outbreak-prevention-cache-ttl"
-            ] = outbreak_prevention_cache_ttl
+            data_payload["outbreak-prevention-cache-ttl"] = (
+                outbreak_prevention_cache_ttl
+            )
         if outbreak_prevention_cache_mpermille is not None:
-            data_payload[
-                "outbreak-prevention-cache-mpermille"
-            ] = outbreak_prevention_cache_mpermille
+            data_payload["outbreak-prevention-cache-mpermille"] = (
+                outbreak_prevention_cache_mpermille
+            )
         if outbreak_prevention_license is not None:
-            data_payload[
-                "outbreak-prevention-license"
-            ] = outbreak_prevention_license
+            data_payload["outbreak-prevention-license"] = (
+                outbreak_prevention_license
+            )
         if outbreak_prevention_expiration is not None:
-            data_payload[
-                "outbreak-prevention-expiration"
-            ] = outbreak_prevention_expiration
+            data_payload["outbreak-prevention-expiration"] = (
+                outbreak_prevention_expiration
+            )
         if outbreak_prevention_timeout is not None:
-            data_payload[
-                "outbreak-prevention-timeout"
-            ] = outbreak_prevention_timeout
+            data_payload["outbreak-prevention-timeout"] = (
+                outbreak_prevention_timeout
+            )
         if webfilter_force_off is not None:
             data_payload["webfilter-force-of"] = webfilter_force_off
         if webfilter_cache is not None:

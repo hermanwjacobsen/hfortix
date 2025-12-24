@@ -276,9 +276,9 @@ class Static:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload[
-                "internet-service-fortiguard"
-            ] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if link_monitor_exempt is not None:
             data_payload["link-monitor-exempt"] = link_monitor_exempt
         if tag is not None:
@@ -502,9 +502,9 @@ class Static:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload[
-                "internet-service-fortiguard"
-            ] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if link_monitor_exempt is not None:
             data_payload["link-monitor-exempt"] = link_monitor_exempt
         if tag is not None:

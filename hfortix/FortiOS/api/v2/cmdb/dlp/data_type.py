@@ -241,9 +241,9 @@ class DataType:
         if transform is not None:
             data_payload["transform"] = transform
         if verify_transformed_pattern is not None:
-            data_payload[
-                "verify-transformed-pattern"
-            ] = verify_transformed_pattern
+            data_payload["verify-transformed-pattern"] = (
+                verify_transformed_pattern
+            )
         if comment is not None:
             data_payload["comment"] = comment
         data_payload.update(kwargs)
@@ -427,9 +427,9 @@ class DataType:
         if transform is not None:
             data_payload["transform"] = transform
         if verify_transformed_pattern is not None:
-            data_payload[
-                "verify-transformed-pattern"
-            ] = verify_transformed_pattern
+            data_payload["verify-transformed-pattern"] = (
+                verify_transformed_pattern
+            )
         if comment is not None:
             data_payload["comment"] = comment
         data_payload.update(kwargs)

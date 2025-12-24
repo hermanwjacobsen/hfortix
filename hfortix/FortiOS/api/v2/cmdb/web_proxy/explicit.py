@@ -335,13 +335,13 @@ class Explicit:
         if sec_default_action is not None:
             data_payload["sec-default-action"] = sec_default_action
         if https_replacement_message is not None:
-            data_payload[
-                "https-replacement-message"
-            ] = https_replacement_message
+            data_payload["https-replacement-message"] = (
+                https_replacement_message
+            )
         if message_upon_server_error is not None:
-            data_payload[
-                "message-upon-server-error"
-            ] = message_upon_server_error
+            data_payload["message-upon-server-error"] = (
+                message_upon_server_error
+            )
         if pac_file_server_status is not None:
             data_payload["pac-file-server-status"] = pac_file_server_status
         if pac_file_url is not None:

@@ -291,9 +291,9 @@ class Policy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload[
-                "internet-service-fortiguard"
-            ] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if users is not None:
             data_payload["users"] = users
         if groups is not None:
@@ -528,9 +528,9 @@ class Policy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload[
-                "internet-service-fortiguard"
-            ] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if users is not None:
             data_payload["users"] = users
         if groups is not None:

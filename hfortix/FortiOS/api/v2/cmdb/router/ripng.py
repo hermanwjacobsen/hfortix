@@ -197,9 +197,9 @@ class Ripng:
         if after is not None:
             data_payload["after"] = after
         if default_information_originate is not None:
-            data_payload[
-                "default-information-originate"
-            ] = default_information_originate
+            data_payload["default-information-originate"] = (
+                default_information_originate
+            )
         if default_metric is not None:
             data_payload["default-metric"] = default_metric
         if max_out_metric is not None:

@@ -287,9 +287,9 @@ class SslSshProfile:
         if allowlist is not None:
             data_payload["allowlist"] = allowlist
         if block_blocklisted_certificates is not None:
-            data_payload[
-                "block-blocklisted-certificates"
-            ] = block_blocklisted_certificates
+            data_payload["block-blocklisted-certificates"] = (
+                block_blocklisted_certificates
+            )
         if ssl_exempt is not None:
             data_payload["ssl-exempt"] = ssl_exempt
         if ech_outer_sni is not None:
@@ -551,9 +551,9 @@ class SslSshProfile:
         if allowlist is not None:
             data_payload["allowlist"] = allowlist
         if block_blocklisted_certificates is not None:
-            data_payload[
-                "block-blocklisted-certificates"
-            ] = block_blocklisted_certificates
+            data_payload["block-blocklisted-certificates"] = (
+                block_blocklisted_certificates
+            )
         if ssl_exempt is not None:
             data_payload["ssl-exempt"] = ssl_exempt
         if ech_outer_sni is not None:

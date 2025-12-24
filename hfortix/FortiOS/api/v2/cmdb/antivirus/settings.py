@@ -181,9 +181,9 @@ class Settings:
         if after is not None:
             data_payload["after"] = after
         if machine_learning_detection is not None:
-            data_payload[
-                "machine-learning-detection"
-            ] = machine_learning_detection
+            data_payload["machine-learning-detection"] = (
+                machine_learning_detection
+            )
         if use_extreme_db is not None:
             data_payload["use-extreme-db"] = use_extreme_db
         if grayware is not None:

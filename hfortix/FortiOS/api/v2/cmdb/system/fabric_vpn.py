@@ -214,9 +214,9 @@ class FabricVpn:
         if loopback_interface is not None:
             data_payload["loopback-interface"] = loopback_interface
         if loopback_advertised_subnet is not None:
-            data_payload[
-                "loopback-advertised-subnet"
-            ] = loopback_advertised_subnet
+            data_payload["loopback-advertised-subnet"] = (
+                loopback_advertised_subnet
+            )
         if psksecret is not None:
             data_payload["psksecret"] = psksecret
         if bgp_as is not None:

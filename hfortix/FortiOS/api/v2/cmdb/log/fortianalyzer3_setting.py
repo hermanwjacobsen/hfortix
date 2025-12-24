@@ -270,9 +270,9 @@ class Fortianalyzer3Setting:
         if monitor_keepalive_period is not None:
             data_payload["monitor-keepalive-period"] = monitor_keepalive_period
         if monitor_failure_retry_period is not None:
-            data_payload[
-                "monitor-failure-retry-period"
-            ] = monitor_failure_retry_period
+            data_payload["monitor-failure-retry-period"] = (
+                monitor_failure_retry_period
+            )
         if certificate is not None:
             data_payload["certificate"] = certificate
         if source_ip is not None:

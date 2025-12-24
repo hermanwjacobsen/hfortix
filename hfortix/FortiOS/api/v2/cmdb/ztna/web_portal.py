@@ -296,17 +296,17 @@ class WebPortal:
         if forticlient_download is not None:
             data_payload["forticlient-download"] = forticlient_download
         if customize_forticlient_download_url is not None:
-            data_payload[
-                "customize-forticlient-download-url"
-            ] = customize_forticlient_download_url
+            data_payload["customize-forticlient-download-url"] = (
+                customize_forticlient_download_url
+            )
         if windows_forticlient_download_url is not None:
-            data_payload[
-                "windows-forticlient-download-url"
-            ] = windows_forticlient_download_url
+            data_payload["windows-forticlient-download-url"] = (
+                windows_forticlient_download_url
+            )
         if macos_forticlient_download_url is not None:
-            data_payload[
-                "macos-forticlient-download-url"
-            ] = macos_forticlient_download_url
+            data_payload["macos-forticlient-download-url"] = (
+                macos_forticlient_download_url
+            )
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
@@ -543,17 +543,17 @@ class WebPortal:
         if forticlient_download is not None:
             data_payload["forticlient-download"] = forticlient_download
         if customize_forticlient_download_url is not None:
-            data_payload[
-                "customize-forticlient-download-url"
-            ] = customize_forticlient_download_url
+            data_payload["customize-forticlient-download-url"] = (
+                customize_forticlient_download_url
+            )
         if windows_forticlient_download_url is not None:
-            data_payload[
-                "windows-forticlient-download-url"
-            ] = windows_forticlient_download_url
+            data_payload["windows-forticlient-download-url"] = (
+                windows_forticlient_download_url
+            )
         if macos_forticlient_download_url is not None:
-            data_payload[
-                "macos-forticlient-download-url"
-            ] = macos_forticlient_download_url
+            data_payload["macos-forticlient-download-url"] = (
+                macos_forticlient_download_url
+            )
         data_payload.update(kwargs)
         return self._client.post(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json

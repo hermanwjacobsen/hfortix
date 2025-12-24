@@ -233,9 +233,9 @@ class Setting:
         if device_idle is not None:
             data_payload["device-idle"] = device_idle
         if firmware_provision_on_authorization is not None:
-            data_payload[
-                "firmware-provision-on-authorization"
-            ] = firmware_provision_on_authorization
+            data_payload["firmware-provision-on-authorization"] = (
+                firmware_provision_on_authorization
+            )
         if rolling_wtp_upgrade is not None:
             data_payload["rolling-wtp-upgrade"] = rolling_wtp_upgrade
         if darrp_optimize is not None:

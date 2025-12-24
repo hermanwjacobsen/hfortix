@@ -254,13 +254,13 @@ class GreTunnel:
         if use_sdwan is not None:
             data_payload["use-sdwan"] = use_sdwan
         if sequence_number_transmission is not None:
-            data_payload[
-                "sequence-number-transmission"
-            ] = sequence_number_transmission
+            data_payload["sequence-number-transmission"] = (
+                sequence_number_transmission
+            )
         if sequence_number_reception is not None:
-            data_payload[
-                "sequence-number-reception"
-            ] = sequence_number_reception
+            data_payload["sequence-number-reception"] = (
+                sequence_number_reception
+            )
         if checksum_transmission is not None:
             data_payload["checksum-transmission"] = checksum_transmission
         if checksum_reception is not None:
@@ -471,13 +471,13 @@ class GreTunnel:
         if use_sdwan is not None:
             data_payload["use-sdwan"] = use_sdwan
         if sequence_number_transmission is not None:
-            data_payload[
-                "sequence-number-transmission"
-            ] = sequence_number_transmission
+            data_payload["sequence-number-transmission"] = (
+                sequence_number_transmission
+            )
         if sequence_number_reception is not None:
-            data_payload[
-                "sequence-number-reception"
-            ] = sequence_number_reception
+            data_payload["sequence-number-reception"] = (
+                sequence_number_reception
+            )
         if checksum_transmission is not None:
             data_payload["checksum-transmission"] = checksum_transmission
         if checksum_reception is not None:

@@ -762,9 +762,9 @@ class IpsecPhase1Interface:
         if monitor_hold_down_delay is not None:
             data_payload["monitor-hold-down-delay"] = monitor_hold_down_delay
         if monitor_hold_down_weekday is not None:
-            data_payload[
-                "monitor-hold-down-weekday"
-            ] = monitor_hold_down_weekday
+            data_payload["monitor-hold-down-weekday"] = (
+                monitor_hold_down_weekday
+            )
         if monitor_hold_down_time is not None:
             data_payload["monitor-hold-down-time"] = monitor_hold_down_time
         if net_device is not None:
@@ -786,15 +786,15 @@ class IpsecPhase1Interface:
         if peer_egress_shaping is not None:
             data_payload["peer-egress-shaping"] = peer_egress_shaping
         if peer_egress_shaping_value is not None:
-            data_payload[
-                "peer-egress-shaping-value"
-            ] = peer_egress_shaping_value
+            data_payload["peer-egress-shaping-value"] = (
+                peer_egress_shaping_value
+            )
         if mode_cfg is not None:
             data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload[
-                "mode-cfg-allow-client-selector"
-            ] = mode_cfg_allow_client_selector
+            data_payload["mode-cfg-allow-client-selector"] = (
+                mode_cfg_allow_client_selector
+            )
         if assign_ip is not None:
             data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
@@ -960,9 +960,9 @@ class IpsecPhase1Interface:
         if group_authentication is not None:
             data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload[
-                "group-authentication-secret"
-            ] = group_authentication_secret
+            data_payload["group-authentication-secret"] = (
+                group_authentication_secret
+            )
         if authusrgrp is not None:
             data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
@@ -992,13 +992,13 @@ class IpsecPhase1Interface:
         if auto_discovery_crossover is not None:
             data_payload["auto-discovery-crossover"] = auto_discovery_crossover
         if auto_discovery_offer_interval is not None:
-            data_payload[
-                "auto-discovery-offer-interval"
-            ] = auto_discovery_offer_interval
+            data_payload["auto-discovery-offer-interval"] = (
+                auto_discovery_offer_interval
+            )
         if auto_discovery_dialup_placeholder is not None:
-            data_payload[
-                "auto-discovery-dialup-placeholder"
-            ] = auto_discovery_dialup_placeholder
+            data_payload["auto-discovery-dialup-placeholder"] = (
+                auto_discovery_dialup_placeholder
+            )
         if encapsulation is not None:
             data_payload["encapsulation"] = encapsulation
         if encapsulation_address is not None:
@@ -1034,9 +1034,9 @@ class IpsecPhase1Interface:
         if rsa_signature_format is not None:
             data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload[
-                "rsa-signature-hash-override"
-            ] = rsa_signature_hash_override
+            data_payload["rsa-signature-hash-override"] = (
+                rsa_signature_hash_override
+            )
         if enforce_unique_id is not None:
             data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
@@ -1116,9 +1116,9 @@ class IpsecPhase1Interface:
         if remote_gw6_country is not None:
             data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload[
-                "cert-peer-username-validation"
-            ] = cert_peer_username_validation
+            data_payload["cert-peer-username-validation"] = (
+                cert_peer_username_validation
+            )
         if cert_peer_username_strip is not None:
             data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)
@@ -1822,9 +1822,9 @@ class IpsecPhase1Interface:
         if monitor_hold_down_delay is not None:
             data_payload["monitor-hold-down-delay"] = monitor_hold_down_delay
         if monitor_hold_down_weekday is not None:
-            data_payload[
-                "monitor-hold-down-weekday"
-            ] = monitor_hold_down_weekday
+            data_payload["monitor-hold-down-weekday"] = (
+                monitor_hold_down_weekday
+            )
         if monitor_hold_down_time is not None:
             data_payload["monitor-hold-down-time"] = monitor_hold_down_time
         if net_device is not None:
@@ -1846,15 +1846,15 @@ class IpsecPhase1Interface:
         if peer_egress_shaping is not None:
             data_payload["peer-egress-shaping"] = peer_egress_shaping
         if peer_egress_shaping_value is not None:
-            data_payload[
-                "peer-egress-shaping-value"
-            ] = peer_egress_shaping_value
+            data_payload["peer-egress-shaping-value"] = (
+                peer_egress_shaping_value
+            )
         if mode_cfg is not None:
             data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload[
-                "mode-cfg-allow-client-selector"
-            ] = mode_cfg_allow_client_selector
+            data_payload["mode-cfg-allow-client-selector"] = (
+                mode_cfg_allow_client_selector
+            )
         if assign_ip is not None:
             data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
@@ -2020,9 +2020,9 @@ class IpsecPhase1Interface:
         if group_authentication is not None:
             data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload[
-                "group-authentication-secret"
-            ] = group_authentication_secret
+            data_payload["group-authentication-secret"] = (
+                group_authentication_secret
+            )
         if authusrgrp is not None:
             data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
@@ -2052,13 +2052,13 @@ class IpsecPhase1Interface:
         if auto_discovery_crossover is not None:
             data_payload["auto-discovery-crossover"] = auto_discovery_crossover
         if auto_discovery_offer_interval is not None:
-            data_payload[
-                "auto-discovery-offer-interval"
-            ] = auto_discovery_offer_interval
+            data_payload["auto-discovery-offer-interval"] = (
+                auto_discovery_offer_interval
+            )
         if auto_discovery_dialup_placeholder is not None:
-            data_payload[
-                "auto-discovery-dialup-placeholder"
-            ] = auto_discovery_dialup_placeholder
+            data_payload["auto-discovery-dialup-placeholder"] = (
+                auto_discovery_dialup_placeholder
+            )
         if encapsulation is not None:
             data_payload["encapsulation"] = encapsulation
         if encapsulation_address is not None:
@@ -2094,9 +2094,9 @@ class IpsecPhase1Interface:
         if rsa_signature_format is not None:
             data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload[
-                "rsa-signature-hash-override"
-            ] = rsa_signature_hash_override
+            data_payload["rsa-signature-hash-override"] = (
+                rsa_signature_hash_override
+            )
         if enforce_unique_id is not None:
             data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
@@ -2176,9 +2176,9 @@ class IpsecPhase1Interface:
         if remote_gw6_country is not None:
             data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload[
-                "cert-peer-username-validation"
-            ] = cert_peer_username_validation
+            data_payload["cert-peer-username-validation"] = (
+                cert_peer_username_validation
+            )
         if cert_peer_username_strip is not None:
             data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)

@@ -212,19 +212,19 @@ class SnmpSysinfo:
         if trap_high_cpu_threshold is not None:
             data_payload["trap-high-cpu-threshold"] = trap_high_cpu_threshold
         if trap_low_memory_threshold is not None:
-            data_payload[
-                "trap-low-memory-threshold"
-            ] = trap_low_memory_threshold
+            data_payload["trap-low-memory-threshold"] = (
+                trap_low_memory_threshold
+            )
         if trap_log_full_threshold is not None:
             data_payload["trap-log-full-threshold"] = trap_log_full_threshold
         if trap_free_memory_threshold is not None:
-            data_payload[
-                "trap-free-memory-threshold"
-            ] = trap_free_memory_threshold
+            data_payload["trap-free-memory-threshold"] = (
+                trap_free_memory_threshold
+            )
         if trap_freeable_memory_threshold is not None:
-            data_payload[
-                "trap-freeable-memory-threshold"
-            ] = trap_freeable_memory_threshold
+            data_payload["trap-freeable-memory-threshold"] = (
+                trap_freeable_memory_threshold
+            )
         if append_index is not None:
             data_payload["append-index"] = append_index
         if non_mgmt_vdom_query is not None:

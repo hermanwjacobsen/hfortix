@@ -273,9 +273,9 @@ class LldpProfile:
         if auto_isl_auth_encrypt is not None:
             data_payload["auto-isl-auth-encrypt"] = auto_isl_auth_encrypt
         if auto_isl_auth_macsec_profile is not None:
-            data_payload[
-                "auto-isl-auth-macsec-profile"
-            ] = auto_isl_auth_macsec_profile
+            data_payload["auto-isl-auth-macsec-profile"] = (
+                auto_isl_auth_macsec_profile
+            )
         if med_network_policy is not None:
             data_payload["med-network-policy"] = med_network_policy
         if med_location_service is not None:
@@ -492,9 +492,9 @@ class LldpProfile:
         if auto_isl_auth_encrypt is not None:
             data_payload["auto-isl-auth-encrypt"] = auto_isl_auth_encrypt
         if auto_isl_auth_macsec_profile is not None:
-            data_payload[
-                "auto-isl-auth-macsec-profile"
-            ] = auto_isl_auth_macsec_profile
+            data_payload["auto-isl-auth-macsec-profile"] = (
+                auto_isl_auth_macsec_profile
+            )
         if med_network_policy is not None:
             data_payload["med-network-policy"] = med_network_policy
         if med_location_service is not None:

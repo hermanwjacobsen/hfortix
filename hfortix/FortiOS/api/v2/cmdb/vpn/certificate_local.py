@@ -304,9 +304,9 @@ class CertificateLocal:
         if auto_regenerate_days is not None:
             data_payload["auto-regenerate-days"] = auto_regenerate_days
         if auto_regenerate_days_warning is not None:
-            data_payload[
-                "auto-regenerate-days-warning"
-            ] = auto_regenerate_days_warning
+            data_payload["auto-regenerate-days-warning"] = (
+                auto_regenerate_days_warning
+            )
         if scep_password is not None:
             data_payload["scep-password"] = scep_password
         if ca_identifier is not None:

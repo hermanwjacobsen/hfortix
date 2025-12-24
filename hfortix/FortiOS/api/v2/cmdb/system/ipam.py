@@ -192,19 +192,19 @@ class Ipam:
         if server_type is not None:
             data_payload["server-type"] = server_type
         if automatic_conflict_resolution is not None:
-            data_payload[
-                "automatic-conflict-resolution"
-            ] = automatic_conflict_resolution
+            data_payload["automatic-conflict-resolution"] = (
+                automatic_conflict_resolution
+            )
         if require_subnet_size_match is not None:
-            data_payload[
-                "require-subnet-size-match"
-            ] = require_subnet_size_match
+            data_payload["require-subnet-size-match"] = (
+                require_subnet_size_match
+            )
         if manage_lan_addresses is not None:
             data_payload["manage-lan-addresses"] = manage_lan_addresses
         if manage_lan_extension_addresses is not None:
-            data_payload[
-                "manage-lan-extension-addresses"
-            ] = manage_lan_extension_addresses
+            data_payload["manage-lan-extension-addresses"] = (
+                manage_lan_extension_addresses
+            )
         if manage_ssid_addresses is not None:
             data_payload["manage-ssid-addresses"] = manage_ssid_addresses
         if pools is not None:

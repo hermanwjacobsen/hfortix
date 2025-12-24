@@ -242,9 +242,9 @@ class Exchange:
         if connect_protocol is not None:
             data_payload["connect-protocol"] = connect_protocol
         if validate_server_certificate is not None:
-            data_payload[
-                "validate-server-certificate"
-            ] = validate_server_certificate
+            data_payload["validate-server-certificate"] = (
+                validate_server_certificate
+            )
         if auth_type is not None:
             data_payload["auth-type"] = auth_type
         if auth_level is not None:
@@ -439,9 +439,9 @@ class Exchange:
         if connect_protocol is not None:
             data_payload["connect-protocol"] = connect_protocol
         if validate_server_certificate is not None:
-            data_payload[
-                "validate-server-certificate"
-            ] = validate_server_certificate
+            data_payload["validate-server-certificate"] = (
+                validate_server_certificate
+            )
         if auth_type is not None:
             data_payload["auth-type"] = auth_type
         if auth_level is not None:

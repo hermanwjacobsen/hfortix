@@ -272,13 +272,13 @@ class Profile:
         if fortisandbox_max_upload is not None:
             data_payload["fortisandbox-max-upload"] = fortisandbox_max_upload
         if analytics_ignore_filetype is not None:
-            data_payload[
-                "analytics-ignore-filetype"
-            ] = analytics_ignore_filetype
+            data_payload["analytics-ignore-filetype"] = (
+                analytics_ignore_filetype
+            )
         if analytics_accept_filetype is not None:
-            data_payload[
-                "analytics-accept-filetype"
-            ] = analytics_accept_filetype
+            data_payload["analytics-accept-filetype"] = (
+                analytics_accept_filetype
+            )
         if analytics_db is not None:
             data_payload["analytics-db"] = analytics_db
         if mobile_malware_db is not None:
@@ -306,13 +306,13 @@ class Profile:
         if content_disarm is not None:
             data_payload["content-disarm"] = content_disarm
         if outbreak_prevention_archive_scan is not None:
-            data_payload[
-                "outbreak-prevention-archive-scan"
-            ] = outbreak_prevention_archive_scan
+            data_payload["outbreak-prevention-archive-scan"] = (
+                outbreak_prevention_archive_scan
+            )
         if external_blocklist_enable_all is not None:
-            data_payload[
-                "external-blocklist-enable-all"
-            ] = external_blocklist_enable_all
+            data_payload["external-blocklist-enable-all"] = (
+                external_blocklist_enable_all
+            )
         if external_blocklist is not None:
             data_payload["external-blocklist"] = external_blocklist
         if ems_threat_feed is not None:
@@ -535,13 +535,13 @@ class Profile:
         if fortisandbox_max_upload is not None:
             data_payload["fortisandbox-max-upload"] = fortisandbox_max_upload
         if analytics_ignore_filetype is not None:
-            data_payload[
-                "analytics-ignore-filetype"
-            ] = analytics_ignore_filetype
+            data_payload["analytics-ignore-filetype"] = (
+                analytics_ignore_filetype
+            )
         if analytics_accept_filetype is not None:
-            data_payload[
-                "analytics-accept-filetype"
-            ] = analytics_accept_filetype
+            data_payload["analytics-accept-filetype"] = (
+                analytics_accept_filetype
+            )
         if analytics_db is not None:
             data_payload["analytics-db"] = analytics_db
         if mobile_malware_db is not None:
@@ -569,13 +569,13 @@ class Profile:
         if content_disarm is not None:
             data_payload["content-disarm"] = content_disarm
         if outbreak_prevention_archive_scan is not None:
-            data_payload[
-                "outbreak-prevention-archive-scan"
-            ] = outbreak_prevention_archive_scan
+            data_payload["outbreak-prevention-archive-scan"] = (
+                outbreak_prevention_archive_scan
+            )
         if external_blocklist_enable_all is not None:
-            data_payload[
-                "external-blocklist-enable-all"
-            ] = external_blocklist_enable_all
+            data_payload["external-blocklist-enable-all"] = (
+                external_blocklist_enable_all
+            )
         if external_blocklist is not None:
             data_payload["external-blocklist"] = external_blocklist
         if ems_threat_feed is not None:

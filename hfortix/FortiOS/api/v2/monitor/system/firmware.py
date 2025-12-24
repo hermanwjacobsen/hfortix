@@ -123,9 +123,9 @@ class Upgrade:
         if file_id is not None:
             data["file_id"] = file_id
         if ignore_admin_lockout_upon_downgrade is not None:
-            data[
-                "ignore_admin_lockout_upon_downgrade"
-            ] = ignore_admin_lockout_upon_downgrade
+            data["ignore_admin_lockout_upon_downgrade"] = (
+                ignore_admin_lockout_upon_downgrade
+            )
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)

@@ -260,17 +260,17 @@ class Extender:
         if allowaccess is not None:
             data_payload["allowaccess"] = allowaccess
         if override_login_password_change is not None:
-            data_payload[
-                "override-login-password-change"
-            ] = override_login_password_change
+            data_payload["override-login-password-change"] = (
+                override_login_password_change
+            )
         if login_password_change is not None:
             data_payload["login-password-change"] = login_password_change
         if login_password is not None:
             data_payload["login-password"] = login_password
         if override_enforce_bandwidth is not None:
-            data_payload[
-                "override-enforce-bandwidth"
-            ] = override_enforce_bandwidth
+            data_payload["override-enforce-bandwidth"] = (
+                override_enforce_bandwidth
+            )
         if enforce_bandwidth is not None:
             data_payload["enforce-bandwidth"] = enforce_bandwidth
         if bandwidth_limit is not None:
@@ -278,9 +278,9 @@ class Extender:
         if wan_extension is not None:
             data_payload["wan-extension"] = wan_extension
         if firmware_provision_latest is not None:
-            data_payload[
-                "firmware-provision-latest"
-            ] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
@@ -480,17 +480,17 @@ class Extender:
         if allowaccess is not None:
             data_payload["allowaccess"] = allowaccess
         if override_login_password_change is not None:
-            data_payload[
-                "override-login-password-change"
-            ] = override_login_password_change
+            data_payload["override-login-password-change"] = (
+                override_login_password_change
+            )
         if login_password_change is not None:
             data_payload["login-password-change"] = login_password_change
         if login_password is not None:
             data_payload["login-password"] = login_password
         if override_enforce_bandwidth is not None:
-            data_payload[
-                "override-enforce-bandwidth"
-            ] = override_enforce_bandwidth
+            data_payload["override-enforce-bandwidth"] = (
+                override_enforce_bandwidth
+            )
         if enforce_bandwidth is not None:
             data_payload["enforce-bandwidth"] = enforce_bandwidth
         if bandwidth_limit is not None:
@@ -498,9 +498,9 @@ class Extender:
         if wan_extension is not None:
             data_payload["wan-extension"] = wan_extension
         if firmware_provision_latest is not None:
-            data_payload[
-                "firmware-provision-latest"
-            ] = firmware_provision_latest
+            data_payload["firmware-provision-latest"] = (
+                firmware_provision_latest
+            )
         data_payload.update(kwargs)
         return self._client.post(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
