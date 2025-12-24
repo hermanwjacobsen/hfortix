@@ -156,28 +156,28 @@ class CMDB:
         from .certificate import Certificate
 
         diameter_filter_mod = import_module(
-            ".diameter-filter", "hfortix.FortiOS.api.v2.cmdb"
+            ".diameter_filter", "hfortix.FortiOS.api.v2.cmdb"
         )
         from .dlp import Dlp
         from .dnsfilter import Dnsfilter
         from .emailfilter import Emailfilter
 
         endpoint_control_mod = import_module(
-            ".endpoint-control", "hfortix.FortiOS.api.v2.cmdb"
+            ".endpoint_control", "hfortix.FortiOS.api.v2.cmdb"
         )
         ethernet_oam_mod = import_module(
-            ".ethernet-oam", "hfortix.FortiOS.api.v2.cmdb"
+            ".ethernet_oam", "hfortix.FortiOS.api.v2.cmdb"
         )
         extension_controller_mod = import_module(
-            ".extension-controller", "hfortix.FortiOS.api.v2.cmdb"
+            ".extension_controller", "hfortix.FortiOS.api.v2.cmdb"
         )
         file_filter_mod = import_module(
-            ".file-filter", "hfortix.FortiOS.api.v2.cmdb"
+            ".file_filter", "hfortix.FortiOS.api.v2.cmdb"
         )
         from .firewall import Firewall
 
         ftp_proxy_mod = import_module(
-            ".ftp-proxy", "hfortix.FortiOS.api.v2.cmdb"
+            ".ftp_proxy", "hfortix.FortiOS.api.v2.cmdb"
         )
         from .icap import Icap
         from .ips import Ips
@@ -188,7 +188,7 @@ class CMDB:
         from .rule import Rule
 
         sctp_filter_mod = import_module(
-            ".sctp-filter", "hfortix.FortiOS.api.v2.cmdb"
+            ".sctp_filter", "hfortix.FortiOS.api.v2.cmdb"
         )
         from .system import System
 
