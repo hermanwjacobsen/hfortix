@@ -137,7 +137,7 @@ jobs:
   wait-for-ci:
     name: Wait for CI
     runs-on: ubuntu-latest
-    if: always()  # Always run, but conditionally wait
+    # Always run the job, but it will fail if CI doesn't pass
 
     steps:
       - name: Wait for CI workflow to complete
@@ -152,7 +152,7 @@ jobs:
 
       - name: Skip CI wait for manual dispatch
         if: github.event_name == 'workflow_dispatch'
-        run: echo "Skipping CI wait for manual workflow dispatch"
+        run: echo "✅ Skipping CI wait for manual workflow dispatch"
 
   publish-testpypi:
     name: Publish to TestPyPI
