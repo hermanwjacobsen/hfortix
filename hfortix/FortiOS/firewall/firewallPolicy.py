@@ -45,7 +45,9 @@ class FirewallPolicy:
         self,
         operation: Any,
         error_mode: Optional[Literal["raise", "return", "print"]] = None,
-        error_format: Optional[Literal["detailed", "simple", "code_only"]] = None,  # noqa: E501
+        error_format: Optional[
+            Literal["detailed", "simple", "code_only"]
+        ] = None,  # noqa: E501
     ) -> Any:
         """
         Execute operation with configurable error handling.
@@ -60,7 +62,11 @@ class FirewallPolicy:
         """
         # Use instance defaults if not overridden
         mode = error_mode if error_mode is not None else self._fgt.error_mode
-        fmt = error_format if error_format is not None else self._fgt.error_format  # noqa: E501
+        fmt = (
+            error_format
+            if error_format is not None
+            else self._fgt.error_format
+        )  # noqa: E501
 
         try:
             # Execute the operation
@@ -76,7 +82,7 @@ class FirewallPolicy:
                     "status": "error",
                     "error": str(e),
                 }
-                
+
                 # Add details based on format
                 if fmt == "detailed":
                     # Full exception details
@@ -86,7 +92,7 @@ class FirewallPolicy:
                     if hasattr(e, "error_code"):
                         error_dict["error_code"] = e.error_code  # type: ignore  # noqa: E501
                     if hasattr(e, "endpoint"):
-                        error_dict["endpoint"] = e.endpoint  # type: ignore
+                        error_dict["endpoint"] = e.endpoint  # type: ignore  # noqa: E501
                     if hasattr(e, "method"):
                         error_dict["method"] = e.method  # type: ignore
                 elif fmt == "simple":
@@ -105,7 +111,9 @@ class FirewallPolicy:
             elif mode == "print":
                 # Print error and return None
                 if fmt == "detailed":
-                    print(f"ERROR: {type(e).__name__}: {str(e)}", file=sys.stderr)
+                    print(
+                        f"ERROR: {type(e).__name__}: {str(e)}", file=sys.stderr
+                    )
                 elif fmt == "simple":
                     print(f"ERROR: {str(e)}", file=sys.stderr)
                 elif fmt == "code_only":
@@ -346,7 +354,9 @@ class FirewallPolicy:
         data: Optional[Dict[str, Any]] = None,
         # Error handling configuration
         error_mode: Optional[Literal["raise", "return", "print"]] = None,
-        error_format: Optional[Literal["detailed", "simple", "code_only"]] = None,  # noqa: E501
+        error_format: Optional[
+            Literal["detailed", "simple", "code_only"]
+        ] = None,  # noqa: E501
     ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Create a new firewall policy with all available FortiOS parameters.

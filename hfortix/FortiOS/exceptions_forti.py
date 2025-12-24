@@ -21,8 +21,17 @@ def _is_sensitive_param(param_name: str) -> bool:
         bool: True if parameter contains sensitive data
     """
     sensitive_keywords = {
-        "password", "passwd", "pwd", "secret", "token", "api_key",
-        "apikey", "key", "private", "credential", "auth"
+        "password",
+        "passwd",
+        "pwd",
+        "secret",
+        "token",
+        "api_key",
+        "apikey",
+        "key",
+        "private",
+        "credential",
+        "auth",
     }
     param_lower = param_name.lower()
     return any(keyword in param_lower for keyword in sensitive_keywords)
@@ -94,7 +103,7 @@ class APIError(FortinetError):
     ):
         import uuid
         from datetime import datetime, timezone
-        
+
         super().__init__(message)
         self.http_status = http_status
         self.error_code = error_code
@@ -104,7 +113,7 @@ class APIError(FortinetError):
         self.params = params
         self.hint = hint
         self._original_message = message
-        
+
         # Add metadata for debugging
         self.request_id = request_id or str(uuid.uuid4())
         self.timestamp = datetime.now(timezone.utc).isoformat()
@@ -122,12 +131,16 @@ class APIError(FortinetError):
         # Add HTTP status if available
         if self.http_status:
             status_desc = get_http_status_description(self.http_status)
-            parts.append(f"  → HTTP Status: {self.http_status} ({status_desc})")
+            parts.append(
+                f"  → HTTP Status: {self.http_status} ({status_desc})"
+            )
 
         # Add FortiOS error code if available
         if self.error_code:
             error_desc = get_error_description(self.error_code)
-            parts.append(f"  → FortiOS Error: {self.error_code} ({error_desc})")
+            parts.append(
+                f"  → FortiOS Error: {self.error_code} ({error_desc})"
+            )
 
         # Add parameters (sanitized) if available
         if self.params:
@@ -144,7 +157,7 @@ class APIError(FortinetError):
             parts.append(f"  💡 {self.hint}")
 
         return "\n".join(parts)
-    
+
     def __repr__(self) -> str:
         """Developer-friendly representation for debugging"""
         return (
@@ -174,7 +187,7 @@ class AuthorizationError(FortinetError):
 class RetryableError(APIError):
     """
     Base exception for errors that should trigger automatic retry
-    
+
     These errors are typically transient and may succeed on retry:
     - Rate limiting (429)
     - Service unavailable (503)
@@ -186,7 +199,7 @@ class RetryableError(APIError):
 class NonRetryableError(APIError):
     """
     Base exception for errors that should NOT be retried
-    
+
     These errors indicate client-side mistakes or permanent failures:
     - Bad request (400)
     - Resource not found (404)
@@ -204,7 +217,7 @@ class NonRetryableError(APIError):
 class ConfigurationError(FortinetError):
     """
     Raised when FortiOS instance is misconfigured
-    
+
     Examples:
     - Both token and username/password provided
     - Missing required authentication
@@ -215,11 +228,11 @@ class ConfigurationError(FortinetError):
 class VDOMError(FortinetError):
     """
     Raised when VDOM operation fails or VDOM doesn't exist
-    
+
     Attributes:
         vdom: The VDOM name that caused the error
     """
-    
+
     def __init__(self, message: str, vdom: str):
         super().__init__(message)
         self.vdom = vdom
@@ -228,12 +241,12 @@ class VDOMError(FortinetError):
 class OperationNotSupportedError(FortinetError):
     """
     Raised when attempting unsupported operation on endpoint
-    
+
     Attributes:
         operation: The operation that was attempted (e.g., 'DELETE')
         endpoint: The endpoint that doesn't support it
     """
-    
+
     def __init__(self, message: str, operation: str, endpoint: str):
         super().__init__(message)
         self.operation = operation
@@ -270,7 +283,7 @@ class ResourceNotFoundError(NonRetryableError):
         if "http_status" not in kwargs:
             kwargs["http_status"] = 404
         super().__init__(message, **kwargs)
-    
+
     def suggest_recovery(self) -> str:
         """Suggest how to recover from this error"""
         return (
@@ -381,7 +394,7 @@ class DuplicateEntryError(NonRetryableError):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -5
         super().__init__(message, **kwargs)
-    
+
     def suggest_recovery(self) -> str:
         """Suggest how to recover from this error"""
         return (
@@ -404,7 +417,7 @@ class EntryInUseError(NonRetryableError):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -23
         super().__init__(message, **kwargs)
-    
+
     def suggest_recovery(self) -> str:
         """Suggest how to recover from this error"""
         return (
@@ -932,10 +945,12 @@ def _check_validation_available(
 
     # Try to import the validation module
     try:
-        module_path = f"hfortix.FortiOS.api.v2.{api_type}.{category}._helpers.{resource}"
+        module_path = (
+            f"hfortix.FortiOS.api.v2.{api_type}.{category}._helpers.{resource}"
+        )
         __import__(module_path)
         return True
-    except (ImportError, ModuleNotFoundError):
+    except ImportError:
         return False
 
 
@@ -997,20 +1012,53 @@ def _get_suggestion_for_error(
         -651: "💡 Tip: Invalid value provided. Check parameter format and allowed values.",  # noqa: E501
         -1: "💡 Tip: Check string length limits and field format requirements.",
         -50: "💡 Tip: Input format is invalid. Validate format matches expected pattern (IP, MAC, etc.).",  # noqa: E501
-        -8: "💡 Tip: Invalid IP address format. Use format: x.x.x.x or x.x.x.x/mask",  # noqa: E501
-        -9: "💡 Tip: Invalid IP netmask. Use CIDR notation (e.g., /24) or dotted decimal (255.255.255.0)",  # noqa: E501
-        -33: "💡 Tip: Invalid MAC address format. Use format: xx:xx:xx:xx:xx:xx",
-        -72: "💡 Tip: Field value exceeds maximum length. Check character limits for this field.",  # noqa: E501
+        -8: (
+            "💡 Tip: Invalid IP address format. "
+            "Use format: x.x.x.x or x.x.x.x/mask"
+        ),
+        -9: (
+            "💡 Tip: Invalid IP netmask. Use CIDR notation "
+            "(e.g., /24) or dotted decimal (255.255.255.0)"
+        ),
+        -33: (
+            "💡 Tip: Invalid MAC address format. "
+            "Use format: xx:xx:xx:xx:xx:xx"
+        ),
+        -72: (
+            "💡 Tip: Field value exceeds maximum length. "
+            "Check character limits for this field."
+        ),
     }
 
     http_suggestions = {
-        404: "💡 Tip: Verify the object name and endpoint path. Use .exists() to check availability.",  # noqa: E501
-        400: "💡 Tip: Bad request - check required parameters and their format.",
-        401: "💡 Tip: Verify API token is valid and not expired. Re-authenticate if needed.",  # noqa: E501
-        403: "💡 Tip: Check VDOM access and ensure API user has required permissions.",  # noqa: E501
-        429: "💡 Tip: Implement rate limiting in your code or increase delay between requests.",  # noqa: E501
-        500: "💡 Tip: This is a FortiGate server error. Check device logs and system status.",  # noqa: E501
-        503: "💡 Tip: FortiGate may be busy or restarting. Wait and retry with exponential backoff.",  # noqa: E501
+        404: (
+            "💡 Tip: Verify the object name and endpoint path. "
+            "Use .exists() to check availability."
+        ),
+        400: (
+            "💡 Tip: Bad request - check required parameters "
+            "and their format."
+        ),
+        401: (
+            "💡 Tip: Verify API token is valid and not expired. "
+            "Re-authenticate if needed."
+        ),
+        403: (
+            "💡 Tip: Check VDOM access and ensure API user "
+            "has required permissions."
+        ),
+        429: (
+            "💡 Tip: Implement rate limiting in your code or "
+            "increase delay between requests."
+        ),
+        500: (
+            "💡 Tip: This is a FortiGate server error. "
+            "Check device logs and system status."
+        ),
+        503: (
+            "💡 Tip: FortiGate may be busy or restarting. "
+            "Wait and retry with exponential backoff."
+        ),
     }
 
     hint_parts = []
@@ -1052,7 +1100,11 @@ def raise_for_status(
 
     Examples:
         >>> response = {'status': 'error', 'http_status': 404, 'error': -3}
-        >>> raise_for_status(response, endpoint='/api/v2/cmdb/firewall/address', method='GET')
+        >>> raise_for_status(
+        ...     response,
+        ...     endpoint='/api/v2/cmdb/firewall/address',
+        ...     method='GET'
+        ... )
         # Raises ResourceNotFoundError with helpful context and tip
     """
     if not isinstance(response, dict):
@@ -1128,13 +1180,13 @@ def raise_for_status(
 def is_retryable_error(error: Exception) -> bool:
     """
     Check if error should trigger automatic retry
-    
+
     Args:
         error: Exception to check
-        
+
     Returns:
         True if error is retryable, False otherwise
-        
+
     Example:
         >>> try:
         ...     fgt.api.cmdb.firewall.policy.get()
@@ -1150,20 +1202,20 @@ def get_retry_delay(
     error: Exception,
     attempt: int,
     base_delay: float = 1.0,
-    max_delay: float = 60.0
+    max_delay: float = 60.0,
 ) -> float:
     """
     Calculate appropriate retry delay based on error type and attempt number
-    
+
     Args:
         error: Exception that occurred
         attempt: Retry attempt number (1, 2, 3, ...)
         base_delay: Base delay in seconds (default: 1.0)
         max_delay: Maximum delay in seconds (default: 60.0)
-        
+
     Returns:
         Recommended delay in seconds
-        
+
     Example:
         >>> for attempt in range(1, 4):
         ...     try:
@@ -1178,17 +1230,17 @@ def get_retry_delay(
     """
     if isinstance(error, RateLimitError):
         # Exponential backoff for rate limits
-        delay = min(base_delay * (2 ** attempt), max_delay)
+        delay = min(base_delay * (2**attempt), max_delay)
     elif isinstance(error, ServiceUnavailableError):
         # Linear backoff for service issues
         delay = min(base_delay * attempt, max_delay)
     elif isinstance(error, TimeoutError):
         # Moderate exponential backoff for timeouts
-        delay = min(base_delay * (1.5 ** attempt), max_delay)
+        delay = min(base_delay * (1.5**attempt), max_delay)
     else:
         # Default to base delay
         delay = base_delay
-    
+
     return delay
 
 
