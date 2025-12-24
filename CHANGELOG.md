@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.30] - 2025-12-24
+
+### Changed
+
+- **CI/CD Pipeline**: Publishing workflow now waits for CI checks to pass
+  - Added `wait-for-ci` job to ensure all quality checks pass before publishing
+  - Configured trusted publishing for TestPyPI (no API token needed)
+  - Publishing flow: CI passes → TestPyPI → verify → PyPI production
+  - Added comprehensive PyPI setup documentation (`docs/PYPI_SETUP.md`)
+
 ## [0.3.29] - 2025-12-24
 
 ### Changed
