@@ -146,9 +146,9 @@ bump-version:
 		exit 1; \
 	fi
 
-pre-release:
-	@echo "Running pre-release workflow..."
-	@.venv/bin/python X/scripts/pre_release_check.py --auto-fix
+pre-release: fix
+	@echo "Running pre-release checks after auto-fix..."
+	@.venv/bin/python X/scripts/pre_release_check.py
 
 pre-release-check:
 	@echo "Running pre-release checks only (no auto-fix)..."
