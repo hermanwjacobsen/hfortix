@@ -6,6 +6,7 @@ across different CMDB resource types (firewall, system, user, router, casb,
 dnsfilter, access_proxy, etc.).
 """
 
+import ipaddress
 from typing import Any, Dict, List, Union
 
 # ============================================================================
@@ -362,3 +363,304 @@ def validate_required_fields(
     """
     missing = [field for field in required_fields if field not in payload]
     return (len(missing) == 0, missing)
+
+
+def validate_color(color: int) -> None:
+    """
+    Validate color index for FortiOS objects.
+
+    Used across firewall, system, user, and other objects.
+
+    Args:
+        color: Color index (0-32)
+
+    Raises:
+        ValueError: If color is out of range
+
+    Example:
+        >>> validate_color(10)   # Valid
+        >>> validate_color(33)   # Raises ValueError
+    """
+    if color < 0 or color > 32:
+        raise ValueError(f"Color must be between 0 and 32, got {color}")
+
+
+def validate_status(status: str) -> None:
+    """
+    Validate status field (enable/disable).
+
+    Used across all FortiOS configuration objects.
+
+    Args:
+        status: Status value
+
+    Raises:
+        ValueError: If status is not 'enable' or 'disable'
+
+    Example:
+        >>> validate_status("enable")   # Valid
+        >>> validate_status("invalid")  # Raises ValueError
+    """
+    if status not in ("enable", "disable"):
+        raise ValueError(
+            f"Status must be 'enable' or 'disable', got: {status}"
+        )
+
+
+def validate_mac_address(mac: str, allow_wildcard: bool = True) -> None:
+    """
+    Validate MAC address format.
+
+    Used across firewall, system, and switch-controller objects.
+
+    Args:
+        mac: MAC address to validate (format: xx:xx:xx:xx:xx:xx)
+        allow_wildcard: Allow 00:00:00:00:00:00 as wildcard (default: True)
+
+    Raises:
+        ValueError: If MAC address format is invalid
+
+    Example:
+        >>> validate_mac_address("00:11:22:33:44:55")  # Valid
+        >>> validate_mac_address("00:00:00:00:00:00")  # Valid wildcard
+        >>> validate_mac_address("invalid")  # Raises ValueError
+    """
+    if not mac:
+        raise ValueError("MAC address is required")
+
+    # Check format: xx:xx:xx:xx:xx:xx
+    parts = mac.split(":")
+    if len(parts) != 6:
+        raise ValueError(
+            f"MAC address must be in format xx:xx:xx:xx:xx:xx, got: {mac}"
+        )
+
+    for part in parts:
+        if len(part) != 2:
+            raise ValueError(
+                f"Each MAC address octet must be 2 hex digits, got: {mac}"
+            )
+        try:
+            int(part, 16)
+        except ValueError:
+            raise ValueError(
+                f"MAC address must contain hex digits (0-9, a-f), got: {mac}"
+            )
+
+    # Check if wildcard when not allowed
+    if not allow_wildcard and mac.lower() == "00:00:00:00:00:00":
+        raise ValueError(
+            "Wildcard MAC address (00:00:00:00:00:00) not allowed"
+        )
+
+
+def validate_ip_address(ip: str, allow_wildcard: bool = True) -> None:
+    """
+    Validate IPv4 address format using Python's ipaddress module.
+
+    Used across firewall, system, router, and VPN objects.
+
+    Args:
+        ip: IPv4 address to validate
+        allow_wildcard: Allow 0.0.0.0 as wildcard (default: True)
+
+    Raises:
+        ValueError: If IP address format is invalid
+
+    Example:
+        >>> validate_ip_address("192.168.1.1")  # Valid
+        >>> validate_ip_address("0.0.0.0")  # Valid wildcard
+        >>> validate_ip_address("invalid")  # Raises ValueError
+        >>> validate_ip_address("256.1.1.1")  # Raises ValueError
+    """
+    if not ip:
+        raise ValueError("IP address is required")
+
+    # Try to parse as IPv4 address
+    try:
+        ip_obj = ipaddress.IPv4Address(ip)
+    except (ipaddress.AddressValueError, ValueError) as e:
+        raise ValueError(f"Invalid IPv4 address format: {ip}") from e
+
+    # Check if wildcard when not allowed
+    if not allow_wildcard and str(ip_obj) == "0.0.0.0":
+        raise ValueError("Wildcard IP address (0.0.0.0) not allowed")
+
+
+def validate_ipv6_address(ip: str, allow_wildcard: bool = True) -> None:
+    """
+    Validate IPv6 address format using Python's ipaddress module.
+
+    Used across firewall, system, router, and VPN objects.
+
+    Args:
+        ip: IPv6 address to validate
+        allow_wildcard: Allow :: as wildcard (default: True)
+
+    Raises:
+        ValueError: If IP address format is invalid
+
+    Example:
+        >>> validate_ipv6_address("2001:db8::1")  # Valid
+        >>> validate_ipv6_address("::")  # Valid wildcard
+        >>> validate_ipv6_address("invalid")  # Raises ValueError
+    """
+    if not ip:
+        raise ValueError("IPv6 address is required")
+
+    # Try to parse as IPv6 address
+    try:
+        ip_obj = ipaddress.IPv6Address(ip)
+    except (ipaddress.AddressValueError, ValueError) as e:
+        raise ValueError(f"Invalid IPv6 address format: {ip}") from e
+
+    # Check if wildcard when not allowed
+    if not allow_wildcard and str(ip_obj) == "::":
+        raise ValueError("Wildcard IPv6 address (::) not allowed")
+
+
+def validate_ip_network(network: str, version: int = 4) -> None:
+    """
+    Validate IP network/subnet format (CIDR notation).
+
+    Used across firewall, system, router, and VPN objects.
+
+    Args:
+        network: IP network in CIDR notation (e.g., '192.168.1.0/24')
+        version: IP version (4 or 6, default: 4)
+
+    Raises:
+        ValueError: If network format is invalid
+
+    Example:
+        >>> validate_ip_network("192.168.1.0/24")  # Valid IPv4
+        >>> validate_ip_network("2001:db8::/32", version=6)  # Valid IPv6
+        >>> validate_ip_network("invalid")  # Raises ValueError
+    """
+    if not network:
+        raise ValueError("IP network is required")
+
+    try:
+        if version == 4:
+            ipaddress.IPv4Network(network, strict=False)
+        elif version == 6:
+            ipaddress.IPv6Network(network, strict=False)
+        else:
+            raise ValueError(f"IP version must be 4 or 6, got {version}")
+    except (
+        ipaddress.AddressValueError,
+        ipaddress.NetmaskValueError,
+        ValueError,
+    ) as e:
+        raise ValueError(
+            f"Invalid IPv{version} network format: {network}"
+        ) from e
+
+
+# ============================================================================
+# Response Helpers
+# ============================================================================
+
+
+def get_name(response: Union[Dict[str, Any], Any]) -> Union[str, None]:
+    """
+    Extract the name/identifier from an API response.
+
+    FortiOS API responses include 'mkey' field after successful create/update
+    operations. This helper extracts it as 'name' for user convenience.
+
+    Args:
+        response: API response dictionary
+
+    Returns:
+        The object name if present, None otherwise
+
+    Example:
+        >>> result = fgt.firewall.schedule_onetime.create(name='test', ...)
+        >>> name = get_name(result)  # Returns 'test'
+        >>> print(f"Created schedule: {name}")
+
+        >>> # Instead of:
+        >>> print(f"Created: {result.get('mkey')}")  # Confusing!
+
+        >>> # Use:
+        >>> print(f"Created: {get_name(result)}")  # Clear!
+    """
+    if isinstance(response, dict):
+        return response.get("mkey")
+    return None
+
+
+def get_mkey(response: Union[Dict[str, Any], Any]) -> Union[str, None]:
+    """
+    Extract the mkey (management key) from an API response.
+
+    This is an alias for get_name() to maintain backward compatibility.
+    Prefer using get_name() for better readability.
+
+    Args:
+        response: API response dictionary
+
+    Returns:
+        The mkey value if present, None otherwise
+
+    Example:
+        >>> result = fgt.firewall.schedule_onetime.create(name='test', ...)
+        >>> name = get_mkey(result)  # Returns 'test'
+
+        >>> # Prefer get_name() instead:
+        >>> name = get_name(result)  # More intuitive!
+    """
+    return get_name(response)
+
+
+def get_results(
+    response: Union[Dict[str, Any], Any],
+) -> Union[List[Any], Dict[str, Any], None]:
+    """
+    Extract the results from an API response.
+
+    FortiOS API responses wrap data in a 'results' field. This helper
+    extracts it cleanly.
+
+    Args:
+        response: API response dictionary
+
+    Returns:
+        The results (list or dict) if present, None otherwise
+
+    Example:
+        >>> response = fgt.firewall.schedule_onetime.get()
+        >>> schedules = get_results(response)
+        >>> for schedule in schedules:
+        ...     print(schedule['name'])
+
+        >>> # Instead of:
+        >>> for schedule in response.get('results', []):  # Messy!
+        ...     print(schedule['name'])
+    """
+    if isinstance(response, dict):
+        return response.get("results")
+    return None
+
+
+def is_success(response: Union[Dict[str, Any], Any]) -> bool:
+    """
+    Check if an API response indicates success.
+
+    Args:
+        response: API response dictionary
+
+    Returns:
+        True if response status is 'success', False otherwise
+
+    Example:
+        >>> result = fgt.firewall.schedule_onetime.create(name='test', ...)
+        >>> if is_success(result):
+        ...     print(f"Created: {get_mkey(result)}")
+        ... else:
+        ...     print("Failed!")
+    """
+    if isinstance(response, dict):
+        return response.get("status") == "success"
+    return False

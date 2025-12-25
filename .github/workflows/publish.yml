@@ -6,10 +6,19 @@
 #
 # Publishing Flow:
 # 1. Tag pushed (v*.*.*)
-# 2. CI workflow runs (lint, type-check, security, build)
-# 3. Wait for CI to pass
-# 4. Publish to TestPyPI (validates package)
-# 5. Publish to PyPI (production)
+# 2. Validate version (check for dev/alpha/beta/rc)
+# 3. CI workflow runs (lint, type-check, security, build)
+# 4. Wait for CI to pass
+# 5. Publish to TestPyPI (validates package)
+# 6. Publish to PyPI (production) - ONLY if NOT a pre-release version
+# 7. Create GitHub Release (marked as pre-release if dev version)
+#
+# Pre-release Version Handling:
+# - Versions containing 'dev', 'alpha', 'beta', or 'rc' are considered pre-releases
+# - Pre-releases are published to TestPyPI for testing
+# - Pre-releases are BLOCKED from production PyPI automatically
+# - GitHub releases are created and marked as pre-release
+# - Example: v0.3.33.dev1 → TestPyPI only, production PyPI blocked
 #
 # Authentication:
 # - TestPyPI: Uses TEST_PYPI_API_TOKEN secret (token-based auth)
@@ -52,6 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get-version.outputs.version }}
+      is_prerelease: ${{ steps.check-prerelease.outputs.is_prerelease }}
 
     steps:
       - name: Checkout code
@@ -96,6 +106,21 @@ jobs:
           fi
 
           echo "✅ All version strings match: $VERSION"
+
+      - name: Check for dev/pre-release version
+        id: check-prerelease
+        run: |
+          VERSION=${{ steps.get-version.outputs.version }}
+
+          # Check if version contains dev, alpha, beta, rc
+          if [[ "$VERSION" =~ (dev|alpha|beta|rc) ]]; then
+            echo "is_prerelease=true" >> $GITHUB_OUTPUT
+            echo "⚠️  Pre-release version detected: $VERSION"
+            echo "   This version contains: ${BASH_REMATCH[1]}"
+          else
+            echo "is_prerelease=false" >> $GITHUB_OUTPUT
+            echo "✅ Production version: $VERSION"
+          fi
 
   build:
     name: Build Distribution
@@ -195,9 +220,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [validate-version, build, publish-testpypi]
     # Only publish to PyPI after successful TestPyPI publication AND CI passing
+    # IMPORTANT: Block dev/pre-release versions from production PyPI
     if: |
-      (github.event_name == 'push' && needs.publish-testpypi.result == 'success') ||
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'pypi')
+      needs.validate-version.outputs.is_prerelease == 'false' && (
+        (github.event_name == 'push' && needs.publish-testpypi.result == 'success') ||
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'pypi')
+      )
     environment:
       name: pypi
       url: https://pypi.org/project/hfortix/
@@ -206,6 +234,24 @@ jobs:
       id-token: write  # IMPORTANT: for trusted publishing
 
     steps:
+      - name: Block pre-release versions
+        run: |
+          VERSION=${{ needs.validate-version.outputs.version }}
+          IS_PRERELEASE=${{ needs.validate-version.outputs.is_prerelease }}
+
+          if [[ "$IS_PRERELEASE" == "true" ]]; then
+            echo "❌ BLOCKED: Cannot publish pre-release version to production PyPI"
+            echo "   Version: $VERSION"
+            echo "   Contains: dev, alpha, beta, or rc"
+            echo ""
+            echo "💡 Pre-release versions should only be published to TestPyPI"
+            echo "   To publish this version, use:"
+            echo "   ./upload_to_testpypi.sh $VERSION"
+            exit 1
+          fi
+
+          echo "✅ Production version validated: $VERSION"
+
       - name: Download distribution artifacts
         uses: actions/download-artifact@v7
         with:
@@ -231,7 +277,13 @@ jobs:
     name: Create GitHub Release
     runs-on: ubuntu-latest
     needs: [validate-version, publish-pypi]
-    if: github.event_name == 'push'
+    # Create release even if PyPI publish was skipped (for dev versions)
+    # But only for tag pushes, not manual workflow runs
+    if: |
+      github.event_name == 'push' && (
+        needs.publish-pypi.result == 'success' ||
+        needs.validate-version.outputs.is_prerelease == 'true'
+      )
 
     permissions:
       contents: write
@@ -262,7 +314,7 @@ jobs:
         with:
           body_path: release-notes.md
           draft: false
-          prerelease: false
+          prerelease: ${{ needs.validate-version.outputs.is_prerelease == 'true' }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -280,3 +332,28 @@ jobs:
           echo "🎉 Successfully published hfortix v$VERSION to PyPI!"
           echo "📦 Package: https://pypi.org/project/hfortix/$VERSION/"
           echo "📝 Release: https://github.com/${{ github.repository }}/releases/tag/v$VERSION"
+
+  notify-prerelease-blocked:
+    name: Notify Pre-release Blocked
+    runs-on: ubuntu-latest
+    needs: [validate-version, publish-testpypi]
+    if: |
+      always() &&
+      needs.validate-version.outputs.is_prerelease == 'true' &&
+      needs.publish-testpypi.result == 'success'
+
+    steps:
+      - name: Pre-release blocked message
+        run: |
+          VERSION=${{ needs.validate-version.outputs.version }}
+          echo "⚠️  Pre-release version detected: v$VERSION"
+          echo ""
+          echo "✅ Published to TestPyPI: https://test.pypi.org/project/hfortix/$VERSION/"
+          echo "❌ Blocked from production PyPI (contains dev/alpha/beta/rc)"
+          echo ""
+          echo "💡 To install this version for testing:"
+          echo "   pip install --index-url https://test.pypi.org/simple/ \\"
+          echo "               --extra-index-url https://pypi.org/simple/ \\"
+          echo "               hfortix==$VERSION"
+          echo ""
+          echo "📝 When ready for production, create a release version (e.g., ${VERSION%.dev*})"

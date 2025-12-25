@@ -150,6 +150,7 @@ class ScheduleOnetime:
         before: str | None = None,
         after: str | None = None,
         uuid: str | None = None,
+        start: str | None = None,
         start_utc: str | None = None,
         end: str | None = None,
         end_utc: str | None = None,
@@ -174,6 +175,8 @@ class ScheduleOnetime:
             name: Onetime schedule name. (optional)
             uuid: Universally Unique Identifier (UUID; automatically assigned
             but can be manually reset). (optional)
+            start: Schedule start date and time, format hh:mm yyyy/mm/dd.
+            (optional)
             start_utc: Schedule start date and time, in epoch format.
             (optional)
             end: Schedule end date and time, format hh:mm yyyy/mm/dd.
@@ -215,6 +218,8 @@ class ScheduleOnetime:
             data_payload["name"] = name
         if uuid is not None:
             data_payload["uuid"] = uuid
+        if start is not None:
+            data_payload["start"] = start
         if start_utc is not None:
             data_payload["start-utc"] = start_utc
         if end is not None:
@@ -325,6 +330,7 @@ class ScheduleOnetime:
         nkey: str | None = None,
         name: str | None = None,
         uuid: str | None = None,
+        start: str | None = None,
         start_utc: str | None = None,
         end: str | None = None,
         end_utc: str | None = None,
@@ -346,6 +352,8 @@ class ScheduleOnetime:
             name: Onetime schedule name. (optional)
             uuid: Universally Unique Identifier (UUID; automatically assigned
             but can be manually reset). (optional)
+            start: Schedule start date and time, format hh:mm yyyy/mm/dd.
+            (optional)
             start_utc: Schedule start date and time, in epoch format.
             (optional)
             end: Schedule end date and time, format hh:mm yyyy/mm/dd.
@@ -381,6 +389,8 @@ class ScheduleOnetime:
             data_payload["name"] = name
         if uuid is not None:
             data_payload["uuid"] = uuid
+        if start is not None:
+            data_payload["start"] = start
         if start_utc is not None:
             data_payload["start-utc"] = start_utc
         if end is not None:

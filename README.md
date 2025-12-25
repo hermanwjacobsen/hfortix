@@ -47,29 +47,34 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.24 - December 24, 2025):**
+**Latest Features (v0.3.34 - December 25, 2025):**
+
+- 📋 **Schedule Convenience Methods**: All schedule types now have consistent convenience methods
+  - `get_by_name()` - Get schedule data directly (not full API response)
+  - `rename()` - Rename a schedule in one call
+  - `clone()` - Clone schedule with optional modifications
+  - Response helpers: `get_mkey()`, `is_success()`, `get_results()`
+  - Available for: `schedule_onetime`, `schedule_recurring`, `schedule_group`
+  - See `SCHEDULE_CONVENIENCE_METHODS.md` and `examples/schedule_convenience_demo.py`
+
+- 🔗 **IP/MAC Binding Convenience Wrapper**: New helper class for firewall IP/MAC binding
+  - CRUD operations: `create()`, `update()`, `delete()`, `get()`, `get_all()`
+  - Convenience methods: `exists()`, `enable()`, `disable()`
+  - Full validation: IP addresses, MAC addresses, status values, name length
+  - Comprehensive test suite: `examples/ipmacbinding_test_suite.py` (19 pytest tests)
+
+- � **Circuit Breaker Auto-Retry**: Optional automatic retry when circuit opens
+  - New parameters: `circuit_breaker_auto_retry`, `circuit_breaker_max_retries`, `circuit_breaker_retry_delay`
+  - Useful for production scripts requiring resilience
+  - Fail-fast behavior preserved by default
+  - See `examples/circuit_breaker_test.py` for demonstrations
+
+**Features from v0.3.24 (December 24, 2025):**
 
 - 🎯 **Exception Hierarchy & Retry Logic**: Intelligent error handling support
-  - `RetryableError` and `NonRetryableError` base classes for retry strategies
-  - Helper functions: `is_retryable_error()`, `get_retry_delay()`
-  - All exceptions updated with proper inheritance
-
 - 🆕 **New Exception Types**: Better error classification
-  - `ConfigurationError` - FortiOS instance misconfiguration
-  - `VDOMError` - VDOM-specific errors with vdom attribute
-  - `OperationNotSupportedError` - Unsupported operations on endpoints
-
-- 📊 **Enhanced Exception Metadata**: Better debugging
-  - `request_id` - Unique UUID for each request (auto-generated)
-  - `timestamp` - ISO 8601 timestamp when error occurred
-  - Enhanced `__str__()` with emoji hints (💡)
-  - Added `__repr__()` for developer-friendly debugging
-
+- 📊 **Enhanced Exception Metadata**: Better debugging with request_id and timestamps
 - 💡 **Recovery Suggestions**: Built-in error recovery guidance
-  - `suggest_recovery()` method on common exceptions
-  - Helps developers understand how to handle errors
-
-- ✅ **Comprehensive Tests**: Full test coverage (14 new tests, all passing)
 
 **Features from v0.3.23 (December 23, 2025):**
 
@@ -226,10 +231,16 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **[docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md)** - Using the validation framework (832 validators)
 - **[docs/BUILDER_PATTERN_GUIDE.md](docs/BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details
 - **[docs/FIREWALL_POLICY_WRAPPER.md](docs/FIREWALL_POLICY_WRAPPER.md)** - Firewall policy convenience wrappers
+- **[SCHEDULE_CONVENIENCE_METHODS.md](SCHEDULE_CONVENIENCE_METHODS.md)** - Schedule convenience methods (NEW in v0.3.34)
 - **[docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md)** - Configurable error handling for wrappers
 - **[docs/ASYNC_GUIDE.md](docs/ASYNC_GUIDE.md)** - Async/await patterns and best practices
 - **[docs/FILTERING_GUIDE.md](docs/FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
 - **[docs/PERFORMANCE_TESTING.md](docs/PERFORMANCE_TESTING.md)** - Performance testing and optimization
+
+> **⚡ Performance Note**: When using convenience wrappers like `fgt.firewall.policy.exists()`:
+> - **By ID** (`policy_id=123`) - Direct API call, fastest method
+> - **By Name** (`name="MyPolicy"`) - Requires recursive lookup through all policies, slower but more convenient
+> - Recommendation: Use `policy_id` for performance-critical code, `name` for readability and convenience
 
 ### API Reference
 
@@ -800,15 +811,46 @@ hfortix.set_log_level('INFO')  # See request/response timing
 **Circuit Breaker States:**
 
 - `closed` (normal): All requests pass through
-- `open` (failing): Requests fail immediately without attempting connection
+- `open` (failing): Requests fail immediately without attempting connection (fail-fast)
 - `half_open` (testing): One request allowed to test if service recovered
 
 **When Circuit Opens:**
 
-- After 5 consecutive failures (configurable via `circuit_breaker_threshold`)
-- Automatically transitions to `half_open` after 60s (configurable via `circuit_breaker_timeout`)
+- After 10 consecutive failures (configurable via `circuit_breaker_threshold`, default changed from 5 to 10)
+- Automatically transitions to `half_open` after 30s (configurable via `circuit_breaker_timeout`, default changed from 60s to 30s)
 - If test request succeeds → back to `closed`
-- If test request fails → back to `open` for another 60s
+- If test request fails → back to `open` for another 30s
+
+**Circuit Breaker Behavior Options:**
+
+1. **Fail-fast (default)**: Immediately raises `CircuitBreakerOpenError` when circuit opens
+   - Best for test environments and catching issues early
+   - No waiting - fails immediately
+
+2. **Auto-retry (optional)**: Automatically waits and retries when circuit opens
+   - Enable with `circuit_breaker_auto_retry=True`
+   - Configure max retries with `circuit_breaker_max_retries` (default: 3)
+   - Configure retry delay with `circuit_breaker_retry_delay` (default: 5.0 seconds)
+   - Best for production scripts that need resilience
+   - ⚠️ WARNING: Not recommended for tests - may cause long delays
+
+**Important**: `circuit_breaker_retry_delay` and `circuit_breaker_timeout` serve different purposes:
+- `circuit_breaker_retry_delay` (5s): How long to wait **between retry attempts**
+- `circuit_breaker_timeout` (30s): How long circuit stays **open before testing recovery**
+
+```python
+# Fail-fast (default)
+fgt = FortiOS(host="192.0.2.10", token="token")
+
+# Auto-retry with custom delay for production resilience
+fgt = FortiOS(
+    host="192.0.2.10",
+    token="token",
+    circuit_breaker_auto_retry=True,
+    circuit_breaker_max_retries=3,
+    circuit_breaker_retry_delay=5.0  # Wait 5s between retries
+)
+```
 
 ### Dual-Pattern Interface ✨
 

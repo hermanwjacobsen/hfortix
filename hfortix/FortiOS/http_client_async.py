@@ -71,8 +71,11 @@ class AsyncHTTPClient(BaseHTTPClient):
         connect_timeout: float = 10.0,
         read_timeout: float = 300.0,
         user_agent: Optional[str] = None,
-        circuit_breaker_threshold: int = 5,
-        circuit_breaker_timeout: float = 60.0,
+        circuit_breaker_threshold: int = 10,
+        circuit_breaker_timeout: float = 30.0,
+        circuit_breaker_auto_retry: bool = False,
+        circuit_breaker_max_retries: int = 3,
+        circuit_breaker_retry_delay: float = 5.0,
         max_connections: int = 100,
         max_keepalive_connections: int = 20,
         session_idle_timeout: Optional[float] = 300.0,
@@ -100,9 +103,24 @@ class AsyncHTTPClient(BaseHTTPClient):
             300.0)
             user_agent: Custom User-Agent header
             circuit_breaker_threshold: Number of consecutive failures before
-            opening circuit (default: 5)
+            opening circuit (default: 10)
             circuit_breaker_timeout: Seconds to wait before transitioning to
-            half-open (default: 60.0)
+            half-open (default: 30.0)
+            circuit_breaker_auto_retry: When True, automatically wait and retry
+            when circuit breaker
+                                       opens instead of raising error
+                                       immediately (default: False).
+                                       WARNING: Not recommended for test
+                                       environments - may cause long delays.
+            circuit_breaker_max_retries: Maximum number of auto-retry attempts
+            when circuit breaker
+                                        opens (default: 3). Only used when
+                                        circuit_breaker_auto_retry=True.
+            circuit_breaker_retry_delay: Delay in seconds between retry
+            attempts when auto-retry enabled (default: 5.0).
+                                        Separate from circuit_breaker_timeout,
+                                        which controls when the circuit
+                                        transitions from open to half-open.
             max_connections: Maximum number of connections in the pool
             (default: 100)
             max_keepalive_connections: Maximum number of keepalive connections
@@ -155,6 +173,11 @@ class AsyncHTTPClient(BaseHTTPClient):
             max_keepalive_connections=max_keepalive_connections,
             adaptive_retry=adaptive_retry,
         )
+
+        # Store circuit breaker auto-retry settings
+        self._circuit_breaker_auto_retry = circuit_breaker_auto_retry
+        self._circuit_breaker_max_retries = circuit_breaker_max_retries
+        self._circuit_breaker_retry_delay = circuit_breaker_retry_delay
 
         # Set default User-Agent if not provided
         if user_agent is None:
@@ -325,6 +348,65 @@ class AsyncHTTPClient(BaseHTTPClient):
             "idle_connections": 0,
         }
 
+    async def _check_circuit_breaker(  # type: ignore[override]
+        self, endpoint: str
+    ) -> None:
+        """
+        Override base class circuit breaker check with optional auto-retry
+
+        Args:
+            endpoint: API endpoint being checked
+
+        Raises:
+            CircuitBreakerOpenError: If circuit breaker is open and
+                auto-retry is disabled or max retries exceeded
+        """
+        if not self._circuit_breaker_auto_retry:
+            # Use default fail-fast behavior (call base class method,
+            # not async)
+            super()._check_circuit_breaker(endpoint)
+            return
+
+        # Auto-retry enabled - wait and retry when circuit breaker opens
+        retry_count = 0
+        while retry_count < self._circuit_breaker_max_retries:
+            if self._circuit_breaker["state"] == "open":
+                retry_count += 1
+                logger.info(
+                    "Circuit breaker OPEN - auto-retry %d/%d after %.1fs",
+                    retry_count,
+                    self._circuit_breaker_max_retries,
+                    self._circuit_breaker_retry_delay,
+                )
+                await asyncio.sleep(self._circuit_breaker_retry_delay)
+
+                # Check if enough time has elapsed for circuit to transition
+                elapsed = time.time() - (
+                    self._circuit_breaker["last_failure_time"] or 0
+                )
+                if elapsed >= self._circuit_breaker["timeout"]:
+                    # Timeout elapsed, transition to half_open
+                    self._circuit_breaker["state"] = "half_open"
+                    logger.info(
+                        "Circuit breaker transitioning to HALF_OPEN " "state"
+                    )
+                # If timeout not elapsed, circuit stays open but we
+                # retry anyway (the request will fail-fast again if
+                # service still down)
+                return
+            else:
+                # Circuit breaker is closed or half_open, proceed
+                return
+
+        # Max retries exceeded, raise error
+        from .exceptions import CircuitBreakerOpenError
+
+        raise CircuitBreakerOpenError(
+            f"Circuit breaker is OPEN for {endpoint}. "
+            f"Max retries ({self._circuit_breaker_max_retries}) exceeded. "
+            "Service appears to be down."
+        )
+
     def _handle_response_errors(
         self,
         response: httpx.Response,
@@ -442,7 +524,7 @@ class AsyncHTTPClient(BaseHTTPClient):
 
         # Check circuit breaker
         try:
-            self._check_circuit_breaker(endpoint_key)
+            await self._check_circuit_breaker(endpoint_key)
         except RuntimeError:
             logger.error(
                 "Circuit breaker blocked request",

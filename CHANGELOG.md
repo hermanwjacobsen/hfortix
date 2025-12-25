@@ -5,7 +5,117 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.34] - 2025-12-25
+
+### Added
+
+- **Schedule Convenience Methods**: Added comprehensive convenience methods to all schedule types
+  - **New Methods** (available for `schedule_onetime`, `schedule_recurring`, `schedule_group`):
+    - `get_by_name(name, vdom=None)`: Returns schedule data directly (not full API response)
+    - `rename(name, new_name, vdom=None)`: Rename a schedule in one call
+    - `clone(name, new_name, **overrides, vdom=None)`: Clone schedule with optional modifications
+  - **Response Helpers** (added to `hfortix.FortiOS.api._helpers`):
+    - `get_mkey(response)`: Extract created object's name from response
+    - `is_success(response)`: Check if operation succeeded
+    - `get_results(response)`: Extract results from response
+  - Matches the convenience method pattern from `firewallPolicy`
+  - Makes schedule management more user-friendly and consistent
+  - See `SCHEDULE_CONVENIENCE_METHODS.md` for full documentation
+  - See `examples/schedule_convenience_demo.py` for usage examples
+
+- **IP/MAC Binding Convenience Wrapper**: New helper class for firewall IP/MAC binding management
+  - Located at `hfortix.FortiOS.api.v2.cmdb.firewall._helpers.ipmacbinding_table`
+  - **Core Methods**:
+    - `create(seq_num, ip, mac, name=None, status='enable', vdom=None)`: Create new binding
+    - `update(seq_num, **kwargs, vdom=None)`: Update existing binding
+    - `delete(seq_num, vdom=None)`: Delete binding
+    - `get(seq_num=None, vdom=None)`: Get binding(s) by sequence number
+    - `get_all(vdom=None)`: Get all bindings
+  - **Convenience Methods**:
+    - `exists(seq_num, vdom=None)`: Check if binding exists
+    - `enable(seq_num, vdom=None)`: Enable a binding
+    - `disable(seq_num, vdom=None)`: Disable a binding
+  - **Validation**: IP addresses, MAC addresses, status values, name length
+  - Comprehensive test suite: `examples/ipmacbinding_test_suite.py` (19 pytest tests)
+
+- **Circuit Breaker Auto-Retry**: Optional automatic retry when circuit breaker opens
+  - New parameters:
+    - `circuit_breaker_auto_retry` (bool, default=False) - Enable/disable auto-retry
+    - `circuit_breaker_max_retries` (int, default=3) - Maximum retry attempts
+    - `circuit_breaker_retry_delay` (float, default=5.0) - Delay in seconds between retries
+  - When enabled, client automatically waits and retries when circuit breaker opens instead of failing immediately
+  - Useful for production scripts that need resilience against temporary service degradation
+  - **IMPORTANT**: Retry delay is configurable and separate from circuit_breaker_timeout
+    - `circuit_breaker_retry_delay`: How long to wait between retry attempts (default: 5s)
+    - `circuit_breaker_timeout`: How long circuit stays open before transitioning to half-open (default: 30s)
+  - **WARNING**: Not recommended for test environments - may cause long delays
+  - Fail-fast behavior is preserved by default (auto-retry disabled)
+  - Available in both sync (`HTTPClient`) and async (`AsyncHTTPClient`) clients
+  - Examples:
+
+    ```python
+    # Fail-fast (default) - raises CircuitBreakerOpenError immediately
+    fgt = FortiOS(host="192.0.2.10", token="api_token")
+
+    # Auto-retry - waits 5 seconds between retries (up to 3 attempts)
+    fgt = FortiOS(
+        host="192.0.2.10",
+        token="api_token",
+        circuit_breaker_auto_retry=True,
+        circuit_breaker_max_retries=3,
+        circuit_breaker_retry_delay=5.0  # Wait 5s between retries
+    )
+
+    # Custom retry delay for slower recovery scenarios
+    fgt = FortiOS(
+        host="192.0.2.10",
+        token="api_token",
+        circuit_breaker_auto_retry=True,
+        circuit_breaker_max_retries=5,
+        circuit_breaker_retry_delay=10.0  # Wait 10s between retries
+    )
+    ```
+
+- **Pytest Test Suites**: Comprehensive test coverage for convenience wrapper classes
+  - `examples/ipmacbinding_test_suite.py`: 19 tests covering IP/MAC binding CRUD operations
+    - Tests: create, read, update, delete operations
+    - Validation: IP addresses, MAC addresses, status values, name length
+    - Convenience methods: enable(), disable(), exists()
+    - Error handling: duplicate entries, non-existent resources
+    - List operations and cleanup fixtures
+  - `examples/circuit_breaker_test.py`: Circuit breaker behavior demonstration
+    - Fail-fast vs auto-retry comparison
+    - Circuit breaker state transitions
+    - Recovery scenarios with valid endpoints
+  - All tests use pytest framework with fixtures for cleanup
+  - Tests validate both convenience wrappers and direct API access
+
+### Changed
+
+- **Circuit Breaker Defaults**: Adjusted thresholds for better testing and general use
+  - `circuit_breaker_threshold`: 5 → 10 consecutive failures (more tolerant)
+  - `circuit_breaker_timeout`: 60.0s → 30.0s (faster recovery)
+  - **Rationale**: Previous settings (5 failures, 60s timeout) were too aggressive for:
+    - Testing environments where some failures are expected
+    - Development workflows with frequent code changes
+    - Networks with occasional transient issues
+  - New settings still provide circuit breaker protection while being more practical
+  - Users can override via `circuit_breaker_threshold` and `circuit_breaker_timeout` parameters if needed
+
+- **FirewallPolicy.exists()**: Enhanced to support lookup by name or policy ID
+  - Added optional `name` parameter for checking policy existence by name
+  - `policy_id` parameter is now optional (either `policy_id` or `name` required)
+  - Maintains backward compatibility - existing code using `policy_id` continues to work
+  - **Performance Note**: Using `name` performs a recursive lookup (slower), while `policy_id` uses direct API call (faster)
+  - Improves API consistency with schedule wrapper methods
+  - Examples:
+    ```python
+    # Direct lookup by ID (recommended for performance)
+    exists = fgt.firewall.policy.exists(policy_id=5)
+
+    # Lookup by name (convenient but slower)
+    exists = fgt.firewall.policy.exists(name="Allow-Web-Traffic")
+    ```
 
 ## [0.3.33] - 2025-12-25
 

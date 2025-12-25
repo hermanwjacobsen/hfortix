@@ -20,14 +20,21 @@ Exceptions:
 """
 
 # Version information
-__version__ = "0.3.32"
+__version__ = "0.3.34"
 __author__ = "Herman W. Jacobsen"
 __license__ = "Proprietary"
 __email__ = "herman@wjacobsen.fo"
 __url__ = "https://github.com/hermanwjacobsen/hfortix"
 
 # Version info tuple for programmatic access
-VERSION = tuple(map(int, __version__.split(".")))
+# Handle dev/rc/alpha/beta versions by stripping them for the tuple
+_version_base = (
+    __version__.split(".dev")[0]
+    .split(".rc")[0]
+    .split(".alpha")[0]
+    .split(".beta")[0]
+)
+VERSION = tuple(map(int, _version_base.split(".")))
 
 from .exceptions import (  # noqa: E402
     APIError,

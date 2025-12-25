@@ -23,6 +23,9 @@ from typing import (  # noqa: F401
 # Import shared helpers from the API layer
 from ..api._helpers import build_cmdb_payload_normalized
 
+# Import shared firewall helpers
+from ._helpers import validate_address_pairs, validate_policy_id
+
 if TYPE_CHECKING:
     from ..fortios import FortiOS
 
@@ -133,14 +136,15 @@ class FirewallPolicy:
         name: str,
         srcintf: Union[str, List[str]],
         dstintf: Union[str, List[str]],
-        srcaddr: Union[str, List[str]],
-        dstaddr: Union[str, List[str]],
-        # Core optional parameters (no defaults per API spec)
+        service: Union[str, List[str]],
+        # Source/Destination addresses (at least one of each pair required)
+        srcaddr: Optional[Union[str, List[str]]] = None,
+        dstaddr: Optional[Union[str, List[str]]] = None,
+        # Core optional parameters
         action: Optional[str] = None,
-        schedule: Optional[str] = None,
-        service: Optional[Union[str, List[str]]] = None,
+        schedule: str = "always",
         status: Optional[str] = None,
-        # IPv6 addresses
+        # IPv6 addresses (alternative to srcaddr/dstaddr)
         srcaddr6: Optional[Union[str, List[str]]] = None,
         dstaddr6: Optional[Union[str, List[str]]] = None,
         # Internet Services (IPv4) - destination
@@ -364,21 +368,31 @@ class FirewallPolicy:
 
         Args:
             # Core required parameters
-            name: Policy name
-            srcintf: Source interface(s) - string or list
-            dstintf: Destination interface(s) - string or list
-            srcaddr: Source address(es) - string or list
-            dstaddr: Destination address(es) - string or list
+            name: Policy name (required)
+            srcintf: Source interface(s) - string or list (required)
+            dstintf: Destination interface(s) - string or list (required)
+            service: Service(s) - string or list (required)
 
-            # Core optional parameters (no defaults - FortiOS uses its own defaults)  # noqa: E501
-            action: Policy action ('accept', 'deny', 'ipsec')
-            schedule: Schedule name
-            service: Service(s) - string or list
-            status: Enable/disable policy ('enable', 'disable')
+            # Address pairs (at least one complete pair required)
+            # IPv4 pair - must provide BOTH srcaddr AND dstaddr together
+            srcaddr: Source IPv4 address(es) - string or list
+                (required with dstaddr)
+            dstaddr: Destination IPv4 address(es) - string or list
+                (required with srcaddr)
 
-            # IPv6 Addresses
+            # IPv6 pair - must provide BOTH srcaddr6 AND dstaddr6 together
             srcaddr6: Source IPv6 address(es) - string or list
+                (required with dstaddr6)
             dstaddr6: Destination IPv6 address(es) - string or list
+                (required with srcaddr6)
+
+            # Note: You must provide at least one complete pair
+            # (IPv4 OR IPv6 OR both)
+
+            # Core optional parameters
+            action: Policy action ('accept', 'deny', 'ipsec')
+            schedule: Schedule name (default: "always")
+            status: Enable/disable policy ('enable', 'disable')
 
             # Internet Services (IPv4) - Destination
             internet_service: Enable/disable Internet Services ('enable',
@@ -670,16 +684,41 @@ class FirewallPolicy:
             None (if error_mode="log" and error occurs)
 
         Raises:
-            Various APIError exceptions (if error_mode="raise" and error occurs)
+            Various APIError exceptions (if error_mode="raise" and
+                error occurs)
 
         Example:
-            >>> # Simple policy
+            >>> # Simple IPv4 policy (schedule defaults to "always")
             >>> result = fgt.firewall.policy.create(
             ...     name='Allow-Web-Traffic',
             ...     srcintf='port1',
             ...     dstintf='port2',
             ...     srcaddr='internal-net',
             ...     dstaddr='all',
+            ...     service=['HTTP', 'HTTPS'],
+            ...     action='accept'
+            ... )
+
+            >>> # IPv6 policy
+            >>> result = fgt.firewall.policy.create(
+            ...     name='Allow-IPv6-Web',
+            ...     srcintf='port1',
+            ...     dstintf='port2',
+            ...     srcaddr6='internal-net-v6',
+            ...     dstaddr6='all',
+            ...     service=['HTTP', 'HTTPS'],
+            ...     action='accept'
+            ... )
+
+            >>> # Dual-stack policy (both IPv4 and IPv6)
+            >>> result = fgt.firewall.policy.create(
+            ...     name='Allow-DualStack-Web',
+            ...     srcintf='port1',
+            ...     dstintf='port2',
+            ...     srcaddr='internal-net',
+            ...     srcaddr6='internal-net-v6',
+            ...     dstaddr='all',
+            ...     dstaddr6='all',
             ...     service=['HTTP', 'HTTPS'],
             ...     action='accept'
             ... )
@@ -693,6 +732,7 @@ class FirewallPolicy:
             ...     dstaddr='all',
             ...     service=['HTTP', 'HTTPS'],
             ...     action='accept',
+            ...     schedule='business-hours',  # Override default
             ...     inspection_mode='proxy',
             ...     ssl_ssh_profile='deep-inspection',
             ...     av_profile='default',
@@ -703,6 +743,9 @@ class FirewallPolicy:
             ...     logtraffic='all'
             ... )
         """
+        # Validate address pairs using shared helper
+        validate_address_pairs(srcaddr, dstaddr, srcaddr6, dstaddr6)
+
         # Use the shared builder function to construct the policy payload
         policy_data = build_cmdb_payload_normalized(
             name=name,
@@ -1210,6 +1253,9 @@ class FirewallPolicy:
             ...     dstaddr='all'
             ... )
         """
+        # Validate policy_id
+        validate_policy_id(policy_id, "update")
+
         # Use the shared builder function to construct the policy payload
         policy_data = build_cmdb_payload_normalized(
             name=name,
@@ -1430,6 +1476,9 @@ class FirewallPolicy:
         Example:
             >>> result = fgt.firewall.policy.delete(policy_id=1)
         """
+        # Validate policy_id
+        validate_policy_id(policy_id, "delete")
+
         api_params: dict[str, Any] = {}
         if vdom:
             api_params["vdom"] = vdom
@@ -1440,23 +1489,50 @@ class FirewallPolicy:
 
     def exists(
         self,
-        policy_id: Union[str, int],
+        policy_id: Optional[Union[str, int]] = None,
+        name: Optional[str] = None,
         vdom: Optional[str] = None,
     ) -> Union[bool, Coroutine[Any, Any, bool]]:
         """
-        Check if a firewall policy exists.
+        Check if a firewall policy exists by ID or name.
 
         Args:
-            policy_id: Policy ID to check
+            policy_id: Policy ID to check (optional if name is provided)
+            name: Policy name to check (optional if policy_id is provided)
             vdom: Virtual domain name (optional)
 
         Returns:
             True if policy exists, False otherwise
 
-        Example:
+        Raises:
+            ValueError: If neither policy_id nor name is provided
+
+        Examples:
+            >>> # Check by policy ID
             >>> if fgt.firewall.policy.exists(policy_id=1):
             ...     print("Policy exists")
+
+            >>> # Check by policy name
+            >>> if fgt.firewall.policy.exists(
+            ...     name="Allow-Web-Traffic"
+            ... ):
+            ...     print("Policy exists")
         """
+        # Validate that at least one identifier is provided
+        if not policy_id and not name:
+            raise ValueError("Either policy_id or name must be provided")
+
+        # If name is provided, use get_by_name
+        # (less efficient but more flexible)
+        if name:
+            try:
+                policy = self.get_by_name(name=name, vdom=vdom)
+                return policy is not None and policy != {}
+            except Exception:
+                return False
+
+        # Original logic for policy_id (more efficient direct API call)
+        validate_policy_id(policy_id, "exists")
         return self._api.exists(policyid=str(policy_id), vdom=vdom)
 
     def move(
@@ -1492,6 +1568,9 @@ class FirewallPolicy:
             >>> result = fgt.firewall.policy.move(policy_id=15,
             position='bottom')
         """
+        # Validate policy_id
+        validate_policy_id(policy_id, "move")
+
         # Build move-specific parameters
         move_kwargs: Dict[str, Any] = {"action": "move"}
 
@@ -1634,6 +1713,9 @@ class FirewallPolicy:
             ...     additional_changes={'comments': 'Testing clone feature'}
             ... )
         """
+        # Validate policy_id
+        validate_policy_id(policy_id, "clone")
+
         # Get the original policy
         original_response = self.get(policy_id=policy_id, vdom=vdom)
 
@@ -1703,6 +1785,9 @@ class FirewallPolicy:
             >>> result = fgt.firewall.policy.rename(policy_id=1,
             new_name='Updated-Policy-Name')
         """
+        # Validate policy_id
+        validate_policy_id(policy_id, "rename")
+
         return self.update(policy_id=policy_id, name=new_name, vdom=vdom)
 
     def enable(
@@ -1723,6 +1808,9 @@ class FirewallPolicy:
         Example:
             >>> result = fgt.firewall.policy.enable(policy_id=1)
         """
+        # Validate policy_id
+        validate_policy_id(policy_id, "enable")
+
         return self.update(policy_id=policy_id, status="enable", vdom=vdom)
 
     def disable(
@@ -1743,6 +1831,9 @@ class FirewallPolicy:
         Example:
             >>> result = fgt.firewall.policy.disable(policy_id=1)
         """
+        # Validate policy_id
+        validate_policy_id(policy_id, "disable")
+
         return self.update(policy_id=policy_id, status="disable", vdom=vdom)
 
     def get_by_name(

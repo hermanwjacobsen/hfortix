@@ -19,9 +19,21 @@ class FirewallNamespace:
 
     def __init__(self, fortios_instance: "FortiOS"):
         """Initialize with reference to FortiOS instance."""
-        from .firewall import FirewallPolicy
+        from .firewall import (
+            FirewallPolicy,
+            IPMACBindingSetting,
+            IPMACBindingTable,
+            ScheduleGroup,
+            ScheduleOnetime,
+            ScheduleRecurring,
+        )
 
         self.policy = FirewallPolicy(fortios_instance)
+        self.ipmac_binding_setting = IPMACBindingSetting(fortios_instance)
+        self.ipmac_binding_table = IPMACBindingTable(fortios_instance)
+        self.schedule_recurring = ScheduleRecurring(fortios_instance)
+        self.schedule_onetime = ScheduleOnetime(fortios_instance)
+        self.schedule_group = ScheduleGroup(fortios_instance)
 
 
 class FortiOS:
@@ -96,8 +108,11 @@ class FortiOS:
         connect_timeout: float = 10.0,
         read_timeout: float = 300.0,
         user_agent: Optional[str] = None,
-        circuit_breaker_threshold: int = 5,
-        circuit_breaker_timeout: float = 60.0,
+        circuit_breaker_threshold: int = 10,
+        circuit_breaker_timeout: float = 30.0,
+        circuit_breaker_auto_retry: bool = False,
+        circuit_breaker_max_retries: int = 3,
+        circuit_breaker_retry_delay: float = 5.0,
         max_connections: int = 10,
         max_keepalive_connections: int = 5,
         session_idle_timeout: Union[int, float, None] = 300,
@@ -127,8 +142,11 @@ class FortiOS:
         connect_timeout: float = 10.0,
         read_timeout: float = 300.0,
         user_agent: Optional[str] = None,
-        circuit_breaker_threshold: int = 5,
-        circuit_breaker_timeout: float = 60.0,
+        circuit_breaker_threshold: int = 10,
+        circuit_breaker_timeout: float = 30.0,
+        circuit_breaker_auto_retry: bool = False,
+        circuit_breaker_max_retries: int = 3,
+        circuit_breaker_retry_delay: float = 5.0,
         max_connections: int = 10,
         max_keepalive_connections: int = 5,
         session_idle_timeout: Union[int, float, None] = 300,
@@ -157,8 +175,11 @@ class FortiOS:
         connect_timeout: float = 10.0,
         read_timeout: float = 300.0,
         user_agent: Optional[str] = None,
-        circuit_breaker_threshold: int = 5,
-        circuit_breaker_timeout: float = 60.0,
+        circuit_breaker_threshold: int = 10,
+        circuit_breaker_timeout: float = 30.0,
+        circuit_breaker_auto_retry: bool = False,
+        circuit_breaker_max_retries: int = 3,
+        circuit_breaker_retry_delay: float = 5.0,
         max_connections: int = 10,
         max_keepalive_connections: int = 5,
         session_idle_timeout: Union[int, float, None] = 300,
@@ -218,9 +239,25 @@ class FortiOS:
                        Useful for identifying different applications/teams in
                        FortiGate logs
             circuit_breaker_threshold: Number of consecutive failures before
-            opening circuit (default: 5)
+            opening circuit (default: 10)
             circuit_breaker_timeout: Seconds to wait before transitioning to
-            half-open (default: 60.0)
+            half-open (default: 30.0)
+            circuit_breaker_auto_retry: When True, automatically wait and retry
+            when circuit breaker
+                                       opens instead of raising error
+                                       immediately (default: False).
+                                       WARNING: Not recommended for test
+                                       environments - may cause long delays.
+            circuit_breaker_max_retries: Maximum number of auto-retry attempts
+            when circuit breaker
+                                        opens (default: 3). Only used when
+                                        circuit_breaker_auto_retry=True.
+            circuit_breaker_retry_delay: Delay in seconds between retry
+            attempts when auto-retry enabled (default: 5.0).
+                                        This is separate from
+                                        circuit_breaker_timeout, which controls
+                                        when the circuit transitions from open
+                                        to half-open.
             max_connections: Maximum number of connections in the pool
             (default: 10)
                            Conservative default (50% below lowest-performing
@@ -479,6 +516,9 @@ class FortiOS:
                     user_agent=user_agent,
                     circuit_breaker_threshold=circuit_breaker_threshold,
                     circuit_breaker_timeout=circuit_breaker_timeout,
+                    circuit_breaker_auto_retry=circuit_breaker_auto_retry,
+                    circuit_breaker_max_retries=circuit_breaker_max_retries,
+                    circuit_breaker_retry_delay=circuit_breaker_retry_delay,
                     max_connections=max_connections,
                     max_keepalive_connections=max_keepalive_connections,
                     session_idle_timeout=session_idle_timeout,
@@ -500,6 +540,9 @@ class FortiOS:
                     user_agent=user_agent,
                     circuit_breaker_threshold=circuit_breaker_threshold,
                     circuit_breaker_timeout=circuit_breaker_timeout,
+                    circuit_breaker_auto_retry=circuit_breaker_auto_retry,
+                    circuit_breaker_max_retries=circuit_breaker_max_retries,
+                    circuit_breaker_retry_delay=circuit_breaker_retry_delay,
                     max_connections=max_connections,
                     max_keepalive_connections=max_keepalive_connections,
                     session_idle_timeout=session_idle_timeout,

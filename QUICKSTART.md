@@ -482,6 +482,96 @@ fgt.firewall.policy.delete(policyid="1")
 
 **See [docs/FIREWALL_POLICY_WRAPPER.md](docs/FIREWALL_POLICY_WRAPPER.md) for complete wrapper documentation.**
 
+### Schedule Convenience Methods (NEW in v0.3.34!)
+
+All schedule types now have consistent convenience methods:
+
+```python
+from hfortix import FortiOS
+from hfortix.FortiOS.api._helpers import get_mkey, is_success
+
+fgt = FortiOS(host='192.168.1.1', token='your-api-token')
+
+# Get schedule data directly (not full API response)
+schedule = fgt.firewall.schedule_onetime.get_by_name("maintenance-window")
+if schedule:
+    print(f"Start: {schedule['start']}, End: {schedule['end']}")
+
+# Rename a schedule in one call
+fgt.firewall.schedule_recurring.rename(
+    name="old-business-hours",
+    new_name="new-business-hours"
+)
+
+# Clone schedule with modifications
+fgt.firewall.schedule_onetime.clone(
+    name="maintenance-window",
+    new_name="extended-maintenance",
+    end="20:00 2026/01/15",  # Override end time
+    color=10  # Override color
+)
+
+# Use response helpers for cleaner code
+result = fgt.firewall.schedule_group.create(
+    name="backup-schedules",
+    member=["schedule1", "schedule2"]
+)
+print(f"Created: {get_mkey(result)}")
+print(f"Success: {is_success(result)}")
+```
+
+**Available for:**
+- `fgt.firewall.schedule_onetime` - One-time schedules
+- `fgt.firewall.schedule_recurring` - Recurring schedules
+- `fgt.firewall.schedule_group` - Schedule groups
+
+**See [SCHEDULE_CONVENIENCE_METHODS.md](SCHEDULE_CONVENIENCE_METHODS.md) and [examples/schedule_convenience_demo.py](examples/schedule_convenience_demo.py) for complete documentation.**
+
+### IP/MAC Binding Convenience Wrapper (NEW in v0.3.34!)
+
+Simplified interface for IP/MAC binding management:
+
+```python
+from hfortix import FortiOS
+
+fgt = FortiOS(host='192.168.1.1', token='your-api-token')
+
+# Create IP/MAC binding
+fgt.firewall.ipmac_binding_table.create(
+    seq_num=100,
+    ip="192.168.1.50",
+    mac="00:11:22:33:44:55",
+    name="server-01",
+    status="enable"
+)
+
+# Check if binding exists
+if fgt.firewall.ipmac_binding_table.exists(seq_num=100):
+    print("Binding exists!")
+
+# Enable/disable binding
+fgt.firewall.ipmac_binding_table.disable(seq_num=100)
+fgt.firewall.ipmac_binding_table.enable(seq_num=100)
+
+# Update binding
+fgt.firewall.ipmac_binding_table.update(
+    seq_num=100,
+    name="server-01-updated"
+)
+
+# Get all bindings
+bindings = fgt.firewall.ipmac_binding_table.get_all()
+
+# Delete binding
+fgt.firewall.ipmac_binding_table.delete(seq_num=100)
+```
+
+**Features:**
+- Full CRUD operations
+- Built-in validation (IP, MAC, status)
+- Convenience methods: `exists()`, `enable()`, `disable()`
+- Comprehensive test suite: [examples/ipmacbinding_test_suite.py](examples/ipmacbinding_test_suite.py)
+
 ### Validation Framework (NEW in v0.3.21!)
 
 832 auto-generated validators for all API endpoints:

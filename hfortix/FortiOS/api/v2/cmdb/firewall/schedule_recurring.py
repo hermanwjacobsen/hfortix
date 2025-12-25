@@ -150,6 +150,7 @@ class ScheduleRecurring:
         before: str | None = None,
         after: str | None = None,
         uuid: str | None = None,
+        start: str | None = None,
         end: str | None = None,
         day: str | None = None,
         label_day: str | None = None,
@@ -173,6 +174,7 @@ class ScheduleRecurring:
             name: Recurring schedule name. (optional)
             uuid: Universally Unique Identifier (UUID; automatically assigned
             but can be manually reset). (optional)
+            start: Time of day to start the schedule, format hh:mm. (optional)
             end: Time of day to end the schedule, format hh:mm. (optional)
             day: One or more days of the week on which the schedule is valid.
             Separate the names of the days with a space. (optional)
@@ -212,6 +214,8 @@ class ScheduleRecurring:
             data_payload["name"] = name
         if uuid is not None:
             data_payload["uuid"] = uuid
+        if start is not None:
+            data_payload["start"] = start
         if end is not None:
             data_payload["end"] = end
         if day is not None:
@@ -320,6 +324,7 @@ class ScheduleRecurring:
         nkey: str | None = None,
         name: str | None = None,
         uuid: str | None = None,
+        start: str | None = None,
         end: str | None = None,
         day: str | None = None,
         label_day: str | None = None,
@@ -340,6 +345,7 @@ class ScheduleRecurring:
             name: Recurring schedule name. (optional)
             uuid: Universally Unique Identifier (UUID; automatically assigned
             but can be manually reset). (optional)
+            start: Time of day to start the schedule, format hh:mm. (optional)
             end: Time of day to end the schedule, format hh:mm. (optional)
             day: One or more days of the week on which the schedule is valid.
             Separate the names of the days with a space. (optional)
@@ -373,6 +379,8 @@ class ScheduleRecurring:
             data_payload["name"] = name
         if uuid is not None:
             data_payload["uuid"] = uuid
+        if start is not None:
+            data_payload["start"] = start
         if end is not None:
             data_payload["end"] = end
         if day is not None:
