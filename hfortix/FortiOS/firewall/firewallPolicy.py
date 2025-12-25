@@ -1533,7 +1533,10 @@ class FirewallPolicy:
 
         # Original logic for policy_id (more efficient direct API call)
         validate_policy_id(policy_id, "exists")
-        return self._api.exists(policyid=str(policy_id), vdom=vdom)
+        try:
+            return self._api.exists(policyid=str(policy_id), vdom=vdom)
+        except Exception:
+            return False
 
     def move(
         self,

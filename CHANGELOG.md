@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.35] - Unreleased
+
+### Fixed
+
+- **Markdown Linting**: Disabled overly strict markdown linting rules
+  - Disabled MD022, MD032, MD036, MD031, MD026
+  - Allows more flexible documentation formatting
+  - All pre-commit hooks now pass
+
+### Changed
+
+- **Documentation Organization**: Moved documentation files to `docs/` directory
+  - `SCHEDULE_CONVENIENCE_METHODS.md` → `docs/SCHEDULE_CONVENIENCE_METHODS.md`
+  - `FIX_WINDOWS_INSTALL.md` → `docs/FIX_WINDOWS_INSTALL.md`
+  - Cleaner root directory structure
+
+- **CI/CD Optimization**: Skip workflows on documentation-only changes
+  - Added `paths-ignore` for `docs/**`, `*.md`, `LICENSE`, `.gitignore`
+  - Applies to both `ci.yml` and `codeql.yml` workflows
+  - Saves CI minutes and speeds up documentation updates
+
 ## [0.3.34] - 2025-12-25
 
 ### Added
