@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Package Build**: Ensures `password_policy.py` is included in PyPI distribution
+  - This file was missing in the PyPI v0.3.34 release
+  - All password policy modules are now properly included
+  - Fixes `ModuleNotFoundError: No module named 'hfortix.FortiOS.api.v2.cmdb.system.password_policy'`
+
+- **Firewall Policy**: Fixed `exists()` method exception handling
+  - Now returns `False` for non-existent policies instead of raising exception
+  - Wrapped `_api.exists()` call in try/except block
+  - Matches expected behavior for convenience wrappers
+
 - **Markdown Linting**: Disabled overly strict markdown linting rules
   - Disabled MD022, MD032, MD036, MD031, MD026
   - Allows more flexible documentation formatting
