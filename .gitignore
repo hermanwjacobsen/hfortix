@@ -78,7 +78,7 @@ QUICK_WINS_SUMMARY.md
 # Credentials and secrets
 *token*
 *secret*
-*password*
+# Only exclude password files in root and common credential locations, not all files with "password" in the name
 credentials.json
 
 # Temporary fix/refactor/debug scripts

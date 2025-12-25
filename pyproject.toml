@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix"
-version = "0.3.35"
+version = "0.3.36"
 description = "Python SDK for Fortinet Products (FortiOS, FortiManager, FortiAnalyzer)"
 readme = "README.md"
 authors = [

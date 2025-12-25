@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.36] - 2025-12-25
+
+### Fixed
+
+- **Critical Packaging Issue**: Fixed `.gitignore` pattern excluding password-related modules
+  - Changed `*password*` to `/*password*` to only ignore root-level credential files
+  - This was preventing `password_policy.py` and related modules from being included in git and PyPI packages
+  - Affected files now properly included:
+    - `hfortix/FortiOS/api/v2/cmdb/system/password_policy.py`
+    - `hfortix/FortiOS/api/v2/cmdb/system/password_policy_guest_admin.py`
+    - `hfortix/FortiOS/api/v2/cmdb/user/password_policy.py`
+    - `hfortix/FortiOS/api/v2/monitor/system/change_password.py`
+    - `hfortix/FortiOS/api/v2/monitor/system/password_policy_conform.py`
+    - `hfortix/FortiOS/api/v2/monitor/user/password_policy_conform.py`
+    - All related helper files
+  - Fixes `ModuleNotFoundError: No module named 'hfortix.FortiOS.api.v2.cmdb.system.password_policy'`
+
 ## [0.3.35] - 2025-12-25
 
 ### Fixed
