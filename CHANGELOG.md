@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.33] - 2025-12-25
+
+### Fixed
+
+- **Package Distribution**: Fixed missing `password_policy.py` module in PyPI package
+  - Version 0.3.32 was missing the `hfortix.FortiOS.api.v2.cmdb.system.password_policy` module
+  - This caused `ModuleNotFoundError` when initializing FortiOS instance
+  - Updated version in both `setup.py` and `pyproject.toml` to ensure consistency
+  - Rebuilt and republished package with all required modules included
+  - Users experiencing the import error should upgrade: `pip install --upgrade hfortix`
+
 ## [0.3.32] - 2025-12-24
 
 ### Fixed
