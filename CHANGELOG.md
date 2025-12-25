@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- **Firewall Policy Rename**: Enhanced `rename()` method to handle FortiOS API limitations
+  - FortiOS API requires at least one field besides 'name' when updating policies
+  - Method now fetches current `logtraffic` setting and includes it in the rename request
+  - Added comprehensive error handling and validation
+  - Added detailed error messages for better debugging
+  - Documented the limitation in the method's docstring
+
 ## [0.3.36] - 2025-12-25
 
 ### Fixed

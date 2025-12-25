@@ -150,6 +150,20 @@ result = fgt.firewall.policy.clone(
 )
 ```
 
+## Rename Policy
+
+Rename an existing policy:
+
+```python
+# Rename policy 5
+result = fgt.firewall.policy.rename(
+    policy_id=5,
+    new_name='Updated-Policy-Name'
+)
+```
+
+**Note:** FortiOS API requires at least one field besides 'name' when updating policies. The `rename()` method automatically includes the current `logtraffic` setting to satisfy this requirement. This is a FortiOS API limitation, not a library limitation.
+
 ## Available Parameters
 
 **Total: 150+ parameters covering all FortiOS 7.6.5 firewall policy features**
