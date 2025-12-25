@@ -1,13 +1,14 @@
 # Fix for Windows Installation Issue - SOLVED! ✅
 
 ## Problem
+
 The error `ModuleNotFoundError: No module named 'hfortix.FortiOS.api.v2.cmdb.system.password_policy'` occurred because:
 
 **Version 0.3.32 on PyPI was missing the `password_policy.py` file!** The `__init__.py` tries to import it, but the file wasn't included in that release.
 
 ## Solution - Install Version 0.3.33
 
-**Version 0.3.33 has been published to PyPI with the missing file included!**
+**Version 0.3.33 has been published to PyPI with the missing file included**
 
 Run these commands in your Windows PowerShell or Command Prompt:
 
@@ -22,7 +23,7 @@ pip install --upgrade hfortix
 python -c "from hfortix.FortiOS.api.v2.cmdb.system.password_policy import PasswordPolicy; print('Success!')"
 ```
 
-### If you still have issues (stale cache):
+### If you still have issues (stale cache)
 
 ```powershell
 # Complete reinstall with cache clearing:

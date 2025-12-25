@@ -20,11 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `get_results(response)`: Extract results from response
   - Matches the convenience method pattern from `firewallPolicy`
   - Makes schedule management more user-friendly and consistent
-  - See `SCHEDULE_CONVENIENCE_METHODS.md` for full documentation
+  - See `docs/SCHEDULE_CONVENIENCE_METHODS.md` for full documentation
   - See `examples/schedule_convenience_demo.py` for usage examples
 
-- **IP/MAC Binding Convenience Wrapper**: New helper class for firewall IP/MAC binding management
-  - Located at `hfortix.FortiOS.api.v2.cmdb.firewall._helpers.ipmacbinding_table`
+- **IP/MAC Binding Modules**: New modules for firewall IP/MAC binding management
+  - `ipmacBindingSetting`: Manage IP/MAC binding settings
+  - `ipmacBindingTable`: Manage IP/MAC binding table entries
   - **Core Methods**:
     - `create(seq_num, ip, mac, name=None, status='enable', vdom=None)`: Create new binding
     - `update(seq_num, **kwargs, vdom=None)`: Update existing binding
@@ -38,16 +39,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Validation**: IP addresses, MAC addresses, status values, name length
   - Comprehensive test suite: `examples/ipmacbinding_test_suite.py` (19 pytest tests)
 
-- **Circuit Breaker Auto-Retry**: Optional automatic retry when circuit breaker opens
-  - New parameters:
-    - `circuit_breaker_auto_retry` (bool, default=False) - Enable/disable auto-retry
-    - `circuit_breaker_max_retries` (int, default=3) - Maximum retry attempts
-    - `circuit_breaker_retry_delay` (float, default=5.0) - Delay in seconds between retries
-  - When enabled, client automatically waits and retries when circuit breaker opens instead of failing immediately
-  - Useful for production scripts that need resilience against temporary service degradation
-  - **IMPORTANT**: Retry delay is configurable and separate from circuit_breaker_timeout
-    - `circuit_breaker_retry_delay`: How long to wait between retry attempts (default: 5s)
-    - `circuit_breaker_timeout`: How long circuit stays open before transitioning to half-open (default: 30s)
+- **Firewall Policy Helpers Module**: New `_helpers.py` module with validation utilities
+  - Extracted common validation logic from firewall policy modules
+  - Functions for validating sequence numbers, IP addresses, MAC addresses, etc.
+  - Improves code reusability and maintainability
+
+### Changed
+
+- **Documentation Organization**: Moved documentation files to `docs/` directory
+  - `SCHEDULE_CONVENIENCE_METHODS.md` → `docs/SCHEDULE_CONVENIENCE_METHODS.md`
+  - `FIX_WINDOWS_INSTALL.md` → `docs/FIX_WINDOWS_INSTALL.md`
+  - Cleaner root directory structure
+
+### Fixed
+
+- **PEP8 Compliance**: Fixed line length violations in multiple files
+  - `hfortix/FortiOS/firewall/_helpers.py`: Split long docstring
+  - `hfortix/FortiOS/firewall/firewallPolicy.py`: Split long comment
+  - `hfortix/FortiOS/http_client_async.py`: Shortened log message
+- **Security**: Fixed bandit warning B104 in IP validation (false positive)
+  - Added `# nosec B104` comment to IP wildcard validation check
+  - This is validation code, not a network binding operation
+
+### Development
+
+- **Pre-release Tooling Improvements**:
+  - Added bandit security scanning to pre-release checks
+  - Added pre-commit hooks integration to auto-fix script
+  - Pre-release process now catches security and formatting issues earlier
+- **TestPyPI Support**: Added upload script and documentation
+  - New `upload_to_testpypi.sh` script for testing releases
+  - `docs/TESTPYPI_GUIDE.md` with complete setup instructions
   - **WARNING**: Not recommended for test environments - may cause long delays
   - Fail-fast behavior is preserved by default (auto-retry disabled)
   - Available in both sync (`HTTPClient`) and async (`AsyncHTTPClient`) clients

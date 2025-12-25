@@ -238,6 +238,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **[docs/PERFORMANCE_TESTING.md](docs/PERFORMANCE_TESTING.md)** - Performance testing and optimization
 
 > **⚡ Performance Note**: When using convenience wrappers like `fgt.firewall.policy.exists()`:
+>
 > - **By ID** (`policy_id=123`) - Direct API call, fastest method
 > - **By Name** (`name="MyPolicy"`) - Requires recursive lookup through all policies, slower but more convenient
 > - Recommendation: Use `policy_id` for performance-critical code, `name` for readability and convenience
@@ -835,6 +836,7 @@ hfortix.set_log_level('INFO')  # See request/response timing
    - ⚠️ WARNING: Not recommended for tests - may cause long delays
 
 **Important**: `circuit_breaker_retry_delay` and `circuit_breaker_timeout` serve different purposes:
+
 - `circuit_breaker_retry_delay` (5s): How long to wait **between retry attempts**
 - `circuit_breaker_timeout` (30s): How long circuit stays **open before testing recovery**
 

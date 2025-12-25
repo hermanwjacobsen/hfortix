@@ -483,7 +483,7 @@ def validate_ip_address(ip: str, allow_wildcard: bool = True) -> None:
         raise ValueError(f"Invalid IPv4 address format: {ip}") from e
 
     # Check if wildcard when not allowed
-    if not allow_wildcard and str(ip_obj) == "0.0.0.0":
+    if not allow_wildcard and str(ip_obj) == "0.0.0.0":  # nosec B104
         raise ValueError("Wildcard IP address (0.0.0.0) not allowed")
 
 
