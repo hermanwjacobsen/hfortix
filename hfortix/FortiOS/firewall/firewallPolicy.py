@@ -1776,6 +1776,10 @@ class FirewallPolicy:
         """
         Rename a firewall policy.
 
+        Note: FortiOS does not allow updating the name field alone. This method
+        fetches the current logtraffic setting and sends it along with the new name
+        to work around this limitation.
+
         Args:
             policy_id: Policy ID to rename
             new_name: New name for the policy
@@ -1787,11 +1791,79 @@ class FirewallPolicy:
         Example:
             >>> result = fgt.firewall.policy.rename(policy_id=1,
             new_name='Updated-Policy-Name')
+        
+        Raises:
+            ValueError: If policy not found or policy_id is invalid
         """
         # Validate policy_id
         validate_policy_id(policy_id, "rename")
 
-        return self.update(policy_id=policy_id, name=new_name, vdom=vdom)
+        # Get the existing policy to retrieve the current logtraffic setting
+        # We need to send at least one other field along with the name
+        existing_response = self.get(policy_id=policy_id, vdom=vdom, raw_json=True)
+        
+        if not existing_response or not isinstance(existing_response, dict):
+            raise ValueError(f"Policy with ID {policy_id} not found - no response from API")
+        
+        # Check for HTTP errors in the response
+        if 'http_status' in existing_response:
+            http_status = existing_response.get('http_status', 200)
+            if http_status >= 400:
+                error_code = existing_response.get('error', 'unknown')
+                error_msg = existing_response.get('cli_error', existing_response.get('description', 'Unknown error'))
+                raise ValueError(
+                    f"Failed to get policy {policy_id}: HTTP {http_status}, "
+                    f"error={error_code}, {error_msg}"
+                )
+        
+        # Check for FortiOS API errors
+        if existing_response.get('status') == 'error':
+            error_code = existing_response.get('error', 'unknown')
+            error_msg = existing_response.get('cli_error', existing_response.get('description', 'Unknown error'))
+            raise ValueError(f"Failed to get policy {policy_id}: {error_msg} (error code: {error_code})")
+        
+        # Extract the policy data from the results
+        if 'results' not in existing_response:
+            raise ValueError(
+                f"Invalid response format for policy {policy_id}. "
+                f"Response keys: {list(existing_response.keys())}"
+            )
+        
+        results = existing_response['results']
+        
+        # Results is ALWAYS a list when raw_json=True, even for a single policy
+        if isinstance(results, list):
+            if not results:
+                raise ValueError(f"Policy {policy_id} not found (empty results)")
+            # Get the first (and should be only) policy
+            policy_data = results[0]
+        else:
+            # Should not happen, but handle it anyway
+            policy_data = results
+            
+        if not isinstance(policy_data, dict):
+            raise ValueError(
+                f"Invalid policy data type for policy {policy_id}: {type(policy_data)}"
+            )
+        
+        # Verify we got the correct policy
+        returned_id = policy_data.get('policyid')
+        if returned_id != int(policy_id) and returned_id != str(policy_id):
+            raise ValueError(
+                f"API returned wrong policy: requested {policy_id}, got {returned_id}"
+            )
+        
+        # FortiOS doesn't allow updating name alone - we need to send at least one other field
+        # Use logtraffic as a safe field to include (every policy has it)
+        current_logtraffic = policy_data.get('logtraffic', 'utm')
+        
+        # Send only the name and logtraffic fields using the API put method
+        return self._api.put(
+            policyid=str(policy_id),
+            name=new_name,
+            logtraffic=current_logtraffic,
+            vdom=vdom
+        )
 
     def enable(
         self,
