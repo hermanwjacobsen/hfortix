@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -45,7 +46,7 @@ class Select:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize Select endpoint.
 
@@ -82,23 +83,21 @@ class Select:
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
-            data['mkey'] = mkey
+            data["mkey"] = mkey
         if old_password is not None:
-            data['old_password'] = old_password
+            data["old_password"] = old_password
         if new_password is not None:
-            data['new_password'] = new_password
+            data["new_password"] = new_password
         data.update(kwargs)
         return self._client.post(
-            "monitor",
-            "/system/change-password/select",
-            data=data
+            "monitor", "/system/change-password/select", data=data
         )
 
 
 class ChangePassword:
     """ChangePassword operations."""
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize ChangePassword endpoint.
 

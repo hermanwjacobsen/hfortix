@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -69,7 +70,7 @@ class PasswordPolicyGuestAdmin:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PasswordPolicyGuestAdmin endpoint.
 
@@ -116,16 +117,12 @@ class PasswordPolicyGuestAdmin:
         params: dict[str, Any] = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/password-policy-guest-admin"
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         params.update(kwargs)
         return self._client.get(
-            "cmdb",
-            endpoint,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
         )
 
     def put(
@@ -201,36 +198,32 @@ class PasswordPolicyGuestAdmin:
         data_payload = payload_dict.copy() if payload_dict else {}
         endpoint = "/system/password-policy-guest-admin"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if status is not None:
-            data_payload['status'] = status
+            data_payload["status"] = status
         if apply_to is not None:
-            data_payload['apply-to'] = apply_to
+            data_payload["apply-to"] = apply_to
         if minimum_length is not None:
-            data_payload['minimum-length'] = minimum_length
+            data_payload["minimum-length"] = minimum_length
         if min_lower_case_letter is not None:
-            data_payload['min-lower-case-letter'] = min_lower_case_letter
+            data_payload["min-lower-case-letter"] = min_lower_case_letter
         if min_upper_case_letter is not None:
-            data_payload['min-upper-case-letter'] = min_upper_case_letter
+            data_payload["min-upper-case-letter"] = min_upper_case_letter
         if min_non_alphanumeric is not None:
-            data_payload['min-non-alphanumeric'] = min_non_alphanumeric
+            data_payload["min-non-alphanumeric"] = min_non_alphanumeric
         if min_number is not None:
-            data_payload['min-number'] = min_number
+            data_payload["min-number"] = min_number
         if expire_status is not None:
-            data_payload['expire-status'] = expire_status
+            data_payload["expire-status"] = expire_status
         if expire_day is not None:
-            data_payload['expire-day'] = expire_day
+            data_payload["expire-day"] = expire_day
         if reuse_password is not None:
-            data_payload['reuse-password'] = reuse_password
+            data_payload["reuse-password"] = reuse_password
         if reuse_password_limit is not None:
-            data_payload['reuse-password-limit'] = reuse_password_limit
+            data_payload["reuse-password-limit"] = reuse_password_limit
         data_payload.update(kwargs)
         return self._client.put(
-            "cmdb",
-            endpoint,
-            data=data_payload,
-            vdom=vdom,
-            raw_json=raw_json
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
         )

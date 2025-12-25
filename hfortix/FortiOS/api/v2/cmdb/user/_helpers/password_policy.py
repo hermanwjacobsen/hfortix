@@ -11,10 +11,10 @@ Customize as needed for endpoint-specific business logic.
 from typing import Any
 
 # Valid enum values from API documentation
-VALID_BODY_EXPIRE_STATUS = ['enable', 'disable']
-VALID_BODY_EXPIRED_PASSWORD_RENEWAL = ['enable', 'disable']
-VALID_BODY_REUSE_PASSWORD = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_EXPIRE_STATUS = ["enable", "disable"]
+VALID_BODY_EXPIRED_PASSWORD_RENEWAL = ["enable", "disable"]
+VALID_BODY_REUSE_PASSWORD = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 
 # ============================================================================
@@ -25,7 +25,7 @@ VALID_QUERY_ACTION = ['default', 'schema']
 def validate_password_policy_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
@@ -43,13 +43,13 @@ def validate_password_policy_get(
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
                 f"Invalid query parameter 'action'='{value}'. Must be one of: "
-                f"{', '.join(VALID_QUERY_ACTION)}"
+                f"{', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -61,7 +61,8 @@ def validate_password_policy_get(
 
 
 def validate_password_policy_post(
-        payload: dict[str, Any]) -> tuple[bool, str | None]:
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating password_policy.
 
@@ -72,24 +73,24 @@ def validate_password_policy_post(
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
     # Validate expire-status if present
-    if 'expire-status' in payload:
-        value = payload.get('expire-status')
+    if "expire-status" in payload:
+        value = payload.get("expire-status")
         if value and value not in VALID_BODY_EXPIRE_STATUS:
             return (
                 False,
                 f"Invalid expire-status '{value}'. Must be one of: "
-                f"{', '.join(VALID_BODY_EXPIRE_STATUS)}"
+                f"{', '.join(VALID_BODY_EXPIRE_STATUS)}",
             )
 
     # Validate expire-days if present
-    if 'expire-days' in payload:
-        value = payload.get('expire-days')
+    if "expire-days" in payload:
+        value = payload.get("expire-days")
         if value is not None:
             try:
                 int_val = int(value)
@@ -99,8 +100,8 @@ def validate_password_policy_post(
                 return (False, f"expire-days must be numeric, got: {value}")
 
     # Validate warn-days if present
-    if 'warn-days' in payload:
-        value = payload.get('warn-days')
+    if "warn-days" in payload:
+        value = payload.get("warn-days")
         if value is not None:
             try:
                 int_val = int(value)
@@ -110,18 +111,18 @@ def validate_password_policy_post(
                 return (False, f"warn-days must be numeric, got: {value}")
 
     # Validate expired-password-renewal if present
-    if 'expired-password-renewal' in payload:
-        value = payload.get('expired-password-renewal')
+    if "expired-password-renewal" in payload:
+        value = payload.get("expired-password-renewal")
         if value and value not in VALID_BODY_EXPIRED_PASSWORD_RENEWAL:
             return (
                 False,
                 f"Invalid expired-password-renewal '{value}'. Must be one of: "
-                f"{', '.join(VALID_BODY_EXPIRED_PASSWORD_RENEWAL)}"
+                f"{', '.join(VALID_BODY_EXPIRED_PASSWORD_RENEWAL)}",
             )
 
     # Validate minimum-length if present
-    if 'minimum-length' in payload:
-        value = payload.get('minimum-length')
+    if "minimum-length" in payload:
+        value = payload.get("minimum-length")
         if value is not None:
             try:
                 int_val = int(value)
@@ -131,62 +132,59 @@ def validate_password_policy_post(
                 return (False, f"minimum-length must be numeric, got: {value}")
 
     # Validate min-lower-case-letter if present
-    if 'min-lower-case-letter' in payload:
-        value = payload.get('min-lower-case-letter')
+    if "min-lower-case-letter" in payload:
+        value = payload.get("min-lower-case-letter")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-lower-case-letter must be between 0 and 128"
+                        "min-lower-case-letter must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-lower-case-letter must be numeric, "
-                    f"got: {value}"
+                    f"min-lower-case-letter must be numeric, " f"got: {value}",
                 )
 
     # Validate min-upper-case-letter if present
-    if 'min-upper-case-letter' in payload:
-        value = payload.get('min-upper-case-letter')
+    if "min-upper-case-letter" in payload:
+        value = payload.get("min-upper-case-letter")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-upper-case-letter must be between 0 and 128"
+                        "min-upper-case-letter must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-upper-case-letter must be numeric, "
-                    f"got: {value}"
+                    f"min-upper-case-letter must be numeric, " f"got: {value}",
                 )
 
     # Validate min-non-alphanumeric if present
-    if 'min-non-alphanumeric' in payload:
-        value = payload.get('min-non-alphanumeric')
+    if "min-non-alphanumeric" in payload:
+        value = payload.get("min-non-alphanumeric")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-non-alphanumeric must be between 0 and 128"
+                        "min-non-alphanumeric must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-non-alphanumeric must be numeric, "
-                    f"got: {value}"
+                    f"min-non-alphanumeric must be numeric, " f"got: {value}",
                 )
 
     # Validate min-number if present
-    if 'min-number' in payload:
-        value = payload.get('min-number')
+    if "min-number" in payload:
+        value = payload.get("min-number")
         if value is not None:
             try:
                 int_val = int(value)
@@ -196,49 +194,47 @@ def validate_password_policy_post(
                 return (False, f"min-number must be numeric, got: {value}")
 
     # Validate min-change-characters if present
-    if 'min-change-characters' in payload:
-        value = payload.get('min-change-characters')
+    if "min-change-characters" in payload:
+        value = payload.get("min-change-characters")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-change-characters must be between 0 and 128"
+                        "min-change-characters must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-change-characters must be numeric, "
-                    f"got: {value}"
+                    f"min-change-characters must be numeric, " f"got: {value}",
                 )
 
     # Validate reuse-password if present
-    if 'reuse-password' in payload:
-        value = payload.get('reuse-password')
+    if "reuse-password" in payload:
+        value = payload.get("reuse-password")
         if value and value not in VALID_BODY_REUSE_PASSWORD:
             return (
                 False,
                 f"Invalid reuse-password '{value}'. Must be one of: "
-                f"{', '.join(VALID_BODY_REUSE_PASSWORD)}"
+                f"{', '.join(VALID_BODY_REUSE_PASSWORD)}",
             )
 
     # Validate reuse-password-limit if present
-    if 'reuse-password-limit' in payload:
-        value = payload.get('reuse-password-limit')
+    if "reuse-password-limit" in payload:
+        value = payload.get("reuse-password-limit")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 20:
                     return (
                         False,
-                        "reuse-password-limit must be between 0 and 20"
+                        "reuse-password-limit must be between 0 and 20",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"reuse-password-limit must be numeric, "
-                    f"got: {value}"
+                    f"reuse-password-limit must be numeric, " f"got: {value}",
                 )
 
     return (True, None)
@@ -250,8 +246,7 @@ def validate_password_policy_post(
 
 
 def validate_password_policy_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
@@ -272,24 +267,24 @@ def validate_password_policy_put(
         return (True, None)
 
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, "name cannot exceed 35 characters")
 
     # Validate expire-status if present
-    if 'expire-status' in payload:
-        value = payload.get('expire-status')
+    if "expire-status" in payload:
+        value = payload.get("expire-status")
         if value and value not in VALID_BODY_EXPIRE_STATUS:
             return (
                 False,
                 f"Invalid expire-status '{value}'. Must be one of: "
-                f"{', '.join(VALID_BODY_EXPIRE_STATUS)}"
+                f"{', '.join(VALID_BODY_EXPIRE_STATUS)}",
             )
 
     # Validate expire-days if present
-    if 'expire-days' in payload:
-        value = payload.get('expire-days')
+    if "expire-days" in payload:
+        value = payload.get("expire-days")
         if value is not None:
             try:
                 int_val = int(value)
@@ -299,8 +294,8 @@ def validate_password_policy_put(
                 return (False, f"expire-days must be numeric, got: {value}")
 
     # Validate warn-days if present
-    if 'warn-days' in payload:
-        value = payload.get('warn-days')
+    if "warn-days" in payload:
+        value = payload.get("warn-days")
         if value is not None:
             try:
                 int_val = int(value)
@@ -310,18 +305,18 @@ def validate_password_policy_put(
                 return (False, f"warn-days must be numeric, got: {value}")
 
     # Validate expired-password-renewal if present
-    if 'expired-password-renewal' in payload:
-        value = payload.get('expired-password-renewal')
+    if "expired-password-renewal" in payload:
+        value = payload.get("expired-password-renewal")
         if value and value not in VALID_BODY_EXPIRED_PASSWORD_RENEWAL:
             return (
                 False,
                 f"Invalid expired-password-renewal '{value}'. Must be one of: "
-                f"{', '.join(VALID_BODY_EXPIRED_PASSWORD_RENEWAL)}"
+                f"{', '.join(VALID_BODY_EXPIRED_PASSWORD_RENEWAL)}",
             )
 
     # Validate minimum-length if present
-    if 'minimum-length' in payload:
-        value = payload.get('minimum-length')
+    if "minimum-length" in payload:
+        value = payload.get("minimum-length")
         if value is not None:
             try:
                 int_val = int(value)
@@ -331,62 +326,59 @@ def validate_password_policy_put(
                 return (False, f"minimum-length must be numeric, got: {value}")
 
     # Validate min-lower-case-letter if present
-    if 'min-lower-case-letter' in payload:
-        value = payload.get('min-lower-case-letter')
+    if "min-lower-case-letter" in payload:
+        value = payload.get("min-lower-case-letter")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-lower-case-letter must be between 0 and 128"
+                        "min-lower-case-letter must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-lower-case-letter must be numeric, "
-                    f"got: {value}"
+                    f"min-lower-case-letter must be numeric, " f"got: {value}",
                 )
 
     # Validate min-upper-case-letter if present
-    if 'min-upper-case-letter' in payload:
-        value = payload.get('min-upper-case-letter')
+    if "min-upper-case-letter" in payload:
+        value = payload.get("min-upper-case-letter")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-upper-case-letter must be between 0 and 128"
+                        "min-upper-case-letter must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-upper-case-letter must be numeric, "
-                    f"got: {value}"
+                    f"min-upper-case-letter must be numeric, " f"got: {value}",
                 )
 
     # Validate min-non-alphanumeric if present
-    if 'min-non-alphanumeric' in payload:
-        value = payload.get('min-non-alphanumeric')
+    if "min-non-alphanumeric" in payload:
+        value = payload.get("min-non-alphanumeric")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-non-alphanumeric must be between 0 and 128"
+                        "min-non-alphanumeric must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-non-alphanumeric must be numeric, "
-                    f"got: {value}"
+                    f"min-non-alphanumeric must be numeric, " f"got: {value}",
                 )
 
     # Validate min-number if present
-    if 'min-number' in payload:
-        value = payload.get('min-number')
+    if "min-number" in payload:
+        value = payload.get("min-number")
         if value is not None:
             try:
                 int_val = int(value)
@@ -396,49 +388,47 @@ def validate_password_policy_put(
                 return (False, f"min-number must be numeric, got: {value}")
 
     # Validate min-change-characters if present
-    if 'min-change-characters' in payload:
-        value = payload.get('min-change-characters')
+    if "min-change-characters" in payload:
+        value = payload.get("min-change-characters")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        "min-change-characters must be between 0 and 128"
+                        "min-change-characters must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"min-change-characters must be numeric, "
-                    f"got: {value}"
+                    f"min-change-characters must be numeric, " f"got: {value}",
                 )
 
     # Validate reuse-password if present
-    if 'reuse-password' in payload:
-        value = payload.get('reuse-password')
+    if "reuse-password" in payload:
+        value = payload.get("reuse-password")
         if value and value not in VALID_BODY_REUSE_PASSWORD:
             return (
                 False,
                 f"Invalid reuse-password '{value}'. Must be one of: "
-                f"{', '.join(VALID_BODY_REUSE_PASSWORD)}"
+                f"{', '.join(VALID_BODY_REUSE_PASSWORD)}",
             )
 
     # Validate reuse-password-limit if present
-    if 'reuse-password-limit' in payload:
-        value = payload.get('reuse-password-limit')
+    if "reuse-password-limit" in payload:
+        value = payload.get("reuse-password-limit")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 20:
                     return (
                         False,
-                        "reuse-password-limit must be between 0 and 20"
+                        "reuse-password-limit must be between 0 and 20",
                     )
             except (ValueError, TypeError):
                 return (
                     False,
-                    f"reuse-password-limit must be numeric, "
-                    f"got: {value}"
+                    f"reuse-password-limit must be numeric, " f"got: {value}",
                 )
 
     return (True, None)
@@ -450,7 +440,8 @@ def validate_password_policy_put(
 
 
 def validate_password_policy_delete(
-        name: str | None = None) -> tuple[bool, str | None]:
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
 

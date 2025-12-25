@@ -19,7 +19,7 @@ from typing import Any
 def validate_password_policy_conform_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
@@ -45,7 +45,8 @@ def validate_password_policy_conform_get(
 
 
 def validate_password_policy_conform_post(
-        payload: dict[str, Any]) -> tuple[bool, str | None]:
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating password_policy_conform.
 

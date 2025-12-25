@@ -44,10 +44,11 @@ Important:
 
 from __future__ import annotations
 
-from typing import Any, TYPE_CHECKING, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -70,7 +71,7 @@ class PasswordPolicy:
         - DELETE removes objects (404 if name doesn't exist)
     """
 
-    def __init__(self, client: 'IHTTPClient'):
+    def __init__(self, client: "IHTTPClient"):
         """
         Initialize PasswordPolicy endpoint.
 
@@ -129,20 +130,16 @@ class PasswordPolicy:
         else:
             endpoint = "/user/password-policy"
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         params.update(kwargs)
         return self._client.get(
-            "cmdb",
-            endpoint,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
         )
 
     def put(
@@ -231,42 +228,38 @@ class PasswordPolicy:
             raise ValueError("name is required for put()")
         endpoint = f"/user/password-policy/{name}"
         if before is not None:
-            data_payload['before'] = before
+            data_payload["before"] = before
         if after is not None:
-            data_payload['after'] = after
+            data_payload["after"] = after
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if expire_status is not None:
-            data_payload['expire-status'] = expire_status
+            data_payload["expire-status"] = expire_status
         if expire_days is not None:
-            data_payload['expire-days'] = expire_days
+            data_payload["expire-days"] = expire_days
         if warn_days is not None:
-            data_payload['warn-days'] = warn_days
+            data_payload["warn-days"] = warn_days
         if expired_password_renewal is not None:
-            data_payload['expired-password-renewal'] = expired_password_renewal
+            data_payload["expired-password-renewal"] = expired_password_renewal
         if minimum_length is not None:
-            data_payload['minimum-length'] = minimum_length
+            data_payload["minimum-length"] = minimum_length
         if min_lower_case_letter is not None:
-            data_payload['min-lower-case-letter'] = min_lower_case_letter
+            data_payload["min-lower-case-letter"] = min_lower_case_letter
         if min_upper_case_letter is not None:
-            data_payload['min-upper-case-letter'] = min_upper_case_letter
+            data_payload["min-upper-case-letter"] = min_upper_case_letter
         if min_non_alphanumeric is not None:
-            data_payload['min-non-alphanumeric'] = min_non_alphanumeric
+            data_payload["min-non-alphanumeric"] = min_non_alphanumeric
         if min_number is not None:
-            data_payload['min-number'] = min_number
+            data_payload["min-number"] = min_number
         if min_change_characters is not None:
-            data_payload['min-change-characters'] = min_change_characters
+            data_payload["min-change-characters"] = min_change_characters
         if reuse_password is not None:
-            data_payload['reuse-password'] = reuse_password
+            data_payload["reuse-password"] = reuse_password
         if reuse_password_limit is not None:
-            data_payload['reuse-password-limit'] = reuse_password_limit
+            data_payload["reuse-password-limit"] = reuse_password_limit
         data_payload.update(kwargs)
         return self._client.put(
-            "cmdb",
-            endpoint,
-            data=data_payload,
-            vdom=vdom,
-            raw_json=raw_json
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
         )
 
     def delete(
@@ -308,11 +301,7 @@ class PasswordPolicy:
         endpoint = f"/user/password-policy/{name}"
         params.update(kwargs)
         return self._client.delete(
-            "cmdb",
-            endpoint,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
         )
 
     def exists(
@@ -339,6 +328,7 @@ class PasswordPolicy:
 
         # Check if async mode
         if inspect.iscoroutine(result):
+
             async def _async():
                 try:
                     # Runtime check confirms result is a coroutine, cast for
@@ -347,6 +337,7 @@ class PasswordPolicy:
                     return True
                 except ResourceNotFoundError:
                     return False
+
             # Type ignore justified: mypy can't verify Union return type
             # narrowing
 
@@ -432,38 +423,34 @@ class PasswordPolicy:
         data_payload = payload_dict.copy() if payload_dict else {}
         endpoint = "/user/password-policy"
         if nkey is not None:
-            data_payload['nkey'] = nkey
+            data_payload["nkey"] = nkey
         if name is not None:
-            data_payload['name'] = name
+            data_payload["name"] = name
         if expire_status is not None:
-            data_payload['expire-status'] = expire_status
+            data_payload["expire-status"] = expire_status
         if expire_days is not None:
-            data_payload['expire-days'] = expire_days
+            data_payload["expire-days"] = expire_days
         if warn_days is not None:
-            data_payload['warn-days'] = warn_days
+            data_payload["warn-days"] = warn_days
         if expired_password_renewal is not None:
-            data_payload['expired-password-renewal'] = expired_password_renewal
+            data_payload["expired-password-renewal"] = expired_password_renewal
         if minimum_length is not None:
-            data_payload['minimum-length'] = minimum_length
+            data_payload["minimum-length"] = minimum_length
         if min_lower_case_letter is not None:
-            data_payload['min-lower-case-letter'] = min_lower_case_letter
+            data_payload["min-lower-case-letter"] = min_lower_case_letter
         if min_upper_case_letter is not None:
-            data_payload['min-upper-case-letter'] = min_upper_case_letter
+            data_payload["min-upper-case-letter"] = min_upper_case_letter
         if min_non_alphanumeric is not None:
-            data_payload['min-non-alphanumeric'] = min_non_alphanumeric
+            data_payload["min-non-alphanumeric"] = min_non_alphanumeric
         if min_number is not None:
-            data_payload['min-number'] = min_number
+            data_payload["min-number"] = min_number
         if min_change_characters is not None:
-            data_payload['min-change-characters'] = min_change_characters
+            data_payload["min-change-characters"] = min_change_characters
         if reuse_password is not None:
-            data_payload['reuse-password'] = reuse_password
+            data_payload["reuse-password"] = reuse_password
         if reuse_password_limit is not None:
-            data_payload['reuse-password-limit'] = reuse_password_limit
+            data_payload["reuse-password-limit"] = reuse_password_limit
         data_payload.update(kwargs)
         return self._client.post(
-            "cmdb",
-            endpoint,
-            data=data_payload,
-            vdom=vdom,
-            raw_json=raw_json
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
         )
