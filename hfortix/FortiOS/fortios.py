@@ -26,6 +26,9 @@ class FirewallNamespace:
             ScheduleGroup,
             ScheduleOnetime,
             ScheduleRecurring,
+            ServiceCategory,
+            ServiceCustom,
+            ServiceGroup,
         )
 
         self.policy = FirewallPolicy(fortios_instance)
@@ -34,6 +37,9 @@ class FirewallNamespace:
         self.schedule_recurring = ScheduleRecurring(fortios_instance)
         self.schedule_onetime = ScheduleOnetime(fortios_instance)
         self.schedule_group = ScheduleGroup(fortios_instance)
+        self.service_category = ServiceCategory(fortios_instance)
+        self.service_custom = ServiceCustom(fortios_instance)
+        self.service_group = ServiceGroup(fortios_instance)
 
 
 class FortiOS:

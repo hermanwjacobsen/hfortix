@@ -200,7 +200,8 @@ class ServiceCategory:
             data_payload["before"] = before
         if after is not None:
             data_payload["after"] = after
-        if name is not None:
+        # Don't overwrite name if it's already in payload_dict (for rename operations)
+        if name is not None and "name" not in data_payload:
             data_payload["name"] = name
         if uuid is not None:
             data_payload["uuid"] = uuid
@@ -279,7 +280,11 @@ class ServiceCategory:
         from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
 
         # Call get() - returns dict (sync) or coroutine (async)
-        result = self.get(name=name, vdom=vdom)
+        try:
+            result = self.get(name=name, vdom=vdom)
+        except ResourceNotFoundError:
+            # Sync mode - resource not found
+            return False
 
         # Check if async mode
         if inspect.iscoroutine(result):

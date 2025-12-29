@@ -155,6 +155,9 @@ def build_cmdb_payload(**params: Any) -> dict[str, Any]:
     """
     payload: dict[str, Any] = {}
 
+    # Extract 'data' parameter if present - it should be merged, not added as a key
+    data_dict = params.pop('data', None)
+
     for param_name, value in params.items():
         if value is None:
             continue
@@ -162,6 +165,10 @@ def build_cmdb_payload(**params: Any) -> dict[str, Any]:
         # Convert snake_case to kebab-case for FortiOS API
         api_key = param_name.replace("_", "-")
         payload[api_key] = value
+
+    # Merge 'data' dictionary into payload (override existing keys)
+    if data_dict and isinstance(data_dict, dict):
+        payload.update(data_dict)
 
     return payload
 
@@ -241,6 +248,9 @@ def build_cmdb_payload_normalized(
 
     payload: dict[str, Any] = {}
 
+    # Extract 'data' parameter if present - it should be merged, not added as a key
+    data_dict = params.pop('data', None)
+
     for param_name, value in params.items():
         if value is None:
             continue
@@ -256,6 +266,10 @@ def build_cmdb_payload_normalized(
                 payload[api_key] = normalized
         else:
             payload[api_key] = value
+
+    # Merge 'data' dictionary into payload (override existing keys)
+    if data_dict and isinstance(data_dict, dict):
+        payload.update(data_dict)
 
     return payload
 

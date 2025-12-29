@@ -6,6 +6,9 @@ from .ipmacBindingTable import IPMACBindingTable
 from .scheduleGroup import ScheduleGroup
 from .scheduleOnetime import ScheduleOnetime
 from .scheduleRecurring import ScheduleRecurring
+from .serviceCategory import ServiceCategory
+from .serviceCustom import ServiceCustom
+from .serviceGroup import ServiceGroup
 
 __all__ = [
     "FirewallPolicy",
@@ -14,4 +17,7 @@ __all__ = [
     "ScheduleGroup",
     "ScheduleOnetime",
     "ScheduleRecurring",
+    "ServiceCategory",
+    "ServiceCustom",
+    "ServiceGroup",
 ]
