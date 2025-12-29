@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Automated Release Workflow**: New `make release` target for streamlined releases
+  - Automated version bumping (auto-increment or manual specification)
+  - Runs all pre-release checks (formatting, linting, type-checking, security)
+  - Executes test suite validation
+  - Updates version in all necessary files (pyproject.toml, setup.py, __init__.py)
+  - Updates CHANGELOG.md automatically
+  - Creates git commit and tag
+  - Prompts for GitHub push (triggers CI/CD for PyPI publishing)
+  - Usage: `make release` (auto-increment patch), `make release VERSION=0.3.40`, `make release TYPE=minor`
+  - New script: `X/scripts/release.py` for automation
+
 ## [0.3.38] - 2025-12-29
 
 ### Added

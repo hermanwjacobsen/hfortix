@@ -1384,6 +1384,38 @@ For code contributions:
 3. Make your changes with proper tests
 4. Submit a pull request with clear description
 
+### For Maintainers: Automated Release Process
+
+HFortix includes an automated release workflow via `make release`:
+
+```bash
+# Auto-increment patch version (e.g., 0.3.38 → 0.3.39)
+make release
+
+# Specify exact version
+make release VERSION=0.3.40
+
+# Bump minor version (e.g., 0.3.38 → 0.4.0)
+make release TYPE=minor
+
+# Bump major version (e.g., 0.3.38 → 1.0.0)
+make release TYPE=major
+```
+
+**What it does:**
+1. Auto-fixes code issues (formatting, imports)
+2. Runs all pre-release checks (lint, type-check, security)
+3. Executes test suite
+4. Updates version in all files (pyproject.toml, setup.py, __init__.py)
+5. Updates CHANGELOG.md
+6. Creates git commit and tag
+7. Prompts to push to GitHub (triggers CI/CD for PyPI publishing)
+
+**Prerequisites:**
+- Clean git working directory
+- All tests passing
+- CHANGELOG.md has [Unreleased] section
+
 ## 📄 License
 
 Proprietary License - Free for personal, educational, and business use.

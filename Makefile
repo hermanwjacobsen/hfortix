@@ -31,6 +31,7 @@ help:
 	@echo "  make pre-release-check - Run pre-release checks only (no auto-fix)"
 	@echo "  make fix            - Auto-fix formatting and import issues"
 	@echo "  make fix-check      - Check what would be fixed (without making changes)"
+	@echo "  make release        - Automated release (VERSION=x.y.z or TYPE=patch/minor/major)"
 	@echo ""
 
 # Installation
@@ -187,3 +188,13 @@ stats:
 	@echo "Examples:        $$(find examples -name '*.py' | wc -l) example files"
 	@echo "Version:         $$(grep '^version' pyproject.toml | cut -d'"' -f2)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# Automated release process
+release:
+	@if [ -n "$(VERSION)" ]; then \
+		.venv/bin/python X/scripts/release.py $(VERSION); \
+	elif [ -n "$(TYPE)" ]; then \
+		.venv/bin/python X/scripts/release.py --$(TYPE); \
+	else \
+		.venv/bin/python X/scripts/release.py; \
+	fi
