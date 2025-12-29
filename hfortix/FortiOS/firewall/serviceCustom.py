@@ -111,9 +111,7 @@ def validate_helper(helper: Optional[str]) -> None:
 def validate_fqdn(fqdn: Optional[str]) -> None:
     """Validate FQDN parameter."""
     if fqdn is not None and isinstance(fqdn, str) and len(fqdn) > 255:
-        raise ValueError(
-            f"FQDN cannot exceed 255 characters, got {len(fqdn)}"
-        )
+        raise ValueError(f"FQDN cannot exceed 255 characters, got {len(fqdn)}")
 
 
 def validate_comment(comment: Optional[str]) -> None:

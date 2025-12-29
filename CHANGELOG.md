@@ -7,16 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.37] - 2025-12-29
+
+### Added
+
+- **Firewall Service Convenience Wrappers**: New high-level wrappers for firewall service management
+  - `ServiceCategory`: Manage firewall service categories with simplified syntax
+  - `ServiceCustom`: Create and manage custom services (TCP, UDP, ICMP, IP protocols)
+  - `ServiceGroup`: Manage service groups with member add/remove operations
+  - Full CRUD operations with parameter validation and automatic data normalization
+  - Accessible via `fgt.firewall.service_category`, `fgt.firewall.service_custom`, `fgt.firewall.service_group`
+
+### Fixed
+
+- **Rename Functionality**: Fixed critical bug in `data` parameter handling for all rename operations
+  - Modified `build_cmdb_payload()` and `build_cmdb_payload_normalized()` in `api/_helpers/helpers.py`
+  - The `data` parameter is now properly merged into the payload instead of being nested as `{"data": {...}}`
+  - This fixes rename operations for ServiceGroup, ServiceCustom, and ServiceCategory
+  - All 40 firewall service tests now passing, including previously failing rename tests
+
+### Changed
+
+- **Rename Method Signature**: Standardized parameter naming across all service wrappers
+  - Changed from `rename(old_name, new_name)` to `rename(name, new_name)` for consistency
+  - Affects: `ServiceGroup.rename()`, `ServiceCustom.rename()`, `ServiceCategory.rename()`
+  - Matches the pattern used by other wrapper methods (update, delete, etc.)
+
+### Documentation
+
+- **Code Quality**: Fixed all PEP8 E501 line length violations in firewall wrapper files
+  - Wrapped long docstrings, error messages, and examples to comply with 79 character limit
+  - Improved code readability while maintaining all functionality
+  - All pre-release checks now passing (flake8, mypy, black, isort, bandit)
+
+## [0.3.36] - 2025-12-25
+
 ### Fixed
 
 - **Firewall Policy Rename**: Simplified `rename()` method - FortiOS supports updating name field directly
   - Removed unnecessary workaround that fetched and included logtraffic field
   - Method now simply calls `update(policy_id, name)` as originally intended
   - Re-enabled 3 rename tests that were incorrectly marked as skipped
-
-## [0.3.36] - 2025-12-25
-
-### Fixed
 
 - **Critical Packaging Issue**: Fixed `.gitignore` pattern excluding password-related modules
   - Changed `*password*` to `/*password*` to only ignore root-level credential files
