@@ -1,9 +1,11 @@
 """
 Service Group Convenience Wrapper
 
-Provides simplified syntax for service group operations with full parameter support.
+Provides simplified syntax for service group operations with full
+parameter support.
 Instead of: fgt.api.cmdb.firewall.service_group.post(data)
-Use: fgt.firewall.service_group.create(name='Web-Group', member=['HTTP', 'HTTPS'], ...)
+Use: fgt.firewall.service_group.create(name='Web-Group',
+    member=['HTTP', 'HTTPS'], ...)
 """
 
 import logging
@@ -59,7 +61,8 @@ def validate_fabric_object(fabric_object: Optional[str]) -> None:
         "disable",
     ]:
         raise ValueError(
-            f"Invalid fabric-object value '{fabric_object}'. Must be 'enable' or 'disable'"
+            f"Invalid fabric-object value '{fabric_object}'. "
+            f"Must be 'enable' or 'disable'"
         )
 
 
@@ -69,7 +72,8 @@ def normalize_member_list(
     """
     Normalize member parameter to FortiOS format.
 
-    Converts string or list of strings to list of dicts: [{"name": "service1"}, {"name": "service2"}]
+    Converts string or list of strings to list of dicts:
+    [{"name": "service1"}, {"name": "service2"}]
     """
     if member is None:
         return None
@@ -85,7 +89,10 @@ def normalize_member_list(
 
 
 class ServiceGroup:
-    """Convenience wrapper for service group operations with full parameter support."""
+    """
+    Convenience wrapper for service group operations with full
+    parameter support.
+    """
 
     def __init__(self, fortios_instance: "FortiOS"):
         """Initialize the ServiceGroup wrapper."""
@@ -272,10 +279,14 @@ class ServiceGroup:
 
         Example:
             >>> # Add single member
-            >>> result = fgt.firewall.service_group.add_member("Web-Group", "DNS")
+            >>> result = fgt.firewall.service_group.add_member(
+            ...     "Web-Group", "DNS"
+            ... )
             >>>
             >>> # Add multiple members
-            >>> result = fgt.firewall.service_group.add_member("Web-Group", ["FTP", "SMTP"])
+            >>> result = fgt.firewall.service_group.add_member(
+            ...     "Web-Group", ["FTP", "SMTP"]
+            ... )
         """
         validate_service_group_name(group_name, "add_member")
 
@@ -285,7 +296,8 @@ class ServiceGroup:
         if isinstance(current, dict):
             current_dict = current
         else:
-            # If it's a coroutine, this is in async context - not typical for this use case
+            # If it's a coroutine, this is in async context
+            # Not typical for this use case
             raise TypeError(
                 "add_member does not support async context directly"
             )
@@ -296,7 +308,8 @@ class ServiceGroup:
         # When getting a specific object, results is a dict, not a list
         group_data = current_dict["results"]
         if isinstance(group_data, list):
-            # Handle case where results is a list (shouldn't happen with name specified)
+            # Handle case where results is a list
+            # (shouldn't happen with name specified)
             if not group_data:
                 raise ValueError(f"Service group '{group_name}' not found")
             group_data = group_data[0]
@@ -339,10 +352,14 @@ class ServiceGroup:
 
         Example:
             >>> # Remove single member
-            >>> result = fgt.firewall.service_group.remove_member("Web-Group", "DNS")
+            >>> result = fgt.firewall.service_group.remove_member(
+            ...     "Web-Group", "DNS"
+            ... )
             >>>
             >>> # Remove multiple members
-            >>> result = fgt.firewall.service_group.remove_member("Web-Group", ["FTP", "SMTP"])
+            >>> result = fgt.firewall.service_group.remove_member(
+            ...     "Web-Group", ["FTP", "SMTP"]
+            ... )
         """
         validate_service_group_name(group_name, "remove_member")
 
@@ -352,7 +369,8 @@ class ServiceGroup:
         if isinstance(current, dict):
             current_dict = current
         else:
-            # If it's a coroutine, this is in async context - not typical for this use case
+            # If it's a coroutine, this is in async context
+            # Not typical for this use case
             raise TypeError(
                 "remove_member does not support async context directly"
             )
@@ -363,7 +381,8 @@ class ServiceGroup:
         # When getting a specific object, results is a dict, not a list
         group_data = current_dict["results"]
         if isinstance(group_data, list):
-            # Handle case where results is a list (shouldn't happen with name specified)
+            # Handle case where results is a list
+            # (shouldn't happen with name specified)
             if not group_data:
                 raise ValueError(f"Service group '{group_name}' not found")
             group_data = group_data[0]
@@ -385,10 +404,12 @@ class ServiceGroup:
 
         if not updated_members:
             raise ValueError(
-                "Cannot remove all members from service group. At least one member is required."
+                "Cannot remove all members from service group. "
+                "At least one member is required."
             )
 
         self._logger.debug(
-            f"Removing member(s) from service group {group_name}: {members_to_remove}"
+            f"Removing member(s) from service group {group_name}: "
+            f"{members_to_remove}"
         )
         return self.update(name=group_name, member=updated_members, vdom=vdom)

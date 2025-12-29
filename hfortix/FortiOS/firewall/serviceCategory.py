@@ -1,7 +1,8 @@
 """
 Service Category Convenience Wrapper
 
-Provides simplified syntax for service category operations with full parameter support.
+Provides simplified syntax for service category operations with full
+parameter support.
 Instead of: fgt.api.cmdb.firewall.service_category.post(data)
 Use: fgt.firewall.service_category.create(name='MyCategory', ...)
 """
@@ -35,7 +36,8 @@ def validate_fabric_object(value: Optional[str]) -> None:
     """
     if value is not None and value not in ["enable", "disable"]:
         raise ValueError(
-            f"Invalid fabric-object value '{value}'. Must be 'enable' or 'disable'"
+            f"Invalid fabric-object value '{value}'. "
+            f"Must be 'enable' or 'disable'"
         )
 
 
@@ -58,7 +60,8 @@ def validate_service_category_name(
     if isinstance(name, str):
         if len(name) > 63:
             raise ValueError(
-                f"Service category name cannot exceed 63 characters, got {len(name)}"
+                f"Service category name cannot exceed 63 characters, "
+                f"got {len(name)}"
             )
 
 
@@ -79,7 +82,10 @@ def validate_comment(comment: Optional[str]) -> None:
 
 
 class ServiceCategory:
-    """Convenience wrapper for service category operations with full parameter support."""
+    """
+    Convenience wrapper for service category operations with full
+    parameter support.
+    """
 
     def __init__(self, fortios_instance: "FortiOS"):
         """
@@ -113,9 +119,11 @@ class ServiceCategory:
 
         Args:
             name: Service category name (max 63 chars, required)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset)
+            uuid: Universally Unique Identifier (UUID; automatically
+                assigned but can be manually reset)
             comment: Comment (max 255 chars)
-            fabric_object: Security Fabric global object setting ('enable'/'disable')
+            fabric_object: Security Fabric global object setting
+                ('enable'/'disable')
             vdom: Virtual domain name
             datasource: Include datasource information
             with_meta: Include meta information
@@ -172,7 +180,8 @@ class ServiceCategory:
         Retrieve service category configuration.
 
         Args:
-            name: Specific category name (optional, returns all if not specified)
+            name: Specific category name (optional, returns all if not
+                specified)
             vdom: Virtual domain name
             **kwargs: Additional query parameters (filter, format, etc.)
 
@@ -184,7 +193,9 @@ class ServiceCategory:
             >>> categories = fgt.firewall.service_category.get()
             >>>
             >>> # Get specific category
-            >>> category = fgt.firewall.service_category.get(name="Web-Services")
+            >>> category = fgt.firewall.service_category.get(
+            ...     name="Web-Services"
+            ... )
         """
         self._logger.debug(
             f"Getting service category: {name if name else 'all'}"
@@ -214,7 +225,8 @@ class ServiceCategory:
             name: Service category name (required)
             uuid: Universally Unique Identifier
             comment: Comment (max 255 chars)
-            fabric_object: Security Fabric global object setting ('enable'/'disable')
+            fabric_object: Security Fabric global object setting
+                ('enable'/'disable')
             vdom: Virtual domain name
             datasource: Include datasource information
             with_meta: Include meta information
@@ -311,7 +323,9 @@ class ServiceCategory:
             ValueError: If name is not provided
 
         Example:
-            >>> result = fgt.firewall.service_category.delete(name="Web-Services")
+            >>> result = fgt.firewall.service_category.delete(
+            ...     name="Web-Services"
+            ... )
         """
         validate_service_category_name(name, "delete")
 
@@ -358,7 +372,9 @@ class ServiceCategory:
             Category configuration or None if not found
 
         Example:
-            >>> category = fgt.firewall.service_category.get_by_name("Web-Services")
+            >>> category = fgt.firewall.service_category.get_by_name(
+            ...     "Web-Services"
+            ... )
             >>> if category:
             ...     print(f"Found: {category['comment']}")
         """

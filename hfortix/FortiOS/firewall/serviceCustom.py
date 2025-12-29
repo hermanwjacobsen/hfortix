@@ -1,9 +1,11 @@
 """
 Service Custom Convenience Wrapper
 
-Provides simplified syntax for custom service operations with full parameter support.
+Provides simplified syntax for custom service operations with full
+parameter support.
 Instead of: fgt.api.cmdb.firewall.service_custom.post(data)
-Use: fgt.firewall.service_custom.create(name='HTTP-8080', tcp_portrange='8080', ...)
+Use: fgt.firewall.service_custom.create(name='HTTP-8080',
+    tcp_portrange='8080', ...)
 """
 
 import logging
@@ -44,7 +46,8 @@ def validate_category(category: Optional[str]) -> None:
         and len(category) > 63
     ):
         raise ValueError(
-            f"Service category cannot exceed 63 characters, got {len(category)}"
+            f"Service category cannot exceed 63 characters, "
+            f"got {len(category)}"
         )
 
 
@@ -72,7 +75,8 @@ def validate_protocol(protocol: Optional[str]) -> None:
     ]
     if protocol is not None and protocol not in valid_protocols:
         raise ValueError(
-            f"Invalid protocol '{protocol}'. Must be one of: {', '.join(valid_protocols)}"
+            f"Invalid protocol '{protocol}'. "
+            f"Must be one of: {', '.join(valid_protocols)}"
         )
 
 
@@ -99,14 +103,17 @@ def validate_helper(helper: Optional[str]) -> None:
     ]
     if helper is not None and helper not in valid_helpers:
         raise ValueError(
-            f"Invalid helper '{helper}'. Must be one of: {', '.join(valid_helpers)}"
+            f"Invalid helper '{helper}'. "
+            f"Must be one of: {', '.join(valid_helpers)}"
         )
 
 
 def validate_fqdn(fqdn: Optional[str]) -> None:
     """Validate FQDN parameter."""
     if fqdn is not None and isinstance(fqdn, str) and len(fqdn) > 255:
-        raise ValueError(f"FQDN cannot exceed 255 characters, got {len(fqdn)}")
+        raise ValueError(
+            f"FQDN cannot exceed 255 characters, got {len(fqdn)}"
+        )
 
 
 def validate_comment(comment: Optional[str]) -> None:
@@ -124,7 +131,8 @@ def validate_fabric_object(fabric_object: Optional[str]) -> None:
         "disable",
     ]:
         raise ValueError(
-            f"Invalid fabric-object value '{fabric_object}'. Must be 'enable' or 'disable'"
+            f"Invalid fabric-object value '{fabric_object}'. "
+            f"Must be 'enable' or 'disable'"
         )
 
 
@@ -133,7 +141,8 @@ def validate_check_reset_range(check_reset_range: Optional[str]) -> None:
     valid_values = ["disable", "strict", "default"]
     if check_reset_range is not None and check_reset_range not in valid_values:
         raise ValueError(
-            f"Invalid check-reset-range '{check_reset_range}'. Must be one of: {', '.join(valid_values)}"
+            f"Invalid check-reset-range '{check_reset_range}'. "
+            f"Must be one of: {', '.join(valid_values)}"
         )
 
 
@@ -142,12 +151,16 @@ def validate_app_service_type(app_service_type: Optional[str]) -> None:
     valid_values = ["disable", "app-id", "app-category"]
     if app_service_type is not None and app_service_type not in valid_values:
         raise ValueError(
-            f"Invalid app-service-type '{app_service_type}'. Must be one of: {', '.join(valid_values)}"
+            f"Invalid app-service-type '{app_service_type}'. "
+            f"Must be one of: {', '.join(valid_values)}"
         )
 
 
 class ServiceCustom:
-    """Convenience wrapper for custom service operations with full parameter support."""
+    """
+    Convenience wrapper for custom service operations with full
+    parameter support.
+    """
 
     def __init__(self, fortios_instance: "FortiOS"):
         """Initialize the ServiceCustom wrapper."""
