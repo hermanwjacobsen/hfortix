@@ -7,9 +7,17 @@ Use: fgt.firewall.service_category.create(name='MyCategory', ...)
 """
 
 import logging
-from typing import TYPE_CHECKING, Any, Coroutine, Dict, Literal, Optional, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Coroutine,
+    Dict,
+    Literal,
+    Optional,
+    Union,
+)
 
-from ..api._helpers import build_cmdb_payload_normalized, validate_color
+from ..api._helpers import build_cmdb_payload_normalized
 
 if TYPE_CHECKING:
     from ..fortios import FortiOS
@@ -31,7 +39,9 @@ def validate_fabric_object(value: Optional[str]) -> None:
         )
 
 
-def validate_service_category_name(name: Optional[str], operation: str = "operation") -> None:
+def validate_service_category_name(
+    name: Optional[str], operation: str = "operation"
+) -> None:
     """
     Validate service category name.
 
@@ -44,7 +54,7 @@ def validate_service_category_name(name: Optional[str], operation: str = "operat
     """
     if not name:
         raise ValueError(f"Service category name is required for {operation}")
-    
+
     if isinstance(name, str):
         if len(name) > 63:
             raise ValueError(
@@ -127,7 +137,7 @@ class ServiceCategory:
         """
         # Validate required parameters
         validate_service_category_name(name, "create")
-        
+
         # Validate optional parameters
         validate_comment(comment)
         validate_fabric_object(fabric_object)
@@ -147,7 +157,9 @@ class ServiceCategory:
             vdom=vdom,
             datasource=datasource,
             with_meta=with_meta,
-            raw_json=raw_json if raw_json is not None else False,  # API expects bool, default to False
+            raw_json=(
+                raw_json if raw_json is not None else False
+            ),  # API expects bool, default to False
         )
 
     def get(
@@ -174,7 +186,9 @@ class ServiceCategory:
             >>> # Get specific category
             >>> category = fgt.firewall.service_category.get(name="Web-Services")
         """
-        self._logger.debug(f"Getting service category: {name if name else 'all'}")
+        self._logger.debug(
+            f"Getting service category: {name if name else 'all'}"
+        )
         return self._api.get(name=name, vdom=vdom, **kwargs)
 
     def update(
@@ -221,7 +235,7 @@ class ServiceCategory:
         """
         # Validate required parameters
         validate_service_category_name(name, "update")
-        
+
         # Validate optional parameters
         validate_comment(comment)
         validate_fabric_object(fabric_object)
@@ -241,7 +255,9 @@ class ServiceCategory:
             vdom=vdom,
             datasource=datasource,
             with_meta=with_meta,
-            raw_json=raw_json if raw_json is not None else False,  # API expects bool, default to False
+            raw_json=(
+                raw_json if raw_json is not None else False
+            ),  # API expects bool, default to False
         )
 
     def rename(
@@ -272,7 +288,7 @@ class ServiceCategory:
         """
         validate_service_category_name(name, "rename (name)")
         validate_service_category_name(new_name, "rename (new_name)")
-        
+
         self._logger.debug(f"Renaming service category: {name} -> {new_name}")
         return self.update(name=name, data={"name": new_name}, vdom=vdom)
 
@@ -298,7 +314,7 @@ class ServiceCategory:
             >>> result = fgt.firewall.service_category.delete(name="Web-Services")
         """
         validate_service_category_name(name, "delete")
-        
+
         self._logger.debug(f"Deleting service category: {name}")
         return self._api.delete(name=name, vdom=vdom)
 
@@ -322,7 +338,7 @@ class ServiceCategory:
             ...     print("Category exists")
         """
         validate_service_category_name(name, "exists")
-        
+
         self._logger.debug(f"Checking if service category exists: {name}")
         return self._api.exists(name=name, vdom=vdom)
 
@@ -347,7 +363,7 @@ class ServiceCategory:
             ...     print(f"Found: {category['comment']}")
         """
         validate_service_category_name(name, "get_by_name")
-        
+
         try:
             return self.get(name=name, vdom=vdom)
         except Exception as e:

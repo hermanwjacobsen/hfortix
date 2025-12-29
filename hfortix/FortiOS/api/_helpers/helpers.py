@@ -156,7 +156,7 @@ def build_cmdb_payload(**params: Any) -> dict[str, Any]:
     payload: dict[str, Any] = {}
 
     # Extract 'data' parameter if present - it should be merged, not added as a key
-    data_dict = params.pop('data', None)
+    data_dict = params.pop("data", None)
 
     for param_name, value in params.items():
         if value is None:
@@ -249,7 +249,7 @@ def build_cmdb_payload_normalized(
     payload: dict[str, Any] = {}
 
     # Extract 'data' parameter if present - it should be merged, not added as a key
-    data_dict = params.pop('data', None)
+    data_dict = params.pop("data", None)
 
     for param_name, value in params.items():
         if value is None:
