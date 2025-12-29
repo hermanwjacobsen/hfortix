@@ -33,7 +33,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 
-- **Shaper Wrappers Guide**: New comprehensive documentation (`docs/SHAPER_WRAPPERS.md`)
+- **Documentation Reorganization**: Improved structure and organization
+  - Created `docs/wrappers/` folder for wrapper-specific documentation
+  - New `CONVENIENCE_WRAPPERS.md` - Overview guide for all convenience wrappers (START HERE)
+  - Moved `FIREWALL_POLICY_WRAPPER.md` to `docs/wrappers/`
+  - Moved `SHAPER_WRAPPERS.md` to `docs/wrappers/`
+  - Renamed `SCHEDULE_CONVENIENCE_METHODS.md` to `SCHEDULE_WRAPPERS.md` and moved to `docs/wrappers/`
+  - Removed outdated `FIX_WINDOWS_INSTALL.md` (issue fixed in v0.3.33)
+  - Moved `PYPI_SETUP.md` to `X/docs/` (development-only documentation)
+  - Updated all documentation cross-references to use new paths
+  - Clear separation: user docs in `docs/`, dev docs in `X/docs/`
+- **Shaper Wrappers Guide**: New comprehensive documentation (`docs/wrappers/SHAPER_WRAPPERS.md`)
   - Quick start examples and API reference for both shaper types
   - Detailed parameter documentation with validation rules
   - Important limitations section explaining rename restriction
