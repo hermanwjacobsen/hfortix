@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Automated version bumping (auto-increment or manual specification)
   - Runs all pre-release checks (formatting, linting, type-checking, security)
   - Executes test suite validation
-  - Updates version in all necessary files (pyproject.toml, setup.py, __init__.py)
+  - Updates version in all necessary files (pyproject.toml, setup.py, `__init__.py`)
   - Updates CHANGELOG.md automatically
   - Creates git commit and tag
   - Prompts for GitHub push (triggers CI/CD for PyPI publishing)

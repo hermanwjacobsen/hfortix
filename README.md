@@ -1406,7 +1406,7 @@ make release TYPE=major
 1. Auto-fixes code issues (formatting, imports)
 2. Runs all pre-release checks (lint, type-check, security)
 3. Executes test suite
-4. Updates version in all files (pyproject.toml, setup.py, __init__.py)
+4. Updates version in all files (pyproject.toml, setup.py, `__init__.py`)
 5. Updates CHANGELOG.md
 6. Creates git commit and tag
 7. Prompts to push to GitHub (triggers CI/CD for PyPI publishing)
