@@ -9,12 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- **Firewall Policy Rename**: Enhanced `rename()` method to handle FortiOS API limitations
-  - FortiOS API requires at least one field besides 'name' when updating policies
-  - Method now fetches current `logtraffic` setting and includes it in the rename request
-  - Added comprehensive error handling and validation
-  - Added detailed error messages for better debugging
-  - Documented the limitation in the method's docstring
+- **Firewall Policy Rename**: Simplified `rename()` method - FortiOS supports updating name field directly
+  - Removed unnecessary workaround that fetched and included logtraffic field
+  - Method now simply calls `update(policy_id, name)` as originally intended
+  - Re-enabled 3 rename tests that were incorrectly marked as skipped
 
 ## [0.3.36] - 2025-12-25
 
