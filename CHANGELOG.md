@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.38] - 2025-12-29
+
+### Added
+
+- **Traffic Shaper Convenience Wrappers**: Production-ready wrappers for FortiOS traffic shaping
+  - `ShaperPerIp`: Per-IP traffic shaper for bandwidth and session limits per source IP
+    - Parameters: max_bandwidth, bandwidth_unit, session limits, DiffServ settings
+    - Methods: create(), get(), update(), delete(), exists()
+  - `TrafficShaper`: Shared traffic shaper with guaranteed/maximum bandwidth
+    - Parameters: guaranteed/maximum bandwidth, priority, DiffServ, CoS, overhead
+    - Methods: create(), get(), update(), delete(), exists()
+  - Comprehensive parameter validation (name length, bandwidth ranges, enum values)
+  - Accessible via `fgt.firewall.shaper_per_ip` and `fgt.firewall.traffic_shaper`
+  - Complete test suite: 20 tests passing, 1 skipped (CoS requires VLAN)
+
+### Changed
+
+- **Rename Method Behavior**: Updated `rename()` methods to raise `NotImplementedError`
+  - FortiOS does not support renaming shaper objects (name is immutable primary key)
+  - Shapers use name-based URLs (`/firewall.shaper/traffic-shaper/{name}`)
+  - Unlike shaping policies which use ID-based URLs and support renaming
+  - Methods now raise clear error explaining limitation and workaround
+  - Tests updated to verify NotImplementedError is raised correctly
+
+### Documentation
+
+- **Shaper Wrappers Guide**: New comprehensive documentation (`docs/SHAPER_WRAPPERS.md`)
+  - Quick start examples and API reference for both shaper types
+  - Detailed parameter documentation with validation rules
+  - Important limitations section explaining rename restriction
+  - Comparison table: shapers (name-based) vs shaping policies (ID-based)
+  - 7 complete examples covering common use cases
+  - Troubleshooting guide and best practices
+- **API Investigation Results**: Documented FortiOS shaper API behavior (`X/SHAPER_API_INVESTIGATION.md`)
+  - Confirmed no numeric ID field exists for shaper objects
+  - Verified rename operations silently fail (FortiOS ignores name changes)
+  - Compared shaper endpoints (name-based) vs policy endpoints (ID-based)
+  - Test results showing API responses and rename attempts
+
 ## [0.3.37] - 2025-12-29
 
 ### Added

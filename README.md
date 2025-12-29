@@ -47,7 +47,17 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.34 - December 25, 2025):**
+**Latest Features (v0.3.38 - December 29, 2025):**
+
+- 🚦 **Traffic Shaper Convenience Wrappers**: Production-ready wrappers for traffic shaping
+  - **Per-IP Shaper** (`fgt.firewall.shaper_per_ip`) - Bandwidth and session limits per source IP
+  - **Traffic Shaper** (`fgt.firewall.traffic_shaper`) - Shared traffic shaper with guaranteed/maximum bandwidth
+  - Full parameter support with comprehensive validation
+  - ⚠️ **Important:** Rename operations not supported (FortiOS API limitation - name is immutable primary key)
+  - See `docs/SHAPER_WRAPPERS.md` for complete guide and examples
+  - Comprehensive test suite: `X/pytests/firewall/shaper.py` (20 tests passing)
+
+**Features from v0.3.34 (December 25, 2025):**
 
 - 📋 **Schedule Convenience Methods**: All schedule types now have consistent convenience methods
   - `get_by_name()` - Get schedule data directly (not full API response)
@@ -228,11 +238,16 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ### Feature Guides
 
+#### Convenience Wrappers (Start Here!)
+- **[docs/wrappers/CONVENIENCE_WRAPPERS.md](docs/wrappers/CONVENIENCE_WRAPPERS.md)** - **Overview of all convenience wrappers** (policies, shapers, schedules, services) with common patterns and examples
+- **[docs/wrappers/FIREWALL_POLICY_WRAPPER.md](docs/wrappers/FIREWALL_POLICY_WRAPPER.md)** - Detailed firewall policy API reference (150+ parameters)
+- **[docs/wrappers/SHAPER_WRAPPERS.md](docs/wrappers/SHAPER_WRAPPERS.md)** - Detailed traffic shaper API reference (per-IP and traffic shapers)
+- **[docs/wrappers/SCHEDULE_WRAPPERS.md](docs/wrappers/SCHEDULE_WRAPPERS.md)** - Schedule management reference (onetime, recurring, groups)
+- **[docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md)** - Configurable error handling for wrappers
+
+#### Framework & Advanced Features
 - **[docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md)** - Using the validation framework (832 validators)
 - **[docs/BUILDER_PATTERN_GUIDE.md](docs/BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details
-- **[docs/FIREWALL_POLICY_WRAPPER.md](docs/FIREWALL_POLICY_WRAPPER.md)** - Firewall policy convenience wrappers
-- **[SCHEDULE_CONVENIENCE_METHODS.md](SCHEDULE_CONVENIENCE_METHODS.md)** - Schedule convenience methods (NEW in v0.3.34)
-- **[docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md)** - Configurable error handling for wrappers
 - **[docs/ASYNC_GUIDE.md](docs/ASYNC_GUIDE.md)** - Async/await patterns and best practices
 - **[docs/FILTERING_GUIDE.md](docs/FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
 - **[docs/PERFORMANCE_TESTING.md](docs/PERFORMANCE_TESTING.md)** - Performance testing and optimization

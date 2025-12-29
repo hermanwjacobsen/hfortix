@@ -13,17 +13,22 @@ Complete reference documentation for the HFortix FortiOS Python SDK.
 - **[FILTERING_GUIDE.md](FILTERING_GUIDE.md)** - Complete guide to filtering API queries with 50+ examples
 - **[ASYNC_GUIDE.md](ASYNC_GUIDE.md)** - Async/await support for concurrent operations
 - **[PERFORMANCE_TESTING.md](PERFORMANCE_TESTING.md)** - Test your FortiGate and optimize connection settings
-- **[FIX_WINDOWS_INSTALL.md](FIX_WINDOWS_INSTALL.md)** - Troubleshooting Windows installation issues
 
 ### Feature Guides
-- **[SCHEDULE_CONVENIENCE_METHODS.md](SCHEDULE_CONVENIENCE_METHODS.md)** - Schedule management convenience methods (v0.3.34)
-- **[VALIDATION_GUIDE.md](VALIDATION_GUIDE.md)** - Using the validation framework (832 validators) (v0.3.21)
-- **[BUILDER_PATTERN_GUIDE.md](BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details (v0.3.21)
-- **[FIREWALL_POLICY_WRAPPER.md](FIREWALL_POLICY_WRAPPER.md)** - Intuitive interface for firewall policy management (v0.3.17)
+
+#### Convenience Wrappers
+- **[wrappers/CONVENIENCE_WRAPPERS.md](wrappers/CONVENIENCE_WRAPPERS.md)** - **START HERE:** Overview of all convenience wrappers with common patterns and examples
+- **[wrappers/FIREWALL_POLICY_WRAPPER.md](wrappers/FIREWALL_POLICY_WRAPPER.md)** - Detailed firewall policy API reference (150+ parameters) (v0.3.17)
+- **[wrappers/SHAPER_WRAPPERS.md](wrappers/SHAPER_WRAPPERS.md)** - Detailed traffic shaper API reference (per-IP and traffic shapers) (v0.3.38)
+- **[wrappers/SCHEDULE_WRAPPERS.md](wrappers/SCHEDULE_WRAPPERS.md)** - Schedule management reference (onetime, recurring, groups) (v0.3.34)
 - **[ERROR_HANDLING_CONFIG.md](ERROR_HANDLING_CONFIG.md)** - Configurable error handling for convenience wrappers (v0.3.24)
 
-### Development & Testing
-- **[TESTPYPI_GUIDE.md](TESTPYPI_GUIDE.md)** - TestPyPI setup and testing releases (v0.3.34)
+#### Framework Features
+- **[VALIDATION_GUIDE.md](VALIDATION_GUIDE.md)** - Using the validation framework (832 validators) (v0.3.21)
+- **[BUILDER_PATTERN_GUIDE.md](BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details (v0.3.21)
+- **[ASYNC_GUIDE.md](ASYNC_GUIDE.md)** - Async/await patterns and best practices
+- **[FILTERING_GUIDE.md](FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
+- **[PERFORMANCE_TESTING.md](PERFORMANCE_TESTING.md)** - Performance testing and optimization
 
 ## API Reference
 
@@ -36,13 +41,22 @@ Complete reference documentation for the HFortix FortiOS Python SDK.
 - **[Changelog](../CHANGELOG.md)** - Complete version history
 - **[Examples](../examples/)** - Working code samples
 
+## What's New in v0.3.38
+
+- **Traffic Shaper Wrappers**: Production-ready wrappers for traffic shaping
+  - Per-IP shaper: Bandwidth and session limits per source IP
+  - Traffic shaper: Shared pools with guaranteed/maximum bandwidth
+  - Full parameter support with comprehensive validation
+- **Service Wrappers**: Complete service management (v0.3.37)
+  - Custom services, service categories, service groups
+  - Full CRUD operations with rename and clone support
+- **Consolidated Documentation**: New comprehensive convenience wrappers guide
+
 ## What's New in v0.3.34
 
 - **Schedule Convenience Methods**: Added `get_by_name()`, `rename()`, and `clone()` to all schedule types
 - **IP/MAC Binding Modules**: New modules for managing IP/MAC binding settings and table entries
 - **Firewall Policy Helpers**: Extracted validation utilities into reusable `_helpers.py` module
-- **Pre-release Tooling**: Added bandit security scanning and pre-commit integration
-- **Documentation**: Organized docs directory structure, added TestPyPI guide
 
 ## What's New in v0.3.24
 
@@ -60,4 +74,4 @@ Complete reference documentation for the HFortix FortiOS Python SDK.
 
 ---
 
-**Documentation Status:** ✅ Complete and up-to-date (December 25, 2025)
+**Documentation Status:** ✅ Complete and up-to-date (December 29, 2025)

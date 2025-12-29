@@ -29,6 +29,8 @@ class FirewallNamespace:
             ServiceCategory,
             ServiceCustom,
             ServiceGroup,
+            ShaperPerIp,
+            TrafficShaper,
         )
 
         self.policy = FirewallPolicy(fortios_instance)
@@ -40,6 +42,8 @@ class FirewallNamespace:
         self.service_category = ServiceCategory(fortios_instance)
         self.service_custom = ServiceCustom(fortios_instance)
         self.service_group = ServiceGroup(fortios_instance)
+        self.shaper_per_ip = ShaperPerIp(fortios_instance)
+        self.traffic_shaper = TrafficShaper(fortios_instance)
 
 
 class FortiOS:

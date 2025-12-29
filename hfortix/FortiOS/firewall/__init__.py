@@ -9,6 +9,8 @@ from .scheduleRecurring import ScheduleRecurring
 from .serviceCategory import ServiceCategory
 from .serviceCustom import ServiceCustom
 from .serviceGroup import ServiceGroup
+from .shaperPerIp import ShaperPerIp
+from .trafficShaper import TrafficShaper
 
 __all__ = [
     "FirewallPolicy",
@@ -20,4 +22,6 @@ __all__ = [
     "ServiceCategory",
     "ServiceCustom",
     "ServiceGroup",
+    "ShaperPerIp",
+    "TrafficShaper",
 ]
