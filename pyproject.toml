@@ -105,7 +105,7 @@ disallow_incomplete_defs = false  # TODO: Enable incrementally
 check_untyped_defs = true
 no_implicit_optional = true
 warn_redundant_casts = true
-warn_unused_ignores = true
+warn_unused_ignores = false  # Disabled to allow ignores for Pyright
 warn_no_return = true
 warn_unreachable = false
 strict_equality = true
@@ -116,6 +116,8 @@ pretty = true
 # PEP 561 compliance
 namespace_packages = true
 explicit_package_bases = true
+# Add package paths to help mypy resolve imports correctly
+mypy_path = "packages/fortios:packages/core"
 # Exclude v2 API (has hyphenated directory names)
 exclude = [
     "hfortix/FortiOS/api/v2/",

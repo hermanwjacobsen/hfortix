@@ -650,7 +650,7 @@ service = fgt.firewall.service_custom.create(
 if fgt.firewall.service_custom.exists("HTTPS-8443"):
     # Get service by name
     service = fgt.firewall.service_custom.get_by_name("HTTPS-8443")
-    
+
     # Update service
     fgt.firewall.service_custom.update(
         name="HTTPS-8443",

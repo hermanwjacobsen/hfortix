@@ -4,12 +4,25 @@ import logging
 import os
 from typing import TYPE_CHECKING, Any, Literal, Optional, Union, cast, overload
 
-from .api import API
 from hfortix_core.http.client import HTTPClient
 from hfortix_core.http.interface import IHTTPClient
 
+from .api import API
+
 if TYPE_CHECKING:
-    pass
+    from hfortix_fortios.firewall import (
+        FirewallPolicy,
+        IPMACBindingSetting,
+        IPMACBindingTable,
+        ScheduleGroup,
+        ScheduleOnetime,
+        ScheduleRecurring,
+        ServiceCategory,
+        ServiceCustom,
+        ServiceGroup,
+        ShaperPerIp,
+        TrafficShaper,
+    )
 
 __all__ = ["FortiOS"]
 
@@ -17,9 +30,22 @@ __all__ = ["FortiOS"]
 class FirewallNamespace:
     """Namespace for firewall convenience wrappers."""
 
+    policy: "FirewallPolicy"
+    ipmac_binding_setting: "IPMACBindingSetting"
+    ipmac_binding_table: "IPMACBindingTable"
+    schedule_recurring: "ScheduleRecurring"
+    schedule_onetime: "ScheduleOnetime"
+    schedule_group: "ScheduleGroup"
+    service_category: "ServiceCategory"
+    service_custom: "ServiceCustom"
+    service_group: "ServiceGroup"
+    shaper_per_ip: "ShaperPerIp"
+    traffic_shaper: "TrafficShaper"
+
     def __init__(self, fortios_instance: "FortiOS"):
         """Initialize with reference to FortiOS instance."""
-        from .firewall import (
+        # Import at runtime to avoid circular imports
+        from hfortix_fortios.firewall import (
             FirewallPolicy,
             IPMACBindingSetting,
             IPMACBindingTable,
@@ -33,17 +59,30 @@ class FirewallNamespace:
             TrafficShaper,
         )
 
-        self.policy = FirewallPolicy(fortios_instance)
-        self.ipmac_binding_setting = IPMACBindingSetting(fortios_instance)
-        self.ipmac_binding_table = IPMACBindingTable(fortios_instance)
-        self.schedule_recurring = ScheduleRecurring(fortios_instance)
-        self.schedule_onetime = ScheduleOnetime(fortios_instance)
-        self.schedule_group = ScheduleGroup(fortios_instance)
-        self.service_category = ServiceCategory(fortios_instance)
-        self.service_custom = ServiceCustom(fortios_instance)
-        self.service_group = ServiceGroup(fortios_instance)
-        self.shaper_per_ip = ShaperPerIp(fortios_instance)
-        self.traffic_shaper = TrafficShaper(fortios_instance)
+        # fmt: off
+        self.policy = FirewallPolicy(
+            fortios_instance)  # type: ignore
+        self.ipmac_binding_setting = IPMACBindingSetting(
+            fortios_instance)  # type: ignore
+        self.ipmac_binding_table = IPMACBindingTable(
+            fortios_instance)  # type: ignore
+        self.schedule_recurring = ScheduleRecurring(
+            fortios_instance)  # type: ignore
+        self.schedule_onetime = ScheduleOnetime(
+            fortios_instance)  # type: ignore
+        self.schedule_group = ScheduleGroup(
+            fortios_instance)  # type: ignore
+        self.service_category = ServiceCategory(
+            fortios_instance)  # type: ignore
+        self.service_custom = ServiceCustom(
+            fortios_instance)  # type: ignore
+        self.service_group = ServiceGroup(
+            fortios_instance)  # type: ignore
+        self.shaper_per_ip = ShaperPerIp(
+            fortios_instance)  # type: ignore
+        self.traffic_shaper = TrafficShaper(
+            fortios_instance)  # type: ignore
+        # fmt: on
 
 
 class FortiOS:
@@ -333,12 +372,14 @@ class FortiOS:
                           Access health metrics via get_health_metrics().
             error_mode: How convenience wrappers handle errors (default:
             "raise").
+
                        - "raise": Raise exceptions (stops program unless
                        caught with try/except)
                        - "return": Return error dict instead of raising
                        (program always continues)
                        - "log": Log error and return None (program always
                        continues)
+
                        Can be overridden per method call. This only affects
                        convenience wrappers
                        (e.g., fgt.firewall.policy.create), not direct API
@@ -350,8 +391,8 @@ class FortiOS:
                 - "simple": Just error message and code
                 - "code_only": Just the error code number
 
-                Can be overridden per method call. Affects both raised
-                exceptions and returned error dicts depending on error_mode.
+              Can be overridden per method call. Affects both raised
+              exceptions and returned error dicts depending on error_mode.
 
         Important:
             Username/password authentication still works in FortiOS 7.4.x but
@@ -970,6 +1011,7 @@ class FortiOS:
         It ensures that all network connections and sessions are closed.
 
         Usage:
+
             - Call `await fgt.aclose()` when you are done with the client in
             async mode.
             - Prefer using the async context manager (`async with`) for

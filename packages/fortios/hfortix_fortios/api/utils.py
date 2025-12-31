@@ -219,7 +219,7 @@ class Utils:
 
         try:
             # Import FortiOS here to avoid circular dependency
-            from . import FortiOS
+            from hfortix_fortios import FortiOS
 
             # Test 1: Normal configuration
             try:
@@ -333,7 +333,7 @@ class Utils:
 
         async def concurrent_test():
             # Import async client
-            from . import FortiOS
+            from hfortix_fortios import FortiOS
 
             # Get connection details from current client
             # Parse URL to extract host

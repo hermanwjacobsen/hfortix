@@ -30,7 +30,7 @@ repos:
         exclude: ^(docs/|X/|\.venv/|venv/|build/|dist/)
       - id: detect-private-key
         # Generated API stubs can contain key-like strings; exclude them.
-        exclude: ^(hfortix/FortiOS/api/v2/|docs/|X/)
+        exclude: ^(hfortix/FortiOS/api/v2/|packages/fortios/hfortix_fortios/api/v2/|docs/|X/)
 
   # Python code formatting with Black
   - repo: https://github.com/psf/black

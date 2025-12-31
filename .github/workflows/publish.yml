@@ -39,7 +39,7 @@
 # - PyPI: Uses trusted publishing (OIDC, no token needed)
 #   Configure at: https://pypi.org/manage/project/{package}/settings/publishing/
 #   - hfortix-core
-#   - hfortix-fortios  
+#   - hfortix-fortios
 #   - hfortix
 # ============================================================================
 name: Publish to PyPI
@@ -87,7 +87,7 @@ jobs:
             # Tag-based trigger
             TAG="${GITHUB_REF#refs/tags/}"
             echo "Tag: $TAG"
-            
+
             if [[ "$TAG" =~ ^v-core- ]]; then
               echo "packages=core" >> $GITHUB_OUTPUT
               echo "publish_core=true" >> $GITHUB_OUTPUT
@@ -126,9 +126,21 @@ jobs:
               echo "publish_meta=true" >> $GITHUB_OUTPUT
             else
               echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
-              [[ "$PACKAGES" == *"core"* ]] && echo "publish_core=true" >> $GITHUB_OUTPUT || echo "publish_core=false" >> $GITHUB_OUTPUT
-              [[ "$PACKAGES" == *"fortios"* ]] && echo "publish_fortios=true" >> $GITHUB_OUTPUT || echo "publish_fortios=false" >> $GITHUB_OUTPUT
-              [[ "$PACKAGES" == *"meta"* ]] && echo "publish_meta=true" >> $GITHUB_OUTPUT || echo "publish_meta=false" >> $GITHUB_OUTPUT
+              if [[ "$PACKAGES" == *"core"* ]]; then
+                echo "publish_core=true" >> $GITHUB_OUTPUT
+              else
+                echo "publish_core=false" >> $GITHUB_OUTPUT
+              fi
+              if [[ "$PACKAGES" == *"fortios"* ]]; then
+                echo "publish_fortios=true" >> $GITHUB_OUTPUT
+              else
+                echo "publish_fortios=false" >> $GITHUB_OUTPUT
+              fi
+              if [[ "$PACKAGES" == *"meta"* ]]; then
+                echo "publish_meta=true" >> $GITHUB_OUTPUT
+              else
+                echo "publish_meta=false" >> $GITHUB_OUTPUT
+              fi
             fi
             echo "📦 Publishing: $PACKAGES"
           fi
@@ -156,38 +168,57 @@ jobs:
           CORE_VERSION=$(grep '^version = ' packages/core/pyproject.toml | cut -d'"' -f2)
           FORTIOS_VERSION=$(grep '^version = ' packages/fortios/pyproject.toml | cut -d'"' -f2)
           META_VERSION=$(grep '^version = ' packages/meta/pyproject.toml | cut -d'"' -f2)
-          
+
           echo "core_version=$CORE_VERSION" >> $GITHUB_OUTPUT
           echo "fortios_version=$FORTIOS_VERSION" >> $GITHUB_OUTPUT
           echo "meta_version=$META_VERSION" >> $GITHUB_OUTPUT
-          
+
           echo "📦 Package Versions:"
           echo "   hfortix-core:    $CORE_VERSION"
           echo "   hfortix-fortios: $FORTIOS_VERSION"
           echo "   hfortix:         $META_VERSION"
-          
+
           # Check for pre-release versions
-          [[ "$CORE_VERSION" =~ (dev|alpha|beta|rc) ]] && echo "core_is_prerelease=true" >> $GITHUB_OUTPUT || echo "core_is_prerelease=false" >> $GITHUB_OUTPUT
-          [[ "$FORTIOS_VERSION" =~ (dev|alpha|beta|rc) ]] && echo "fortios_is_prerelease=true" >> $GITHUB_OUTPUT || echo "fortios_is_prerelease=false" >> $GITHUB_OUTPUT
-          [[ "$META_VERSION" =~ (dev|alpha|beta|rc) ]] && echo "meta_is_prerelease=true" >> $GITHUB_OUTPUT || echo "meta_is_prerelease=false" >> $GITHUB_OUTPUT
+          if [[ "$CORE_VERSION" =~ (dev|alpha|beta|rc) ]]; then
+            echo "core_is_prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "core_is_prerelease=false" >> $GITHUB_OUTPUT
+          fi
+          if [[ "$FORTIOS_VERSION" =~ (dev|alpha|beta|rc) ]]; then
+            echo "fortios_is_prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "fortios_is_prerelease=false" >> $GITHUB_OUTPUT
+          fi
+          if [[ "$META_VERSION" =~ (dev|alpha|beta|rc) ]]; then
+            echo "meta_is_prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "meta_is_prerelease=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Validate dependency versions
         run: |
           CORE_VERSION="${{ steps.versions.outputs.core_version }}"
           FORTIOS_VERSION="${{ steps.versions.outputs.fortios_version }}"
           META_VERSION="${{ steps.versions.outputs.meta_version }}"
-          
+
           # Check fortios depends on compatible core version
-          FORTIOS_CORE_DEP=$(grep 'hfortix-core>=' packages/fortios/pyproject.toml | cut -d'"' -f2 | sed 's/hfortix-core>=//')
+          FORTIOS_CORE_DEP=$(
+            grep 'hfortix-core>=' packages/fortios/pyproject.toml |
+            cut -d'"' -f2 | sed 's/hfortix-core>=//'
+          )
           echo "hfortix-fortios requires: hfortix-core>=$FORTIOS_CORE_DEP"
           echo "hfortix-core version:     $CORE_VERSION"
-          
+
           # Check meta depends on compatible core version
-          META_CORE_DEP=$(grep 'hfortix-core>=' packages/meta/pyproject.toml | cut -d'"' -f2 | sed 's/hfortix-core>=//')
+          META_CORE_DEP=$(
+            grep 'hfortix-core>=' packages/meta/pyproject.toml |
+            cut -d'"' -f2 | sed 's/hfortix-core>=//'
+          )
           echo "hfortix requires:         hfortix-core>=$META_CORE_DEP"
-          
+
           # Warning if versions mismatch (but don't fail - semver allows this)
-          if [[ "$FORTIOS_CORE_DEP" != "$CORE_VERSION" ]] && [[ "${{ needs.determine-packages.outputs.publish_fortios }}" == "true" ]]; then
+          if [[ "$FORTIOS_CORE_DEP" != "$CORE_VERSION" ]] &&
+             [[ "${{ needs.determine-packages.outputs.publish_fortios }}" == "true" ]]; then
             echo "⚠️  WARNING: hfortix-fortios depends on core>=$FORTIOS_CORE_DEP but core is $CORE_VERSION"
           fi
 
@@ -460,14 +491,22 @@ jobs:
   publish-pypi-meta:
     name: Publish hfortix to PyPI
     runs-on: ubuntu-latest
-    needs: [determine-packages, validate-versions, build, publish-testpypi-meta, publish-pypi-core, publish-pypi-fortios]
+    needs:
+      - determine-packages
+      - validate-versions
+      - build
+      - publish-testpypi-meta
+      - publish-pypi-core
+      - publish-pypi-fortios
     if: |
       always() &&
       needs.determine-packages.outputs.publish_meta == 'true' &&
       needs.validate-versions.outputs.meta_is_prerelease == 'false' &&
       needs.publish-testpypi-meta.result == 'success' &&
-      (needs.publish-pypi-fortios.result == 'success' || needs.publish-pypi-fortios.result == 'skipped') &&
-      (github.event_name == 'push' || github.event.inputs.environment == 'pypi')
+      (needs.publish-pypi-fortios.result == 'success' ||
+       needs.publish-pypi-fortios.result == 'skipped') &&
+      (github.event_name == 'push' ||
+       github.event.inputs.environment == 'pypi')
     environment:
       name: pypi-meta
       url: https://pypi.org/project/hfortix/
@@ -506,8 +545,8 @@ jobs:
     if: |
       always() &&
       github.event_name == 'push' &&
-      (needs.publish-pypi-core.result == 'success' || 
-       needs.publish-pypi-fortios.result == 'success' || 
+      (needs.publish-pypi-core.result == 'success' ||
+       needs.publish-pypi-fortios.result == 'success' ||
        needs.publish-pypi-meta.result == 'success' ||
        needs.validate-versions.outputs.core_is_prerelease == 'true' ||
        needs.validate-versions.outputs.fortios_is_prerelease == 'true' ||
@@ -524,7 +563,7 @@ jobs:
         id: release
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
-          
+
           if [[ "$TAG" =~ ^v-core- ]]; then
             VERSION="${{ needs.validate-versions.outputs.core_version }}"
             TITLE="hfortix-core $VERSION"
@@ -550,7 +589,7 @@ jobs:
               IS_PRERELEASE="false"
             fi
           fi
-          
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "is_prerelease=$IS_PRERELEASE" >> $GITHUB_OUTPUT
@@ -567,11 +606,13 @@ jobs:
             fi
             if [[ "${{ needs.determine-packages.outputs.publish_fortios }}" == "true" ]]; then
               echo "- **hfortix-fortios** ${{ needs.validate-versions.outputs.fortios_version }}"
-              echo "  - https://pypi.org/project/hfortix-fortios/${{ needs.validate-versions.outputs.fortios_version }}/"
+              FORTIOS_URL="https://pypi.org/project/hfortix-fortios"
+              echo "  - $FORTIOS_URL/${{ needs.validate-versions.outputs.fortios_version }}/"
             fi
             if [[ "${{ needs.determine-packages.outputs.publish_meta }}" == "true" ]]; then
               echo "- **hfortix** ${{ needs.validate-versions.outputs.meta_version }}"
-              echo "  - https://pypi.org/project/hfortix/${{ needs.validate-versions.outputs.meta_version }}/"
+              META_URL="https://pypi.org/project/hfortix"
+              echo "  - $META_URL/${{ needs.validate-versions.outputs.meta_version }}/"
             fi
             echo ""
             echo "## Installation"
@@ -584,7 +625,7 @@ jobs:
             echo ""
             echo "See [CHANGELOG.md](CHANGELOG.md) for details."
           } > release-notes.md
-          
+
           cat release-notes.md
 
       - name: Create GitHub Release
@@ -604,8 +645,8 @@ jobs:
     needs: [determine-packages, validate-versions, publish-pypi-core, publish-pypi-fortios, publish-pypi-meta]
     if: |
       always() &&
-      (needs.publish-pypi-core.result == 'success' || 
-       needs.publish-pypi-fortios.result == 'success' || 
+      (needs.publish-pypi-core.result == 'success' ||
+       needs.publish-pypi-fortios.result == 'success' ||
        needs.publish-pypi-meta.result == 'success')
 
     steps:
@@ -629,7 +670,12 @@ jobs:
   notify-prerelease:
     name: Notify Pre-release
     runs-on: ubuntu-latest
-    needs: [determine-packages, validate-versions, publish-testpypi-core, publish-testpypi-fortios, publish-testpypi-meta]
+    needs:
+      - determine-packages
+      - validate-versions
+      - publish-testpypi-core
+      - publish-testpypi-fortios
+      - publish-testpypi-meta
     if: |
       always() &&
       (needs.validate-versions.outputs.core_is_prerelease == 'true' ||

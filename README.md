@@ -36,7 +36,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 **Test Coverage:** 226 test files (145 CMDB, 81 Monitor) with 75%+ pass rate (~50% of generated endpoints tested)
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
-**Note:** Documentation in the `.dev/` folder is for internal development only, is not referenced outside `X`, and is not included in git or releases.
+**Development Files:** All development tools, scripts, and internal documentation are organized in the `.dev/` directory and excluded from releases. See `.dev/README.md` for development setup and contributing guidelines.
 
 **🔥 Recent Highlights (December 2025):**
 
@@ -288,6 +288,31 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Well-Documented**: Extensive API documentation and examples
 - **Modern Python**: Type hints, PEP 585 compliance, Python 3.10+
 
+## 📁 Project Structure
+
+```text
+hfortix/
+├── packages/           # Modular package architecture (v0.4.0+)
+│   ├── core/          # Core exceptions and HTTP client
+│   ├── fortios/       # FortiOS/FortiGate implementation
+│   ├── fortimanager/  # FortiManager (planned)
+│   ├── fortianalyzer/ # FortiAnalyzer (planned)
+│   └── meta/          # Meta-package for unified installation
+├── docs/              # User documentation (included in releases)
+│   ├── fortios/       # FortiOS-specific guides
+│   └── source/        # Sphinx documentation source
+├── examples/          # Example scripts and usage patterns
+├── .dev/              # Development tools (excluded from releases)
+│   ├── scripts/       # Development scripts (doc generation, etc.)
+│   ├── pytests/       # Development tests
+│   └── docs/          # Internal development documentation
+├── README.md          # This file
+├── QUICKSTART.md      # Quick reference guide
+├── CHANGELOG.md       # Version history
+└── pyproject.toml     # Package configuration
+```
+
+**Note:** The `.dev/` directory contains development-only files and is excluded from PyPI releases.
 ## 📚 Documentation
 
 ### Getting Started

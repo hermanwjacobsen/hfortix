@@ -18,10 +18,10 @@ from typing import TYPE_CHECKING, Any, Callable, Optional, TypeAlias, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
 from urllib.parse import quote, urlencode
 
 import httpx
-
 from hfortix_core.http.base import BaseHTTPClient
 
 logger = logging.getLogger("hfortix.http")

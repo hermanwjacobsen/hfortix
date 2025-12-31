@@ -40,6 +40,7 @@ if TYPE_CHECKING:
     from typing import Optional
 
     from hfortix_core.http.interface import IHTTPClient
+
     from .utils import Utils
     from .v2.cmdb import CMDB
     from .v2.log import Log
@@ -80,6 +81,7 @@ class API:
             - Example: fgt.api.service.system.get()
 
         utils: Utility functions for testing and diagnostics
+
             - Performance testing and benchmarking
             - Connection pool validation
             - Device profiling and recommendations

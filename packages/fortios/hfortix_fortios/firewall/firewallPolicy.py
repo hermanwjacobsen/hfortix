@@ -24,7 +24,10 @@ from typing import (  # noqa: F401
 from hfortix_fortios.api._helpers import build_cmdb_payload_normalized
 
 # Import shared firewall helpers
-from hfortix_fortios.firewall._helpers import validate_address_pairs, validate_policy_id
+from hfortix_fortios.firewall._helpers import (
+    validate_address_pairs,
+    validate_policy_id,
+)
 
 if TYPE_CHECKING:
     from hfortix_fortios.client import FortiOS
@@ -1669,8 +1672,7 @@ class FirewallPolicy:
         if raw_json is not None:
             call_params["raw_json"] = raw_json
 
-        # Type ignore: client can be sync or async, runtime returns
-        # Dict[str, Any]
+        # Client can be sync or async at runtime
         return self._fgt._client.put(  # type: ignore[return-value]
             "cmdb", endpoint, **call_params
         )

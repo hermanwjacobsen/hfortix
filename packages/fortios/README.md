@@ -143,7 +143,7 @@ async def main():
     async with FortiOS(host="...", token="...", mode="async") as fgt:
         # All methods support await
         addresses = await fgt.api.cmdb.firewall.address.list()
-        
+
         # Concurrent operations
         addr, pol, svc = await asyncio.gather(
             fgt.api.cmdb.firewall.address.list(),

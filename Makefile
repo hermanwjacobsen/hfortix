@@ -247,7 +247,7 @@ docs-live:
 
 docs-generate:
 	@echo "🔧 Generating API documentation..."
-	@python .dev/scripts/generate_api_docs.py
+	@python .dev/scripts/generate_docs.py
 	@echo "✅ API documentation generated!"
 
 docs-check:

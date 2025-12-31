@@ -19,7 +19,6 @@ from typing import Any, Callable, Optional, TypeAlias, Union
 from urllib.parse import quote
 
 import httpx
-
 from hfortix_core.http.base import BaseHTTPClient
 
 logger = logging.getLogger("hfortix.http.async")
