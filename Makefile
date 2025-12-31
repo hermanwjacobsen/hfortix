@@ -33,7 +33,11 @@ help:
 	@echo "  make publish-test-core - Publish only hfortix-core to TestPyPI"
 	@echo "  make publish-test-fortios - Publish only hfortix-fortios to TestPyPI"
 	@echo "  make publish-test-meta - Publish only hfortix meta to TestPyPI"
-	@echo "  make docs           - Generate documentation (future)"
+	@echo "  make docs           - Build HTML documentation"
+	@echo "  make docs-clean     - Clean documentation build artifacts"
+	@echo "  make docs-live      - Start live documentation server with auto-reload"
+	@echo "  make docs-generate  - Generate API documentation from code"
+	@echo "  make docs-check     - Check documentation for broken links"
 	@echo "  make all            - Run format, lint, type-check, and test"
 	@echo "  make version-check  - Check version consistency across all packages"
 	@echo "  make bump-version   - Bump version (use VERSION=x.y.z or TYPE=patch/minor/major)"
@@ -228,8 +232,28 @@ publish-test: build
 
 # Documentation (placeholder for future)
 docs:
-	@echo "📚 Documentation generation not yet configured"
-	@echo "Future: Will use Sphinx or MkDocs"
+	@echo "📚 Building documentation..."
+	@cd docs && $(MAKE) html
+	@echo "✅ Documentation built! Open docs/build/html/index.html"
+
+docs-clean:
+	@echo "🧹 Cleaning documentation build..."
+	@cd docs && $(MAKE) clean
+	@echo "✅ Documentation build cleaned!"
+
+docs-live:
+	@echo "📚 Starting live documentation server..."
+	@cd docs && $(MAKE) livehtml
+
+docs-generate:
+	@echo "🔧 Generating API documentation..."
+	@python .dev/scripts/generate_api_docs.py
+	@echo "✅ API documentation generated!"
+
+docs-check:
+	@echo "🔍 Checking documentation..."
+	@cd docs && $(MAKE) linkcheck
+	@echo "✅ Documentation check complete!"
 
 # Comprehensive check
 all: format lint type-check test
