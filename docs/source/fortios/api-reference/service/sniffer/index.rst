@@ -19,34 +19,36 @@ Python Usage
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # List available packet captures
-   captures = fgt.api.service.sniffer.list.get()
-   
-   # Start a new capture (properties are lazy-loaded)
-   result = fgt.api.service.sniffer.start.post(
-       host='192.168.1.100',
-       port=443,
-       interface='port1'
-   )
-   
-   # Or using payload_dict
-   result = fgt.api.service.sniffer.start.post(payload_dict={
+   # Step 1: Configure a packet capture via CMDB (firewall.sniffer)
+   config = fgt.api.cmdb.firewall.sniffer.post(json={
+       'name': 'my-capture',
+       'interface': 'port1',
        'host': '192.168.1.100',
-       'port': 443,
-       'interface': 'port1'
+       'port': '443',
+       'protocol': '6',  # TCP
+       'max-packet-count': 1000
    })
    
-   # Get capture metadata
-   meta = fgt.api.service.sniffer.meta.get(mkey='capture_id')
+   # Step 2: Start the packet capture
+   result = fgt.api.service.sniffer.start.post(mkey='my-capture')
    
-   # Stop capture
-   result = fgt.api.service.sniffer.stop.post(mkey='capture_id')
+   # Step 3: List all packet captures and their status
+   captures = fgt.api.service.sniffer.list.get()
    
-   # Download PCAP file
-   pcap_data = fgt.api.service.sniffer.download.get(mkey='capture_id')
+   # Step 4: Get capture metadata
+   meta = fgt.api.service.sniffer.meta.get()
    
-   # Delete capture
-   result = fgt.api.service.sniffer.delete.post(mkey='capture_id')
+   # Step 5: Stop the capture
+   result = fgt.api.service.sniffer.stop.post(mkey='my-capture')
+   
+   # Step 6: Download PCAP file
+   pcap_data = fgt.api.service.sniffer.download.post(mkey='my-capture')
+   
+   # Step 7: Delete the capture
+   result = fgt.api.service.sniffer.delete.post(mkey='my-capture')
+
+**Note**: Packet captures must be configured via CMDB (``firewall.sniffer`` or ``firewall.on_demand_sniffer``) 
+before they can be started using the service API.
 
 See Also
 --------

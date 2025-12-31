@@ -9,36 +9,113 @@ CMDB API (Configuration)
 
 .. toctree::
    :maxdepth: 2
-   :caption: CMDB API
+   :caption: CMDB Categories
 
    cmdb/index
+   cmdb/alertemail/index
+   cmdb/antivirus/index
+   cmdb/application/index
+   cmdb/authentication/index
+   cmdb/automation/index
+   cmdb/casb/index
+   cmdb/certificate/index
+   cmdb/diameter-filter/index
+   cmdb/dlp/index
+   cmdb/dnsfilter/index
+   cmdb/emailfilter/index
+   cmdb/endpoint-control/index
+   cmdb/ethernet-oam/index
+   cmdb/extension-controller/index
+   cmdb/file-filter/index
+   cmdb/firewall/index
+   cmdb/ftp-proxy/index
+   cmdb/icap/index
+   cmdb/ips/index
+   cmdb/log/index
+   cmdb/monitoring/index
+   cmdb/report/index
+   cmdb/router/index
+   cmdb/rule/index
+   cmdb/sctp-filter/index
+   cmdb/switch-controller/index
+   cmdb/system/index
+   cmdb/user/index
+   cmdb/videofilter/index
+   cmdb/virtual-patch/index
+   cmdb/voip/index
+   cmdb/vpn/index
+   cmdb/waf/index
+   cmdb/web-proxy/index
+   cmdb/webfilter/index
+   cmdb/wireless-controller/index
+   cmdb/ztna/index
 
 Monitor API (Status & Statistics)
 ----------------------------------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Monitor API
+   :caption: Monitor Categories
 
    monitor/index
+   monitor/azure/index
+   monitor/casb/index
+   monitor/endpoint-control/index
+   monitor/extender-controller/index
+   monitor/extension-controller/index
+   monitor/firewall/index
+   monitor/firmware/index
+   monitor/fortiguard/index
+   monitor/fortiview/index
+   monitor/geoip/index
+   monitor/ips/index
+   monitor/license/index
+   monitor/log/index
+   monitor/network/index
+   monitor/registration/index
+   monitor/router/index
+   monitor/sdwan/index
+   monitor/service/index
+   monitor/switch-controller/index
+   monitor/system/index
+   monitor/user/index
+   monitor/utm/index
+   monitor/videofilter/index
+   monitor/virtual-wan/index
+   monitor/vpn/index
+   monitor/vpn-certificate/index
+   monitor/wanopt/index
+   monitor/web-ui/index
+   monitor/webcache/index
+   monitor/webfilter/index
+   monitor/webproxy/index
+   monitor/wifi/index
 
 Log API (Historical Data)
 --------------------------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Log API
+   :caption: Log Categories
 
    log/index
+   log/disk/index
+   log/memory/index
+   log/fortianalyzer/index
+   log/forticloud/index
+   log/search/index
 
 Service API (Operations)
 -------------------------
 
 .. toctree::
    :maxdepth: 2
-   :caption: Service API
+   :caption: Service Categories
 
    service/index
+   service/sniffer/index
+   service/security-rating/index
+   service/system/index
 
 Overview
 --------
