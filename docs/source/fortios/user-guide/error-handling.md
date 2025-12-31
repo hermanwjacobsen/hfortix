@@ -51,5 +51,5 @@ Detailed documentation including:
 ## Temporary Reference
 
 For now, see:
-- [Exception Reference](../api-reference/exceptions.rst)
+- [Exception Reference](/fortios/api-reference/exceptions.rst)
 - Current docs: `docs/fortios/ERROR_HANDLING_CONFIG.md` in repository

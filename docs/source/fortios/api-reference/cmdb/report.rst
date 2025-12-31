@@ -23,11 +23,11 @@ Example Usage
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Access Report endpoints
-   result = fgt.api.cmdb.report.<endpoint>.list()
+   result = fgt.api.cmdb.report.<endpoint>.get()
 
 See Also
 --------
 
-- :doc:`index` - CMDB API overview
-- :doc:`../client` - FortiOS client reference
-- :doc:`../../user-guide/endpoint-methods` - Endpoint methods guide
+- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

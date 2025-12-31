@@ -17,7 +17,7 @@ Complete FortiOS 7.6.5 API client with:
 - ✅ Full async support
 - ✅ Comprehensive validation
 
-**[Get Started with FortiOS →](../fortios/getting-started/quickstart.md)**
+**[Get Started with FortiOS →](/fortios/getting-started/quickstart.md)**
 
 ### FortiManager (Coming Soon)
 
@@ -27,7 +27,7 @@ Centralized management platform client:
 - ⏳ Configuration templates
 - ⏳ Multi-device operations
 
-**[FortiManager Docs →](../fortimanager/index.rst)**
+**[FortiManager Docs →](/fortimanager/index.rst)**
 
 ### FortiAnalyzer (Coming Soon)
 
@@ -37,7 +37,7 @@ Analytics and logging platform client:
 - ⏳ Event correlation
 - ⏳ Compliance reporting
 
-**[FortiAnalyzer Docs →](../fortianalyzer/index.rst)**
+**[FortiAnalyzer Docs →](/fortianalyzer/index.rst)**
 
 ## Architecture
 
@@ -61,7 +61,7 @@ Complete type hints for excellent IDE support:
 from hfortix_fortios import FortiOS
 
 fgt: FortiOS = FortiOS(host="192.168.1.99", token="...")
-addresses: list[dict] = fgt.api.cmdb.firewall.address.list()
+addresses: list[dict] = fgt.api.cmdb.firewall.address.get()
 ```
 
 ### Async Support
@@ -100,7 +100,7 @@ pip install hfortix
 pip install hfortix-fortios
 ```
 
-**[Detailed Installation Guide →](installation.md)**
+**[Detailed Installation Guide →](/getting-started/installation.md)**
 
 ## Quick Example
 
@@ -136,4 +136,4 @@ fgt.firewall.policy.create(
 
 ## License
 
-Proprietary. See [License](../license.md) for details.
+Proprietary. See [License](/license.md) for details.

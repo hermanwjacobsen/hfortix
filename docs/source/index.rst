@@ -107,7 +107,7 @@ Quick Example - FortiOS
        nat=True
    )
 
-See :doc:`fortios/getting-started/quickstart` for more examples.
+See :doc:`/fortios/getting-started/quickstart` for more examples.
 
 Installation
 ------------
@@ -121,7 +121,7 @@ Installation
    pip install hfortix-fortios  # FortiOS/FortiGate
    pip install hfortix-core     # Core framework only
 
-See :doc:`getting-started/installation` for detailed instructions.
+See :doc:`/getting-started/installation` for detailed instructions.
 
 Documentation
 -------------
@@ -238,7 +238,7 @@ Community & Support
 License
 -------
 
-Proprietary license. See the :doc:`license` page for details.
+Proprietary license. See the :doc:`/license` page for details.
 
 Indices and Tables
 ==================

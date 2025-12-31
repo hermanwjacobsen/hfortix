@@ -72,5 +72,5 @@ Detailed documentation including:
 ## Temporary Reference
 
 For now, see:
-- [Convenience Wrappers API Reference](../api-reference/convenience-wrappers.rst)
+- [Convenience Wrappers API Reference](/fortios/api-reference/convenience-wrappers.rst)
 - Current docs: `docs/fortios/wrappers/SCHEDULE_WRAPPERS.md` in repository

@@ -141,6 +141,6 @@ All exceptions include helpful attributes:
 See Also
 --------
 
-- :doc:`../user-guide/error-handling` - Comprehensive error handling guide
-- :doc:`client` - FortiOS client reference
-- :doc:`core` - Core package reference
+- :doc:`/core/user-guide/error-handling` - Comprehensive error handling guide
+- :doc:`/core/api-reference/client` - FortiOS client reference
+- :doc:`/core/api-reference/core` - Core package reference

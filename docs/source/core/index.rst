@@ -71,7 +71,7 @@ Components
 HTTP Client
 ^^^^^^^^^^^
 
-See: :doc:`http-client`
+See: :doc:`/core/http-client`
 
 - Synchronous and asynchronous support
 - Connection pooling
@@ -82,7 +82,7 @@ See: :doc:`http-client`
 Exception Handling
 ^^^^^^^^^^^^^^^^^^
 
-See: :doc:`exceptions`
+See: :doc:`/core/exceptions`
 
 - Comprehensive exception hierarchy
 - FortiOS-specific exceptions

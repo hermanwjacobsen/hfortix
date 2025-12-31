@@ -82,9 +82,9 @@ from hfortix_core import FortinetError
 
 Choose your product to get started:
 
-- **[FortiOS/FortiGate](../fortios/getting-started/quickstart.md)** - Firewall automation
-- **[FortiManager](../fortimanager/index.rst)** - Centralized management (coming soon)
-- **[FortiAnalyzer](../fortianalyzer/index.rst)** - Analytics platform (coming soon)
+- **[FortiOS/FortiGate](/fortios/getting-started/quickstart.md)** - Firewall automation
+- **[FortiManager](/fortimanager/index.rst)** - Centralized management (coming soon)
+- **[FortiAnalyzer](/fortianalyzer/index.rst)** - Analytics platform (coming soon)
 
 ## Upgrading
 
@@ -105,6 +105,6 @@ pip uninstall hfortix hfortix-core hfortix-fortios
 
 ## Next Steps
 
-- [Quickstart Guide](quickstart.md) - Get started in 5 minutes
-- [Authentication](authentication.md) - Set up API access
-- [User Guide](../user-guide/fortios-overview.md) - Comprehensive documentation
+- [Quickstart Guide](/getting-started/quickstart.md) - Get started in 5 minutes
+- [Authentication](/getting-started/authentication.md) - Set up API access
+- [User Guide](/user-guide/fortios-overview.md) - Comprehensive documentation

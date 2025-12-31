@@ -1,21 +1,14 @@
 Topic Guides
 ============
 
-In-depth guides for specific features and use cases.
+Advanced topics, patterns, and techniques for working with HFortix.
+
+.. note::
+   **Looking for convenience wrapper guides?** Individual wrapper documentation with examples
+   is now located at :doc:`/fortios/convenience-wrappers/index`.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Convenience Wrappers
-
-   firewall-policies
-   schedules
-   shapers
-   services
-   ipmac-binding
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Advanced Topics
 
    filtering
    validation
@@ -24,30 +17,21 @@ In-depth guides for specific features and use cases.
 Overview
 --------
 
-Topic guides provide detailed, task-oriented documentation for specific features:
+Topic guides provide detailed, task-oriented documentation for advanced features and patterns.
 
-Convenience Wrapper Guides
----------------------------
+Advanced Topics
+---------------
 
-**Firewall Policies**
-   Complete guide to managing firewall policies using the high-level wrapper.
-   Covers creation, updates, cloning, and all 150+ policy parameters.
+**Filtering**
+   Guide to filtering API results, including field selection, comparison operators,
+   and complex filter expressions.
 
-**Schedules**
-   Guide to schedule management including recurring schedules, one-time schedules,
-   and schedule groups. Includes examples for business hours, maintenance windows, etc.
+**Validation**
+   Guide to input validation, schema validation, and error handling for API requests.
 
-**Traffic Shapers**
-   Guide to traffic shaping with per-IP shapers and traffic shapers. Covers bandwidth
-   limits, concurrent sessions, and traffic management.
-
-**Services**
-   Guide to managing custom services, service groups, and service categories for
-   firewall policy matching.
-
-**IP/MAC Binding**
-   Guide to IP/MAC binding settings and table management for controlling network
-   access based on MAC addresses.
+**Performance**
+   Guide to performance optimization including batching, caching, connection pooling,
+   and asynchronous operations.
 
 Advanced Topics
 ---------------
@@ -67,6 +51,6 @@ Advanced Topics
 See Also
 --------
 
-- :doc:`../user-guide/index` - Core concepts and essential features
-- :doc:`../api-reference/convenience-wrappers` - API reference for wrappers
-- :doc:`../examples/index` - Practical code examples
+- :doc:`/fortios/user-guide/index` - Core concepts and essential features
+- :doc:`/fortios/api-reference/convenience-wrappers` - API reference for wrappers
+- :doc:`/fortios/examples/index` - Practical code examples

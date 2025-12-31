@@ -18,11 +18,17 @@ Complete Python SDK for FortiOS/FortiGate automation with 100% API coverage (750
 
         Learn core concepts and patterns.
 
-    .. grid-item-card:: 🎯 Topic Guides
+    .. grid-item-card:: 🎯 Convenience Wrappers
+        :link: convenience-wrappers/index
+        :link-type: doc
+
+        High-level wrappers for common tasks.
+
+    .. grid-item-card:: 📋 Topic Guides
         :link: guides/index
         :link-type: doc
 
-        Deep dives into specific features.
+        Advanced topics and patterns.
 
     .. grid-item-card:: 📚 API Reference
         :link: api-reference/index
@@ -44,6 +50,13 @@ Complete Python SDK for FortiOS/FortiGate automation with 100% API coverage (750
    :hidden:
 
    user-guide/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Convenience Wrappers
+   :hidden:
+
+   convenience-wrappers/index
 
 .. toctree::
    :maxdepth: 2
@@ -147,13 +160,13 @@ The FortiOS API is organized into four main types:
 **Service (Operations)**
     Service operations like backups, restores, and maintenance tasks.
 
-See :doc:`api-reference/index` for complete category listing.
+See :doc:`/fortios/api-reference/index` for complete category listing.
 
 Next Steps
 ----------
 
-1. **Install** - :doc:`../getting-started/installation`
-2. **Quick Start** - :doc:`getting-started/quickstart`
-3. **Authentication** - :doc:`getting-started/authentication`
-4. **Browse Examples** - :doc:`examples/index`
-5. **Explore API** - :doc:`api-reference/index`
+1. **Install** - :doc:`/getting-started/installation`
+2. **Quick Start** - :doc:`/fortios/getting-started/quickstart`
+3. **Authentication** - :doc:`/fortios/getting-started/authentication`
+4. **Browse Examples** - :doc:`/fortios/examples/index`
+5. **Explore API** - :doc:`/fortios/api-reference/index`

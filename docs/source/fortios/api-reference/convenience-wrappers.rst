@@ -319,8 +319,8 @@ Clone and Modify
 See Also
 --------
 
-- :doc:`../guides/firewall-policies` - Firewall policy guide
-- :doc:`../guides/schedules` - Schedule management guide
-- :doc:`../guides/services` - Service management guide
-- :doc:`../guides/shapers` - Traffic shaping guide
-- :doc:`../user-guide/error-handling` - Error handling guide
+- :doc:`/fortios/guides/firewall-policies` - Firewall policy guide
+- :doc:`/fortios/guides/schedules` - Schedule management guide
+- :doc:`/fortios/guides/services` - Service management guide
+- :doc:`/fortios/guides/shapers` - Traffic shaping guide
+- :doc:`/fortios/user-guide/error-handling` - Error handling guide

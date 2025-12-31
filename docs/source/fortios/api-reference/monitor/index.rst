@@ -154,14 +154,14 @@ All Monitor API Reference endpoints follow the same pattern:
 
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # List resources
-   items = fgt.api.monitor.<category>.<endpoint>.list()
+   # Get all monitor data (HTTP GET without parameters)
+   items = fgt.api.monitor.<category>.<endpoint>.get()
    
-   # Get specific resource
-   item = fgt.api.monitor.<category>.<endpoint>.get(mkey='name')
+   # Get specific monitor data (HTTP GET with parameters)
+   item = fgt.api.monitor.<category>.<endpoint>.get(param='value')
    
-   # Create resource (CMDB only)
-   result = fgt.api.monitor.<category>.<endpoint>.create(data)
+   # Note: Monitor API is read-only (GET only)
+   # Use CMDB API for configuration changes
    
    # Update resource (CMDB only)
    result = fgt.api.monitor.<category>.<endpoint>.update(mkey='name', data)
@@ -172,6 +172,6 @@ All Monitor API Reference endpoints follow the same pattern:
 See Also
 --------
 
-- :doc:`../client` - FortiOS client reference
-- :doc:`../../user-guide/endpoint-methods` - Complete endpoint methods guide
-- :doc:`../../user-guide/filtering` - Filtering and query guide
+- :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/user-guide/endpoint-methods` - Complete endpoint methods guide
+- :doc:`/fortios/user-guide/filtering` - Filtering and query guide

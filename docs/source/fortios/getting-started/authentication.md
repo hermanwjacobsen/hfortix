@@ -241,7 +241,7 @@ fgt_monitor = FortiOS(
 
 # Safe operations - will succeed
 status = fgt_monitor.api.monitor.system.status.get()
-policies = fgt_monitor.api.cmdb.firewall.policy.list()
+policies = fgt_monitor.api.cmdb.firewall.policy.get()
 
 # Write operations - will fail with permission error
 # fgt_monitor.api.cmdb.firewall.address.create(...)  # PermissionError
@@ -288,6 +288,6 @@ except Exception as e:
 
 ## Next Steps
 
-- [Quick Start Guide](quickstart.md) - Start using HFortix
-- [User Guide](../user-guide/fortios-overview.md) - Comprehensive documentation
-- [Security](../security.md) - Security best practices
+- [Quick Start Guide](/fortios/getting-started/quickstart.md) - Start using HFortix
+- [User Guide](/fortios/user-guide/fortios-overview.md) - Comprehensive documentation
+- [Security](/fortios/security.md) - Security best practices

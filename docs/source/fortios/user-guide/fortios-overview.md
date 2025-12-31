@@ -27,6 +27,6 @@ Detailed overview including:
 ## Temporary Reference
 
 For now, see:
-- [Quick Start Guide](../getting-started/quickstart.md)
-- [API Reference](../api-reference/client.rst)
+- [Quick Start Guide](/fortios/getting-started/quickstart.md)
+- [API Reference](/fortios/user-guide/client.rst)
 - Current docs: `docs/fortios/README.md` in repository

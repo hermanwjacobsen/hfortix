@@ -229,5 +229,5 @@ Add custom headers to all requests:
 See Also
 --------
 
-- :doc:`exceptions` - Exception handling
-- :doc:`../index` - Core package overview
+- :doc:`/core/api-reference/exceptions` - Exception handling
+- :doc:`/core/index` - Core package overview

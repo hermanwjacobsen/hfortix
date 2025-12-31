@@ -1,36 +1,43 @@
 API Reference
 =============
 
-Complete API documentation for all 750+ FortiOS endpoints organized by category.
+Complete low-level API documentation for all 750+ FortiOS endpoints organized by category.
+
+.. note::
+   **Looking for high-level wrappers?** See :doc:`/fortios/convenience-wrappers/index` for
+   easier-to-use wrappers with methods like ``list()``, ``create()``, ``update()``, and ``delete()``.
+   
+   This section documents the **low-level API endpoints** using HTTP methods (GET, POST, PUT, DELETE).
+
+CMDB API (Configuration)
+-------------------------
 
 .. toctree::
    :maxdepth: 1
-   :caption: Client & Wrappers
-
-   client
-   convenience-wrappers
-
-.. toctree::
-   :maxdepth: 1
-   :caption: CMDB API (Configuration)
 
    cmdb/index
 
+Monitor API (Status & Statistics)
+----------------------------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Monitor API (Status & Statistics)
 
    monitor/index
 
+Log API (Historical Data)
+--------------------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Log API (Historical Data)
 
    log/index
 
+Service API (Operations)
+-------------------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Service API (Operations)
 
    service/index
 
@@ -53,7 +60,7 @@ This includes 37 categories covering:
 - **Network**: Routing (static, BGP, OSPF), DNS, DHCP
 - **And much more...**
 
-See :doc:`cmdb/index` for the complete list of 37 CMDB categories.
+See :doc:`/fortios/api-reference/cmdb/index` for the complete list of 37 CMDB categories.
 
 Monitor API - Status & Statistics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -68,7 +75,7 @@ The **Monitor** API provides real-time status information and statistics. This i
 - **UTM**: IPS stats, AV activity, web filter logs
 - **And much more...**
 
-See :doc:`monitor/index` for the complete list of 32 Monitor categories.
+See :doc:`/fortios/api-reference/monitor/index` for the complete list of 32 Monitor categories.
 
 Log API - Historical Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,7 +88,7 @@ The **Log** API provides access to historical log data:
 - UTM logs
 - Application logs
 
-See :doc:`log/index` for log query capabilities.
+See :doc:`/fortios/api-reference/log/index` for log query capabilities.
 
 Service API - Operations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -94,7 +101,7 @@ The **Service** API provides operational commands:
 - License management
 - And more...
 
-See :doc:`service/index` for available service operations.
+See :doc:`/fortios/api-reference/service/index` for available service operations.
 
 API Patterns
 ------------
@@ -106,7 +113,7 @@ All FortiOS endpoints follow consistent patterns:
 .. code-block:: python
 
    # List all objects
-   fgt.api.cmdb.firewall.address.list()
+   fgt.api.cmdb.firewall.address.get()
 
    # Get specific object
    fgt.api.cmdb.firewall.address.get(name="web-server")
@@ -201,7 +208,7 @@ For common tasks, use the convenience wrappers which provide simplified interfac
        end="18:00"
    )
 
-See :doc:`convenience-wrappers` for all available wrappers.
+See :doc:`/fortios/api-reference/convenience-wrappers` for all available wrappers.
 
 Navigation
 ----------
@@ -210,14 +217,14 @@ Use the sidebar to navigate to specific API categories, or start with these popu
 
 **Popular CMDB Categories:**
 
-- :doc:`cmdb/firewall` - Firewall configuration
-- :doc:`cmdb/system` - System settings
-- :doc:`cmdb/router` - Routing configuration
-- :doc:`cmdb/vpn` - VPN configuration
+- :doc:`/fortios/api-reference/cmdb/firewall` - Firewall configuration
+- :doc:`/fortios/api-reference/cmdb/system` - System settings
+- :doc:`/fortios/api-reference/cmdb/router` - Routing configuration
+- :doc:`/fortios/api-reference/cmdb/vpn` - VPN configuration
 
 **Popular Monitor Categories:**
 
-- :doc:`monitor/system` - System status
-- :doc:`monitor/firewall` - Firewall statistics
-- :doc:`monitor/router` - Routing information
-- :doc:`monitor/vpn` - VPN status
+- :doc:`/fortios/api-reference/monitor/system` - System status
+- :doc:`/fortios/api-reference/monitor/firewall` - Firewall statistics
+- :doc:`/fortios/api-reference/monitor/router` - Routing information
+- :doc:`/fortios/api-reference/monitor/vpn` - VPN status

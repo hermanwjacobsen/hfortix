@@ -103,7 +103,7 @@ Using CMDB API
 .. code-block:: python
 
    # List firewall addresses
-   addresses = fgt.api.cmdb.firewall.address.list()
+   addresses = fgt.api.cmdb.firewall.address.get()
 
    # Create firewall address
    fgt.api.cmdb.firewall.address.create(
@@ -129,10 +129,10 @@ Using Monitor API
    status = fgt.api.monitor.system.status.get()
 
    # Get firewall sessions
-   sessions = fgt.api.monitor.firewall.session.list()
+   sessions = fgt.api.monitor.firewall.session.get()
 
    # Get interface statistics
-   stats = fgt.api.monitor.system.interface.list()
+   stats = fgt.api.monitor.system.interface.get()
 
 Using Convenience Wrappers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -157,8 +157,8 @@ Using Convenience Wrappers
 See Also
 --------
 
-- :doc:`convenience-wrappers` - High-level convenience wrappers
-- :doc:`cmdb/index` - CMDB API reference
-- :doc:`monitor/index` - Monitor API reference
-- :doc:`../user-guide/fortios-overview` - User guide
-- :doc:`../getting-started/quickstart` - Quick start guide
+- :doc:`/fortios/api-reference/convenience-wrappers` - High-level convenience wrappers
+- :doc:`/fortios/api-reference/cmdb/index` - CMDB API reference
+- :doc:`/fortios/api-reference/monitor/index` - Monitor API reference
+- :doc:`/fortios/user-guide/fortios-overview` - User guide
+- :doc:`/fortios/getting-started/quickstart` - Quick start guide

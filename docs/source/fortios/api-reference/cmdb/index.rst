@@ -174,14 +174,14 @@ All CMDB API Reference endpoints follow the same pattern:
 
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # List resources
-   items = fgt.api.cmdb.<category>.<endpoint>.list()
+   # Get all resources (HTTP GET without mkey)
+   items = fgt.api.cmdb.<category>.<endpoint>.get()
    
-   # Get specific resource
+   # Get specific resource (HTTP GET with mkey)
    item = fgt.api.cmdb.<category>.<endpoint>.get(mkey='name')
    
-   # Create resource (CMDB only)
-   result = fgt.api.cmdb.<category>.<endpoint>.create(data)
+   # Create resource (HTTP POST)
+   result = fgt.api.cmdb.<category>.<endpoint>.post(json=data)
    
    # Update resource (CMDB only)
    result = fgt.api.cmdb.<category>.<endpoint>.update(mkey='name', data)
@@ -192,6 +192,6 @@ All CMDB API Reference endpoints follow the same pattern:
 See Also
 --------
 
-- :doc:`../client` - FortiOS client reference
-- :doc:`../../user-guide/endpoint-methods` - Complete endpoint methods guide
-- :doc:`../../user-guide/filtering` - Filtering and query guide
+- :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/user-guide/endpoint-methods` - Complete endpoint methods guide
+- :doc:`/fortios/user-guide/filtering` - Filtering and query guide

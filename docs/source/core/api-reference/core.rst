@@ -132,6 +132,6 @@ Advanced users can extend the base HTTP client:
 See Also
 --------
 
-- :doc:`fortios` - FortiOS package that uses this core functionality
-- :doc:`../user-guide/error-handling` - Error handling guide
-- :doc:`../user-guide/async-usage` - Async usage guide
+- :doc:`/core/api-reference/fortios` - FortiOS package that uses this core functionality
+- :doc:`/core/user-guide/error-handling` - Error handling guide
+- :doc:`/core/user-guide/async-usage` - Async usage guide

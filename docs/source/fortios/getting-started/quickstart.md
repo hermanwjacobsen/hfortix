@@ -8,7 +8,7 @@ Before you begin, ensure you have:
 
 1. Python 3.10 or higher installed
 2. A FortiGate device with FortiOS 6.0+ and REST API enabled
-3. An API token (see [Authentication](authentication.md) for setup)
+3. An API token (see [Authentication](/fortios/getting-started/authentication.md) for setup)
 
 ## Installation
 
@@ -34,7 +34,7 @@ fgt = FortiOS(
 
 # List all firewall addresses
 try:
-    addresses = fgt.api.cmdb.firewall.address.list()
+    addresses = fgt.api.cmdb.firewall.address.get()
     print(f"Found {len(addresses)} firewall addresses")
     
     # Display first few addresses
@@ -57,13 +57,13 @@ python test_hfortix.py
 
 ```python
 # List firewall addresses
-addresses = fgt.api.cmdb.firewall.address.list()
+addresses = fgt.api.cmdb.firewall.address.get()
 
 # List firewall policies
-policies = fgt.api.cmdb.firewall.policy.list()
+policies = fgt.api.cmdb.firewall.policy.get()
 
 # List configured interfaces
-interfaces = fgt.api.cmdb.system.interface.list()
+interfaces = fgt.api.cmdb.system.interface.get()
 ```
 
 ### Create a Resource
@@ -213,21 +213,21 @@ print(f"Hostname: {status['hostname']}")
 print(f"Version: {status['version']}")
 
 # Get firewall policy statistics
-stats = fgt.api.monitor.firewall.policy.list()
+stats = fgt.api.monitor.firewall.policy.get()
 
 # Get active sessions
-sessions = fgt.api.monitor.firewall.session.list()
+sessions = fgt.api.monitor.firewall.session.get()
 ```
 
 ## What's Next?
 
 Now that you're up and running, explore more:
 
-- **[User Guide](../user-guide/fortios-overview.md)** - Comprehensive documentation
-- **[Error Handling](../user-guide/error-handling.md)** - Advanced error handling patterns
-- **[Validation](../user-guide/validation.md)** - Input validation
-- **[Examples](../examples/index.md)** - More code examples
-- **[API Reference](../api-reference/index.rst)** - Complete API documentation
+- **[User Guide](/fortios/user-guide/fortios-overview.md)** - Comprehensive documentation
+- **[Error Handling](/fortios/user-guide/error-handling.md)** - Advanced error handling patterns
+- **[Validation](/fortios/user-guide/validation.md)** - Input validation
+- **[Examples](/fortios/examples/index.md)** - More code examples
+- **[API Reference](/fortios/api-reference/index.rst)** - Complete API documentation
 
 ## Getting Help
 

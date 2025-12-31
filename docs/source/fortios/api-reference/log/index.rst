@@ -41,5 +41,5 @@ Usage Example
 See Also
 --------
 
-- :doc:`../client` - FortiOS client reference
-- :doc:`../../user-guide/filtering` - Log filtering guide
+- :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/user-guide/filtering` - Log filtering guide
