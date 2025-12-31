@@ -8,7 +8,7 @@ Overview
 
 The ``cmdb.sctp-filter`` category provides configuration management for:
 
-- **Profile** - Configure SCTP filter profiles.
+- :ref:`Profile <sctp-filter-profile>` - Configure SCTP filter profiles.
 
 
 Endpoint
@@ -21,16 +21,37 @@ Endpoint
 Available Endpoints
 -------------------
 
-**profile**
-   Configure SCTP filter profiles.
+.. _sctp-filter-profile:
+
+profile
+~~~~~~~
+
+Configure SCTP filter profiles.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.sctp-filter.profile.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.sctp-filter.profile.get(mkey='item-name')
    
-      # List all profile
-      items = fgt.api.cmdb.sctp-filter.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.sctp-filter.profile.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.sctp-filter.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.sctp-filter.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.sctp-filter.profile.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -45,7 +66,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.sctp-filter.{endpoint}.post(json={
+   result = fgt.api.cmdb.sctp-filter.profile.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -56,7 +77,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.sctp-filter.{endpoint}.put(
+   result = fgt.api.cmdb.sctp-filter.profile.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -69,10 +90,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.sctp-filter.{endpoint}.get()
+   items = fgt.api.cmdb.sctp-filter.profile.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.sctp-filter.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.sctp-filter.profile.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -80,7 +101,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.sctp-filter.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.sctp-filter.profile.delete(mkey='config-name')
 
 HTTP Methods
 ------------

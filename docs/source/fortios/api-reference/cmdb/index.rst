@@ -120,8 +120,8 @@ The CMDB API Reference provides 37 categories of endpoints:
    Zero Trust Network Access
 
 .. toctree::
-   :maxdepth: 1
-   :hidden:
+   :maxdepth: 2
+   :caption: CMDB Categories
 
    alertemail
    antivirus

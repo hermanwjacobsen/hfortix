@@ -8,30 +8,30 @@ Overview
 
 The ``cmdb.user`` category provides configuration management for:
 
-- **Adgrp** - Configure FSSO groups.
-- **Certificate** - Configure certificate users.
-- **Domain Controller** - Configure domain controller entries.
-- **Exchange** - Configure MS Exchange server entries.
-- **External Identity Provider** - Configure external identity provider.
-- **Fortitoken** - Configure FortiToken.
-- **Fsso** - Configure Fortinet Single Sign On (FSSO) agents.
-- **Fsso Polling** - Configure FSSO active directory servers for polling mode.
-- **Group** - Configure user groups.
-- **Krb Keytab** - Configure Kerberos keytab entries.
-- **Ldap** - Configure LDAP server entries.
-- **Local** - Configure local users.
-- **Nac Policy** - Configure NAC policy matching pattern to identify matching NAC devices.
-- **Password Policy** - Configure user password policy.
-- **Peer** - Configure peer users.
-- **Peergrp** - Configure peer groups.
-- **Pop3** - POP3 server entry configuration.
-- **Quarantine** - Configure quarantine support.
-- **Radius** - Configure RADIUS server entries.
-- **Saml** - SAML server entry configuration.
-- **Scim** - Configure SCIM client entries.
-- **Security Exempt List** - Configure security exemption list.
-- **Setting** - Configure user authentication setting.
-- **Tacacs+** - Configure TACACS+ server entries.
+- :ref:`Adgrp <user-adgrp>` - Configure FSSO groups.
+- :ref:`Certificate <user-certificate>` - Configure certificate users.
+- :ref:`Domain Controller <user-domain-controller>` - Configure domain controller entries.
+- :ref:`Exchange <user-exchange>` - Configure MS Exchange server entries.
+- :ref:`External Identity Provider <user-external-identity-provider>` - Configure external identity provider.
+- :ref:`Fortitoken <user-fortitoken>` - Configure FortiToken.
+- :ref:`Fsso <user-fsso>` - Configure Fortinet Single Sign On (FSSO) agents.
+- :ref:`Fsso Polling <user-fsso-polling>` - Configure FSSO active directory servers for polling mode.
+- :ref:`Group <user-group>` - Configure user groups.
+- :ref:`Krb Keytab <user-krb-keytab>` - Configure Kerberos keytab entries.
+- :ref:`Ldap <user-ldap>` - Configure LDAP server entries.
+- :ref:`Local <user-local>` - Configure local users.
+- :ref:`Nac Policy <user-nac-policy>` - Configure NAC policy matching pattern to identify matching NAC devices.
+- :ref:`Password Policy <user-password-policy>` - Configure user password policy.
+- :ref:`Peer <user-peer>` - Configure peer users.
+- :ref:`Peergrp <user-peergrp>` - Configure peer groups.
+- :ref:`Pop3 <user-pop3>` - POP3 server entry configuration.
+- :ref:`Quarantine <user-quarantine>` - Configure quarantine support.
+- :ref:`Radius <user-radius>` - Configure RADIUS server entries.
+- :ref:`Saml <user-saml>` - SAML server entry configuration.
+- :ref:`Scim <user-scim>` - Configure SCIM client entries.
+- :ref:`Security Exempt List <user-security-exempt-list>` - Configure security exemption list.
+- :ref:`Setting <user-setting>` - Configure user authentication setting.
+- :ref:`Tacacs+ <user-tacacs+>` - Configure TACACS+ server entries.
 
 
 Endpoint
@@ -44,269 +44,773 @@ Endpoint
 Available Endpoints
 -------------------
 
-**adgrp**
-   Configure FSSO groups.
-   
-   .. code-block:: python
-   
-      # List all adgrp
-      items = fgt.api.cmdb.user.adgrp.get()
-      
-      # Get specific adgrp
-      item = fgt.api.cmdb.user.adgrp.get(mkey='name')
+.. _user-adgrp:
 
-**certificate**
-   Configure certificate users.
-   
-   .. code-block:: python
-   
-      # List all certificate
-      items = fgt.api.cmdb.user.certificate.get()
-      
-      # Get specific certificate
-      item = fgt.api.cmdb.user.certificate.get(mkey='name')
+adgrp
+~~~~~
 
-**domain-controller**
-   Configure domain controller entries.
-   
-   .. code-block:: python
-   
-      # List all domain-controller
-      items = fgt.api.cmdb.user.domain_controller.get()
-      
-      # Get specific domain-controller
-      item = fgt.api.cmdb.user.domain_controller.get(mkey='name')
+Configure FSSO groups.
 
-**exchange**
-   Configure MS Exchange server entries.
-   
-   .. code-block:: python
-   
-      # List all exchange
-      items = fgt.api.cmdb.user.exchange.get()
-      
-      # Get specific exchange
-      item = fgt.api.cmdb.user.exchange.get(mkey='name')
+**Python attribute:** ``adgrp``
 
-**external-identity-provider**
-   Configure external identity provider.
-   
-   .. code-block:: python
-   
-      # List all external-identity-provider
-      items = fgt.api.cmdb.user.external_identity_provider.get()
-      
-      # Get specific external-identity-provider
-      item = fgt.api.cmdb.user.external_identity_provider.get(mkey='name')
+.. code-block:: python
 
-**fortitoken**
-   Configure FortiToken.
+   # Get all items
+   items = fgt.api.cmdb.user.adgrp.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.user.adgrp.get(mkey='item-name')
    
-      # List all fortitoken
-      items = fgt.api.cmdb.user.fortitoken.get()
-      
-      # Get specific fortitoken
-      item = fgt.api.cmdb.user.fortitoken.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.user.adgrp.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.adgrp.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.adgrp.delete(mkey='item-name')
 
-**fsso**
-   Configure Fortinet Single Sign On (FSSO) agents.
-   
-   .. code-block:: python
-   
-      # List all fsso
-      items = fgt.api.cmdb.user.fsso.get()
-      
-      # Get specific fsso
-      item = fgt.api.cmdb.user.fsso.get(mkey='name')
+.. _user-certificate:
 
-**fsso-polling**
-   Configure FSSO active directory servers for polling mode.
-   
-   .. code-block:: python
-   
-      # List all fsso-polling
-      items = fgt.api.cmdb.user.fsso_polling.get()
-      
-      # Get specific fsso-polling
-      item = fgt.api.cmdb.user.fsso_polling.get(mkey='name')
+certificate
+~~~~~~~~~~~
 
-**group**
-   Configure user groups.
-   
-   .. code-block:: python
-   
-      # List all group
-      items = fgt.api.cmdb.user.group.get()
-      
-      # Get specific group
-      item = fgt.api.cmdb.user.group.get(mkey='name')
+Configure certificate users.
 
-**krb-keytab**
-   Configure Kerberos keytab entries.
-   
-   .. code-block:: python
-   
-      # List all krb-keytab
-      items = fgt.api.cmdb.user.krb_keytab.get()
-      
-      # Get specific krb-keytab
-      item = fgt.api.cmdb.user.krb_keytab.get(mkey='name')
+**Python attribute:** ``certificate``
 
-**ldap**
-   Configure LDAP server entries.
-   
-   .. code-block:: python
-   
-      # List all ldap
-      items = fgt.api.cmdb.user.ldap.get()
-      
-      # Get specific ldap
-      item = fgt.api.cmdb.user.ldap.get(mkey='name')
+.. code-block:: python
 
-**local**
-   Configure local users.
+   # Get all items
+   items = fgt.api.cmdb.user.certificate.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.user.certificate.get(mkey='item-name')
    
-      # List all local
-      items = fgt.api.cmdb.user.local.get()
-      
-      # Get specific local
-      item = fgt.api.cmdb.user.local.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.user.certificate.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.certificate.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.certificate.delete(mkey='item-name')
 
-**nac-policy**
-   Configure NAC policy matching pattern to identify matching NAC devices.
-   
-   .. code-block:: python
-   
-      # List all nac-policy
-      items = fgt.api.cmdb.user.nac_policy.get()
-      
-      # Get specific nac-policy
-      item = fgt.api.cmdb.user.nac_policy.get(mkey='name')
+.. _user-domain-controller:
 
-**password-policy**
-   Configure user password policy.
-   
-   .. code-block:: python
-   
-      # List all password-policy
-      items = fgt.api.cmdb.user.password_policy.get()
-      
-      # Get specific password-policy
-      item = fgt.api.cmdb.user.password_policy.get(mkey='name')
+domain-controller
+~~~~~~~~~~~~~~~~~
 
-**peer**
-   Configure peer users.
-   
-   .. code-block:: python
-   
-      # List all peer
-      items = fgt.api.cmdb.user.peer.get()
-      
-      # Get specific peer
-      item = fgt.api.cmdb.user.peer.get(mkey='name')
+Configure domain controller entries.
 
-**peergrp**
-   Configure peer groups.
-   
-   .. code-block:: python
-   
-      # List all peergrp
-      items = fgt.api.cmdb.user.peergrp.get()
-      
-      # Get specific peergrp
-      item = fgt.api.cmdb.user.peergrp.get(mkey='name')
+**Python attribute:** ``domain_controller``
 
-**pop3**
-   POP3 server entry configuration.
-   
-   .. code-block:: python
-   
-      # List all pop3
-      items = fgt.api.cmdb.user.pop3.get()
-      
-      # Get specific pop3
-      item = fgt.api.cmdb.user.pop3.get(mkey='name')
+.. code-block:: python
 
-**quarantine**
-   Configure quarantine support.
+   # Get all items
+   items = fgt.api.cmdb.user.domain_controller.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.user.domain_controller.get(mkey='item-name')
    
-      # List all quarantine
-      items = fgt.api.cmdb.user.quarantine.get()
-      
-      # Get specific quarantine
-      item = fgt.api.cmdb.user.quarantine.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.user.domain_controller.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.domain_controller.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.domain_controller.delete(mkey='item-name')
 
-**radius**
-   Configure RADIUS server entries.
-   
-   .. code-block:: python
-   
-      # List all radius
-      items = fgt.api.cmdb.user.radius.get()
-      
-      # Get specific radius
-      item = fgt.api.cmdb.user.radius.get(mkey='name')
+.. _user-exchange:
 
-**saml**
-   SAML server entry configuration.
-   
-   .. code-block:: python
-   
-      # List all saml
-      items = fgt.api.cmdb.user.saml.get()
-      
-      # Get specific saml
-      item = fgt.api.cmdb.user.saml.get(mkey='name')
+exchange
+~~~~~~~~
 
-**scim**
-   Configure SCIM client entries.
-   
-   .. code-block:: python
-   
-      # List all scim
-      items = fgt.api.cmdb.user.scim.get()
-      
-      # Get specific scim
-      item = fgt.api.cmdb.user.scim.get(mkey='name')
+Configure MS Exchange server entries.
 
-**security-exempt-list**
-   Configure security exemption list.
-   
-   .. code-block:: python
-   
-      # List all security-exempt-list
-      items = fgt.api.cmdb.user.security_exempt_list.get()
-      
-      # Get specific security-exempt-list
-      item = fgt.api.cmdb.user.security_exempt_list.get(mkey='name')
+**Python attribute:** ``exchange``
 
-**setting**
-   Configure user authentication setting.
-   
-   .. code-block:: python
-   
-      # List all setting
-      items = fgt.api.cmdb.user.setting.get()
-      
-      # Get specific setting
-      item = fgt.api.cmdb.user.setting.get(mkey='name')
+.. code-block:: python
 
-**tacacs+**
-   Configure TACACS+ server entries.
+   # Get all items
+   items = fgt.api.cmdb.user.exchange.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.user.exchange.get(mkey='item-name')
    
-      # List all tacacs+
-      items = fgt.api.cmdb.user.tacacs+.get()
-      
-      # Get specific tacacs+
-      item = fgt.api.cmdb.user.tacacs+.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.user.exchange.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.exchange.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.exchange.delete(mkey='item-name')
+
+.. _user-external-identity-provider:
+
+external-identity-provider
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Configure external identity provider.
+
+**Python attribute:** ``external_identity_provider``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.external_identity_provider.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.external_identity_provider.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.external_identity_provider.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.external_identity_provider.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.external_identity_provider.delete(mkey='item-name')
+
+.. _user-fortitoken:
+
+fortitoken
+~~~~~~~~~~
+
+Configure FortiToken.
+
+**Python attribute:** ``fortitoken``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.fortitoken.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.fortitoken.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.fortitoken.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.fortitoken.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.fortitoken.delete(mkey='item-name')
+
+.. _user-fsso:
+
+fsso
+~~~~
+
+Configure Fortinet Single Sign On (FSSO) agents.
+
+**Python attribute:** ``fsso``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.fsso.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.fsso.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.fsso.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.fsso.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.fsso.delete(mkey='item-name')
+
+.. _user-fsso-polling:
+
+fsso-polling
+~~~~~~~~~~~~
+
+Configure FSSO active directory servers for polling mode.
+
+**Python attribute:** ``fsso_polling``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.fsso_polling.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.fsso_polling.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.fsso_polling.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.fsso_polling.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.fsso_polling.delete(mkey='item-name')
+
+.. _user-group:
+
+group
+~~~~~
+
+Configure user groups.
+
+**Python attribute:** ``group``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.group.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.group.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.group.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.group.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.group.delete(mkey='item-name')
+
+.. _user-krb-keytab:
+
+krb-keytab
+~~~~~~~~~~
+
+Configure Kerberos keytab entries.
+
+**Python attribute:** ``krb_keytab``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.krb_keytab.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.krb_keytab.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.krb_keytab.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.krb_keytab.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.krb_keytab.delete(mkey='item-name')
+
+.. _user-ldap:
+
+ldap
+~~~~
+
+Configure LDAP server entries.
+
+**Python attribute:** ``ldap``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.ldap.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.ldap.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.ldap.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.ldap.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.ldap.delete(mkey='item-name')
+
+.. _user-local:
+
+local
+~~~~~
+
+Configure local users.
+
+**Python attribute:** ``local``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.local.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.local.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.local.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.local.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.local.delete(mkey='item-name')
+
+.. _user-nac-policy:
+
+nac-policy
+~~~~~~~~~~
+
+Configure NAC policy matching pattern to identify matching NAC devices.
+
+**Python attribute:** ``nac_policy``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.nac_policy.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.nac_policy.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.nac_policy.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.nac_policy.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.nac_policy.delete(mkey='item-name')
+
+.. _user-password-policy:
+
+password-policy
+~~~~~~~~~~~~~~~
+
+Configure user password policy.
+
+**Python attribute:** ``password_policy``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.password_policy.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.password_policy.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.password_policy.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.password_policy.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.password_policy.delete(mkey='item-name')
+
+.. _user-peer:
+
+peer
+~~~~
+
+Configure peer users.
+
+**Python attribute:** ``peer``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.peer.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.peer.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.peer.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.peer.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.peer.delete(mkey='item-name')
+
+.. _user-peergrp:
+
+peergrp
+~~~~~~~
+
+Configure peer groups.
+
+**Python attribute:** ``peergrp``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.peergrp.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.peergrp.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.peergrp.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.peergrp.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.peergrp.delete(mkey='item-name')
+
+.. _user-pop3:
+
+pop3
+~~~~
+
+POP3 server entry configuration.
+
+**Python attribute:** ``pop3``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.pop3.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.pop3.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.pop3.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.pop3.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.pop3.delete(mkey='item-name')
+
+.. _user-quarantine:
+
+quarantine
+~~~~~~~~~~
+
+Configure quarantine support.
+
+**Python attribute:** ``quarantine``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.quarantine.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.quarantine.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.quarantine.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.quarantine.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.quarantine.delete(mkey='item-name')
+
+.. _user-radius:
+
+radius
+~~~~~~
+
+Configure RADIUS server entries.
+
+**Python attribute:** ``radius``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.radius.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.radius.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.radius.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.radius.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.radius.delete(mkey='item-name')
+
+.. _user-saml:
+
+saml
+~~~~
+
+SAML server entry configuration.
+
+**Python attribute:** ``saml``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.saml.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.saml.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.saml.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.saml.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.saml.delete(mkey='item-name')
+
+.. _user-scim:
+
+scim
+~~~~
+
+Configure SCIM client entries.
+
+**Python attribute:** ``scim``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.scim.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.scim.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.scim.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.scim.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.scim.delete(mkey='item-name')
+
+.. _user-security-exempt-list:
+
+security-exempt-list
+~~~~~~~~~~~~~~~~~~~~
+
+Configure security exemption list.
+
+**Python attribute:** ``security_exempt_list``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.security_exempt_list.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.security_exempt_list.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.security_exempt_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.security_exempt_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.security_exempt_list.delete(mkey='item-name')
+
+.. _user-setting:
+
+setting
+~~~~~~~
+
+Configure user authentication setting.
+
+**Python attribute:** ``setting``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.setting.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.setting.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.setting.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.setting.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.setting.delete(mkey='item-name')
+
+.. _user-tacacs+:
+
+tacacs+
+~~~~~~~
+
+Configure TACACS+ server entries.
+
+**Python attribute:** ``tacacs+``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.user.tacacs+.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.user.tacacs+.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.user.tacacs+.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.user.tacacs+.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.user.tacacs+.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -321,7 +825,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.user.{endpoint}.post(json={
+   result = fgt.api.cmdb.user.adgrp.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -332,7 +836,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.user.{endpoint}.put(
+   result = fgt.api.cmdb.user.adgrp.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -345,10 +849,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.user.{endpoint}.get()
+   items = fgt.api.cmdb.user.adgrp.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.user.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.user.adgrp.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -356,7 +860,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.user.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.user.adgrp.delete(mkey='config-name')
 
 HTTP Methods
 ------------

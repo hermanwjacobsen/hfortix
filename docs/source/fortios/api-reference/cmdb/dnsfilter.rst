@@ -8,8 +8,8 @@ Overview
 
 The ``cmdb.dnsfilter`` category provides configuration management for:
 
-- **Domain Filter** - Configure DNS domain filters.
-- **Profile** - Configure DNS domain filter profile.
+- :ref:`Domain Filter <dnsfilter-domain-filter>` - Configure DNS domain filters.
+- :ref:`Profile <dnsfilter-profile>` - Configure DNS domain filter profile.
 
 
 Endpoint
@@ -22,27 +22,69 @@ Endpoint
 Available Endpoints
 -------------------
 
-**domain-filter**
-   Configure DNS domain filters.
-   
-   .. code-block:: python
-   
-      # List all domain-filter
-      items = fgt.api.cmdb.dnsfilter.domain_filter.get()
-      
-      # Get specific domain-filter
-      item = fgt.api.cmdb.dnsfilter.domain_filter.get(mkey='name')
+.. _dnsfilter-domain-filter:
 
-**profile**
-   Configure DNS domain filter profile.
+domain-filter
+~~~~~~~~~~~~~
+
+Configure DNS domain filters.
+
+**Python attribute:** ``domain_filter``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.dnsfilter.domain_filter.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.dnsfilter.domain_filter.get(mkey='item-name')
    
-      # List all profile
-      items = fgt.api.cmdb.dnsfilter.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.dnsfilter.profile.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.dnsfilter.domain_filter.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.dnsfilter.domain_filter.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.dnsfilter.domain_filter.delete(mkey='item-name')
+
+.. _dnsfilter-profile:
+
+profile
+~~~~~~~
+
+Configure DNS domain filter profile.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.dnsfilter.profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.dnsfilter.profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.dnsfilter.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.dnsfilter.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.dnsfilter.profile.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -57,7 +99,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.dnsfilter.{endpoint}.post(json={
+   result = fgt.api.cmdb.dnsfilter.domain_filter.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -68,7 +110,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.dnsfilter.{endpoint}.put(
+   result = fgt.api.cmdb.dnsfilter.domain_filter.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -81,10 +123,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.dnsfilter.{endpoint}.get()
+   items = fgt.api.cmdb.dnsfilter.domain_filter.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.dnsfilter.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.dnsfilter.domain_filter.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -92,7 +134,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.dnsfilter.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.dnsfilter.domain_filter.delete(mkey='config-name')
 
 HTTP Methods
 ------------

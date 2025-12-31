@@ -8,7 +8,7 @@ Overview
 
 The ``cmdb.ethernet-oam`` category provides configuration management for:
 
-- **Cfm** - CFM domain configuration.
+- :ref:`Cfm <ethernet-oam-cfm>` - CFM domain configuration.
 
 
 Endpoint
@@ -21,16 +21,37 @@ Endpoint
 Available Endpoints
 -------------------
 
-**cfm**
-   CFM domain configuration.
+.. _ethernet-oam-cfm:
+
+cfm
+~~~
+
+CFM domain configuration.
+
+**Python attribute:** ``cfm``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ethernet-oam.cfm.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.ethernet-oam.cfm.get(mkey='item-name')
    
-      # List all cfm
-      items = fgt.api.cmdb.ethernet-oam.cfm.get()
-      
-      # Get specific cfm
-      item = fgt.api.cmdb.ethernet-oam.cfm.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.ethernet-oam.cfm.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ethernet-oam.cfm.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ethernet-oam.cfm.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -45,7 +66,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.ethernet-oam.{endpoint}.post(json={
+   result = fgt.api.cmdb.ethernet-oam.cfm.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -56,7 +77,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.ethernet-oam.{endpoint}.put(
+   result = fgt.api.cmdb.ethernet-oam.cfm.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -69,10 +90,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.ethernet-oam.{endpoint}.get()
+   items = fgt.api.cmdb.ethernet-oam.cfm.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.ethernet-oam.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.ethernet-oam.cfm.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -80,7 +101,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.ethernet-oam.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.ethernet-oam.cfm.delete(mkey='config-name')
 
 HTTP Methods
 ------------

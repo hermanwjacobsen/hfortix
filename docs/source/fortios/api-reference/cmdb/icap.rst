@@ -8,9 +8,9 @@ Overview
 
 The ``cmdb.icap`` category provides configuration management for:
 
-- **Profile** - Configure ICAP profiles.
-- **Server** - Configure ICAP servers.
-- **Server Group** - Configure an ICAP server group consisting of multiple forward servers. Supports failover and load balancing.
+- :ref:`Profile <icap-profile>` - Configure ICAP profiles.
+- :ref:`Server <icap-server>` - Configure ICAP servers.
+- :ref:`Server Group <icap-server-group>` - Configure an ICAP server group consisting of multiple forward servers. Supports failover and load balancing.
 
 
 Endpoint
@@ -23,38 +23,101 @@ Endpoint
 Available Endpoints
 -------------------
 
-**profile**
-   Configure ICAP profiles.
-   
-   .. code-block:: python
-   
-      # List all profile
-      items = fgt.api.cmdb.icap.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.icap.profile.get(mkey='name')
+.. _icap-profile:
 
-**server**
-   Configure ICAP servers.
-   
-   .. code-block:: python
-   
-      # List all server
-      items = fgt.api.cmdb.icap.server.get()
-      
-      # Get specific server
-      item = fgt.api.cmdb.icap.server.get(mkey='name')
+profile
+~~~~~~~
 
-**server-group**
-   Configure an ICAP server group consisting of multiple forward servers. Supports failover and load balancing.
+Configure ICAP profiles.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.icap.profile.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.icap.profile.get(mkey='item-name')
    
-      # List all server-group
-      items = fgt.api.cmdb.icap.server_group.get()
-      
-      # Get specific server-group
-      item = fgt.api.cmdb.icap.server_group.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.icap.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.icap.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.icap.profile.delete(mkey='item-name')
+
+.. _icap-server:
+
+server
+~~~~~~
+
+Configure ICAP servers.
+
+**Python attribute:** ``server``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.icap.server.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.icap.server.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.icap.server.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.icap.server.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.icap.server.delete(mkey='item-name')
+
+.. _icap-server-group:
+
+server-group
+~~~~~~~~~~~~
+
+Configure an ICAP server group consisting of multiple forward servers. Supports failover and load balancing.
+
+**Python attribute:** ``server_group``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.icap.server_group.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.icap.server_group.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.icap.server_group.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.icap.server_group.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.icap.server_group.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -69,7 +132,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.icap.{endpoint}.post(json={
+   result = fgt.api.cmdb.icap.profile.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -80,7 +143,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.icap.{endpoint}.put(
+   result = fgt.api.cmdb.icap.profile.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -93,10 +156,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.icap.{endpoint}.get()
+   items = fgt.api.cmdb.icap.profile.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.icap.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.icap.profile.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -104,7 +167,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.icap.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.icap.profile.delete(mkey='config-name')
 
 HTTP Methods
 ------------

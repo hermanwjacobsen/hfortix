@@ -8,7 +8,7 @@ Overview
 
 The ``cmdb.ftp-proxy`` category provides configuration management for:
 
-- **Explicit** - Configure explicit FTP proxy settings.
+- :ref:`Explicit <ftp-proxy-explicit>` - Configure explicit FTP proxy settings.
 
 
 Endpoint
@@ -21,16 +21,37 @@ Endpoint
 Available Endpoints
 -------------------
 
-**explicit**
-   Configure explicit FTP proxy settings.
+.. _ftp-proxy-explicit:
+
+explicit
+~~~~~~~~
+
+Configure explicit FTP proxy settings.
+
+**Python attribute:** ``explicit``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ftp-proxy.explicit.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.ftp-proxy.explicit.get(mkey='item-name')
    
-      # List all explicit
-      items = fgt.api.cmdb.ftp-proxy.explicit.get()
-      
-      # Get specific explicit
-      item = fgt.api.cmdb.ftp-proxy.explicit.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.ftp-proxy.explicit.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ftp-proxy.explicit.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ftp-proxy.explicit.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -45,7 +66,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.ftp-proxy.{endpoint}.post(json={
+   result = fgt.api.cmdb.ftp-proxy.explicit.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -56,7 +77,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.ftp-proxy.{endpoint}.put(
+   result = fgt.api.cmdb.ftp-proxy.explicit.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -69,10 +90,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.ftp-proxy.{endpoint}.get()
+   items = fgt.api.cmdb.ftp-proxy.explicit.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.ftp-proxy.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.ftp-proxy.explicit.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -80,7 +101,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.ftp-proxy.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.ftp-proxy.explicit.delete(mkey='config-name')
 
 HTTP Methods
 ------------

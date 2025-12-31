@@ -8,9 +8,9 @@ Overview
 
 The ``cmdb.videofilter`` category provides configuration management for:
 
-- **Keyword** - Configure video filter keywords.
-- **Profile** - Configure VideoFilter profile.
-- **Youtube Key** - Configure YouTube API keys.
+- :ref:`Keyword <videofilter-keyword>` - Configure video filter keywords.
+- :ref:`Profile <videofilter-profile>` - Configure VideoFilter profile.
+- :ref:`Youtube Key <videofilter-youtube-key>` - Configure YouTube API keys.
 
 
 Endpoint
@@ -23,38 +23,101 @@ Endpoint
 Available Endpoints
 -------------------
 
-**keyword**
-   Configure video filter keywords.
-   
-   .. code-block:: python
-   
-      # List all keyword
-      items = fgt.api.cmdb.videofilter.keyword.get()
-      
-      # Get specific keyword
-      item = fgt.api.cmdb.videofilter.keyword.get(mkey='name')
+.. _videofilter-keyword:
 
-**profile**
-   Configure VideoFilter profile.
-   
-   .. code-block:: python
-   
-      # List all profile
-      items = fgt.api.cmdb.videofilter.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.videofilter.profile.get(mkey='name')
+keyword
+~~~~~~~
 
-**youtube-key**
-   Configure YouTube API keys.
+Configure video filter keywords.
+
+**Python attribute:** ``keyword``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.videofilter.keyword.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.videofilter.keyword.get(mkey='item-name')
    
-      # List all youtube-key
-      items = fgt.api.cmdb.videofilter.youtube_key.get()
-      
-      # Get specific youtube-key
-      item = fgt.api.cmdb.videofilter.youtube_key.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.videofilter.keyword.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.videofilter.keyword.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.videofilter.keyword.delete(mkey='item-name')
+
+.. _videofilter-profile:
+
+profile
+~~~~~~~
+
+Configure VideoFilter profile.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.videofilter.profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.videofilter.profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.videofilter.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.videofilter.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.videofilter.profile.delete(mkey='item-name')
+
+.. _videofilter-youtube-key:
+
+youtube-key
+~~~~~~~~~~~
+
+Configure YouTube API keys.
+
+**Python attribute:** ``youtube_key``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.videofilter.youtube_key.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.videofilter.youtube_key.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.videofilter.youtube_key.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.videofilter.youtube_key.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.videofilter.youtube_key.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -69,7 +132,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.videofilter.{endpoint}.post(json={
+   result = fgt.api.cmdb.videofilter.keyword.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -80,7 +143,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.videofilter.{endpoint}.put(
+   result = fgt.api.cmdb.videofilter.keyword.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -93,10 +156,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.videofilter.{endpoint}.get()
+   items = fgt.api.cmdb.videofilter.keyword.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.videofilter.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.videofilter.keyword.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -104,7 +167,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.videofilter.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.videofilter.keyword.delete(mkey='config-name')
 
 HTTP Methods
 ------------

@@ -8,32 +8,32 @@ Overview
 
 The ``cmdb.router`` category provides configuration management for:
 
-- **Access List** - Configure access lists.
-- **Access List6** - Configure IPv6 access lists.
-- **Aspath List** - Configure Autonomous System (AS) path lists.
-- **Auth Path** - Configure authentication based routing.
-- **Bfd** - Configure BFD.
-- **Bfd6** - Configure IPv6 BFD.
-- **Bgp** - Configure BGP.
-- **Community List** - Configure community lists.
-- **Extcommunity List** - Configure extended community lists.
-- **Isis** - Configure IS-IS.
-- **Key Chain** - Configure key-chain.
-- **Multicast** - Configure router multicast.
-- **Multicast Flow** - Configure multicast-flow.
-- **Multicast6** - Configure IPv6 multicast.
-- **Ospf** - Configure OSPF.
-- **Ospf6** - Configure IPv6 OSPF.
-- **Policy** - Configure IPv4 routing policies.
-- **Policy6** - Configure IPv6 routing policies.
-- **Prefix List** - Configure IPv4 prefix lists.
-- **Prefix List6** - Configure IPv6 prefix lists.
-- **Rip** - Configure RIP.
-- **Ripng** - Configure RIPng.
-- **Route Map** - Configure route maps.
-- **Setting** - Configure router settings.
-- **Static** - Configure IPv4 static routing tables.
-- **Static6** - Configure IPv6 static routing tables.
+- :ref:`Access List <router-access-list>` - Configure access lists.
+- :ref:`Access List6 <router-access-list6>` - Configure IPv6 access lists.
+- :ref:`Aspath List <router-aspath-list>` - Configure Autonomous System (AS) path lists.
+- :ref:`Auth Path <router-auth-path>` - Configure authentication based routing.
+- :ref:`Bfd <router-bfd>` - Configure BFD.
+- :ref:`Bfd6 <router-bfd6>` - Configure IPv6 BFD.
+- :ref:`Bgp <router-bgp>` - Configure BGP.
+- :ref:`Community List <router-community-list>` - Configure community lists.
+- :ref:`Extcommunity List <router-extcommunity-list>` - Configure extended community lists.
+- :ref:`Isis <router-isis>` - Configure IS-IS.
+- :ref:`Key Chain <router-key-chain>` - Configure key-chain.
+- :ref:`Multicast <router-multicast>` - Configure router multicast.
+- :ref:`Multicast Flow <router-multicast-flow>` - Configure multicast-flow.
+- :ref:`Multicast6 <router-multicast6>` - Configure IPv6 multicast.
+- :ref:`Ospf <router-ospf>` - Configure OSPF.
+- :ref:`Ospf6 <router-ospf6>` - Configure IPv6 OSPF.
+- :ref:`Policy <router-policy>` - Configure IPv4 routing policies.
+- :ref:`Policy6 <router-policy6>` - Configure IPv6 routing policies.
+- :ref:`Prefix List <router-prefix-list>` - Configure IPv4 prefix lists.
+- :ref:`Prefix List6 <router-prefix-list6>` - Configure IPv6 prefix lists.
+- :ref:`Rip <router-rip>` - Configure RIP.
+- :ref:`Ripng <router-ripng>` - Configure RIPng.
+- :ref:`Route Map <router-route-map>` - Configure route maps.
+- :ref:`Setting <router-setting>` - Configure router settings.
+- :ref:`Static <router-static>` - Configure IPv4 static routing tables.
+- :ref:`Static6 <router-static6>` - Configure IPv6 static routing tables.
 
 
 Endpoint
@@ -46,291 +46,837 @@ Endpoint
 Available Endpoints
 -------------------
 
-**access-list**
-   Configure access lists.
-   
-   .. code-block:: python
-   
-      # List all access-list
-      items = fgt.api.cmdb.router.access_list.get()
-      
-      # Get specific access-list
-      item = fgt.api.cmdb.router.access_list.get(mkey='name')
+.. _router-access-list:
 
-**access-list6**
-   Configure IPv6 access lists.
-   
-   .. code-block:: python
-   
-      # List all access-list6
-      items = fgt.api.cmdb.router.access_list6.get()
-      
-      # Get specific access-list6
-      item = fgt.api.cmdb.router.access_list6.get(mkey='name')
+access-list
+~~~~~~~~~~~
 
-**aspath-list**
-   Configure Autonomous System (AS) path lists.
-   
-   .. code-block:: python
-   
-      # List all aspath-list
-      items = fgt.api.cmdb.router.aspath_list.get()
-      
-      # Get specific aspath-list
-      item = fgt.api.cmdb.router.aspath_list.get(mkey='name')
+Configure access lists.
 
-**auth-path**
-   Configure authentication based routing.
-   
-   .. code-block:: python
-   
-      # List all auth-path
-      items = fgt.api.cmdb.router.auth_path.get()
-      
-      # Get specific auth-path
-      item = fgt.api.cmdb.router.auth_path.get(mkey='name')
+**Python attribute:** ``access_list``
 
-**bfd**
-   Configure BFD.
-   
-   .. code-block:: python
-   
-      # List all bfd
-      items = fgt.api.cmdb.router.bfd.get()
-      
-      # Get specific bfd
-      item = fgt.api.cmdb.router.bfd.get(mkey='name')
+.. code-block:: python
 
-**bfd6**
-   Configure IPv6 BFD.
+   # Get all items
+   items = fgt.api.cmdb.router.access_list.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.router.access_list.get(mkey='item-name')
    
-      # List all bfd6
-      items = fgt.api.cmdb.router.bfd6.get()
-      
-      # Get specific bfd6
-      item = fgt.api.cmdb.router.bfd6.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.router.access_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.access_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.access_list.delete(mkey='item-name')
 
-**bgp**
-   Configure BGP.
-   
-   .. code-block:: python
-   
-      # List all bgp
-      items = fgt.api.cmdb.router.bgp.get()
-      
-      # Get specific bgp
-      item = fgt.api.cmdb.router.bgp.get(mkey='name')
+.. _router-access-list6:
 
-**community-list**
-   Configure community lists.
-   
-   .. code-block:: python
-   
-      # List all community-list
-      items = fgt.api.cmdb.router.community_list.get()
-      
-      # Get specific community-list
-      item = fgt.api.cmdb.router.community_list.get(mkey='name')
+access-list6
+~~~~~~~~~~~~
 
-**extcommunity-list**
-   Configure extended community lists.
-   
-   .. code-block:: python
-   
-      # List all extcommunity-list
-      items = fgt.api.cmdb.router.extcommunity_list.get()
-      
-      # Get specific extcommunity-list
-      item = fgt.api.cmdb.router.extcommunity_list.get(mkey='name')
+Configure IPv6 access lists.
 
-**isis**
-   Configure IS-IS.
-   
-   .. code-block:: python
-   
-      # List all isis
-      items = fgt.api.cmdb.router.isis.get()
-      
-      # Get specific isis
-      item = fgt.api.cmdb.router.isis.get(mkey='name')
+**Python attribute:** ``access_list6``
 
-**key-chain**
-   Configure key-chain.
-   
-   .. code-block:: python
-   
-      # List all key-chain
-      items = fgt.api.cmdb.router.key_chain.get()
-      
-      # Get specific key-chain
-      item = fgt.api.cmdb.router.key_chain.get(mkey='name')
+.. code-block:: python
 
-**multicast**
-   Configure router multicast.
+   # Get all items
+   items = fgt.api.cmdb.router.access_list6.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.router.access_list6.get(mkey='item-name')
    
-      # List all multicast
-      items = fgt.api.cmdb.router.multicast.get()
-      
-      # Get specific multicast
-      item = fgt.api.cmdb.router.multicast.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.router.access_list6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.access_list6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.access_list6.delete(mkey='item-name')
 
-**multicast-flow**
-   Configure multicast-flow.
-   
-   .. code-block:: python
-   
-      # List all multicast-flow
-      items = fgt.api.cmdb.router.multicast_flow.get()
-      
-      # Get specific multicast-flow
-      item = fgt.api.cmdb.router.multicast_flow.get(mkey='name')
+.. _router-aspath-list:
 
-**multicast6**
-   Configure IPv6 multicast.
-   
-   .. code-block:: python
-   
-      # List all multicast6
-      items = fgt.api.cmdb.router.multicast6.get()
-      
-      # Get specific multicast6
-      item = fgt.api.cmdb.router.multicast6.get(mkey='name')
+aspath-list
+~~~~~~~~~~~
 
-**ospf**
-   Configure OSPF.
-   
-   .. code-block:: python
-   
-      # List all ospf
-      items = fgt.api.cmdb.router.ospf.get()
-      
-      # Get specific ospf
-      item = fgt.api.cmdb.router.ospf.get(mkey='name')
+Configure Autonomous System (AS) path lists.
 
-**ospf6**
-   Configure IPv6 OSPF.
-   
-   .. code-block:: python
-   
-      # List all ospf6
-      items = fgt.api.cmdb.router.ospf6.get()
-      
-      # Get specific ospf6
-      item = fgt.api.cmdb.router.ospf6.get(mkey='name')
+**Python attribute:** ``aspath_list``
 
-**policy**
-   Configure IPv4 routing policies.
-   
-   .. code-block:: python
-   
-      # List all policy
-      items = fgt.api.cmdb.router.policy.get()
-      
-      # Get specific policy
-      item = fgt.api.cmdb.router.policy.get(mkey='name')
+.. code-block:: python
 
-**policy6**
-   Configure IPv6 routing policies.
+   # Get all items
+   items = fgt.api.cmdb.router.aspath_list.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.router.aspath_list.get(mkey='item-name')
    
-      # List all policy6
-      items = fgt.api.cmdb.router.policy6.get()
-      
-      # Get specific policy6
-      item = fgt.api.cmdb.router.policy6.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.router.aspath_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.aspath_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.aspath_list.delete(mkey='item-name')
 
-**prefix-list**
-   Configure IPv4 prefix lists.
-   
-   .. code-block:: python
-   
-      # List all prefix-list
-      items = fgt.api.cmdb.router.prefix_list.get()
-      
-      # Get specific prefix-list
-      item = fgt.api.cmdb.router.prefix_list.get(mkey='name')
+.. _router-auth-path:
 
-**prefix-list6**
-   Configure IPv6 prefix lists.
-   
-   .. code-block:: python
-   
-      # List all prefix-list6
-      items = fgt.api.cmdb.router.prefix_list6.get()
-      
-      # Get specific prefix-list6
-      item = fgt.api.cmdb.router.prefix_list6.get(mkey='name')
+auth-path
+~~~~~~~~~
 
-**rip**
-   Configure RIP.
-   
-   .. code-block:: python
-   
-      # List all rip
-      items = fgt.api.cmdb.router.rip.get()
-      
-      # Get specific rip
-      item = fgt.api.cmdb.router.rip.get(mkey='name')
+Configure authentication based routing.
 
-**ripng**
-   Configure RIPng.
-   
-   .. code-block:: python
-   
-      # List all ripng
-      items = fgt.api.cmdb.router.ripng.get()
-      
-      # Get specific ripng
-      item = fgt.api.cmdb.router.ripng.get(mkey='name')
+**Python attribute:** ``auth_path``
 
-**route-map**
-   Configure route maps.
-   
-   .. code-block:: python
-   
-      # List all route-map
-      items = fgt.api.cmdb.router.route_map.get()
-      
-      # Get specific route-map
-      item = fgt.api.cmdb.router.route_map.get(mkey='name')
+.. code-block:: python
 
-**setting**
-   Configure router settings.
+   # Get all items
+   items = fgt.api.cmdb.router.auth_path.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.router.auth_path.get(mkey='item-name')
    
-      # List all setting
-      items = fgt.api.cmdb.router.setting.get()
-      
-      # Get specific setting
-      item = fgt.api.cmdb.router.setting.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.router.auth_path.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.auth_path.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.auth_path.delete(mkey='item-name')
 
-**static**
-   Configure IPv4 static routing tables.
-   
-   .. code-block:: python
-   
-      # List all static
-      items = fgt.api.cmdb.router.static.get()
-      
-      # Get specific static
-      item = fgt.api.cmdb.router.static.get(mkey='name')
+.. _router-bfd:
 
-**static6**
-   Configure IPv6 static routing tables.
+bfd
+~~~
+
+Configure BFD.
+
+**Python attribute:** ``bfd``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.bfd.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.router.bfd.get(mkey='item-name')
    
-      # List all static6
-      items = fgt.api.cmdb.router.static6.get()
-      
-      # Get specific static6
-      item = fgt.api.cmdb.router.static6.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.router.bfd.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.bfd.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.bfd.delete(mkey='item-name')
+
+.. _router-bfd6:
+
+bfd6
+~~~~
+
+Configure IPv6 BFD.
+
+**Python attribute:** ``bfd6``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.bfd6.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.bfd6.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.bfd6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.bfd6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.bfd6.delete(mkey='item-name')
+
+.. _router-bgp:
+
+bgp
+~~~
+
+Configure BGP.
+
+**Python attribute:** ``bgp``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.bgp.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.bgp.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.bgp.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.bgp.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.bgp.delete(mkey='item-name')
+
+.. _router-community-list:
+
+community-list
+~~~~~~~~~~~~~~
+
+Configure community lists.
+
+**Python attribute:** ``community_list``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.community_list.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.community_list.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.community_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.community_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.community_list.delete(mkey='item-name')
+
+.. _router-extcommunity-list:
+
+extcommunity-list
+~~~~~~~~~~~~~~~~~
+
+Configure extended community lists.
+
+**Python attribute:** ``extcommunity_list``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.extcommunity_list.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.extcommunity_list.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.extcommunity_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.extcommunity_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.extcommunity_list.delete(mkey='item-name')
+
+.. _router-isis:
+
+isis
+~~~~
+
+Configure IS-IS.
+
+**Python attribute:** ``isis``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.isis.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.isis.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.isis.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.isis.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.isis.delete(mkey='item-name')
+
+.. _router-key-chain:
+
+key-chain
+~~~~~~~~~
+
+Configure key-chain.
+
+**Python attribute:** ``key_chain``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.key_chain.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.key_chain.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.key_chain.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.key_chain.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.key_chain.delete(mkey='item-name')
+
+.. _router-multicast:
+
+multicast
+~~~~~~~~~
+
+Configure router multicast.
+
+**Python attribute:** ``multicast``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.multicast.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.multicast.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.multicast.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.multicast.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.multicast.delete(mkey='item-name')
+
+.. _router-multicast-flow:
+
+multicast-flow
+~~~~~~~~~~~~~~
+
+Configure multicast-flow.
+
+**Python attribute:** ``multicast_flow``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.multicast_flow.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.multicast_flow.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.multicast_flow.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.multicast_flow.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.multicast_flow.delete(mkey='item-name')
+
+.. _router-multicast6:
+
+multicast6
+~~~~~~~~~~
+
+Configure IPv6 multicast.
+
+**Python attribute:** ``multicast6``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.multicast6.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.multicast6.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.multicast6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.multicast6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.multicast6.delete(mkey='item-name')
+
+.. _router-ospf:
+
+ospf
+~~~~
+
+Configure OSPF.
+
+**Python attribute:** ``ospf``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.ospf.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.ospf.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.ospf.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.ospf.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.ospf.delete(mkey='item-name')
+
+.. _router-ospf6:
+
+ospf6
+~~~~~
+
+Configure IPv6 OSPF.
+
+**Python attribute:** ``ospf6``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.ospf6.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.ospf6.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.ospf6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.ospf6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.ospf6.delete(mkey='item-name')
+
+.. _router-policy:
+
+policy
+~~~~~~
+
+Configure IPv4 routing policies.
+
+**Python attribute:** ``policy``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.policy.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.policy.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.policy.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.policy.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.policy.delete(mkey='item-name')
+
+.. _router-policy6:
+
+policy6
+~~~~~~~
+
+Configure IPv6 routing policies.
+
+**Python attribute:** ``policy6``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.policy6.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.policy6.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.policy6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.policy6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.policy6.delete(mkey='item-name')
+
+.. _router-prefix-list:
+
+prefix-list
+~~~~~~~~~~~
+
+Configure IPv4 prefix lists.
+
+**Python attribute:** ``prefix_list``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.prefix_list.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.prefix_list.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.prefix_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.prefix_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.prefix_list.delete(mkey='item-name')
+
+.. _router-prefix-list6:
+
+prefix-list6
+~~~~~~~~~~~~
+
+Configure IPv6 prefix lists.
+
+**Python attribute:** ``prefix_list6``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.prefix_list6.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.prefix_list6.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.prefix_list6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.prefix_list6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.prefix_list6.delete(mkey='item-name')
+
+.. _router-rip:
+
+rip
+~~~
+
+Configure RIP.
+
+**Python attribute:** ``rip``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.rip.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.rip.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.rip.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.rip.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.rip.delete(mkey='item-name')
+
+.. _router-ripng:
+
+ripng
+~~~~~
+
+Configure RIPng.
+
+**Python attribute:** ``ripng``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.ripng.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.ripng.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.ripng.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.ripng.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.ripng.delete(mkey='item-name')
+
+.. _router-route-map:
+
+route-map
+~~~~~~~~~
+
+Configure route maps.
+
+**Python attribute:** ``route_map``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.route_map.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.route_map.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.route_map.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.route_map.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.route_map.delete(mkey='item-name')
+
+.. _router-setting:
+
+setting
+~~~~~~~
+
+Configure router settings.
+
+**Python attribute:** ``setting``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.setting.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.setting.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.setting.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.setting.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.setting.delete(mkey='item-name')
+
+.. _router-static:
+
+static
+~~~~~~
+
+Configure IPv4 static routing tables.
+
+**Python attribute:** ``static``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.static.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.static.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.static.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.static.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.static.delete(mkey='item-name')
+
+.. _router-static6:
+
+static6
+~~~~~~~
+
+Configure IPv6 static routing tables.
+
+**Python attribute:** ``static6``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.router.static6.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.router.static6.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.router.static6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.router.static6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.router.static6.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -345,7 +891,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.router.{endpoint}.post(json={
+   result = fgt.api.cmdb.router.access_list.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -356,7 +902,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.router.{endpoint}.put(
+   result = fgt.api.cmdb.router.access_list.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -369,10 +915,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.router.{endpoint}.get()
+   items = fgt.api.cmdb.router.access_list.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.router.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.router.access_list.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -380,7 +926,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.router.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.router.access_list.delete(mkey='config-name')
 
 HTTP Methods
 ------------

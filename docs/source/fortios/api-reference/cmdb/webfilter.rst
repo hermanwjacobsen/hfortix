@@ -8,20 +8,20 @@ Overview
 
 The ``cmdb.webfilter`` category provides configuration management for:
 
-- **Content** - Configure Web filter banned word table.
-- **Content Header** - Configure content types used by Web filter.
-- **Fortiguard** - Configure FortiGuard Web Filter service.
-- **Ftgd Local Cat** - Configure FortiGuard Web Filter local categories.
-- **Ftgd Local Rating** - Configure local FortiGuard Web Filter local ratings.
-- **Ftgd Local Risk** - Configure FortiGuard Web Filter local risk score.
-- **Ftgd Risk Level** - Configure FortiGuard Web Filter risk level.
-- **Ips Urlfilter Cache Setting** - Configure IPS URL filter cache settings.
-- **Ips Urlfilter Setting** - Configure IPS URL filter settings.
-- **Ips Urlfilter Setting6** - Configure IPS URL filter settings for IPv6.
-- **Override** - Configure FortiGuard Web Filter administrative overrides.
-- **Profile** - Configure Web filter profiles.
-- **Search Engine** - Configure web filter search engines.
-- **Urlfilter** - Configure URL filter lists.
+- :ref:`Content <webfilter-content>` - Configure Web filter banned word table.
+- :ref:`Content Header <webfilter-content-header>` - Configure content types used by Web filter.
+- :ref:`Fortiguard <webfilter-fortiguard>` - Configure FortiGuard Web Filter service.
+- :ref:`Ftgd Local Cat <webfilter-ftgd-local-cat>` - Configure FortiGuard Web Filter local categories.
+- :ref:`Ftgd Local Rating <webfilter-ftgd-local-rating>` - Configure local FortiGuard Web Filter local ratings.
+- :ref:`Ftgd Local Risk <webfilter-ftgd-local-risk>` - Configure FortiGuard Web Filter local risk score.
+- :ref:`Ftgd Risk Level <webfilter-ftgd-risk-level>` - Configure FortiGuard Web Filter risk level.
+- :ref:`Ips Urlfilter Cache Setting <webfilter-ips-urlfilter-cache-setting>` - Configure IPS URL filter cache settings.
+- :ref:`Ips Urlfilter Setting <webfilter-ips-urlfilter-setting>` - Configure IPS URL filter settings.
+- :ref:`Ips Urlfilter Setting6 <webfilter-ips-urlfilter-setting6>` - Configure IPS URL filter settings for IPv6.
+- :ref:`Override <webfilter-override>` - Configure FortiGuard Web Filter administrative overrides.
+- :ref:`Profile <webfilter-profile>` - Configure Web filter profiles.
+- :ref:`Search Engine <webfilter-search-engine>` - Configure web filter search engines.
+- :ref:`Urlfilter <webfilter-urlfilter>` - Configure URL filter lists.
 
 
 Endpoint
@@ -34,159 +34,453 @@ Endpoint
 Available Endpoints
 -------------------
 
-**content**
-   Configure Web filter banned word table.
-   
-   .. code-block:: python
-   
-      # List all content
-      items = fgt.api.cmdb.webfilter.content.get()
-      
-      # Get specific content
-      item = fgt.api.cmdb.webfilter.content.get(mkey='name')
+.. _webfilter-content:
 
-**content-header**
-   Configure content types used by Web filter.
-   
-   .. code-block:: python
-   
-      # List all content-header
-      items = fgt.api.cmdb.webfilter.content_header.get()
-      
-      # Get specific content-header
-      item = fgt.api.cmdb.webfilter.content_header.get(mkey='name')
+content
+~~~~~~~
 
-**fortiguard**
-   Configure FortiGuard Web Filter service.
-   
-   .. code-block:: python
-   
-      # List all fortiguard
-      items = fgt.api.cmdb.webfilter.fortiguard.get()
-      
-      # Get specific fortiguard
-      item = fgt.api.cmdb.webfilter.fortiguard.get(mkey='name')
+Configure Web filter banned word table.
 
-**ftgd-local-cat**
-   Configure FortiGuard Web Filter local categories.
-   
-   .. code-block:: python
-   
-      # List all ftgd-local-cat
-      items = fgt.api.cmdb.webfilter.ftgd_local_cat.get()
-      
-      # Get specific ftgd-local-cat
-      item = fgt.api.cmdb.webfilter.ftgd_local_cat.get(mkey='name')
+**Python attribute:** ``content``
 
-**ftgd-local-rating**
-   Configure local FortiGuard Web Filter local ratings.
-   
-   .. code-block:: python
-   
-      # List all ftgd-local-rating
-      items = fgt.api.cmdb.webfilter.ftgd_local_rating.get()
-      
-      # Get specific ftgd-local-rating
-      item = fgt.api.cmdb.webfilter.ftgd_local_rating.get(mkey='name')
+.. code-block:: python
 
-**ftgd-local-risk**
-   Configure FortiGuard Web Filter local risk score.
+   # Get all items
+   items = fgt.api.cmdb.webfilter.content.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.content.get(mkey='item-name')
    
-      # List all ftgd-local-risk
-      items = fgt.api.cmdb.webfilter.ftgd_local_risk.get()
-      
-      # Get specific ftgd-local-risk
-      item = fgt.api.cmdb.webfilter.ftgd_local_risk.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.webfilter.content.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.content.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.content.delete(mkey='item-name')
 
-**ftgd-risk-level**
-   Configure FortiGuard Web Filter risk level.
-   
-   .. code-block:: python
-   
-      # List all ftgd-risk-level
-      items = fgt.api.cmdb.webfilter.ftgd_risk_level.get()
-      
-      # Get specific ftgd-risk-level
-      item = fgt.api.cmdb.webfilter.ftgd_risk_level.get(mkey='name')
+.. _webfilter-content-header:
 
-**ips-urlfilter-cache-setting**
-   Configure IPS URL filter cache settings.
-   
-   .. code-block:: python
-   
-      # List all ips-urlfilter-cache-setting
-      items = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.get()
-      
-      # Get specific ips-urlfilter-cache-setting
-      item = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.get(mkey='name')
+content-header
+~~~~~~~~~~~~~~
 
-**ips-urlfilter-setting**
-   Configure IPS URL filter settings.
-   
-   .. code-block:: python
-   
-      # List all ips-urlfilter-setting
-      items = fgt.api.cmdb.webfilter.ips_urlfilter_setting.get()
-      
-      # Get specific ips-urlfilter-setting
-      item = fgt.api.cmdb.webfilter.ips_urlfilter_setting.get(mkey='name')
+Configure content types used by Web filter.
 
-**ips-urlfilter-setting6**
-   Configure IPS URL filter settings for IPv6.
-   
-   .. code-block:: python
-   
-      # List all ips-urlfilter-setting6
-      items = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.get()
-      
-      # Get specific ips-urlfilter-setting6
-      item = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.get(mkey='name')
+**Python attribute:** ``content_header``
 
-**override**
-   Configure FortiGuard Web Filter administrative overrides.
-   
-   .. code-block:: python
-   
-      # List all override
-      items = fgt.api.cmdb.webfilter.override.get()
-      
-      # Get specific override
-      item = fgt.api.cmdb.webfilter.override.get(mkey='name')
+.. code-block:: python
 
-**profile**
-   Configure Web filter profiles.
+   # Get all items
+   items = fgt.api.cmdb.webfilter.content_header.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.content_header.get(mkey='item-name')
    
-      # List all profile
-      items = fgt.api.cmdb.webfilter.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.webfilter.profile.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.webfilter.content_header.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.content_header.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.content_header.delete(mkey='item-name')
 
-**search-engine**
-   Configure web filter search engines.
-   
-   .. code-block:: python
-   
-      # List all search-engine
-      items = fgt.api.cmdb.webfilter.search_engine.get()
-      
-      # Get specific search-engine
-      item = fgt.api.cmdb.webfilter.search_engine.get(mkey='name')
+.. _webfilter-fortiguard:
 
-**urlfilter**
-   Configure URL filter lists.
+fortiguard
+~~~~~~~~~~
+
+Configure FortiGuard Web Filter service.
+
+**Python attribute:** ``fortiguard``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.fortiguard.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.fortiguard.get(mkey='item-name')
    
-      # List all urlfilter
-      items = fgt.api.cmdb.webfilter.urlfilter.get()
-      
-      # Get specific urlfilter
-      item = fgt.api.cmdb.webfilter.urlfilter.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.webfilter.fortiguard.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.fortiguard.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.fortiguard.delete(mkey='item-name')
+
+.. _webfilter-ftgd-local-cat:
+
+ftgd-local-cat
+~~~~~~~~~~~~~~
+
+Configure FortiGuard Web Filter local categories.
+
+**Python attribute:** ``ftgd_local_cat``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.ftgd_local_cat.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.ftgd_local_cat.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.ftgd_local_cat.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.ftgd_local_cat.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.ftgd_local_cat.delete(mkey='item-name')
+
+.. _webfilter-ftgd-local-rating:
+
+ftgd-local-rating
+~~~~~~~~~~~~~~~~~
+
+Configure local FortiGuard Web Filter local ratings.
+
+**Python attribute:** ``ftgd_local_rating``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.ftgd_local_rating.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.ftgd_local_rating.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.ftgd_local_rating.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.ftgd_local_rating.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.ftgd_local_rating.delete(mkey='item-name')
+
+.. _webfilter-ftgd-local-risk:
+
+ftgd-local-risk
+~~~~~~~~~~~~~~~
+
+Configure FortiGuard Web Filter local risk score.
+
+**Python attribute:** ``ftgd_local_risk``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.ftgd_local_risk.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.ftgd_local_risk.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.ftgd_local_risk.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.ftgd_local_risk.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.ftgd_local_risk.delete(mkey='item-name')
+
+.. _webfilter-ftgd-risk-level:
+
+ftgd-risk-level
+~~~~~~~~~~~~~~~
+
+Configure FortiGuard Web Filter risk level.
+
+**Python attribute:** ``ftgd_risk_level``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.ftgd_risk_level.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.ftgd_risk_level.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.ftgd_risk_level.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.ftgd_risk_level.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.ftgd_risk_level.delete(mkey='item-name')
+
+.. _webfilter-ips-urlfilter-cache-setting:
+
+ips-urlfilter-cache-setting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Configure IPS URL filter cache settings.
+
+**Python attribute:** ``ips_urlfilter_cache_setting``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.delete(mkey='item-name')
+
+.. _webfilter-ips-urlfilter-setting:
+
+ips-urlfilter-setting
+~~~~~~~~~~~~~~~~~~~~~
+
+Configure IPS URL filter settings.
+
+**Python attribute:** ``ips_urlfilter_setting``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.ips_urlfilter_setting.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.ips_urlfilter_setting.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_setting.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_setting.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_setting.delete(mkey='item-name')
+
+.. _webfilter-ips-urlfilter-setting6:
+
+ips-urlfilter-setting6
+~~~~~~~~~~~~~~~~~~~~~~
+
+Configure IPS URL filter settings for IPv6.
+
+**Python attribute:** ``ips_urlfilter_setting6``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.delete(mkey='item-name')
+
+.. _webfilter-override:
+
+override
+~~~~~~~~
+
+Configure FortiGuard Web Filter administrative overrides.
+
+**Python attribute:** ``override``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.override.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.override.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.override.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.override.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.override.delete(mkey='item-name')
+
+.. _webfilter-profile:
+
+profile
+~~~~~~~
+
+Configure Web filter profiles.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.profile.delete(mkey='item-name')
+
+.. _webfilter-search-engine:
+
+search-engine
+~~~~~~~~~~~~~
+
+Configure web filter search engines.
+
+**Python attribute:** ``search_engine``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.search_engine.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.search_engine.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.search_engine.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.search_engine.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.search_engine.delete(mkey='item-name')
+
+.. _webfilter-urlfilter:
+
+urlfilter
+~~~~~~~~~
+
+Configure URL filter lists.
+
+**Python attribute:** ``urlfilter``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.webfilter.urlfilter.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.webfilter.urlfilter.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.webfilter.urlfilter.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.webfilter.urlfilter.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.webfilter.urlfilter.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -201,7 +495,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.webfilter.{endpoint}.post(json={
+   result = fgt.api.cmdb.webfilter.content.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -212,7 +506,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.webfilter.{endpoint}.put(
+   result = fgt.api.cmdb.webfilter.content.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -225,10 +519,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.webfilter.{endpoint}.get()
+   items = fgt.api.cmdb.webfilter.content.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.webfilter.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.webfilter.content.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -236,7 +530,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.webfilter.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.webfilter.content.delete(mkey='config-name')
 
 HTTP Methods
 ------------

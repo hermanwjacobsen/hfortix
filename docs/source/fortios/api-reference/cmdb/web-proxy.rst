@@ -8,16 +8,16 @@ Overview
 
 The ``cmdb.web-proxy`` category provides configuration management for:
 
-- **Debug Url** - Configure debug URL addresses.
-- **Explicit** - Configure explicit Web proxy settings.
-- **Fast Fallback** - Proxy destination connection fast-fallback.
-- **Forward Server** - Configure forward-server addresses.
-- **Forward Server Group** - Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.
-- **Global** - Configure Web proxy global settings.
-- **Isolator Server** - Configure forward-server addresses.
-- **Profile** - Configure web proxy profiles.
-- **Url Match** - Exempt URLs from web proxy forwarding, caching and fast-fallback.
-- **Wisp** - Configure Websense Integrated Services Protocol (WISP) servers.
+- :ref:`Debug Url <web-proxy-debug-url>` - Configure debug URL addresses.
+- :ref:`Explicit <web-proxy-explicit>` - Configure explicit Web proxy settings.
+- :ref:`Fast Fallback <web-proxy-fast-fallback>` - Proxy destination connection fast-fallback.
+- :ref:`Forward Server <web-proxy-forward-server>` - Configure forward-server addresses.
+- :ref:`Forward Server Group <web-proxy-forward-server-group>` - Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.
+- :ref:`Global <web-proxy-global>` - Configure Web proxy global settings.
+- :ref:`Isolator Server <web-proxy-isolator-server>` - Configure forward-server addresses.
+- :ref:`Profile <web-proxy-profile>` - Configure web proxy profiles.
+- :ref:`Url Match <web-proxy-url-match>` - Exempt URLs from web proxy forwarding, caching and fast-fallback.
+- :ref:`Wisp <web-proxy-wisp>` - Configure Websense Integrated Services Protocol (WISP) servers.
 
 
 Endpoint
@@ -30,115 +30,325 @@ Endpoint
 Available Endpoints
 -------------------
 
-**debug-url**
-   Configure debug URL addresses.
-   
-   .. code-block:: python
-   
-      # List all debug-url
-      items = fgt.api.cmdb.web-proxy.debug_url.get()
-      
-      # Get specific debug-url
-      item = fgt.api.cmdb.web-proxy.debug_url.get(mkey='name')
+.. _web-proxy-debug-url:
 
-**explicit**
-   Configure explicit Web proxy settings.
-   
-   .. code-block:: python
-   
-      # List all explicit
-      items = fgt.api.cmdb.web-proxy.explicit.get()
-      
-      # Get specific explicit
-      item = fgt.api.cmdb.web-proxy.explicit.get(mkey='name')
+debug-url
+~~~~~~~~~
 
-**fast-fallback**
-   Proxy destination connection fast-fallback.
-   
-   .. code-block:: python
-   
-      # List all fast-fallback
-      items = fgt.api.cmdb.web-proxy.fast_fallback.get()
-      
-      # Get specific fast-fallback
-      item = fgt.api.cmdb.web-proxy.fast_fallback.get(mkey='name')
+Configure debug URL addresses.
 
-**forward-server**
-   Configure forward-server addresses.
-   
-   .. code-block:: python
-   
-      # List all forward-server
-      items = fgt.api.cmdb.web-proxy.forward_server.get()
-      
-      # Get specific forward-server
-      item = fgt.api.cmdb.web-proxy.forward_server.get(mkey='name')
+**Python attribute:** ``debug_url``
 
-**forward-server-group**
-   Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.
-   
-   .. code-block:: python
-   
-      # List all forward-server-group
-      items = fgt.api.cmdb.web-proxy.forward_server_group.get()
-      
-      # Get specific forward-server-group
-      item = fgt.api.cmdb.web-proxy.forward_server_group.get(mkey='name')
+.. code-block:: python
 
-**global**
-   Configure Web proxy global settings.
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.debug_url.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.debug_url.get(mkey='item-name')
    
-      # List all global
-      items = fgt.api.cmdb.web-proxy.global.get()
-      
-      # Get specific global
-      item = fgt.api.cmdb.web-proxy.global.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.debug_url.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.debug_url.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.debug_url.delete(mkey='item-name')
 
-**isolator-server**
-   Configure forward-server addresses.
-   
-   .. code-block:: python
-   
-      # List all isolator-server
-      items = fgt.api.cmdb.web-proxy.isolator_server.get()
-      
-      # Get specific isolator-server
-      item = fgt.api.cmdb.web-proxy.isolator_server.get(mkey='name')
+.. _web-proxy-explicit:
 
-**profile**
-   Configure web proxy profiles.
-   
-   .. code-block:: python
-   
-      # List all profile
-      items = fgt.api.cmdb.web-proxy.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.web-proxy.profile.get(mkey='name')
+explicit
+~~~~~~~~
 
-**url-match**
-   Exempt URLs from web proxy forwarding, caching and fast-fallback.
-   
-   .. code-block:: python
-   
-      # List all url-match
-      items = fgt.api.cmdb.web-proxy.url_match.get()
-      
-      # Get specific url-match
-      item = fgt.api.cmdb.web-proxy.url_match.get(mkey='name')
+Configure explicit Web proxy settings.
 
-**wisp**
-   Configure Websense Integrated Services Protocol (WISP) servers.
+**Python attribute:** ``explicit``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.explicit.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.explicit.get(mkey='item-name')
    
-      # List all wisp
-      items = fgt.api.cmdb.web-proxy.wisp.get()
-      
-      # Get specific wisp
-      item = fgt.api.cmdb.web-proxy.wisp.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.explicit.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.explicit.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.explicit.delete(mkey='item-name')
+
+.. _web-proxy-fast-fallback:
+
+fast-fallback
+~~~~~~~~~~~~~
+
+Proxy destination connection fast-fallback.
+
+**Python attribute:** ``fast_fallback``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.fast_fallback.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.fast_fallback.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.fast_fallback.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.fast_fallback.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.fast_fallback.delete(mkey='item-name')
+
+.. _web-proxy-forward-server:
+
+forward-server
+~~~~~~~~~~~~~~
+
+Configure forward-server addresses.
+
+**Python attribute:** ``forward_server``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.forward_server.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.forward_server.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.forward_server.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.forward_server.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.forward_server.delete(mkey='item-name')
+
+.. _web-proxy-forward-server-group:
+
+forward-server-group
+~~~~~~~~~~~~~~~~~~~~
+
+Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.
+
+**Python attribute:** ``forward_server_group``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.forward_server_group.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.forward_server_group.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.forward_server_group.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.forward_server_group.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.forward_server_group.delete(mkey='item-name')
+
+.. _web-proxy-global:
+
+global
+~~~~~~
+
+Configure Web proxy global settings.
+
+**Python attribute:** ``global``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.global.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.global.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.global.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.global.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.global.delete(mkey='item-name')
+
+.. _web-proxy-isolator-server:
+
+isolator-server
+~~~~~~~~~~~~~~~
+
+Configure forward-server addresses.
+
+**Python attribute:** ``isolator_server``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.isolator_server.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.isolator_server.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.isolator_server.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.isolator_server.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.isolator_server.delete(mkey='item-name')
+
+.. _web-proxy-profile:
+
+profile
+~~~~~~~
+
+Configure web proxy profiles.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.profile.delete(mkey='item-name')
+
+.. _web-proxy-url-match:
+
+url-match
+~~~~~~~~~
+
+Exempt URLs from web proxy forwarding, caching and fast-fallback.
+
+**Python attribute:** ``url_match``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.url_match.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.url_match.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.url_match.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.url_match.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.url_match.delete(mkey='item-name')
+
+.. _web-proxy-wisp:
+
+wisp
+~~~~
+
+Configure Websense Integrated Services Protocol (WISP) servers.
+
+**Python attribute:** ``wisp``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.web-proxy.wisp.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.web-proxy.wisp.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.web-proxy.wisp.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.web-proxy.wisp.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.web-proxy.wisp.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -153,7 +363,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.web-proxy.{endpoint}.post(json={
+   result = fgt.api.cmdb.web-proxy.debug_url.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -164,7 +374,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.web-proxy.{endpoint}.put(
+   result = fgt.api.cmdb.web-proxy.debug_url.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -177,10 +387,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.web-proxy.{endpoint}.get()
+   items = fgt.api.cmdb.web-proxy.debug_url.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.web-proxy.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.web-proxy.debug_url.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -188,7 +398,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.web-proxy.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.web-proxy.debug_url.delete(mkey='config-name')
 
 HTTP Methods
 ------------

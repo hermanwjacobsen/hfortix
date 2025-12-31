@@ -8,14 +8,14 @@ Overview
 
 The ``cmdb.ips`` category provides configuration management for:
 
-- **Custom** - Configure IPS custom signature.
-- **Decoder** - Configure IPS decoder.
-- **Global** - Configure IPS global parameter.
-- **Rule** - Configure IPS rules.
-- **Rule Settings** - Configure IPS rule setting.
-- **Sensor** - Configure IPS sensor.
-- **Settings** - Configure IPS VDOM parameter.
-- **View Map** - Configure IPS view-map.
+- :ref:`Custom <ips-custom>` - Configure IPS custom signature.
+- :ref:`Decoder <ips-decoder>` - Configure IPS decoder.
+- :ref:`Global <ips-global>` - Configure IPS global parameter.
+- :ref:`Rule <ips-rule>` - Configure IPS rules.
+- :ref:`Rule Settings <ips-rule-settings>` - Configure IPS rule setting.
+- :ref:`Sensor <ips-sensor>` - Configure IPS sensor.
+- :ref:`Settings <ips-settings>` - Configure IPS VDOM parameter.
+- :ref:`View Map <ips-view-map>` - Configure IPS view-map.
 
 
 Endpoint
@@ -28,93 +28,261 @@ Endpoint
 Available Endpoints
 -------------------
 
-**custom**
-   Configure IPS custom signature.
-   
-   .. code-block:: python
-   
-      # List all custom
-      items = fgt.api.cmdb.ips.custom.get()
-      
-      # Get specific custom
-      item = fgt.api.cmdb.ips.custom.get(mkey='name')
+.. _ips-custom:
 
-**decoder**
-   Configure IPS decoder.
-   
-   .. code-block:: python
-   
-      # List all decoder
-      items = fgt.api.cmdb.ips.decoder.get()
-      
-      # Get specific decoder
-      item = fgt.api.cmdb.ips.decoder.get(mkey='name')
+custom
+~~~~~~
 
-**global**
-   Configure IPS global parameter.
-   
-   .. code-block:: python
-   
-      # List all global
-      items = fgt.api.cmdb.ips.global.get()
-      
-      # Get specific global
-      item = fgt.api.cmdb.ips.global.get(mkey='name')
+Configure IPS custom signature.
 
-**rule**
-   Configure IPS rules.
-   
-   .. code-block:: python
-   
-      # List all rule
-      items = fgt.api.cmdb.ips.rule.get()
-      
-      # Get specific rule
-      item = fgt.api.cmdb.ips.rule.get(mkey='name')
+**Python attribute:** ``custom``
 
-**rule-settings**
-   Configure IPS rule setting.
-   
-   .. code-block:: python
-   
-      # List all rule-settings
-      items = fgt.api.cmdb.ips.rule_settings.get()
-      
-      # Get specific rule-settings
-      item = fgt.api.cmdb.ips.rule_settings.get(mkey='name')
+.. code-block:: python
 
-**sensor**
-   Configure IPS sensor.
+   # Get all items
+   items = fgt.api.cmdb.ips.custom.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.ips.custom.get(mkey='item-name')
    
-      # List all sensor
-      items = fgt.api.cmdb.ips.sensor.get()
-      
-      # Get specific sensor
-      item = fgt.api.cmdb.ips.sensor.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.ips.custom.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.custom.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.custom.delete(mkey='item-name')
 
-**settings**
-   Configure IPS VDOM parameter.
-   
-   .. code-block:: python
-   
-      # List all settings
-      items = fgt.api.cmdb.ips.settings.get()
-      
-      # Get specific settings
-      item = fgt.api.cmdb.ips.settings.get(mkey='name')
+.. _ips-decoder:
 
-**view-map**
-   Configure IPS view-map.
+decoder
+~~~~~~~
+
+Configure IPS decoder.
+
+**Python attribute:** ``decoder``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ips.decoder.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.ips.decoder.get(mkey='item-name')
    
-      # List all view-map
-      items = fgt.api.cmdb.ips.view_map.get()
-      
-      # Get specific view-map
-      item = fgt.api.cmdb.ips.view_map.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.ips.decoder.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.decoder.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.decoder.delete(mkey='item-name')
+
+.. _ips-global:
+
+global
+~~~~~~
+
+Configure IPS global parameter.
+
+**Python attribute:** ``global``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ips.global.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.ips.global.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.ips.global.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.global.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.global.delete(mkey='item-name')
+
+.. _ips-rule:
+
+rule
+~~~~
+
+Configure IPS rules.
+
+**Python attribute:** ``rule``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ips.rule.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.ips.rule.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.ips.rule.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.rule.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.rule.delete(mkey='item-name')
+
+.. _ips-rule-settings:
+
+rule-settings
+~~~~~~~~~~~~~
+
+Configure IPS rule setting.
+
+**Python attribute:** ``rule_settings``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ips.rule_settings.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.ips.rule_settings.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.ips.rule_settings.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.rule_settings.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.rule_settings.delete(mkey='item-name')
+
+.. _ips-sensor:
+
+sensor
+~~~~~~
+
+Configure IPS sensor.
+
+**Python attribute:** ``sensor``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ips.sensor.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.ips.sensor.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.ips.sensor.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.sensor.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.sensor.delete(mkey='item-name')
+
+.. _ips-settings:
+
+settings
+~~~~~~~~
+
+Configure IPS VDOM parameter.
+
+**Python attribute:** ``settings``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ips.settings.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.ips.settings.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.ips.settings.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.settings.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.settings.delete(mkey='item-name')
+
+.. _ips-view-map:
+
+view-map
+~~~~~~~~
+
+Configure IPS view-map.
+
+**Python attribute:** ``view_map``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.ips.view_map.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.ips.view_map.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.ips.view_map.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.ips.view_map.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.ips.view_map.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -129,7 +297,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.ips.{endpoint}.post(json={
+   result = fgt.api.cmdb.ips.custom.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -140,7 +308,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.ips.{endpoint}.put(
+   result = fgt.api.cmdb.ips.custom.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -153,10 +321,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.ips.{endpoint}.get()
+   items = fgt.api.cmdb.ips.custom.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.ips.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.ips.custom.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -164,7 +332,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.ips.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.ips.custom.delete(mkey='config-name')
 
 HTTP Methods
 ------------

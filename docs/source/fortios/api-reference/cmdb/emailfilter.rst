@@ -8,14 +8,14 @@ Overview
 
 The ``cmdb.emailfilter`` category provides configuration management for:
 
-- **Block Allow List** - Configure anti-spam block/allow list.
-- **Bword** - Configure AntiSpam banned word list.
-- **Dnsbl** - Configure AntiSpam DNSBL/ORBL.
-- **Fortishield** - Configure FortiGuard - AntiSpam.
-- **Iptrust** - Configure AntiSpam IP trust.
-- **Mheader** - Configure AntiSpam MIME header.
-- **Options** - Configure AntiSpam options.
-- **Profile** - Configure Email Filter profiles.
+- :ref:`Block Allow List <emailfilter-block-allow-list>` - Configure anti-spam block/allow list.
+- :ref:`Bword <emailfilter-bword>` - Configure AntiSpam banned word list.
+- :ref:`Dnsbl <emailfilter-dnsbl>` - Configure AntiSpam DNSBL/ORBL.
+- :ref:`Fortishield <emailfilter-fortishield>` - Configure FortiGuard - AntiSpam.
+- :ref:`Iptrust <emailfilter-iptrust>` - Configure AntiSpam IP trust.
+- :ref:`Mheader <emailfilter-mheader>` - Configure AntiSpam MIME header.
+- :ref:`Options <emailfilter-options>` - Configure AntiSpam options.
+- :ref:`Profile <emailfilter-profile>` - Configure Email Filter profiles.
 
 
 Endpoint
@@ -28,93 +28,261 @@ Endpoint
 Available Endpoints
 -------------------
 
-**block-allow-list**
-   Configure anti-spam block/allow list.
-   
-   .. code-block:: python
-   
-      # List all block-allow-list
-      items = fgt.api.cmdb.emailfilter.block_allow_list.get()
-      
-      # Get specific block-allow-list
-      item = fgt.api.cmdb.emailfilter.block_allow_list.get(mkey='name')
+.. _emailfilter-block-allow-list:
 
-**bword**
-   Configure AntiSpam banned word list.
-   
-   .. code-block:: python
-   
-      # List all bword
-      items = fgt.api.cmdb.emailfilter.bword.get()
-      
-      # Get specific bword
-      item = fgt.api.cmdb.emailfilter.bword.get(mkey='name')
+block-allow-list
+~~~~~~~~~~~~~~~~
 
-**dnsbl**
-   Configure AntiSpam DNSBL/ORBL.
-   
-   .. code-block:: python
-   
-      # List all dnsbl
-      items = fgt.api.cmdb.emailfilter.dnsbl.get()
-      
-      # Get specific dnsbl
-      item = fgt.api.cmdb.emailfilter.dnsbl.get(mkey='name')
+Configure anti-spam block/allow list.
 
-**fortishield**
-   Configure FortiGuard - AntiSpam.
-   
-   .. code-block:: python
-   
-      # List all fortishield
-      items = fgt.api.cmdb.emailfilter.fortishield.get()
-      
-      # Get specific fortishield
-      item = fgt.api.cmdb.emailfilter.fortishield.get(mkey='name')
+**Python attribute:** ``block_allow_list``
 
-**iptrust**
-   Configure AntiSpam IP trust.
-   
-   .. code-block:: python
-   
-      # List all iptrust
-      items = fgt.api.cmdb.emailfilter.iptrust.get()
-      
-      # Get specific iptrust
-      item = fgt.api.cmdb.emailfilter.iptrust.get(mkey='name')
+.. code-block:: python
 
-**mheader**
-   Configure AntiSpam MIME header.
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.block_allow_list.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.block_allow_list.get(mkey='item-name')
    
-      # List all mheader
-      items = fgt.api.cmdb.emailfilter.mheader.get()
-      
-      # Get specific mheader
-      item = fgt.api.cmdb.emailfilter.mheader.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.block_allow_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.block_allow_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.block_allow_list.delete(mkey='item-name')
 
-**options**
-   Configure AntiSpam options.
-   
-   .. code-block:: python
-   
-      # List all options
-      items = fgt.api.cmdb.emailfilter.options.get()
-      
-      # Get specific options
-      item = fgt.api.cmdb.emailfilter.options.get(mkey='name')
+.. _emailfilter-bword:
 
-**profile**
-   Configure Email Filter profiles.
+bword
+~~~~~
+
+Configure AntiSpam banned word list.
+
+**Python attribute:** ``bword``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.bword.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.bword.get(mkey='item-name')
    
-      # List all profile
-      items = fgt.api.cmdb.emailfilter.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.emailfilter.profile.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.bword.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.bword.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.bword.delete(mkey='item-name')
+
+.. _emailfilter-dnsbl:
+
+dnsbl
+~~~~~
+
+Configure AntiSpam DNSBL/ORBL.
+
+**Python attribute:** ``dnsbl``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.dnsbl.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.dnsbl.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.dnsbl.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.dnsbl.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.dnsbl.delete(mkey='item-name')
+
+.. _emailfilter-fortishield:
+
+fortishield
+~~~~~~~~~~~
+
+Configure FortiGuard - AntiSpam.
+
+**Python attribute:** ``fortishield``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.fortishield.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.fortishield.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.fortishield.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.fortishield.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.fortishield.delete(mkey='item-name')
+
+.. _emailfilter-iptrust:
+
+iptrust
+~~~~~~~
+
+Configure AntiSpam IP trust.
+
+**Python attribute:** ``iptrust``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.iptrust.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.iptrust.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.iptrust.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.iptrust.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.iptrust.delete(mkey='item-name')
+
+.. _emailfilter-mheader:
+
+mheader
+~~~~~~~
+
+Configure AntiSpam MIME header.
+
+**Python attribute:** ``mheader``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.mheader.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.mheader.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.mheader.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.mheader.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.mheader.delete(mkey='item-name')
+
+.. _emailfilter-options:
+
+options
+~~~~~~~
+
+Configure AntiSpam options.
+
+**Python attribute:** ``options``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.options.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.options.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.options.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.options.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.options.delete(mkey='item-name')
+
+.. _emailfilter-profile:
+
+profile
+~~~~~~~
+
+Configure Email Filter profiles.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.emailfilter.profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.emailfilter.profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.emailfilter.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.emailfilter.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.emailfilter.profile.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -129,7 +297,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.emailfilter.{endpoint}.post(json={
+   result = fgt.api.cmdb.emailfilter.block_allow_list.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -140,7 +308,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.emailfilter.{endpoint}.put(
+   result = fgt.api.cmdb.emailfilter.block_allow_list.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -153,10 +321,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.emailfilter.{endpoint}.get()
+   items = fgt.api.cmdb.emailfilter.block_allow_list.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.emailfilter.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.emailfilter.block_allow_list.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -164,7 +332,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.emailfilter.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.emailfilter.block_allow_list.delete(mkey='config-name')
 
 HTTP Methods
 ------------

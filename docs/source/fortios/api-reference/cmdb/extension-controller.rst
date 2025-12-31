@@ -8,12 +8,12 @@ Overview
 
 The ``cmdb.extension-controller`` category provides configuration management for:
 
-- **Dataplan** - FortiExtender dataplan configuration.
-- **Extender** - Extender controller configuration.
-- **Extender Profile** - FortiExtender extender profile configuration.
-- **Extender Vap** - FortiExtender wifi vap configuration.
-- **Fortigate** - FortiGate controller configuration.
-- **Fortigate Profile** - FortiGate connector profile configuration.
+- :ref:`Dataplan <extension-controller-dataplan>` - FortiExtender dataplan configuration.
+- :ref:`Extender <extension-controller-extender>` - Extender controller configuration.
+- :ref:`Extender Profile <extension-controller-extender-profile>` - FortiExtender extender profile configuration.
+- :ref:`Extender Vap <extension-controller-extender-vap>` - FortiExtender wifi vap configuration.
+- :ref:`Fortigate <extension-controller-fortigate>` - FortiGate controller configuration.
+- :ref:`Fortigate Profile <extension-controller-fortigate-profile>` - FortiGate connector profile configuration.
 
 
 Endpoint
@@ -26,71 +26,197 @@ Endpoint
 Available Endpoints
 -------------------
 
-**dataplan**
-   FortiExtender dataplan configuration.
-   
-   .. code-block:: python
-   
-      # List all dataplan
-      items = fgt.api.cmdb.extension-controller.dataplan.get()
-      
-      # Get specific dataplan
-      item = fgt.api.cmdb.extension-controller.dataplan.get(mkey='name')
+.. _extension-controller-dataplan:
 
-**extender**
-   Extender controller configuration.
-   
-   .. code-block:: python
-   
-      # List all extender
-      items = fgt.api.cmdb.extension-controller.extender.get()
-      
-      # Get specific extender
-      item = fgt.api.cmdb.extension-controller.extender.get(mkey='name')
+dataplan
+~~~~~~~~
 
-**extender-profile**
-   FortiExtender extender profile configuration.
-   
-   .. code-block:: python
-   
-      # List all extender-profile
-      items = fgt.api.cmdb.extension-controller.extender_profile.get()
-      
-      # Get specific extender-profile
-      item = fgt.api.cmdb.extension-controller.extender_profile.get(mkey='name')
+FortiExtender dataplan configuration.
 
-**extender-vap**
-   FortiExtender wifi vap configuration.
-   
-   .. code-block:: python
-   
-      # List all extender-vap
-      items = fgt.api.cmdb.extension-controller.extender_vap.get()
-      
-      # Get specific extender-vap
-      item = fgt.api.cmdb.extension-controller.extender_vap.get(mkey='name')
+**Python attribute:** ``dataplan``
 
-**fortigate**
-   FortiGate controller configuration.
-   
-   .. code-block:: python
-   
-      # List all fortigate
-      items = fgt.api.cmdb.extension-controller.fortigate.get()
-      
-      # Get specific fortigate
-      item = fgt.api.cmdb.extension-controller.fortigate.get(mkey='name')
+.. code-block:: python
 
-**fortigate-profile**
-   FortiGate connector profile configuration.
+   # Get all items
+   items = fgt.api.cmdb.extension-controller.dataplan.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.extension-controller.dataplan.get(mkey='item-name')
    
-      # List all fortigate-profile
-      items = fgt.api.cmdb.extension-controller.fortigate_profile.get()
-      
-      # Get specific fortigate-profile
-      item = fgt.api.cmdb.extension-controller.fortigate_profile.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.extension-controller.dataplan.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.extension-controller.dataplan.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.extension-controller.dataplan.delete(mkey='item-name')
+
+.. _extension-controller-extender:
+
+extender
+~~~~~~~~
+
+Extender controller configuration.
+
+**Python attribute:** ``extender``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.extension-controller.extender.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.extension-controller.extender.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.extension-controller.extender.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.extension-controller.extender.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.extension-controller.extender.delete(mkey='item-name')
+
+.. _extension-controller-extender-profile:
+
+extender-profile
+~~~~~~~~~~~~~~~~
+
+FortiExtender extender profile configuration.
+
+**Python attribute:** ``extender_profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.extension-controller.extender_profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.extension-controller.extender_profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.extension-controller.extender_profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.extension-controller.extender_profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.extension-controller.extender_profile.delete(mkey='item-name')
+
+.. _extension-controller-extender-vap:
+
+extender-vap
+~~~~~~~~~~~~
+
+FortiExtender wifi vap configuration.
+
+**Python attribute:** ``extender_vap``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.extension-controller.extender_vap.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.extension-controller.extender_vap.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.extension-controller.extender_vap.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.extension-controller.extender_vap.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.extension-controller.extender_vap.delete(mkey='item-name')
+
+.. _extension-controller-fortigate:
+
+fortigate
+~~~~~~~~~
+
+FortiGate controller configuration.
+
+**Python attribute:** ``fortigate``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.extension-controller.fortigate.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.extension-controller.fortigate.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.extension-controller.fortigate.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.extension-controller.fortigate.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.extension-controller.fortigate.delete(mkey='item-name')
+
+.. _extension-controller-fortigate-profile:
+
+fortigate-profile
+~~~~~~~~~~~~~~~~~
+
+FortiGate connector profile configuration.
+
+**Python attribute:** ``fortigate_profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.extension-controller.fortigate_profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.extension-controller.fortigate_profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.extension-controller.fortigate_profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.extension-controller.fortigate_profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.extension-controller.fortigate_profile.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -105,7 +231,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.extension-controller.{endpoint}.post(json={
+   result = fgt.api.cmdb.extension-controller.dataplan.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -116,7 +242,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.extension-controller.{endpoint}.put(
+   result = fgt.api.cmdb.extension-controller.dataplan.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -129,10 +255,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.extension-controller.{endpoint}.get()
+   items = fgt.api.cmdb.extension-controller.dataplan.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.extension-controller.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.extension-controller.dataplan.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -140,7 +266,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.extension-controller.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.extension-controller.dataplan.delete(mkey='config-name')
 
 HTTP Methods
 ------------

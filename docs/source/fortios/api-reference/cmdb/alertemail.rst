@@ -8,7 +8,7 @@ Overview
 
 The ``cmdb.alertemail`` category provides configuration management for:
 
-- **Setting** - Configure alert email settings.
+- :ref:`Setting <alertemail-setting>` - Configure alert email settings.
 
 
 Endpoint
@@ -21,16 +21,37 @@ Endpoint
 Available Endpoints
 -------------------
 
-**setting**
-   Configure alert email settings.
+.. _alertemail-setting:
+
+setting
+~~~~~~~
+
+Configure alert email settings.
+
+**Python attribute:** ``setting``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.alertemail.setting.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.alertemail.setting.get(mkey='item-name')
    
-      # List all setting
-      items = fgt.api.cmdb.alertemail.setting.get()
-      
-      # Get specific setting
-      item = fgt.api.cmdb.alertemail.setting.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.alertemail.setting.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.alertemail.setting.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.alertemail.setting.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -45,7 +66,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.alertemail.{endpoint}.post(json={
+   result = fgt.api.cmdb.alertemail.setting.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -56,7 +77,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.alertemail.{endpoint}.put(
+   result = fgt.api.cmdb.alertemail.setting.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -69,10 +90,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.alertemail.{endpoint}.get()
+   items = fgt.api.cmdb.alertemail.setting.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.alertemail.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.alertemail.setting.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -80,7 +101,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.alertemail.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.alertemail.setting.delete(mkey='config-name')
 
 HTTP Methods
 ------------

@@ -8,8 +8,8 @@ Overview
 
 The ``cmdb.report`` category provides configuration management for:
 
-- **Layout** - Report layout configuration.
-- **Setting** - Report setting configuration.
+- :ref:`Layout <report-layout>` - Report layout configuration.
+- :ref:`Setting <report-setting>` - Report setting configuration.
 
 
 Endpoint
@@ -22,27 +22,69 @@ Endpoint
 Available Endpoints
 -------------------
 
-**layout**
-   Report layout configuration.
-   
-   .. code-block:: python
-   
-      # List all layout
-      items = fgt.api.cmdb.report.layout.get()
-      
-      # Get specific layout
-      item = fgt.api.cmdb.report.layout.get(mkey='name')
+.. _report-layout:
 
-**setting**
-   Report setting configuration.
+layout
+~~~~~~
+
+Report layout configuration.
+
+**Python attribute:** ``layout``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.report.layout.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.report.layout.get(mkey='item-name')
    
-      # List all setting
-      items = fgt.api.cmdb.report.setting.get()
-      
-      # Get specific setting
-      item = fgt.api.cmdb.report.setting.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.report.layout.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.report.layout.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.report.layout.delete(mkey='item-name')
+
+.. _report-setting:
+
+setting
+~~~~~~~
+
+Report setting configuration.
+
+**Python attribute:** ``setting``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.report.setting.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.report.setting.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.report.setting.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.report.setting.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.report.setting.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -57,7 +99,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.report.{endpoint}.post(json={
+   result = fgt.api.cmdb.report.layout.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -68,7 +110,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.report.{endpoint}.put(
+   result = fgt.api.cmdb.report.layout.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -81,10 +123,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.report.{endpoint}.get()
+   items = fgt.api.cmdb.report.layout.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.report.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.report.layout.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -92,7 +134,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.report.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.report.layout.delete(mkey='config-name')
 
 HTTP Methods
 ------------

@@ -8,9 +8,9 @@ Overview
 
 The ``cmdb.endpoint-control`` category provides configuration management for:
 
-- **Fctems** - Configure FortiClient Enterprise Management Server (EMS) entries.
-- **Fctems Override** - Configure FortiClient Enterprise Management Server (EMS) entries.
-- **Settings** - Configure endpoint control settings.
+- :ref:`Fctems <endpoint-control-fctems>` - Configure FortiClient Enterprise Management Server (EMS) entries.
+- :ref:`Fctems Override <endpoint-control-fctems-override>` - Configure FortiClient Enterprise Management Server (EMS) entries.
+- :ref:`Settings <endpoint-control-settings>` - Configure endpoint control settings.
 
 
 Endpoint
@@ -23,38 +23,101 @@ Endpoint
 Available Endpoints
 -------------------
 
-**fctems**
-   Configure FortiClient Enterprise Management Server (EMS) entries.
-   
-   .. code-block:: python
-   
-      # List all fctems
-      items = fgt.api.cmdb.endpoint-control.fctems.get()
-      
-      # Get specific fctems
-      item = fgt.api.cmdb.endpoint-control.fctems.get(mkey='name')
+.. _endpoint-control-fctems:
 
-**fctems-override**
-   Configure FortiClient Enterprise Management Server (EMS) entries.
-   
-   .. code-block:: python
-   
-      # List all fctems-override
-      items = fgt.api.cmdb.endpoint-control.fctems_override.get()
-      
-      # Get specific fctems-override
-      item = fgt.api.cmdb.endpoint-control.fctems_override.get(mkey='name')
+fctems
+~~~~~~
 
-**settings**
-   Configure endpoint control settings.
+Configure FortiClient Enterprise Management Server (EMS) entries.
+
+**Python attribute:** ``fctems``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.endpoint-control.fctems.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.endpoint-control.fctems.get(mkey='item-name')
    
-      # List all settings
-      items = fgt.api.cmdb.endpoint-control.settings.get()
-      
-      # Get specific settings
-      item = fgt.api.cmdb.endpoint-control.settings.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.endpoint-control.fctems.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.endpoint-control.fctems.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.endpoint-control.fctems.delete(mkey='item-name')
+
+.. _endpoint-control-fctems-override:
+
+fctems-override
+~~~~~~~~~~~~~~~
+
+Configure FortiClient Enterprise Management Server (EMS) entries.
+
+**Python attribute:** ``fctems_override``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.endpoint-control.fctems_override.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.endpoint-control.fctems_override.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.endpoint-control.fctems_override.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.endpoint-control.fctems_override.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.endpoint-control.fctems_override.delete(mkey='item-name')
+
+.. _endpoint-control-settings:
+
+settings
+~~~~~~~~
+
+Configure endpoint control settings.
+
+**Python attribute:** ``settings``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.endpoint-control.settings.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.endpoint-control.settings.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.endpoint-control.settings.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.endpoint-control.settings.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.endpoint-control.settings.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -69,7 +132,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.endpoint-control.{endpoint}.post(json={
+   result = fgt.api.cmdb.endpoint-control.fctems.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -80,7 +143,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.endpoint-control.{endpoint}.put(
+   result = fgt.api.cmdb.endpoint-control.fctems.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -93,10 +156,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.endpoint-control.{endpoint}.get()
+   items = fgt.api.cmdb.endpoint-control.fctems.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.endpoint-control.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.endpoint-control.fctems.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -104,7 +167,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.endpoint-control.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.endpoint-control.fctems.delete(mkey='config-name')
 
 HTTP Methods
 ------------

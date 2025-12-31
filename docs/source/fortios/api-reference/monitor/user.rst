@@ -33,7 +33,7 @@ Get Status Information
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Get monitoring data
-   data = fgt.api.monitor.user.{endpoint}.get()
+   data = fgt.api.monitor.user.endpoint.get()
 
 Query with Parameters
 ^^^^^^^^^^^^^^^^^^^^^
@@ -41,7 +41,7 @@ Query with Parameters
 .. code-block:: python
 
    # Get monitoring data with filters
-   data = fgt.api.monitor.user.{endpoint}.get(
+   data = fgt.api.monitor.user.endpoint.get(
        param='value'
    )
 

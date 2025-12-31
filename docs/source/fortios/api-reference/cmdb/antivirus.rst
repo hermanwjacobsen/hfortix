@@ -8,10 +8,10 @@ Overview
 
 The ``cmdb.antivirus`` category provides configuration management for:
 
-- **Exempt List** - Configure a list of hashes to be exempt from AV scanning.
-- **Profile** - Configure AntiVirus profiles.
-- **Quarantine** - Configure quarantine options.
-- **Settings** - Configure AntiVirus settings.
+- :ref:`Exempt List <antivirus-exempt-list>` - Configure a list of hashes to be exempt from AV scanning.
+- :ref:`Profile <antivirus-profile>` - Configure AntiVirus profiles.
+- :ref:`Quarantine <antivirus-quarantine>` - Configure quarantine options.
+- :ref:`Settings <antivirus-settings>` - Configure AntiVirus settings.
 
 
 Endpoint
@@ -24,49 +24,133 @@ Endpoint
 Available Endpoints
 -------------------
 
-**exempt-list**
-   Configure a list of hashes to be exempt from AV scanning.
-   
-   .. code-block:: python
-   
-      # List all exempt-list
-      items = fgt.api.cmdb.antivirus.exempt_list.get()
-      
-      # Get specific exempt-list
-      item = fgt.api.cmdb.antivirus.exempt_list.get(mkey='name')
+.. _antivirus-exempt-list:
 
-**profile**
-   Configure AntiVirus profiles.
-   
-   .. code-block:: python
-   
-      # List all profile
-      items = fgt.api.cmdb.antivirus.profile.get()
-      
-      # Get specific profile
-      item = fgt.api.cmdb.antivirus.profile.get(mkey='name')
+exempt-list
+~~~~~~~~~~~
 
-**quarantine**
-   Configure quarantine options.
-   
-   .. code-block:: python
-   
-      # List all quarantine
-      items = fgt.api.cmdb.antivirus.quarantine.get()
-      
-      # Get specific quarantine
-      item = fgt.api.cmdb.antivirus.quarantine.get(mkey='name')
+Configure a list of hashes to be exempt from AV scanning.
 
-**settings**
-   Configure AntiVirus settings.
+**Python attribute:** ``exempt_list``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.antivirus.exempt_list.get()
    
-   .. code-block:: python
+   # Get specific item
+   item = fgt.api.cmdb.antivirus.exempt_list.get(mkey='item-name')
    
-      # List all settings
-      items = fgt.api.cmdb.antivirus.settings.get()
-      
-      # Get specific settings
-      item = fgt.api.cmdb.antivirus.settings.get(mkey='name')
+   # Create new item
+   result = fgt.api.cmdb.antivirus.exempt_list.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.antivirus.exempt_list.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.antivirus.exempt_list.delete(mkey='item-name')
+
+.. _antivirus-profile:
+
+profile
+~~~~~~~
+
+Configure AntiVirus profiles.
+
+**Python attribute:** ``profile``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.antivirus.profile.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.antivirus.profile.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.antivirus.profile.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.antivirus.profile.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.antivirus.profile.delete(mkey='item-name')
+
+.. _antivirus-quarantine:
+
+quarantine
+~~~~~~~~~~
+
+Configure quarantine options.
+
+**Python attribute:** ``quarantine``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.antivirus.quarantine.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.antivirus.quarantine.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.antivirus.quarantine.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.antivirus.quarantine.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.antivirus.quarantine.delete(mkey='item-name')
+
+.. _antivirus-settings:
+
+settings
+~~~~~~~~
+
+Configure AntiVirus settings.
+
+**Python attribute:** ``settings``
+
+.. code-block:: python
+
+   # Get all items
+   items = fgt.api.cmdb.antivirus.settings.get()
+   
+   # Get specific item
+   item = fgt.api.cmdb.antivirus.settings.get(mkey='item-name')
+   
+   # Create new item
+   result = fgt.api.cmdb.antivirus.settings.post(json={
+       'name': 'item-name',
+       # Additional configuration parameters
+   })
+   
+   # Update existing item
+   result = fgt.api.cmdb.antivirus.settings.put(
+       mkey='item-name',
+       json={'parameter': 'value'}
+   )
+   
+   # Delete item
+   result = fgt.api.cmdb.antivirus.settings.delete(mkey='item-name')
 
 Common Operations
 -----------------
@@ -81,7 +165,7 @@ Create Configuration
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Create new configuration
-   result = fgt.api.cmdb.antivirus.{endpoint}.post(json={
+   result = fgt.api.cmdb.antivirus.exempt_list.post(json={
        'name': 'config-name',
        # Add configuration parameters
    })
@@ -92,7 +176,7 @@ Update Configuration
 .. code-block:: python
 
    # Update existing configuration
-   result = fgt.api.cmdb.antivirus.{endpoint}.put(
+   result = fgt.api.cmdb.antivirus.exempt_list.put(
        mkey='config-name',
        json={
            # Updated parameters
@@ -105,10 +189,10 @@ Get Configuration
 .. code-block:: python
 
    # Get all configurations
-   items = fgt.api.cmdb.antivirus.{endpoint}.get()
+   items = fgt.api.cmdb.antivirus.exempt_list.get()
    
    # Get specific configuration
-   item = fgt.api.cmdb.antivirus.{endpoint}.get(mkey='config-name')
+   item = fgt.api.cmdb.antivirus.exempt_list.get(mkey='config-name')
 
 Delete Configuration
 ^^^^^^^^^^^^^^^^^^^^
@@ -116,7 +200,7 @@ Delete Configuration
 .. code-block:: python
 
    # Delete configuration
-   result = fgt.api.cmdb.antivirus.{endpoint}.delete(mkey='config-name')
+   result = fgt.api.cmdb.antivirus.exempt_list.delete(mkey='config-name')
 
 HTTP Methods
 ------------
