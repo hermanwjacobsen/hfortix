@@ -67,6 +67,30 @@ suppress_warnings = [
 # Maximum depth for toctree
 toctree_maxdepth = 3
 
+# ⭐ Performance optimizations for large documentation sets (936 RST files!)
+# Enable parallel reading/writing for faster builds
+import multiprocessing
+num_cores = max(1, multiprocessing.cpu_count() - 1)  # Leave one core free
+parallel_read = num_cores
+parallel_write = num_cores
+
+# Aggressive performance settings for ReadTheDocs
+autodoc_member_order = 'bysource'  # Faster than alphabetical
+autodoc_typehints = 'description'  # Faster than signature
+autodoc_typehints_format = 'short'  # Shorter type hints
+toc_object_entries_show_parents = 'hide'  # Faster TOC generation
+
+# Disable slow features for faster builds
+viewcode_follow_imported_members = False  # Don't follow imports
+viewcode_enable_epub = False  # Skip epub viewcode
+html_copy_source = False  # Don't copy .rst sources to output
+html_show_sourcelink = False  # Don't show source links
+
+# Keep build warnings but don't treat them as errors
+keep_warnings = True
+nitpicky = False
+suppress_warnings.append('toc.excluded')  # Suppress TOC warnings
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.
