@@ -8,30 +8,21 @@ Overview
 
 The Log API provides access to FortiGate log data across 5 categories:
 
-:doc:`disk` - **Disk Logs** (``log.disk``)
-   Logs stored on local disk - traffic, event, virus, IPS, web filter, and more. Persistent storage with large capacity.
-
-:doc:`memory` - **Memory Logs** (``log.memory``)
-   Logs stored in device memory for quick access. Fast queries but limited capacity and lost on reboot.
-
-:doc:`fortianalyzer` - **FortiAnalyzer Logs** (``log.fortianalyzer``)
-   Logs sent to FortiAnalyzer for centralized management and analysis across multiple FortiGate devices.
-
-:doc:`forticloud` - **FortiCloud Logs** (``log.forticloud``)
-   Logs stored in Fortinet's FortiCloud service for cloud-based logging and analysis.
-
-:doc:`search` - **Log Search** (``log.search``)
-   Advanced log search and query operations across all log types and storage locations.
+- :doc:`Disk <disk/index>` - Logs stored on local disk - traffic, event, virus, IPS, web filter, and more
+- :doc:`Memory <memory/index>` - Logs stored in device memory for quick access
+- :doc:`FortiAnalyzer <fortianalyzer/index>` - Logs sent to FortiAnalyzer for centralized management
+- :doc:`FortiCloud <forticloud/index>` - Logs stored in Fortinet's FortiCloud service
+- :doc:`Search <search/index>` - Advanced log search and query operations
 
 .. toctree::
-   :maxdepth: 1
-   :hidden:
+   :maxdepth: 2
+   :caption: Log Categories
 
-   disk
-   memory
-   fortianalyzer
-   forticloud
-   search
+   disk/index
+   memory/index
+   fortianalyzer/index
+   forticloud/index
+   search/index
 
 Usage Example
 -------------
