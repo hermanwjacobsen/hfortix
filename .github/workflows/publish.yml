@@ -313,7 +313,7 @@ jobs:
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: dist-core
           path: dist/
@@ -353,7 +353,7 @@ jobs:
           sleep 120
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: dist-fortios
           path: dist/
@@ -393,7 +393,7 @@ jobs:
           sleep 120
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: dist-meta
           path: dist/
@@ -430,7 +430,7 @@ jobs:
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: dist-core
           path: dist/
@@ -472,7 +472,7 @@ jobs:
           sleep 120
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: dist-fortios
           path: dist/
@@ -522,7 +522,7 @@ jobs:
           sleep 120
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: dist-meta
           path: dist/
