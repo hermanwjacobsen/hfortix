@@ -98,6 +98,11 @@ test_results*.log
 raw_json*.log
 
 # Development cache
+
+# Sphinx documentation build output
+docs/build/
+docs/source/_build/
+docs/source/generated/
 .mypy_cache/
 
 # NOTE: Do NOT ignore .github/ (workflows, templates, etc.)
