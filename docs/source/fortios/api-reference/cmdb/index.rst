@@ -119,6 +119,47 @@ The CMDB API Reference provides 37 categories of endpoints:
 :doc:`ztna` - **ZTNA** (``cmdb.ztna``)
    Zero Trust Network Access
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   alertemail
+   antivirus
+   application
+   authentication
+   automation
+   casb
+   certificate
+   diameter-filter
+   dlp
+   dnsfilter
+   emailfilter
+   endpoint-control
+   ethernet-oam
+   extension-controller
+   file-filter
+   firewall
+   ftp-proxy
+   icap
+   ips
+   log
+   monitoring
+   report
+   router
+   rule
+   sctp-filter
+   switch-controller
+   system
+   user
+   videofilter
+   virtual-patch
+   voip
+   vpn
+   waf
+   web-proxy
+   webfilter
+   wireless-controller
+   ztna
 
 Usage Pattern
 -------------

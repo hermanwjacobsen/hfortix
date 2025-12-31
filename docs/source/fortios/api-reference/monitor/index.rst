@@ -104,6 +104,42 @@ The Monitor API Reference provides 32 categories of endpoints:
 :doc:`wifi` - **WiFi** (``monitor.wifi``)
    WiFi monitoring
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   azure
+   casb
+   endpoint-control
+   extender-controller
+   extension-controller
+   firewall
+   firmware
+   fortiguard
+   fortiview
+   geoip
+   ips
+   license
+   log
+   network
+   registration
+   router
+   sdwan
+   service
+   switch-controller
+   system
+   user
+   utm
+   videofilter
+   virtual-wan
+   vpn
+   vpn-certificate
+   wanopt
+   web-ui
+   webcache
+   webfilter
+   webproxy
+   wifi
 
 Usage Pattern
 -------------

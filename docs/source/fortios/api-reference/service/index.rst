@@ -8,14 +8,22 @@ Overview
 
 The Service API provides control over FortiGate system services across 3 categories:
 
-**Sniffer** (``service.sniffer``)
-   Packet capture operations - start, stop, download captures
+:doc:`sniffer` - **Sniffer** (``service.sniffer``)
+   Packet capture operations for network troubleshooting. Start, stop, and download network captures in PCAP format.
 
-**Security Rating** (``service.security_rating``)
-   Security posture assessment and scoring
+:doc:`security-rating` - **Security Rating** (``service.security_rating``)
+   Security posture assessment and scoring. Evaluates FortiGate configuration across firewall, UTM, IPS, VPN, and Security Fabric.
 
-**System** (``service.system``)
-   System service operations and management
+:doc:`system` - **System** (``service.system``)
+   System service operations and management. Control various FortiGate system services and execute maintenance tasks.
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   sniffer
+   security-rating
+   system
 
 Usage Examples
 --------------
