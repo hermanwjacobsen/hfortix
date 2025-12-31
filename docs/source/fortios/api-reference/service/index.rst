@@ -3,20 +3,19 @@ Service API Reference
 
 System service operations (sniffer, security rating, etc.).
 
-.. automodule:: hfortix_fortios.api.v2.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
-
 Overview
 --------
 
-The Service API provides control over FortiGate system services:
+The Service API provides control over FortiGate system services across 3 categories:
 
-- **Sniffer**: Packet capture operations
-- **Security Rating**: Security posture assessment
-- **SAML**: SAML authentication services
+**Sniffer** (``service.sniffer``)
+   Packet capture operations - start, stop, download captures
+
+**Security Rating** (``service.security_rating``)
+   Security posture assessment and scoring
+
+**System** (``service.system``)
+   System service operations and management
 
 Usage Examples
 --------------

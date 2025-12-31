@@ -3,22 +3,25 @@ Log API Reference
 
 Log query and retrieval functionality.
 
-.. automodule:: hfortix_fortios.api.v2.log
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
-
 Overview
 --------
 
-The Log API provides access to FortiGate log data across multiple log types:
+The Log API provides access to FortiGate log data across 5 categories:
 
-- **Disk Logs**: Logs stored on disk
-- **Memory Logs**: Logs in memory
-- **FortiAnalyzer Logs**: Logs sent to FortiAnalyzer
-- **FortiCloud Logs**: Logs in FortiCloud
-- **Syslog Logs**: Syslog configuration
+**Disk Logs** (``log.disk``)
+   Logs stored on local disk - traffic, event, virus, IPS, web filter, etc.
+
+**Memory Logs** (``log.memory``)
+   Logs stored in device memory for quick access
+
+**FortiAnalyzer Logs** (``log.fortianalyzer``)
+   Logs sent to FortiAnalyzer for centralized management
+
+**FortiCloud Logs** (``log.forticloud``)
+   Logs stored in FortiCloud service
+
+**Search** (``log.search``)
+   Log search and query operations
 
 Usage Example
 -------------
