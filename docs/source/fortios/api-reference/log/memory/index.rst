@@ -19,14 +19,14 @@ Python Usage
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Query traffic logs
-   traffic = fgt.api.log.memory.traffic.get(rows=100)
+   # Query traffic logs (has subtypes: forward, local, multicast, sniffer, fortiview, threat)
+   traffic = fgt.api.log.memory.traffic.forward.get(rows=100)
    
-   # Query event logs
-   events = fgt.api.log.memory.event.get(rows=100)
+   # Query event logs (has subtypes: system, user, router, ha, wireless, vpn, etc.)
+   events = fgt.api.log.memory.event.system.get(rows=100)
    
    # Query with filters
-   filtered = fgt.api.log.memory.traffic.get(
+   filtered = fgt.api.log.memory.traffic.forward.get(
        filter='srcip==192.168.1.100',
        rows=50
    )
