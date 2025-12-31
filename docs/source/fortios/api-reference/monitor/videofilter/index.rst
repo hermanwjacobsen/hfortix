@@ -1,13 +1,12 @@
 Videofilter
 ===========
 
-
-
 Overview
 --------
 
-The ``monitor.videofilter`` category provides real-time monitoring for:
+The ``monitor.videofilter`` namespace provides configuration management for:
 
+- :doc:`Fortiguard Categories <fortiguard_categories>` - Fortiguard Categories configuration endpoint.
 
 
 Quick Start
@@ -28,10 +27,11 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
+   fortiguard_categories
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
+- :doc:`/api-reference/api-reference/monitor/index` - MONITOR API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/guides/filtering` - Filtering guide
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

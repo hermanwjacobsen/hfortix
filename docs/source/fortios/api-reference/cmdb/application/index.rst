@@ -1,18 +1,16 @@
 Application
 ===========
 
-Configure custom application signatures configuration and management.
-
 Overview
 --------
 
-The ``cmdb.application`` category provides configuration management for:
+The ``cmdb.application`` namespace provides configuration management for:
 
-- :doc:`Custom <custom>` - Configure custom application signatures.
-- :doc:`Group <group>` - Configure firewall application groups.
-- :doc:`List <list>` - Configure application control lists.
-- :doc:`Name <name>` - Configure application signatures.
-- :doc:`Rule Settings <rule-settings>` - Configure application rule settings.
+- :doc:`Custom <custom>` - Custom configuration endpoint.
+- :doc:`Group <group>` - Group configuration endpoint.
+- :doc:`List <list>` - List configuration endpoint.
+- :doc:`Name <name>` - Name configuration endpoint.
+- :doc:`Rule Settings <rule_settings>` - Rule Settings configuration endpoint.
 
 
 Quick Start
@@ -37,11 +35,11 @@ Available Endpoints
    group
    list
    name
-   rule-settings
+   rule_settings
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

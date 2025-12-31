@@ -1,21 +1,19 @@
 Dlp
 ===
 
-Configure predefined data type used by DLP blocking configuration and management.
-
 Overview
 --------
 
-The ``cmdb.dlp`` category provides configuration management for:
+The ``cmdb.dlp`` namespace provides configuration management for:
 
-- :doc:`Data Type <data-type>` - Configure predefined data type used by DLP blocking.
-- :doc:`Dictionary <dictionary>` - Configure dictionaries used by DLP blocking.
-- :doc:`Exact Data Match <exact-data-match>` - Configure exact-data-match template used by DLP scan.
-- :doc:`Filepattern <filepattern>` - Configure file patterns used by DLP blocking.
-- :doc:`Label <label>` - Configure labels used by DLP blocking.
-- :doc:`Profile <profile>` - Configure DLP profiles.
-- :doc:`Sensor <sensor>` - Configure sensors used by DLP blocking.
-- :doc:`Settings <settings>` - Configure settings for DLP.
+- :doc:`Data Type <data_type>` - Data Type configuration endpoint.
+- :doc:`Dictionary <dictionary>` - Dictionary configuration endpoint.
+- :doc:`Exact Data Match <exact_data_match>` - Exact Data Match configuration endpoint.
+- :doc:`Filepattern <filepattern>` - Filepattern configuration endpoint.
+- :doc:`Label <label>` - Label configuration endpoint.
+- :doc:`Profile <profile>` - Profile configuration endpoint.
+- :doc:`Sensor <sensor>` - Sensor configuration endpoint.
+- :doc:`Settings <settings>` - Settings configuration endpoint.
 
 
 Quick Start
@@ -36,9 +34,9 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
-   data-type
+   data_type
    dictionary
-   exact-data-match
+   exact_data_match
    filepattern
    label
    profile
@@ -48,6 +46,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

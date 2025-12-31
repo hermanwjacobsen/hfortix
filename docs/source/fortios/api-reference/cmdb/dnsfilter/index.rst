@@ -1,15 +1,13 @@
 Dnsfilter
 =========
 
-Configure DNS domain filters configuration and management.
-
 Overview
 --------
 
-The ``cmdb.dnsfilter`` category provides configuration management for:
+The ``cmdb.dnsfilter`` namespace provides configuration management for:
 
-- :doc:`Domain Filter <domain-filter>` - Configure DNS domain filters.
-- :doc:`Profile <profile>` - Configure DNS domain filter profile.
+- :doc:`Domain Filter <domain_filter>` - Domain Filter configuration endpoint.
+- :doc:`Profile <profile>` - Profile configuration endpoint.
 
 
 Quick Start
@@ -30,12 +28,12 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
-   domain-filter
+   domain_filter
    profile
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

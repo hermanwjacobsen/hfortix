@@ -1,14 +1,12 @@
 Automation
 ==========
 
-Automation setting configuration configuration and management.
-
 Overview
 --------
 
-The ``cmdb.automation`` category provides configuration management for:
+The ``cmdb.automation`` namespace provides configuration management for:
 
-- :doc:`Setting <setting>` - Automation setting configuration.
+- :doc:`Setting <setting>` - Setting configuration endpoint.
 
 
 Quick Start
@@ -34,6 +32,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

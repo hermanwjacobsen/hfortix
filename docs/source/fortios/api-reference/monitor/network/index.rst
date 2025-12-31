@@ -1,13 +1,18 @@
 Network
 =======
 
-
-
 Overview
 --------
 
-The ``monitor.network`` category provides real-time monitoring for:
+The ``monitor.network`` namespace provides configuration management for:
 
+- :doc:`Arp <arp>` - Arp configuration endpoint.
+- :doc:`Ddns <ddns>` - Ddns configuration endpoint.
+- :doc:`Debug Flow <debug_flow>` - Debug Flow configuration endpoint.
+- :doc:`DNS <dns>` - DNS configuration endpoint.
+- :doc:`Fortiguard <fortiguard>` - Fortiguard configuration endpoint.
+- :doc:`Lldp <lldp>` - Lldp configuration endpoint.
+- :doc:`Reverse IP Lookup <reverse_ip_lookup>` - Reverse IP Lookup configuration endpoint.
 
 
 Quick Start
@@ -28,10 +33,17 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
+   arp
+   ddns
+   debug_flow
+   dns
+   fortiguard
+   lldp
+   reverse_ip_lookup
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
+- :doc:`/api-reference/api-reference/monitor/index` - MONITOR API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/guides/filtering` - Filtering guide
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

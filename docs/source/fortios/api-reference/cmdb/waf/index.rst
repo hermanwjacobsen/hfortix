@@ -1,16 +1,14 @@
-Waf
+WAF
 ===
-
-Hidden table for datasource configuration and management.
 
 Overview
 --------
 
-The ``cmdb.waf`` category provides configuration management for:
+The ``cmdb.waf`` namespace provides configuration management for:
 
-- :doc:`Main Class <main-class>` - Hidden table for datasource.
-- :doc:`Profile <profile>` - Configure Web application firewall configuration.
-- :doc:`Signature <signature>` - Hidden table for datasource.
+- :doc:`Main Class <main_class>` - Main Class configuration endpoint.
+- :doc:`Profile <profile>` - Profile configuration endpoint.
+- :doc:`Signature <signature>` - Signature configuration endpoint.
 
 
 Quick Start
@@ -31,13 +29,13 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
-   main-class
+   main_class
    profile
    signature
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

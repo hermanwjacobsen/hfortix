@@ -1,16 +1,14 @@
 Authentication
 ==============
 
-Configure Authentication Rules configuration and management.
-
 Overview
 --------
 
-The ``cmdb.authentication`` category provides configuration management for:
+The ``cmdb.authentication`` namespace provides configuration management for:
 
-- :doc:`Rule <rule>` - Configure Authentication Rules.
-- :doc:`Scheme <scheme>` - Configure Authentication Schemes.
-- :doc:`Setting <setting>` - Configure authentication setting.
+- :doc:`Rule <rule>` - Rule configuration endpoint.
+- :doc:`Scheme <scheme>` - Scheme configuration endpoint.
+- :doc:`Setting <setting>` - Setting configuration endpoint.
 
 
 Quick Start
@@ -38,6 +36,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

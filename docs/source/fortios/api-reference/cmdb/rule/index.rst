@@ -1,17 +1,15 @@
 Rule
 ====
 
-Show FMWP signatures configuration and management.
-
 Overview
 --------
 
-The ``cmdb.rule`` category provides configuration management for:
+The ``cmdb.rule`` namespace provides configuration management for:
 
-- :doc:`Fmwp <fmwp>` - Show FMWP signatures.
-- :doc:`Iotd <iotd>` - Show IOT detection signatures.
-- :doc:`Otdt <otdt>` - Show OT detection signatures.
-- :doc:`Otvp <otvp>` - Show OT patch signatures.
+- :doc:`Fmwp <fmwp>` - Fmwp configuration endpoint.
+- :doc:`Iotd <iotd>` - Iotd configuration endpoint.
+- :doc:`Otdt <otdt>` - Otdt configuration endpoint.
+- :doc:`Otvp <otvp>` - Otvp configuration endpoint.
 
 
 Quick Start
@@ -40,6 +38,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

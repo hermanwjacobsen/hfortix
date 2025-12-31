@@ -1,14 +1,12 @@
 Monitoring
 ==========
 
-Configure npu-hpe status monitoring configuration and management.
-
 Overview
 --------
 
-The ``cmdb.monitoring`` category provides configuration management for:
+The ``cmdb.monitoring`` namespace provides configuration management for:
 
-- :doc:`Npu Hpe <npu-hpe>` - Configure npu-hpe status monitoring.
+- :doc:`Npu Hpe <npu_hpe>` - Npu Hpe configuration endpoint.
 
 
 Quick Start
@@ -29,11 +27,11 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
-   npu-hpe
+   npu_hpe
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

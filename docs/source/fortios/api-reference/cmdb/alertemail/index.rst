@@ -1,14 +1,12 @@
 Alertemail
 ==========
 
-Configure alert email settings configuration and management.
-
 Overview
 --------
 
-The ``cmdb.alertemail`` category provides configuration management for:
+The ``cmdb.alertemail`` namespace provides configuration management for:
 
-- :doc:`Setting <setting>` - Configure alert email settings.
+- :doc:`Setting <setting>` - Setting configuration endpoint.
 
 
 Quick Start
@@ -34,6 +32,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

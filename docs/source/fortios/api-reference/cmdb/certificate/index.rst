@@ -1,18 +1,16 @@
 Certificate
 ===========
 
-CA certificate configuration and management.
-
 Overview
 --------
 
-The ``cmdb.certificate`` category provides configuration management for:
+The ``cmdb.certificate`` namespace provides configuration management for:
 
-- :doc:`Ca <ca>` - CA certificate.
-- :doc:`Crl <crl>` - Certificate Revocation List as a PEM file.
-- :doc:`Hsm Local <hsm-local>` - Local certificates whose keys are stored on HSM.
-- :doc:`Local <local>` - Local keys and certificates.
-- :doc:`Remote <remote>` - Remote certificate as a PEM file.
+- :doc:`Ca <ca>` - Ca configuration endpoint.
+- :doc:`Crl <crl>` - Crl configuration endpoint.
+- :doc:`Hsm Local <hsm_local>` - Hsm Local configuration endpoint.
+- :doc:`Local <local>` - Local configuration endpoint.
+- :doc:`Remote <remote>` - Remote configuration endpoint.
 
 
 Quick Start
@@ -35,13 +33,13 @@ Available Endpoints
    
    ca
    crl
-   hsm-local
+   hsm_local
    local
    remote
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

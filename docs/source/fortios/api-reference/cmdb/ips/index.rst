@@ -1,21 +1,19 @@
-Ips
+IPS
 ===
-
-Configure IPS custom signature configuration and management.
 
 Overview
 --------
 
-The ``cmdb.ips`` category provides configuration management for:
+The ``cmdb.ips`` namespace provides configuration management for:
 
-- :doc:`Custom <custom>` - Configure IPS custom signature.
-- :doc:`Decoder <decoder>` - Configure IPS decoder.
-- :doc:`Global <global>` - Configure IPS global parameter.
-- :doc:`Rule <rule>` - Configure IPS rules.
-- :doc:`Rule Settings <rule-settings>` - Configure IPS rule setting.
-- :doc:`Sensor <sensor>` - Configure IPS sensor.
-- :doc:`Settings <settings>` - Configure IPS VDOM parameter.
-- :doc:`View Map <view-map>` - Configure IPS view-map.
+- :doc:`Custom <custom>` - Custom configuration endpoint.
+- :doc:`Decoder <decoder>` - Decoder configuration endpoint.
+- :doc:`Global <global_>` - Global configuration endpoint.
+- :doc:`Rule <rule>` - Rule configuration endpoint.
+- :doc:`Rule Settings <rule_settings>` - Rule Settings configuration endpoint.
+- :doc:`Sensor <sensor>` - Sensor configuration endpoint.
+- :doc:`Settings <settings>` - Settings configuration endpoint.
+- :doc:`View Map <view_map>` - View Map configuration endpoint.
 
 
 Quick Start
@@ -38,16 +36,16 @@ Available Endpoints
    
    custom
    decoder
-   global
+   global_
    rule
-   rule-settings
+   rule_settings
    sensor
    settings
-   view-map
+   view_map
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

@@ -1,13 +1,14 @@
 Registration
 ============
 
-
-
 Overview
 --------
 
-The ``monitor.registration`` category provides real-time monitoring for:
+The ``monitor.registration`` namespace provides configuration management for:
 
+- :doc:`Forticare <forticare>` - Forticare configuration endpoint.
+- :doc:`Forticloud <forticloud>` - Forticloud configuration endpoint.
+- :doc:`Vdom <vdom>` - Vdom configuration endpoint.
 
 
 Quick Start
@@ -28,10 +29,13 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
+   forticare
+   forticloud
+   vdom
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
+- :doc:`/api-reference/api-reference/monitor/index` - MONITOR API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/guides/filtering` - Filtering guide
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

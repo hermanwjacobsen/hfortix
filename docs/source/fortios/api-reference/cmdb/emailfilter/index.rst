@@ -1,21 +1,19 @@
 Emailfilter
 ===========
 
-Configure anti-spam block/allow list configuration and management.
-
 Overview
 --------
 
-The ``cmdb.emailfilter`` category provides configuration management for:
+The ``cmdb.emailfilter`` namespace provides configuration management for:
 
-- :doc:`Block Allow List <block-allow-list>` - Configure anti-spam block/allow list.
-- :doc:`Bword <bword>` - Configure AntiSpam banned word list.
-- :doc:`Dnsbl <dnsbl>` - Configure AntiSpam DNSBL/ORBL.
-- :doc:`Fortishield <fortishield>` - Configure FortiGuard - AntiSpam.
-- :doc:`Iptrust <iptrust>` - Configure AntiSpam IP trust.
-- :doc:`Mheader <mheader>` - Configure AntiSpam MIME header.
-- :doc:`Options <options>` - Configure AntiSpam options.
-- :doc:`Profile <profile>` - Configure Email Filter profiles.
+- :doc:`Block Allow List <block_allow_list>` - Block Allow List configuration endpoint.
+- :doc:`Bword <bword>` - Bword configuration endpoint.
+- :doc:`Dnsbl <dnsbl>` - Dnsbl configuration endpoint.
+- :doc:`Fortishield <fortishield>` - Fortishield configuration endpoint.
+- :doc:`Iptrust <iptrust>` - Iptrust configuration endpoint.
+- :doc:`Mheader <mheader>` - Mheader configuration endpoint.
+- :doc:`Options <options>` - Options configuration endpoint.
+- :doc:`Profile <profile>` - Profile configuration endpoint.
 
 
 Quick Start
@@ -36,7 +34,7 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
-   block-allow-list
+   block_allow_list
    bword
    dnsbl
    fortishield
@@ -48,6 +46,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

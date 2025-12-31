@@ -19,16 +19,16 @@ CMDB API (Configuration)
    cmdb/automation/index
    cmdb/casb/index
    cmdb/certificate/index
-   cmdb/diameter-filter/index
+   cmdb/diameter_filter/index
    cmdb/dlp/index
    cmdb/dnsfilter/index
    cmdb/emailfilter/index
-   cmdb/endpoint-control/index
-   cmdb/ethernet-oam/index
-   cmdb/extension-controller/index
-   cmdb/file-filter/index
+   cmdb/endpoint_control/index
+   cmdb/ethernet_oam/index
+   cmdb/extension_controller/index
+   cmdb/file_filter/index
    cmdb/firewall/index
-   cmdb/ftp-proxy/index
+   cmdb/ftp_proxy/index
    cmdb/icap/index
    cmdb/ips/index
    cmdb/log/index
@@ -36,18 +36,18 @@ CMDB API (Configuration)
    cmdb/report/index
    cmdb/router/index
    cmdb/rule/index
-   cmdb/sctp-filter/index
-   cmdb/switch-controller/index
+   cmdb/sctp_filter/index
+   cmdb/switch_controller/index
    cmdb/system/index
    cmdb/user/index
    cmdb/videofilter/index
-   cmdb/virtual-patch/index
+   cmdb/virtual_patch/index
    cmdb/voip/index
    cmdb/vpn/index
    cmdb/waf/index
-   cmdb/web-proxy/index
+   cmdb/web_proxy/index
    cmdb/webfilter/index
-   cmdb/wireless-controller/index
+   cmdb/wireless_controller/index
    cmdb/ztna/index
 
 Monitor API (Status & Statistics)
@@ -60,9 +60,9 @@ Monitor API (Status & Statistics)
    monitor/index
    monitor/azure/index
    monitor/casb/index
-   monitor/endpoint-control/index
-   monitor/extender-controller/index
-   monitor/extension-controller/index
+   monitor/endpoint_control/index
+   monitor/extender_controller/index
+   monitor/extension_controller/index
    monitor/firewall/index
    monitor/firmware/index
    monitor/fortiguard/index
@@ -76,16 +76,16 @@ Monitor API (Status & Statistics)
    monitor/router/index
    monitor/sdwan/index
    monitor/service/index
-   monitor/switch-controller/index
+   monitor/switch_controller/index
    monitor/system/index
    monitor/user/index
    monitor/utm/index
    monitor/videofilter/index
-   monitor/virtual-wan/index
+   monitor/virtual_wan/index
    monitor/vpn/index
-   monitor/vpn-certificate/index
+   monitor/vpn_certificate/index
    monitor/wanopt/index
-   monitor/web-ui/index
+   monitor/web_ui/index
    monitor/webcache/index
    monitor/webfilter/index
    monitor/webproxy/index
@@ -114,7 +114,7 @@ Service API (Operations)
 
    service/index
    service/sniffer/index
-   service/security-rating/index
+   service/security_rating/index
    service/system/index
 
 Overview

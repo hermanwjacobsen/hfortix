@@ -1,15 +1,13 @@
 Report
 ======
 
-Report layout configuration configuration and management.
-
 Overview
 --------
 
-The ``cmdb.report`` category provides configuration management for:
+The ``cmdb.report`` namespace provides configuration management for:
 
-- :doc:`Layout <layout>` - Report layout configuration.
-- :doc:`Setting <setting>` - Report setting configuration.
+- :doc:`Layout <layout>` - Layout configuration endpoint.
+- :doc:`Setting <setting>` - Setting configuration endpoint.
 
 
 Quick Start
@@ -36,6 +34,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

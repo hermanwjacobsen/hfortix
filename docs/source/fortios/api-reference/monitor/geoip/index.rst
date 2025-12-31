@@ -1,13 +1,12 @@
 Geoip
 =====
 
-
-
 Overview
 --------
 
-The ``monitor.geoip`` category provides real-time monitoring for:
+The ``monitor.geoip`` namespace provides configuration management for:
 
+- :doc:`Geoip Query <geoip_query>` - Geoip Query configuration endpoint.
 
 
 Quick Start
@@ -28,10 +27,11 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
+   geoip_query
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
+- :doc:`/api-reference/api-reference/monitor/index` - MONITOR API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/guides/filtering` - Filtering guide
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

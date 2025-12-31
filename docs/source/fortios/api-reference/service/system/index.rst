@@ -1,17 +1,16 @@
 System
 ======
 
-System service operations and management.
-
 Overview
 --------
 
-The ``service.system`` category provides various system service operations and maintenance tasks.
+The ``service.system`` namespace provides configuration management for:
 
-Python Usage
-------------
+- :doc:`System <system>` - System configuration endpoint.
 
-**System Operations:**
+
+Quick Start
+-----------
 
 .. code-block:: python
 
@@ -19,16 +18,20 @@ Python Usage
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Check PSIRT vulnerabilities
-   vulns = fgt.api.service.system.psirt_vulnerabilities.get()
+   # Access endpoints via:
+   fgt.api.service.system.<endpoint>
+
+Available Endpoints
+-------------------
+
+.. toctree::
+   :maxdepth: 1
    
-   # Check fabric time sync
-   time_sync = fgt.api.service.system.fabric_time_in_sync.get()
-   
-   # Check fabric admin lockout
-   lockout = fgt.api.service.system.fabric_admin_lockout_exists_on_firmware_update.get()
+   system
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/service/index` - Service API overview
+- :doc:`/api-reference/api-reference/service/index` - SERVICE API overview
+- :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

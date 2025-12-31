@@ -1,13 +1,16 @@
-Ips
+IPS
 ===
-
-
 
 Overview
 --------
 
-The ``monitor.ips`` category provides real-time monitoring for:
+The ``monitor.ips`` namespace provides configuration management for:
 
+- :doc:`Anomaly <anomaly>` - Anomaly configuration endpoint.
+- :doc:`Hold Signatures <hold_signatures>` - Hold Signatures configuration endpoint.
+- :doc:`Metadata <metadata>` - Metadata configuration endpoint.
+- :doc:`Rate Based <rate_based>` - Rate Based configuration endpoint.
+- :doc:`Session <session>` - Session configuration endpoint.
 
 
 Quick Start
@@ -28,10 +31,15 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
+   anomaly
+   hold_signatures
+   metadata
+   rate_based
+   session
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
+- :doc:`/api-reference/api-reference/monitor/index` - MONITOR API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/guides/filtering` - Filtering guide
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

@@ -1,13 +1,12 @@
 Sdwan
 =====
 
-
-
 Overview
 --------
 
-The ``monitor.sdwan`` category provides real-time monitoring for:
+The ``monitor.sdwan`` namespace provides configuration management for:
 
+- :doc:`Link Monitor Metrics <link_monitor_metrics>` - Link Monitor Metrics configuration endpoint.
 
 
 Quick Start
@@ -28,10 +27,11 @@ Available Endpoints
 .. toctree::
    :maxdepth: 1
    
+   link_monitor_metrics
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
+- :doc:`/api-reference/api-reference/monitor/index` - MONITOR API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/guides/filtering` - Filtering guide
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

@@ -1,17 +1,16 @@
 Search
 ======
 
-Advanced log search operations across all log types.
-
 Overview
 --------
 
-The ``log.search`` category provides advanced search capabilities across all log storage locations.
+The ``log.search`` namespace provides configuration management for:
 
-Python Usage
-------------
+- :doc:`Search <search>` - Search configuration endpoint.
 
-**Free-Style Search:**
+
+Quick Start
+-----------
 
 .. code-block:: python
 
@@ -19,18 +18,20 @@ Python Usage
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Perform advanced search
-   results = fgt.api.log.search.free_style.post(json={
-       'logtype': 'traffic',
-       'filters': [{
-           'field': 'srcip',
-           'operator': '==',
-           'value': '192.168.1.100'
-       }]
-   })
+   # Access endpoints via:
+   fgt.api.log.search.<endpoint>
+
+Available Endpoints
+-------------------
+
+.. toctree::
+   :maxdepth: 1
+   
+   search
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/log/index` - Log API overview
-- :doc:`/fortios/guides/filtering` - Filtering guide
+- :doc:`/api-reference/api-reference/log/index` - LOG API overview
+- :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

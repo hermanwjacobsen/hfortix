@@ -1,14 +1,12 @@
 Voip
 ====
 
-Configure VoIP profiles configuration and management.
-
 Overview
 --------
 
-The ``cmdb.voip`` category provides configuration management for:
+The ``cmdb.voip`` namespace provides configuration management for:
 
-- :doc:`Profile <profile>` - Configure VoIP profiles.
+- :doc:`Profile <profile>` - Profile configuration endpoint.
 
 
 Quick Start
@@ -34,6 +32,6 @@ Available Endpoints
 See Also
 --------
 
-- :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
+- :doc:`/api-reference/api-reference/cmdb/index` - CMDB API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide
