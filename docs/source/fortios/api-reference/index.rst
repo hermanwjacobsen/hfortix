@@ -8,7 +8,7 @@ CMDB API (Configuration)
 -------------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    cmdb/index
 
@@ -16,7 +16,7 @@ Monitor API (Status & Statistics)
 ----------------------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    monitor/index
 
@@ -24,7 +24,7 @@ Log API (Historical Data)
 --------------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    log/index
 
@@ -32,7 +32,7 @@ Service API (Operations)
 -------------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    service/index
 

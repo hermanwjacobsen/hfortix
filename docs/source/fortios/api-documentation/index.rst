@@ -60,7 +60,7 @@ Documentation Sections
 ----------------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    ../convenience-wrappers/index
    ../api-reference/index

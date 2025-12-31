@@ -27,7 +27,7 @@ Firewall & Objects
 ------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    firewall/policy
    firewall/schedule
