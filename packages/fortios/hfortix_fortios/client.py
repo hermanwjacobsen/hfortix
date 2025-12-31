@@ -63,7 +63,7 @@ class FortiOS:
 
     Main API categories:
         - api.cmdb: Configuration Management Database (firewall policies,
-        objects, etc.)
+          objects, etc.)
         - api.monitor: Real-time monitoring and status
         - api.log: Log queries and analysis
         - api.service: System services (sniffer, security rating, etc.)
@@ -71,8 +71,9 @@ class FortiOS:
     Attributes:
         api (API): API namespace containing cmdb, monitor, log, service
 
-    Example:
-    >>> from hfortix import FortiOS
+    Example::
+
+        >>> from hfortix import FortiOS
         >>> fgt = FortiOS("fortigate.example.com", token="your_token_here")
         >>>
         >>> # List firewall addresses
@@ -216,22 +217,24 @@ class FortiOS:
                    Not required if providing a custom client or using
                    username/password
             username: Username for password authentication (must be used with
-            password)
-                      Mutually exclusive with token
+                password)
+                Mutually exclusive with token
             password: Password for username authentication (must be used with
-            username)
-                      Mutually exclusive with token
+                username)
+                Mutually exclusive with token
             client: Optional custom HTTP client implementing IHTTPClient
-            protocol
-                   If provided, host/token/verify/etc. are ignored and the
-                   custom client is used
-                   Allows for custom authentication, proxying, caching, etc.
+                protocol
+                If provided, host/token/verify/etc. are ignored and the
+                custom client is used
+                Allows for custom authentication, proxying, caching, etc.
             mode: Client mode - 'sync' (default) or 'async'
-                 - 'sync': Traditional synchronous API calls
-                 - 'async': Asynchronous API calls with async/await
-                 Ignored if custom client is provided
+
+                - 'sync': Traditional synchronous API calls
+                - 'async': Asynchronous API calls with async/await
+
+                Ignored if custom client is provided
             verify: Verify SSL certificates (default: True, recommended for
-            production)
+                production)
             vdom: Virtual domain (default: None = FortiGate's default VDOM)
             port: HTTPS port (default: None = use 443, or specify custom port
             like 8443)
@@ -341,38 +344,32 @@ class FortiOS:
                        (e.g., fgt.firewall.policy.create), not direct API
                        calls (e.g., fgt.api.cmdb...).
             error_format: Error message detail level (default: "detailed").
-                         - "detailed": Full context with endpoint, parameters,
-                         and helpful hints
-                         - "simple": Just error message and code
-                         - "code_only": Just the error code number
-                         Can be overridden per method call. Affects both raised
-                         exceptions and
-                         returned error dicts depending on error_mode.
-                          delays when FortiGate is overloaded to prevent
-                          cascading failures.
-                          Access health metrics via get_health_metrics().
+
+                - "detailed": Full context with endpoint, parameters,
+                  and helpful hints
+                - "simple": Just error message and code
+                - "code_only": Just the error code number
+
+                Can be overridden per method call. Affects both raised
+                exceptions and returned error dicts depending on error_mode.
 
         Important:
             Username/password authentication still works in FortiOS 7.4.x but
-            is removed in
-            FortiOS 7.6.x and later. Use API token authentication for
-            production deployments.
+            is removed in FortiOS 7.6.x and later. Use API token authentication
+            for production deployments.
 
         Performance Note:
             Most FortiGate devices serialize API requests internally, meaning
-            concurrent requests
-            don't improve throughput and actually increase response times
-            (10-15x slower).
-            **Sequential requests are recommended** for most deployments. Use
-            async mode only when
-            integrating with async frameworks or managing multiple devices in
-            parallel.
+            concurrent requests don't improve throughput and actually increase
+            response times (10-15x slower). Sequential requests are recommended
+            for most deployments. Use async mode only when integrating with
+            async frameworks or managing multiple devices in parallel.
             Performance testing shows ~5 req/s for most devices, ~30 req/s for
-            high-performance
-            local deployments. See COMPARATIVE_ANALYSIS.md for detailed
-            performance profiles.
+            high-performance local deployments. See COMPARATIVE_ANALYSIS.md for
+            detailed performance profiles.
 
-        Examples:
+        Examples::
+
             # Token authentication (recommended)
             fgt = FortiOS("fortigate.example.com", token="your_token_here",
             verify=True)
@@ -771,19 +768,21 @@ class FortiOS:
 
         Returns:
             Dictionary containing connection statistics:
-                - total_requests: Total number of API requests made
-                - successful_requests: Number of successful requests
-                - failed_requests: Number of failed requests
-                - total_retries: Total number of retry attempts
-                - success_rate: Percentage of successful requests
-                - retry_by_reason: Breakdown of retries by failure reason
-                - retry_by_endpoint: Breakdown of retries by endpoint
-                - circuit_breaker_state: Current circuit breaker state
-                (closed/open/half_open)
-                - circuit_breaker_failures: Consecutive failure count
-                - last_retry_time: Timestamp of last retry (if any)
 
-        Example:
+            - total_requests: Total number of API requests made
+            - successful_requests: Number of successful requests
+            - failed_requests: Number of failed requests
+            - total_retries: Total number of retry attempts
+            - success_rate: Percentage of successful requests
+            - retry_by_reason: Breakdown of retries by failure reason
+            - retry_by_endpoint: Breakdown of retries by endpoint
+            - circuit_breaker_state: Current circuit breaker state
+              (closed/open/half_open)
+            - circuit_breaker_failures: Consecutive failure count
+            - last_retry_time: Timestamp of last retry (if any)
+
+        Example::
+
             >>> fgt = FortiOS("192.0.2.10", token="...")
             >>> stats = fgt.get_connection_stats()
             >>> print(f"Success rate: {stats['success_rate']:.1f}%")
@@ -812,21 +811,23 @@ class FortiOS:
 
         Returns:
             List of operation dictionaries containing:
-                - timestamp: ISO 8601 timestamp when operation was executed
-                - method: HTTP method (GET/POST/PUT/DELETE)
-                - api_type: API type (cmdb/monitor/log/service)
-                - path: API endpoint path
-                - data: Request payload (for POST/PUT), None for GET/DELETE
-                - status_code: HTTP response status code
-                - vdom: Virtual domain (if specified)
+
+            - timestamp: ISO 8601 timestamp when operation was executed
+            - method: HTTP method (GET/POST/PUT/DELETE)
+            - api_type: API type (cmdb/monitor/log/service)
+            - path: API endpoint path
+            - data: Request payload (for POST/PUT), None for GET/DELETE
+            - status_code: HTTP response status code
+            - vdom: Virtual domain (if specified)
 
         Raises:
             RuntimeError: If track_operations was not enabled
 
-        Example:
+        Example::
+
             >>> fgt = FortiOS("192.0.2.10", token="...", track_operations=True)
             >>> fgt.api.cmdb.firewall.address.create(name="test",
-            subnet="10.0.0.1/32")
+            ...                                       subnet="10.0.0.1/32")
             >>> fgt.api.cmdb.firewall.policy.update("10", action="deny")
             >>>
             >>> operations = fgt.get_operations()
@@ -900,14 +901,16 @@ class FortiOS:
 
         Returns:
             Dictionary containing:
+
             - circuit_breaker: Circuit breaker state, consecutive failures,
-            threshold
+              threshold
             - retry_stats: Total retries, requests, success/failure counts
             - adaptive_retry_enabled: Whether adaptive retry is active
             - response_times: Per-endpoint metrics (avg, min, max, p50, p95) if
-            adaptive_retry=True
+              adaptive_retry=True
 
-        Example:
+        Example::
+
             >>> fgt = FortiOS("192.0.2.10", token="...", adaptive_retry=True)
             >>> # Make some requests
             >>> fgt.api.cmdb.firewall.address.list()
@@ -916,13 +919,13 @@ class FortiOS:
             >>> metrics = fgt.get_health_metrics()
             >>> print(f"Circuit state: {metrics['circuit_breaker']['state']}")
             >>> print(f"Total retries:
-            {metrics['retry_stats']['total_retries']}")
+            ...       {metrics['retry_stats']['total_retries']}")
             >>>
             >>> # Check response times (if adaptive_retry=True)
             >>> if metrics['response_times']:
             ...     for endpoint, stats in metrics['response_times'].items():
             ...         print(f"{endpoint}: avg={stats['avg_ms']}ms,
-            slow={stats['is_slow']}")
+            ...               slow={stats['is_slow']}")
             Circuit state: closed
             Total retries: 2
             cmdb/firewall/address: avg=245.5ms, slow=False

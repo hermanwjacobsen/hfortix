@@ -80,6 +80,86 @@ def extract_docstring(node: ast.AST) -> Optional[str]:
     return None
 
 
+def parse_docstring_params(docstring: str) -> Dict[str, str]:
+    """
+    Parse parameter descriptions from a Google-style docstring.
+    
+    Returns:
+        Dictionary mapping parameter names to their descriptions
+    """
+    if not docstring:
+        return {}
+    
+    param_descriptions = {}
+    in_args_section = False
+    current_param = None
+    current_desc_lines = []
+    
+    for line in docstring.split('\n'):
+        stripped = line.strip()
+        
+        # Check if we're entering the Args section
+        if stripped == 'Args:':
+            in_args_section = True
+            continue
+        
+        # Check if we're leaving the Args section (another section starts)
+        if in_args_section and stripped and not line.startswith(' '):
+            break
+        
+        if in_args_section and stripped.endswith(':') and not stripped.startswith('Args:'):
+            # Check if we're entering another section like Returns, Common Query Parameters, etc.
+            if stripped in ['Returns:', 'Raises:', 'Examples:', 'Common Query Parameters (via **kwargs):']:
+                break
+        
+        if in_args_section and ':' in stripped:
+            # Save previous parameter if exists
+            if current_param:
+                param_descriptions[current_param] = ' '.join(current_desc_lines).strip()
+            
+            # Parse new parameter line (format: "param_name: Description")
+            parts = stripped.split(':', 1)
+            current_param = parts[0].strip()
+            current_desc_lines = [parts[1].strip()] if len(parts) > 1 else []
+        elif in_args_section and stripped and current_param:
+            # Continuation of previous parameter description
+            current_desc_lines.append(stripped)
+    
+    # Save last parameter
+    if current_param:
+        param_descriptions[current_param] = ' '.join(current_desc_lines).strip()
+    
+    return param_descriptions
+
+
+def detect_identifier_field(method: MethodInfo) -> Optional[str]:
+    """
+    Detect the identifier field used by a method (e.g., 'name', 'policyid', 'id', 'mkey').
+    
+    Looks for patterns like:
+    - raise ValueError("policyid is required for put()")
+    - if not name:
+    - endpoint = f"/firewall/policy/{policyid}"
+    """
+    # Check docstring for required parameter mentions
+    if method.docstring:
+        for line in method.docstring.split('\n'):
+            line = line.strip().lower()
+            # Look for patterns like "policyid: ... (required)"
+            if '(required)' in line:
+                for param_name, _, _ in method.params:
+                    if param_name.lower() in line and not param_name.startswith('**'):
+                        return param_name
+    
+    # Check common identifier parameter names
+    common_identifiers = ['policyid', 'mkey', 'id', 'name']
+    for identifier in common_identifiers:
+        if any(p[0] == identifier for p in method.params):
+            return identifier
+    
+    return None
+
+
 def parse_endpoint_file(file_path: Path, category: str) -> Optional[EndpointInfo]:
     """Parse a single endpoint Python file."""
     with open(file_path, 'r') as f:
@@ -140,16 +220,19 @@ def generate_method_example(endpoint: EndpointInfo, method_name: str, method: Me
     path_parts = endpoint.path.replace('/', '.').replace('-', '_')
     access_path = f"fgt.api.{endpoint.category}.{path_parts}.{method_name}"
     
+    # Detect identifier field (name, policyid, id, mkey, etc.)
+    identifier = detect_identifier_field(method)
+    
     if method_name == 'get':
         # List all
         examples.append(f"   # List all items")
         examples.append(f"   items = {access_path}()")
         examples.append("")
         
-        # Get specific (if name parameter exists)
-        if any(p[0] == 'name' for p in method.params):
-            examples.append(f"   # Get specific item by name")
-            examples.append(f"   item = {access_path}(name='item-name')")
+        # Get specific (if identifier parameter exists)
+        if identifier:
+            examples.append(f"   # Get specific item by {identifier}")
+            examples.append(f"   item = {access_path}({identifier}='value')")
         
     elif method_name == 'post':
         examples.append(f"   # Create new item")
@@ -179,16 +262,23 @@ def generate_method_example(endpoint: EndpointInfo, method_name: str, method: Me
         examples.extend(call_parts)
         
     elif method_name == 'put':
-        examples.append(f"   # Update existing item")
+        identifier_label = identifier if identifier else 'identifier'
+        examples.append(f"   # Update existing item ({identifier_label} required to identify which item)")
         
-        # Find common parameters
+        # Find common parameters (exclude special ones)
         params_to_show = [p for p in method.params[:15]
                          if p[0] not in ('payload_dict', 'before', 'after', 'vdom', 'raw_json')
                          and not p[0].startswith('**')]
         
         call_parts = [f"   result = {access_path}("]
         
-        for param_name, _, _ in params_to_show[:4]:  # Show first 4
+        # Show identifier first if it exists (it's required for put)
+        if identifier:
+            call_parts.append(f"       {identifier}='item-identifier',  # Required: identifies which item to update")
+        
+        # Show other parameters
+        other_params = [p for p in params_to_show if p[0] != identifier][:3]
+        for param_name, _, _ in other_params:
             call_parts.append(f"       {param_name}='updated-value',")
         
         call_parts.append("   )")
@@ -197,9 +287,9 @@ def generate_method_example(endpoint: EndpointInfo, method_name: str, method: Me
     elif method_name == 'delete':
         examples.append(f"   # Delete item")
         
-        # Check if it has name parameter
-        if any(p[0] == 'name' for p in method.params):
-            examples.append(f"   result = {access_path}(name='item-name')")
+        # Check if it has identifier parameter (it's required for delete)
+        if identifier:
+            examples.append(f"   result = {access_path}({identifier}='item-identifier')  # {identifier} required")
         else:
             examples.append(f"   result = {access_path}()")
     
@@ -290,25 +380,22 @@ def generate_rst_file(endpoint: EndpointInfo, output_dir: Path):
                 method = endpoint.methods[method_name]
                 
                 lines.append(f"``{method_name}()``")
-                lines.append("^" * (len(method_name) + 4))
+                lines.append("^" * (len(method_name) + 6))
                 lines.append("")
                 
                 # Add signature
                 lines.append(".. code-block:: python")
                 lines.append("")
                 
-                # Build signature
+                # Build signature - show ALL parameters
                 sig_parts = [f"   {method_name}("]
-                for i, (param_name, type_hint, default) in enumerate(method.params[:15]):  # Limit to keep readable
+                for i, (param_name, type_hint, default) in enumerate(method.params):
                     if param_name.startswith('**'):
                         sig_parts.append(f"       {param_name}")
                     elif default is not None:
                         sig_parts.append(f"       {param_name}={default},")
                     else:
                         sig_parts.append(f"       {param_name},")
-                
-                if len(method.params) > 15:
-                    sig_parts.append("       # ... more parameters")
                 
                 sig_parts.append("   )")
                 
@@ -319,6 +406,34 @@ def generate_rst_file(endpoint: EndpointInfo, output_dir: Path):
                 if method.docstring:
                     first_line = method.docstring.strip().split('\n')[0]
                     lines.append(first_line)
+                    lines.append("")
+                
+                # Add important notes for PUT and DELETE
+                if method_name in ('put', 'delete'):
+                    identifier = detect_identifier_field(method)
+                    if identifier:
+                        lines.append(".. important::")
+                        lines.append(f"   The ``{identifier}`` parameter is **required** for ``{method_name}()`` to identify which item to {method_name}.")
+                        lines.append("")
+                
+                # Add parameter descriptions
+                param_descriptions = parse_docstring_params(method.docstring)
+                if param_descriptions:
+                    lines.append("**Parameters:**")
+                    lines.append("")
+                    # Detect identifier for marking it as required
+                    identifier = detect_identifier_field(method)
+                    for param_name, type_hint, default in method.params:
+                        if param_name.startswith('**'):
+                            # Skip **kwargs for parameter list
+                            continue
+                        if param_name in param_descriptions:
+                            desc = param_descriptions[param_name]
+                            # Mark identifier parameter as required for PUT and DELETE
+                            if method_name in ('put', 'delete') and param_name == identifier:
+                                lines.append(f"- ``{param_name}`` (**required**): {desc}")
+                            else:
+                                lines.append(f"- ``{param_name}``: {desc}")
                     lines.append("")
                 
                 lines.append("")
