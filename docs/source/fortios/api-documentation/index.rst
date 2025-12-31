@@ -10,7 +10,7 @@ Choose Your Interface
     :gutter: 3
 
     .. grid-item-card:: 🎯 Convenience Wrappers
-        :link: convenience-wrappers
+        :link: /fortios/convenience-wrappers/index
         :link-type: doc
 
         **Start here!** High-level wrappers with intuitive methods.
@@ -18,7 +18,7 @@ Choose Your Interface
         Use ``get()``, ``create()``, ``update()``, ``delete()``
 
     .. grid-item-card:: 📚 API Reference
-        :link: api-reference
+        :link: /fortios/api-reference/index
         :link-type: doc
 
         Low-level endpoint documentation (750+ endpoints).
@@ -62,8 +62,8 @@ Documentation Sections
 .. toctree::
    :maxdepth: 2
 
-   convenience-wrappers
-   api-reference
+   ../convenience-wrappers/index
+   ../api-reference/index
 
 Convenience Wrappers
 --------------------

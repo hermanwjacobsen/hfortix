@@ -1,5 +1,5 @@
-FortiOS/FortiGate Package
-========================
+FortiOS
+=======
 
 Complete Python SDK for FortiOS/FortiGate automation with 100% API coverage (750+ endpoints across 77 categories).
 
