@@ -26,7 +26,7 @@ fgt = FortiOS(
 )
 
 # Use normally
-addresses = fgt.api.cmdb.firewall.address.list()
+addresses = fgt.api.cmdb.firewall.address.get()
 print(f"Found {len(addresses)} addresses")
 
 # Check if exists
@@ -52,7 +52,7 @@ async def main():
     # Use async context manager for automatic cleanup
     async with fgt:
         # Use await with all API methods
-        addresses = await fgt.api.cmdb.firewall.address.list()
+        addresses = await fgt.api.cmdb.firewall.address.get()
         print(f"Found {len(addresses)} addresses")
 
         # Helper methods also work with await
@@ -131,9 +131,9 @@ async def fetch_configs():
     async with FortiOS(..., mode="async") as fgt:
         # Run multiple requests concurrently
         addresses, policies, services = await asyncio.gather(
-            fgt.api.cmdb.firewall.address.list(),
-            fgt.api.cmdb.firewall.policy.list(),
-            fgt.api.cmdb.firewall.service.custom.list()
+            fgt.api.cmdb.firewall.address.get(),
+            fgt.api.cmdb.firewall.policy.get(),
+            fgt.api.cmdb.firewall.service.custom.get()
         )
 
         print(f"Addresses: {len(addresses)}")
@@ -279,7 +279,7 @@ def manage_addresses():
     fgt = FortiOS(host='...', token='...')
 
     # List addresses
-    addresses = fgt.api.cmdb.firewall.address.list()
+    addresses = fgt.api.cmdb.firewall.address.get()
 
     # Create address
     if not fgt.api.cmdb.firewall.address.exists("server1"):
@@ -302,7 +302,7 @@ from hfortix import FortiOS
 async def manage_addresses():
     async with FortiOS(host='...', token='...', mode="async") as fgt:
         # List addresses (add await)
-        addresses = await fgt.api.cmdb.firewall.address.list()
+        addresses = await fgt.api.cmdb.firewall.address.get()
 
         # Create address (add await)
         if not await fgt.api.cmdb.firewall.address.exists("server1"):
@@ -339,9 +339,9 @@ def sync_fetch():
     fgt = FortiOS(..., mode="sync")
     start = time.time()
 
-    addr = fgt.api.cmdb.firewall.address.list()
-    pol = fgt.api.cmdb.firewall.policy.list()
-    svc = fgt.api.cmdb.firewall.service.custom.list()
+    addr = fgt.api.cmdb.firewall.address.get()
+    pol = fgt.api.cmdb.firewall.policy.get()
+    svc = fgt.api.cmdb.firewall.service.custom.get()
 
     elapsed = time.time() - start
     print(f"Sync: {elapsed:.2f}s")
@@ -354,9 +354,9 @@ async def async_fetch():
 
         # All three run concurrently!
         addr, pol, svc = await asyncio.gather(
-            fgt.api.cmdb.firewall.address.list(),
-            fgt.api.cmdb.firewall.policy.list(),
-            fgt.api.cmdb.firewall.service.custom.list()
+            fgt.api.cmdb.firewall.address.get(),
+            fgt.api.cmdb.firewall.policy.get(),
+            fgt.api.cmdb.firewall.service.custom.get()
         )
 
         elapsed = time.time() - start
@@ -406,7 +406,7 @@ async def fetch_with_timeout():
         try:
             # 5 second timeout
             result = await asyncio.wait_for(
-                fgt.api.cmdb.firewall.address.list(),
+                fgt.api.cmdb.firewall.address.get(),
                 timeout=5.0
             )
             return result
@@ -423,7 +423,7 @@ Manage multiple FortiGates concurrently:
 async def manage_multiple_fortigates(hosts_and_tokens):
     async def fetch_from_host(host, token):
         async with FortiOS(host=host, token=token, mode="async") as fgt:
-            addresses = await fgt.api.cmdb.firewall.address.list()
+            addresses = await fgt.api.cmdb.firewall.address.get()
             return host, addresses
 
     tasks = [fetch_from_host(h, t) for h, t in hosts_and_tokens]
@@ -463,7 +463,7 @@ Every API method works in async mode:
 ```python
 async with FortiOS(..., mode="async") as fgt:
     # List
-    items = await fgt.api.cmdb.firewall.address.list()
+    items = await fgt.api.cmdb.firewall.address.get()
 
     # Get
     item = await fgt.api.cmdb.firewall.address.get("web-server")
@@ -496,11 +496,11 @@ from hfortix import FortiOS
 
 # Sync mode - type checker knows methods return values
 fgt_sync: FortiOS = FortiOS(mode="sync")
-addresses: dict = fgt_sync.api.cmdb.firewall.address.list()
+addresses: dict = fgt_sync.api.cmdb.firewall.address.get()
 
 # Async mode - type checker knows methods return coroutines
 fgt_async: FortiOS = FortiOS(mode="async")
-addresses_coro = fgt_async.api.cmdb.firewall.address.list()
+addresses_coro = fgt_async.api.cmdb.firewall.address.get()
 # Must await coroutines
 addresses: dict = await addresses_coro
 ```
@@ -514,11 +514,11 @@ Don't mix sync and async calls on the same instance:
 ```python
 # ❌ WRONG - mixing modes
 fgt = FortiOS(..., mode="async")
-result = fgt.api.cmdb.firewall.address.list()  # Returns coroutine, not data!
+result = fgt.api.cmdb.firewall.address.get()  # Returns coroutine, not data!
 
 # ✓ CORRECT - use await in async mode
 fgt = FortiOS(..., mode="async")
-result = await fgt.api.cmdb.firewall.address.list()
+result = await fgt.api.cmdb.firewall.address.get()
 ```
 
 ### 2. Always Use Async Context Manager
@@ -528,18 +528,18 @@ In async mode, use `async with` or manually call `await fgt.aclose()`:
 ```python
 # ✓ CORRECT - automatic cleanup
 async with FortiOS(..., mode="async") as fgt:
-    result = await fgt.api.cmdb.firewall.address.list()
+    result = await fgt.api.cmdb.firewall.address.get()
 
 # ✓ ALSO CORRECT - manual cleanup
 fgt = FortiOS(..., mode="async")
 try:
-    result = await fgt.api.cmdb.firewall.address.list()
+    result = await fgt.api.cmdb.firewall.address.get()
 finally:
     await fgt.aclose()
 
 # ❌ WRONG - resource leak
 fgt = FortiOS(..., mode="async")
-result = await fgt.api.cmdb.firewall.address.list()
+result = await fgt.api.cmdb.firewall.address.get()
 # Missing cleanup!
 ```
 
@@ -584,7 +584,7 @@ If running in Jupyter/IPython, use `await` directly instead of `asyncio.run()`:
 ```python
 # In Jupyter/IPython
 async with FortiOS(..., mode="async") as fgt:
-    result = await fgt.api.cmdb.firewall.address.list()
+    result = await fgt.api.cmdb.firewall.address.get()
 ```
 
 ### "Coroutine was never awaited"
@@ -594,11 +594,11 @@ You forgot to `await` an async call:
 ```python
 # ❌ WRONG
 fgt = FortiOS(..., mode="async")
-result = fgt.api.cmdb.firewall.address.list()  # Missing await!
+result = fgt.api.cmdb.firewall.address.get()  # Missing await!
 
 # ✓ CORRECT
 fgt = FortiOS(..., mode="async")
-result = await fgt.api.cmdb.firewall.address.list()
+result = await fgt.api.cmdb.firewall.address.get()
 ```
 
 ### "Cannot call 'aclose' in sync mode"
@@ -616,7 +616,7 @@ fgt.close()  # Use sync close
 
 # Or use context manager
 with FortiOS(..., mode="sync") as fgt:
-    result = fgt.api.cmdb.firewall.address.list()
+    result = fgt.api.cmdb.firewall.address.get()
 ```
 
 ---

@@ -5,7 +5,7 @@ High-level wrappers that simplify common FortiOS operations.
 
 .. note::
    **New users should start here!** Convenience wrappers provide a simpler,
-   more intuitive interface with helpful methods like ``list()``, ``get()``, 
+   more intuitive interface with helpful methods like ``get()``, 
    ``create()``, ``update()``, and ``delete()`` instead of working directly 
    with low-level API HTTP methods (GET, POST, PUT, DELETE).
 
@@ -22,17 +22,17 @@ object-oriented interfaces for common FortiOS configuration tasks:
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
    # Use high-level wrapper methods
-   fgt.firewall.policy.list()           # List all policies
+   fgt.firewall.policy.get()           # List all policies
    fgt.firewall.policy.get(policyid=1)  # Get specific policy
    fgt.firewall.policy.create(...)      # Create new policy
    fgt.firewall.policy.update(...)      # Update existing policy
    fgt.firewall.policy.delete(...)      # Delete policy
 
-Available Wrappers
+Firewall & Objects
 ------------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    firewall/policy
    firewall/schedule
@@ -45,8 +45,7 @@ Wrapper vs API Methods
 
 **Convenience Wrapper Methods** (High-level, recommended):
 
-- ``list()`` - Retrieve all resources
-- ``get()`` - Retrieve a specific resource  
+- ``get()`` - Retrieve all resources (when called without parameters) or a specific resource (with ID parameter)
 - ``create()`` - Create a new resource
 - ``update()`` - Update an existing resource
 - ``delete()`` - Delete a resource

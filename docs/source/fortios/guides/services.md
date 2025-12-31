@@ -50,7 +50,7 @@ web_services = fgt.firewall.service_group.create(
 
 ```python
 # Manage service categories
-categories = fgt.firewall.service_category.list()
+categories = fgt.firewall.service_category.get()
 ```
 
 ## Coming Soon

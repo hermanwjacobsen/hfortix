@@ -3,9 +3,11 @@ CMDB API Reference
 
 Configuration Management Database - Device configuration and settings
 
+Categories
+----------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Categories
 
    alertemail
    antivirus

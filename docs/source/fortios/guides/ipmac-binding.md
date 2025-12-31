@@ -26,7 +26,7 @@ binding = fgt.firewall.ipmac_binding_table.create(
 )
 
 # List all bindings
-bindings = fgt.firewall.ipmac_binding_table.list()
+bindings = fgt.firewall.ipmac_binding_table.get()
 
 # Check if binding exists
 if fgt.firewall.ipmac_binding_table.exists(name='workstation-1'):

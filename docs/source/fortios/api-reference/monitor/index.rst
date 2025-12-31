@@ -3,9 +3,11 @@ Monitor API Reference
 
 Real-time monitoring, statistics, and status information
 
+Categories
+----------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Categories
 
    azure
    casb

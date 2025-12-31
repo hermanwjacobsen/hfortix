@@ -8,7 +8,7 @@ Advanced topics, patterns, and techniques for working with HFortix.
    is now located at :doc:`/fortios/convenience-wrappers/index`.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    filtering
    validation

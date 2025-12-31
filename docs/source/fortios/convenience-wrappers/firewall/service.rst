@@ -49,7 +49,7 @@ Quick Start
    )
    
    # List all custom services
-   services = fgt.firewall.service_custom.list()
+   services = fgt.firewall.service_custom.get()
    
    # Clone and modify
    new_service = fgt.firewall.service_custom.clone(

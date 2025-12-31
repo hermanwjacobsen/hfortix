@@ -33,7 +33,7 @@ Quick Start
    )
    
    # List all policies
-   policies = fgt.firewall.policy.list()
+   policies = fgt.firewall.policy.get()
    
    # Get specific policy
    policy = fgt.firewall.policy.get(policyid=1)
@@ -74,8 +74,7 @@ Available Methods
 High-Level Methods
 ^^^^^^^^^^^^^^^^^^
 
-- ``list()`` - Retrieve all firewall policies
-- ``get(policyid)`` - Retrieve a specific policy by ID
+- ``get()`` - Retrieve all firewall policies (no parameters) or a specific policy by ID (with policyid parameter)
 - ``create(**params)`` - Create a new policy
 - ``update(policyid, **params)`` - Update an existing policy
 - ``delete(policyid)`` - Delete a policy

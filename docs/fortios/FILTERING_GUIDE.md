@@ -296,7 +296,7 @@ policies = fgt.api.cmdb.firewall.policy.list(
 addresses = fgt.api.cmdb.firewall.address.list(filter="subnet=@10.0.0")
 
 # ❌ Bad - Retrieving everything then filtering in Python
-all_addresses = fgt.api.cmdb.firewall.address.list()
+all_addresses = fgt.api.cmdb.firewall.address.get()
 filtered = [a for a in all_addresses if '10.0.0' in a.get('subnet', '')]
 ```
 

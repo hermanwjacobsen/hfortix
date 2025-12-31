@@ -71,7 +71,7 @@ Quick Start
    )
    
    # List all bindings
-   bindings = fgt.firewall.ipmac_binding_table.list()
+   bindings = fgt.firewall.ipmac_binding_table.get()
    
    # Get specific binding
    binding = fgt.firewall.ipmac_binding_table.get(seq_num=1)

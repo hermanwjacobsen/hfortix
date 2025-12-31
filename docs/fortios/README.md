@@ -45,7 +45,7 @@ fgt.api.cmdb.firewall.address.create(
 
 # Monitor and logging
 status = fgt.api.monitor.system.status.get()
-logs = fgt.api.log.disk.traffic.list()
+logs = fgt.api.log.disk.traffic.get()
 ```
 
 ## 📚 Documentation Topics
@@ -160,7 +160,7 @@ print(f"Hostname: {status['hostname']}")
 print(f"Version: {status['version']}")
 
 # Monitor firewall sessions
-sessions = fgt.api.monitor.firewall.session.list()
+sessions = fgt.api.monitor.firewall.session.get()
 
 # Read traffic logs
 logs = fgt.api.log.disk.traffic.list(
@@ -181,13 +181,13 @@ async def main():
         mode="async"
     ) as fgt:
         # All operations support await
-        addresses = await fgt.api.cmdb.firewall.address.list()
+        addresses = await fgt.api.cmdb.firewall.address.get()
         
         # Concurrent operations
         results = await asyncio.gather(
             fgt.api.monitor.system.status.get(),
-            fgt.api.cmdb.firewall.policy.list(),
-            fgt.api.cmdb.firewall.address.list()
+            fgt.api.cmdb.firewall.policy.get(),
+            fgt.api.cmdb.firewall.address.get()
         )
 
 asyncio.run(main())

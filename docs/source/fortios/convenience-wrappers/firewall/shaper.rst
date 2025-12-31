@@ -41,7 +41,7 @@ Quick Start
    )
    
    # List all traffic shapers
-   shapers = fgt.firewall.traffic_shaper.list()
+   shapers = fgt.firewall.traffic_shaper.get()
    
    # Clone and modify
    new_shaper = fgt.firewall.traffic_shaper.clone(
@@ -77,7 +77,7 @@ Quick Start
    )
    
    # List all per-IP shapers
-   shapers = fgt.firewall.shaper_per_ip.list()
+   shapers = fgt.firewall.shaper_per_ip.get()
 
 API Reference
 ^^^^^^^^^^^^^
