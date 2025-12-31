@@ -36,7 +36,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 **Test Coverage:** 226 test files (145 CMDB, 81 Monitor) with 75%+ pass rate (~50% of generated endpoints tested)
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
-**Note:** Documentation in the `X/` folder is for internal development only, is not referenced outside `X`, and is not included in git or releases.
+**Note:** Documentation in the `.dev/` folder is for internal development only, is not referenced outside `X`, and is not included in git or releases.
 
 **🔥 Recent Highlights (December 2025):**
 
@@ -114,7 +114,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Full parameter support with comprehensive validation
   - ⚠️ **Important:** Rename operations not supported (FortiOS API limitation - name is immutable primary key)
   - See `docs/fortios/wrappers/SHAPER_WRAPPERS.md` for complete guide and examples
-  - Comprehensive test suite: `X/pytests/firewall/shaper.py` (20 tests passing)
+  - Comprehensive test suite: `.dev/pytests/firewall/shaper.py` (20 tests passing)
 
 **Features from v0.3.34 (December 25, 2025):**
 
@@ -813,7 +813,7 @@ See `examples/custom_http_client_example.py` for production-ready implementation
 
 **Use Cases:**
 
-- **Enterprise Compliance**: Log all FortiGate changes to SIEM for SOX/HIPAA/PCI-DSS
+- **Enterprise Compliance**: Log all FortiGate changes to SIEM for SO.dev/HIPAA/PCI-DSS
 - **Development/Testing**: Use fake client in CI/CD pipelines without FortiGate hardware
 - **Performance Optimization**: Cache frequently-read data (address objects, service definitions)
 - **Custom Authentication**: Integrate with corporate SSO or vault systems

@@ -65,7 +65,7 @@ htmlcov/
 .ipynb_checkpoints
 
 # Local test files and internal development
-X/
+.dev/
 
 # Development tools (local only, not for public release)
 Makefile

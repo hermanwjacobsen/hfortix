@@ -17,7 +17,7 @@ ci/cd:
 
 tests:
   - changed-files:
-      - any-glob-to-any-file: ['tests/**', 'X/tests/**', '**/test_*.py']
+      - any-glob-to-any-file: ['tests/**', '.dev/tests/**', '**/test_*.py']
 
 api:
   - changed-files:

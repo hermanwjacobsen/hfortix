@@ -31,7 +31,7 @@ This is a MAJOR release with breaking changes. The monolithic package has been s
   - `hfortix-core`: Core exceptions (FortinetError, APIError, etc.) and HTTP client framework (sync/async)
   - `hfortix-fortios`: FortiOS/FortiGate client, API endpoints, and firewall helpers
   - `hfortix` (meta-package): Convenient installation with extras for all products
-  - See `X/PACKAGE_SPLIT_PLAN.md` for architecture details
+  - See `.dev/PACKAGE_SPLIT_PLAN.md` for architecture details
 
 - **Documentation Restructuring**: Reorganized docs to align with modular architecture
   - Created `docs/core/` for hfortix-core documentation
@@ -125,7 +125,7 @@ pip install hfortix[fortios]  # Core + FortiOS
   - Creates git commit and tag
   - Prompts for GitHub push (triggers CI/CD for PyPI publishing)
   - Usage: `make release` (auto-increment patch), `make release VERSION=0.3.40`, `make release TYPE=minor`
-  - New script: `X/scripts/release.py` for automation
+  - New script: `.dev/scripts/release.py` for automation
 
 ## [0.3.38] - 2025-12-29
 
@@ -160,9 +160,9 @@ pip install hfortix[fortios]  # Core + FortiOS
   - Moved `SHAPER_WRAPPERS.md` to `docs/wrappers/`
   - Renamed `SCHEDULE_CONVENIENCE_METHODS.md` to `SCHEDULE_WRAPPERS.md` and moved to `docs/wrappers/`
   - Removed outdated `FIX_WINDOWS_INSTALL.md` (issue fixed in v0.3.33)
-  - Moved `PYPI_SETUP.md` to `X/docs/` (development-only documentation)
+  - Moved `PYPI_SETUP.md` to `.dev/docs/` (development-only documentation)
   - Updated all documentation cross-references to use new paths
-  - Clear separation: user docs in `docs/`, dev docs in `X/docs/`
+  - Clear separation: user docs in `docs/`, dev docs in `.dev/docs/`
 - **Shaper Wrappers Guide**: New comprehensive documentation (`docs/wrappers/SHAPER_WRAPPERS.md`)
   - Quick start examples and API reference for both shaper types
   - Detailed parameter documentation with validation rules
@@ -170,7 +170,7 @@ pip install hfortix[fortios]  # Core + FortiOS
   - Comparison table: shapers (name-based) vs shaping policies (ID-based)
   - 7 complete examples covering common use cases
   - Troubleshooting guide and best practices
-- **API Investigation Results**: Documented FortiOS shaper API behavior (`X/SHAPER_API_INVESTIGATION.md`)
+- **API Investigation Results**: Documented FortiOS shaper API behavior (`.dev/SHAPER_API_INVESTIGATION.md`)
   - Confirmed no numeric ID field exists for shaper objects
   - Verified rename operations silently fail (FortiOS ignores name changes)
   - Compared shaper endpoints (name-based) vs policy endpoints (ID-based)
@@ -502,8 +502,8 @@ pip install hfortix[fortios]  # Core + FortiOS
 
 ### Added
 
-- `X/scripts/fix_fstrings.py` - Utility to fix broken f-strings in generated code
-- `X/scripts/rename_hyphenated_dirs.py` - Utility for directory renaming
+- `.dev/scripts/fix_fstrings.py` - Utility to fix broken f-strings in generated code
+- `.dev/scripts/rename_hyphenated_dirs.py` - Utility for directory renaming
 
 ## [0.3.25] - 2025-12-24
 
@@ -513,8 +513,8 @@ pip install hfortix[fortios]  # Core + FortiOS
   - `make pre-release` - Auto-fix and validate code before release
   - `make fix` - Auto-fix formatting and import issues
   - `make fix-check` - Dry-run to see what would be fixed
-  - `X/scripts/pre_release_fix.py` - Auto-fix script with Black and isort
-  - `X/scripts/pre_release_check.py` - Validation script with all quality checks
+  - `.dev/scripts/pre_release_fix.py` - Auto-fix script with Black and isort
+  - `.dev/scripts/pre_release_check.py` - Validation script with all quality checks
 
 ### Changed
 
@@ -526,7 +526,7 @@ pip install hfortix[fortios]  # Core + FortiOS
   - All tools (Makefile, scripts, pre-commit, CI) now use same configuration
 
 - **Pre-commit Hooks**: Improved configuration
-  - Excluded `X/` directory from all checks (development tools, not package code)
+  - Excluded `.dev/` directory from all checks (development tools, not package code)
   - Consistent exclude patterns across all hooks
   - Pre-commit check added to pre-release workflow (warning only)
 
@@ -538,8 +538,8 @@ pip install hfortix[fortios]  # Core + FortiOS
 
 ### Documentation
 
-- `X/scripts/README.md` - Pre-release workflow guide
-- `X/CODE_QUALITY_CONFIG.md` - Comprehensive configuration documentation
+- `.dev/scripts/README.md` - Pre-release workflow guide
+- `.dev/CODE_QUALITY_CONFIG.md` - Comprehensive configuration documentation
 
 ## [0.3.24] - 2025-12-24
 
@@ -927,7 +927,7 @@ except Exception as e:
   - Complete example file: `examples/custom_http_client_example.py`
   - Three production-ready examples: AuditLoggingHTTPClient, CachingHTTPClient, FakeHTTPClient
   - Documentation in README.md "Extensibility" section
-  - Use cases: SOX/HIPAA/PCI-DSS compliance, CI/CD testing, performance optimization
+  - Use cases: SO.dev/HIPAA/PCI-DSS compliance, CI/CD testing, performance optimization
 
 - **Environment Variables Support**: Load credentials from environment variables
   - Support for `FORTIOS_HOST`, `FORTIOS_TOKEN`, `FORTIOS_USERNAME`, `FORTIOS_PASSWORD`

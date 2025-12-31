@@ -155,7 +155,7 @@ markers = [
 source = ["hfortix"]
 omit = [
     "*/tests/*",
-    "*/X/*",
+    "*/.dev/*",
     "*/__pycache__/*",
 ]
 

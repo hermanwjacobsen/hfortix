@@ -1,50 +1,56 @@
 ---
 # ============================================================================
-# PyPI Publishing Workflow
+# PyPI Publishing Workflow - Multi-Package Support
 # ============================================================================
-# This workflow publishes the package to PyPI ONLY after CI checks pass.
+# This workflow publishes HFortix packages to PyPI with support for:
+# - Publishing all packages together (unified release)
+# - Publishing individual packages (package-specific tags)
+# - TestPyPI testing before production
+# - Proper dependency ordering (core → fortios → meta)
+#
+# Package Structure:
+# - hfortix-core: Core exceptions and HTTP client (no dependencies)
+# - hfortix-fortios: FortiOS client (depends on hfortix-core)
+# - hfortix: Meta-package (depends on hfortix-core, optional hfortix-fortios)
+#
+# Tag Formats:
+# - v-core-X.Y.Z    → Publish only hfortix-core
+# - v-fortios-X.Y.Z → Publish only hfortix-fortios (requires core published)
+# - v-meta-X.Y.Z    → Publish only hfortix meta-package
+# - vX.Y.Z          → Publish all packages (unified release)
 #
 # Publishing Flow:
-# 1. Tag pushed (v*.*.*)
-# 2. Validate version (check for dev/alpha/beta/rc)
-# 3. CI workflow runs (lint, type-check, security, build)
-# 4. Wait for CI to pass
-# 5. Publish to TestPyPI (validates package)
-# 6. Publish to PyPI (production) - ONLY if NOT a pre-release version
-# 7. Create GitHub Release (marked as pre-release if dev version)
+# 1. Tag pushed matching pattern
+# 2. Determine which packages to publish
+# 3. Extract and validate versions
+# 4. CI workflow runs (lint, type-check, security, build)
+# 5. Wait for CI to pass
+# 6. Publish to TestPyPI (validates packages)
+# 7. Publish to PyPI (production) - ONLY if NOT a pre-release version
+# 8. Create GitHub Release
 #
 # Pre-release Version Handling:
-# - Versions containing 'dev', 'alpha', 'beta', or 'rc' are considered pre-releases
-# - Pre-releases are published to TestPyPI for testing
-# - Pre-releases are BLOCKED from production PyPI automatically
-# - GitHub releases are created and marked as pre-release
-# - Example: v0.3.33.dev1 → TestPyPI only, production PyPI blocked
+# - Versions containing 'dev', 'alpha', 'beta', or 'rc' are pre-releases
+# - Pre-releases published to TestPyPI only
+# - Pre-releases BLOCKED from production PyPI
+# - GitHub releases marked as pre-release
 #
 # Authentication:
-# - TestPyPI: Uses TEST_PYPI_API_TOKEN secret (token-based auth)
-#   - Get token: https://test.pypi.org/manage/account/token/
-#   - Add to repo: Settings > Secrets > Actions > TEST_PYPI_API_TOKEN
-#
 # - PyPI: Uses trusted publishing (OIDC, no token needed)
-#   - Configured at: https://pypi.org/manage/project/hfortix/settings/publishing/
-#   - Publisher: GitHub Actions workflow in this repo
-#   - Environment: pypi
-#
-# To enable TestPyPI trusted publishing (optional):
-# 1. Go to: https://test.pypi.org/manage/project/hfortix/settings/publishing/
-# 2. Add publisher:
-#    - Owner: hermanwjacobsen
-#    - Repository: hfortix
-#    - Workflow: .github/workflows/publish.yml
-#    - Environment: testpypi
-# 3. Then remove the password line from publish-testpypi job
+#   Configure at: https://pypi.org/manage/project/{package}/settings/publishing/
+#   - hfortix-core
+#   - hfortix-fortios  
+#   - hfortix
 # ============================================================================
 name: Publish to PyPI
 
 'on':
   push:
     tags:
-      - 'v*.*.*'
+      - 'v-core-*'      # hfortix-core only
+      - 'v-fortios-*'   # hfortix-fortios only
+      - 'v-meta-*'      # hfortix meta-package only
+      - 'v*.*.*'        # All packages (unified release)
   workflow_dispatch:
     inputs:
       environment:
@@ -54,119 +60,205 @@ name: Publish to PyPI
         options:
           - pypi
           - testpypi
+      packages:
+        description: 'Packages to publish (comma-separated or "all")'
+        required: false
+        default: 'all'
+        # Examples: "all", "core", "fortios", "meta", "core,fortios"
 
 jobs:
-  validate-version:
-    name: Validate Version
+  determine-packages:
+    name: Determine Packages to Publish
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.get-version.outputs.version }}
-      is_prerelease: ${{ steps.check-prerelease.outputs.is_prerelease }}
+      packages: ${{ steps.parse.outputs.packages }}
+      publish_core: ${{ steps.parse.outputs.publish_core }}
+      publish_fortios: ${{ steps.parse.outputs.publish_fortios }}
+      publish_meta: ${{ steps.parse.outputs.publish_meta }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Get version from tag
-        id: get-version
+      - name: Parse tag or input to determine packages
+        id: parse
         run: |
           if [[ "${{ github.event_name }}" == "push" ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            # Tag-based trigger
+            TAG="${GITHUB_REF#refs/tags/}"
+            echo "Tag: $TAG"
+            
+            if [[ "$TAG" =~ ^v-core- ]]; then
+              echo "packages=core" >> $GITHUB_OUTPUT
+              echo "publish_core=true" >> $GITHUB_OUTPUT
+              echo "publish_fortios=false" >> $GITHUB_OUTPUT
+              echo "publish_meta=false" >> $GITHUB_OUTPUT
+              echo "📦 Publishing: hfortix-core only"
+            elif [[ "$TAG" =~ ^v-fortios- ]]; then
+              echo "packages=fortios" >> $GITHUB_OUTPUT
+              echo "publish_core=false" >> $GITHUB_OUTPUT
+              echo "publish_fortios=true" >> $GITHUB_OUTPUT
+              echo "publish_meta=false" >> $GITHUB_OUTPUT
+              echo "📦 Publishing: hfortix-fortios only"
+            elif [[ "$TAG" =~ ^v-meta- ]]; then
+              echo "packages=meta" >> $GITHUB_OUTPUT
+              echo "publish_core=false" >> $GITHUB_OUTPUT
+              echo "publish_fortios=false" >> $GITHUB_OUTPUT
+              echo "publish_meta=true" >> $GITHUB_OUTPUT
+              echo "📦 Publishing: hfortix meta-package only"
+            elif [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+              echo "packages=all" >> $GITHUB_OUTPUT
+              echo "publish_core=true" >> $GITHUB_OUTPUT
+              echo "publish_fortios=true" >> $GITHUB_OUTPUT
+              echo "publish_meta=true" >> $GITHUB_OUTPUT
+              echo "📦 Publishing: ALL packages (unified release)"
+            else
+              echo "❌ Invalid tag format: $TAG"
+              exit 1
+            fi
           else
-            # For manual workflow, extract from pyproject.toml
-            VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            # Manual workflow dispatch
+            PACKAGES="${{ github.event.inputs.packages }}"
+            if [[ "$PACKAGES" == "all" ]]; then
+              echo "packages=all" >> $GITHUB_OUTPUT
+              echo "publish_core=true" >> $GITHUB_OUTPUT
+              echo "publish_fortios=true" >> $GITHUB_OUTPUT
+              echo "publish_meta=true" >> $GITHUB_OUTPUT
+            else
+              echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+              [[ "$PACKAGES" == *"core"* ]] && echo "publish_core=true" >> $GITHUB_OUTPUT || echo "publish_core=false" >> $GITHUB_OUTPUT
+              [[ "$PACKAGES" == *"fortios"* ]] && echo "publish_fortios=true" >> $GITHUB_OUTPUT || echo "publish_fortios=false" >> $GITHUB_OUTPUT
+              [[ "$PACKAGES" == *"meta"* ]] && echo "publish_meta=true" >> $GITHUB_OUTPUT || echo "publish_meta=false" >> $GITHUB_OUTPUT
+            fi
+            echo "📦 Publishing: $PACKAGES"
           fi
-          echo "📦 Version: $VERSION"
 
-      - name: Validate version consistency
+  validate-versions:
+    name: Validate Package Versions
+    runs-on: ubuntu-latest
+    needs: determine-packages
+    outputs:
+      core_version: ${{ steps.versions.outputs.core_version }}
+      fortios_version: ${{ steps.versions.outputs.fortios_version }}
+      meta_version: ${{ steps.versions.outputs.meta_version }}
+      core_is_prerelease: ${{ steps.versions.outputs.core_is_prerelease }}
+      fortios_is_prerelease: ${{ steps.versions.outputs.fortios_is_prerelease }}
+      meta_is_prerelease: ${{ steps.versions.outputs.meta_is_prerelease }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract versions from pyproject.toml files
+        id: versions
         run: |
-          VERSION=${{ steps.get-version.outputs.version }}
+          # Extract versions
+          CORE_VERSION=$(grep '^version = ' packages/core/pyproject.toml | cut -d'"' -f2)
+          FORTIOS_VERSION=$(grep '^version = ' packages/fortios/pyproject.toml | cut -d'"' -f2)
+          META_VERSION=$(grep '^version = ' packages/meta/pyproject.toml | cut -d'"' -f2)
+          
+          echo "core_version=$CORE_VERSION" >> $GITHUB_OUTPUT
+          echo "fortios_version=$FORTIOS_VERSION" >> $GITHUB_OUTPUT
+          echo "meta_version=$META_VERSION" >> $GITHUB_OUTPUT
+          
+          echo "📦 Package Versions:"
+          echo "   hfortix-core:    $CORE_VERSION"
+          echo "   hfortix-fortios: $FORTIOS_VERSION"
+          echo "   hfortix:         $META_VERSION"
+          
+          # Check for pre-release versions
+          [[ "$CORE_VERSION" =~ (dev|alpha|beta|rc) ]] && echo "core_is_prerelease=true" >> $GITHUB_OUTPUT || echo "core_is_prerelease=false" >> $GITHUB_OUTPUT
+          [[ "$FORTIOS_VERSION" =~ (dev|alpha|beta|rc) ]] && echo "fortios_is_prerelease=true" >> $GITHUB_OUTPUT || echo "fortios_is_prerelease=false" >> $GITHUB_OUTPUT
+          [[ "$META_VERSION" =~ (dev|alpha|beta|rc) ]] && echo "meta_is_prerelease=true" >> $GITHUB_OUTPUT || echo "meta_is_prerelease=false" >> $GITHUB_OUTPUT
 
-          # Check pyproject.toml
-          PYPROJECT_VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
-          if [[ "$VERSION" != "$PYPROJECT_VERSION" ]]; then
-            echo "❌ Version mismatch: tag=$VERSION pyproject.toml=$PYPROJECT_VERSION"
-            exit 1
-          fi
-
-          # Check setup.py
-          SETUP_VERSION=$(grep "version=" setup.py | cut -d'"' -f2)
-          if [[ "$VERSION" != "$SETUP_VERSION" ]]; then
-            echo "❌ Version mismatch: tag=$VERSION setup.py=$SETUP_VERSION"
-            exit 1
-          fi
-
-          # Check __init__.py
-          INIT_VERSION=$(grep '^__version__ = ' hfortix/FortiOS/__init__.py | cut -d'"' -f2)
-          if [[ "$VERSION" != "$INIT_VERSION" ]]; then
-            echo "❌ Version mismatch: tag=$VERSION __init__.py=$INIT_VERSION"
-            exit 1
-          fi
-
-          echo "✅ All version strings match: $VERSION"
-
-      - name: Check for dev/pre-release version
-        id: check-prerelease
+      - name: Validate dependency versions
         run: |
-          VERSION=${{ steps.get-version.outputs.version }}
-
-          # Check if version contains dev, alpha, beta, rc
-          if [[ "$VERSION" =~ (dev|alpha|beta|rc) ]]; then
-            echo "is_prerelease=true" >> $GITHUB_OUTPUT
-            echo "⚠️  Pre-release version detected: $VERSION"
-            echo "   This version contains: ${BASH_REMATCH[1]}"
-          else
-            echo "is_prerelease=false" >> $GITHUB_OUTPUT
-            echo "✅ Production version: $VERSION"
+          CORE_VERSION="${{ steps.versions.outputs.core_version }}"
+          FORTIOS_VERSION="${{ steps.versions.outputs.fortios_version }}"
+          META_VERSION="${{ steps.versions.outputs.meta_version }}"
+          
+          # Check fortios depends on compatible core version
+          FORTIOS_CORE_DEP=$(grep 'hfortix-core>=' packages/fortios/pyproject.toml | cut -d'"' -f2 | sed 's/hfortix-core>=//')
+          echo "hfortix-fortios requires: hfortix-core>=$FORTIOS_CORE_DEP"
+          echo "hfortix-core version:     $CORE_VERSION"
+          
+          # Check meta depends on compatible core version
+          META_CORE_DEP=$(grep 'hfortix-core>=' packages/meta/pyproject.toml | cut -d'"' -f2 | sed 's/hfortix-core>=//')
+          echo "hfortix requires:         hfortix-core>=$META_CORE_DEP"
+          
+          # Warning if versions mismatch (but don't fail - semver allows this)
+          if [[ "$FORTIOS_CORE_DEP" != "$CORE_VERSION" ]] && [[ "${{ needs.determine-packages.outputs.publish_fortios }}" == "true" ]]; then
+            echo "⚠️  WARNING: hfortix-fortios depends on core>=$FORTIOS_CORE_DEP but core is $CORE_VERSION"
           fi
 
   build:
-    name: Build Distribution
+    name: Build Packages
     runs-on: ubuntu-latest
-    needs: validate-version
+    needs: [determine-packages, validate-versions]
+    strategy:
+      matrix:
+        include:
+          - package: core
+            path: packages/core
+            pypi_name: hfortix-core
+            publish: ${{ needs.determine-packages.outputs.publish_core }}
+          - package: fortios
+            path: packages/fortios
+            pypi_name: hfortix-fortios
+            publish: ${{ needs.determine-packages.outputs.publish_fortios }}
+          - package: meta
+            path: packages/meta
+            pypi_name: hfortix
+            publish: ${{ needs.determine-packages.outputs.publish_meta }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        if: matrix.publish == 'true'
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        if: matrix.publish == 'true'
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           cache: 'pip'
 
       - name: Install build dependencies
+        if: matrix.publish == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install build twine
 
-      - name: Build distribution packages
+      - name: Build ${{ matrix.pypi_name }}
+        if: matrix.publish == 'true'
         run: |
+          cd ${{ matrix.path }}
           python -m build
-
-      - name: Check distribution packages
-        run: |
-          twine check dist/*
           ls -lh dist/
 
-      - name: Upload distribution artifacts
-        uses: actions/upload-artifact@v6
+      - name: Check package with twine
+        if: matrix.publish == 'true'
+        run: |
+          cd ${{ matrix.path }}
+          twine check dist/*
+
+      - name: Upload build artifacts
+        if: matrix.publish == 'true'
+        uses: actions/upload-artifact@v4
         with:
-          name: dist-${{ needs.validate-version.outputs.version }}
-          path: dist/
+          name: dist-${{ matrix.package }}
+          path: ${{ matrix.path }}/dist/
           retention-days: 30
 
   # Wait for CI to pass before publishing
   wait-for-ci:
     name: Wait for CI
     runs-on: ubuntu-latest
-    # Always run the job, but it will fail if CI doesn't pass
+    needs: build
+    if: github.event_name == 'push'
 
     steps:
       - name: Wait for CI workflow to complete
-        if: github.event_name == 'push'
         uses: fountainhead/action-wait-for-check@v1.2.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -175,146 +267,333 @@ jobs:
           timeoutSeconds: 1800  # 30 minutes max
           intervalSeconds: 10
 
-      - name: Skip CI wait for manual dispatch
-        if: github.event_name == 'workflow_dispatch'
-        run: echo "✅ Skipping CI wait for manual workflow dispatch"
-
-  publish-testpypi:
-    name: Publish to TestPyPI
+  publish-testpypi-core:
+    name: Publish hfortix-core to TestPyPI
     runs-on: ubuntu-latest
-    needs: [validate-version, build, wait-for-ci]
-    # Always test on TestPyPI first for tag pushes (after CI passes)
+    needs: [determine-packages, validate-versions, build, wait-for-ci]
     if: |
-      (github.event_name == 'push' && needs.wait-for-ci.result == 'success') ||
-      (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'testpypi')
-    # No environment specified - matches TestPyPI publisher config "Environment name: (Any)"
+      always() &&
+      needs.determine-packages.outputs.publish_core == 'true' &&
+      (needs.wait-for-ci.result == 'success' || needs.wait-for-ci.result == 'skipped') &&
+      (github.event_name == 'push' || github.event.inputs.environment == 'testpypi')
 
     permissions:
-      id-token: write  # IMPORTANT: for trusted publishing
+      id-token: write
 
     steps:
-      - name: Download distribution artifacts
-        uses: actions/download-artifact@v7
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
         with:
-          name: dist-${{ needs.validate-version.outputs.version }}
+          name: dist-core
           path: dist/
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-          # Using trusted publishing - matches pending publisher on TestPyPI
 
       - name: Verify TestPyPI publication
         run: |
-          VERSION=${{ needs.validate-version.outputs.version }}
-          echo "⏳ Waiting for TestPyPI to process the package..."
+          VERSION="${{ needs.validate-versions.outputs.core_version }}"
+          echo "⏳ Waiting 30s for TestPyPI to index hfortix-core $VERSION..."
           sleep 30
+          pip index versions hfortix-core --index-url https://test.pypi.org/simple/ || true
+          echo "✅ hfortix-core published to TestPyPI"
 
-          # Try to fetch the package from TestPyPI
-          pip index versions hfortix --index-url https://test.pypi.org/simple/ || true
-          echo "✅ Package published to TestPyPI"
-
-  publish-pypi:
-    name: Publish to PyPI
+  publish-testpypi-fortios:
+    name: Publish hfortix-fortios to TestPyPI
     runs-on: ubuntu-latest
-    needs: [validate-version, build, publish-testpypi]
-    # Only publish to PyPI after successful TestPyPI publication AND CI passing
-    # IMPORTANT: Block dev/pre-release versions from production PyPI
+    needs: [determine-packages, validate-versions, build, wait-for-ci, publish-testpypi-core]
     if: |
-      needs.validate-version.outputs.is_prerelease == 'false' && (
-        (github.event_name == 'push' && needs.publish-testpypi.result == 'success') ||
-        (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'pypi')
-      )
-    environment:
-      name: pypi
-      url: https://pypi.org/project/hfortix/
+      always() &&
+      needs.determine-packages.outputs.publish_fortios == 'true' &&
+      (needs.wait-for-ci.result == 'success' || needs.wait-for-ci.result == 'skipped') &&
+      (needs.publish-testpypi-core.result == 'success' || needs.publish-testpypi-core.result == 'skipped') &&
+      (github.event_name == 'push' || github.event.inputs.environment == 'testpypi')
 
     permissions:
-      id-token: write  # IMPORTANT: for trusted publishing
+      id-token: write
 
     steps:
-      - name: Block pre-release versions
+      - name: Wait for core to be indexed
+        if: needs.determine-packages.outputs.publish_core == 'true'
         run: |
-          VERSION=${{ needs.validate-version.outputs.version }}
-          IS_PRERELEASE=${{ needs.validate-version.outputs.is_prerelease }}
+          echo "⏳ Waiting 2 minutes for hfortix-core to be fully indexed..."
+          sleep 120
 
-          if [[ "$IS_PRERELEASE" == "true" ]]; then
-            echo "❌ BLOCKED: Cannot publish pre-release version to production PyPI"
-            echo "   Version: $VERSION"
-            echo "   Contains: dev, alpha, beta, or rc"
-            echo ""
-            echo "💡 Pre-release versions should only be published to TestPyPI"
-            echo "   To publish this version, use:"
-            echo "   ./upload_to_testpypi.sh $VERSION"
-            exit 1
-          fi
-
-          echo "✅ Production version validated: $VERSION"
-
-      - name: Download distribution artifacts
-        uses: actions/download-artifact@v7
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
         with:
-          name: dist-${{ needs.validate-version.outputs.version }}
+          name: dist-fortios
+          path: dist/
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+      - name: Verify TestPyPI publication
+        run: |
+          VERSION="${{ needs.validate-versions.outputs.fortios_version }}"
+          echo "⏳ Waiting 30s for TestPyPI to index hfortix-fortios $VERSION..."
+          sleep 30
+          pip index versions hfortix-fortios --index-url https://test.pypi.org/simple/ || true
+          echo "✅ hfortix-fortios published to TestPyPI"
+
+  publish-testpypi-meta:
+    name: Publish hfortix to TestPyPI
+    runs-on: ubuntu-latest
+    needs: [determine-packages, validate-versions, build, wait-for-ci, publish-testpypi-core, publish-testpypi-fortios]
+    if: |
+      always() &&
+      needs.determine-packages.outputs.publish_meta == 'true' &&
+      (needs.wait-for-ci.result == 'success' || needs.wait-for-ci.result == 'skipped') &&
+      (needs.publish-testpypi-fortios.result == 'success' || needs.publish-testpypi-fortios.result == 'skipped') &&
+      (github.event_name == 'push' || github.event.inputs.environment == 'testpypi')
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Wait for fortios to be indexed
+        if: needs.determine-packages.outputs.publish_fortios == 'true'
+        run: |
+          echo "⏳ Waiting 2 minutes for hfortix-fortios to be fully indexed..."
+          sleep 120
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-meta
+          path: dist/
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+      - name: Verify TestPyPI publication
+        run: |
+          VERSION="${{ needs.validate-versions.outputs.meta_version }}"
+          echo "⏳ Waiting 30s for TestPyPI to index hfortix $VERSION..."
+          sleep 30
+          pip index versions hfortix --index-url https://test.pypi.org/simple/ || true
+          echo "✅ hfortix published to TestPyPI"
+
+  publish-pypi-core:
+    name: Publish hfortix-core to PyPI
+    runs-on: ubuntu-latest
+    needs: [determine-packages, validate-versions, build, publish-testpypi-core]
+    if: |
+      always() &&
+      needs.determine-packages.outputs.publish_core == 'true' &&
+      needs.validate-versions.outputs.core_is_prerelease == 'false' &&
+      needs.publish-testpypi-core.result == 'success' &&
+      (github.event_name == 'push' || github.event.inputs.environment == 'pypi')
+    environment:
+      name: pypi-core
+      url: https://pypi.org/project/hfortix-core/
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-core
           path: dist/
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        # Using trusted publishing (configured in PyPI settings)
-        # Or use: password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Verify PyPI publication
         run: |
-          VERSION=${{ needs.validate-version.outputs.version }}
-          echo "⏳ Waiting for PyPI to process the package..."
+          VERSION="${{ needs.validate-versions.outputs.core_version }}"
+          echo "⏳ Waiting 30s for PyPI to index hfortix-core $VERSION..."
           sleep 30
+          pip index versions hfortix-core || true
+          echo "✅ hfortix-core $VERSION published to PyPI"
 
-          # Try to fetch the package from PyPI
+  publish-pypi-fortios:
+    name: Publish hfortix-fortios to PyPI
+    runs-on: ubuntu-latest
+    needs: [determine-packages, validate-versions, build, publish-testpypi-fortios, publish-pypi-core]
+    if: |
+      always() &&
+      needs.determine-packages.outputs.publish_fortios == 'true' &&
+      needs.validate-versions.outputs.fortios_is_prerelease == 'false' &&
+      needs.publish-testpypi-fortios.result == 'success' &&
+      (needs.publish-pypi-core.result == 'success' || needs.publish-pypi-core.result == 'skipped') &&
+      (github.event_name == 'push' || github.event.inputs.environment == 'pypi')
+    environment:
+      name: pypi-fortios
+      url: https://pypi.org/project/hfortix-fortios/
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Wait for core to be indexed
+        if: needs.determine-packages.outputs.publish_core == 'true'
+        run: |
+          echo "⏳ Waiting 2 minutes for hfortix-core to be fully indexed on PyPI..."
+          sleep 120
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-fortios
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Verify PyPI publication
+        run: |
+          VERSION="${{ needs.validate-versions.outputs.fortios_version }}"
+          echo "⏳ Waiting 30s for PyPI to index hfortix-fortios $VERSION..."
+          sleep 30
+          pip index versions hfortix-fortios || true
+          echo "✅ hfortix-fortios $VERSION published to PyPI"
+
+  publish-pypi-meta:
+    name: Publish hfortix to PyPI
+    runs-on: ubuntu-latest
+    needs: [determine-packages, validate-versions, build, publish-testpypi-meta, publish-pypi-core, publish-pypi-fortios]
+    if: |
+      always() &&
+      needs.determine-packages.outputs.publish_meta == 'true' &&
+      needs.validate-versions.outputs.meta_is_prerelease == 'false' &&
+      needs.publish-testpypi-meta.result == 'success' &&
+      (needs.publish-pypi-fortios.result == 'success' || needs.publish-pypi-fortios.result == 'skipped') &&
+      (github.event_name == 'push' || github.event.inputs.environment == 'pypi')
+    environment:
+      name: pypi-meta
+      url: https://pypi.org/project/hfortix/
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Wait for fortios to be indexed
+        if: needs.determine-packages.outputs.publish_fortios == 'true'
+        run: |
+          echo "⏳ Waiting 2 minutes for hfortix-fortios to be fully indexed on PyPI..."
+          sleep 120
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-meta
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Verify PyPI publication
+        run: |
+          VERSION="${{ needs.validate-versions.outputs.meta_version }}"
+          echo "⏳ Waiting 30s for PyPI to index hfortix $VERSION..."
+          sleep 30
           pip index versions hfortix || true
-          echo "✅ Package published to PyPI"
+          echo "✅ hfortix $VERSION published to PyPI"
 
   create-release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
-    needs: [validate-version, publish-pypi]
-    # Create release even if PyPI publish was skipped (for dev versions)
-    # But only for tag pushes, not manual workflow runs
+    needs: [determine-packages, validate-versions, publish-pypi-core, publish-pypi-fortios, publish-pypi-meta]
     if: |
-      github.event_name == 'push' && (
-        needs.publish-pypi.result == 'success' ||
-        needs.validate-version.outputs.is_prerelease == 'true'
-      )
+      always() &&
+      github.event_name == 'push' &&
+      (needs.publish-pypi-core.result == 'success' || 
+       needs.publish-pypi-fortios.result == 'success' || 
+       needs.publish-pypi-meta.result == 'success' ||
+       needs.validate-versions.outputs.core_is_prerelease == 'true' ||
+       needs.validate-versions.outputs.fortios_is_prerelease == 'true' ||
+       needs.validate-versions.outputs.meta_is_prerelease == 'true')
 
     permissions:
       contents: write
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Extract changelog for version
-        id: changelog
+      - name: Determine release version and title
+        id: release
         run: |
-          VERSION=${{ needs.validate-version.outputs.version }}
-
-          # Extract changelog section for this version
-          awk "/^## \[$VERSION\]/,/^## \[/" CHANGELOG.md | head -n -1 > release-notes.md
-
-          # If empty, use a default message
-          if [[ ! -s release-notes.md ]]; then
-            echo "Release $VERSION" > release-notes.md
-            echo "" >> release-notes.md
-            echo "See [CHANGELOG.md](CHANGELOG.md) for details." >> release-notes.md
+          TAG="${GITHUB_REF#refs/tags/}"
+          
+          if [[ "$TAG" =~ ^v-core- ]]; then
+            VERSION="${{ needs.validate-versions.outputs.core_version }}"
+            TITLE="hfortix-core $VERSION"
+            IS_PRERELEASE="${{ needs.validate-versions.outputs.core_is_prerelease }}"
+          elif [[ "$TAG" =~ ^v-fortios- ]]; then
+            VERSION="${{ needs.validate-versions.outputs.fortios_version }}"
+            TITLE="hfortix-fortios $VERSION"
+            IS_PRERELEASE="${{ needs.validate-versions.outputs.fortios_is_prerelease }}"
+          elif [[ "$TAG" =~ ^v-meta- ]]; then
+            VERSION="${{ needs.validate-versions.outputs.meta_version }}"
+            TITLE="hfortix $VERSION"
+            IS_PRERELEASE="${{ needs.validate-versions.outputs.meta_is_prerelease }}"
+          else
+            # Unified release - use meta version
+            VERSION="${{ needs.validate-versions.outputs.meta_version }}"
+            TITLE="HFortix $VERSION"
+            # Prerelease if ANY package is prerelease
+            if [[ "${{ needs.validate-versions.outputs.core_is_prerelease }}" == "true" ]] || \
+               [[ "${{ needs.validate-versions.outputs.fortios_is_prerelease }}" == "true" ]] || \
+               [[ "${{ needs.validate-versions.outputs.meta_is_prerelease }}" == "true" ]]; then
+              IS_PRERELEASE="true"
+            else
+              IS_PRERELEASE="false"
+            fi
           fi
+          
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "is_prerelease=$IS_PRERELEASE" >> $GITHUB_OUTPUT
 
+      - name: Generate release notes
+        id: notes
+        run: |
+          {
+            echo "## Published Packages"
+            echo ""
+            if [[ "${{ needs.determine-packages.outputs.publish_core }}" == "true" ]]; then
+              echo "- **hfortix-core** ${{ needs.validate-versions.outputs.core_version }}"
+              echo "  - https://pypi.org/project/hfortix-core/${{ needs.validate-versions.outputs.core_version }}/"
+            fi
+            if [[ "${{ needs.determine-packages.outputs.publish_fortios }}" == "true" ]]; then
+              echo "- **hfortix-fortios** ${{ needs.validate-versions.outputs.fortios_version }}"
+              echo "  - https://pypi.org/project/hfortix-fortios/${{ needs.validate-versions.outputs.fortios_version }}/"
+            fi
+            if [[ "${{ needs.determine-packages.outputs.publish_meta }}" == "true" ]]; then
+              echo "- **hfortix** ${{ needs.validate-versions.outputs.meta_version }}"
+              echo "  - https://pypi.org/project/hfortix/${{ needs.validate-versions.outputs.meta_version }}/"
+            fi
+            echo ""
+            echo "## Installation"
+            echo ""
+            echo "\`\`\`bash"
+            echo "pip install hfortix[all]  # All packages"
+            echo "pip install hfortix-fortios  # FortiOS + core"
+            echo "pip install hfortix-core  # Core only"
+            echo "\`\`\`"
+            echo ""
+            echo "See [CHANGELOG.md](CHANGELOG.md) for details."
+          } > release-notes.md
+          
           cat release-notes.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          name: ${{ steps.release.outputs.title }}
           body_path: release-notes.md
           draft: false
-          prerelease: ${{ needs.validate-version.outputs.is_prerelease == 'true' }}
+          prerelease: ${{ steps.release.outputs.is_prerelease }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -322,38 +601,57 @@ jobs:
   notify-success:
     name: Notify Success
     runs-on: ubuntu-latest
-    needs: [validate-version, publish-pypi, create-release]
-    if: always() && needs.publish-pypi.result == 'success'
+    needs: [determine-packages, validate-versions, publish-pypi-core, publish-pypi-fortios, publish-pypi-meta]
+    if: |
+      always() &&
+      (needs.publish-pypi-core.result == 'success' || 
+       needs.publish-pypi-fortios.result == 'success' || 
+       needs.publish-pypi-meta.result == 'success')
 
     steps:
       - name: Success message
         run: |
-          VERSION=${{ needs.validate-version.outputs.version }}
-          echo "🎉 Successfully published hfortix v$VERSION to PyPI!"
-          echo "📦 Package: https://pypi.org/project/hfortix/$VERSION/"
-          echo "📝 Release: https://github.com/${{ github.repository }}/releases/tag/v$VERSION"
+          echo "🎉 Successfully published packages to PyPI!"
+          echo ""
+          if [[ "${{ needs.publish-pypi-core.result }}" == "success" ]]; then
+            echo "✅ hfortix-core ${{ needs.validate-versions.outputs.core_version }}"
+            echo "   https://pypi.org/project/hfortix-core/${{ needs.validate-versions.outputs.core_version }}/"
+          fi
+          if [[ "${{ needs.publish-pypi-fortios.result }}" == "success" ]]; then
+            echo "✅ hfortix-fortios ${{ needs.validate-versions.outputs.fortios_version }}"
+            echo "   https://pypi.org/project/hfortix-fortios/${{ needs.validate-versions.outputs.fortios_version }}/"
+          fi
+          if [[ "${{ needs.publish-pypi-meta.result }}" == "success" ]]; then
+            echo "✅ hfortix ${{ needs.validate-versions.outputs.meta_version }}"
+            echo "   https://pypi.org/project/hfortix/${{ needs.validate-versions.outputs.meta_version }}/"
+          fi
 
-  notify-prerelease-blocked:
-    name: Notify Pre-release Blocked
+  notify-prerelease:
+    name: Notify Pre-release
     runs-on: ubuntu-latest
-    needs: [validate-version, publish-testpypi]
+    needs: [determine-packages, validate-versions, publish-testpypi-core, publish-testpypi-fortios, publish-testpypi-meta]
     if: |
       always() &&
-      needs.validate-version.outputs.is_prerelease == 'true' &&
-      needs.publish-testpypi.result == 'success'
+      (needs.validate-versions.outputs.core_is_prerelease == 'true' ||
+       needs.validate-versions.outputs.fortios_is_prerelease == 'true' ||
+       needs.validate-versions.outputs.meta_is_prerelease == 'true') &&
+      (needs.publish-testpypi-core.result == 'success' ||
+       needs.publish-testpypi-fortios.result == 'success' ||
+       needs.publish-testpypi-meta.result == 'success')
 
     steps:
-      - name: Pre-release blocked message
+      - name: Pre-release message
         run: |
-          VERSION=${{ needs.validate-version.outputs.version }}
-          echo "⚠️  Pre-release version detected: v$VERSION"
+          echo "⚠️  Pre-release versions detected - published to TestPyPI only"
           echo ""
-          echo "✅ Published to TestPyPI: https://test.pypi.org/project/hfortix/$VERSION/"
-          echo "❌ Blocked from production PyPI (contains dev/alpha/beta/rc)"
+          if [[ "${{ needs.publish-testpypi-core.result }}" == "success" ]]; then
+            echo "✅ hfortix-core ${{ needs.validate-versions.outputs.core_version }} (TestPyPI)"
+          fi
+          if [[ "${{ needs.publish-testpypi-fortios.result }}" == "success" ]]; then
+            echo "✅ hfortix-fortios ${{ needs.validate-versions.outputs.fortios_version }} (TestPyPI)"
+          fi
+          if [[ "${{ needs.publish-testpypi-meta.result }}" == "success" ]]; then
+            echo "✅ hfortix ${{ needs.validate-versions.outputs.meta_version }} (TestPyPI)"
+          fi
           echo ""
-          echo "💡 To install this version for testing:"
-          echo "   pip install --index-url https://test.pypi.org/simple/ \\"
-          echo "               --extra-index-url https://pypi.org/simple/ \\"
-          echo "               hfortix==$VERSION"
-          echo ""
-          echo "📝 When ready for production, create a release version (e.g., ${VERSION%.dev*})"
+          echo "❌ Production PyPI blocked (contains dev/alpha/beta/rc)"

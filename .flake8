@@ -14,5 +14,5 @@ exclude =
     .venv,
     venv,
     *.egg-info,
-    X/,
+    .dev/,
     docs/
