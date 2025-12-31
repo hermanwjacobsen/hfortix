@@ -36,11 +36,19 @@ help:
 
 # Installation
 install:
-	pip install -e .
+	@echo "Installing modular packages in editable mode..."
+	pip install -e packages/core
+	pip install -e packages/fortios
+	pip install -e packages/meta
+	@echo "✅ All packages installed!"
 
 install-dev:
-	pip install -e .[dev]
+	@echo "Installing modular packages with dev dependencies..."
+	pip install -e packages/core[dev]
+	pip install -e packages/fortios
+	pip install -e packages/meta
 	pip install pre-commit bandit pytest-httpx
+	@echo "✅ Dev environment ready!"
 
 # Testing
 test:
@@ -53,33 +61,33 @@ test-integration:
 	pytest -v -m integration
 
 test-coverage:
-	pytest --cov=hfortix --cov-report=html --cov-report=term-missing
+	pytest --cov=hfortix_core --cov=hfortix_fortios --cov-report=html --cov-report=term-missing
 
 # Code Quality
 lint:
 	@echo "Running flake8..."
-	flake8 hfortix
+	flake8 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix
 	@echo "Checking black formatting..."
-	black --check --line-length=79 hfortix
+	black --check --line-length=79 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix
 	@echo "Checking isort..."
-	isort --check-only --profile=black --line-length=79 hfortix
+	isort --check-only --profile=black --line-length=79 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix
 	@echo "✅ All linting checks passed!"
 
 format:
 	@echo "Formatting with black..."
-	black --line-length=79 hfortix examples
+	black --line-length=79 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix examples
 	@echo "Sorting imports with isort..."
-	isort --profile=black --line-length=79 hfortix examples
+	isort --profile=black --line-length=79 packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix examples
 	@echo "✅ Code formatted!"
 
 type-check:
 	@echo "Running mypy type checking..."
-	mypy hfortix --ignore-missing-imports
+	mypy packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix --ignore-missing-imports
 	@echo "✅ Type checking complete!"
 
 security:
 	@echo "Running bandit security checks..."
-	bandit -r hfortix -c pyproject.toml
+	bandit -r packages/core/hfortix_core packages/fortios/hfortix_fortios packages/meta/hfortix -c pyproject.toml
 	@echo "✅ Security checks passed!"
 
 # Pre-commit
@@ -96,6 +104,15 @@ clean:
 	rm -rf build/
 	rm -rf dist/
 	rm -rf *.egg-info
+	rm -rf packages/core/build/
+	rm -rf packages/core/dist/
+	rm -rf packages/core/*.egg-info
+	rm -rf packages/fortios/build/
+	rm -rf packages/fortios/dist/
+	rm -rf packages/fortios/*.egg-info
+	rm -rf packages/meta/build/
+	rm -rf packages/meta/dist/
+	rm -rf packages/meta/*.egg-info
 	rm -rf .pytest_cache/
 	rm -rf .mypy_cache/
 	rm -rf htmlcov/
@@ -107,20 +124,38 @@ clean:
 
 # Building and Publishing
 build: clean
-	@echo "Building distribution packages..."
-	python -m build
-	@echo "✅ Build complete! Packages in dist/"
+	@echo "Building all modular packages..."
+	@echo "Building hfortix-core..."
+	cd packages/core && python -m build
+	@echo "Building hfortix-fortios..."
+	cd packages/fortios && python -m build
+	@echo "Building hfortix (meta-package)..."
+	cd packages/meta && python -m build
+	@echo "Copying all dist files to root dist/..."
+	mkdir -p dist
+	cp packages/core/dist/* dist/
+	cp packages/fortios/dist/* dist/
+	cp packages/meta/dist/* dist/
+	@echo "✅ Build complete! All packages in dist/"
 
 publish: build
 	@echo "Publishing to PyPI..."
-	@echo "⚠️  Make sure you have set up your PyPI credentials!"
-	python -m twine upload dist/*
-	@echo "✅ Published to PyPI!"
+	@echo "⚠️  Publishing in order: core → fortios → meta"
+	@echo "Publishing hfortix-core..."
+	python -m twine upload dist/hfortix_core-*
+	@echo "Publishing hfortix-fortios..."
+	python -m twine upload dist/hfortix_fortios-*
+	@echo "Publishing hfortix (meta)..."
+	python -m twine upload dist/hfortix-*
+	@echo "✅ All packages published to PyPI!"
 
 publish-test: build
 	@echo "Publishing to TestPyPI..."
-	python -m twine upload --repository testpypi dist/*
-	@echo "✅ Published to TestPyPI!"
+	@echo "⚠️  Publishing in order: core → fortios → meta"
+	python -m twine upload --repository testpypi dist/hfortix_core-*
+	python -m twine upload --repository testpypi dist/hfortix_fortios-*
+	python -m twine upload --repository testpypi dist/hfortix-*
+	@echo "✅ All packages published to TestPyPI!"
 
 # Documentation (placeholder for future)
 docs:

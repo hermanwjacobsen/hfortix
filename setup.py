@@ -1,39 +1,33 @@
-"""Setup configuration for HFortix - Python SDK for Fortinet Products."""
+"""Setup configuration for HFortix - Meta-package for Fortinet Products.
+
+This is a meta-package that installs all HFortix components.
+The actual implementation is in the modular packages:
+- hfortix-core: Core exceptions and HTTP framework
+- hfortix-fortios: FortiOS/FortiGate client
+"""
 
 from pathlib import Path
 
-from setuptools import find_packages, setup
+from setuptools import setup
 
 # Read the README file
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
-# Read requirements
-requirements = []
-with open("requirements.txt") as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#"):
-            requirements.append(line)
-
 setup(
     name="hfortix",
-    version="0.3.39",
+    version="0.4.0.dev1",
     author="Herman W. Jacobsen",
     author_email="herman@wjacobsen.fo",
     description=(
-        "HFortix - Python SDK for Fortinet products "
+        "Meta-package for HFortix - Python SDK for Fortinet products "
         "(FortiOS, FortiManager, FortiAnalyzer)"
     ),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/hermanwjacobsen/hfortix",
-    packages=find_packages(exclude=["X", "X.*", "Tests", "Tests.*"]),
-    # The project is packaged as the canonical `hfortix` namespace package.
-    # No legacy top-level modules are shipped.
-    package_data={
-        "hfortix": ["py.typed"],
-    },
+    # Meta-package: no code, just dependencies
+    packages=[],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -46,10 +40,14 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Operating System :: OS Independent",
-        "Typing :: Typed",  # Indicate type hints are available
+        "Typing :: Typed",
     ],
     python_requires=">=3.10",
-    install_requires=requirements,
+    # Meta-package just depends on the actual packages
+    install_requires=[
+        "hfortix-core>=0.4.0.dev1",
+        "hfortix-fortios>=0.4.0.dev1",
+    ],
     extras_require={
         "dev": [
             "pytest>=7.4.0",

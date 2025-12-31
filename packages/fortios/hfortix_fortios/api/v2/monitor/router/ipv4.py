@@ -1,0 +1,104 @@
+"""
+FortiOS MONITOR - Monitor Router Ipv4
+
+Monitoring endpoint for monitor router ipv4 data.
+
+API Endpoints:
+    GET    /monitor/router/ipv4
+
+Example Usage:
+    >>> from hfortix_fortios import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>>
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.router.ipv4.get()
+    >>>
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.router.ipv4.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Union
+
+if TYPE_CHECKING:
+    from collections.abc import Coroutine
+
+    from hfortix_core.http.interface import IHTTPClient
+
+
+class Ipv4:
+    """
+    Ipv4 Operations.
+
+    Provides read-only access for FortiOS ipv4 data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
+
+    def __init__(self, client: "IHTTPClient"):
+        """
+        Initialize Ipv4 endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
+        self._client = client
+
+    def get(
+        self,
+        operator: str | None = None,
+        ip_mask: str | None = None,
+        gateway: str | None = None,
+        type: str | None = None,
+        origin: str | None = None,
+        interface: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
+        """
+        List all active IPv4 routing table entries.
+
+        Args:
+            operator: Filter logic [*and|or]. (optional)
+            ip_mask: Filter: IP/netmask. (optional)
+            gateway: Filter: gateway. (optional)
+            type: Filter: route type. (optional)
+            origin: Filter: router origin. (optional)
+            interface: Filter: interface name. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+
+        Returns:
+            Dictionary containing API response
+
+        Example:
+            >>> fgt.api.monitor.router.ipv4.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        if operator is not None:
+            params["operator"] = operator
+        if ip_mask is not None:
+            params["ip_mask"] = ip_mask
+        if gateway is not None:
+            params["gateway"] = gateway
+        if type is not None:
+            params["type"] = type
+        if origin is not None:
+            params["origin"] = origin
+        if interface is not None:
+            params["interface"] = interface
+        params.update(kwargs)
+        return self._client.get("monitor", "/router/ipv4", params=params)

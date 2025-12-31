@@ -1,53 +1,45 @@
 # HFortix Documentation
 
-Complete reference documentation for the HFortix FortiOS Python SDK.
+Complete reference documentation for the HFortix Python SDK for Fortinet products.
 
-## Quick Start
+> **⚠️ Version 0.4.0 - BETA STATUS**: All packages functional and production-ready, but remain in beta until v1.0 with comprehensive unit tests.
+
+## 📚 Documentation by Package
+
+### 🔷 Core Framework (`hfortix-core`)
+Foundation for all HFortix packages - exceptions, HTTP client, retry logic.
+
+- **[Core Documentation](core/README.md)** - Core package overview and guides
+
+### 🔥 FortiOS/FortiGate (`hfortix-fortios`)
+Complete FortiOS 7.6.5 API client with 750+ endpoints and convenience wrappers.
+
+- **[FortiOS Documentation](fortios/README.md)** - FortiOS package overview and guides
+
+## 🚀 Quick Start
 
 - **[Quick Start Guide](../QUICKSTART.md)** - Get started in 5 minutes
+- **[Main README](../README.md)** - Project overview and installation
 
-## User Guides
+## 🔒 Security & Best Practices
 
-### Getting Started
-- **[SECURITY.md](SECURITY.md)** - Security best practices and audit results
-- **[FILTERING_GUIDE.md](FILTERING_GUIDE.md)** - Complete guide to filtering API queries with 50+ examples
-- **[ASYNC_GUIDE.md](ASYNC_GUIDE.md)** - Async/await support for concurrent operations
-- **[PERFORMANCE_TESTING.md](PERFORMANCE_TESTING.md)** - Test your FortiGate and optimize connection settings
+- **[SECURITY.md](SECURITY.md)** - Security best practices, audit results, and compliance guidance
 
-### Feature Guides
+## 📖 Additional Resources
 
-#### Convenience Wrappers
-- **[wrappers/CONVENIENCE_WRAPPERS.md](wrappers/CONVENIENCE_WRAPPERS.md)** - **START HERE:** Overview of all convenience wrappers with common patterns and examples
-- **[wrappers/FIREWALL_POLICY_WRAPPER.md](wrappers/FIREWALL_POLICY_WRAPPER.md)** - Detailed firewall policy API reference (150+ parameters) (v0.3.17)
-- **[wrappers/SHAPER_WRAPPERS.md](wrappers/SHAPER_WRAPPERS.md)** - Detailed traffic shaper API reference (per-IP and traffic shapers) (v0.3.38)
-- **[wrappers/SCHEDULE_WRAPPERS.md](wrappers/SCHEDULE_WRAPPERS.md)** - Schedule management reference (onetime, recurring, groups) (v0.3.34)
-- **[ERROR_HANDLING_CONFIG.md](ERROR_HANDLING_CONFIG.md)** - Configurable error handling for convenience wrappers (v0.3.24)
-
-#### Framework Features
-- **[VALIDATION_GUIDE.md](VALIDATION_GUIDE.md)** - Using the validation framework (832 validators) (v0.3.21)
-- **[BUILDER_PATTERN_GUIDE.md](BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details (v0.3.21)
-- **[ASYNC_GUIDE.md](ASYNC_GUIDE.md)** - Async/await patterns and best practices
-- **[FILTERING_GUIDE.md](FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
-- **[PERFORMANCE_TESTING.md](PERFORMANCE_TESTING.md)** - Performance testing and optimization
-
-## API Reference
-
-- **[ENDPOINT_METHODS.md](ENDPOINT_METHODS.md)** - Method reference for all 857 endpoints
-- **[API Coverage](../API_COVERAGE.md)** - Complete API coverage status (750+ endpoints)
-
-## Additional Resources
-
-- **[Main README](../README.md)** - Project overview
 - **[Changelog](../CHANGELOG.md)** - Complete version history
 - **[Examples](../examples/)** - Working code samples
+- **[Archive](archive/)** - Historical/deprecated documentation
 
-## What's New in v0.3.38
+## 📦 Package Status
 
-- **Traffic Shaper Wrappers**: Production-ready wrappers for traffic shaping
-  - Per-IP shaper: Bandwidth and session limits per source IP
-  - Traffic shaper: Shared pools with guaranteed/maximum bandwidth
-  - Full parameter support with comprehensive validation
-- **Service Wrappers**: Complete service management (v0.3.37)
+| Package | Version | Status | PyPI Published |
+|---------|---------|--------|----------------|
+| `hfortix-core` | 0.4.0 | Beta | ✅ Yes |
+| `hfortix-fortios` | 0.4.0 | Beta | ✅ Yes |
+| `hfortix` (meta) | 0.4.0 | Beta | ✅ Yes |
+
+**Note**: All packages are in BETA status until version 1.0.0 with comprehensive unit test coverage.
   - Custom services, service categories, service groups
   - Full CRUD operations with rename and clone support
 - **Consolidated Documentation**: New comprehensive convenience wrappers guide

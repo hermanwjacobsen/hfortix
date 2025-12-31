@@ -5,8 +5,15 @@
 ### From PyPI (Recommended)
 
 ```bash
+# Install everything (meta-package)
 pip install hfortix
+
+# Or install only what you need (modular packages - v0.4.0+)
+pip install hfortix-fortios  # FortiOS/FortiGate client only
+pip install hfortix-core     # Core exceptions and HTTP framework only
 ```
+
+**Note:** Version 0.4.0 introduces modular packages for flexible installation.
 
 ### From Source
 
@@ -24,9 +31,14 @@ pip install -e .
 from hfortix import FortiOS
 ```
 
-### Alternative: Direct Module Import
+### Alternative: Direct Module Import (v0.4.0+)
 
 ```python
+# New modular package imports (v0.4.0+)
+from hfortix_fortios import FortiOS
+from hfortix_core import FortinetError, APIError
+
+# Legacy imports (still supported via hfortix meta-package)
 from hfortix.FortiOS import FortiOS
 ```
 
@@ -619,6 +631,129 @@ create_policy_validated(
 - Body and query parameter constants
 
 **See [docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md) for complete validation documentation.**
+
+### Convenience Wrappers (NEW in v0.3.39!)
+
+Production-ready wrappers for common firewall objects with comprehensive validation:
+
+#### Service Management Wrappers
+
+```python
+# Custom Services (TCP/UDP/ICMP/IP)
+service = fgt.firewall.service_custom.create(
+    name="HTTPS-8443",
+    tcp_portrange="8443",
+    protocol="TCP/UDP/SCTP"
+)
+
+# Check if service exists
+if fgt.firewall.service_custom.exists("HTTPS-8443"):
+    # Get service by name
+    service = fgt.firewall.service_custom.get_by_name("HTTPS-8443")
+    
+    # Update service
+    fgt.firewall.service_custom.update(
+        name="HTTPS-8443",
+        comment="Custom HTTPS port"
+    )
+
+# Service Categories
+category = fgt.firewall.service_category.create(
+    name="Web-Services",
+    comment="HTTP/HTTPS services"
+)
+
+# Service Groups with member management
+group = fgt.firewall.service_group.create(
+    name="Web-Ports",
+    member=["HTTP", "HTTPS"]
+)
+
+# Add/remove members
+fgt.firewall.service_group.add_member("Web-Ports", "HTTPS-8443")
+fgt.firewall.service_group.remove_member("Web-Ports", "HTTP")
+
+# Rename service (updates all references)
+fgt.firewall.service_custom.rename("HTTPS-8443", "HTTPS-Custom")
+```
+
+#### Schedule Wrappers
+
+```python
+# One-time schedule
+onetime = fgt.firewall.schedule_onetime.create(
+    name="Maintenance-Window",
+    start="2025-12-31 22:00",
+    end="2026-01-01 02:00"
+)
+
+# Recurring schedule (daily/weekly)
+recurring = fgt.firewall.schedule_recurring.create(
+    name="Business-Hours",
+    day=["monday", "tuesday", "wednesday", "thursday", "friday"],
+    start="08:00",
+    end="17:00"
+)
+
+# Schedule groups
+group = fgt.firewall.schedule_group.create(
+    name="After-Hours",
+    member=["Maintenance-Window"]
+)
+
+# Clone schedule with modifications
+fgt.firewall.schedule_recurring.clone(
+    "Business-Hours",
+    "Weekend-Hours",
+    day=["saturday", "sunday"]
+)
+```
+
+#### IP/MAC Binding
+
+```python
+# Create IP/MAC binding entry
+binding = fgt.firewall.ipmacbinding_table.create(
+    ip="10.0.1.100",
+    mac="00:11:22:33:44:55",
+    name="Server-01"
+)
+
+# Check and update
+if fgt.firewall.ipmacbinding_table.exists("10.0.1.100"):
+    fgt.firewall.ipmacbinding_table.enable("10.0.1.100")
+
+# Configure binding settings
+fgt.firewall.ipmacbinding_setting.update(
+    bindthroughfw="enable",
+    undefinedhost="block"
+)
+```
+
+#### Traffic Shaping
+
+```python
+# Per-IP shaper (bandwidth per source IP)
+per_ip = fgt.firewall.shaper_per_ip.create(
+    name="User-Limit",
+    max_bandwidth=10000,  # 10 Mbps
+    bandwidth_unit="kbps"
+)
+
+# Traffic shaper (shared bandwidth)
+shaper = fgt.firewall.traffic_shaper.create(
+    name="WAN-Shaper",
+    guaranteed_bandwidth=50000,  # 50 Mbps guaranteed
+    maximum_bandwidth=100000,    # 100 Mbps max
+    bandwidth_unit="kbps",
+    priority="high"
+)
+```
+
+**See detailed documentation:**
+- [Convenience Wrappers Guide](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/wrappers/CONVENIENCE_WRAPPERS.md)
+- [Schedule Wrappers](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/wrappers/SCHEDULE_WRAPPERS.md)
+- [Shaper Wrappers](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/wrappers/SHAPER_WRAPPERS.md)
 
 ### Builder Pattern (NEW in v0.3.21!)
 

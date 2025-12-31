@@ -1,15 +1,16 @@
+# Meta-package manifest - includes documentation only
+# The actual code is in hfortix-core and hfortix-fortios packages
+
 # Include documentation files
 include README.md
 # include LICENSE  # Exclude LICENSE to avoid metadata issues
 include QUICKSTART.md
-# include CONTRIBUTING.md  # Moved to X/ development workspace
 include CHANGELOG.md
-include API_COVERAGE.md
-# include DEVELOPMENT.md  # Moved to X/ development workspace
-include requirements.txt
 
 # Exclude development and test files
 global-exclude __pycache__/*
 global-exclude *.py[cod]
 prune X
 prune Tests
+prune examples
+prune docs

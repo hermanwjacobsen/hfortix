@@ -9,7 +9,15 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ## 🎯 Current Status
 
-**⚠️ BETA STATUS**: All implementations are functional but in beta. APIs work correctly but may have incomplete parameter coverage or undiscovered edge cases.
+> **⚠️ BETA STATUS - Version 0.4.0**
+>
+> - **Current Version**: 0.4.0 (Published to PyPI)
+> - **Major Release**: Modular package architecture (breaking changes from 0.3.x)
+> - **Install**: `pip install hfortix[fortios]` or `pip install hfortix-fortios`
+>
+> All implementations are functional but in **BETA**. APIs work correctly but may have incomplete
+> parameter coverage or undiscovered edge cases. All packages remain in beta until version 1.0.0
+> with comprehensive unit test coverage.
 
 **FortiOS 7.6.5 Coverage (December 23, 2025):**
 
@@ -47,14 +55,65 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.38 - December 29, 2025):**
+**Latest Features (v0.4.0 - December 31, 2025):**
+
+> **⚠️ BETA STATUS - Production-ready but pending v1.0 comprehensive testing**
+>
+> Version 0.4.0 introduces modular package architecture. This is a MAJOR release with breaking changes.
+> If upgrading from 0.3.x, see migration guide below.
+>
+> **All packages remain in BETA** until v1.0 with comprehensive unit test coverage.
+
+- 📦 **Modular Package Structure**: Major architectural improvement with split packages
+  - **hfortix-core**: Core exceptions and HTTP client framework (sync/async)
+  - **hfortix-fortios**: FortiOS/FortiGate client, API endpoints, and firewall helpers
+  - **hfortix** (meta-package): Minimal core install, optional extras for products
+  - New import options: `from hfortix_fortios import FortiOS`
+  - Install options:
+    - `pip install hfortix` - Core only (minimal)
+    - `pip install hfortix[fortios]` - Core + FortiOS
+    - `pip install hfortix[all]` - Everything
+    - `pip install hfortix-fortios` - Just FortiOS (includes core)
+  - Development version - will be published as 0.4.0 when ready
+
+**Features from v0.3.39 (December 29, 2025):**
+
+- 🎨 **Complete Service Management Wrappers**: Production-ready wrappers for firewall services
+  - **Service Category** (`fgt.firewall.service_category`) - Organize services into categories
+  - **Custom Services** (`fgt.firewall.service_custom`) - TCP/UDP/ICMP/IP services with 30+ parameters
+  - **Service Groups** (`fgt.firewall.service_group`) - Group services with member management
+  - Full parameter support with comprehensive validation
+  - Consistent interface: `.create()`, `.get()`, `.update()`, `.delete()`, `.exists()`, `.get_by_name()`, `.rename()`
+  - Advanced features: `.add_member()`, `.remove_member()` for groups
+  - See `docs/fortios/wrappers/CONVENIENCE_WRAPPERS.md` for complete guide and examples
+
+- 📅 **Enhanced Schedule Wrappers**: Production-ready schedule management
+  - **Schedule Onetime** (`fgt.firewall.schedule_onetime`) - One-time schedules with expiration
+  - **Schedule Recurring** (`fgt.firewall.schedule_recurring`) - Daily/weekly recurring schedules
+  - **Schedule Groups** (`fgt.firewall.schedule_group`) - Group schedules with member management
+  - Full CRUD operations with validation
+  - Convenience methods: `.clone()`, `.rename()`, `.add_member()`, `.remove_member()`
+  - See `docs/fortios/wrappers/SCHEDULE_WRAPPERS.md` for complete guide
+
+- 🔗 **IP/MAC Binding Wrappers**: Complete IP/MAC binding management
+  - **Binding Table** (`fgt.firewall.ipmacbinding_table`) - Manage IP/MAC binding entries
+  - **Binding Settings** (`fgt.firewall.ipmacbinding_setting`) - Configure binding behavior
+  - Full validation: IP addresses, MAC addresses, sequence numbers
+  - Convenience methods: `.enable()`, `.disable()`, `.exists()`
+
+- 🚀 **Automated Release Workflow**: New `make release` target for streamlined releases
+  - Automated version bumping and CHANGELOG updates
+  - Runs all pre-release checks (formatting, linting, type-checking, security)
+  - Creates git commit and tag with automatic GitHub push prompt
+
+**Features from v0.3.38 (December 29, 2025):**
 
 - 🚦 **Traffic Shaper Convenience Wrappers**: Production-ready wrappers for traffic shaping
   - **Per-IP Shaper** (`fgt.firewall.shaper_per_ip`) - Bandwidth and session limits per source IP
   - **Traffic Shaper** (`fgt.firewall.traffic_shaper`) - Shared traffic shaper with guaranteed/maximum bandwidth
   - Full parameter support with comprehensive validation
   - ⚠️ **Important:** Rename operations not supported (FortiOS API limitation - name is immutable primary key)
-  - See `docs/SHAPER_WRAPPERS.md` for complete guide and examples
+  - See `docs/fortios/wrappers/SHAPER_WRAPPERS.md` for complete guide and examples
   - Comprehensive test suite: `X/pytests/firewall/shaper.py` (20 tests passing)
 
 **Features from v0.3.34 (December 25, 2025):**
@@ -133,7 +192,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Validates connection pool settings automatically
   - Tests real-world API endpoints and identifies device performance profile
   - Provides device-specific recommendations for optimal settings
-  - See [docs/PERFORMANCE_TESTING.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/PERFORMANCE_TESTING.md) for complete guide
+  - See [docs/fortios/PERFORMANCE_TESTING.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/fortios/PERFORMANCE_TESTING.md) for complete guide
 - 🔧 **Optimized Connection Pool Defaults**: Conservative defaults based on real-world testing
   - `max_connections`: 10 (down from 100)
   - `max_keepalive_connections`: 5 (down from 20)
@@ -145,7 +204,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Enable with `track_operations=True` parameter
   - Get detailed logs via `fgt.get_operations()`
 - ✨ **Comprehensive Filter Documentation**: Complete guide to FortiOS filtering
-  - New [docs/FILTERING_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/FILTERING_GUIDE.md) with 50+ examples
+  - New [docs/fortios/FILTERING_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/fortios/FILTERING_GUIDE.md) with 50+ examples
   - All FortiOS filter operators documented: `==`, `!=`, `=@`, `!@`, `<`, `<=`, `>`, `>=`
 - ✨ **Username/Password Authentication**: Alternative to API tokens
   - Session-based authentication for temporary access
@@ -159,7 +218,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Single `FortiOS` class works in both sync and async modes
   - All 750+ API methods support async with `mode="async"` parameter
   - All helper methods (`.exists()`) work transparently in both modes
-  - See [docs/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md) for complete guide
+  - See [docs/fortios/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/fortios/ASYNC_GUIDE.md) for complete guide
 - ✨ **288 Helper Methods**: `.exists()` methods on CMDB endpoints
   - Check object existence without exceptions
   - Returns `True`/`False` instead of raising exceptions
@@ -239,18 +298,18 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 ### Feature Guides
 
 #### Convenience Wrappers (Start Here!)
-- **[docs/wrappers/CONVENIENCE_WRAPPERS.md](docs/wrappers/CONVENIENCE_WRAPPERS.md)** - **Overview of all convenience wrappers** (policies, shapers, schedules, services) with common patterns and examples
-- **[docs/wrappers/FIREWALL_POLICY_WRAPPER.md](docs/wrappers/FIREWALL_POLICY_WRAPPER.md)** - Detailed firewall policy API reference (150+ parameters)
-- **[docs/wrappers/SHAPER_WRAPPERS.md](docs/wrappers/SHAPER_WRAPPERS.md)** - Detailed traffic shaper API reference (per-IP and traffic shapers)
-- **[docs/wrappers/SCHEDULE_WRAPPERS.md](docs/wrappers/SCHEDULE_WRAPPERS.md)** - Schedule management reference (onetime, recurring, groups)
-- **[docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md)** - Configurable error handling for wrappers
+- **[docs/fortios/wrappers/CONVENIENCE_WRAPPERS.md](docs/fortios/wrappers/CONVENIENCE_WRAPPERS.md)** - **Overview of all convenience wrappers** (policies, shapers, schedules, services) with common patterns and examples
+- **[docs/fortios/wrappers/FIREWALL_POLICY_WRAPPER.md](docs/fortios/wrappers/FIREWALL_POLICY_WRAPPER.md)** - Detailed firewall policy API reference (150+ parameters)
+- **[docs/fortios/wrappers/SHAPER_WRAPPERS.md](docs/fortios/wrappers/SHAPER_WRAPPERS.md)** - Detailed traffic shaper API reference (per-IP and traffic shapers)
+- **[docs/fortios/wrappers/SCHEDULE_WRAPPERS.md](docs/fortios/wrappers/SCHEDULE_WRAPPERS.md)** - Schedule management reference (onetime, recurring, groups)
+- **[docs/fortios/ERROR_HANDLING_CONFIG.md](docs/fortios/ERROR_HANDLING_CONFIG.md)** - Configurable error handling for wrappers
 
 #### Framework & Advanced Features
-- **[docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md)** - Using the validation framework (832 validators)
-- **[docs/BUILDER_PATTERN_GUIDE.md](docs/BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details
-- **[docs/ASYNC_GUIDE.md](docs/ASYNC_GUIDE.md)** - Async/await patterns and best practices
-- **[docs/FILTERING_GUIDE.md](docs/FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
-- **[docs/PERFORMANCE_TESTING.md](docs/PERFORMANCE_TESTING.md)** - Performance testing and optimization
+- **[docs/fortios/VALIDATION_GUIDE.md](docs/fortios/VALIDATION_GUIDE.md)** - Using the validation framework (832 validators)
+- **[docs/archive/BUILDER_PATTERN_GUIDE.md](docs/archive/BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details
+- **[docs/fortios/ASYNC_GUIDE.md](docs/fortios/ASYNC_GUIDE.md)** - Async/await patterns and best practices
+- **[docs/fortios/FILTERING_GUIDE.md](docs/fortios/FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
+- **[docs/fortios/PERFORMANCE_TESTING.md](docs/fortios/PERFORMANCE_TESTING.md)** - Performance testing and optimization
 
 > **⚡ Performance Note**: When using convenience wrappers like `fgt.firewall.policy.exists()`:
 >
@@ -260,7 +319,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ### API Reference
 
-- **[docs/ENDPOINT_METHODS.md](docs/ENDPOINT_METHODS.md)** - Complete API method reference
+- **[docs/fortios/ENDPOINT_METHODS.md](docs/fortios/ENDPOINT_METHODS.md)** - Complete API method reference
 - **[API_COVERAGE.md](API_COVERAGE.md)** - Detailed API implementation status
 - **[CHANGELOG.md](CHANGELOG.md)** - Complete version history
 
@@ -339,8 +398,15 @@ results = quick_test("192.168.1.99", "your_token", verify=False)
 ### From PyPI (Recommended)
 
 ```bash
+# Install everything (meta-package)
 pip install hfortix
+
+# Or install only what you need (modular packages)
+pip install hfortix-fortios  # FortiOS/FortiGate client only
+pip install hfortix-core     # Core exceptions and HTTP framework only
 ```
+
+**Note:** Version 0.4.0 introduces modular packages (`hfortix-core`, `hfortix-fortios`, `hfortix`) for flexible installation. The `hfortix` meta-package installs everything and provides full backward compatibility with earlier versions.
 
 ## 📖 Quick Start
 
@@ -1001,7 +1067,7 @@ asyncio.run(main())
 - Use async mode for bulk operations or high concurrency
 - Always use context managers for resource cleanup
 - Limit concurrency with semaphores if needed
-- See [docs/ASYNC_GUIDE.md](docs/ASYNC_GUIDE.md) for advanced patterns, migration tips, and troubleshooting
+- See [docs/fortios/ASYNC_GUIDE.md](docs/fortios/ASYNC_GUIDE.md) for advanced patterns, migration tips, and troubleshooting
 
 ---
 
@@ -1328,8 +1394,8 @@ for user in users:
 
 **📚 Complete Documentation:**
 
-- See [docs/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ENDPOINT_METHODS.md) for complete API method reference
-- See [docs/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md) for async/await usage patterns
+- See [docs/fortios/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/fortios/ENDPOINT_METHODS.md) for complete API method reference
+- See [docs/fortios/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/fortios/ASYNC_GUIDE.md) for async/await usage patterns
 
 ## Exception Hierarchy
 

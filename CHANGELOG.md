@@ -7,9 +7,114 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-12-31
+
+### ⚠️ BREAKING CHANGES
+
+This is a MAJOR release with breaking changes. The monolithic package has been split into modular packages.
+
+**Migration Guide:**
+
+- **Old (0.3.x)**: `pip install hfortix` → Everything in one package
+- **New (0.4.0)**: Choose your installation:
+  - `pip install hfortix[fortios]` → Core + FortiOS (recommended for existing users)
+  - `pip install hfortix-fortios` → Just FortiOS (includes core)
+  - `pip install hfortix` → Core only (minimal)
+
+**Import Changes:**
+- Old: `from hfortix import FortiOS` ✅ Still works with `hfortix[fortios]`
+- New: `from hfortix_fortios import FortiOS` ✅ Explicit package imports
+
+### Added
+
+- **Modular Package Structure**: Split monolithic package into focused components
+  - `hfortix-core`: Core exceptions (FortinetError, APIError, etc.) and HTTP client framework (sync/async)
+  - `hfortix-fortios`: FortiOS/FortiGate client, API endpoints, and firewall helpers
+  - `hfortix` (meta-package): Convenient installation with extras for all products
+  - See `X/PACKAGE_SPLIT_PLAN.md` for architecture details
+
+- **Documentation Restructuring**: Reorganized docs to align with modular architecture
+  - Created `docs/core/` for hfortix-core documentation
+  - Created `docs/fortios/` for hfortix-fortios documentation
+  - Moved all FortiOS-specific guides to `docs/fortios/`
+  - Moved wrapper docs to `docs/fortios/wrappers/`
+  - Created `docs/archive/` for historical documentation
+  - Updated `docs/README.md` with comprehensive navigation index
+
+### Changed
+
+- **Installation Options**: Users can now install only what they need
+  - `pip install hfortix` - Core only (minimal installation)
+  - `pip install hfortix[fortios]` - Core + FortiOS
+  - `pip install hfortix[all]` - Everything (all products, future-ready)
+  - `pip install hfortix-fortios` - FortiOS client only (includes core as dependency)
+  - `pip install hfortix-core` - Core framework only
+
+- **Import Patterns**: New import options available (old imports still work via meta-package)
+  - New: `from hfortix_fortios import FortiOS`
+  - New: `from hfortix_core import FortinetError, APIError`
+  - Legacy: `from hfortix import FortiOS` (still supported when fortios extra is installed)
+  - Legacy: `from hfortix.FortiOS import FortiOS` (still supported when fortios extra is installed)
+
+### Breaking Changes
+
+- **Package Split**: `hfortix` is now a minimal meta-package (core only by default)
+  - For FortiOS: Install `hfortix[fortios]` or `hfortix-fortios`
+  - For everything: Install `hfortix[all]`
+- **Import Changes**: When using minimal install, FortiOS imports not available
+  - Install `hfortix[fortios]` or `hfortix-fortios` for FortiOS functionality
+
+### Migration Guide
+
+**For backward compatibility (everything installed):**
+```bash
+pip install hfortix[all]  # Installs core + all products (fortios, etc.)
+# OR
+pip install hfortix-fortios  # Just FortiOS (includes core)
+```
+
+**For minimal installs:**
+```bash
+pip install hfortix  # Core only (exceptions, HTTP framework)
+pip install hfortix[fortios]  # Core + FortiOS
+```
+
+### Developer Notes
+
+- **Version**: 0.4.0-dev1 (development version, not published to PyPI)
+- **PyPI Status**: Latest published version remains 0.3.39
+- **Release Plan**: Will be published as 0.4.0 when ready
+- **Testing**: All existing tests pass with new package structure
+
 ## [0.3.39] - 2025-12-29
 
 ### Added
+
+- **Complete Service Management Wrappers**: Production-ready wrappers for firewall services
+  - `ServiceCategory`: Organize services into categories via `fgt.firewall.service_category`
+  - `ServiceCustom`: TCP/UDP/ICMP/IP services with 30+ parameters via `fgt.firewall.service_custom`
+  - `ServiceGroup`: Group services with member management via `fgt.firewall.service_group`
+  - Full parameter support with comprehensive validation (name length, port ranges, protocol values)
+  - Consistent interface: `.create()`, `.get()`, `.update()`, `.delete()`, `.exists()`, `.get_by_name()`, `.rename()`
+  - Advanced features: `.add_member()`, `.remove_member()` for groups
+  - Complete test suite with 30+ tests passing
+  - Documentation: `docs/wrappers/CONVENIENCE_WRAPPERS.md`
+
+- **Enhanced Schedule Wrappers**: Production-ready schedule management
+  - `ScheduleOnetime`: One-time schedules with expiration via `fgt.firewall.schedule_onetime`
+  - `ScheduleRecurring`: Daily/weekly recurring schedules via `fgt.firewall.schedule_recurring`
+  - `ScheduleGroup`: Group schedules with member management via `fgt.firewall.schedule_group`
+  - Full CRUD operations with parameter validation
+  - Convenience methods: `.clone()`, `.rename()`, `.add_member()`, `.remove_member()`
+  - Response helpers: `get_mkey()`, `is_success()`, `get_results()`
+  - Documentation: `docs/wrappers/SCHEDULE_WRAPPERS.md`
+
+- **IP/MAC Binding Wrappers**: Complete IP/MAC binding management
+  - `IpMacBindingTable`: Manage IP/MAC binding entries via `fgt.firewall.ipmacbinding_table`
+  - `IpMacBindingSetting`: Configure binding behavior via `fgt.firewall.ipmacbinding_setting`
+  - Full validation: IP addresses, MAC addresses, sequence numbers
+  - Convenience methods: `.enable()`, `.disable()`, `.exists()`
+  - Complete test suite: 19 tests passing
 
 - **Automated Release Workflow**: New `make release` target for streamlined releases
   - Automated version bumping (auto-increment or manual specification)
