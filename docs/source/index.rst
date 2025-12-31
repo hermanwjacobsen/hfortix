@@ -36,20 +36,6 @@ HFortix - Python SDK for Fortinet Products
       Foundation HTTP client and exception handling.
       **Available Now** - v0.4.0 Beta
 
-   .. grid-item-card:: 🎯 FortiManager
-      :link: fortimanager/index
-      :link-type: doc
-
-      Centralized management platform client.
-      **Coming Soon**
-
-   .. grid-item-card:: 📊 FortiAnalyzer
-      :link: fortianalyzer/index
-      :link-type: doc
-
-      Analytics and logging platform client.
-      **Coming Soon**
-
 .. warning::
    **BETA STATUS - Version 0.4.0**
    
@@ -128,19 +114,11 @@ Documentation
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started
 
-   getting-started/installation
    getting-started/overview
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Packages
-
-   fortios/index
+   getting-started/installation
    core/index
-   fortimanager/index
-   fortianalyzer/index
+   fortios/index
 
 .. toctree::
    :maxdepth: 1
@@ -219,14 +197,6 @@ Package Status
      - 0.4.0
      - Beta
      - FortiOS/FortiGate API client (750+ endpoints)
-   * - ``hfortix-fortimanager``
-     - -
-     - Coming Soon
-     - FortiManager centralized management
-   * - ``hfortix-fortianalyzer``
-     - -
-     - Coming Soon
-     - FortiAnalyzer analytics and logging
 
 Community & Support
 -------------------
