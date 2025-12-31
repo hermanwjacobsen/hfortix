@@ -275,7 +275,7 @@ jobs:
 
       - name: Upload build artifacts
         if: matrix.publish == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: dist-${{ matrix.package }}
           path: ${{ matrix.path }}/dist/
