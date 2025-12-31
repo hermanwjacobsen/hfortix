@@ -3,165 +3,120 @@ CMDB API Reference
 
 Configuration Management Database - Device configuration and settings
 
-Categories
-----------
-
-.. toctree::
-   :maxdepth: 1
-
-   alertemail
-   antivirus
-   application
-   authentication
-   automation
-   casb
-   certificate
-   diameter-filter
-   dlp
-   dnsfilter
-   emailfilter
-   endpoint-control
-   ethernet-oam
-   extension-controller
-   file-filter
-   firewall
-   ftp-proxy
-   icap
-   ips
-   log
-   monitoring
-   report
-   router
-   rule
-   sctp-filter
-   switch-controller
-   system
-   user
-   videofilter
-   virtual-patch
-   voip
-   vpn
-   waf
-   web-proxy
-   webfilter
-   wireless-controller
-   ztna
-
-
 Overview
 --------
 
 The CMDB API Reference provides 37 categories of endpoints:
 
-**Alert Email** (``cmdb.alertemail``)
+:doc:`alertemail` - **Alert Email** (``cmdb.alertemail``)
    Email alerting configuration
 
-**Antivirus** (``cmdb.antivirus``)
+:doc:`antivirus` - **Antivirus** (``cmdb.antivirus``)
    Antivirus profiles and settings
 
-**Application** (``cmdb.application``)
+:doc:`application` - **Application** (``cmdb.application``)
    Application control and lists
 
-**Authentication** (``cmdb.authentication``)
+:doc:`authentication` - **Authentication** (``cmdb.authentication``)
    Authentication settings
 
-**Automation** (``cmdb.automation``)
+:doc:`automation` - **Automation** (``cmdb.automation``)
    Automation stitches and actions
 
-**CASB** (``cmdb.casb``)
+:doc:`casb` - **CASB** (``cmdb.casb``)
    Cloud Access Security Broker
 
-**Certificate** (``cmdb.certificate``)
+:doc:`certificate` - **Certificate** (``cmdb.certificate``)
    Certificate management
 
-**Diameter Filter** (``cmdb.diameter_filter``)
+:doc:`diameter-filter` - **Diameter Filter** (``cmdb.diameter_filter``)
    Diameter filtering profiles
 
-**DLP** (``cmdb.dlp``)
+:doc:`dlp` - **DLP** (``cmdb.dlp``)
    Data Loss Prevention
 
-**DNS Filter** (``cmdb.dnsfilter``)
+:doc:`dnsfilter` - **DNS Filter** (``cmdb.dnsfilter``)
    DNS filtering profiles
 
-**Email Filter** (``cmdb.emailfilter``)
+:doc:`emailfilter` - **Email Filter** (``cmdb.emailfilter``)
    Email filtering profiles
 
-**Endpoint Control** (``cmdb.endpoint_control``)
+:doc:`endpoint-control` - **Endpoint Control** (``cmdb.endpoint_control``)
    Endpoint control settings
 
-**Ethernet OAM** (``cmdb.ethernet_oam``)
+:doc:`ethernet-oam` - **Ethernet OAM** (``cmdb.ethernet_oam``)
    Ethernet OAM configuration
 
-**Extension Controller** (``cmdb.extension_controller``)
+:doc:`extension-controller` - **Extension Controller** (``cmdb.extension_controller``)
    FortiExtender controller
 
-**File Filter** (``cmdb.file_filter``)
+:doc:`file-filter` - **File Filter** (``cmdb.file_filter``)
    File filtering profiles
 
-**Firewall** (``cmdb.firewall``)
+:doc:`firewall` - **Firewall** (``cmdb.firewall``)
    Firewall policies, addresses, and services
 
-**FTP Proxy** (``cmdb.ftp_proxy``)
+:doc:`ftp-proxy` - **FTP Proxy** (``cmdb.ftp_proxy``)
    FTP proxy settings
 
-**ICAP** (``cmdb.icap``)
+:doc:`icap` - **ICAP** (``cmdb.icap``)
    ICAP server configuration
 
-**IPS** (``cmdb.ips``)
+:doc:`ips` - **IPS** (``cmdb.ips``)
    Intrusion Prevention System
 
-**Log** (``cmdb.log``)
+:doc:`log` - **Log** (``cmdb.log``)
    Logging configuration
 
-**Monitoring** (``cmdb.monitoring``)
+:doc:`monitoring` - **Monitoring** (``cmdb.monitoring``)
    Monitoring configuration
 
-**Report** (``cmdb.report``)
+:doc:`report` - **Report** (``cmdb.report``)
    Report settings
 
-**Router** (``cmdb.router``)
+:doc:`router` - **Router** (``cmdb.router``)
    Routing configuration
 
-**Rule** (``cmdb.rule``)
+:doc:`rule` - **Rule** (``cmdb.rule``)
    Rule-based configuration
 
-**SCTP Filter** (``cmdb.sctp_filter``)
+:doc:`sctp-filter` - **SCTP Filter** (``cmdb.sctp_filter``)
    SCTP filtering
 
-**Switch Controller** (``cmdb.switch_controller``)
+:doc:`switch-controller` - **Switch Controller** (``cmdb.switch_controller``)
    Switch controller settings
 
-**System** (``cmdb.system``)
+:doc:`system` - **System** (``cmdb.system``)
    System configuration and settings
 
-**User** (``cmdb.user``)
+:doc:`user` - **User** (``cmdb.user``)
    User and authentication
 
-**Video Filter** (``cmdb.videofilter``)
+:doc:`videofilter` - **Video Filter** (``cmdb.videofilter``)
    Video filtering
 
-**Virtual Patch** (``cmdb.virtual_patch``)
+:doc:`virtual-patch` - **Virtual Patch** (``cmdb.virtual_patch``)
    Virtual patching
 
-**VoIP** (``cmdb.voip``)
+:doc:`voip` - **VoIP** (``cmdb.voip``)
    VoIP configuration
 
-**VPN** (``cmdb.vpn``)
+:doc:`vpn` - **VPN** (``cmdb.vpn``)
    VPN configuration
 
-**WAF** (``cmdb.waf``)
+:doc:`waf` - **WAF** (``cmdb.waf``)
    Web Application Firewall
 
-**Web Proxy** (``cmdb.web_proxy``)
+:doc:`web-proxy` - **Web Proxy** (``cmdb.web_proxy``)
    Web proxy settings
 
-**Web Filter** (``cmdb.webfilter``)
+:doc:`webfilter` - **Web Filter** (``cmdb.webfilter``)
    Web filtering profiles
 
-**Wireless Controller** (``cmdb.wireless_controller``)
+:doc:`wireless-controller` - **Wireless Controller** (``cmdb.wireless_controller``)
    Wireless controller
 
-**ZTNA** (``cmdb.ztna``)
+:doc:`ztna` - **ZTNA** (``cmdb.ztna``)
    Zero Trust Network Access
 
 

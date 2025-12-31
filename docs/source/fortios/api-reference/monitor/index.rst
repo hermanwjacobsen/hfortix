@@ -3,145 +3,105 @@ Monitor API Reference
 
 Real-time monitoring, statistics, and status information
 
-Categories
-----------
-
-.. toctree::
-   :maxdepth: 1
-
-   azure
-   casb
-   endpoint-control
-   extender-controller
-   extension-controller
-   firewall
-   firmware
-   fortiguard
-   fortiview
-   geoip
-   ips
-   license
-   log
-   network
-   registration
-   router
-   sdwan
-   service
-   switch-controller
-   system
-   user
-   utm
-   videofilter
-   virtual-wan
-   vpn
-   vpn-certificate
-   wanopt
-   web-ui
-   webcache
-   webfilter
-   webproxy
-   wifi
-
-
 Overview
 --------
 
 The Monitor API Reference provides 32 categories of endpoints:
 
-**Azure** (``monitor.azure``)
+:doc:`azure` - **Azure** (``monitor.azure``)
    Azure connector monitoring
 
-**CASB** (``monitor.casb``)
+:doc:`casb` - **CASB** (``monitor.casb``)
    CASB monitoring
 
-**Endpoint Control** (``monitor.endpoint_control``)
+:doc:`endpoint-control` - **Endpoint Control** (``monitor.endpoint_control``)
    Endpoint monitoring
 
-**Extender Controller** (``monitor.extender_controller``)
+:doc:`extender-controller` - **Extender Controller** (``monitor.extender_controller``)
    FortiExtender monitoring
 
-**Extension Controller** (``monitor.extension_controller``)
+:doc:`extension-controller` - **Extension Controller** (``monitor.extension_controller``)
    Extension controller monitoring
 
-**Firewall** (``monitor.firewall``)
+:doc:`firewall` - **Firewall** (``monitor.firewall``)
    Firewall statistics and sessions
 
-**Firmware** (``monitor.firmware``)
+:doc:`firmware` - **Firmware** (``monitor.firmware``)
    Firmware information
 
-**FortiGuard** (``monitor.fortiguard``)
+:doc:`fortiguard` - **FortiGuard** (``monitor.fortiguard``)
    FortiGuard services
 
-**FortiView** (``monitor.fortiview``)
+:doc:`fortiview` - **FortiView** (``monitor.fortiview``)
    FortiView statistics
 
-**GeoIP** (``monitor.geoip``)
+:doc:`geoip` - **GeoIP** (``monitor.geoip``)
    GeoIP information
 
-**IPS** (``monitor.ips``)
+:doc:`ips` - **IPS** (``monitor.ips``)
    IPS monitoring
 
-**License** (``monitor.license``)
+:doc:`license` - **License** (``monitor.license``)
    License information
 
-**Log** (``monitor.log``)
+:doc:`log` - **Log** (``monitor.log``)
    Log monitoring
 
-**Network** (``monitor.network``)
+:doc:`network` - **Network** (``monitor.network``)
    Network monitoring
 
-**Registration** (``monitor.registration``)
+:doc:`registration` - **Registration** (``monitor.registration``)
    Device registration
 
-**Router** (``monitor.router``)
+:doc:`router` - **Router** (``monitor.router``)
    Routing information
 
-**SD-WAN** (``monitor.sdwan``)
+:doc:`sdwan` - **SD-WAN** (``monitor.sdwan``)
    SD-WAN monitoring
 
-**Service** (``monitor.service``)
+:doc:`service` - **Service** (``monitor.service``)
    System services
 
-**Switch Controller** (``monitor.switch_controller``)
+:doc:`switch-controller` - **Switch Controller** (``monitor.switch_controller``)
    Switch monitoring
 
-**System** (``monitor.system``)
+:doc:`system` - **System** (``monitor.system``)
    System status and resources
 
-**User** (``monitor.user``)
+:doc:`user` - **User** (``monitor.user``)
    User monitoring
 
-**UTM** (``monitor.utm``)
+:doc:`utm` - **UTM** (``monitor.utm``)
    UTM statistics
 
-**Video Filter** (``monitor.videofilter``)
+:doc:`videofilter` - **Video Filter** (``monitor.videofilter``)
    Video filter monitoring
 
-**Virtual WAN** (``monitor.virtual_wan``)
+:doc:`virtual-wan` - **Virtual WAN** (``monitor.virtual_wan``)
    Virtual WAN monitoring
 
-**VPN** (``monitor.vpn``)
+:doc:`vpn` - **VPN** (``monitor.vpn``)
    VPN monitoring
 
-**VPN Certificate** (``monitor.vpn_certificate``)
+:doc:`vpn-certificate` - **VPN Certificate** (``monitor.vpn_certificate``)
    VPN certificate monitoring
 
-**WAN Optimization** (``monitor.wanopt``)
+:doc:`wanopt` - **WAN Optimization** (``monitor.wanopt``)
    WAN optimization monitoring
 
-**Web UI** (``monitor.web_ui``)
+:doc:`web-ui` - **Web UI** (``monitor.web_ui``)
    Web UI monitoring
 
-**Web Cache** (``monitor.webcache``)
+:doc:`webcache` - **Web Cache** (``monitor.webcache``)
    Web cache monitoring
 
-**Web Filter** (``monitor.webfilter``)
+:doc:`webfilter` - **Web Filter** (``monitor.webfilter``)
    Web filter monitoring
 
-**Web Proxy** (``monitor.webproxy``)
+:doc:`webproxy` - **Web Proxy** (``monitor.webproxy``)
    Web proxy monitoring
 
-**WiFi** (``monitor.wifi``)
+:doc:`wifi` - **WiFi** (``monitor.wifi``)
    WiFi monitoring
 
 
