@@ -1,19 +1,17 @@
 Search
 ======
 
-Search log query operations.
+Advanced log search operations across all log types.
 
 Overview
 --------
 
-The ``log.search`` category provides log query access for:
+The ``log.search`` category provides advanced search capabilities across all log storage locations.
 
-- :doc:`Search_Abort_{Session_Id} <search-abort-{session-id}>` - Abort a running log search session.
-- :doc:`Search_Status_{Session_Id} <search-status-{session-id}>` - Returns status of log search session, if it is active or not. This is only applicable for disk log search.
+Python Usage
+------------
 
-
-Quick Start
------------
+**Free-Style Search:**
 
 .. code-block:: python
 
@@ -21,21 +19,18 @@ Quick Start
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access endpoints via:
-   fgt.api.log.search.<endpoint>
-
-Available Endpoints
--------------------
-
-.. toctree::
-   :maxdepth: 1
-   
-   search-abort-{session-id}
-   search-status-{session-id}
+   # Perform advanced search
+   results = fgt.api.log.search.free_style.post(json={
+       'logtype': 'traffic',
+       'filters': [{
+           'field': 'srcip',
+           'operator': '==',
+           'value': '192.168.1.100'
+       }]
+   })
 
 See Also
 --------
 
 - :doc:`/fortios/api-reference/log/index` - Log API overview
-- :doc:`/fortios/user-guide/client` - FortiOS client reference
 - :doc:`/fortios/guides/filtering` - Filtering guide

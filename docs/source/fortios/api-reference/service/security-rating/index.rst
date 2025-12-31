@@ -1,21 +1,17 @@
 Security Rating
 ===============
 
-Security Rating service operations.
+Security posture assessment and scoring.
 
 Overview
 --------
 
-The ``service.security-rating`` category provides service operations for:
+The ``service.security_rating`` category provides security rating and assessment capabilities.
 
-- :doc:`Security Rating_Report <security-rating-report>` - Retrieve full report of all Security Rating tests. 
- Access Group: secfabgrp.csfsys
-- :doc:`Security Rating_Recommendations <security-rating-recommendations>` - Retrieve recommendations for Security Rating tests. 
- Access Group: secfabgrp.csfsys
+Python Usage
+------------
 
-
-Quick Start
------------
+**Get Security Rating:**
 
 .. code-block:: python
 
@@ -23,20 +19,14 @@ Quick Start
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access endpoints via:
-   fgt.api.service.security-rating.<endpoint>
-
-Available Endpoints
--------------------
-
-.. toctree::
-   :maxdepth: 1
+   # Get overall security rating
+   rating = fgt.api.service.security_rating.report.get()
+   print(f"Security score: {rating['overall_score']}")
    
-   security-rating-recommendations
-   security-rating-report
+   # Get security recommendations
+   recommendations = fgt.api.service.security_rating.recommendations.get()
 
 See Also
 --------
 
 - :doc:`/fortios/api-reference/service/index` - Service API overview
-- :doc:`/fortios/user-guide/client` - FortiOS client reference

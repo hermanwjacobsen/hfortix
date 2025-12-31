@@ -1,29 +1,17 @@
 Sniffer
 =======
 
-Sniffer service operations.
+Packet capture (sniffer) operations for network troubleshooting.
 
 Overview
 --------
 
-The ``service.sniffer`` category provides service operations for:
+The ``service.sniffer`` category provides control over packet capture operations on the FortiGate.
 
-- :doc:`Sniffer_List <sniffer-list>` - Returns list of all packet captures and their status information. 
- Access Group: netgrp.packet-capture
-- :doc:`Sniffer_Start <sniffer-start>` - Creates a new packet capture and starts it. 
- Access Group: netgrp.packet-capture
-- :doc:`Sniffer_Stop <sniffer-stop>` - Stop a running packet capture. 
- Access Group: netgrp.packet-capture
-- :doc:`Sniffer_Download <sniffer-download>` - Returns a PCAP file of the packet capture. 
- Access Group: netgrp.packet-capture
-- :doc:`Sniffer_Delete <sniffer-delete>` - Deletes a packet capture. 
- Access Group: netgrp.packet-capture
-- :doc:`Sniffer_Meta <sniffer-meta>` - Returns system limitations & meta information of packet capture feature. 
- Access Group: netgrp.packet-capture
+Python Usage
+------------
 
-
-Quick Start
------------
+**Packet Capture Operations:**
 
 .. code-block:: python
 
@@ -31,24 +19,28 @@ Quick Start
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access endpoints via:
-   fgt.api.service.sniffer.<endpoint>
-
-Available Endpoints
--------------------
-
-.. toctree::
-   :maxdepth: 1
+   # List available packet captures
+   captures = fgt.api.service.sniffer.list.get()
    
-   sniffer-delete
-   sniffer-download
-   sniffer-list
-   sniffer-meta
-   sniffer-start
-   sniffer-stop
+   # Start a new capture
+   result = fgt.api.service.sniffer.start.post(json={
+       'interface': 'port1',
+       'count': 1000
+   })
+   
+   # Get capture metadata
+   meta = fgt.api.service.sniffer.meta.get(mkey='capture_id')
+   
+   # Stop capture
+   result = fgt.api.service.sniffer.stop.post(mkey='capture_id')
+   
+   # Download PCAP file
+   pcap_data = fgt.api.service.sniffer.download.get(mkey='capture_id')
+   
+   # Delete capture
+   result = fgt.api.service.sniffer.delete.post(mkey='capture_id')
 
 See Also
 --------
 
 - :doc:`/fortios/api-reference/service/index` - Service API overview
-- :doc:`/fortios/user-guide/client` - FortiOS client reference

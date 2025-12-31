@@ -1,26 +1,17 @@
 Memory
 ======
 
-Memory log query operations.
+Memory log query operations - query logs stored in device RAM.
 
 Overview
 --------
 
-The ``log.memory`` category provides log query access for:
+The ``log.memory`` category provides access to logs stored in the FortiGate's memory. These logs are fast to query but have limited capacity and are lost on reboot.
 
-- :doc:`Memory_Virus_Archive <memory-virus-archive>` - Return a description of the quarantined virus file.
-- :doc:`Memory_{Type}_Archive <memory-{type}-archive>` - Return a list of archived items for the desired type. :type can be app-ctrl or ips
-- :doc:`Memory_{Type}_Archive Download <memory-{type}-archive-download>` - Download an archived file.
-- :doc:`Memory_{Type}_Raw <memory-{type}-raw>` - Log data for the given log type in raw format.
-- :doc:`Memory_Traffic_{Subtype}_Raw <memory-traffic-{subtype}-raw>` - Log data for the given log type in raw format.
-- :doc:`Memory_Event_{Subtype}_Raw <memory-event-{subtype}-raw>` - Log data for the given log type in raw format.
-- :doc:`Memory_{Type} <memory-{type}>` - Log data for the given log type (and subtype). Append '/raw' to retrieve in raw format.
-- :doc:`Memory_Traffic_{Subtype} <memory-traffic-{subtype}>` - Log data for the given log type (and subtype). Append '/raw' to retrieve in raw format.
-- :doc:`Memory_Event_{Subtype} <memory-event-{subtype}>` - Log data for the given log type (and subtype). Append '/raw' to retrieve in raw format.
+Python Usage
+------------
 
-
-Quick Start
------------
+**Log Queries:**
 
 .. code-block:: python
 
@@ -28,28 +19,21 @@ Quick Start
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access endpoints via:
-   fgt.api.log.memory.<endpoint>
-
-Available Endpoints
--------------------
-
-.. toctree::
-   :maxdepth: 1
+   # Query traffic logs
+   traffic = fgt.api.log.memory.traffic.get(rows=100)
    
-   memory-event-{subtype}
-   memory-event-{subtype}-raw
-   memory-traffic-{subtype}
-   memory-traffic-{subtype}-raw
-   memory-virus-archive
-   memory-{type}
-   memory-{type}-archive
-   memory-{type}-archive-download
-   memory-{type}-raw
+   # Query event logs
+   events = fgt.api.log.memory.event.get(rows=100)
+   
+   # Query with filters
+   filtered = fgt.api.log.memory.traffic.get(
+       filter='srcip==192.168.1.100',
+       rows=50
+   )
 
 See Also
 --------
 
 - :doc:`/fortios/api-reference/log/index` - Log API overview
-- :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/api-reference/log/disk/index` - Disk logs (persistent)
 - :doc:`/fortios/guides/filtering` - Filtering guide
