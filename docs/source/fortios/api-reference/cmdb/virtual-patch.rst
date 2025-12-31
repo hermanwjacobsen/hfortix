@@ -1,29 +1,103 @@
 Virtual Patch
 =============
 
-Virtual patching.
+Configure virtual-patch profile configuration and management.
 
-.. automodule:: hfortix_fortios.api.v2.cmdb.virtual_patch
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
+Overview
+--------
 
-.. note::
-   This category provides access to FortiOS Virtual Patch configuration through
-   the ``fgt.api.cmdb.virtual_patch`` namespace.
+The ``cmdb.virtual-patch`` category provides configuration management for:
 
-Example Usage
--------------
+- **Profile** - Configure virtual-patch profile.
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.cmdb.virtual-patch
+
+Available Endpoints
+-------------------
+
+**profile**
+   Configure virtual-patch profile.
+   
+   .. code-block:: python
+   
+      # List all profile
+      items = fgt.api.cmdb.virtual-patch.profile.get()
+      
+      # Get specific profile
+      item = fgt.api.cmdb.virtual-patch.profile.get(mkey='name')
+
+Common Operations
+-----------------
+
+Create Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access Virtual Patch endpoints
-   result = fgt.api.cmdb.virtual_patch.<endpoint>.get()
+   # Create new configuration
+   result = fgt.api.cmdb.virtual-patch.{endpoint}.post(json={
+       'name': 'config-name',
+       # Add configuration parameters
+   })
+
+Update Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Update existing configuration
+   result = fgt.api.cmdb.virtual-patch.{endpoint}.put(
+       mkey='config-name',
+       json={
+           # Updated parameters
+       }
+   )
+
+Get Configuration
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get all configurations
+   items = fgt.api.cmdb.virtual-patch.{endpoint}.get()
+   
+   # Get specific configuration
+   item = fgt.api.cmdb.virtual-patch.{endpoint}.get(mkey='config-name')
+
+Delete Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Delete configuration
+   result = fgt.api.cmdb.virtual-patch.{endpoint}.delete(mkey='config-name')
+
+HTTP Methods
+------------
+
+All CMDB endpoints support standard HTTP methods:
+
+**.get()**
+   HTTP GET - Retrieve configuration(s)
+
+**.post()**
+   HTTP POST - Create new configuration
+
+**.put()**
+   HTTP PUT - Update existing configuration
+
+**.delete()**
+   HTTP DELETE - Remove configuration
 
 See Also
 --------

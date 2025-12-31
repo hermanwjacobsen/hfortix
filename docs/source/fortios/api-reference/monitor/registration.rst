@@ -1,33 +1,65 @@
 Registration
 ============
 
-Device registration.
 
-.. automodule:: hfortix_fortios.api.v2.monitor.registration
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
 
-.. note::
-   This category provides access to FortiOS Registration configuration through
-   the ``fgt.api.monitor.registration`` namespace.
+Overview
+--------
 
-Example Usage
--------------
+The ``monitor.registration`` category provides real-time monitoring for:
+
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.monitor.registration
+
+Available Endpoints
+-------------------
+
+Common Operations
+-----------------
+
+Get Status Information
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access Registration endpoints
-   result = fgt.api.monitor.registration.<endpoint>.get()
+   # Get monitoring data
+   data = fgt.api.monitor.registration.{endpoint}.get()
+
+Query with Parameters
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get monitoring data with filters
+   data = fgt.api.monitor.registration.{endpoint}.get(
+       param='value'
+   )
+
+HTTP Methods
+------------
+
+Monitor endpoints are **read-only** and only support:
+
+**.get()**
+   HTTP GET - Retrieve monitoring data and statistics
+
+.. note::
+   Monitor API endpoints do not support POST, PUT, or DELETE operations.
+   Use the CMDB API for configuration changes.
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - MONITOR API overview
+- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide
+- :doc:`/fortios/guides/filtering` - Filtering guide

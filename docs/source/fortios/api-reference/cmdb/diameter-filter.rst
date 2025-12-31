@@ -1,29 +1,103 @@
 Diameter Filter
 ===============
 
-Diameter filtering profiles.
+Configure Diameter filter profiles configuration and management.
 
-.. automodule:: hfortix_fortios.api.v2.cmdb.diameter_filter
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
+Overview
+--------
 
-.. note::
-   This category provides access to FortiOS Diameter Filter configuration through
-   the ``fgt.api.cmdb.diameter_filter`` namespace.
+The ``cmdb.diameter-filter`` category provides configuration management for:
 
-Example Usage
--------------
+- **Profile** - Configure Diameter filter profiles.
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.cmdb.diameter-filter
+
+Available Endpoints
+-------------------
+
+**profile**
+   Configure Diameter filter profiles.
+   
+   .. code-block:: python
+   
+      # List all profile
+      items = fgt.api.cmdb.diameter-filter.profile.get()
+      
+      # Get specific profile
+      item = fgt.api.cmdb.diameter-filter.profile.get(mkey='name')
+
+Common Operations
+-----------------
+
+Create Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access Diameter Filter endpoints
-   result = fgt.api.cmdb.diameter_filter.<endpoint>.get()
+   # Create new configuration
+   result = fgt.api.cmdb.diameter-filter.{endpoint}.post(json={
+       'name': 'config-name',
+       # Add configuration parameters
+   })
+
+Update Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Update existing configuration
+   result = fgt.api.cmdb.diameter-filter.{endpoint}.put(
+       mkey='config-name',
+       json={
+           # Updated parameters
+       }
+   )
+
+Get Configuration
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get all configurations
+   items = fgt.api.cmdb.diameter-filter.{endpoint}.get()
+   
+   # Get specific configuration
+   item = fgt.api.cmdb.diameter-filter.{endpoint}.get(mkey='config-name')
+
+Delete Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Delete configuration
+   result = fgt.api.cmdb.diameter-filter.{endpoint}.delete(mkey='config-name')
+
+HTTP Methods
+------------
+
+All CMDB endpoints support standard HTTP methods:
+
+**.get()**
+   HTTP GET - Retrieve configuration(s)
+
+**.post()**
+   HTTP POST - Create new configuration
+
+**.put()**
+   HTTP PUT - Update existing configuration
+
+**.delete()**
+   HTTP DELETE - Remove configuration
 
 See Also
 --------

@@ -1,29 +1,187 @@
-Email Filter
-============
+Emailfilter
+===========
 
-Email filtering profiles.
+Configure anti-spam block/allow list configuration and management.
 
-.. automodule:: hfortix_fortios.api.v2.cmdb.emailfilter
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
+Overview
+--------
 
-.. note::
-   This category provides access to FortiOS Email Filter configuration through
-   the ``fgt.api.cmdb.emailfilter`` namespace.
+The ``cmdb.emailfilter`` category provides configuration management for:
 
-Example Usage
--------------
+- **Block Allow List** - Configure anti-spam block/allow list.
+- **Bword** - Configure AntiSpam banned word list.
+- **Dnsbl** - Configure AntiSpam DNSBL/ORBL.
+- **Fortishield** - Configure FortiGuard - AntiSpam.
+- **Iptrust** - Configure AntiSpam IP trust.
+- **Mheader** - Configure AntiSpam MIME header.
+- **Options** - Configure AntiSpam options.
+- **Profile** - Configure Email Filter profiles.
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.cmdb.emailfilter
+
+Available Endpoints
+-------------------
+
+**block-allow-list**
+   Configure anti-spam block/allow list.
+   
+   .. code-block:: python
+   
+      # List all block-allow-list
+      items = fgt.api.cmdb.emailfilter.block_allow_list.get()
+      
+      # Get specific block-allow-list
+      item = fgt.api.cmdb.emailfilter.block_allow_list.get(mkey='name')
+
+**bword**
+   Configure AntiSpam banned word list.
+   
+   .. code-block:: python
+   
+      # List all bword
+      items = fgt.api.cmdb.emailfilter.bword.get()
+      
+      # Get specific bword
+      item = fgt.api.cmdb.emailfilter.bword.get(mkey='name')
+
+**dnsbl**
+   Configure AntiSpam DNSBL/ORBL.
+   
+   .. code-block:: python
+   
+      # List all dnsbl
+      items = fgt.api.cmdb.emailfilter.dnsbl.get()
+      
+      # Get specific dnsbl
+      item = fgt.api.cmdb.emailfilter.dnsbl.get(mkey='name')
+
+**fortishield**
+   Configure FortiGuard - AntiSpam.
+   
+   .. code-block:: python
+   
+      # List all fortishield
+      items = fgt.api.cmdb.emailfilter.fortishield.get()
+      
+      # Get specific fortishield
+      item = fgt.api.cmdb.emailfilter.fortishield.get(mkey='name')
+
+**iptrust**
+   Configure AntiSpam IP trust.
+   
+   .. code-block:: python
+   
+      # List all iptrust
+      items = fgt.api.cmdb.emailfilter.iptrust.get()
+      
+      # Get specific iptrust
+      item = fgt.api.cmdb.emailfilter.iptrust.get(mkey='name')
+
+**mheader**
+   Configure AntiSpam MIME header.
+   
+   .. code-block:: python
+   
+      # List all mheader
+      items = fgt.api.cmdb.emailfilter.mheader.get()
+      
+      # Get specific mheader
+      item = fgt.api.cmdb.emailfilter.mheader.get(mkey='name')
+
+**options**
+   Configure AntiSpam options.
+   
+   .. code-block:: python
+   
+      # List all options
+      items = fgt.api.cmdb.emailfilter.options.get()
+      
+      # Get specific options
+      item = fgt.api.cmdb.emailfilter.options.get(mkey='name')
+
+**profile**
+   Configure Email Filter profiles.
+   
+   .. code-block:: python
+   
+      # List all profile
+      items = fgt.api.cmdb.emailfilter.profile.get()
+      
+      # Get specific profile
+      item = fgt.api.cmdb.emailfilter.profile.get(mkey='name')
+
+Common Operations
+-----------------
+
+Create Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access Email Filter endpoints
-   result = fgt.api.cmdb.emailfilter.<endpoint>.get()
+   # Create new configuration
+   result = fgt.api.cmdb.emailfilter.{endpoint}.post(json={
+       'name': 'config-name',
+       # Add configuration parameters
+   })
+
+Update Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Update existing configuration
+   result = fgt.api.cmdb.emailfilter.{endpoint}.put(
+       mkey='config-name',
+       json={
+           # Updated parameters
+       }
+   )
+
+Get Configuration
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get all configurations
+   items = fgt.api.cmdb.emailfilter.{endpoint}.get()
+   
+   # Get specific configuration
+   item = fgt.api.cmdb.emailfilter.{endpoint}.get(mkey='config-name')
+
+Delete Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Delete configuration
+   result = fgt.api.cmdb.emailfilter.{endpoint}.delete(mkey='config-name')
+
+HTTP Methods
+------------
+
+All CMDB endpoints support standard HTTP methods:
+
+**.get()**
+   HTTP GET - Retrieve configuration(s)
+
+**.post()**
+   HTTP POST - Create new configuration
+
+**.put()**
+   HTTP PUT - Update existing configuration
+
+**.delete()**
+   HTTP DELETE - Remove configuration
 
 See Also
 --------

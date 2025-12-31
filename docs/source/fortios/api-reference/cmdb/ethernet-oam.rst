@@ -1,29 +1,103 @@
-Ethernet OAM
+Ethernet Oam
 ============
 
-Ethernet OAM configuration.
+CFM domain configuration configuration and management.
 
-.. automodule:: hfortix_fortios.api.v2.cmdb.ethernet_oam
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
+Overview
+--------
 
-.. note::
-   This category provides access to FortiOS Ethernet OAM configuration through
-   the ``fgt.api.cmdb.ethernet_oam`` namespace.
+The ``cmdb.ethernet-oam`` category provides configuration management for:
 
-Example Usage
--------------
+- **Cfm** - CFM domain configuration.
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.cmdb.ethernet-oam
+
+Available Endpoints
+-------------------
+
+**cfm**
+   CFM domain configuration.
+   
+   .. code-block:: python
+   
+      # List all cfm
+      items = fgt.api.cmdb.ethernet-oam.cfm.get()
+      
+      # Get specific cfm
+      item = fgt.api.cmdb.ethernet-oam.cfm.get(mkey='name')
+
+Common Operations
+-----------------
+
+Create Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access Ethernet OAM endpoints
-   result = fgt.api.cmdb.ethernet_oam.<endpoint>.get()
+   # Create new configuration
+   result = fgt.api.cmdb.ethernet-oam.{endpoint}.post(json={
+       'name': 'config-name',
+       # Add configuration parameters
+   })
+
+Update Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Update existing configuration
+   result = fgt.api.cmdb.ethernet-oam.{endpoint}.put(
+       mkey='config-name',
+       json={
+           # Updated parameters
+       }
+   )
+
+Get Configuration
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get all configurations
+   items = fgt.api.cmdb.ethernet-oam.{endpoint}.get()
+   
+   # Get specific configuration
+   item = fgt.api.cmdb.ethernet-oam.{endpoint}.get(mkey='config-name')
+
+Delete Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Delete configuration
+   result = fgt.api.cmdb.ethernet-oam.{endpoint}.delete(mkey='config-name')
+
+HTTP Methods
+------------
+
+All CMDB endpoints support standard HTTP methods:
+
+**.get()**
+   HTTP GET - Retrieve configuration(s)
+
+**.post()**
+   HTTP POST - Create new configuration
+
+**.put()**
+   HTTP PUT - Update existing configuration
+
+**.delete()**
+   HTTP DELETE - Remove configuration
 
 See Also
 --------

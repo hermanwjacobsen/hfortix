@@ -1,29 +1,115 @@
 Report
 ======
 
-Report settings.
+Report layout configuration configuration and management.
 
-.. automodule:: hfortix_fortios.api.v2.cmdb.report
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
+Overview
+--------
 
-.. note::
-   This category provides access to FortiOS Report configuration through
-   the ``fgt.api.cmdb.report`` namespace.
+The ``cmdb.report`` category provides configuration management for:
 
-Example Usage
--------------
+- **Layout** - Report layout configuration.
+- **Setting** - Report setting configuration.
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.cmdb.report
+
+Available Endpoints
+-------------------
+
+**layout**
+   Report layout configuration.
+   
+   .. code-block:: python
+   
+      # List all layout
+      items = fgt.api.cmdb.report.layout.get()
+      
+      # Get specific layout
+      item = fgt.api.cmdb.report.layout.get(mkey='name')
+
+**setting**
+   Report setting configuration.
+   
+   .. code-block:: python
+   
+      # List all setting
+      items = fgt.api.cmdb.report.setting.get()
+      
+      # Get specific setting
+      item = fgt.api.cmdb.report.setting.get(mkey='name')
+
+Common Operations
+-----------------
+
+Create Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access Report endpoints
-   result = fgt.api.cmdb.report.<endpoint>.get()
+   # Create new configuration
+   result = fgt.api.cmdb.report.{endpoint}.post(json={
+       'name': 'config-name',
+       # Add configuration parameters
+   })
+
+Update Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Update existing configuration
+   result = fgt.api.cmdb.report.{endpoint}.put(
+       mkey='config-name',
+       json={
+           # Updated parameters
+       }
+   )
+
+Get Configuration
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get all configurations
+   items = fgt.api.cmdb.report.{endpoint}.get()
+   
+   # Get specific configuration
+   item = fgt.api.cmdb.report.{endpoint}.get(mkey='config-name')
+
+Delete Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Delete configuration
+   result = fgt.api.cmdb.report.{endpoint}.delete(mkey='config-name')
+
+HTTP Methods
+------------
+
+All CMDB endpoints support standard HTTP methods:
+
+**.get()**
+   HTTP GET - Retrieve configuration(s)
+
+**.post()**
+   HTTP POST - Create new configuration
+
+**.put()**
+   HTTP PUT - Update existing configuration
+
+**.delete()**
+   HTTP DELETE - Remove configuration
 
 See Also
 --------

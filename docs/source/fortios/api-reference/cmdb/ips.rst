@@ -1,17 +1,22 @@
-IPS
+Ips
 ===
 
-Intrusion Prevention System configuration and management.
+Configure IPS custom signature configuration and management.
 
 Overview
 --------
 
-The ``cmdb.ips`` category provides comprehensive configuration for FortiGate's Intrusion Prevention System (IPS), including:
+The ``cmdb.ips`` category provides configuration management for:
 
-- **IPS Sensors** - Detection profiles with signatures and filters
-- **Custom Signatures** - Custom attack definitions
-- **Global Settings** - IPS engine configuration
-- **Decoders** - Protocol decoders for deep packet inspection
+- **Custom** - Configure IPS custom signature.
+- **Decoder** - Configure IPS decoder.
+- **Global** - Configure IPS global parameter.
+- **Rule** - Configure IPS rules.
+- **Rule Settings** - Configure IPS rule setting.
+- **Sensor** - Configure IPS sensor.
+- **Settings** - Configure IPS VDOM parameter.
+- **View Map** - Configure IPS view-map.
+
 
 Endpoint
 --------
@@ -23,46 +28,99 @@ Endpoint
 Available Endpoints
 -------------------
 
-**sensor**
-   IPS sensor profiles with signature filtering and actions
-   
-   .. code-block:: python
-   
-      # List all IPS sensors
-      sensors = fgt.api.cmdb.ips.sensor.get()
-      
-      # Get specific sensor
-      sensor = fgt.api.cmdb.ips.sensor.get(mkey='default')
-
 **custom**
-   Custom IPS signatures for organization-specific threats
+   Configure IPS custom signature.
    
    .. code-block:: python
    
-      # List custom signatures
-      custom = fgt.api.cmdb.ips.custom.get()
-
-**global**
-   Global IPS engine settings and configuration
-   
-   .. code-block:: python
-   
-      # Get global IPS settings
-      settings = fgt.api.cmdb.ips.global.get()
+      # List all custom
+      items = fgt.api.cmdb.ips.custom.get()
+      
+      # Get specific custom
+      item = fgt.api.cmdb.ips.custom.get(mkey='name')
 
 **decoder**
-   Protocol decoders for deep packet inspection
+   Configure IPS decoder.
    
    .. code-block:: python
    
-      # List IPS decoders
-      decoders = fgt.api.cmdb.ips.decoder.get()
+      # List all decoder
+      items = fgt.api.cmdb.ips.decoder.get()
+      
+      # Get specific decoder
+      item = fgt.api.cmdb.ips.decoder.get(mkey='name')
+
+**global**
+   Configure IPS global parameter.
+   
+   .. code-block:: python
+   
+      # List all global
+      items = fgt.api.cmdb.ips.global.get()
+      
+      # Get specific global
+      item = fgt.api.cmdb.ips.global.get(mkey='name')
+
+**rule**
+   Configure IPS rules.
+   
+   .. code-block:: python
+   
+      # List all rule
+      items = fgt.api.cmdb.ips.rule.get()
+      
+      # Get specific rule
+      item = fgt.api.cmdb.ips.rule.get(mkey='name')
+
+**rule-settings**
+   Configure IPS rule setting.
+   
+   .. code-block:: python
+   
+      # List all rule-settings
+      items = fgt.api.cmdb.ips.rule_settings.get()
+      
+      # Get specific rule-settings
+      item = fgt.api.cmdb.ips.rule_settings.get(mkey='name')
+
+**sensor**
+   Configure IPS sensor.
+   
+   .. code-block:: python
+   
+      # List all sensor
+      items = fgt.api.cmdb.ips.sensor.get()
+      
+      # Get specific sensor
+      item = fgt.api.cmdb.ips.sensor.get(mkey='name')
+
+**settings**
+   Configure IPS VDOM parameter.
+   
+   .. code-block:: python
+   
+      # List all settings
+      items = fgt.api.cmdb.ips.settings.get()
+      
+      # Get specific settings
+      item = fgt.api.cmdb.ips.settings.get(mkey='name')
+
+**view-map**
+   Configure IPS view-map.
+   
+   .. code-block:: python
+   
+      # List all view-map
+      items = fgt.api.cmdb.ips.view_map.get()
+      
+      # Get specific view-map
+      item = fgt.api.cmdb.ips.view_map.get(mkey='name')
 
 Common Operations
 -----------------
 
-Create IPS Sensor
-^^^^^^^^^^^^^^^^^
+Create Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -70,148 +128,64 @@ Create IPS Sensor
    
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Create new IPS sensor
-   sensor = fgt.api.cmdb.ips.sensor.post(json={
-       'name': 'strict-ips',
-       'comment': 'Strict IPS protection for DMZ',
-       'entries': [
-           {
-               'id': 1,
-               'severity': ['critical', 'high'],
-               'action': 'block',
-               'log': 'enable'
-           }
-       ]
+   # Create new configuration
+   result = fgt.api.cmdb.ips.{endpoint}.post(json={
+       'name': 'config-name',
+       # Add configuration parameters
    })
 
-Update IPS Sensor
-^^^^^^^^^^^^^^^^^
+Update Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   # Update existing sensor
-   result = fgt.api.cmdb.ips.sensor.put(
-       mkey='strict-ips',
+   # Update existing configuration
+   result = fgt.api.cmdb.ips.{endpoint}.put(
+       mkey='config-name',
        json={
-           'comment': 'Updated IPS protection',
-           'entries': [
-               {
-                   'id': 1,
-                   'severity': ['critical', 'high', 'medium'],
-                   'action': 'block',
-                   'log': 'enable'
-               }
-           ]
+           # Updated parameters
        }
    )
 
-Get IPS Sensor Details
-^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   # Get specific sensor configuration
-   sensor = fgt.api.cmdb.ips.sensor.get(mkey='default')
-   
-   print(f"Sensor: {sensor['name']}")
-   print(f"Entries: {len(sensor['entries'])}")
-   for entry in sensor['entries']:
-       print(f"  - ID {entry['id']}: {entry['action']}")
-
-Create Custom Signature
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   # Create custom IPS signature
-   custom_sig = fgt.api.cmdb.ips.custom.post(json={
-       'tag': 'custom-attack',
-       'signature': 'F-SBID( --name "Custom.Attack"; --flow from_client; '
-                    '--pattern "malicious"; --service HTTP; )',
-       'comment': 'Detects custom attack pattern'
-   })
-
-Delete IPS Sensor
+Get Configuration
 ^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   # Delete IPS sensor
-   result = fgt.api.cmdb.ips.sensor.delete(mkey='old-sensor')
+   # Get all configurations
+   items = fgt.api.cmdb.ips.{endpoint}.get()
+   
+   # Get specific configuration
+   item = fgt.api.cmdb.ips.{endpoint}.get(mkey='config-name')
 
-IPS Sensor Configuration
--------------------------
-
-**Key Parameters:**
-
-**name** (str, required)
-   Sensor profile name
-
-**comment** (str, optional)
-   Description of the sensor
-
-**entries** (list, required)
-   List of IPS filter entries
-
-**Entry Structure:**
-
-- **id** - Entry ID number
-- **severity** - List of severities to match: 'critical', 'high', 'medium', 'low', 'info'
-- **action** - Action to take: 'block', 'monitor', 'pass', 'reset'
-- **log** - Enable logging: 'enable' or 'disable'
-- **log-packet** - Log full packet: 'enable' or 'disable'
-- **status** - Entry status: 'enable' or 'disable'
-
-Best Practices
---------------
-
-1. **Start with Default Sensor** - Modify default sensor before creating custom ones
-2. **Test in Monitor Mode** - Use 'monitor' action before switching to 'block'
-3. **Severity-Based Filtering** - Block critical/high, monitor medium/low
-4. **Enable Logging** - Always log blocked attacks for analysis
-5. **Regular Updates** - Keep IPS signatures updated via FortiGuard
-6. **Performance Impact** - Monitor CPU usage when enabling aggressive IPS
-7. **Custom Signatures** - Test thoroughly before deploying to production
-
-Common Use Cases
-----------------
-
-DMZ Protection
-^^^^^^^^^^^^^^
+Delete Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   # Strict IPS for DMZ servers
-   fgt.api.cmdb.ips.sensor.post(json={
-       'name': 'dmz-protection',
-       'entries': [{
-           'id': 1,
-           'severity': ['critical', 'high'],
-           'action': 'block',
-           'log': 'enable',
-           'log-packet': 'enable'
-       }]
-   })
+   # Delete configuration
+   result = fgt.api.cmdb.ips.{endpoint}.delete(mkey='config-name')
 
-Internal Network Monitoring
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+HTTP Methods
+------------
 
-.. code-block:: python
+All CMDB endpoints support standard HTTP methods:
 
-   # Monitor-only for internal network
-   fgt.api.cmdb.ips.sensor.post(json={
-       'name': 'internal-monitor',
-       'entries': [{
-           'id': 1,
-           'severity': ['critical', 'high', 'medium'],
-           'action': 'monitor',
-           'log': 'enable'
-       }]
-   })
+**.get()**
+   HTTP GET - Retrieve configuration(s)
+
+**.post()**
+   HTTP POST - Create new configuration
+
+**.put()**
+   HTTP PUT - Update existing configuration
+
+**.delete()**
+   HTTP DELETE - Remove configuration
 
 See Also
 --------
 
 - :doc:`/fortios/api-reference/cmdb/index` - CMDB API overview
-- :doc:`firewall` - Firewall policies (where IPS sensors are applied)
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
+- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide

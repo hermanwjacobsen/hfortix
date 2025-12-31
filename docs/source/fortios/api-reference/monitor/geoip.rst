@@ -1,33 +1,65 @@
-GeoIP
+Geoip
 =====
 
-GeoIP information.
 
-.. automodule:: hfortix_fortios.api.v2.monitor.geoip
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
 
-.. note::
-   This category provides access to FortiOS GeoIP configuration through
-   the ``fgt.api.monitor.geoip`` namespace.
+Overview
+--------
 
-Example Usage
--------------
+The ``monitor.geoip`` category provides real-time monitoring for:
+
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.monitor.geoip
+
+Available Endpoints
+-------------------
+
+Common Operations
+-----------------
+
+Get Status Information
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access GeoIP endpoints
-   result = fgt.api.monitor.geoip.<endpoint>.get()
+   # Get monitoring data
+   data = fgt.api.monitor.geoip.{endpoint}.get()
+
+Query with Parameters
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get monitoring data with filters
+   data = fgt.api.monitor.geoip.{endpoint}.get(
+       param='value'
+   )
+
+HTTP Methods
+------------
+
+Monitor endpoints are **read-only** and only support:
+
+**.get()**
+   HTTP GET - Retrieve monitoring data and statistics
+
+.. note::
+   Monitor API endpoints do not support POST, PUT, or DELETE operations.
+   Use the CMDB API for configuration changes.
 
 See Also
 --------
 
-- :doc:`/fortios/api-reference/monitor/index` - MONITOR API overview
+- :doc:`/fortios/api-reference/monitor/index` - Monitor API overview
 - :doc:`/fortios/user-guide/client` - FortiOS client reference
-- :doc:`/fortios/user-guide/endpoint-methods` - Endpoint methods guide
+- :doc:`/fortios/guides/filtering` - Filtering guide

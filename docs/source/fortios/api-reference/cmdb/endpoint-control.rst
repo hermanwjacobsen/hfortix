@@ -1,29 +1,127 @@
 Endpoint Control
 ================
 
-Endpoint control settings.
+Configure FortiClient Enterprise Management Server (EMS) entries configuration and management.
 
-.. automodule:: hfortix_fortios.api.v2.cmdb.endpoint_control
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :recursive:
+Overview
+--------
 
-.. note::
-   This category provides access to FortiOS Endpoint Control configuration through
-   the ``fgt.api.cmdb.endpoint_control`` namespace.
+The ``cmdb.endpoint-control`` category provides configuration management for:
 
-Example Usage
--------------
+- **Fctems** - Configure FortiClient Enterprise Management Server (EMS) entries.
+- **Fctems Override** - Configure FortiClient Enterprise Management Server (EMS) entries.
+- **Settings** - Configure endpoint control settings.
+
+
+Endpoint
+--------
+
+.. code-block:: python
+
+   fgt.api.cmdb.endpoint-control
+
+Available Endpoints
+-------------------
+
+**fctems**
+   Configure FortiClient Enterprise Management Server (EMS) entries.
+   
+   .. code-block:: python
+   
+      # List all fctems
+      items = fgt.api.cmdb.endpoint-control.fctems.get()
+      
+      # Get specific fctems
+      item = fgt.api.cmdb.endpoint-control.fctems.get(mkey='name')
+
+**fctems-override**
+   Configure FortiClient Enterprise Management Server (EMS) entries.
+   
+   .. code-block:: python
+   
+      # List all fctems-override
+      items = fgt.api.cmdb.endpoint-control.fctems_override.get()
+      
+      # Get specific fctems-override
+      item = fgt.api.cmdb.endpoint-control.fctems_override.get(mkey='name')
+
+**settings**
+   Configure endpoint control settings.
+   
+   .. code-block:: python
+   
+      # List all settings
+      items = fgt.api.cmdb.endpoint-control.settings.get()
+      
+      # Get specific settings
+      item = fgt.api.cmdb.endpoint-control.settings.get(mkey='name')
+
+Common Operations
+-----------------
+
+Create Configuration
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from hfortix_fortios import FortiOS
-
+   
    fgt = FortiOS(host='192.168.1.99', token='your-token')
    
-   # Access Endpoint Control endpoints
-   result = fgt.api.cmdb.endpoint_control.<endpoint>.get()
+   # Create new configuration
+   result = fgt.api.cmdb.endpoint-control.{endpoint}.post(json={
+       'name': 'config-name',
+       # Add configuration parameters
+   })
+
+Update Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Update existing configuration
+   result = fgt.api.cmdb.endpoint-control.{endpoint}.put(
+       mkey='config-name',
+       json={
+           # Updated parameters
+       }
+   )
+
+Get Configuration
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Get all configurations
+   items = fgt.api.cmdb.endpoint-control.{endpoint}.get()
+   
+   # Get specific configuration
+   item = fgt.api.cmdb.endpoint-control.{endpoint}.get(mkey='config-name')
+
+Delete Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+   # Delete configuration
+   result = fgt.api.cmdb.endpoint-control.{endpoint}.delete(mkey='config-name')
+
+HTTP Methods
+------------
+
+All CMDB endpoints support standard HTTP methods:
+
+**.get()**
+   HTTP GET - Retrieve configuration(s)
+
+**.post()**
+   HTTP POST - Create new configuration
+
+**.put()**
+   HTTP PUT - Update existing configuration
+
+**.delete()**
+   HTTP DELETE - Remove configuration
 
 See Also
 --------
