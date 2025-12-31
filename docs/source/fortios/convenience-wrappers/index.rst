@@ -1,13 +1,8 @@
 Convenience Wrappers
 ====================
 
-High-level wrappers that simplify common FortiOS operations.
-
-.. note::
-   **New users should start here!** Convenience wrappers provide a simpler,
-   more intuitive interface with helpful methods like ``get()``, 
-   ``create()``, ``update()``, and ``delete()`` instead of working directly 
-   with low-level API HTTP methods (GET, POST, PUT, DELETE).
+High-level wrappers that simplify common FortiOS operations with intuitive methods
+like ``get()``, ``create()``, ``update()``, and ``delete()``.
 
 Overview
 --------

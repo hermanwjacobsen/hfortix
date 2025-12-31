@@ -18,11 +18,11 @@ Complete Python SDK for FortiOS/FortiGate automation with 100% API coverage (750
 
         Learn core concepts and patterns.
 
-    .. grid-item-card:: 🎯 Convenience Wrappers
-        :link: convenience-wrappers/index
+    .. grid-item-card:: 📚 API Documentation
+        :link: api-documentation/index
         :link-type: doc
 
-        High-level wrappers for common tasks.
+        Convenience wrappers and complete endpoint reference.
 
     .. grid-item-card:: 📋 Topic Guides
         :link: guides/index
@@ -30,53 +30,15 @@ Complete Python SDK for FortiOS/FortiGate automation with 100% API coverage (750
 
         Advanced topics and patterns.
 
-    .. grid-item-card:: 📚 API Reference
-        :link: api-reference/index
-        :link-type: doc
-
-        Complete endpoint documentation.
-
 .. toctree::
-   :maxdepth: 2
-   :caption: Getting Started
+   :maxdepth: 1
    :hidden:
 
    getting-started/quickstart
    getting-started/authentication
-
-.. toctree::
-   :maxdepth: 2
-   :caption: User Guide
-   :hidden:
-
    user-guide/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Convenience Wrappers
-   :hidden:
-
-   convenience-wrappers/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Topic Guides
-   :hidden:
-
+   api-documentation/index
    guides/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: API Reference
-   :hidden:
-
-   api-reference/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Examples
-   :hidden:
-
    examples/index
 
 Quick Example

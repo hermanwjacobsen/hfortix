@@ -2,12 +2,7 @@ API Reference
 =============
 
 Complete low-level API documentation for all 750+ FortiOS endpoints organized by category.
-
-.. note::
-   **Looking for high-level wrappers?** See :doc:`/fortios/convenience-wrappers/index` for
-   easier-to-use wrappers with methods like ``list()``, ``create()``, ``update()``, and ``delete()``.
-   
-   This section documents the **low-level API endpoints** using HTTP methods (GET, POST, PUT, DELETE).
+These endpoints use HTTP methods (GET, POST, PUT, DELETE) for direct API access.
 
 CMDB API (Configuration)
 -------------------------
