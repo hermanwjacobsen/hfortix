@@ -22,10 +22,18 @@ Python Usage
    # List available packet captures
    captures = fgt.api.service.sniffer.list.get()
    
-   # Start a new capture
-   result = fgt.api.service.sniffer.start.post(json={
-       'interface': 'port1',
-       'count': 1000
+   # Start a new capture (properties are lazy-loaded)
+   result = fgt.api.service.sniffer.start.post(
+       host='192.168.1.100',
+       port=443,
+       interface='port1'
+   )
+   
+   # Or using payload_dict
+   result = fgt.api.service.sniffer.start.post(payload_dict={
+       'host': '192.168.1.100',
+       'port': 443,
+       'interface': 'port1'
    })
    
    # Get capture metadata
