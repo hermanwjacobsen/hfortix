@@ -88,11 +88,16 @@ class TierPlusCandidates(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_fortilink: str | None = None,
+        q_parent_peer1: str | None = None,
+        q_parent_peer2: str | None = None,
+        q_is_tier2: bool | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve switch_controller/mclag_icl/tier_plus_candidates configuration.
@@ -119,7 +124,8 @@ class TierPlusCandidates(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +173,14 @@ class TierPlusCandidates(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_fortilink is not None:
+            params["fortilink"] = q_fortilink
+        if q_parent_peer1 is not None:
+            params["parent_peer1"] = q_parent_peer1
+        if q_parent_peer2 is not None:
+            params["parent_peer2"] = q_parent_peer2
+        if q_is_tier2 is not None:
+            params["is_tier2"] = q_is_tier2
         
         if name:
             endpoint = f"/switch-controller/mclag-icl/tier-plus-candidates/{name}"
@@ -175,7 +189,6 @@ class TierPlusCandidates(CRUDEndpoint, MetadataMixin):
             endpoint = "/switch-controller/mclag-icl/tier-plus-candidates"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

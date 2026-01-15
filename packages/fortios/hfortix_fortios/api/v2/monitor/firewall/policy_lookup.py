@@ -88,11 +88,27 @@ class PolicyLookup(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_ipv6: bool | None = None,
+        q_srcintf: str | None = None,
+        q_sourceport: int | None = None,
+        q_sourceip: str | None = None,
+        q_protocol: str | None = None,
+        q_dest: str | None = None,
+        q_destport: int | None = None,
+        q_icmptype: int | None = None,
+        q_icmpcode: int | None = None,
+        q_policy_type: str | None = None,
+        q_auth_type: str | None = None,
+        q_user_group: list[str] | None = None,
+        q_server_name: str | None = None,
+        q_user_db: str | None = None,
+        q_group_attr_type: str | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve firewall/policy_lookup configuration.
@@ -119,7 +135,8 @@ class PolicyLookup(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +184,36 @@ class PolicyLookup(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_ipv6 is not None:
+            params["ipv6"] = q_ipv6
+        if q_srcintf is not None:
+            params["srcintf"] = q_srcintf
+        if q_sourceport is not None:
+            params["sourceport"] = q_sourceport
+        if q_sourceip is not None:
+            params["sourceip"] = q_sourceip
+        if q_protocol is not None:
+            params["protocol"] = q_protocol
+        if q_dest is not None:
+            params["dest"] = q_dest
+        if q_destport is not None:
+            params["destport"] = q_destport
+        if q_icmptype is not None:
+            params["icmptype"] = q_icmptype
+        if q_icmpcode is not None:
+            params["icmpcode"] = q_icmpcode
+        if q_policy_type is not None:
+            params["policy_type"] = q_policy_type
+        if q_auth_type is not None:
+            params["auth_type"] = q_auth_type
+        if q_user_group is not None:
+            params["user_group"] = q_user_group
+        if q_server_name is not None:
+            params["server_name"] = q_server_name
+        if q_user_db is not None:
+            params["user_db"] = q_user_db
+        if q_group_attr_type is not None:
+            params["group_attr_type"] = q_group_attr_type
         
         if name:
             endpoint = f"/firewall/policy-lookup/{name}"
@@ -175,7 +222,6 @@ class PolicyLookup(CRUDEndpoint, MetadataMixin):
             endpoint = "/firewall/policy-lookup"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

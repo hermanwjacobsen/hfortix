@@ -88,11 +88,18 @@ class AvailableCertificates(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_scope: str | None = None,
+        q_with_remote: bool | None = None,
+        q_with_ca: bool | None = None,
+        q_with_crl: bool | None = None,
+        q_mkey: str | None = None,
+        q_find_all_references: bool | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve system/available_certificates configuration.
@@ -119,7 +126,8 @@ class AvailableCertificates(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +175,18 @@ class AvailableCertificates(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_scope is not None:
+            params["scope"] = q_scope
+        if q_with_remote is not None:
+            params["with_remote"] = q_with_remote
+        if q_with_ca is not None:
+            params["with_ca"] = q_with_ca
+        if q_with_crl is not None:
+            params["with_crl"] = q_with_crl
+        if q_mkey is not None:
+            params["mkey"] = q_mkey
+        if q_find_all_references is not None:
+            params["find_all_references"] = q_find_all_references
         
         if name:
             endpoint = f"/system/available-certificates/{name}"
@@ -175,7 +195,6 @@ class AvailableCertificates(CRUDEndpoint, MetadataMixin):
             endpoint = "/system/available-certificates"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

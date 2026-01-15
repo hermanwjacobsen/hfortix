@@ -7,9 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.70] - 2026-01-15
+
+### Changed
+- **BREAKING: Removed `**kwargs` from all endpoint methods**
+  - All query parameters are now explicitly typed in method signatures
+  - Query parameters use `q_` prefix to avoid conflicts with body field parameters (e.g., `q_action`, `q_format`)
+  - Special exclusions: `vdom`, `filter`, `count`, `start` (no `q_` prefix as they never conflict)
+  - Improved IDE autocomplete and type safety
+  - Example: `endpoint.get(q_format="name|id", q_action="move")` instead of `endpoint.get(format="name|id", action="move")`
+
+- **BREAKING: Changed default `response_mode` from `"dict"` to `"object"`**
+  - All GET/PUT/POST/DELETE methods now return `FortiObject` instances by default
+  - For dictionary responses, explicitly pass `response_mode="dict"`
+  - Provides better attribute access: `result.name` instead of `result["name"]`
+
+- **Added `error_mode` and `error_format` parameters to all CRUD methods**
+  - Optional per-call overrides for error handling behavior
+  - Example: `endpoint.get(error_mode="raise", error_format="detailed")`
+
+### Fixed
+- **Eliminated `datetime.utcnow()` deprecation warnings in audit logging**
+  - `SyslogFormatter` now uses timezone-aware UTC timestamps (`datetime.now(timezone.utc)` → `...Z`).
+  - Matches ISO 8601 output while avoiding Python 3.12 deprecation warnings.
+- **Generator metadata now UTC-aware**
+  - Schema downloader uses the same timezone-aware helper for `downloaded_at` and summaries.
+  - Regenerated schemas will embed compliant `...Z` timestamps without deprecation warnings.
+- **Fixed circular imports in monitor/service categories**
+  - Removed duplicate `schema/7.6.5/monitor/monitor/` directory causing circular imports
+  - Generator no longer creates same-name subdirectories (e.g., `monitor/monitor`, `service/service`)
+
 ## [0.5.57] - 2026-01-14
 
-### Added
+### Added (Docs)
 - **Expanded test suite with 8 new test files (~78 new tests)**
   - `test_readonly_cache.py` - 9 tests for module-level cache functions (`hfortix_core.readonly_cache`)
   - `test_debug_session.py` - 6 tests for `DebugSession` class (request tracking)
@@ -620,7 +650,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - **Fixed stub generator comment truncation causing syntax errors**
   - Added `sanitize_comment` filter to properly truncate help text in `.pyi` stubs
-  - Prevents broken comments like `# Sample one packet every configured number of packets (1 -` 
+  - Prevents broken comments like `# Sample one packet every configured number of packets (1 -`
   - Comments now safely truncate without breaking parentheses or special characters
   - Fixes Pylance failing to parse endpoints like `system.interface` due to syntax errors
 

@@ -88,11 +88,18 @@ class Usage(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_q_path: str | None = None,
+        q_q_name: str | None = None,
+        q_qtypes: list[str] | None = None,
+        q_scope: str | None = None,
+        q_mkey: str | None = None,
+        q_child_path: str | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve system/object/usage configuration.
@@ -119,7 +126,8 @@ class Usage(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +175,18 @@ class Usage(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_q_path is not None:
+            params["q_path"] = q_q_path
+        if q_q_name is not None:
+            params["q_name"] = q_q_name
+        if q_qtypes is not None:
+            params["qtypes"] = q_qtypes
+        if q_scope is not None:
+            params["scope"] = q_scope
+        if q_mkey is not None:
+            params["mkey"] = q_mkey
+        if q_child_path is not None:
+            params["child_path"] = q_child_path
         
         if name:
             endpoint = f"/system/object/usage/{name}"
@@ -175,7 +195,6 @@ class Usage(CRUDEndpoint, MetadataMixin):
             endpoint = "/system/object/usage"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

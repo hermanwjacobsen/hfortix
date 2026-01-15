@@ -1,0 +1,269 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0
+rootdir: /app/dev/classes/fortinet
+configfile: pyproject.toml
+plugins: asyncio-1.3.0, xdist-3.8.0, anyio-4.12.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+created: 8/8 workers
+8 workers [4483 items]
+
+........ss...........s.sss...........s.....s......sss........ss........s [  1%]
+.......s....ss.s.....................s....s...s...s...........s......ss. [  3%]
+..ss...............s.....s.....s..........s.....s.............s......s.. [  4%]
+.........s...........s....s............s...........s....ss.......s...s.. [  6%]
+.............s.s......s...ss.s..........s........s.....s..s.s........... [  8%]
+.....s........s......ss..........s...s...........s...........s.ss....... [  9%]
+......s.............s..s..............ss...........................s.... [ 11%]
+...............s........s.....................s.....ss....s.....s....... [ 12%]
+..s.....s.s.s.......s.......s..ss........s...........s....s..s.......... [ 14%]
+.s..s...........ss..........s........s....s.........s...s.......ss...... [ 16%]
+....s......s...s....ss.........s........s......s.s.s.........s.....s.... [ 17%]
+........s.s.......s..........s......ss........s.ss............s...s..... [ 19%]
+..s....s.........s.........s..............sss...........s............... [ 20%]
+..s..s.....s.................s...................................s...... [ 22%]
+.........s...............s..s.s..........s..........s.s................. [ 24%]
+......s.......s....s....................s.........s....s.......s........ [ 25%]
+......ss..........s..............s...s....s...s...s................s.s.. [ 27%]
+ss......................s....sss.s.....................s...s............ [ 28%]
+......s.................s...s............................s..ss........ss [ 30%]
+s....s....sss.............s..s..............sss....s.................... [ 32%]
+..s...s................................s..s........s.................s.. [ 33%]
+........s..s...s..s.....................s.......s.....s.............ss.. [ 35%]
+...........................s...s..........s......s..s...........s....... [ 36%]
+.........s........s....s..........s.s............s............s...s..s.. [ 38%]
+.....s................s.........s................s.....s..s.........s.s. [ 40%]
+.........s....s.............s..............s..s...s.......s...s....s.s.. [ 41%]
+.s....s...........s.....s........s...s..................s..........s.... [ 43%]
+...s..s........s........s.s.......s....................s....s........... [ 44%]
+..s..s...............s...........s..........s.s............s..s....s.... [ 46%]
+....s...............s.s..s.......s.................s..s.ss.s............ [ 48%]
+.........s.............s..s....s..s..s.....................s.........s.. [ 49%]
+.......ss.................ss....................................s....s.. [ 51%]
+s.....s..s........s....s........ss..s.........ss.......s................ [ 53%]
+...s.......ss.......s..................s...s............s..............s [ 54%]
+............ss........s......s..s.s........ss.....s.......s...s..s...s.. [ 56%]
+........ss.................s...............s...s..s.s.......s...s....s.. [ 57%]
+..s....s.s..s...s..s.s...s..s.......sss..........s........s.........s..s [ 59%]
+.s.s........s.....s..............ss..s..............s....s..........ss.. [ 61%]
+.s.....ss..........ss.............s...s..ss...ss.ss...........s.....s..s [ 62%]
+..s....sss.................sss.s........s.s..........ss......ss......s.. [ 64%]
+..s..........s.s.s....s....s.s................s........s.......ss....... [ 65%]
+...s....s..s..s.........s................s.......ss..s.s..........s..... [ 67%]
+.....ss......s.......s....s....ss........s........s..s........s...ss.... [ 69%]
+....s.............s.....s.....s........s..s.......s....s...s.......s..s. [ 70%]
+......s........s............s.ss.....s................s........s........ [ 72%]
+..s..........sss...s.s...........s......ss..........ss......s......s..s. [ 73%]
+s.s.ss......s..s.ss.........s...ssss.............s.....s..sss..s....s... [ 75%]
+s.........ssss...ss....s...s......s...........sss.......s.s.s.s......... [ 77%]
+.s....s.......s.ss..............sss....s...ss.s.............s.ss.s....s. [ 78%]
+..ss............s.ss...s....sFs...FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 80%]
+FFFFFFFFFF.....FFFFFFFFFFF.FFFFFFFsFFFFFFFFFFFF..s....ss.s.ss.......Fs.. [ 81%]
+...FFFFFFFFFF.FFFFFFFFFFF.FFFFFFFF..ss...FFFFFFFsFFFFFF..s.s.F.s..F.s.Fs [ 83%]
+..ss.F........s...s..sF.ss..ss....s.ss....ssF....ss.........s..s.s...sFs [ 85%]
+....sFss...F.sF..s..sss..ssss..Fsss...F.s..s.s.ssF..Fss...ss.s...s.s...s [ 86%]
+.....s.s.s..sFsssssFsF....F.....s.s...Fss...ss.s....s.Fsss...Fs.F..s.ss. [ 88%]
+ssssF.sss..F.sss..sss..F.ssF.s.ssFFss..Fsss..sss...sFs..sss.s.ssFs..ssss [ 89%]
+s.sssss..ss.ssssss.FsssF.F...s..F..ss..s...ssss....sFs..s.s.ss.FsssssFss [ 91%]
+F.ssFssssF..sssss..ss.FFs.Fs.sss..s.FFsFs..s.FFs..ss.ssF.sss.s.ssss.ss.s [ 93%]
+.s.ss.s.sssss.sFF.sF.s.s.s.ss.ss.sssssss..sss.s..ss..s.sss.ss.sss..F.ss. [ 94%]
+s.s.ss.s.s.ssF..ss.sF.sss.sssssssFssssssssssssssFssFsss.sFssssssssss.ss. [ 96%]
+s...Fs.FFs..ssss..sss...Fs....ss.s..F.ss.FsssssssssssFss.ssssss.ssssss.s [ 97%]
+ss.s.s..sFss..s.Fss.ss.sss.ssss...ssss.ssssssss.s.....sss.s..ssssssssFss [ 99%]
+Fs.ss.s..ss....ssss                                                      [100%]
+=========================== short test summary info ============================
+FAILED .tests/pytests/api/log/disk/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_ips.py::TestAutoIpsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_ips.py::TestAutoIpsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_ips.py::TestAutoIpsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_ssh.py::TestAutoSshGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_ips.py::TestAutoIpsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_ssh.py::TestAutoSshGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_ssh.py::TestAutoSshGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_ssh.py::TestAutoSshGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_ssl.py::TestAutoSslGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_ssl.py::TestAutoSslGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_ssl.py::TestAutoSslGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_ssl.py::TestAutoSslGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_virus.py::TestAutoVirusGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_virus.py::TestAutoVirusGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_virus.py::TestAutoVirusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_virus.py::TestAutoVirusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_voip.py::TestAutoVoipGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_voip.py::TestAutoVoipGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_voip.py::TestAutoVoipGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_voip.py::TestAutoVoipGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_waf.py::TestAutoWafGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_waf.py::TestAutoWafGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_waf.py::TestAutoWafGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_waf.py::TestAutoWafGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_dns.py::TestAutoDnsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_dns.py::TestAutoDnsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_ips.py::TestAutoIpsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_ips.py::TestAutoIpsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_ssh.py::TestAutoSshGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_ssh.py::TestAutoSshGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_ssl.py::TestAutoSslGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_ssl.py::TestAutoSslGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_virus.py::TestAutoVirusGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_virus.py::TestAutoVirusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_voip.py::TestAutoVoipGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_voip.py::TestAutoVoipGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_waf.py::TestAutoWafGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_waf.py::TestAutoWafGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_dns.py::TestAutoDnsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_dns.py::TestAutoDnsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/memory/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/memory/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_uuid-type-lookup.py::TestAutoUuidTypeLookupGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_gtp.py::TestAutoGtpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_ips.py::TestAutoIpsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_ips.py::TestAutoIpsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_ssh.py::TestAutoSshGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_ssh.py::TestAutoSshGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_ssl.py::TestAutoSslGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_ssl.py::TestAutoSslGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_virus.py::TestAutoVirusGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_virus.py::TestAutoVirusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_voip.py::TestAutoVoipGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_voip.py::TestAutoVoipGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_waf.py::TestAutoWafGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_waf.py::TestAutoWafGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/fortianalyzer/auto_test_webfilter.py::TestAutoWebfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_mapping.py::TestAutoMappingGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_dns.py::TestAutoDnsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_dns.py::TestAutoDnsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/forticloud/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/forticloud/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_anomaly.py::TestAutoAnomalyGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_app_ctrl.py::TestAutoAppCtrlGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_cifs.py::TestAutoCifsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_dlp.py::TestAutoDlpGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_dns.py::TestAutoDnsGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_dns.py::TestAutoDnsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/log/disk/auto_test_emailfilter.py::TestAutoEmailfilterGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/log/disk/auto_test_file_filter.py::TestAutoFileFilterGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/endpoint_control/auto_test_cert-status.py::TestAutoCertStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/endpoint_control/auto_test_status.py::TestAutoStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firmware/auto_test_extension-device.py::TestAutoExtensionDeviceGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_network-service-dynamic.py::TestAutoNetworkServiceDynamicGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_policy-lookup.py::TestAutoPolicyLookupGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/log/auto_test_download.py::TestAutoDownloadGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_sdn-connector-filters.py::TestAutoSdnConnectorFiltersGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/extender_controller/auto_test_modem-firmware.py::TestAutoModemFirmwareGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_check-addrgrp-exclude-mac-member.py::TestAutoCheckAddrgrpExcludeMacMemberGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_sessions.py::TestAutoSessionsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/log/auto_test_forticloud-report-list.py::TestAutoForticloudReportListGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/log/auto_test_forticloud-report-list.py::TestAutoForticloudReportListGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_internet-service-details.py::TestAutoInternetServiceDetailsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/log/auto_test_historic-daily-remote-logs.py::TestAutoHistoricDailyRemoteLogsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_internet-service-match.py::TestAutoInternetServiceMatchGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/router/auto_test_lookup-policy.py::TestAutoLookupPolicyGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/network/auto_test_lookup.py::TestAutoLookupGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_internet-service-reputation.py::TestAutoInternetServiceReputationGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/firewall/auto_test_load-balance.py::TestAutoLoadBalanceGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/network/auto_test_reverse-ip-lookup.py::TestAutoReverseIpLookupGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/switch_controller/auto_test_tx-rx.py::TestAutoTxRxGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/registration/auto_test_device-status.py::TestAutoDeviceStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/switch_controller/auto_test_cable-status.py::TestAutoCableStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/registration/auto_test_disclaimer.py::TestAutoDisclaimerGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/registration/auto_test_disclaimer.py::TestAutoDisclaimerGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_download.py::TestAutoDownloadGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/system/auto_test_download.py::TestAutoDownloadGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/extension_controller/auto_test_fortigate.py::TestAutoFortigateGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/system/auto_test_acme-certificate-status.py::TestAutoAcmeCertificateStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/switch_controller/auto_test_eligible-peer.py::TestAutoEligiblePeerGet::auto_test_get_with_vdom
+✓ Using local package from: /app/dev/classes/fortinet/packages/fortios
+✓ Tests directory (.tests): /app/dev/classes/fortinet/.tests
+FAILED .tests/pytests/api/monitor/switch_controller/auto_test_faceplate-xml.py::TestAutoFaceplateXmlGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_backup-details.py::TestAutoBackupDetailsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_entry-list.py::TestAutoEntryListGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_backup-summary.py::TestAutoBackupSummaryGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/system/auto_test_backup-summary.py::TestAutoBackupSummaryGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/switch_controller/auto_test_tier-plus-candidates.py::TestAutoTierPlusCandidatesGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_global-search.py::TestAutoGlobalSearchGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_ha-backup-hb-used.py::TestAutoHaBackupHbUsedGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/system/auto_test_check-port-availability.py::TestAutoCheckPortAvailabilityGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_ha-backup-hb-used.py::TestAutoHaBackupHbUsedGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_interface-connected-admins-info.py::TestAutoInterfaceConnectedAdminsInfoGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_resolve-fqdn.py::TestAutoResolveFqdnGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_interface.py::TestAutoInterfaceGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/router/auto_test_ha-peer.py::TestAutoHaPeerGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_restore-status.py::TestAutoRestoreStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_ipconf.py::TestAutoIpconfGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_ha-hw-interface.py::TestAutoHaHwInterfaceGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/system/auto_test_dhcp-status.py::TestAutoDhcpStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_ha-hw-interface.py::TestAutoHaHwInterfaceGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/extension_controller/auto_test_fortigate.py::TestAutoFortigateGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_ha-table-checksums.py::TestAutoHaTableChecksumsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_speed-test-status.py::TestAutoSpeedTestStatusGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_top-applications.py::TestAutoTopApplicationsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/user/auto_test_groups.py::TestAutoGroupsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_utilization.py::TestAutoUtilizationGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/system/auto_test_utilization.py::TestAutoUtilizationGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/user/auto_test_check.py::TestAutoCheckGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/system/auto_test_validate-jsonpath.py::TestAutoValidateJsonpathGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/user/auto_test_iot-query.py::TestAutoIotQueryGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/user/auto_test_get-test-connect.py::TestAutoGetTestConnectGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/user/auto_test_stats.py::TestAutoStatsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/extension_controller/auto_test_lan-extension-vdom-status.py::TestAutoLanExtensionVdomStatusGet::auto_test_get_list_all
+FAILED .tests/pytests/api/monitor/user/auto_test_users.py::TestAutoUsersGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/user/auto_test_thumbnail-file.py::TestAutoThumbnailFileGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/user/auto_test_thumbnail.py::TestAutoThumbnailGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/vpn_certificate/auto_test_cert-name-available.py::TestAutoCertNameAvailableGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/web_ui/auto_test_download.py::TestAutoDownloadGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/wifi/auto_test_ap_channels.py::TestAutoApChannelsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/webproxy/auto_test_download.py::TestAutoDownloadGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/service/security_rating/auto_test_recommendations.py::TestAutoRecommendationsGet::auto_test_get_with_vdom
+FAILED .tests/pytests/api/monitor/extension_controller/auto_test_lan-extension-vdom-status.py::TestAutoLanExtensionVdomStatusGet::auto_test_get_with_vdom
+========== 193 failed, 3377 passed, 913 skipped in 110.51s (0:01:50) ===========

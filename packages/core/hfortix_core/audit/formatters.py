@@ -8,7 +8,7 @@ various compliance and logging standards.
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Protocol, runtime_checkable
 
 __all__ = [
@@ -17,6 +17,11 @@ __all__ = [
     "SyslogFormatter",
     "CEFFormatter",
 ]
+
+
+def _utc_timestamp() -> str:
+    """Return an ISO 8601 UTC timestamp with a trailing Z."""
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
 @runtime_checkable
@@ -153,9 +158,7 @@ class SyslogFormatter:
         hostname = self.hostname or operation.get("host", "-")
 
         # Get timestamp (use operation timestamp or current time)
-        timestamp = operation.get(
-            "timestamp", datetime.utcnow().isoformat() + "Z"
-        )
+        timestamp = operation.get("timestamp", _utc_timestamp())
 
         # Message is the full operation as JSON
         message = json.dumps(operation, separators=(",", ":"))

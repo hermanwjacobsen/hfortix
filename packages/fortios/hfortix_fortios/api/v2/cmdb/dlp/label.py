@@ -101,11 +101,27 @@ class Label(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_datasource: bool | None = None,
+        q_skip_to: int | None = None,
+        q_with_meta: bool | None = None,
+        q_with_contents_hash: bool | None = None,
+        q_skip: bool | None = None,
+        q_format: list[str] | None = None,
+        q_key: str | None = None,
+        q_pattern: str | None = None,
+        q_scope: str | None = None,
+        q_exclude_default_values: bool | None = None,
+        q_datasource_format: dict[str, Any] | None = None,
+        q_unfiltered_count: int | None = None,
+        q_stat_items: str | None = None,
+        q_primary_keys: str | None = None,
+        q_action: Literal["default", "schema"] | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve dlp/label configuration.
@@ -133,7 +149,8 @@ class Label(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -186,6 +203,36 @@ class Label(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_datasource is not None:
+            params["datasource"] = q_datasource
+        if q_skip_to is not None:
+            params["skip_to"] = q_skip_to
+        if q_with_meta is not None:
+            params["with_meta"] = q_with_meta
+        if q_with_contents_hash is not None:
+            params["with_contents_hash"] = q_with_contents_hash
+        if q_skip is not None:
+            params["skip"] = q_skip
+        if q_format is not None:
+            params["format"] = q_format
+        if q_key is not None:
+            params["key"] = q_key
+        if q_pattern is not None:
+            params["pattern"] = q_pattern
+        if q_scope is not None:
+            params["scope"] = q_scope
+        if q_exclude_default_values is not None:
+            params["exclude-default-values"] = q_exclude_default_values
+        if q_datasource_format is not None:
+            params["datasource_format"] = q_datasource_format
+        if q_unfiltered_count is not None:
+            params["unfiltered_count"] = q_unfiltered_count
+        if q_stat_items is not None:
+            params["stat-items"] = q_stat_items
+        if q_primary_keys is not None:
+            params["primary_keys"] = q_primary_keys
+        if q_action is not None:
+            params["action"] = q_action
         
         if name:
             endpoint = "/dlp/label/" + str(name)
@@ -194,7 +241,6 @@ class Label(CRUDEndpoint, MetadataMixin):
             endpoint = "/dlp/label"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )
@@ -251,10 +297,15 @@ class Label(CRUDEndpoint, MetadataMixin):
         connector: str | None = None,
         comment: str | None = None,
         entries: str | list[str] | list[dict[str, Any]] | None = None,
+        q_action: Literal["move"] | None = None,
+        q_before: str | None = None,
+        q_after: str | None = None,
+        q_scope: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Update existing dlp/label object.
@@ -275,7 +326,8 @@ class Label(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name.
             raw_json: If True, return raw API response.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional parameters
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             API response dict
@@ -339,8 +391,19 @@ class Label(CRUDEndpoint, MetadataMixin):
             raise ValueError("name is required for PUT")
         endpoint = "/dlp/label/" + str(name_value)
 
+        # Add explicit query parameters for PUT
+        params: dict[str, Any] = {}
+        if q_action is not None:
+            params["action"] = q_action
+        if q_before is not None:
+            params["before"] = q_before
+        if q_after is not None:
+            params["after"] = q_after
+        if q_scope is not None:
+            params["scope"] = q_scope
+        
         return self._client.put(
-            "cmdb", endpoint, data=payload_data, params=kwargs, vdom=vdom, raw_json=raw_json, response_mode=response_mode
+            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode
         )
 
     # ========================================================================
@@ -357,10 +420,14 @@ class Label(CRUDEndpoint, MetadataMixin):
         connector: str | None = None,
         comment: str | None = None,
         entries: str | list[str] | list[dict[str, Any]] | None = None,
+        q_action: Literal["clone"] | None = None,
+        q_nkey: str | None = None,
+        q_scope: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Create new dlp/label object.
@@ -381,7 +448,8 @@ class Label(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional parameters
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             API response dict containing created object with assigned name.
@@ -443,8 +511,18 @@ class Label(CRUDEndpoint, MetadataMixin):
             )
 
         endpoint = "/dlp/label"
+        
+        # Add explicit query parameters for POST
+        params: dict[str, Any] = {}
+        if q_action is not None:
+            params["action"] = q_action
+        if q_nkey is not None:
+            params["nkey"] = q_nkey
+        if q_scope is not None:
+            params["scope"] = q_scope
+        
         return self._client.post(
-            "cmdb", endpoint, data=payload_data, params=kwargs, vdom=vdom, raw_json=raw_json, response_mode=response_mode
+            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode
         )
 
     # ========================================================================
@@ -455,10 +533,12 @@ class Label(CRUDEndpoint, MetadataMixin):
     def delete(
         self,
         name: str | None = None,
+        q_scope: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Delete dlp/label object.
@@ -470,7 +550,8 @@ class Label(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name
             raw_json: If True, return raw API response
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional parameters
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             API response dict
@@ -494,8 +575,13 @@ class Label(CRUDEndpoint, MetadataMixin):
             raise ValueError("name is required for DELETE")
         endpoint = "/dlp/label/" + str(name)
 
+        # Add explicit query parameters for DELETE
+        params: dict[str, Any] = {}
+        if q_scope is not None:
+            params["scope"] = q_scope
+        
         return self._client.delete(
-            "cmdb", endpoint, params=kwargs, vdom=vdom, raw_json=raw_json, response_mode=response_mode
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode
         )
 
     def exists(
@@ -567,7 +653,9 @@ class Label(CRUDEndpoint, MetadataMixin):
         entries: str | list[str] | list[dict[str, Any]] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """

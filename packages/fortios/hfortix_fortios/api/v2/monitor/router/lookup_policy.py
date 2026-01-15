@@ -88,11 +88,19 @@ class LookupPolicy(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_ipv6: bool | None = None,
+        q_destination: str | None = None,
+        q_source: str | None = None,
+        q_destination_port: int | None = None,
+        q_source_port: int | None = None,
+        q_interface_name: str | None = None,
+        q_protocol_number: int | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve router/lookup_policy configuration.
@@ -119,7 +127,8 @@ class LookupPolicy(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +176,20 @@ class LookupPolicy(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_ipv6 is not None:
+            params["ipv6"] = q_ipv6
+        if q_destination is not None:
+            params["destination"] = q_destination
+        if q_source is not None:
+            params["source"] = q_source
+        if q_destination_port is not None:
+            params["destination_port"] = q_destination_port
+        if q_source_port is not None:
+            params["source_port"] = q_source_port
+        if q_interface_name is not None:
+            params["interface_name"] = q_interface_name
+        if q_protocol_number is not None:
+            params["protocol_number"] = q_protocol_number
         
         if name:
             endpoint = f"/router/lookup-policy/{name}"
@@ -175,7 +198,6 @@ class LookupPolicy(CRUDEndpoint, MetadataMixin):
             endpoint = "/router/lookup-policy"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

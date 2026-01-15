@@ -88,11 +88,33 @@ class Sessions(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_ip_version: str | None = None,
+        q_summary: bool | None = None,
+        q_srcaddr: str | None = None,
+        q_dstaddr: str | None = None,
+        q_srcaddr6: str | None = None,
+        q_dstaddr6: str | None = None,
+        q_srcport: str | None = None,
+        q_dstport: str | None = None,
+        q_srcintf: str | None = None,
+        q_dstintf: str | None = None,
+        q_policyid: str | None = None,
+        q_proxy_policyid: str | None = None,
+        q_protocol: str | None = None,
+        q_application: str | None = None,
+        q_country: str | None = None,
+        q_seconds: str | None = None,
+        q_since: str | None = None,
+        q_owner: str | None = None,
+        q_username: str | None = None,
+        q_src_uuid: str | None = None,
+        q_dst_uuid: str | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve firewall/proxy/sessions configuration.
@@ -119,7 +141,8 @@ class Sessions(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +190,48 @@ class Sessions(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_ip_version is not None:
+            params["ip_version"] = q_ip_version
+        if q_summary is not None:
+            params["summary"] = q_summary
+        if q_srcaddr is not None:
+            params["srcaddr"] = q_srcaddr
+        if q_dstaddr is not None:
+            params["dstaddr"] = q_dstaddr
+        if q_srcaddr6 is not None:
+            params["srcaddr6"] = q_srcaddr6
+        if q_dstaddr6 is not None:
+            params["dstaddr6"] = q_dstaddr6
+        if q_srcport is not None:
+            params["srcport"] = q_srcport
+        if q_dstport is not None:
+            params["dstport"] = q_dstport
+        if q_srcintf is not None:
+            params["srcintf"] = q_srcintf
+        if q_dstintf is not None:
+            params["dstintf"] = q_dstintf
+        if q_policyid is not None:
+            params["policyid"] = q_policyid
+        if q_proxy_policyid is not None:
+            params["proxy-policyid"] = q_proxy_policyid
+        if q_protocol is not None:
+            params["protocol"] = q_protocol
+        if q_application is not None:
+            params["application"] = q_application
+        if q_country is not None:
+            params["country"] = q_country
+        if q_seconds is not None:
+            params["seconds"] = q_seconds
+        if q_since is not None:
+            params["since"] = q_since
+        if q_owner is not None:
+            params["owner"] = q_owner
+        if q_username is not None:
+            params["username"] = q_username
+        if q_src_uuid is not None:
+            params["src_uuid"] = q_src_uuid
+        if q_dst_uuid is not None:
+            params["dst_uuid"] = q_dst_uuid
         
         if name:
             endpoint = f"/firewall/proxy/sessions/{name}"
@@ -175,7 +240,6 @@ class Sessions(CRUDEndpoint, MetadataMixin):
             endpoint = "/firewall/proxy/sessions"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

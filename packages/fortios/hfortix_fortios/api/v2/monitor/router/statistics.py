@@ -88,11 +88,19 @@ class Statistics(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_operator: str | None = None,
+        q_ip_version: int | None = None,
+        q_ip_mask: str | None = None,
+        q_gateway: str | None = None,
+        q_type: str | None = None,
+        q_origin: str | None = None,
+        q_interface: str | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve router/statistics configuration.
@@ -119,7 +127,8 @@ class Statistics(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +176,20 @@ class Statistics(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_operator is not None:
+            params["operator"] = q_operator
+        if q_ip_version is not None:
+            params["ip_version"] = q_ip_version
+        if q_ip_mask is not None:
+            params["ip_mask"] = q_ip_mask
+        if q_gateway is not None:
+            params["gateway"] = q_gateway
+        if q_type is not None:
+            params["type"] = q_type
+        if q_origin is not None:
+            params["origin"] = q_origin
+        if q_interface is not None:
+            params["interface"] = q_interface
         
         if name:
             endpoint = f"/router/statistics/{name}"
@@ -175,7 +198,6 @@ class Statistics(CRUDEndpoint, MetadataMixin):
             endpoint = "/router/statistics"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

@@ -88,11 +88,17 @@ class EntryList(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_mkey: str | None = None,
+        q_status_only: bool | None = None,
+        q_include_notes: bool | None = None,
+        q_counts_only: bool | None = None,
+        q_entry: str | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve system/external_resource/entry_list configuration.
@@ -119,7 +125,8 @@ class EntryList(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +174,16 @@ class EntryList(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_mkey is not None:
+            params["mkey"] = q_mkey
+        if q_status_only is not None:
+            params["status_only"] = q_status_only
+        if q_include_notes is not None:
+            params["include_notes"] = q_include_notes
+        if q_counts_only is not None:
+            params["counts_only"] = q_counts_only
+        if q_entry is not None:
+            params["entry"] = q_entry
         
         if name:
             endpoint = f"/system/external-resource/entry-list/{name}"
@@ -175,7 +192,6 @@ class EntryList(CRUDEndpoint, MetadataMixin):
             endpoint = "/system/external-resource/entry-list"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

@@ -88,11 +88,15 @@ class ManagedAp(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_wtp_id: str | None = None,
+        q_incl_local: bool | None = None,
+        q_skip_eos: bool | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve wifi/managed_ap configuration.
@@ -119,7 +123,8 @@ class ManagedAp(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +172,12 @@ class ManagedAp(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_wtp_id is not None:
+            params["wtp_id"] = q_wtp_id
+        if q_incl_local is not None:
+            params["incl_local"] = q_incl_local
+        if q_skip_eos is not None:
+            params["skip_eos"] = q_skip_eos
         
         if name:
             endpoint = f"/wifi/managed_ap/{name}"
@@ -175,7 +186,6 @@ class ManagedAp(CRUDEndpoint, MetadataMixin):
             endpoint = "/wifi/managed_ap"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )

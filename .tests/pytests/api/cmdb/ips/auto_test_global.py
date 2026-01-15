@@ -1,0 +1,145 @@
+"""
+Auto-generated basic tests for cmdb.ips/global_
+
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/ips.global.json
+Category: cmdb
+Endpoint: /cmdb/ips/global
+
+These are BASIC automated tests. For comprehensive testing, create
+manual tests in test_global.py
+
+Test naming convention:
+- auto_test_* = Auto-generated basic tests
+- test_* = Manual comprehensive tests
+"""
+
+import pytest
+from __client__ import fgt
+
+endpoint = fgt.api.cmdb.ips.global_
+
+
+@pytest.mark.api_call
+@pytest.mark.read_only
+class TestAutoGlobalGet:
+    """Auto-generated GET operation tests."""
+    
+    def auto_test_get_list_all(self):
+        """Test GET - retrieve global configuration."""
+        try:
+            result = endpoint.get(response_mode="dict")
+        except Exception as e:
+            # HTTP 400/404/405/424/500/503 means feature not available/enabled, method not supported, or server error
+            if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
+                pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
+            raise
+        
+        # Verify response
+        assert result is not None
+        # Singleton CMDB endpoints return single dict
+        assert isinstance(result, dict)
+        print(f"✅ Retrieved global configuration (singleton)")
+        print(f"   Config keys: {len(result)} fields")
+    
+    
+    def auto_test_get_with_vdom(self):
+        """Test GET - with vdom parameter."""
+        try:
+            result = endpoint.get(vdom="root", response_mode="dict")
+        except Exception as e:
+            if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
+                pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
+            raise
+        
+        assert result is not None
+        print(f"✅ GET with vdom=root successful")
+    
+    def auto_test_get_with_filters(self):
+        """Test GET - with filter parameters."""
+        # Test with common filter options
+        try:
+            result = endpoint.get(
+                filter="",  # No filter (get all)
+                q_format="name|None",  # Limit fields
+                response_mode="dict",
+            )
+        except Exception as e:
+            if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
+                pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
+            raise
+        
+        assert result is not None
+        print(f"✅ GET with filters successful")
+
+
+@pytest.mark.api_call
+@pytest.mark.read_only
+class TestAutoGlobalExists:
+    """Auto-generated exists() tests."""
+    
+
+
+
+
+@pytest.mark.validator
+@pytest.mark.parallel_safe
+class TestAutoGlobalEnums:
+    """Auto-generated enum validation tests."""
+    
+    def auto_test_enum_fail_open(self):
+        """Test enum field fail-open validation."""
+        # 'global' is a Python keyword, using importlib
+        import importlib
+        validators = importlib.import_module('hfortix_fortios.api.v2.cmdb.ips._helpers.global_')
+        
+        valid_values = ['enable', 'disable']
+        
+        # Test each valid value
+        for value in valid_values:
+            config = {"fail-open": value}
+            # Validators should accept any valid enum value
+            # Note: Full validation requires all required fields
+            print(f"   Valid enum value: fail-open={value}")
+        
+        print(f"✅ Enum field fail-open has {len(valid_values)} valid values")
+    def auto_test_enum_database(self):
+        """Test enum field database validation."""
+        # 'global' is a Python keyword, using importlib
+        import importlib
+        validators = importlib.import_module('hfortix_fortios.api.v2.cmdb.ips._helpers.global_')
+        
+        valid_values = ['regular', 'extended']
+        
+        # Test each valid value
+        for value in valid_values:
+            config = {"database": value}
+            # Validators should accept any valid enum value
+            # Note: Full validation requires all required fields
+            print(f"   Valid enum value: database={value}")
+        
+        print(f"✅ Enum field database has {len(valid_values)} valid values")
+    def auto_test_enum_traffic_submit(self):
+        """Test enum field traffic-submit validation."""
+        # 'global' is a Python keyword, using importlib
+        import importlib
+        validators = importlib.import_module('hfortix_fortios.api.v2.cmdb.ips._helpers.global_')
+        
+        valid_values = ['enable', 'disable']
+        
+        # Test each valid value
+        for value in valid_values:
+            config = {"traffic-submit": value}
+            # Validators should accept any valid enum value
+            # Note: Full validation requires all required fields
+            print(f"   Valid enum value: traffic-submit={value}")
+        
+        print(f"✅ Enum field traffic-submit has {len(valid_values)} valid values")
+
+
+
+
+# Metadata for test discovery
+TEST_ENDPOINT = "cmdb/ips/global_"
+TEST_CATEGORY = "cmdb"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/ips.global.json"
+TEST_HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE']

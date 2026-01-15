@@ -88,11 +88,21 @@ class Query(CRUDEndpoint, MetadataMixin):
         filter: list[str] | None = None,
         count: int | None = None,
         start: int | None = None,
+        q_timestamp_from: int | None = None,
+        q_timestamp_to: int | None = None,
+        q_filters: list[str] | None = None,
+        q_query_type: str | None = None,
+        q_query_id: int | None = None,
+        q_cache_query: bool | None = None,
+        q_key_only: bool | None = None,
+        q_filter_logic: str | None = None,
+        q_total_only: bool | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] | None = None,
-        **kwargs: Any,
+        response_mode: Literal["dict", "object"] = "object",
+        error_mode: Literal["raise", "return", "print"] | None = None,
+        error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
         """
         Retrieve user/info/query configuration.
@@ -119,7 +129,8 @@ class Query(CRUDEndpoint, MetadataMixin):
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
             response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
-            **kwargs: Additional query parameters passed directly to API.
+            error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
+            error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
             Configuration data as dict. Returns Coroutine if using async client.
@@ -167,6 +178,24 @@ class Query(CRUDEndpoint, MetadataMixin):
             params["count"] = count
         if start is not None:
             params["start"] = start
+        if q_timestamp_from is not None:
+            params["timestamp_from"] = q_timestamp_from
+        if q_timestamp_to is not None:
+            params["timestamp_to"] = q_timestamp_to
+        if q_filters is not None:
+            params["filters"] = q_filters
+        if q_query_type is not None:
+            params["query_type"] = q_query_type
+        if q_query_id is not None:
+            params["query_id"] = q_query_id
+        if q_cache_query is not None:
+            params["cache_query"] = q_cache_query
+        if q_key_only is not None:
+            params["key_only"] = q_key_only
+        if q_filter_logic is not None:
+            params["filter_logic"] = q_filter_logic
+        if q_total_only is not None:
+            params["total_only"] = q_total_only
         
         if name:
             endpoint = f"/user/info/query/{name}"
@@ -175,7 +204,6 @@ class Query(CRUDEndpoint, MetadataMixin):
             endpoint = "/user/info/query"
             unwrap_single = False
         
-        params.update(kwargs)
         return self._client.get(
             "monitor", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
         )
