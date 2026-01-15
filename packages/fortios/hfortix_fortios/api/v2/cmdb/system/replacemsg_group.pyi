@@ -1042,8 +1042,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1062,7 +1060,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject: ...
     
     # With no mkey -> returns list of objects
@@ -1080,7 +1077,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ReplacemsgGroupObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -1098,7 +1094,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -1116,7 +1111,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1135,7 +1129,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1153,7 +1146,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ReplacemsgGroupObject]: ...
     
     # Fallback overload for all other cases
@@ -1171,7 +1163,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1187,7 +1178,6 @@ class ReplacemsgGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject | list[ReplacemsgGroupObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1222,7 +1212,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject: ...
     
     @overload
@@ -1250,7 +1239,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1279,7 +1267,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1307,7 +1294,6 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -1334,7 +1320,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -1363,7 +1348,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject: ...
     
     @overload
@@ -1391,7 +1375,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1420,7 +1403,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1448,7 +1430,6 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1475,7 +1456,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1485,7 +1465,6 @@ class ReplacemsgGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReplacemsgGroupObject: ...
     
     @overload
@@ -1494,7 +1473,6 @@ class ReplacemsgGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1504,7 +1482,6 @@ class ReplacemsgGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1513,7 +1490,6 @@ class ReplacemsgGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -1521,7 +1497,6 @@ class ReplacemsgGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1554,7 +1529,6 @@ class ReplacemsgGroup:
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

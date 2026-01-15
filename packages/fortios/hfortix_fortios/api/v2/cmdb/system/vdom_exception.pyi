@@ -208,8 +208,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> VdomExceptionObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -228,7 +226,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomExceptionObject: ...
     
     # With no mkey -> returns list of objects
@@ -246,7 +243,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VdomExceptionObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -264,7 +260,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -282,7 +277,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomExceptionObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -301,7 +295,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomExceptionObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -319,7 +312,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VdomExceptionObject]: ...
     
     # Fallback overload for all other cases
@@ -337,7 +329,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -353,7 +344,6 @@ class VdomException:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> VdomExceptionObject | list[VdomExceptionObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -372,7 +362,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomExceptionObject: ...
     
     @overload
@@ -384,7 +373,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -397,7 +385,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -409,7 +396,6 @@ class VdomException:
         object: Literal["log.fortianalyzer.setting", "log.fortianalyzer.override-setting", "log.fortianalyzer2.setting", "log.fortianalyzer2.override-setting", "log.fortianalyzer3.setting", "log.fortianalyzer3.override-setting", "log.fortianalyzer-cloud.setting", "log.fortianalyzer-cloud.override-setting", "log.syslogd.setting", "log.syslogd.override-setting", "log.syslogd2.setting", "log.syslogd2.override-setting", "log.syslogd3.setting", "log.syslogd3.override-setting", "log.syslogd4.setting", "log.syslogd4.override-setting", "system.gre-tunnel", "system.central-management", "system.csf", "user.radius", "system.interface", "vpn.ipsec.phase1-interface", "vpn.ipsec.phase2-interface", "router.bgp", "router.route-map", "router.prefix-list", "firewall.ippool", "firewall.ippool6", "router.static", "router.static6", "firewall.vip", "firewall.vip6", "system.sdwan", "system.saml", "router.policy", "router.policy6", "log.syslogd.setting", "log.syslogd.override-setting", "firewall.address"] | None = ...,
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -420,7 +406,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -433,7 +418,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomExceptionObject: ...
     
     @overload
@@ -445,7 +429,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -458,7 +441,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -470,7 +452,6 @@ class VdomException:
         object: Literal["log.fortianalyzer.setting", "log.fortianalyzer.override-setting", "log.fortianalyzer2.setting", "log.fortianalyzer2.override-setting", "log.fortianalyzer3.setting", "log.fortianalyzer3.override-setting", "log.fortianalyzer-cloud.setting", "log.fortianalyzer-cloud.override-setting", "log.syslogd.setting", "log.syslogd.override-setting", "log.syslogd2.setting", "log.syslogd2.override-setting", "log.syslogd3.setting", "log.syslogd3.override-setting", "log.syslogd4.setting", "log.syslogd4.override-setting", "system.gre-tunnel", "system.central-management", "system.csf", "user.radius", "system.interface", "vpn.ipsec.phase1-interface", "vpn.ipsec.phase2-interface", "router.bgp", "router.route-map", "router.prefix-list", "firewall.ippool", "firewall.ippool6", "router.static", "router.static6", "firewall.vip", "firewall.vip6", "system.sdwan", "system.saml", "router.policy", "router.policy6", "log.syslogd.setting", "log.syslogd.override-setting", "firewall.address"] | None = ...,
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -481,7 +462,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -491,7 +471,6 @@ class VdomException:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomExceptionObject: ...
     
     @overload
@@ -500,7 +479,6 @@ class VdomException:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -510,7 +488,6 @@ class VdomException:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -519,7 +496,6 @@ class VdomException:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -527,7 +503,6 @@ class VdomException:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -544,7 +519,6 @@ class VdomException:
         scope: Literal["all", "inclusive", "exclusive"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

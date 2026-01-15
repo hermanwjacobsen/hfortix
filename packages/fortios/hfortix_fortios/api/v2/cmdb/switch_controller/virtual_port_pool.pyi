@@ -158,8 +158,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -178,7 +176,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject: ...
     
     # With no mkey -> returns list of objects
@@ -196,7 +193,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VirtualPortPoolObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -214,7 +210,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -232,7 +227,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -251,7 +245,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -269,7 +262,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VirtualPortPoolObject]: ...
     
     # Fallback overload for all other cases
@@ -287,7 +279,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -303,7 +294,6 @@ class VirtualPortPool:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject | list[VirtualPortPoolObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -321,7 +311,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject: ...
     
     @overload
@@ -332,7 +321,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -344,7 +332,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -355,7 +342,6 @@ class VirtualPortPool:
         name: str | None = ...,
         description: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -365,7 +351,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -377,7 +362,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject: ...
     
     @overload
@@ -388,7 +372,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -400,7 +383,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -411,7 +393,6 @@ class VirtualPortPool:
         name: str | None = ...,
         description: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -421,7 +402,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -431,7 +411,6 @@ class VirtualPortPool:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VirtualPortPoolObject: ...
     
     @overload
@@ -440,7 +419,6 @@ class VirtualPortPool:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -450,7 +428,6 @@ class VirtualPortPool:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -459,7 +436,6 @@ class VirtualPortPool:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -467,7 +443,6 @@ class VirtualPortPool:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -483,7 +458,6 @@ class VirtualPortPool:
         description: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

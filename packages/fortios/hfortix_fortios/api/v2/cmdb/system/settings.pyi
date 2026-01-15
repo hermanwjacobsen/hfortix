@@ -764,8 +764,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SettingsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -784,7 +782,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SettingsObject: ...
     
     # With no mkey -> returns list of objects
@@ -802,7 +799,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SettingsObject: ...
     
     # raw_json=True returns the full API envelope
@@ -820,7 +816,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -838,7 +833,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SettingsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -857,7 +851,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SettingsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -875,7 +868,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SettingsObject: ...
     
     # Fallback overload for all other cases
@@ -893,7 +885,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -909,7 +900,6 @@ class Settings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SettingsObject | dict[str, Any]: ...
     
     def get_schema(
@@ -1067,7 +1057,6 @@ class Settings:
         internet_service_app_ctrl_size: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SettingsObject: ...
     
     @overload
@@ -1218,7 +1207,6 @@ class Settings:
         internet_service_app_ctrl_size: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1370,7 +1358,6 @@ class Settings:
         internet_service_app_ctrl_size: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1521,7 +1508,6 @@ class Settings:
         internet_service_database_cache: Literal["disable", "enable"] | None = ...,
         internet_service_app_ctrl_size: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1671,7 +1657,6 @@ class Settings:
         internet_service_app_ctrl_size: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1827,7 +1812,6 @@ class Settings:
         internet_service_app_ctrl_size: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

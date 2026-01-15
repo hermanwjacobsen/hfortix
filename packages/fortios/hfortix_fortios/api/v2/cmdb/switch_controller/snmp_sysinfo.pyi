@@ -169,8 +169,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -189,7 +187,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject: ...
     
     # With no mkey -> returns list of objects
@@ -207,7 +204,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject: ...
     
     # raw_json=True returns the full API envelope
@@ -225,7 +221,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -243,7 +238,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -262,7 +256,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -280,7 +273,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject: ...
     
     # Fallback overload for all other cases
@@ -298,7 +290,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -314,7 +305,6 @@ class SnmpSysinfo:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject | dict[str, Any]: ...
     
     def get_schema(
@@ -335,7 +325,6 @@ class SnmpSysinfo:
         location: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpSysinfoObject: ...
     
     @overload
@@ -349,7 +338,6 @@ class SnmpSysinfo:
         location: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -364,7 +352,6 @@ class SnmpSysinfo:
         location: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -378,7 +365,6 @@ class SnmpSysinfo:
         contact_info: str | None = ...,
         location: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -391,7 +377,6 @@ class SnmpSysinfo:
         location: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -410,7 +395,6 @@ class SnmpSysinfo:
         location: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

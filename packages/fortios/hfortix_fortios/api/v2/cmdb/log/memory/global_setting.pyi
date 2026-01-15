@@ -165,8 +165,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> GlobalSettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -185,7 +183,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> GlobalSettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -203,7 +200,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> GlobalSettingObject: ...
     
     # raw_json=True returns the full API envelope
@@ -221,7 +217,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -239,7 +234,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> GlobalSettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -258,7 +252,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> GlobalSettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -276,7 +269,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> GlobalSettingObject: ...
     
     # Fallback overload for all other cases
@@ -294,7 +286,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -310,7 +301,6 @@ class GlobalSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> GlobalSettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -330,7 +320,6 @@ class GlobalSetting:
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> GlobalSettingObject: ...
     
     @overload
@@ -343,7 +332,6 @@ class GlobalSetting:
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -357,7 +345,6 @@ class GlobalSetting:
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -370,7 +357,6 @@ class GlobalSetting:
         full_second_warning_threshold: int | None = ...,
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -382,7 +368,6 @@ class GlobalSetting:
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -400,7 +385,6 @@ class GlobalSetting:
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

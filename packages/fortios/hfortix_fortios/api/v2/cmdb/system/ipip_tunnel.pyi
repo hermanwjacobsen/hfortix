@@ -179,8 +179,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> IpipTunnelObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -199,7 +197,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpipTunnelObject: ...
     
     # With no mkey -> returns list of objects
@@ -217,7 +214,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[IpipTunnelObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -235,7 +231,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -253,7 +248,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpipTunnelObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -272,7 +266,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpipTunnelObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -290,7 +283,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[IpipTunnelObject]: ...
     
     # Fallback overload for all other cases
@@ -308,7 +300,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -324,7 +315,6 @@ class IpipTunnel:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> IpipTunnelObject | list[IpipTunnelObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -346,7 +336,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpipTunnelObject: ...
     
     @overload
@@ -361,7 +350,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -377,7 +365,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -392,7 +379,6 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -406,7 +392,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -422,7 +407,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpipTunnelObject: ...
     
     @overload
@@ -437,7 +421,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -453,7 +436,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -468,7 +450,6 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -482,7 +463,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -492,7 +472,6 @@ class IpipTunnel:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpipTunnelObject: ...
     
     @overload
@@ -501,7 +480,6 @@ class IpipTunnel:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -511,7 +489,6 @@ class IpipTunnel:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -520,7 +497,6 @@ class IpipTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -528,7 +504,6 @@ class IpipTunnel:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -548,7 +523,6 @@ class IpipTunnel:
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

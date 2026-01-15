@@ -242,8 +242,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -262,7 +260,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject: ...
     
     # With no mkey -> returns list of objects
@@ -280,7 +277,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessProxySshClientCertObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -298,7 +294,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -316,7 +311,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -335,7 +329,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -353,7 +346,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessProxySshClientCertObject]: ...
     
     # Fallback overload for all other cases
@@ -371,7 +363,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -387,7 +378,6 @@ class AccessProxySshClientCert:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject | list[AccessProxySshClientCertObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -412,7 +402,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject: ...
     
     @overload
@@ -430,7 +419,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -449,7 +437,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -467,7 +454,6 @@ class AccessProxySshClientCert:
         cert_extension: str | list[str] | list[dict[str, Any]] | None = ...,
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -484,7 +470,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -503,7 +488,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject: ...
     
     @overload
@@ -521,7 +505,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -540,7 +523,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -558,7 +540,6 @@ class AccessProxySshClientCert:
         cert_extension: str | list[str] | list[dict[str, Any]] | None = ...,
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -575,7 +556,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -585,7 +565,6 @@ class AccessProxySshClientCert:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxySshClientCertObject: ...
     
     @overload
@@ -594,7 +573,6 @@ class AccessProxySshClientCert:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -604,7 +582,6 @@ class AccessProxySshClientCert:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -613,7 +590,6 @@ class AccessProxySshClientCert:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -621,7 +597,6 @@ class AccessProxySshClientCert:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -644,7 +619,6 @@ class AccessProxySshClientCert:
         auth_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

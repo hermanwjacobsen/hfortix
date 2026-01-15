@@ -209,8 +209,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -229,7 +227,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject: ...
     
     # With no mkey -> returns list of objects
@@ -247,7 +244,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AnqpNaiRealmObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -265,7 +261,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -283,7 +278,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -302,7 +296,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -320,7 +313,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AnqpNaiRealmObject]: ...
     
     # Fallback overload for all other cases
@@ -338,7 +330,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -354,7 +345,6 @@ class AnqpNaiRealm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject | list[AnqpNaiRealmObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -372,7 +362,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject: ...
     
     @overload
@@ -383,7 +372,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -395,7 +383,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -406,7 +393,6 @@ class AnqpNaiRealm:
         name: str | None = ...,
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -416,7 +402,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -428,7 +413,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject: ...
     
     @overload
@@ -439,7 +423,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -451,7 +434,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -462,7 +444,6 @@ class AnqpNaiRealm:
         name: str | None = ...,
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -472,7 +453,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -482,7 +462,6 @@ class AnqpNaiRealm:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpNaiRealmObject: ...
     
     @overload
@@ -491,7 +470,6 @@ class AnqpNaiRealm:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -501,7 +479,6 @@ class AnqpNaiRealm:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -510,7 +487,6 @@ class AnqpNaiRealm:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -518,7 +494,6 @@ class AnqpNaiRealm:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -534,7 +509,6 @@ class AnqpNaiRealm:
         nai_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

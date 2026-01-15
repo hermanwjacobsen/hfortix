@@ -213,8 +213,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SwitchGroupObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -233,7 +231,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchGroupObject: ...
     
     # With no mkey -> returns list of objects
@@ -251,7 +248,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SwitchGroupObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -269,7 +265,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -287,7 +282,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchGroupObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -306,7 +300,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchGroupObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -324,7 +317,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SwitchGroupObject]: ...
     
     # Fallback overload for all other cases
@@ -342,7 +334,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -358,7 +349,6 @@ class SwitchGroup:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SwitchGroupObject | list[SwitchGroupObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -378,7 +368,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchGroupObject: ...
     
     @overload
@@ -391,7 +380,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -405,7 +393,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -418,7 +405,6 @@ class SwitchGroup:
         fortilink: str | None = ...,
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -430,7 +416,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -444,7 +429,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchGroupObject: ...
     
     @overload
@@ -457,7 +441,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -471,7 +454,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -484,7 +466,6 @@ class SwitchGroup:
         fortilink: str | None = ...,
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -496,7 +477,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -506,7 +486,6 @@ class SwitchGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchGroupObject: ...
     
     @overload
@@ -515,7 +494,6 @@ class SwitchGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -525,7 +503,6 @@ class SwitchGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -534,7 +511,6 @@ class SwitchGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -542,7 +518,6 @@ class SwitchGroup:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -560,7 +535,6 @@ class SwitchGroup:
         members: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

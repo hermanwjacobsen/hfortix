@@ -305,8 +305,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> DnsDatabaseObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -325,7 +323,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> DnsDatabaseObject: ...
     
     # With no mkey -> returns list of objects
@@ -343,7 +340,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[DnsDatabaseObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -361,7 +357,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -379,7 +374,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> DnsDatabaseObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -398,7 +392,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> DnsDatabaseObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -416,7 +409,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[DnsDatabaseObject]: ...
     
     # Fallback overload for all other cases
@@ -434,7 +426,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -450,7 +441,6 @@ class DnsDatabase:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> DnsDatabaseObject | list[DnsDatabaseObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -487,7 +477,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> DnsDatabaseObject: ...
     
     @overload
@@ -517,7 +506,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -548,7 +536,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -578,7 +565,6 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -607,7 +593,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -638,7 +623,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> DnsDatabaseObject: ...
     
     @overload
@@ -668,7 +652,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -699,7 +682,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -729,7 +711,6 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -758,7 +739,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -768,7 +748,6 @@ class DnsDatabase:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> DnsDatabaseObject: ...
     
     @overload
@@ -777,7 +756,6 @@ class DnsDatabase:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -787,7 +765,6 @@ class DnsDatabase:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -796,7 +773,6 @@ class DnsDatabase:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -804,7 +780,6 @@ class DnsDatabase:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -839,7 +814,6 @@ class DnsDatabase:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

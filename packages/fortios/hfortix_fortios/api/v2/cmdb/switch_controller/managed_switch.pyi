@@ -1654,8 +1654,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1674,7 +1672,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
     # With no mkey -> returns list of objects
@@ -1692,7 +1689,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ManagedSwitchObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -1710,7 +1706,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -1728,7 +1723,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1747,7 +1741,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1765,7 +1758,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ManagedSwitchObject]: ...
     
     # Fallback overload for all other cases
@@ -1783,7 +1775,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1799,7 +1790,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ManagedSwitchObject | list[ManagedSwitchObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1883,7 +1873,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
     @overload
@@ -1960,7 +1949,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2038,7 +2026,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2115,7 +2102,6 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -2191,7 +2177,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -2269,7 +2254,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
     @overload
@@ -2346,7 +2330,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2424,7 +2407,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2501,7 +2483,6 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -2577,7 +2558,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -2587,7 +2567,6 @@ class ManagedSwitch:
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
     @overload
@@ -2596,7 +2575,6 @@ class ManagedSwitch:
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2606,7 +2584,6 @@ class ManagedSwitch:
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2615,7 +2592,6 @@ class ManagedSwitch:
         self,
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -2623,7 +2599,6 @@ class ManagedSwitch:
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -2705,7 +2680,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

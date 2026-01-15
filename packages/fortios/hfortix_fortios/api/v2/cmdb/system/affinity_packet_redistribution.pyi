@@ -175,8 +175,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -195,7 +193,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
     # With no mkey -> returns list of objects
@@ -213,7 +210,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AffinityPacketRedistributionObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -231,7 +227,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -249,7 +244,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -268,7 +262,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -286,7 +279,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AffinityPacketRedistributionObject]: ...
     
     # Fallback overload for all other cases
@@ -304,7 +296,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -320,7 +311,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject | list[AffinityPacketRedistributionObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -341,7 +331,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
     @overload
@@ -355,7 +344,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -370,7 +358,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -384,7 +371,6 @@ class AffinityPacketRedistribution:
         round_robin: Literal["enable", "disable"] | None = ...,
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -397,7 +383,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -412,7 +397,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
     @overload
@@ -426,7 +410,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -441,7 +424,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -455,7 +437,6 @@ class AffinityPacketRedistribution:
         round_robin: Literal["enable", "disable"] | None = ...,
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -468,7 +449,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -478,7 +458,6 @@ class AffinityPacketRedistribution:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
     @overload
@@ -487,7 +466,6 @@ class AffinityPacketRedistribution:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -497,7 +475,6 @@ class AffinityPacketRedistribution:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -506,7 +483,6 @@ class AffinityPacketRedistribution:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -514,7 +490,6 @@ class AffinityPacketRedistribution:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -533,7 +508,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

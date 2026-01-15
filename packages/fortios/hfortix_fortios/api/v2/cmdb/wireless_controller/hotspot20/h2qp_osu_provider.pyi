@@ -279,8 +279,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -299,7 +297,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject: ...
     
     # With no mkey -> returns list of objects
@@ -317,7 +314,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[H2qpOsuProviderObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -335,7 +331,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -353,7 +348,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -372,7 +366,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -390,7 +383,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[H2qpOsuProviderObject]: ...
     
     # Fallback overload for all other cases
@@ -408,7 +400,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -424,7 +415,6 @@ class H2qpOsuProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject | list[H2qpOsuProviderObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -447,7 +437,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject: ...
     
     @overload
@@ -463,7 +452,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -480,7 +468,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -496,7 +483,6 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -511,7 +497,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -528,7 +513,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject: ...
     
     @overload
@@ -544,7 +528,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -561,7 +544,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -577,7 +559,6 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -592,7 +573,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -602,7 +582,6 @@ class H2qpOsuProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpOsuProviderObject: ...
     
     @overload
@@ -611,7 +590,6 @@ class H2qpOsuProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -621,7 +599,6 @@ class H2qpOsuProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -630,7 +607,6 @@ class H2qpOsuProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -638,7 +614,6 @@ class H2qpOsuProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -659,7 +634,6 @@ class H2qpOsuProvider:
         icon: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

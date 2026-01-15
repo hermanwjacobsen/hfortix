@@ -2707,8 +2707,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> PolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -2727,7 +2725,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -2745,7 +2742,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[PolicyObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -2763,7 +2759,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -2781,7 +2776,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -2800,7 +2794,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -2818,7 +2811,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[PolicyObject]: ...
     
     # Fallback overload for all other cases
@@ -2836,7 +2828,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -2852,7 +2843,6 @@ class Policy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> PolicyObject | list[PolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -3052,7 +3042,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PolicyObject: ...
     
     @overload
@@ -3245,7 +3234,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -3439,7 +3427,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -3632,7 +3619,6 @@ class Policy:
         internet_service6_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -3824,7 +3810,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -4018,7 +4003,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PolicyObject: ...
     
     @overload
@@ -4211,7 +4195,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -4405,7 +4388,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -4598,7 +4580,6 @@ class Policy:
         internet_service6_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -4790,7 +4771,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -4800,7 +4780,6 @@ class Policy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PolicyObject: ...
     
     @overload
@@ -4809,7 +4788,6 @@ class Policy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -4819,7 +4797,6 @@ class Policy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -4828,7 +4805,6 @@ class Policy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -4836,7 +4812,6 @@ class Policy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -5034,7 +5009,6 @@ class Policy:
         internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

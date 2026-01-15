@@ -183,8 +183,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> FtmPushObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -203,7 +201,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FtmPushObject: ...
     
     # With no mkey -> returns list of objects
@@ -221,7 +218,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FtmPushObject: ...
     
     # raw_json=True returns the full API envelope
@@ -239,7 +235,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -257,7 +252,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FtmPushObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -276,7 +270,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FtmPushObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -294,7 +287,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FtmPushObject: ...
     
     # Fallback overload for all other cases
@@ -312,7 +304,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -328,7 +319,6 @@ class FtmPush:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> FtmPushObject | dict[str, Any]: ...
     
     def get_schema(
@@ -351,7 +341,6 @@ class FtmPush:
         status: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FtmPushObject: ...
     
     @overload
@@ -367,7 +356,6 @@ class FtmPush:
         status: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -384,7 +372,6 @@ class FtmPush:
         status: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -400,7 +387,6 @@ class FtmPush:
         server_ip: str | None = ...,
         status: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -415,7 +401,6 @@ class FtmPush:
         status: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -436,7 +421,6 @@ class FtmPush:
         status: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

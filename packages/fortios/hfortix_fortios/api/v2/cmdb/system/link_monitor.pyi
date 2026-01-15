@@ -430,8 +430,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> LinkMonitorObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -450,7 +448,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> LinkMonitorObject: ...
     
     # With no mkey -> returns list of objects
@@ -468,7 +465,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[LinkMonitorObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -486,7 +482,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -504,7 +499,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> LinkMonitorObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -523,7 +517,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> LinkMonitorObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -541,7 +534,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[LinkMonitorObject]: ...
     
     # Fallback overload for all other cases
@@ -559,7 +551,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -575,7 +566,6 @@ class LinkMonitor:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> LinkMonitorObject | list[LinkMonitorObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -625,7 +615,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> LinkMonitorObject: ...
     
     @overload
@@ -668,7 +657,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -712,7 +700,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -755,7 +742,6 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -797,7 +783,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -841,7 +826,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> LinkMonitorObject: ...
     
     @overload
@@ -884,7 +868,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -928,7 +911,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -971,7 +953,6 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1013,7 +994,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1023,7 +1003,6 @@ class LinkMonitor:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> LinkMonitorObject: ...
     
     @overload
@@ -1032,7 +1011,6 @@ class LinkMonitor:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1042,7 +1020,6 @@ class LinkMonitor:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1051,7 +1028,6 @@ class LinkMonitor:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -1059,7 +1035,6 @@ class LinkMonitor:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1107,7 +1082,6 @@ class LinkMonitor:
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

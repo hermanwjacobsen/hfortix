@@ -166,8 +166,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -186,7 +184,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject: ...
     
     # With no mkey -> returns list of objects
@@ -204,7 +201,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[H2qpTermsAndConditionsObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -222,7 +218,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -240,7 +235,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -259,7 +253,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -277,7 +270,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[H2qpTermsAndConditionsObject]: ...
     
     # Fallback overload for all other cases
@@ -295,7 +287,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -311,7 +302,6 @@ class H2qpTermsAndConditions:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject | list[H2qpTermsAndConditionsObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -331,7 +321,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject: ...
     
     @overload
@@ -344,7 +333,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -358,7 +346,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -371,7 +358,6 @@ class H2qpTermsAndConditions:
         timestamp: int | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -383,7 +369,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -397,7 +382,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject: ...
     
     @overload
@@ -410,7 +394,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -424,7 +407,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -437,7 +419,6 @@ class H2qpTermsAndConditions:
         timestamp: int | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -449,7 +430,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -459,7 +439,6 @@ class H2qpTermsAndConditions:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> H2qpTermsAndConditionsObject: ...
     
     @overload
@@ -468,7 +447,6 @@ class H2qpTermsAndConditions:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -478,7 +456,6 @@ class H2qpTermsAndConditions:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -487,7 +464,6 @@ class H2qpTermsAndConditions:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -495,7 +471,6 @@ class H2qpTermsAndConditions:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -513,7 +488,6 @@ class H2qpTermsAndConditions:
         url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

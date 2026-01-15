@@ -206,8 +206,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> CaObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -226,7 +224,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CaObject: ...
     
     # With no mkey -> returns list of objects
@@ -244,7 +241,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CaObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -262,7 +258,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -280,7 +275,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CaObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -299,7 +293,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CaObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -317,7 +310,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CaObject]: ...
     
     # Fallback overload for all other cases
@@ -335,7 +327,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -351,7 +342,6 @@ class Ca:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> CaObject | list[CaObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -381,7 +371,6 @@ class Ca:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CaObject: ...
     
     @overload
@@ -404,7 +393,6 @@ class Ca:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -428,7 +416,6 @@ class Ca:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -451,7 +438,6 @@ class Ca:
         fabric_ca: Literal["disable", "enable"] | None = ...,
         details: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -473,7 +459,6 @@ class Ca:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -501,7 +486,6 @@ class Ca:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

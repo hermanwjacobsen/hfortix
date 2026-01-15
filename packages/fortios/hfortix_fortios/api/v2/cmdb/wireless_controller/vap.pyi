@@ -1111,8 +1111,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> VapObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1131,7 +1129,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VapObject: ...
     
     # With no mkey -> returns list of objects
@@ -1149,7 +1146,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VapObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -1167,7 +1163,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -1185,7 +1180,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VapObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1204,7 +1198,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VapObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1222,7 +1215,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VapObject]: ...
     
     # Fallback overload for all other cases
@@ -1240,7 +1232,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1256,7 +1247,6 @@ class Vap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> VapObject | list[VapObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1444,7 +1434,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VapObject: ...
     
     @overload
@@ -1625,7 +1614,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1807,7 +1795,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1988,7 +1975,6 @@ class Vap:
         l3_roaming: Literal["enable", "disable"] | None = ...,
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -2168,7 +2154,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -2350,7 +2335,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VapObject: ...
     
     @overload
@@ -2531,7 +2515,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2713,7 +2696,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2894,7 +2876,6 @@ class Vap:
         l3_roaming: Literal["enable", "disable"] | None = ...,
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -3074,7 +3055,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -3084,7 +3064,6 @@ class Vap:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VapObject: ...
     
     @overload
@@ -3093,7 +3072,6 @@ class Vap:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -3103,7 +3081,6 @@ class Vap:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -3112,7 +3089,6 @@ class Vap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -3120,7 +3096,6 @@ class Vap:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -3306,7 +3281,6 @@ class Vap:
         l3_roaming_mode: Literal["direct", "indirect"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

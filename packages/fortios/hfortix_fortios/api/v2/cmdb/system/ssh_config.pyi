@@ -177,8 +177,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SshConfigObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -197,7 +195,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SshConfigObject: ...
     
     # With no mkey -> returns list of objects
@@ -215,7 +212,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SshConfigObject: ...
     
     # raw_json=True returns the full API envelope
@@ -233,7 +229,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -251,7 +246,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SshConfigObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -270,7 +264,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SshConfigObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -288,7 +281,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SshConfigObject: ...
     
     # Fallback overload for all other cases
@@ -306,7 +298,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -322,7 +313,6 @@ class SshConfig:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SshConfigObject | dict[str, Any]: ...
     
     def get_schema(
@@ -345,7 +335,6 @@ class SshConfig:
         ssh_hsk: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SshConfigObject: ...
     
     @overload
@@ -361,7 +350,6 @@ class SshConfig:
         ssh_hsk: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -378,7 +366,6 @@ class SshConfig:
         ssh_hsk: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -394,7 +381,6 @@ class SshConfig:
         ssh_hsk_password: str | None = ...,
         ssh_hsk: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -409,7 +395,6 @@ class SshConfig:
         ssh_hsk: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -430,7 +415,6 @@ class SshConfig:
         ssh_hsk: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

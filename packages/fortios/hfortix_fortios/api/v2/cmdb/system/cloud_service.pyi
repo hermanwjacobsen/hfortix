@@ -183,8 +183,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> CloudServiceObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -203,7 +201,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CloudServiceObject: ...
     
     # With no mkey -> returns list of objects
@@ -221,7 +218,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CloudServiceObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -239,7 +235,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -257,7 +252,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CloudServiceObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -276,7 +270,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CloudServiceObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -294,7 +287,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CloudServiceObject]: ...
     
     # Fallback overload for all other cases
@@ -312,7 +304,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -328,7 +319,6 @@ class CloudService:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> CloudServiceObject | list[CloudServiceObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -351,7 +341,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CloudServiceObject: ...
     
     @overload
@@ -367,7 +356,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -384,7 +372,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -400,7 +387,6 @@ class CloudService:
         gck_keyid: str | None = ...,
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -415,7 +401,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -432,7 +417,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CloudServiceObject: ...
     
     @overload
@@ -448,7 +432,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -465,7 +448,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -481,7 +463,6 @@ class CloudService:
         gck_keyid: str | None = ...,
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -496,7 +477,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -506,7 +486,6 @@ class CloudService:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CloudServiceObject: ...
     
     @overload
@@ -515,7 +494,6 @@ class CloudService:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -525,7 +503,6 @@ class CloudService:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -534,7 +511,6 @@ class CloudService:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -542,7 +518,6 @@ class CloudService:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -563,7 +538,6 @@ class CloudService:
         gck_access_token_lifetime: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

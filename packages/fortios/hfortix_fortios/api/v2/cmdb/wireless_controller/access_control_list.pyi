@@ -292,8 +292,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AccessControlListObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -312,7 +310,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessControlListObject: ...
     
     # With no mkey -> returns list of objects
@@ -330,7 +327,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessControlListObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -348,7 +344,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -366,7 +361,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessControlListObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -385,7 +379,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessControlListObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -403,7 +396,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessControlListObject]: ...
     
     # Fallback overload for all other cases
@@ -421,7 +413,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -437,7 +428,6 @@ class AccessControlList:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AccessControlListObject | list[AccessControlListObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -457,7 +447,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessControlListObject: ...
     
     @overload
@@ -470,7 +459,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -484,7 +472,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -497,7 +484,6 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -509,7 +495,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -523,7 +508,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessControlListObject: ...
     
     @overload
@@ -536,7 +520,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -550,7 +533,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -563,7 +545,6 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -575,7 +556,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -585,7 +565,6 @@ class AccessControlList:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessControlListObject: ...
     
     @overload
@@ -594,7 +573,6 @@ class AccessControlList:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -604,7 +582,6 @@ class AccessControlList:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -613,7 +590,6 @@ class AccessControlList:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -621,7 +597,6 @@ class AccessControlList:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -639,7 +614,6 @@ class AccessControlList:
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

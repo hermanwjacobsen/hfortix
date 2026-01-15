@@ -161,8 +161,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -181,7 +179,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject: ...
     
     # With no mkey -> returns list of objects
@@ -199,7 +196,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject: ...
     
     # raw_json=True returns the full API envelope
@@ -217,7 +213,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -235,7 +230,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -254,7 +248,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -272,7 +265,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject: ...
     
     # Fallback overload for all other cases
@@ -290,7 +282,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -306,7 +297,6 @@ class SnmpTrapThreshold:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject | dict[str, Any]: ...
     
     def get_schema(
@@ -325,7 +315,6 @@ class SnmpTrapThreshold:
         trap_log_full_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpTrapThresholdObject: ...
     
     @overload
@@ -337,7 +326,6 @@ class SnmpTrapThreshold:
         trap_log_full_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -350,7 +338,6 @@ class SnmpTrapThreshold:
         trap_log_full_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -362,7 +349,6 @@ class SnmpTrapThreshold:
         trap_low_memory_threshold: int | None = ...,
         trap_log_full_threshold: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -373,7 +359,6 @@ class SnmpTrapThreshold:
         trap_log_full_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -390,7 +375,6 @@ class SnmpTrapThreshold:
         trap_log_full_threshold: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

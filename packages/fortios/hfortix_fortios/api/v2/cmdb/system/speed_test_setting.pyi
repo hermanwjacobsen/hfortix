@@ -157,8 +157,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -177,7 +175,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -195,7 +192,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject: ...
     
     # raw_json=True returns the full API envelope
@@ -213,7 +209,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -231,7 +226,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -250,7 +244,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -268,7 +261,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject: ...
     
     # Fallback overload for all other cases
@@ -286,7 +278,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -302,7 +293,6 @@ class SpeedTestSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -320,7 +310,6 @@ class SpeedTestSetting:
         multiple_tcp_stream: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SpeedTestSettingObject: ...
     
     @overload
@@ -331,7 +320,6 @@ class SpeedTestSetting:
         multiple_tcp_stream: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -343,7 +331,6 @@ class SpeedTestSetting:
         multiple_tcp_stream: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -354,7 +341,6 @@ class SpeedTestSetting:
         latency_threshold: int | None = ...,
         multiple_tcp_stream: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -364,7 +350,6 @@ class SpeedTestSetting:
         multiple_tcp_stream: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -380,7 +365,6 @@ class SpeedTestSetting:
         multiple_tcp_stream: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -162,8 +162,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -182,7 +180,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject: ...
     
     # With no mkey -> returns list of objects
@@ -200,7 +197,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[IpsUrlfilterDnsObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -218,7 +214,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -236,7 +231,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -255,7 +249,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -273,7 +266,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[IpsUrlfilterDnsObject]: ...
     
     # Fallback overload for all other cases
@@ -291,7 +283,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -307,7 +298,6 @@ class IpsUrlfilterDns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject | list[IpsUrlfilterDnsObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -326,7 +316,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject: ...
     
     @overload
@@ -338,7 +327,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -351,7 +339,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -363,7 +350,6 @@ class IpsUrlfilterDns:
         status: Literal["enable", "disable"] | None = ...,
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -374,7 +360,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -387,7 +372,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject: ...
     
     @overload
@@ -399,7 +383,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -412,7 +395,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -424,7 +406,6 @@ class IpsUrlfilterDns:
         status: Literal["enable", "disable"] | None = ...,
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -435,7 +416,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -445,7 +425,6 @@ class IpsUrlfilterDns:
         address: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterDnsObject: ...
     
     @overload
@@ -454,7 +433,6 @@ class IpsUrlfilterDns:
         address: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -464,7 +442,6 @@ class IpsUrlfilterDns:
         address: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -473,7 +450,6 @@ class IpsUrlfilterDns:
         self,
         address: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -481,7 +457,6 @@ class IpsUrlfilterDns:
         address: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -498,7 +473,6 @@ class IpsUrlfilterDns:
         ipv6_capability: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

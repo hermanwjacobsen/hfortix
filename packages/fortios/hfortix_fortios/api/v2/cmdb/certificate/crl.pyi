@@ -208,8 +208,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> CrlObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -228,7 +226,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CrlObject: ...
     
     # With no mkey -> returns list of objects
@@ -246,7 +243,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CrlObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -264,7 +260,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -282,7 +277,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CrlObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -301,7 +295,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CrlObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -319,7 +312,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CrlObject]: ...
     
     # Fallback overload for all other cases
@@ -337,7 +329,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -353,7 +344,6 @@ class Crl:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> CrlObject | list[CrlObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -382,7 +372,6 @@ class Crl:
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CrlObject: ...
     
     @overload
@@ -404,7 +393,6 @@ class Crl:
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -427,7 +415,6 @@ class Crl:
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -449,7 +436,6 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -470,7 +456,6 @@ class Crl:
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -497,7 +482,6 @@ class Crl:
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

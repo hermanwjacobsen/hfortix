@@ -242,8 +242,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AlarmObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -262,7 +260,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AlarmObject: ...
     
     # With no mkey -> returns list of objects
@@ -280,7 +277,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AlarmObject: ...
     
     # raw_json=True returns the full API envelope
@@ -298,7 +294,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -316,7 +311,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AlarmObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -335,7 +329,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AlarmObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -353,7 +346,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AlarmObject: ...
     
     # Fallback overload for all other cases
@@ -371,7 +363,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -387,7 +378,6 @@ class Alarm:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AlarmObject | dict[str, Any]: ...
     
     def get_schema(
@@ -406,7 +396,6 @@ class Alarm:
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AlarmObject: ...
     
     @overload
@@ -418,7 +407,6 @@ class Alarm:
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -431,7 +419,6 @@ class Alarm:
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -443,7 +430,6 @@ class Alarm:
         audible: Literal["enable", "disable"] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -454,7 +440,6 @@ class Alarm:
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -471,7 +456,6 @@ class Alarm:
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -219,8 +219,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -239,7 +237,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject: ...
     
     # With no mkey -> returns list of objects
@@ -257,7 +254,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[InternetServiceFortiguardObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -275,7 +271,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -293,7 +288,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -312,7 +306,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -330,7 +323,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[InternetServiceFortiguardObject]: ...
     
     # Fallback overload for all other cases
@@ -348,7 +340,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -364,7 +355,6 @@ class InternetServiceFortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject | list[InternetServiceFortiguardObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -383,7 +373,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject: ...
     
     @overload
@@ -395,7 +384,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -408,7 +396,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -420,7 +407,6 @@ class InternetServiceFortiguard:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -431,7 +417,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -444,7 +429,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject: ...
     
     @overload
@@ -456,7 +440,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -469,7 +452,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -481,7 +463,6 @@ class InternetServiceFortiguard:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -492,7 +473,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -502,7 +482,6 @@ class InternetServiceFortiguard:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceFortiguardObject: ...
     
     @overload
@@ -511,7 +490,6 @@ class InternetServiceFortiguard:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -521,7 +499,6 @@ class InternetServiceFortiguard:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -530,7 +507,6 @@ class InternetServiceFortiguard:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -538,7 +514,6 @@ class InternetServiceFortiguard:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -555,7 +530,6 @@ class InternetServiceFortiguard:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.74] - 2026-01-15
+
+### Changed - **Improved Type Safety: Removed `**kwargs: Any` from type stubs**
+
+**What Changed:**
+- ✅ **Removed `**kwargs: Any` from all method signatures in `.pyi` stubs**
+- ✅ **Unknown keyword arguments now properly show type errors**
+- ✅ **Passing deprecated `response_mode` parameter now shows error**
+
+**Why:**
+Previously, `**kwargs: Any` acted as a catch-all that accepted any keyword argument without type checking. This meant passing invalid or deprecated parameters like `response_mode="dict"` would be silently accepted.
+
+**Before (no type error):**
+```python
+# No error even though response_mode was removed in v0.5.71!
+settings = fg.api.cmdb.antivirus.settings.get(response_mode="dict")
+```
+
+**After (proper type error):**
+```python
+settings = fg.api.cmdb.antivirus.settings.get(response_mode="dict")
+# ❌ Error: Unexpected keyword argument "response_mode"
+```
+
+---
+
 ## [0.5.73] - 2026-01-15
 
 ### Changed - **Improved Type Safety: Removed `__getitem__` from FortiObject stubs**

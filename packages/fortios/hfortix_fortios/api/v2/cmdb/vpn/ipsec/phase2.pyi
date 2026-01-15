@@ -367,8 +367,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> Phase2Object: ...
     
     # With mkey as keyword arg -> returns single object
@@ -387,7 +385,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase2Object: ...
     
     # With no mkey -> returns list of objects
@@ -405,7 +402,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Phase2Object]: ...
     
     # raw_json=True returns the full API envelope
@@ -423,7 +419,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -441,7 +436,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase2Object: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -460,7 +454,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase2Object: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -478,7 +471,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Phase2Object]: ...
     
     # Fallback overload for all other cases
@@ -496,7 +488,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -512,7 +503,6 @@ class Phase2:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Phase2Object | list[Phase2Object] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -580,7 +570,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase2Object: ...
     
     @overload
@@ -641,7 +630,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -703,7 +691,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -764,7 +751,6 @@ class Phase2:
         dst_subnet6: str | None = ...,
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -824,7 +810,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -886,7 +871,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase2Object: ...
     
     @overload
@@ -947,7 +931,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1009,7 +992,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1070,7 +1052,6 @@ class Phase2:
         dst_subnet6: str | None = ...,
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1130,7 +1111,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1140,7 +1120,6 @@ class Phase2:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase2Object: ...
     
     @overload
@@ -1149,7 +1128,6 @@ class Phase2:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1159,7 +1137,6 @@ class Phase2:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1168,7 +1145,6 @@ class Phase2:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -1176,7 +1152,6 @@ class Phase2:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1242,7 +1217,6 @@ class Phase2:
         dst_port: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

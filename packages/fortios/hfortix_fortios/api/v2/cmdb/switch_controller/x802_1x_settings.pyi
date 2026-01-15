@@ -189,8 +189,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> X8021xSettingsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -209,7 +207,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> X8021xSettingsObject: ...
     
     # With no mkey -> returns list of objects
@@ -227,7 +224,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> X8021xSettingsObject: ...
     
     # raw_json=True returns the full API envelope
@@ -245,7 +241,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -263,7 +258,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> X8021xSettingsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -282,7 +276,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> X8021xSettingsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -300,7 +293,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> X8021xSettingsObject: ...
     
     # Fallback overload for all other cases
@@ -318,7 +310,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -334,7 +325,6 @@ class X8021xSettings:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> X8021xSettingsObject | dict[str, Any]: ...
     
     def get_schema(
@@ -360,7 +350,6 @@ class X8021xSettings:
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> X8021xSettingsObject: ...
     
     @overload
@@ -379,7 +368,6 @@ class X8021xSettings:
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -399,7 +387,6 @@ class X8021xSettings:
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -418,7 +405,6 @@ class X8021xSettings:
         mac_called_station_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -436,7 +422,6 @@ class X8021xSettings:
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -460,7 +445,6 @@ class X8021xSettings:
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

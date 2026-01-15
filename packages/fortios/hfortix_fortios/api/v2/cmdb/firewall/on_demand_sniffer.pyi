@@ -313,8 +313,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -333,7 +331,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject: ...
     
     # With no mkey -> returns list of objects
@@ -351,7 +348,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[OnDemandSnifferObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -369,7 +365,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -387,7 +382,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -406,7 +400,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -424,7 +417,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[OnDemandSnifferObject]: ...
     
     # Fallback overload for all other cases
@@ -442,7 +434,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -458,7 +449,6 @@ class OnDemandSniffer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject | list[OnDemandSnifferObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -482,7 +472,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject: ...
     
     @overload
@@ -499,7 +488,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -517,7 +505,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -534,7 +521,6 @@ class OnDemandSniffer:
         non_ip_packet: Literal["enable", "disable"] | None = ...,
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -550,7 +536,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -568,7 +553,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject: ...
     
     @overload
@@ -585,7 +569,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -603,7 +586,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -620,7 +602,6 @@ class OnDemandSniffer:
         non_ip_packet: Literal["enable", "disable"] | None = ...,
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -636,7 +617,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -646,7 +626,6 @@ class OnDemandSniffer:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> OnDemandSnifferObject: ...
     
     @overload
@@ -655,7 +634,6 @@ class OnDemandSniffer:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -665,7 +643,6 @@ class OnDemandSniffer:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -674,7 +651,6 @@ class OnDemandSniffer:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -682,7 +658,6 @@ class OnDemandSniffer:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -704,7 +679,6 @@ class OnDemandSniffer:
         advanced_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

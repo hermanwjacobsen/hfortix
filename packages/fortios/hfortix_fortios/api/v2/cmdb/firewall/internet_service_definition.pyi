@@ -212,8 +212,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -232,7 +230,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject: ...
     
     # With no mkey -> returns list of objects
@@ -250,7 +247,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[InternetServiceDefinitionObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -268,7 +264,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -286,7 +281,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -305,7 +299,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -323,7 +316,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[InternetServiceDefinitionObject]: ...
     
     # Fallback overload for all other cases
@@ -341,7 +333,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -357,7 +348,6 @@ class InternetServiceDefinition:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject | list[InternetServiceDefinitionObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -375,7 +365,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject: ...
     
     @overload
@@ -386,7 +375,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -398,7 +386,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -409,7 +396,6 @@ class InternetServiceDefinition:
         id: int | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -419,7 +405,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -431,7 +416,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject: ...
     
     @overload
@@ -442,7 +426,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -454,7 +437,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -465,7 +447,6 @@ class InternetServiceDefinition:
         id: int | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -475,7 +456,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -485,7 +465,6 @@ class InternetServiceDefinition:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> InternetServiceDefinitionObject: ...
     
     @overload
@@ -494,7 +473,6 @@ class InternetServiceDefinition:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -504,7 +482,6 @@ class InternetServiceDefinition:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -513,7 +490,6 @@ class InternetServiceDefinition:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -521,7 +497,6 @@ class InternetServiceDefinition:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -537,7 +512,6 @@ class InternetServiceDefinition:
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

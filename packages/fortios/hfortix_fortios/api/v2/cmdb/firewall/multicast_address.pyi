@@ -239,8 +239,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> MulticastAddressObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -259,7 +257,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MulticastAddressObject: ...
     
     # With no mkey -> returns list of objects
@@ -277,7 +274,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[MulticastAddressObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -295,7 +291,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -313,7 +308,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MulticastAddressObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -332,7 +326,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MulticastAddressObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -350,7 +343,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[MulticastAddressObject]: ...
     
     # Fallback overload for all other cases
@@ -368,7 +360,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -384,7 +375,6 @@ class MulticastAddress:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MulticastAddressObject | list[MulticastAddressObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -409,7 +399,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MulticastAddressObject: ...
     
     @overload
@@ -427,7 +416,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -446,7 +434,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -464,7 +451,6 @@ class MulticastAddress:
         color: int | None = ...,
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -481,7 +467,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -500,7 +485,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MulticastAddressObject: ...
     
     @overload
@@ -518,7 +502,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -537,7 +520,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -555,7 +537,6 @@ class MulticastAddress:
         color: int | None = ...,
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -572,7 +553,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -582,7 +562,6 @@ class MulticastAddress:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MulticastAddressObject: ...
     
     @overload
@@ -591,7 +570,6 @@ class MulticastAddress:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -601,7 +579,6 @@ class MulticastAddress:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -610,7 +587,6 @@ class MulticastAddress:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -618,7 +594,6 @@ class MulticastAddress:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -641,7 +616,6 @@ class MulticastAddress:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1309,8 +1309,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1329,7 +1327,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject: ...
     
     # With no mkey -> returns list of objects
@@ -1347,7 +1344,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Phase1InterfaceObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -1365,7 +1361,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -1383,7 +1378,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1402,7 +1396,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1420,7 +1413,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Phase1InterfaceObject]: ...
     
     # Fallback overload for all other cases
@@ -1438,7 +1430,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1454,7 +1445,6 @@ class Phase1Interface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject | list[Phase1InterfaceObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1669,7 +1659,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject: ...
     
     @overload
@@ -1877,7 +1866,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2086,7 +2074,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2294,7 +2281,6 @@ class Phase1Interface:
         cert_peer_username_validation: Literal["none", "othername", "rfc822name", "cn"] | None = ...,
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -2501,7 +2487,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -2710,7 +2695,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject: ...
     
     @overload
@@ -2918,7 +2902,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -3127,7 +3110,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -3335,7 +3317,6 @@ class Phase1Interface:
         cert_peer_username_validation: Literal["none", "othername", "rfc822name", "cn"] | None = ...,
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -3542,7 +3523,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -3552,7 +3532,6 @@ class Phase1Interface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Phase1InterfaceObject: ...
     
     @overload
@@ -3561,7 +3540,6 @@ class Phase1Interface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -3571,7 +3549,6 @@ class Phase1Interface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -3580,7 +3557,6 @@ class Phase1Interface:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -3588,7 +3564,6 @@ class Phase1Interface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -3801,7 +3776,6 @@ class Phase1Interface:
         cert_peer_username_strip: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

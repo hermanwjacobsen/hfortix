@@ -178,8 +178,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SearchEngineObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -198,7 +196,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SearchEngineObject: ...
     
     # With no mkey -> returns list of objects
@@ -216,7 +213,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SearchEngineObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -234,7 +230,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -252,7 +247,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SearchEngineObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -271,7 +265,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SearchEngineObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -289,7 +282,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SearchEngineObject]: ...
     
     # Fallback overload for all other cases
@@ -307,7 +299,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -323,7 +314,6 @@ class SearchEngine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SearchEngineObject | list[SearchEngineObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -346,7 +336,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SearchEngineObject: ...
     
     @overload
@@ -362,7 +351,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -379,7 +367,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -395,7 +382,6 @@ class SearchEngine:
         charset: Literal["utf-8", "gb2312"] | None = ...,
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -410,7 +396,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -427,7 +412,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SearchEngineObject: ...
     
     @overload
@@ -443,7 +427,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -460,7 +443,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -476,7 +458,6 @@ class SearchEngine:
         charset: Literal["utf-8", "gb2312"] | None = ...,
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -491,7 +472,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -501,7 +481,6 @@ class SearchEngine:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SearchEngineObject: ...
     
     @overload
@@ -510,7 +489,6 @@ class SearchEngine:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -520,7 +498,6 @@ class SearchEngine:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -529,7 +506,6 @@ class SearchEngine:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -537,7 +513,6 @@ class SearchEngine:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -558,7 +533,6 @@ class SearchEngine:
         safesearch_str: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

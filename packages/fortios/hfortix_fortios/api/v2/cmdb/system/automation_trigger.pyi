@@ -375,8 +375,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AutomationTriggerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -395,7 +393,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AutomationTriggerObject: ...
     
     # With no mkey -> returns list of objects
@@ -413,7 +410,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AutomationTriggerObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -431,7 +427,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -449,7 +444,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AutomationTriggerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -468,7 +462,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AutomationTriggerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -486,7 +479,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AutomationTriggerObject]: ...
     
     # Fallback overload for all other cases
@@ -504,7 +496,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -520,7 +511,6 @@ class AutomationTrigger:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AutomationTriggerObject | list[AutomationTriggerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -557,7 +547,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AutomationTriggerObject: ...
     
     @overload
@@ -587,7 +576,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -618,7 +606,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -648,7 +635,6 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -677,7 +663,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -708,7 +693,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AutomationTriggerObject: ...
     
     @overload
@@ -738,7 +722,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -769,7 +752,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -799,7 +781,6 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -828,7 +809,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -838,7 +818,6 @@ class AutomationTrigger:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AutomationTriggerObject: ...
     
     @overload
@@ -847,7 +826,6 @@ class AutomationTrigger:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -857,7 +835,6 @@ class AutomationTrigger:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -866,7 +843,6 @@ class AutomationTrigger:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -874,7 +850,6 @@ class AutomationTrigger:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -909,7 +884,6 @@ class AutomationTrigger:
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

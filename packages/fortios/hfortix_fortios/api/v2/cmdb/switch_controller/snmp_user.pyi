@@ -182,8 +182,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SnmpUserObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -202,7 +200,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpUserObject: ...
     
     # With no mkey -> returns list of objects
@@ -220,7 +217,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SnmpUserObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -238,7 +234,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -256,7 +251,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpUserObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -275,7 +269,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpUserObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -293,7 +286,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SnmpUserObject]: ...
     
     # Fallback overload for all other cases
@@ -311,7 +303,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -327,7 +318,6 @@ class SnmpUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SnmpUserObject | list[SnmpUserObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -351,7 +341,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpUserObject: ...
     
     @overload
@@ -368,7 +357,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -386,7 +374,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -403,7 +390,6 @@ class SnmpUser:
         priv_proto: Literal["aes128", "aes192", "aes192c", "aes256", "aes256c", "des"] | None = ...,
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -419,7 +405,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -437,7 +422,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpUserObject: ...
     
     @overload
@@ -454,7 +438,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -472,7 +455,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -489,7 +471,6 @@ class SnmpUser:
         priv_proto: Literal["aes128", "aes192", "aes192c", "aes256", "aes256c", "des"] | None = ...,
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -505,7 +486,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -515,7 +495,6 @@ class SnmpUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SnmpUserObject: ...
     
     @overload
@@ -524,7 +503,6 @@ class SnmpUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -534,7 +512,6 @@ class SnmpUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -543,7 +520,6 @@ class SnmpUser:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -551,7 +527,6 @@ class SnmpUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -573,7 +548,6 @@ class SnmpUser:
         priv_pwd: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

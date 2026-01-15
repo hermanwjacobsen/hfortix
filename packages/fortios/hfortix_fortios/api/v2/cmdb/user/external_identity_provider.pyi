@@ -207,8 +207,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -227,7 +225,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
     # With no mkey -> returns list of objects
@@ -245,7 +242,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ExternalIdentityProviderObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -263,7 +259,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -281,7 +276,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -300,7 +294,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -318,7 +311,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ExternalIdentityProviderObject]: ...
     
     # Fallback overload for all other cases
@@ -336,7 +328,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -352,7 +343,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject | list[ExternalIdentityProviderObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -381,7 +371,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
     @overload
@@ -403,7 +392,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -426,7 +414,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -448,7 +435,6 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -469,7 +455,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -492,7 +477,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
     @overload
@@ -514,7 +498,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -537,7 +520,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -559,7 +541,6 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -580,7 +561,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -590,7 +570,6 @@ class ExternalIdentityProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
     @overload
@@ -599,7 +578,6 @@ class ExternalIdentityProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -609,7 +587,6 @@ class ExternalIdentityProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -618,7 +595,6 @@ class ExternalIdentityProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -626,7 +602,6 @@ class ExternalIdentityProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -653,7 +628,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

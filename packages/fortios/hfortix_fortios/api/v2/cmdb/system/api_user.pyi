@@ -288,8 +288,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ApiUserObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -308,7 +306,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ApiUserObject: ...
     
     # With no mkey -> returns list of objects
@@ -326,7 +323,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ApiUserObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -344,7 +340,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -362,7 +357,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ApiUserObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -381,7 +375,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ApiUserObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -399,7 +392,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ApiUserObject]: ...
     
     # Fallback overload for all other cases
@@ -417,7 +409,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -433,7 +424,6 @@ class ApiUser:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ApiUserObject | list[ApiUserObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -458,7 +448,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ApiUserObject: ...
     
     @overload
@@ -476,7 +465,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -495,7 +483,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -513,7 +500,6 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -530,7 +516,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -549,7 +534,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ApiUserObject: ...
     
     @overload
@@ -567,7 +551,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -586,7 +569,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -604,7 +586,6 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -621,7 +602,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -631,7 +611,6 @@ class ApiUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ApiUserObject: ...
     
     @overload
@@ -640,7 +619,6 @@ class ApiUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -650,7 +628,6 @@ class ApiUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -659,7 +636,6 @@ class ApiUser:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -667,7 +643,6 @@ class ApiUser:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -690,7 +665,6 @@ class ApiUser:
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

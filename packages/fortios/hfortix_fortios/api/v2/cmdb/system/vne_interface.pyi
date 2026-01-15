@@ -200,8 +200,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> VneInterfaceObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -220,7 +218,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VneInterfaceObject: ...
     
     # With no mkey -> returns list of objects
@@ -238,7 +235,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VneInterfaceObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -256,7 +252,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -274,7 +269,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VneInterfaceObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -293,7 +287,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VneInterfaceObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -311,7 +304,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VneInterfaceObject]: ...
     
     # Fallback overload for all other cases
@@ -329,7 +321,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -345,7 +336,6 @@ class VneInterface:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> VneInterfaceObject | list[VneInterfaceObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -372,7 +362,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VneInterfaceObject: ...
     
     @overload
@@ -392,7 +381,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -413,7 +401,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -433,7 +420,6 @@ class VneInterface:
         http_username: str | None = ...,
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -452,7 +438,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -473,7 +458,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VneInterfaceObject: ...
     
     @overload
@@ -493,7 +477,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -514,7 +497,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -534,7 +516,6 @@ class VneInterface:
         http_username: str | None = ...,
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -553,7 +534,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -563,7 +543,6 @@ class VneInterface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VneInterfaceObject: ...
     
     @overload
@@ -572,7 +551,6 @@ class VneInterface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -582,7 +560,6 @@ class VneInterface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -591,7 +568,6 @@ class VneInterface:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -599,7 +575,6 @@ class VneInterface:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -624,7 +599,6 @@ class VneInterface:
         http_password: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

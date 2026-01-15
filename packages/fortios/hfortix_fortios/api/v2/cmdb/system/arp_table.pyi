@@ -171,8 +171,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ArpTableObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -191,7 +189,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ArpTableObject: ...
     
     # With no mkey -> returns list of objects
@@ -209,7 +206,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ArpTableObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -227,7 +223,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -245,7 +240,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ArpTableObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -264,7 +258,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ArpTableObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -282,7 +275,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ArpTableObject]: ...
     
     # Fallback overload for all other cases
@@ -300,7 +292,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -316,7 +307,6 @@ class ArpTable:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ArpTableObject | list[ArpTableObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -336,7 +326,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ArpTableObject: ...
     
     @overload
@@ -349,7 +338,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -363,7 +351,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -376,7 +363,6 @@ class ArpTable:
         ip: str | None = ...,
         mac: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -388,7 +374,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -402,7 +387,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ArpTableObject: ...
     
     @overload
@@ -415,7 +399,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -429,7 +412,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -442,7 +424,6 @@ class ArpTable:
         ip: str | None = ...,
         mac: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -454,7 +435,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -464,7 +444,6 @@ class ArpTable:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ArpTableObject: ...
     
     @overload
@@ -473,7 +452,6 @@ class ArpTable:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -483,7 +461,6 @@ class ArpTable:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -492,7 +469,6 @@ class ArpTable:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -500,7 +476,6 @@ class ArpTable:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -518,7 +493,6 @@ class ArpTable:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

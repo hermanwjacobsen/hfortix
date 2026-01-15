@@ -255,8 +255,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> WebPortalObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -275,7 +273,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WebPortalObject: ...
     
     # With no mkey -> returns list of objects
@@ -293,7 +290,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[WebPortalObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -311,7 +307,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -329,7 +324,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WebPortalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -348,7 +342,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WebPortalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -366,7 +359,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[WebPortalObject]: ...
     
     # Fallback overload for all other cases
@@ -384,7 +376,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -400,7 +391,6 @@ class WebPortal:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> WebPortalObject | list[WebPortalObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -440,7 +430,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WebPortalObject: ...
     
     @overload
@@ -473,7 +462,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -507,7 +495,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -540,7 +527,6 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -572,7 +558,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -606,7 +591,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WebPortalObject: ...
     
     @overload
@@ -639,7 +623,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -673,7 +656,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -706,7 +688,6 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -738,7 +719,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -748,7 +728,6 @@ class WebPortal:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WebPortalObject: ...
     
     @overload
@@ -757,7 +736,6 @@ class WebPortal:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -767,7 +745,6 @@ class WebPortal:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -776,7 +753,6 @@ class WebPortal:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -784,7 +760,6 @@ class WebPortal:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -822,7 +797,6 @@ class WebPortal:
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

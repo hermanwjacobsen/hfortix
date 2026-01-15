@@ -391,8 +391,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> WtpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -411,7 +409,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WtpObject: ...
     
     # With no mkey -> returns list of objects
@@ -429,7 +426,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[WtpObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -447,7 +443,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -465,7 +460,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WtpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -484,7 +478,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WtpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -502,7 +495,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[WtpObject]: ...
     
     # Fallback overload for all other cases
@@ -520,7 +512,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -536,7 +527,6 @@ class Wtp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> WtpObject | list[WtpObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -599,7 +589,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WtpObject: ...
     
     @overload
@@ -655,7 +644,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -712,7 +700,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -768,7 +755,6 @@ class Wtp:
         coordinate_latitude: str | None = ...,
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -823,7 +809,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -880,7 +865,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WtpObject: ...
     
     @overload
@@ -936,7 +920,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -993,7 +976,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1049,7 +1031,6 @@ class Wtp:
         coordinate_latitude: str | None = ...,
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1104,7 +1085,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1114,7 +1094,6 @@ class Wtp:
         wtp_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WtpObject: ...
     
     @overload
@@ -1123,7 +1102,6 @@ class Wtp:
         wtp_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1133,7 +1111,6 @@ class Wtp:
         wtp_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1142,7 +1119,6 @@ class Wtp:
         self,
         wtp_id: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -1150,7 +1126,6 @@ class Wtp:
         wtp_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1211,7 +1186,6 @@ class Wtp:
         coordinate_longitude: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

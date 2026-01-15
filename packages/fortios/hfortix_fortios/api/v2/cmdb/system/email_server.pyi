@@ -210,8 +210,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> EmailServerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -230,7 +228,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EmailServerObject: ...
     
     # With no mkey -> returns list of objects
@@ -248,7 +245,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EmailServerObject: ...
     
     # raw_json=True returns the full API envelope
@@ -266,7 +262,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -284,7 +279,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EmailServerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -303,7 +297,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EmailServerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -321,7 +314,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EmailServerObject: ...
     
     # Fallback overload for all other cases
@@ -339,7 +331,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -355,7 +346,6 @@ class EmailServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> EmailServerObject | dict[str, Any]: ...
     
     def get_schema(
@@ -385,7 +375,6 @@ class EmailServer:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EmailServerObject: ...
     
     @overload
@@ -408,7 +397,6 @@ class EmailServer:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -432,7 +420,6 @@ class EmailServer:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -455,7 +442,6 @@ class EmailServer:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -477,7 +463,6 @@ class EmailServer:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -505,7 +490,6 @@ class EmailServer:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -242,8 +242,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> WccpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -262,7 +260,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WccpObject: ...
     
     # With no mkey -> returns list of objects
@@ -280,7 +277,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[WccpObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -298,7 +294,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -316,7 +311,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WccpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -335,7 +329,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WccpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -353,7 +346,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[WccpObject]: ...
     
     # Fallback overload for all other cases
@@ -371,7 +363,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -387,7 +378,6 @@ class Wccp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> WccpObject | list[WccpObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -426,7 +416,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WccpObject: ...
     
     @overload
@@ -458,7 +447,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -491,7 +479,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -523,7 +510,6 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -554,7 +540,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -587,7 +572,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WccpObject: ...
     
     @overload
@@ -619,7 +603,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -652,7 +635,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -684,7 +666,6 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -715,7 +696,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -725,7 +705,6 @@ class Wccp:
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> WccpObject: ...
     
     @overload
@@ -734,7 +713,6 @@ class Wccp:
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -744,7 +722,6 @@ class Wccp:
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -753,7 +730,6 @@ class Wccp:
         self,
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -761,7 +737,6 @@ class Wccp:
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -798,7 +773,6 @@ class Wccp:
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -994,8 +994,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SdwanObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1014,7 +1012,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SdwanObject: ...
     
     # With no mkey -> returns list of objects
@@ -1032,7 +1029,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SdwanObject: ...
     
     # raw_json=True returns the full API envelope
@@ -1050,7 +1046,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -1068,7 +1063,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SdwanObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1087,7 +1081,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SdwanObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1105,7 +1098,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SdwanObject: ...
     
     # Fallback overload for all other cases
@@ -1123,7 +1115,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -1139,7 +1130,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SdwanObject | dict[str, Any]: ...
     
     def get_schema(
@@ -1172,7 +1162,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SdwanObject: ...
     
     @overload
@@ -1198,7 +1187,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1225,7 +1213,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1251,7 +1238,6 @@ class Sdwan:
         neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1276,7 +1262,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1307,7 +1292,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

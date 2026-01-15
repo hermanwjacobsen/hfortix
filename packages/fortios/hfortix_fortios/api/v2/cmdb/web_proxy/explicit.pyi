@@ -411,8 +411,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ExplicitObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -431,7 +429,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExplicitObject: ...
     
     # With no mkey -> returns list of objects
@@ -449,7 +446,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExplicitObject: ...
     
     # raw_json=True returns the full API envelope
@@ -467,7 +463,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -485,7 +480,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExplicitObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -504,7 +498,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExplicitObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -522,7 +515,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExplicitObject: ...
     
     # Fallback overload for all other cases
@@ -540,7 +532,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -556,7 +547,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ExplicitObject | dict[str, Any]: ...
     
     def get_schema(
@@ -610,7 +600,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExplicitObject: ...
     
     @overload
@@ -657,7 +646,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -705,7 +693,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -752,7 +739,6 @@ class Explicit:
         ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -798,7 +784,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -850,7 +835,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

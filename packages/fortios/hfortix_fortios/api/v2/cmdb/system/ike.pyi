@@ -245,8 +245,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> IkeObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -265,7 +263,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IkeObject: ...
     
     # With no mkey -> returns list of objects
@@ -283,7 +280,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IkeObject: ...
     
     # raw_json=True returns the full API envelope
@@ -301,7 +297,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -319,7 +314,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IkeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -338,7 +332,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IkeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -356,7 +349,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IkeObject: ...
     
     # Fallback overload for all other cases
@@ -374,7 +366,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -390,7 +381,6 @@ class Ike:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> IkeObject | dict[str, Any]: ...
     
     def get_schema(
@@ -430,7 +420,6 @@ class Ike:
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IkeObject: ...
     
     @overload
@@ -463,7 +452,6 @@ class Ike:
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -497,7 +485,6 @@ class Ike:
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -530,7 +517,6 @@ class Ike:
         dh_group_31: str | None = ...,
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -562,7 +548,6 @@ class Ike:
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -600,7 +585,6 @@ class Ike:
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -374,8 +374,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> CsfObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -394,7 +392,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CsfObject: ...
     
     # With no mkey -> returns list of objects
@@ -412,7 +409,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CsfObject: ...
     
     # raw_json=True returns the full API envelope
@@ -430,7 +426,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -448,7 +443,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CsfObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -467,7 +461,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CsfObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -485,7 +478,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CsfObject: ...
     
     # Fallback overload for all other cases
@@ -503,7 +495,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -519,7 +510,6 @@ class Csf:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> CsfObject | dict[str, Any]: ...
     
     def get_schema(
@@ -561,7 +551,6 @@ class Csf:
         file_quota_warning: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CsfObject: ...
     
     @overload
@@ -596,7 +585,6 @@ class Csf:
         file_quota_warning: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -632,7 +620,6 @@ class Csf:
         file_quota_warning: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -667,7 +654,6 @@ class Csf:
         file_quota: int | None = ...,
         file_quota_warning: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -701,7 +687,6 @@ class Csf:
         file_quota_warning: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -741,7 +726,6 @@ class Csf:
         file_quota_warning: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -157,8 +157,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -177,7 +175,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject: ...
     
     # With no mkey -> returns list of objects
@@ -195,7 +192,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject: ...
     
     # raw_json=True returns the full API envelope
@@ -213,7 +209,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -231,7 +226,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -250,7 +244,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -268,7 +261,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject: ...
     
     # Fallback overload for all other cases
@@ -286,7 +278,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -302,7 +293,6 @@ class IpSourceGuardLog:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject | dict[str, Any]: ...
     
     def get_schema(
@@ -320,7 +310,6 @@ class IpSourceGuardLog:
         violation_timer: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpSourceGuardLogObject: ...
     
     @overload
@@ -331,7 +320,6 @@ class IpSourceGuardLog:
         violation_timer: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -343,7 +331,6 @@ class IpSourceGuardLog:
         violation_timer: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -354,7 +341,6 @@ class IpSourceGuardLog:
         log_violations: Literal["enable", "disable"] | None = ...,
         violation_timer: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -364,7 +350,6 @@ class IpSourceGuardLog:
         violation_timer: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -380,7 +365,6 @@ class IpSourceGuardLog:
         violation_timer: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

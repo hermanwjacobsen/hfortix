@@ -171,8 +171,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -191,7 +189,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject: ...
     
     # With no mkey -> returns list of objects
@@ -209,7 +206,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Ipv6NeighborCacheObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -227,7 +223,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -245,7 +240,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -264,7 +258,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -282,7 +275,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Ipv6NeighborCacheObject]: ...
     
     # Fallback overload for all other cases
@@ -300,7 +292,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -316,7 +307,6 @@ class Ipv6NeighborCache:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject | list[Ipv6NeighborCacheObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -336,7 +326,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject: ...
     
     @overload
@@ -349,7 +338,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -363,7 +351,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -376,7 +363,6 @@ class Ipv6NeighborCache:
         ipv6: str | None = ...,
         mac: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -388,7 +374,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -402,7 +387,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject: ...
     
     @overload
@@ -415,7 +399,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -429,7 +412,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -442,7 +424,6 @@ class Ipv6NeighborCache:
         ipv6: str | None = ...,
         mac: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -454,7 +435,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -464,7 +444,6 @@ class Ipv6NeighborCache:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Ipv6NeighborCacheObject: ...
     
     @overload
@@ -473,7 +452,6 @@ class Ipv6NeighborCache:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -483,7 +461,6 @@ class Ipv6NeighborCache:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -492,7 +469,6 @@ class Ipv6NeighborCache:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -500,7 +476,6 @@ class Ipv6NeighborCache:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -518,7 +493,6 @@ class Ipv6NeighborCache:
         mac: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

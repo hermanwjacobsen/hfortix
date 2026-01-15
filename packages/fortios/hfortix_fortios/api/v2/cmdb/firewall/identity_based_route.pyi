@@ -213,8 +213,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -233,7 +231,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject: ...
     
     # With no mkey -> returns list of objects
@@ -251,7 +248,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[IdentityBasedRouteObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -269,7 +265,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -287,7 +282,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -306,7 +300,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -324,7 +317,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[IdentityBasedRouteObject]: ...
     
     # Fallback overload for all other cases
@@ -342,7 +334,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -358,7 +349,6 @@ class IdentityBasedRoute:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject | list[IdentityBasedRouteObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -377,7 +367,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject: ...
     
     @overload
@@ -389,7 +378,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -402,7 +390,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -414,7 +401,6 @@ class IdentityBasedRoute:
         comments: str | None = ...,
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -425,7 +411,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -438,7 +423,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject: ...
     
     @overload
@@ -450,7 +434,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -463,7 +446,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -475,7 +457,6 @@ class IdentityBasedRoute:
         comments: str | None = ...,
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -486,7 +467,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -496,7 +476,6 @@ class IdentityBasedRoute:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IdentityBasedRouteObject: ...
     
     @overload
@@ -505,7 +484,6 @@ class IdentityBasedRoute:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -515,7 +493,6 @@ class IdentityBasedRoute:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -524,7 +501,6 @@ class IdentityBasedRoute:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -532,7 +508,6 @@ class IdentityBasedRoute:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -549,7 +524,6 @@ class IdentityBasedRoute:
         rule: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

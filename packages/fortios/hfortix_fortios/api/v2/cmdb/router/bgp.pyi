@@ -2089,8 +2089,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> BgpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -2109,7 +2107,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BgpObject: ...
     
     # With no mkey -> returns list of objects
@@ -2127,7 +2124,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BgpObject: ...
     
     # raw_json=True returns the full API envelope
@@ -2145,7 +2141,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -2163,7 +2158,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BgpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -2182,7 +2176,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BgpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -2200,7 +2193,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BgpObject: ...
     
     # Fallback overload for all other cases
@@ -2218,7 +2210,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -2234,7 +2225,6 @@ class Bgp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> BgpObject | dict[str, Any]: ...
     
     def get_schema(
@@ -2316,7 +2306,6 @@ class Bgp:
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BgpObject: ...
     
     @overload
@@ -2391,7 +2380,6 @@ class Bgp:
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2467,7 +2455,6 @@ class Bgp:
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2542,7 +2529,6 @@ class Bgp:
         vrf: str | list[str] | list[dict[str, Any]] | None = ...,
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -2616,7 +2602,6 @@ class Bgp:
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -2696,7 +2681,6 @@ class Bgp:
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

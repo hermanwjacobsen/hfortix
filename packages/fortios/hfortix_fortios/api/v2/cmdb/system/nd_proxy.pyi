@@ -199,8 +199,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> NdProxyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -219,7 +217,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> NdProxyObject: ...
     
     # With no mkey -> returns list of objects
@@ -237,7 +234,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> NdProxyObject: ...
     
     # raw_json=True returns the full API envelope
@@ -255,7 +251,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -273,7 +268,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> NdProxyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -292,7 +286,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> NdProxyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -310,7 +303,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> NdProxyObject: ...
     
     # Fallback overload for all other cases
@@ -328,7 +320,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -344,7 +335,6 @@ class NdProxy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> NdProxyObject | dict[str, Any]: ...
     
     def get_schema(
@@ -362,7 +352,6 @@ class NdProxy:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> NdProxyObject: ...
     
     @overload
@@ -373,7 +362,6 @@ class NdProxy:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -385,7 +373,6 @@ class NdProxy:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -396,7 +383,6 @@ class NdProxy:
         status: Literal["enable", "disable"] | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -406,7 +392,6 @@ class NdProxy:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -422,7 +407,6 @@ class NdProxy:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

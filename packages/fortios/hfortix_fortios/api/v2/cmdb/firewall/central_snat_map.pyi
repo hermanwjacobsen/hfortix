@@ -574,8 +574,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> CentralSnatMapObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -594,7 +592,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CentralSnatMapObject: ...
     
     # With no mkey -> returns list of objects
@@ -612,7 +609,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CentralSnatMapObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -630,7 +626,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -648,7 +643,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CentralSnatMapObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -667,7 +661,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CentralSnatMapObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -685,7 +678,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[CentralSnatMapObject]: ...
     
     # Fallback overload for all other cases
@@ -703,7 +695,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -719,7 +710,6 @@ class CentralSnatMap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> CentralSnatMapObject | list[CentralSnatMapObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -757,7 +747,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CentralSnatMapObject: ...
     
     @overload
@@ -788,7 +777,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -820,7 +808,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -851,7 +838,6 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -881,7 +867,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -913,7 +898,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CentralSnatMapObject: ...
     
     @overload
@@ -944,7 +928,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -976,7 +959,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1007,7 +989,6 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1037,7 +1018,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1047,7 +1027,6 @@ class CentralSnatMap:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> CentralSnatMapObject: ...
     
     @overload
@@ -1056,7 +1035,6 @@ class CentralSnatMap:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1066,7 +1044,6 @@ class CentralSnatMap:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1075,7 +1052,6 @@ class CentralSnatMap:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -1083,7 +1059,6 @@ class CentralSnatMap:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1119,7 +1094,6 @@ class CentralSnatMap:
         comments: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

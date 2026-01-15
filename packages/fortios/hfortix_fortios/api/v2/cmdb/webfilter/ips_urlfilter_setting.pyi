@@ -170,8 +170,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -190,7 +188,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -208,7 +205,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject: ...
     
     # raw_json=True returns the full API envelope
@@ -226,7 +222,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -244,7 +239,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -263,7 +257,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -281,7 +274,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject: ...
     
     # Fallback overload for all other cases
@@ -299,7 +291,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -315,7 +306,6 @@ class IpsUrlfilterSetting:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -335,7 +325,6 @@ class IpsUrlfilterSetting:
         geo_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> IpsUrlfilterSettingObject: ...
     
     @overload
@@ -348,7 +337,6 @@ class IpsUrlfilterSetting:
         geo_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -362,7 +350,6 @@ class IpsUrlfilterSetting:
         geo_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -375,7 +362,6 @@ class IpsUrlfilterSetting:
         gateway: str | None = ...,
         geo_filter: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -387,7 +373,6 @@ class IpsUrlfilterSetting:
         geo_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -405,7 +390,6 @@ class IpsUrlfilterSetting:
         geo_filter: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

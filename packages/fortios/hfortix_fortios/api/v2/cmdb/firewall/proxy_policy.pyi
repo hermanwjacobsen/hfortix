@@ -1589,8 +1589,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ProxyPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1609,7 +1607,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ProxyPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -1627,7 +1624,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ProxyPolicyObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -1645,7 +1641,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -1663,7 +1658,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ProxyPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1682,7 +1676,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ProxyPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1700,7 +1693,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ProxyPolicyObject]: ...
     
     # Fallback overload for all other cases
@@ -1718,7 +1710,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1734,7 +1725,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ProxyPolicyObject | list[ProxyPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1833,7 +1823,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ProxyPolicyObject: ...
     
     @overload
@@ -1925,7 +1914,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2018,7 +2006,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2110,7 +2097,6 @@ class ProxyPolicy:
         decrypted_traffic_mirror: str | None = ...,
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -2201,7 +2187,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -2294,7 +2279,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ProxyPolicyObject: ...
     
     @overload
@@ -2386,7 +2370,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2479,7 +2462,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2571,7 +2553,6 @@ class ProxyPolicy:
         decrypted_traffic_mirror: str | None = ...,
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -2662,7 +2643,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -2672,7 +2652,6 @@ class ProxyPolicy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ProxyPolicyObject: ...
     
     @overload
@@ -2681,7 +2660,6 @@ class ProxyPolicy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -2691,7 +2669,6 @@ class ProxyPolicy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -2700,7 +2677,6 @@ class ProxyPolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -2708,7 +2684,6 @@ class ProxyPolicy:
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -2805,7 +2780,6 @@ class ProxyPolicy:
         detect_https_in_http_request: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

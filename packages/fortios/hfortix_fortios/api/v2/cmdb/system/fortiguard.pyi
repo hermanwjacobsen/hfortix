@@ -395,8 +395,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> FortiguardObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -415,7 +413,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiguardObject: ...
     
     # With no mkey -> returns list of objects
@@ -433,7 +430,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiguardObject: ...
     
     # raw_json=True returns the full API envelope
@@ -451,7 +447,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -469,7 +464,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiguardObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -488,7 +482,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiguardObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -506,7 +499,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiguardObject: ...
     
     # Fallback overload for all other cases
@@ -524,7 +516,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -540,7 +531,6 @@ class Fortiguard:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> FortiguardObject | dict[str, Any]: ...
     
     def get_schema(
@@ -615,7 +605,6 @@ class Fortiguard:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiguardObject: ...
     
     @overload
@@ -683,7 +672,6 @@ class Fortiguard:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -752,7 +740,6 @@ class Fortiguard:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -820,7 +807,6 @@ class Fortiguard:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -887,7 +873,6 @@ class Fortiguard:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -960,7 +945,6 @@ class Fortiguard:
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

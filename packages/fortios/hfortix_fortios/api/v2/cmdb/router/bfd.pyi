@@ -265,8 +265,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> BfdObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -285,7 +283,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BfdObject: ...
     
     # With no mkey -> returns list of objects
@@ -303,7 +300,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BfdObject: ...
     
     # raw_json=True returns the full API envelope
@@ -321,7 +317,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -339,7 +334,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BfdObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -358,7 +352,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BfdObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -376,7 +369,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BfdObject: ...
     
     # Fallback overload for all other cases
@@ -394,7 +386,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -410,7 +401,6 @@ class Bfd:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> BfdObject | dict[str, Any]: ...
     
     def get_schema(
@@ -428,7 +418,6 @@ class Bfd:
         multihop_template: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> BfdObject: ...
     
     @overload
@@ -439,7 +428,6 @@ class Bfd:
         multihop_template: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -451,7 +439,6 @@ class Bfd:
         multihop_template: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -462,7 +449,6 @@ class Bfd:
         neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
         multihop_template: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -472,7 +458,6 @@ class Bfd:
         multihop_template: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -488,7 +473,6 @@ class Bfd:
         multihop_template: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

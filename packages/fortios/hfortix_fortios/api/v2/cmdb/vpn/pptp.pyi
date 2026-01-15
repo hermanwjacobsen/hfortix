@@ -178,8 +178,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> PptpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -198,7 +196,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PptpObject: ...
     
     # With no mkey -> returns list of objects
@@ -216,7 +213,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PptpObject: ...
     
     # raw_json=True returns the full API envelope
@@ -234,7 +230,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -252,7 +247,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PptpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -271,7 +265,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PptpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -289,7 +282,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PptpObject: ...
     
     # Fallback overload for all other cases
@@ -307,7 +299,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -323,7 +314,6 @@ class Pptp:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> PptpObject | dict[str, Any]: ...
     
     def get_schema(
@@ -345,7 +335,6 @@ class Pptp:
         usrgrp: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PptpObject: ...
     
     @overload
@@ -360,7 +349,6 @@ class Pptp:
         usrgrp: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -376,7 +364,6 @@ class Pptp:
         usrgrp: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -391,7 +378,6 @@ class Pptp:
         local_ip: str | None = ...,
         usrgrp: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -405,7 +391,6 @@ class Pptp:
         usrgrp: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -425,7 +410,6 @@ class Pptp:
         usrgrp: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -212,8 +212,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> Vipgrp6Object: ...
     
     # With mkey as keyword arg -> returns single object
@@ -232,7 +230,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Vipgrp6Object: ...
     
     # With no mkey -> returns list of objects
@@ -250,7 +247,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Vipgrp6Object]: ...
     
     # raw_json=True returns the full API envelope
@@ -268,7 +264,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -286,7 +281,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Vipgrp6Object: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -305,7 +299,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Vipgrp6Object: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -323,7 +316,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[Vipgrp6Object]: ...
     
     # Fallback overload for all other cases
@@ -341,7 +333,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -357,7 +348,6 @@ class Vipgrp6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Vipgrp6Object | list[Vipgrp6Object] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -378,7 +368,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Vipgrp6Object: ...
     
     @overload
@@ -392,7 +381,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -407,7 +395,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -421,7 +408,6 @@ class Vipgrp6:
         comments: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -434,7 +420,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -449,7 +434,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Vipgrp6Object: ...
     
     @overload
@@ -463,7 +447,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -478,7 +461,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -492,7 +474,6 @@ class Vipgrp6:
         comments: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -505,7 +486,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -515,7 +495,6 @@ class Vipgrp6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> Vipgrp6Object: ...
     
     @overload
@@ -524,7 +503,6 @@ class Vipgrp6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -534,7 +512,6 @@ class Vipgrp6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -543,7 +520,6 @@ class Vipgrp6:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -551,7 +527,6 @@ class Vipgrp6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -570,7 +545,6 @@ class Vipgrp6:
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

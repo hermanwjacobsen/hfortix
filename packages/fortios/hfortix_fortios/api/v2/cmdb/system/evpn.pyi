@@ -258,8 +258,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> EvpnObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -278,7 +276,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EvpnObject: ...
     
     # With no mkey -> returns list of objects
@@ -296,7 +293,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[EvpnObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -314,7 +310,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -332,7 +327,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EvpnObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -351,7 +345,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EvpnObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -369,7 +362,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[EvpnObject]: ...
     
     # Fallback overload for all other cases
@@ -387,7 +379,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -403,7 +394,6 @@ class Evpn:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> EvpnObject | list[EvpnObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -425,7 +415,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EvpnObject: ...
     
     @overload
@@ -440,7 +429,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -456,7 +444,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -471,7 +458,6 @@ class Evpn:
         ip_local_learning: Literal["enable", "disable"] | None = ...,
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -485,7 +471,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -501,7 +486,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EvpnObject: ...
     
     @overload
@@ -516,7 +500,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -532,7 +515,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -547,7 +529,6 @@ class Evpn:
         ip_local_learning: Literal["enable", "disable"] | None = ...,
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -561,7 +542,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -571,7 +551,6 @@ class Evpn:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> EvpnObject: ...
     
     @overload
@@ -580,7 +559,6 @@ class Evpn:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -590,7 +568,6 @@ class Evpn:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -599,7 +576,6 @@ class Evpn:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -607,7 +583,6 @@ class Evpn:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -627,7 +602,6 @@ class Evpn:
         arp_suppression: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -188,8 +188,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ReverseConnectorObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -208,7 +206,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReverseConnectorObject: ...
     
     # With no mkey -> returns list of objects
@@ -226,7 +223,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ReverseConnectorObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -244,7 +240,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -262,7 +257,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReverseConnectorObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -281,7 +275,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReverseConnectorObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -299,7 +292,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ReverseConnectorObject]: ...
     
     # Fallback overload for all other cases
@@ -317,7 +309,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -333,7 +324,6 @@ class ReverseConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ReverseConnectorObject | list[ReverseConnectorObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -357,7 +347,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReverseConnectorObject: ...
     
     @overload
@@ -374,7 +363,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -392,7 +380,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -409,7 +396,6 @@ class ReverseConnector:
         certificate: str | None = ...,
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -425,7 +411,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -443,7 +428,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReverseConnectorObject: ...
     
     @overload
@@ -460,7 +444,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -478,7 +461,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -495,7 +477,6 @@ class ReverseConnector:
         certificate: str | None = ...,
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -511,7 +492,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -521,7 +501,6 @@ class ReverseConnector:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ReverseConnectorObject: ...
     
     @overload
@@ -530,7 +509,6 @@ class ReverseConnector:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -540,7 +518,6 @@ class ReverseConnector:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -549,7 +526,6 @@ class ReverseConnector:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -557,7 +533,6 @@ class ReverseConnector:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -579,7 +554,6 @@ class ReverseConnector:
         trusted_server_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -187,8 +187,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> FortigateObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -207,7 +205,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortigateObject: ...
     
     # With no mkey -> returns list of objects
@@ -225,7 +222,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[FortigateObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -243,7 +239,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -261,7 +256,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortigateObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -280,7 +274,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortigateObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -298,7 +291,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[FortigateObject]: ...
     
     # Fallback overload for all other cases
@@ -316,7 +308,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -332,7 +323,6 @@ class Fortigate:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> FortigateObject | list[FortigateObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -355,7 +345,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortigateObject: ...
     
     @overload
@@ -371,7 +360,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -388,7 +376,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -404,7 +391,6 @@ class Fortigate:
         device_id: int | None = ...,
         profile: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -419,7 +405,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -436,7 +421,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortigateObject: ...
     
     @overload
@@ -452,7 +436,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -469,7 +452,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -485,7 +467,6 @@ class Fortigate:
         device_id: int | None = ...,
         profile: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -500,7 +481,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -510,7 +490,6 @@ class Fortigate:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortigateObject: ...
     
     @overload
@@ -519,7 +498,6 @@ class Fortigate:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -529,7 +507,6 @@ class Fortigate:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -538,7 +515,6 @@ class Fortigate:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -546,7 +522,6 @@ class Fortigate:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -567,7 +542,6 @@ class Fortigate:
         profile: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

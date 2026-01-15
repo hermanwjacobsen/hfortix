@@ -239,8 +239,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> VdomPropertyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -259,7 +257,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomPropertyObject: ...
     
     # With no mkey -> returns list of objects
@@ -277,7 +274,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VdomPropertyObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -295,7 +291,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -313,7 +308,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomPropertyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -332,7 +326,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomPropertyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -350,7 +343,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[VdomPropertyObject]: ...
     
     # Fallback overload for all other cases
@@ -368,7 +360,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -384,7 +375,6 @@ class VdomProperty:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> VdomPropertyObject | list[VdomPropertyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -421,7 +411,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomPropertyObject: ...
     
     @overload
@@ -451,7 +440,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -482,7 +470,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -512,7 +499,6 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -541,7 +527,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -572,7 +557,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomPropertyObject: ...
     
     @overload
@@ -602,7 +586,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -633,7 +616,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -663,7 +645,6 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -692,7 +673,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -702,7 +682,6 @@ class VdomProperty:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> VdomPropertyObject: ...
     
     @overload
@@ -711,7 +690,6 @@ class VdomProperty:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -721,7 +699,6 @@ class VdomProperty:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -730,7 +707,6 @@ class VdomProperty:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -738,7 +714,6 @@ class VdomProperty:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -773,7 +748,6 @@ class VdomProperty:
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

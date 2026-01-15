@@ -206,8 +206,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -226,7 +224,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject: ...
     
     # With no mkey -> returns list of objects
@@ -244,7 +241,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AnqpRoamingConsortiumObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -262,7 +258,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -280,7 +275,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -299,7 +293,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -317,7 +310,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AnqpRoamingConsortiumObject]: ...
     
     # Fallback overload for all other cases
@@ -335,7 +327,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -351,7 +342,6 @@ class AnqpRoamingConsortium:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject | list[AnqpRoamingConsortiumObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -369,7 +359,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject: ...
     
     @overload
@@ -380,7 +369,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -392,7 +380,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -403,7 +390,6 @@ class AnqpRoamingConsortium:
         name: str | None = ...,
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -413,7 +399,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -425,7 +410,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject: ...
     
     @overload
@@ -436,7 +420,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -448,7 +431,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -459,7 +441,6 @@ class AnqpRoamingConsortium:
         name: str | None = ...,
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -469,7 +450,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -479,7 +459,6 @@ class AnqpRoamingConsortium:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AnqpRoamingConsortiumObject: ...
     
     @overload
@@ -488,7 +467,6 @@ class AnqpRoamingConsortium:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -498,7 +476,6 @@ class AnqpRoamingConsortium:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -507,7 +484,6 @@ class AnqpRoamingConsortium:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -515,7 +491,6 @@ class AnqpRoamingConsortium:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -531,7 +506,6 @@ class AnqpRoamingConsortium:
         oi_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

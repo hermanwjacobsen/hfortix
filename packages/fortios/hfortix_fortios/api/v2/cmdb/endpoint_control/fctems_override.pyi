@@ -253,8 +253,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> FctemsOverrideObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -273,7 +271,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FctemsOverrideObject: ...
     
     # With no mkey -> returns list of objects
@@ -291,7 +288,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[FctemsOverrideObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -309,7 +305,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -327,7 +322,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FctemsOverrideObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -346,7 +340,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FctemsOverrideObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -364,7 +357,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[FctemsOverrideObject]: ...
     
     # Fallback overload for all other cases
@@ -382,7 +374,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -398,7 +389,6 @@ class FctemsOverride:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> FctemsOverrideObject | list[FctemsOverrideObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -438,7 +428,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FctemsOverrideObject: ...
     
     @overload
@@ -471,7 +460,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -505,7 +493,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -538,7 +525,6 @@ class FctemsOverride:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -570,7 +556,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -604,7 +589,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FctemsOverrideObject: ...
     
     @overload
@@ -637,7 +621,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -671,7 +654,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -704,7 +686,6 @@ class FctemsOverride:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -736,7 +717,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -746,7 +726,6 @@ class FctemsOverride:
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FctemsOverrideObject: ...
     
     @overload
@@ -755,7 +734,6 @@ class FctemsOverride:
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -765,7 +743,6 @@ class FctemsOverride:
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -774,7 +751,6 @@ class FctemsOverride:
         self,
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -782,7 +758,6 @@ class FctemsOverride:
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -820,7 +795,6 @@ class FctemsOverride:
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

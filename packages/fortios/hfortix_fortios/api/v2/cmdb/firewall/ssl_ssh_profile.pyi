@@ -482,8 +482,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SslSshProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -502,7 +500,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SslSshProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -520,7 +517,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SslSshProfileObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -538,7 +534,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -556,7 +551,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SslSshProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -575,7 +569,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SslSshProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -593,7 +586,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SslSshProfileObject]: ...
     
     # Fallback overload for all other cases
@@ -611,7 +603,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -627,7 +618,6 @@ class SslSshProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SslSshProfileObject | list[SslSshProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -672,7 +662,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SslSshProfileObject: ...
     
     @overload
@@ -710,7 +699,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -749,7 +737,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -787,7 +774,6 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -824,7 +810,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -863,7 +848,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SslSshProfileObject: ...
     
     @overload
@@ -901,7 +885,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -940,7 +923,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -978,7 +960,6 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -1015,7 +996,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1025,7 +1005,6 @@ class SslSshProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SslSshProfileObject: ...
     
     @overload
@@ -1034,7 +1013,6 @@ class SslSshProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -1044,7 +1022,6 @@ class SslSshProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -1053,7 +1030,6 @@ class SslSshProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -1061,7 +1037,6 @@ class SslSshProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1104,7 +1079,6 @@ class SslSshProfile:
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

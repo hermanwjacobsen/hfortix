@@ -282,8 +282,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AcmeObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -302,7 +300,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AcmeObject: ...
     
     # With no mkey -> returns list of objects
@@ -320,7 +317,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AcmeObject: ...
     
     # raw_json=True returns the full API envelope
@@ -338,7 +334,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -356,7 +351,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AcmeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -375,7 +369,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AcmeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -393,7 +386,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AcmeObject: ...
     
     # Fallback overload for all other cases
@@ -411,7 +403,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -427,7 +418,6 @@ class Acme:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AcmeObject | dict[str, Any]: ...
     
     def get_schema(
@@ -450,7 +440,6 @@ class Acme:
         status: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AcmeObject: ...
     
     @overload
@@ -466,7 +455,6 @@ class Acme:
         status: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -483,7 +471,6 @@ class Acme:
         status: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -499,7 +486,6 @@ class Acme:
         acc_details: str | None = ...,
         status: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -514,7 +500,6 @@ class Acme:
         status: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -535,7 +520,6 @@ class Acme:
         status: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

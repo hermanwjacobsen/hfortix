@@ -198,8 +198,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> ExtenderProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -218,7 +216,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExtenderProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -236,7 +233,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ExtenderProfileObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -254,7 +250,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -272,7 +267,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExtenderProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -291,7 +285,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExtenderProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -309,7 +302,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[ExtenderProfileObject]: ...
     
     # Fallback overload for all other cases
@@ -327,7 +319,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -343,7 +334,6 @@ class ExtenderProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> ExtenderProfileObject | list[ExtenderProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -371,7 +361,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExtenderProfileObject: ...
     
     @overload
@@ -392,7 +381,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -414,7 +402,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -435,7 +422,6 @@ class ExtenderProfile:
         wifi: str | None = ...,
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -455,7 +441,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -477,7 +462,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExtenderProfileObject: ...
     
     @overload
@@ -498,7 +482,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -520,7 +503,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -541,7 +523,6 @@ class ExtenderProfile:
         wifi: str | None = ...,
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -561,7 +542,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -571,7 +551,6 @@ class ExtenderProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> ExtenderProfileObject: ...
     
     @overload
@@ -580,7 +559,6 @@ class ExtenderProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -590,7 +568,6 @@ class ExtenderProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -599,7 +576,6 @@ class ExtenderProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -607,7 +583,6 @@ class ExtenderProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -633,7 +608,6 @@ class ExtenderProfile:
         lan_extension: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

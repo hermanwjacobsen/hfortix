@@ -455,8 +455,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AccessProxy6Object: ...
     
     # With mkey as keyword arg -> returns single object
@@ -475,7 +473,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxy6Object: ...
     
     # With no mkey -> returns list of objects
@@ -493,7 +490,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessProxy6Object]: ...
     
     # raw_json=True returns the full API envelope
@@ -511,7 +507,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -529,7 +524,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxy6Object: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -548,7 +542,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxy6Object: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -566,7 +559,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessProxy6Object]: ...
     
     # Fallback overload for all other cases
@@ -584,7 +576,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -600,7 +591,6 @@ class AccessProxy6:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AccessProxy6Object | list[AccessProxy6Object] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -629,7 +619,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxy6Object: ...
     
     @overload
@@ -651,7 +640,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -674,7 +662,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -696,7 +683,6 @@ class AccessProxy6:
         api_gateway: str | list[str] | list[dict[str, Any]] | None = ...,
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -717,7 +703,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -740,7 +725,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxy6Object: ...
     
     @overload
@@ -762,7 +746,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -785,7 +768,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -807,7 +789,6 @@ class AccessProxy6:
         api_gateway: str | list[str] | list[dict[str, Any]] | None = ...,
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -828,7 +809,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -838,7 +818,6 @@ class AccessProxy6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxy6Object: ...
     
     @overload
@@ -847,7 +826,6 @@ class AccessProxy6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -857,7 +835,6 @@ class AccessProxy6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -866,7 +843,6 @@ class AccessProxy6:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -874,7 +850,6 @@ class AccessProxy6:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -901,7 +876,6 @@ class AccessProxy6:
         api_gateway6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

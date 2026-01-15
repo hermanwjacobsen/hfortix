@@ -229,8 +229,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -249,7 +247,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject: ...
     
     # With no mkey -> returns list of objects
@@ -267,7 +264,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessProxyVirtualHostObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -285,7 +281,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -303,7 +298,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -322,7 +316,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -340,7 +333,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[AccessProxyVirtualHostObject]: ...
     
     # Fallback overload for all other cases
@@ -358,7 +350,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -374,7 +365,6 @@ class AccessProxyVirtualHost:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject | list[AccessProxyVirtualHostObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -398,7 +388,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject: ...
     
     @overload
@@ -415,7 +404,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -433,7 +421,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -450,7 +437,6 @@ class AccessProxyVirtualHost:
         user_agent_detect: Literal["disable", "enable"] | None = ...,
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -466,7 +452,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -484,7 +469,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject: ...
     
     @overload
@@ -501,7 +485,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -519,7 +502,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -536,7 +518,6 @@ class AccessProxyVirtualHost:
         user_agent_detect: Literal["disable", "enable"] | None = ...,
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -552,7 +533,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -562,7 +542,6 @@ class AccessProxyVirtualHost:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> AccessProxyVirtualHostObject: ...
     
     @overload
@@ -571,7 +550,6 @@ class AccessProxyVirtualHost:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -581,7 +559,6 @@ class AccessProxyVirtualHost:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -590,7 +567,6 @@ class AccessProxyVirtualHost:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -598,7 +574,6 @@ class AccessProxyVirtualHost:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -620,7 +595,6 @@ class AccessProxyVirtualHost:
         client_cert: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

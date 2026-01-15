@@ -219,8 +219,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> QuarantineObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -239,7 +237,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> QuarantineObject: ...
     
     # With no mkey -> returns list of objects
@@ -257,7 +254,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> QuarantineObject: ...
     
     # raw_json=True returns the full API envelope
@@ -275,7 +271,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -293,7 +288,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> QuarantineObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -312,7 +306,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> QuarantineObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -330,7 +323,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> QuarantineObject: ...
     
     # Fallback overload for all other cases
@@ -348,7 +340,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -364,7 +355,6 @@ class Quarantine:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> QuarantineObject | dict[str, Any]: ...
     
     def get_schema(
@@ -384,7 +374,6 @@ class Quarantine:
         targets: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> QuarantineObject: ...
     
     @overload
@@ -397,7 +386,6 @@ class Quarantine:
         targets: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -411,7 +399,6 @@ class Quarantine:
         targets: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -424,7 +411,6 @@ class Quarantine:
         firewall_groups: str | None = ...,
         targets: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -436,7 +422,6 @@ class Quarantine:
         targets: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -454,7 +439,6 @@ class Quarantine:
         targets: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

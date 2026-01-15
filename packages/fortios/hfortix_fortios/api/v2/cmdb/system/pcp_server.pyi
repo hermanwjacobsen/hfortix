@@ -253,8 +253,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> PcpServerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -273,7 +271,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PcpServerObject: ...
     
     # With no mkey -> returns list of objects
@@ -291,7 +288,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PcpServerObject: ...
     
     # raw_json=True returns the full API envelope
@@ -309,7 +305,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -327,7 +322,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PcpServerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -346,7 +340,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PcpServerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -364,7 +357,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PcpServerObject: ...
     
     # Fallback overload for all other cases
@@ -382,7 +374,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -398,7 +389,6 @@ class PcpServer:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> PcpServerObject | dict[str, Any]: ...
     
     def get_schema(
@@ -416,7 +406,6 @@ class PcpServer:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PcpServerObject: ...
     
     @overload
@@ -427,7 +416,6 @@ class PcpServer:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -439,7 +427,6 @@ class PcpServer:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -450,7 +437,6 @@ class PcpServer:
         status: Literal["enable", "disable"] | None = ...,
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -460,7 +446,6 @@ class PcpServer:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -476,7 +461,6 @@ class PcpServer:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

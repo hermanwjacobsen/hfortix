@@ -85,8 +85,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> FortiObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -105,7 +103,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiObject: ...
     
     # With no mkey -> returns list of objects
@@ -123,7 +120,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiObject: ...
     
     # raw_json=True returns the full API envelope
@@ -141,7 +137,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -159,7 +154,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -178,7 +172,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -196,7 +189,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiObject: ...
     
     # Fallback overload for all other cases
@@ -214,7 +206,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -230,7 +221,6 @@ class ProxyPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> FortiObject | dict[str, Any]: ...
     
     # PUT overloads
@@ -240,7 +230,6 @@ class ProxyPolicy:
         payload_dict: dict[str, Any] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FortiObject: ...
     
     @overload
@@ -249,7 +238,6 @@ class ProxyPolicy:
         payload_dict: dict[str, Any] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -259,7 +247,6 @@ class ProxyPolicy:
         payload_dict: dict[str, Any] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -268,7 +255,6 @@ class ProxyPolicy:
         self,
         payload_dict: dict[str, Any] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -276,7 +262,6 @@ class ProxyPolicy:
         payload_dict: dict[str, Any] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -290,7 +275,6 @@ class ProxyPolicy:
         payload_dict: dict[str, Any] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -410,8 +410,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -430,7 +428,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
     # With no mkey -> returns list of objects
@@ -448,7 +445,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
     # raw_json=True returns the full API envelope
@@ -466,7 +462,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -484,7 +479,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -503,7 +497,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -521,7 +514,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
     # Fallback overload for all other cases
@@ -539,7 +531,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -555,7 +546,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> StandaloneClusterObject | dict[str, Any]: ...
     
     def get_schema(
@@ -584,7 +574,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
     @overload
@@ -606,7 +595,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -629,7 +617,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -651,7 +638,6 @@ class StandaloneCluster:
         helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -672,7 +658,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -699,7 +684,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

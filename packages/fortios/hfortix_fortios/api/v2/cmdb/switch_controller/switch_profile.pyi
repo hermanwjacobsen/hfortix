@@ -174,8 +174,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> SwitchProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -194,7 +192,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -212,7 +209,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SwitchProfileObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -230,7 +226,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -248,7 +243,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -267,7 +261,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -285,7 +278,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[SwitchProfileObject]: ...
     
     # Fallback overload for all other cases
@@ -303,7 +295,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -319,7 +310,6 @@ class SwitchProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> SwitchProfileObject | list[SwitchProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -341,7 +331,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchProfileObject: ...
     
     @overload
@@ -356,7 +345,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -372,7 +360,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -387,7 +374,6 @@ class SwitchProfile:
         revision_backup_on_logout: Literal["enable", "disable"] | None = ...,
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -401,7 +387,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -417,7 +402,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchProfileObject: ...
     
     @overload
@@ -432,7 +416,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -448,7 +431,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -463,7 +445,6 @@ class SwitchProfile:
         revision_backup_on_logout: Literal["enable", "disable"] | None = ...,
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -477,7 +458,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -487,7 +467,6 @@ class SwitchProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> SwitchProfileObject: ...
     
     @overload
@@ -496,7 +475,6 @@ class SwitchProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -506,7 +484,6 @@ class SwitchProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -515,7 +492,6 @@ class SwitchProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -523,7 +499,6 @@ class SwitchProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -543,7 +518,6 @@ class SwitchProfile:
         revision_backup_on_upgrade: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

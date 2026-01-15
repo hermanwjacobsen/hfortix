@@ -253,8 +253,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> TimersObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -273,7 +271,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> TimersObject: ...
     
     # With no mkey -> returns list of objects
@@ -291,7 +288,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> TimersObject: ...
     
     # raw_json=True returns the full API envelope
@@ -309,7 +305,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -327,7 +322,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> TimersObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -346,7 +340,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> TimersObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -364,7 +357,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> TimersObject: ...
     
     # Fallback overload for all other cases
@@ -382,7 +374,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -398,7 +389,6 @@ class Timers:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> TimersObject | dict[str, Any]: ...
     
     def get_schema(
@@ -440,7 +430,6 @@ class Timers:
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> TimersObject: ...
     
     @overload
@@ -475,7 +464,6 @@ class Timers:
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -511,7 +499,6 @@ class Timers:
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -546,7 +533,6 @@ class Timers:
         ap_reboot_wait_time: str | None = ...,
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -580,7 +566,6 @@ class Timers:
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -620,7 +605,6 @@ class Timers:
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

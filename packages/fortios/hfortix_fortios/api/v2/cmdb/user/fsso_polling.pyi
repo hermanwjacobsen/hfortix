@@ -249,8 +249,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> FssoPollingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -269,7 +267,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FssoPollingObject: ...
     
     # With no mkey -> returns list of objects
@@ -287,7 +284,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[FssoPollingObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -305,7 +301,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -323,7 +318,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FssoPollingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -342,7 +336,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FssoPollingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -360,7 +353,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[FssoPollingObject]: ...
     
     # Fallback overload for all other cases
@@ -378,7 +370,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -394,7 +385,6 @@ class FssoPolling:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> FssoPollingObject | list[FssoPollingObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -423,7 +413,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FssoPollingObject: ...
     
     @overload
@@ -445,7 +434,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -468,7 +456,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -490,7 +477,6 @@ class FssoPolling:
         smbv1: Literal["enable", "disable"] | None = ...,
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -511,7 +497,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -534,7 +519,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FssoPollingObject: ...
     
     @overload
@@ -556,7 +540,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -579,7 +562,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -601,7 +583,6 @@ class FssoPolling:
         smbv1: Literal["enable", "disable"] | None = ...,
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -622,7 +603,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -632,7 +612,6 @@ class FssoPolling:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> FssoPollingObject: ...
     
     @overload
@@ -641,7 +620,6 @@ class FssoPolling:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -651,7 +629,6 @@ class FssoPolling:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -660,7 +637,6 @@ class FssoPolling:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -668,7 +644,6 @@ class FssoPolling:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -695,7 +670,6 @@ class FssoPolling:
         smb_ntlmv1_auth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods

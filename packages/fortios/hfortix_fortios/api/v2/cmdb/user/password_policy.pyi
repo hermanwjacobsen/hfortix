@@ -202,8 +202,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        *,
-        **kwargs: Any,
     ) -> PasswordPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -222,7 +220,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PasswordPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -240,7 +237,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[PasswordPolicyObject]: ...
     
     # raw_json=True returns the full API envelope
@@ -258,7 +254,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
@@ -276,7 +271,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PasswordPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -295,7 +289,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PasswordPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -313,7 +306,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> list[PasswordPolicyObject]: ...
     
     # Fallback overload for all other cases
@@ -331,7 +323,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -347,7 +338,6 @@ class PasswordPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> PasswordPolicyObject | list[PasswordPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -376,7 +366,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PasswordPolicyObject: ...
     
     @overload
@@ -398,7 +387,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -421,7 +409,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -443,7 +430,6 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def post(
@@ -464,7 +450,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -487,7 +472,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PasswordPolicyObject: ...
     
     @overload
@@ -509,7 +493,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -532,7 +515,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -554,7 +536,6 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def put(
@@ -575,7 +556,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -585,7 +565,6 @@ class PasswordPolicy:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> PasswordPolicyObject: ...
     
     @overload
@@ -594,7 +573,6 @@ class PasswordPolicy:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # raw_json=True returns the full API envelope
@@ -604,7 +582,6 @@ class PasswordPolicy:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        **kwargs: Any,
     ) -> RawAPIResponse: ...
     
     # Default overload
@@ -613,7 +590,6 @@ class PasswordPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def delete(
@@ -621,7 +597,6 @@ class PasswordPolicy:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     def exists(
@@ -648,7 +623,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        **kwargs: Any,
     ) -> MutationResponse: ...
     
     # Helper methods
