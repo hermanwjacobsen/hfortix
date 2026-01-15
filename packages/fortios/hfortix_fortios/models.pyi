@@ -145,6 +145,60 @@ class FortiObject(Generic[_DataT]):
             {'policyid': 1, 'name': 'policy1', ...}
         """
         ...
+    
+    @property
+    def json(self) -> dict[str, Any]:
+        """
+        Get the raw JSON data as a dictionary.
+
+        Alias for to_dict() providing a more intuitive interface.
+        Use this when you need the complete API response structure.
+
+        Returns:
+            Original API response dictionary
+
+        Examples:
+            >>> policy = fgt.api.cmdb.firewall.policy.get(policyid=1)
+            >>> policy.json
+            {'policyid': 1, 'name': 'my-policy', 'action': 'accept', ...}
+        """
+        ...
+    
+    @property
+    def dict(self) -> dict[str, Any]:
+        """
+        Get the dictionary representation of the object.
+
+        Alias for `.json` - provides an intuitive way to convert
+        FortiObject back to a plain dictionary when needed.
+
+        Returns:
+            Original API response dictionary
+
+        Examples:
+            >>> policy = fgt.api.cmdb.firewall.policy.get(policyid=1)
+            >>> policy.dict
+            {'policyid': 1, 'name': 'my-policy', ...}
+        """
+        ...
+    
+    @property
+    def raw(self) -> dict[str, Any]:
+        """
+        Get the raw API response data.
+
+        For most responses, this is identical to `.dict` and `.json`.
+        Reserved for future use if we need to store additional metadata.
+
+        Returns:
+            Original API response dictionary
+
+        Examples:
+            >>> policy = fgt.api.cmdb.firewall.policy.get(policyid=1)
+            >>> policy.raw
+            {'policyid': 1, 'name': 'my-policy', ...}
+        """
+        ...
 
     def __repr__(self) -> str:
         """
@@ -268,49 +322,31 @@ class FortiObject(Generic[_DataT]):
 @overload
 def process_response(
     result: list[dict[str, Any]],
-    response_mode: Literal["object"],
-    client: Any = None,
-    unwrap_single: bool = False,
-) -> list[FortiObject] | FortiObject:
-    """Process list response in object mode - returns list of FortiObjects or single FortiObject if unwrap_single=True."""
+    unwrap_single: Literal[False] = False,
+) -> list[FortiObject]:
+    """Process list response - returns list of FortiObjects."""
     ...
 
 @overload
 def process_response(
     result: list[dict[str, Any]],
-    response_mode: Literal["dict"] | None,
-    client: Any = None,
-    unwrap_single: bool = False,
-) -> list[dict[str, Any]] | dict[str, Any]:
-    """Process list response in dict mode - returns list of dicts or single dict if unwrap_single=True."""
+    unwrap_single: Literal[True],
+) -> FortiObject:
+    """Process list response with unwrap_single - returns single FortiObject."""
     ...
 
 @overload
 def process_response(
     result: dict[str, Any],
-    response_mode: Literal["object"],
-    client: Any = None,
     unwrap_single: bool = False,
 ) -> FortiObject | dict[str, Any]:
-    """Process dict response in object mode - may return FortiObject or dict with wrapped results."""
-    ...
-
-@overload
-def process_response(
-    result: dict[str, Any],
-    response_mode: Literal["dict"] | None,
-    client: Any = None,
-    unwrap_single: bool = False,
-) -> dict[str, Any]:
-    """Process dict response in dict mode - returns dict as-is."""
+    """Process dict response - may return FortiObject or dict with wrapped results."""
     ...
 
 # Fallback overload for any other types (strings, None, etc.)
 @overload
 def process_response(
     result: Any,
-    response_mode: str | None = None,
-    client: Any = None,
     unwrap_single: bool = False,
 ) -> Any:
     """Fallback for non-dict/list types - returns result as-is."""
@@ -318,42 +354,37 @@ def process_response(
 
 def process_response(
     result: Any,
-    response_mode: str | None,
-    client: Any = None,
     unwrap_single: bool = False,
 ) -> Any:
     """
-    Process API response based on response_mode setting.
+    Process API response - always returns FortiObject instances.
 
     Handles both raw_json=False (list of results) and raw_json=True (full response dict).
 
     Args:
         result: Raw API response (list or dict)
-        response_mode: Response mode - "dict", "object", or None (use client default)
-        client: HTTP client instance (to get default response_mode)
+        unwrap_single: If True and result is single-item list, return just the item
 
     Returns:
-        Processed response - either dict/list or FortiObject/list[FortiObject]
+        Processed response - FortiObject or list[FortiObject]
 
     Examples:
-        >>> # Dict mode with raw_json=False (default)
+        >>> # List response
         >>> result = [{"name": "policy1", "srcaddr": [{"name": "addr1"}]}]
-        >>> process_response(result, "dict")
-        [{"name": "policy1", "srcaddr": [{"name": "addr1"}]}]
-
-        >>> # Object mode with raw_json=False
-        >>> objects = process_response(result, "object")
+        >>> objects = process_response(result)
         >>> objects[0].name
         'policy1'
-        >>> objects[0].srcaddr  # Auto-flattened!
-        ['addr1']
 
-        >>> # Object mode with raw_json=True
-        >>> result = {'results': [{"name": "policy1", ...}], 'http_status': 200, ...}
-        >>> response = process_response(result, "object")
-        >>> response['results'][0].name  # Results are FortiObjects
+        >>> # Single item with unwrap_single
+        >>> result = [{"name": "policy1"}]
+        >>> obj = process_response(result, unwrap_single=True)
+        >>> obj.name
         'policy1'
-        >>> response['http_status']  # Metadata preserved
-        200
+
+        >>> # Dict response with 'results' key (raw_json=True)
+        >>> result = {'results': [{"name": "policy1"}], 'http_status': 200}
+        >>> response = process_response(result)
+        >>> response['results'][0].name
+        'policy1'
     """
     ...

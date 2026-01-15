@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .download import Download, DownloadDictMode, DownloadObjectMode
+    from .download import Download
 
 __all__ = [
     "Download",
-    "PolicyArchiveDictMode",
-    "PolicyArchiveObjectMode",
+    "PolicyArchive",
 ]
 
-class PolicyArchiveDictMode:
-    """POLICY_ARCHIVE API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    download: DownloadDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize policy_archive category with HTTP client."""
-        ...
-
-
-class PolicyArchiveObjectMode:
-    """POLICY_ARCHIVE API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    download: DownloadObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize policy_archive category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class PolicyArchive:
-    """POLICY_ARCHIVE API category."""
+    """POLICY_ARCHIVE API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     download: Download
 

@@ -106,7 +106,7 @@ class ExplicitSecurewebproxycertObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -141,7 +141,7 @@ class ExplicitPacpolicyObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -306,12 +306,11 @@ class Explicit:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -325,9 +324,9 @@ class Explicit:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ExplicitResponse: ...
+    ) -> ExplicitObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -342,9 +341,9 @@ class Explicit:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ExplicitResponse: ...
+    ) -> ExplicitObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -358,13 +357,13 @@ class Explicit:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ExplicitResponse: ...
+    ) -> ExplicitObject: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -380,11 +379,10 @@ class Explicit:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExplicitObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -400,11 +398,10 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExplicitObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -419,7 +416,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExplicitObject: ...
     
@@ -438,7 +434,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -457,9 +452,8 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ExplicitResponse: ...
+    ) -> ExplicitObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -477,9 +471,8 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ExplicitResponse: ...
+    ) -> ExplicitObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -496,9 +489,8 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ExplicitResponse: ...
+    ) -> ExplicitObject: ...
     
     # Fallback overload for all other cases
     @overload
@@ -515,7 +507,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
@@ -532,7 +523,6 @@ class Explicit:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> ExplicitObject | dict[str, Any]: ...
     
@@ -540,7 +530,7 @@ class Explicit:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -587,7 +577,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExplicitObject: ...
     
@@ -635,7 +624,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -687,7 +675,7 @@ class Explicit:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -777,7 +765,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -830,7 +817,6 @@ class Explicit:
         trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -842,7 +828,7 @@ class Explicit:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -851,815 +837,18 @@ class Explicit:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class ExplicitDictMode:
-    """Explicit endpoint for dict response mode (default for this client).
-    
-    By default returns ExplicitResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return ExplicitObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExplicitObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExplicitObject: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> ExplicitResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> ExplicitResponse: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExplicitObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class ExplicitObjectMode:
-    """Explicit endpoint for object response mode (default for this client).
-    
-    By default returns ExplicitObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return ExplicitResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> ExplicitResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> ExplicitResponse: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> ExplicitObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> ExplicitObject: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExplicitObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ExplicitObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ExplicitPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        secure_web_proxy: Literal["disable", "enable", "secure"] | None = ...,
-        ftp_over_http: Literal["enable", "disable"] | None = ...,
-        socks: Literal["enable", "disable"] | None = ...,
-        http_incoming_port: str | None = ...,
-        http_connection_mode: Literal["static", "multiplex", "serverpool"] | None = ...,
-        https_incoming_port: str | None = ...,
-        secure_web_proxy_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ftp_incoming_port: str | None = ...,
-        socks_incoming_port: str | None = ...,
-        incoming_ip: str | None = ...,
-        outgoing_ip: str | list[str] | None = ...,
-        interface_select_method: Literal["sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        ipv6_status: Literal["enable", "disable"] | None = ...,
-        incoming_ip6: str | None = ...,
-        outgoing_ip6: str | list[str] | None = ...,
-        strict_guest: Literal["enable", "disable"] | None = ...,
-        pref_dns_result: Literal["ipv4", "ipv6", "ipv4-strict", "ipv6-strict"] | None = ...,
-        unknown_http_version: Literal["reject", "best-effort"] | None = ...,
-        realm: str | None = ...,
-        sec_default_action: Literal["accept", "deny"] | None = ...,
-        https_replacement_message: Literal["enable", "disable"] | None = ...,
-        message_upon_server_error: Literal["enable", "disable"] | None = ...,
-        pac_file_server_status: Literal["enable", "disable"] | None = ...,
-        pac_file_url: str | None = ...,
-        pac_file_server_port: str | None = ...,
-        pac_file_through_https: Literal["enable", "disable"] | None = ...,
-        pac_file_name: str | None = ...,
-        pac_file_data: str | None = ...,
-        pac_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        trace_auth_no_rsp: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Explicit",
-    "ExplicitDictMode",
-    "ExplicitObjectMode",
     "ExplicitPayload",
+    "ExplicitResponse",
     "ExplicitObject",
 ]

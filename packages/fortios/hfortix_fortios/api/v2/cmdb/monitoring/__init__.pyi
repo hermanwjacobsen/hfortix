@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .npu_hpe import NpuHpe, NpuHpeDictMode, NpuHpeObjectMode
+    from .npu_hpe import NpuHpe
 
 __all__ = [
     "NpuHpe",
-    "MonitoringDictMode",
-    "MonitoringObjectMode",
+    "Monitoring",
 ]
 
-class MonitoringDictMode:
-    """MONITORING API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    npu_hpe: NpuHpeDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize monitoring category with HTTP client."""
-        ...
-
-
-class MonitoringObjectMode:
-    """MONITORING API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    npu_hpe: NpuHpeObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize monitoring category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Monitoring:
-    """MONITORING API category."""
+    """MONITORING API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     npu_hpe: NpuHpe
 

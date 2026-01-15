@@ -6,20 +6,20 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .content import Content, ContentDictMode, ContentObjectMode
-    from .content_header import ContentHeader, ContentHeaderDictMode, ContentHeaderObjectMode
-    from .fortiguard import Fortiguard, FortiguardDictMode, FortiguardObjectMode
-    from .ftgd_local_cat import FtgdLocalCat, FtgdLocalCatDictMode, FtgdLocalCatObjectMode
-    from .ftgd_local_rating import FtgdLocalRating, FtgdLocalRatingDictMode, FtgdLocalRatingObjectMode
-    from .ftgd_local_risk import FtgdLocalRisk, FtgdLocalRiskDictMode, FtgdLocalRiskObjectMode
-    from .ftgd_risk_level import FtgdRiskLevel, FtgdRiskLevelDictMode, FtgdRiskLevelObjectMode
-    from .ips_urlfilter_cache_setting import IpsUrlfilterCacheSetting, IpsUrlfilterCacheSettingDictMode, IpsUrlfilterCacheSettingObjectMode
-    from .ips_urlfilter_setting import IpsUrlfilterSetting, IpsUrlfilterSettingDictMode, IpsUrlfilterSettingObjectMode
-    from .ips_urlfilter_setting6 import IpsUrlfilterSetting6, IpsUrlfilterSetting6DictMode, IpsUrlfilterSetting6ObjectMode
-    from .override import Override, OverrideDictMode, OverrideObjectMode
-    from .profile import Profile, ProfileDictMode, ProfileObjectMode
-    from .search_engine import SearchEngine, SearchEngineDictMode, SearchEngineObjectMode
-    from .urlfilter import Urlfilter, UrlfilterDictMode, UrlfilterObjectMode
+    from .content import Content
+    from .content_header import ContentHeader
+    from .fortiguard import Fortiguard
+    from .ftgd_local_cat import FtgdLocalCat
+    from .ftgd_local_rating import FtgdLocalRating
+    from .ftgd_local_risk import FtgdLocalRisk
+    from .ftgd_risk_level import FtgdRiskLevel
+    from .ips_urlfilter_cache_setting import IpsUrlfilterCacheSetting
+    from .ips_urlfilter_setting import IpsUrlfilterSetting
+    from .ips_urlfilter_setting6 import IpsUrlfilterSetting6
+    from .override import Override
+    from .profile import Profile
+    from .search_engine import SearchEngine
+    from .urlfilter import Urlfilter
 
 __all__ = [
     "Content",
@@ -36,67 +36,18 @@ __all__ = [
     "Profile",
     "SearchEngine",
     "Urlfilter",
-    "WebfilterDictMode",
-    "WebfilterObjectMode",
+    "Webfilter",
 ]
 
-class WebfilterDictMode:
-    """WEBFILTER API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    content: ContentDictMode
-    content_header: ContentHeaderDictMode
-    fortiguard: FortiguardDictMode
-    ftgd_local_cat: FtgdLocalCatDictMode
-    ftgd_local_rating: FtgdLocalRatingDictMode
-    ftgd_local_risk: FtgdLocalRiskDictMode
-    ftgd_risk_level: FtgdRiskLevelDictMode
-    ips_urlfilter_cache_setting: IpsUrlfilterCacheSettingDictMode
-    ips_urlfilter_setting: IpsUrlfilterSettingDictMode
-    ips_urlfilter_setting6: IpsUrlfilterSetting6DictMode
-    override: OverrideDictMode
-    profile: ProfileDictMode
-    search_engine: SearchEngineDictMode
-    urlfilter: UrlfilterDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize webfilter category with HTTP client."""
-        ...
-
-
-class WebfilterObjectMode:
-    """WEBFILTER API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    content: ContentObjectMode
-    content_header: ContentHeaderObjectMode
-    fortiguard: FortiguardObjectMode
-    ftgd_local_cat: FtgdLocalCatObjectMode
-    ftgd_local_rating: FtgdLocalRatingObjectMode
-    ftgd_local_risk: FtgdLocalRiskObjectMode
-    ftgd_risk_level: FtgdRiskLevelObjectMode
-    ips_urlfilter_cache_setting: IpsUrlfilterCacheSettingObjectMode
-    ips_urlfilter_setting: IpsUrlfilterSettingObjectMode
-    ips_urlfilter_setting6: IpsUrlfilterSetting6ObjectMode
-    override: OverrideObjectMode
-    profile: ProfileObjectMode
-    search_engine: SearchEngineObjectMode
-    urlfilter: UrlfilterObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize webfilter category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Webfilter:
-    """WEBFILTER API category."""
+    """WEBFILTER API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     content: Content
     content_header: ContentHeader

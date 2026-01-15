@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .setting import Setting, SettingDictMode, SettingObjectMode
+    from .setting import Setting
 
 __all__ = [
     "Setting",
-    "SslDictMode",
-    "SslObjectMode",
+    "Ssl",
 ]
 
-class SslDictMode:
-    """SSL API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    setting: SettingDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ssl category with HTTP client."""
-        ...
-
-
-class SslObjectMode:
-    """SSL API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    setting: SettingObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ssl category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Ssl:
-    """SSL API category."""
+    """SSL API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     setting: Setting
 

@@ -6,53 +6,26 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .routes import Routes, RoutesDictMode, RoutesObjectMode
-    from .routes6 import Routes6, Routes6DictMode, Routes6ObjectMode
-    from .routes_statistics import RoutesStatistics, RoutesStatisticsDictMode, RoutesStatisticsObjectMode
+    from .routes import Routes
+    from .routes6 import Routes6
+    from .routes_statistics import RoutesStatistics
 
 __all__ = [
     "Routes",
     "Routes6",
     "RoutesStatistics",
-    "SdwanDictMode",
-    "SdwanObjectMode",
+    "Sdwan",
 ]
 
-class SdwanDictMode:
-    """SDWAN API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    routes: RoutesDictMode
-    routes6: Routes6DictMode
-    routes_statistics: RoutesStatisticsDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize sdwan category with HTTP client."""
-        ...
-
-
-class SdwanObjectMode:
-    """SDWAN API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    routes: RoutesObjectMode
-    routes6: Routes6ObjectMode
-    routes_statistics: RoutesStatisticsObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize sdwan category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Sdwan:
-    """SDWAN API category."""
+    """SDWAN API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     routes: Routes
     routes6: Routes6

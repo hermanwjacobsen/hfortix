@@ -77,7 +77,7 @@ class FederatedUpgradeKnownhamembersObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -116,7 +116,7 @@ class FederatedUpgradeNodelistObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -203,12 +203,11 @@ class FederatedUpgrade:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -222,9 +221,9 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> FederatedUpgradeResponse: ...
+    ) -> FederatedUpgradeObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -239,9 +238,9 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> FederatedUpgradeResponse: ...
+    ) -> FederatedUpgradeObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -255,13 +254,13 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> FederatedUpgradeResponse: ...
+    ) -> FederatedUpgradeObject: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -277,11 +276,10 @@ class FederatedUpgrade:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> FederatedUpgradeObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -297,11 +295,10 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> FederatedUpgradeObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -316,7 +313,6 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> FederatedUpgradeObject: ...
     
@@ -335,7 +331,6 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -354,9 +349,8 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> FederatedUpgradeResponse: ...
+    ) -> FederatedUpgradeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -374,9 +368,8 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> FederatedUpgradeResponse: ...
+    ) -> FederatedUpgradeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -393,9 +386,8 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> FederatedUpgradeResponse: ...
+    ) -> FederatedUpgradeObject: ...
     
     # Fallback overload for all other cases
     @overload
@@ -412,7 +404,6 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
@@ -429,7 +420,6 @@ class FederatedUpgrade:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> FederatedUpgradeObject | dict[str, Any]: ...
     
@@ -437,7 +427,7 @@ class FederatedUpgrade:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -458,7 +448,6 @@ class FederatedUpgrade:
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> FederatedUpgradeObject: ...
     
@@ -480,7 +469,6 @@ class FederatedUpgrade:
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -506,7 +494,7 @@ class FederatedUpgrade:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -544,7 +532,6 @@ class FederatedUpgrade:
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -571,7 +558,6 @@ class FederatedUpgrade:
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -583,7 +569,7 @@ class FederatedUpgrade:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -592,529 +578,18 @@ class FederatedUpgrade:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class FederatedUpgradeDictMode:
-    """FederatedUpgrade endpoint for dict response mode (default for this client).
-    
-    By default returns FederatedUpgradeResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return FederatedUpgradeObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> FederatedUpgradeObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> FederatedUpgradeObject: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> FederatedUpgradeResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> FederatedUpgradeResponse: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> FederatedUpgradeObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class FederatedUpgradeObjectMode:
-    """FederatedUpgrade endpoint for object response mode (default for this client).
-    
-    By default returns FederatedUpgradeObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return FederatedUpgradeResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> FederatedUpgradeResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> FederatedUpgradeResponse: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> FederatedUpgradeObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> FederatedUpgradeObject: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> FederatedUpgradeObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> FederatedUpgradeObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "FederatedUpgrade",
-    "FederatedUpgradeDictMode",
-    "FederatedUpgradeObjectMode",
     "FederatedUpgradePayload",
+    "FederatedUpgradeResponse",
     "FederatedUpgradeObject",
 ]

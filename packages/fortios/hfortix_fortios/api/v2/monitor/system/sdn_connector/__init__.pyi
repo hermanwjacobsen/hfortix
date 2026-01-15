@@ -6,57 +6,28 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .nsx_security_tags import NsxSecurityTags, NsxSecurityTagsDictMode, NsxSecurityTagsObjectMode
-    from .status import Status, StatusDictMode, StatusObjectMode
-    from .update import Update, UpdateDictMode, UpdateObjectMode
-    from .validate_gcp_key import ValidateGcpKey, ValidateGcpKeyDictMode, ValidateGcpKeyObjectMode
+    from .nsx_security_tags import NsxSecurityTags
+    from .status import Status
+    from .update import Update
+    from .validate_gcp_key import ValidateGcpKey
 
 __all__ = [
     "NsxSecurityTags",
     "Status",
     "Update",
     "ValidateGcpKey",
-    "SdnConnectorDictMode",
-    "SdnConnectorObjectMode",
+    "SdnConnector",
 ]
 
-class SdnConnectorDictMode:
-    """SDN_CONNECTOR API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    nsx_security_tags: NsxSecurityTagsDictMode
-    status: StatusDictMode
-    update: UpdateDictMode
-    validate_gcp_key: ValidateGcpKeyDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize sdn_connector category with HTTP client."""
-        ...
-
-
-class SdnConnectorObjectMode:
-    """SDN_CONNECTOR API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    nsx_security_tags: NsxSecurityTagsObjectMode
-    status: StatusObjectMode
-    update: UpdateObjectMode
-    validate_gcp_key: ValidateGcpKeyObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize sdn_connector category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class SdnConnector:
-    """SDN_CONNECTOR API category."""
+    """SDN_CONNECTOR API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     nsx_security_tags: NsxSecurityTags
     status: Status

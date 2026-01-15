@@ -112,7 +112,7 @@ class DynamicPortPolicyPolicyObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -176,12 +176,11 @@ class DynamicPortPolicy:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -195,9 +194,9 @@ class DynamicPortPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DynamicPortPolicyResponse: ...
+    ) -> DynamicPortPolicyObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -212,9 +211,9 @@ class DynamicPortPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DynamicPortPolicyResponse: ...
+    ) -> DynamicPortPolicyObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -228,13 +227,13 @@ class DynamicPortPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[DynamicPortPolicyResponse]: ...
+    ) -> list[DynamicPortPolicyObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -250,11 +249,10 @@ class DynamicPortPolicy:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DynamicPortPolicyObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -270,11 +268,10 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DynamicPortPolicyObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -289,7 +286,6 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[DynamicPortPolicyObject]: ...
     
@@ -308,7 +304,6 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -327,9 +322,8 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DynamicPortPolicyResponse: ...
+    ) -> DynamicPortPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -347,9 +341,8 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DynamicPortPolicyResponse: ...
+    ) -> DynamicPortPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -366,9 +359,8 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[DynamicPortPolicyResponse]: ...
+    ) -> list[DynamicPortPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -385,7 +377,6 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -402,7 +393,6 @@ class DynamicPortPolicy:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> DynamicPortPolicyObject | list[DynamicPortPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -410,7 +400,7 @@ class DynamicPortPolicy:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -423,7 +413,6 @@ class DynamicPortPolicy:
         policy: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DynamicPortPolicyObject: ...
     
@@ -437,7 +426,6 @@ class DynamicPortPolicy:
         policy: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -455,7 +443,7 @@ class DynamicPortPolicy:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -477,7 +465,6 @@ class DynamicPortPolicy:
         policy: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -492,7 +479,6 @@ class DynamicPortPolicy:
         policy: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DynamicPortPolicyObject: ...
     
@@ -506,7 +492,6 @@ class DynamicPortPolicy:
         policy: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -524,7 +509,7 @@ class DynamicPortPolicy:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -546,7 +531,6 @@ class DynamicPortPolicy:
         policy: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -557,7 +541,6 @@ class DynamicPortPolicy:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DynamicPortPolicyObject: ...
     
@@ -567,7 +550,6 @@ class DynamicPortPolicy:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -581,7 +563,7 @@ class DynamicPortPolicy:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -613,7 +595,6 @@ class DynamicPortPolicy:
         policy: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -625,7 +606,7 @@ class DynamicPortPolicy:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -634,651 +615,18 @@ class DynamicPortPolicy:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class DynamicPortPolicyDictMode:
-    """DynamicPortPolicy endpoint for dict response mode (default for this client).
-    
-    By default returns DynamicPortPolicyResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return DynamicPortPolicyObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[DynamicPortPolicyObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> DynamicPortPolicyResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[DynamicPortPolicyResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class DynamicPortPolicyObjectMode:
-    """DynamicPortPolicy endpoint for object response mode (default for this client).
-    
-    By default returns DynamicPortPolicyObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return DynamicPortPolicyResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[DynamicPortPolicyResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[DynamicPortPolicyObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> DynamicPortPolicyObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: DynamicPortPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "DynamicPortPolicy",
-    "DynamicPortPolicyDictMode",
-    "DynamicPortPolicyObjectMode",
     "DynamicPortPolicyPayload",
+    "DynamicPortPolicyResponse",
     "DynamicPortPolicyObject",
 ]

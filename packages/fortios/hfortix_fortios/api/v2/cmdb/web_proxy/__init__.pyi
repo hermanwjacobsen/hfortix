@@ -6,16 +6,16 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .debug_url import DebugUrl, DebugUrlDictMode, DebugUrlObjectMode
-    from .explicit import Explicit, ExplicitDictMode, ExplicitObjectMode
-    from .fast_fallback import FastFallback, FastFallbackDictMode, FastFallbackObjectMode
-    from .forward_server import ForwardServer, ForwardServerDictMode, ForwardServerObjectMode
-    from .forward_server_group import ForwardServerGroup, ForwardServerGroupDictMode, ForwardServerGroupObjectMode
-    from .global_ import Global, GlobalDictMode, GlobalObjectMode
-    from .isolator_server import IsolatorServer, IsolatorServerDictMode, IsolatorServerObjectMode
-    from .profile import Profile, ProfileDictMode, ProfileObjectMode
-    from .url_match import UrlMatch, UrlMatchDictMode, UrlMatchObjectMode
-    from .wisp import Wisp, WispDictMode, WispObjectMode
+    from .debug_url import DebugUrl
+    from .explicit import Explicit
+    from .fast_fallback import FastFallback
+    from .forward_server import ForwardServer
+    from .forward_server_group import ForwardServerGroup
+    from .global_ import Global
+    from .isolator_server import IsolatorServer
+    from .profile import Profile
+    from .url_match import UrlMatch
+    from .wisp import Wisp
 
 __all__ = [
     "DebugUrl",
@@ -28,59 +28,18 @@ __all__ = [
     "Profile",
     "UrlMatch",
     "Wisp",
-    "WebProxyDictMode",
-    "WebProxyObjectMode",
+    "WebProxy",
 ]
 
-class WebProxyDictMode:
-    """WEB_PROXY API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    debug_url: DebugUrlDictMode
-    explicit: ExplicitDictMode
-    fast_fallback: FastFallbackDictMode
-    forward_server: ForwardServerDictMode
-    forward_server_group: ForwardServerGroupDictMode
-    global_: GlobalDictMode
-    isolator_server: IsolatorServerDictMode
-    profile: ProfileDictMode
-    url_match: UrlMatchDictMode
-    wisp: WispDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize web_proxy category with HTTP client."""
-        ...
-
-
-class WebProxyObjectMode:
-    """WEB_PROXY API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    debug_url: DebugUrlObjectMode
-    explicit: ExplicitObjectMode
-    fast_fallback: FastFallbackObjectMode
-    forward_server: ForwardServerObjectMode
-    forward_server_group: ForwardServerGroupObjectMode
-    global_: GlobalObjectMode
-    isolator_server: IsolatorServerObjectMode
-    profile: ProfileObjectMode
-    url_match: UrlMatchObjectMode
-    wisp: WispObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize web_proxy category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class WebProxy:
-    """WEB_PROXY API category."""
+    """WEB_PROXY API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     debug_url: DebugUrl
     explicit: Explicit

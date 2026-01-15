@@ -124,7 +124,7 @@ class StandaloneClusterClusterpeerObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -145,7 +145,7 @@ class StandaloneClusterMonitorinterfaceObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -166,7 +166,7 @@ class StandaloneClusterPingsvrmonitorinterfaceObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -193,7 +193,7 @@ class StandaloneClusterMonitorprefixObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -283,12 +283,11 @@ class StandaloneCluster:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -302,9 +301,9 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> StandaloneClusterResponse: ...
+    ) -> StandaloneClusterObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -319,9 +318,9 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> StandaloneClusterResponse: ...
+    ) -> StandaloneClusterObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -335,13 +334,13 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> StandaloneClusterResponse: ...
+    ) -> StandaloneClusterObject: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -357,11 +356,10 @@ class StandaloneCluster:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -377,11 +375,10 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -396,7 +393,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
@@ -415,7 +411,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -434,9 +429,8 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> StandaloneClusterResponse: ...
+    ) -> StandaloneClusterObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -454,9 +448,8 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> StandaloneClusterResponse: ...
+    ) -> StandaloneClusterObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -473,9 +466,8 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> StandaloneClusterResponse: ...
+    ) -> StandaloneClusterObject: ...
     
     # Fallback overload for all other cases
     @overload
@@ -492,7 +484,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
@@ -509,7 +500,6 @@ class StandaloneCluster:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> StandaloneClusterObject | dict[str, Any]: ...
     
@@ -517,7 +507,7 @@ class StandaloneCluster:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -539,7 +529,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> StandaloneClusterObject: ...
     
@@ -562,7 +551,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -589,7 +577,7 @@ class StandaloneCluster:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -629,7 +617,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -657,7 +644,6 @@ class StandaloneCluster:
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -669,7 +655,7 @@ class StandaloneCluster:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -678,540 +664,18 @@ class StandaloneCluster:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class StandaloneClusterDictMode:
-    """StandaloneCluster endpoint for dict response mode (default for this client).
-    
-    By default returns StandaloneClusterResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return StandaloneClusterObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> StandaloneClusterObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> StandaloneClusterObject: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> StandaloneClusterResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> StandaloneClusterResponse: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> StandaloneClusterObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class StandaloneClusterObjectMode:
-    """StandaloneCluster endpoint for object response mode (default for this client).
-    
-    By default returns StandaloneClusterObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return StandaloneClusterResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> StandaloneClusterResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> StandaloneClusterResponse: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> StandaloneClusterObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> StandaloneClusterObject: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> StandaloneClusterObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> StandaloneClusterObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "StandaloneCluster",
-    "StandaloneClusterDictMode",
-    "StandaloneClusterObjectMode",
     "StandaloneClusterPayload",
+    "StandaloneClusterResponse",
     "StandaloneClusterObject",
 ]

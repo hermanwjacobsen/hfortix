@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .generate_keys import GenerateKeys, GenerateKeysDictMode, GenerateKeysObjectMode
+    from .generate_keys import GenerateKeys
 
 __all__ = [
     "GenerateKeys",
-    "SsidDictMode",
-    "SsidObjectMode",
+    "Ssid",
 ]
 
-class SsidDictMode:
-    """SSID API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    generate_keys: GenerateKeysDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ssid category with HTTP client."""
-        ...
-
-
-class SsidObjectMode:
-    """SSID API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    generate_keys: GenerateKeysObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ssid category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Ssid:
-    """SSID API category."""
+    """SSID API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     generate_keys: GenerateKeys
 

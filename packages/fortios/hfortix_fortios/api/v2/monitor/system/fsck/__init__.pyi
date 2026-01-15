@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .start import Start, StartDictMode, StartObjectMode
+    from .start import Start
 
 __all__ = [
     "Start",
-    "FsckDictMode",
-    "FsckObjectMode",
+    "Fsck",
 ]
 
-class FsckDictMode:
-    """FSCK API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    start: StartDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize fsck category with HTTP client."""
-        ...
-
-
-class FsckObjectMode:
-    """FSCK API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    start: StartObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize fsck category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Fsck:
-    """FSCK API category."""
+    """FSCK API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     start: Start
 

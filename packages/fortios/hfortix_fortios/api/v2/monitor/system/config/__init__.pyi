@@ -6,57 +6,28 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .backup import Backup, BackupDictMode, BackupObjectMode
-    from .restore import Restore, RestoreDictMode, RestoreObjectMode
-    from .restore_status import RestoreStatus, RestoreStatusDictMode, RestoreStatusObjectMode
-    from .usb_filelist import UsbFilelist, UsbFilelistDictMode, UsbFilelistObjectMode
+    from .backup import Backup
+    from .restore import Restore
+    from .restore_status import RestoreStatus
+    from .usb_filelist import UsbFilelist
 
 __all__ = [
     "Backup",
     "Restore",
     "RestoreStatus",
     "UsbFilelist",
-    "ConfigDictMode",
-    "ConfigObjectMode",
+    "Config",
 ]
 
-class ConfigDictMode:
-    """CONFIG API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    backup: BackupDictMode
-    restore: RestoreDictMode
-    restore_status: RestoreStatusDictMode
-    usb_filelist: UsbFilelistDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize config category with HTTP client."""
-        ...
-
-
-class ConfigObjectMode:
-    """CONFIG API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    backup: BackupObjectMode
-    restore: RestoreObjectMode
-    restore_status: RestoreStatusObjectMode
-    usb_filelist: UsbFilelistObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize config category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Config:
-    """CONFIG API category."""
+    """CONFIG API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     backup: Backup
     restore: Restore

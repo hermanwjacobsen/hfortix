@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .profile import Profile, ProfileDictMode, ProfileObjectMode
+    from .profile import Profile
 
 __all__ = [
     "Profile",
-    "SctpFilterDictMode",
-    "SctpFilterObjectMode",
+    "SctpFilter",
 ]
 
-class SctpFilterDictMode:
-    """SCTP_FILTER API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    profile: ProfileDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize sctp_filter category with HTTP client."""
-        ...
-
-
-class SctpFilterObjectMode:
-    """SCTP_FILTER API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    profile: ProfileObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize sctp_filter category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class SctpFilter:
-    """SCTP_FILTER API category."""
+    """SCTP_FILTER API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     profile: Profile
 

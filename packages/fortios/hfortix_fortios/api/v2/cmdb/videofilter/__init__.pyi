@@ -6,53 +6,26 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .keyword import Keyword, KeywordDictMode, KeywordObjectMode
-    from .profile import Profile, ProfileDictMode, ProfileObjectMode
-    from .youtube_key import YoutubeKey, YoutubeKeyDictMode, YoutubeKeyObjectMode
+    from .keyword import Keyword
+    from .profile import Profile
+    from .youtube_key import YoutubeKey
 
 __all__ = [
     "Keyword",
     "Profile",
     "YoutubeKey",
-    "VideofilterDictMode",
-    "VideofilterObjectMode",
+    "Videofilter",
 ]
 
-class VideofilterDictMode:
-    """VIDEOFILTER API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    keyword: KeywordDictMode
-    profile: ProfileDictMode
-    youtube_key: YoutubeKeyDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize videofilter category with HTTP client."""
-        ...
-
-
-class VideofilterObjectMode:
-    """VIDEOFILTER API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    keyword: KeywordObjectMode
-    profile: ProfileObjectMode
-    youtube_key: YoutubeKeyObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize videofilter category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Videofilter:
-    """VIDEOFILTER API category."""
+    """VIDEOFILTER API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     keyword: Keyword
     profile: Profile

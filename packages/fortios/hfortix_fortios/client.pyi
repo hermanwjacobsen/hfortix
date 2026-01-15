@@ -2,115 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Any, Coroutine, Literal, Optional, overload
+from typing import Any, Literal, Optional
 
 from hfortix_core.http.interface import IHTTPClient
-from hfortix_fortios.api import API, APIDictMode, APIObjectMode
-
-class FortiOSDictMode:
-    """FortiOS client in dict response mode (default).
-
-    All endpoint methods return TypedDict types with bracket access (response["field"]).
-    """
-
-    @property
-    def api(self) -> APIDictMode: ...
-    @property
-    def host(self) -> Optional[str]: ...
-    @property
-    def port(self) -> Optional[int]: ...
-    @property
-    def vdom(self) -> Optional[str]: ...
-    @property
-    def error_mode(self) -> Literal["raise", "return", "print"]: ...
-    @property
-    def error_format(self) -> Literal["detailed", "simple", "code_only"]: ...
-    @property
-    def connection_stats(self) -> dict[str, Any]: ...
-    @property
-    def last_request(self) -> dict[str, Any] | None: ...
-    def get_connection_stats(self) -> dict[str, Any]: ...
-    def get_write_operations(self) -> list[dict[str, Any]]: ...
-    def get_operations(self) -> list[dict[str, Any]]: ...
-    def get_retry_stats(self) -> dict[str, Any]: ...
-    def get_circuit_breaker_state(self) -> dict[str, Any]: ...
-    def get_health_metrics(self) -> dict[str, Any]: ...
-    def export_audit_logs(
-        self,
-        filepath: Optional[str] = None,
-        format: str = "json",
-        filter_method: Optional[str] = None,
-        filter_api_type: Optional[str] = None,
-        since: Optional[str] = None,
-    ) -> Optional[str]: ...
-    def request(
-        self,
-        config: dict[str, Any],
-        raw_json: bool = False,
-    ) -> dict[str, Any] | Any: ...
-    def close(self) -> None: ...
-    async def aclose(self) -> None: ...
-    def __enter__(self) -> FortiOSDictMode: ...
-    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None: ...
-    async def __aenter__(self) -> FortiOSDictMode: ...
-    async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None: ...
-
-class FortiOSObjectMode:
-    """FortiOS client in object response mode.
-
-    All endpoint methods return Object types with attribute access (response.field).
-    """
-
-    @property
-    def api(self) -> APIObjectMode: ...
-    @property
-    def host(self) -> Optional[str]: ...
-    @property
-    def port(self) -> Optional[int]: ...
-    @property
-    def vdom(self) -> Optional[str]: ...
-    @property
-    def error_mode(self) -> Literal["raise", "return", "print"]: ...
-    @property
-    def error_format(self) -> Literal["detailed", "simple", "code_only"]: ...
-    @property
-    def connection_stats(self) -> dict[str, Any]: ...
-    @property
-    def last_request(self) -> dict[str, Any] | None: ...
-    def get_connection_stats(self) -> dict[str, Any]: ...
-    def get_write_operations(self) -> list[dict[str, Any]]: ...
-    def get_operations(self) -> list[dict[str, Any]]: ...
-    def get_retry_stats(self) -> dict[str, Any]: ...
-    def get_circuit_breaker_state(self) -> dict[str, Any]: ...
-    def get_health_metrics(self) -> dict[str, Any]: ...
-    def export_audit_logs(
-        self,
-        filepath: Optional[str] = None,
-        format: str = "json",
-        filter_method: Optional[str] = None,
-        filter_api_type: Optional[str] = None,
-        since: Optional[str] = None,
-    ) -> Optional[str]: ...
-    def request(
-        self,
-        config: dict[str, Any],
-        raw_json: bool = False,
-    ) -> dict[str, Any] | Any: ...
-    def close(self) -> None: ...
-    async def aclose(self) -> None: ...
-    def __enter__(self) -> FortiOSObjectMode: ...
-    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None: ...
-    async def __aenter__(self) -> FortiOSObjectMode: ...
-    async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None: ...
+from hfortix_fortios.api import API
 
 class FortiOS:
     """FortiOS REST API Client.
 
-    The response_mode parameter determines the return type of all endpoint methods:
-    - "dict" (default): Returns TypedDict types with bracket access (response["field"])
-    - "object": Returns Object types with attribute access (response.field)
-
-    You can also override response_mode per-call on individual endpoint methods.
+    All endpoint methods return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"] 
+    - Convert to dict: response.dict or response.json
+    - Get raw response: response.raw
     """
 
     @staticmethod
@@ -120,73 +24,6 @@ class FortiOS:
         password: str | None,
     ) -> None: ...
 
-    # Object mode overloads (must come first - Pylance matches top to bottom)
-    @overload
-    def __new__(
-        cls,
-        host: str,
-        token: str,
-        *,
-        mode: Literal["sync", "async"] = ...,
-        verify: bool = ...,
-        vdom: str | None = ...,
-        port: int | None = ...,
-        error_mode: Literal["raise", "return", "print"] = ...,
-        error_format: Literal["detailed", "simple", "code_only"] = ...,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> FortiOSObjectMode: ...
-    @overload
-    def __new__(
-        cls,
-        host: str,
-        *,
-        username: str,
-        password: str,
-        mode: Literal["sync", "async"] = ...,
-        verify: bool = ...,
-        vdom: str | None = ...,
-        port: int | None = ...,
-        error_mode: Literal["raise", "return", "print"] = ...,
-        error_format: Literal["detailed", "simple", "code_only"] = ...,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> FortiOSObjectMode: ...
-
-    # Dict mode overloads (default - comes after object mode)
-    @overload
-    def __new__(
-        cls,
-        host: str,
-        token: str,
-        *,
-        mode: Literal["sync", "async"] = ...,
-        verify: bool = ...,
-        vdom: str | None = ...,
-        port: int | None = ...,
-        error_mode: Literal["raise", "return", "print"] = ...,
-        error_format: Literal["detailed", "simple", "code_only"] = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> FortiOSDictMode: ...
-    @overload
-    def __new__(
-        cls,
-        host: str,
-        *,
-        username: str,
-        password: str,
-        mode: Literal["sync", "async"] = ...,
-        verify: bool = ...,
-        vdom: str | None = ...,
-        port: int | None = ...,
-        error_mode: Literal["raise", "return", "print"] = ...,
-        error_format: Literal["detailed", "simple", "code_only"] = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> FortiOSDictMode: ...
-
-    # Runtime properties (for when type is FortiOS directly)
     @property
     def api(self) -> API: ...
     @property

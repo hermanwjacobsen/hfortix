@@ -102,7 +102,6 @@ class FortiOS:
         retry_jitter: bool = False,
         error_mode: Literal["raise", "return", "print"] = "raise",
         error_format: Literal["detailed", "simple", "code_only"] = "detailed",
-        response_mode: Literal["dict", "object"] = "dict",
         audit_handler: Optional[AuditHandler] = None,
         audit_callback: Optional[Any] = None,
         user_context: Optional[dict[str, Any]] = None,
@@ -145,7 +144,6 @@ class FortiOS:
         retry_jitter: bool = False,
         error_mode: Literal["raise", "return", "print"] = "raise",
         error_format: Literal["detailed", "simple", "code_only"] = "detailed",
-        response_mode: Literal["dict", "object"] = "dict",
         audit_handler: Optional[AuditHandler] = None,
         audit_callback: Optional[Any] = None,
         user_context: Optional[dict[str, Any]] = None,
@@ -187,7 +185,6 @@ class FortiOS:
         retry_jitter: bool = False,
         error_mode: Literal["raise", "return", "print"] = "raise",
         error_format: Literal["detailed", "simple", "code_only"] = "detailed",
-        response_mode: Literal["dict", "object"] = "dict",
         audit_handler: Optional[AuditHandler] = None,
         audit_callback: Optional[Any] = None,
         user_context: Optional[dict[str, Any]] = None,
@@ -542,7 +539,6 @@ class FortiOS:
         self._error_format: Literal["detailed", "simple", "code_only"] = (
             error_format
         )
-        self._response_mode: Literal["dict", "object"] = response_mode
 
         # Validate credentials if not using custom client
         if client is None:
@@ -658,13 +654,10 @@ class FortiOS:
         from hfortix_fortios.models import process_response
 
         class ResponseProcessingClient:
-            """Wrapper that processes responses based on response_mode setting."""
+            """Wrapper that automatically processes responses with FortiObject."""
 
-            def __init__(
-                self, client: Any, response_mode: Literal["dict", "object"]
-            ):
+            def __init__(self, client: Any):
                 self._wrapped_client = client
-                self._response_mode = response_mode
 
             def get(
                 self,
@@ -673,19 +666,13 @@ class FortiOS:
                 params=None,
                 vdom=None,
                 raw_json=False,
-                response_mode=None,
                 unwrap_single=False,
             ):
-                """GET request with response processing."""
+                """GET request with automatic response processing."""
                 result = self._wrapped_client.get(
                     api_type, path, params, vdom, raw_json
                 )
-                mode = (
-                    response_mode
-                    if response_mode is not None
-                    else self._response_mode
-                )
-                return process_response(result, mode, client=self, unwrap_single=unwrap_single)  # type: ignore
+                return process_response(result, unwrap_single=unwrap_single)  # type: ignore
 
             def post(
                 self,
@@ -695,16 +682,10 @@ class FortiOS:
                 params=None,
                 vdom=None,
                 raw_json=False,
-                response_mode=None,
             ):
-                """POST request with response processing."""
+                """POST request with automatic response processing."""
                 result = self._wrapped_client.post(api_type, path, data, params, vdom, raw_json)  # type: ignore
-                mode = (
-                    response_mode
-                    if response_mode is not None
-                    else self._response_mode
-                )
-                return process_response(result, mode)  # type: ignore
+                return process_response(result)  # type: ignore
 
             def put(
                 self,
@@ -714,16 +695,10 @@ class FortiOS:
                 params=None,
                 vdom=None,
                 raw_json=False,
-                response_mode=None,
             ):
-                """PUT request with response processing."""
+                """PUT request with automatic response processing."""
                 result = self._wrapped_client.put(api_type, path, data, params, vdom, raw_json)  # type: ignore
-                mode = (
-                    response_mode
-                    if response_mode is not None
-                    else self._response_mode
-                )
-                return process_response(result, mode)  # type: ignore
+                return process_response(result)  # type: ignore
 
             def delete(
                 self,
@@ -732,27 +707,21 @@ class FortiOS:
                 params=None,
                 vdom=None,
                 raw_json=False,
-                response_mode=None,
             ):
-                """DELETE request with response processing."""
+                """DELETE request with automatic response processing."""
                 result = self._wrapped_client.delete(
                     api_type, path, params, vdom, raw_json
                 )
-                mode = (
-                    response_mode
-                    if response_mode is not None
-                    else self._response_mode
-                )
-                return process_response(result, mode)  # type: ignore
+                return process_response(result)  # type: ignore
 
             def __getattr__(self, name):
                 """Delegate all other attributes to the wrapped client."""
                 return getattr(self._wrapped_client, name)
 
-        # Wrap client for response processing and cast to IHTTPClient for type checking
+        # Wrap client for automatic response processing and cast to IHTTPClient for type checking
         wrapped_client = cast(
             IHTTPClient,
-            ResponseProcessingClient(self._client, self._response_mode),
+            ResponseProcessingClient(self._client),
         )
 
         # Initialize API namespace.

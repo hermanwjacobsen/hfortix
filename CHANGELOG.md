@@ -5,7 +5,92 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.5.71] - 2026-01-15
+
+### Changed - **BREAKING: Simplified API - Removed `response_mode` parameter**
+
+**What Changed:**
+- ✅ **Removed `response_mode` parameter** from `FortiOS` client initialization
+- ✅ **All API methods now return `FortiObject` instances** (no more dict mode)
+- ✅ **Added `.dict`, `.json`, `.raw` properties** to `FortiObject` for flexible data access
+- ✅ **Simplified client architecture** - removed `FortiOSDictMode`, `FortiOSObjectMode`, `APIDictMode`, `APIObjectMode` classes
+- ✅ **Massive codebase reduction** - eliminated 267,743 lines of type stub code (50.6% reduction!)
+
+**Impact on Generated API:**
+```
+BEFORE (dual response_mode API):
+- Directory size:  145M
+- Type stub lines: 529,626 lines
+- Largest .pyi:    9,135 lines (system/interface.pyi)
+
+AFTER (unified FortiObject API):
+- Directory size:  123M (-22M, -15.2%)
+- Type stub lines: 261,883 lines (-267,743 lines, -50.6%)
+- Largest .pyi:    4,586 lines (-50% reduction)
+
+Generated 1,062 endpoints in 6.7 seconds
+```
+
+**Impact on Test Suite:**
+```
+Test Generation Summary:
+- ✅ Generated:  1,066 test files
+- ⏭️  Skipped:   282 endpoints (category containers, unsupported)
+- ❌ Errors:     0
+- 📝 Total:      1,348 schemas processed
+
+All tests updated to use new unified API:
+- Removed all response_mode="dict" parameter calls
+- Tests now use .dict property: endpoint.get().dict
+- 100% test compatibility with v0.6.0+ API
+```
+
+**Migration Guide:**
+
+```python
+# ❌ OLD (v0.5.x):
+fgt = FortiOS(host="...", token="...", response_mode="dict")  # Dict mode
+addresses = fgt.api.cmdb.firewall.address.get()
+for addr in addresses:
+    print(addr["name"])  # Dictionary access
+
+fgt = FortiOS(host="...", token="...", response_mode="object")  # Object mode  
+addresses = fgt.api.cmdb.firewall.address.get()
+for addr in addresses:
+    print(addr.name)  # Attribute access
+
+# ✅ NEW (v0.6.0+):
+fgt = FortiOS(host="...", token="...")  # No response_mode parameter!
+addresses = fgt.api.cmdb.firewall.address.get()
+for addr in addresses:
+    # Attribute access (recommended)
+    print(addr.name)
+    print(addr.subnet)
+    
+    # Dictionary access still works!
+    print(addr["name"])
+    
+    # Convert to dict when needed
+    addr_dict = addr.dict  # or addr.json or addr.raw
+    print(addr_dict)  # {'name': 'MyAddress', 'subnet': '10.0.0.1/32', ...}
+```
+
+**Why This Change:**
+- 🎯 **Simpler API** - One obvious way to do things (Pythonic!)
+- 🚀 **Better UX** - Choose output format when you need it, not upfront
+- 🧹 **Cleaner codebase** - Eliminated 50% of duplicate classes and type stubs
+- ✨ **More flexible** - Access as object OR dict, convert when needed
+- 📦 **Smaller package** - 22MB smaller distribution size
+
+**Benefits:**
+- ✅ Always get `FortiObject` with full IDE autocomplete
+- ✅ Use `.dict`, `.json`, or `.raw` properties when you need a dictionary
+- ✅ Both `obj.field` and `obj["field"]` work on the same object
+- ✅ No need to choose mode upfront - decide at access time!
+- ✅ 50% reduction in generated code complexity
+
+### Added
+- **Added `pydantic>=2.0` as dependency** - Required for 1,062 generated Pydantic models used for request validation
 
 ## [0.5.70] - 2026-01-15
 

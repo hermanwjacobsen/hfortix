@@ -194,7 +194,6 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] = "object",
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -223,12 +222,12 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
                 See FortiOS REST API documentation for complete list.
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
             raw_json: If True, return raw API response without processing.
-            response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
-            Configuration data as dict. Returns Coroutine if using async client.
+            FortiObject instance or list of FortiObject instances. Returns Coroutine if using async client.
+            Use .dict, .json, or .raw properties to access as dictionary.
             
             Response structure:
                 - http_method: GET
@@ -317,7 +316,7 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
             unwrap_single = False
         
         return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode, unwrap_single=unwrap_single
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json, unwrap_single=unwrap_single
         )
 
     def get_schema(
@@ -391,7 +390,6 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
         q_scope: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] = "object",
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -503,12 +501,11 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
                   - List of dicts: [{'msg-type': 'value'}] (recommended)
             vdom: Virtual domain name.
             raw_json: If True, return raw API response.
-            response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
-            API response dict
+            FortiObject instance. Use .dict, .json, or .raw to access as dictionary.
 
         Raises:
             ValueError: If name is missing from payload
@@ -714,7 +711,7 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
             params["scope"] = q_scope
         
         return self._client.put(
-            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode
+            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json
         )
 
     # ========================================================================
@@ -749,7 +746,6 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
         q_scope: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] = "object",
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -861,12 +857,11 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
                   - List of dicts: [{'msg-type': 'value'}] (recommended)
             vdom: Virtual domain name. Use True for global, string for specific VDOM.
             raw_json: If True, return raw API response without processing.
-            response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
-            API response dict containing created object with assigned name.
+            FortiObject instance with created object. Use .dict, .json, or .raw to access as dictionary.
 
         Examples:
             >>> # Create using individual parameters
@@ -1069,7 +1064,7 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
             params["scope"] = q_scope
         
         return self._client.post(
-            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode
+            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json
         )
 
     # ========================================================================
@@ -1083,7 +1078,6 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
         q_scope: str | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] = "object",
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -1096,12 +1090,11 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
             name: Primary key identifier
             vdom: Virtual domain name
             raw_json: If True, return raw API response
-            response_mode: Override client-level response_mode. "dict" returns dict, "object" returns FortiObject.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
         Returns:
-            API response dict
+            FortiObject instance. Use .dict, .json, or .raw to access as dictionary
 
         Raises:
             ValueError: If name is not provided
@@ -1128,7 +1121,7 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
             params["scope"] = q_scope
         
         return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json, response_mode=response_mode
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
         )
 
     def exists(
@@ -1213,7 +1206,6 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
         automation: str | list[str] | list[dict[str, Any]] | None = None,
         vdom: str | bool | None = None,
         raw_json: bool = False,
-        response_mode: Literal["dict", "object"] = "object",
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
         **kwargs: Any,
@@ -1247,11 +1239,10 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
             automation: Field automation
             vdom: Virtual domain name
             raw_json: If True, return raw API response
-            response_mode: Override client-level response_mode
             **kwargs: Additional parameters passed to PUT or POST
 
         Returns:
-            API response dictionary
+            FortiObject instance. Use .dict, .json, or .raw to access as dictionary
 
         Raises:
             ValueError: If name is missing from payload
@@ -1317,10 +1308,10 @@ class ReplacemsgGroup(CRUDEndpoint, MetadataMixin):
         # Check if resource exists
         if self.exists(name=mkey_value, vdom=vdom):
             # Update existing resource
-            return self.put(payload_dict=payload_data, vdom=vdom, raw_json=raw_json, response_mode=response_mode, **kwargs)
+            return self.put(payload_dict=payload_data, vdom=vdom, raw_json=raw_json, **kwargs)
         else:
             # Create new resource
-            return self.post(payload_dict=payload_data, vdom=vdom, raw_json=raw_json, response_mode=response_mode, **kwargs)
+            return self.post(payload_dict=payload_data, vdom=vdom, raw_json=raw_json, **kwargs)
 
     # ========================================================================
     # Action: Move

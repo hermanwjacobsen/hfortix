@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .test import Test, TestDictMode, TestObjectMode
+    from .test import Test
 
 __all__ = [
     "Test",
-    "TacacsPlusDictMode",
-    "TacacsPlusObjectMode",
+    "TacacsPlus",
 ]
 
-class TacacsPlusDictMode:
-    """TACACS_PLUS API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    test: TestDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize tacacs_plus category with HTTP client."""
-        ...
-
-
-class TacacsPlusObjectMode:
-    """TACACS_PLUS API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    test: TestObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize tacacs_plus category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class TacacsPlus:
-    """TACACS_PLUS API category."""
+    """TACACS_PLUS API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     test: Test
 

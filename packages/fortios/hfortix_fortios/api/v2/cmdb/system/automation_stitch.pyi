@@ -82,7 +82,7 @@ class AutomationStitchConditionObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -109,7 +109,7 @@ class AutomationStitchActionsObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -130,7 +130,7 @@ class AutomationStitchDestinationObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -206,12 +206,11 @@ class AutomationStitch:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -225,9 +224,9 @@ class AutomationStitch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> AutomationStitchResponse: ...
+    ) -> AutomationStitchObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -242,9 +241,9 @@ class AutomationStitch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> AutomationStitchResponse: ...
+    ) -> AutomationStitchObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -258,13 +257,13 @@ class AutomationStitch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AutomationStitchResponse]: ...
+    ) -> list[AutomationStitchObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -280,11 +279,10 @@ class AutomationStitch:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationStitchObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -300,11 +298,10 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationStitchObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -319,7 +316,6 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[AutomationStitchObject]: ...
     
@@ -338,7 +334,6 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -357,9 +352,8 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> AutomationStitchResponse: ...
+    ) -> AutomationStitchObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -377,9 +371,8 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> AutomationStitchResponse: ...
+    ) -> AutomationStitchObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -396,9 +389,8 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[AutomationStitchResponse]: ...
+    ) -> list[AutomationStitchObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -415,7 +407,6 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -432,7 +423,6 @@ class AutomationStitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> AutomationStitchObject | list[AutomationStitchObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -440,7 +430,7 @@ class AutomationStitch:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -457,7 +447,6 @@ class AutomationStitch:
         destination: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationStitchObject: ...
     
@@ -475,7 +464,6 @@ class AutomationStitch:
         destination: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -497,7 +485,7 @@ class AutomationStitch:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -527,7 +515,6 @@ class AutomationStitch:
         destination: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -546,7 +533,6 @@ class AutomationStitch:
         destination: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationStitchObject: ...
     
@@ -564,7 +550,6 @@ class AutomationStitch:
         destination: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -586,7 +571,7 @@ class AutomationStitch:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -616,7 +601,6 @@ class AutomationStitch:
         destination: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -627,7 +611,6 @@ class AutomationStitch:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationStitchObject: ...
     
@@ -637,7 +620,6 @@ class AutomationStitch:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -651,7 +633,7 @@ class AutomationStitch:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -687,7 +669,6 @@ class AutomationStitch:
         destination: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -699,7 +680,7 @@ class AutomationStitch:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -708,731 +689,18 @@ class AutomationStitch:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class AutomationStitchDictMode:
-    """AutomationStitch endpoint for dict response mode (default for this client).
-    
-    By default returns AutomationStitchResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return AutomationStitchObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[AutomationStitchObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> AutomationStitchResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[AutomationStitchResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class AutomationStitchObjectMode:
-    """AutomationStitch endpoint for object response mode (default for this client).
-    
-    By default returns AutomationStitchObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return AutomationStitchResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> AutomationStitchResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[AutomationStitchResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[AutomationStitchObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AutomationStitchObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: AutomationStitchPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trigger: str | None = ...,
-        condition: str | list[str] | list[dict[str, Any]] | None = ...,
-        condition_logic: Literal["and", "or"] | None = ...,
-        actions: str | list[str] | list[dict[str, Any]] | None = ...,
-        destination: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "AutomationStitch",
-    "AutomationStitchDictMode",
-    "AutomationStitchObjectMode",
     "AutomationStitchPayload",
+    "AutomationStitchResponse",
     "AutomationStitchObject",
 ]

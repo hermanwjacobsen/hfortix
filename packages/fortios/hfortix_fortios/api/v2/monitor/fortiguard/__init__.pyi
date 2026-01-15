@@ -6,53 +6,26 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .answers import Answers, AnswersDictMode, AnswersObjectMode
-    from .redirect_portal import RedirectPortal, RedirectPortalDictMode, RedirectPortalObjectMode
-    from .service_communication_stats import ServiceCommunicationStats, ServiceCommunicationStatsDictMode, ServiceCommunicationStatsObjectMode
+    from .answers import Answers
+    from .redirect_portal import RedirectPortal
+    from .service_communication_stats import ServiceCommunicationStats
 
 __all__ = [
     "Answers",
     "RedirectPortal",
     "ServiceCommunicationStats",
-    "FortiguardDictMode",
-    "FortiguardObjectMode",
+    "Fortiguard",
 ]
 
-class FortiguardDictMode:
-    """FORTIGUARD API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    answers: AnswersDictMode
-    redirect_portal: RedirectPortalDictMode
-    service_communication_stats: ServiceCommunicationStatsDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize fortiguard category with HTTP client."""
-        ...
-
-
-class FortiguardObjectMode:
-    """FORTIGUARD API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    answers: AnswersObjectMode
-    redirect_portal: RedirectPortalObjectMode
-    service_communication_stats: ServiceCommunicationStatsObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize fortiguard category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Fortiguard:
-    """FORTIGUARD API category."""
+    """FORTIGUARD API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     answers: Answers
     redirect_portal: RedirectPortal

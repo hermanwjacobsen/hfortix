@@ -238,12 +238,11 @@ class Local:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -257,9 +256,9 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> LocalResponse: ...
+    ) -> LocalObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -274,9 +273,9 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> LocalResponse: ...
+    ) -> LocalObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -290,13 +289,13 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LocalResponse]: ...
+    ) -> list[LocalObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -312,11 +311,10 @@ class Local:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LocalObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -332,11 +330,10 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LocalObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -351,7 +348,6 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[LocalObject]: ...
     
@@ -370,7 +366,6 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -389,9 +384,8 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> LocalResponse: ...
+    ) -> LocalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -409,9 +403,8 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> LocalResponse: ...
+    ) -> LocalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -428,9 +421,8 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[LocalResponse]: ...
+    ) -> list[LocalObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -447,7 +439,6 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -464,7 +455,6 @@ class Local:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> LocalObject | list[LocalObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -472,7 +462,7 @@ class Local:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -522,7 +512,6 @@ class Local:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LocalObject: ...
     
@@ -573,7 +562,6 @@ class Local:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -628,7 +616,7 @@ class Local:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -724,7 +712,6 @@ class Local:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -780,7 +767,6 @@ class Local:
         details: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -792,7 +778,7 @@ class Local:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -801,848 +787,18 @@ class Local:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class LocalDictMode:
-    """Local endpoint for dict response mode (default for this client).
-    
-    By default returns LocalResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return LocalObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LocalObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[LocalObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> LocalResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[LocalResponse]: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LocalObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class LocalObjectMode:
-    """Local endpoint for object response mode (default for this client).
-    
-    By default returns LocalObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return LocalResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> LocalResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[LocalResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> LocalObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[LocalObject]: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LocalObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> LocalObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Local",
-    "LocalDictMode",
-    "LocalObjectMode",
     "LocalPayload",
+    "LocalResponse",
     "LocalObject",
 ]

@@ -6,47 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .custom_language import CustomLanguageDictMode, CustomLanguageObjectMode
-    from .language import LanguageDictMode, LanguageObjectMode
+    from .custom_language import CustomLanguage
+    from .language import Language
 
 __all__ = [
-    "WebUiDictMode",
-    "WebUiObjectMode",
+    "WebUi",
 ]
 
-class WebUiDictMode:
-    """WEB_UI API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    custom_language: CustomLanguageDictMode
-    language: LanguageDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize web_ui category with HTTP client."""
-        ...
-
-
-class WebUiObjectMode:
-    """WEB_UI API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    custom_language: CustomLanguageObjectMode
-    language: LanguageObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize web_ui category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class WebUi:
-    """WEB_UI API category."""
+    """WEB_UI API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     custom_language: CustomLanguage
     language: Language

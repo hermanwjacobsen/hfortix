@@ -190,7 +190,7 @@ class IsisIsisnetObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -269,7 +269,7 @@ class IsisIsisinterfaceObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -294,7 +294,7 @@ class IsisSummaryaddressObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -319,7 +319,7 @@ class IsisSummaryaddress6Object:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -350,7 +350,7 @@ class IsisRedistributeObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -381,7 +381,7 @@ class IsisRedistribute6Object:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -555,12 +555,11 @@ class Isis:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -574,9 +573,9 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> IsisResponse: ...
+    ) -> IsisObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -591,9 +590,9 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> IsisResponse: ...
+    ) -> IsisObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -607,13 +606,13 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> IsisResponse: ...
+    ) -> IsisObject: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -629,11 +628,10 @@ class Isis:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> IsisObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -649,11 +647,10 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> IsisObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -668,7 +665,6 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> IsisObject: ...
     
@@ -687,7 +683,6 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -706,9 +701,8 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> IsisResponse: ...
+    ) -> IsisObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -726,9 +720,8 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> IsisResponse: ...
+    ) -> IsisObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -745,9 +738,8 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> IsisResponse: ...
+    ) -> IsisObject: ...
     
     # Fallback overload for all other cases
     @overload
@@ -764,7 +756,6 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
@@ -781,7 +772,6 @@ class Isis:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> IsisObject | dict[str, Any]: ...
     
@@ -789,7 +779,7 @@ class Isis:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -839,7 +829,6 @@ class Isis:
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> IsisObject: ...
     
@@ -890,7 +879,6 @@ class Isis:
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -945,7 +933,7 @@ class Isis:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -1041,7 +1029,6 @@ class Isis:
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1097,7 +1084,6 @@ class Isis:
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1109,7 +1095,7 @@ class Isis:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -1118,848 +1104,18 @@ class Isis:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class IsisDictMode:
-    """Isis endpoint for dict response mode (default for this client).
-    
-    By default returns IsisResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return IsisObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> IsisObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> IsisObject: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> IsisResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> IsisResponse: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> IsisObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class IsisObjectMode:
-    """Isis endpoint for object response mode (default for this client).
-    
-    By default returns IsisObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return IsisResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> IsisResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> IsisResponse: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> IsisObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> IsisObject: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> IsisObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> IsisObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Isis",
-    "IsisDictMode",
-    "IsisObjectMode",
     "IsisPayload",
+    "IsisResponse",
     "IsisObject",
 ]

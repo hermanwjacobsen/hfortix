@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .sessions import Sessions, SessionsDictMode, SessionsObjectMode
+    from .sessions import Sessions
 
 __all__ = [
     "Sessions",
-    "ProxyDictMode",
-    "ProxyObjectMode",
+    "Proxy",
 ]
 
-class ProxyDictMode:
-    """PROXY API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    sessions: SessionsDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize proxy category with HTTP client."""
-        ...
-
-
-class ProxyObjectMode:
-    """PROXY API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    sessions: SessionsObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize proxy category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Proxy:
-    """PROXY API category."""
+    """PROXY API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     sessions: Sessions
 

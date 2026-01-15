@@ -6,90 +6,37 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .collected_email import CollectedEmail, CollectedEmailDictMode, CollectedEmailObjectMode
+    from .collected_email import CollectedEmail
     from .banned import Banned
-    from .device import DeviceDictMode, DeviceObjectMode
+    from .device import Device
     from .firewall import Firewall
     from .fortitoken import Fortitoken
-    from .fortitoken_cloud import FortitokenCloudDictMode, FortitokenCloudObjectMode
+    from .fortitoken_cloud import FortitokenCloud
     from .fsso import Fsso
-    from .guest import GuestDictMode, GuestObjectMode
-    from .info import InfoDictMode, InfoObjectMode
-    from .local import LocalDictMode, LocalObjectMode
-    from .password_policy_conform import PasswordPolicyConformDictMode, PasswordPolicyConformObjectMode
+    from .guest import Guest
+    from .info import Info
+    from .local import Local
+    from .password_policy_conform import PasswordPolicyConform
     from .proxy import Proxy
-    from .query import QueryDictMode, QueryObjectMode
-    from .radius import RadiusDictMode, RadiusObjectMode
-    from .scim import ScimDictMode, ScimObjectMode
-    from .tacacs_plus import TacacsPlusDictMode, TacacsPlusObjectMode
+    from .query import Query
+    from .radius import Radius
+    from .scim import Scim
+    from .tacacs_plus import TacacsPlus
 
 __all__ = [
     "CollectedEmail",
-    "UserDictMode",
-    "UserObjectMode",
+    "User",
 ]
 
-class UserDictMode:
-    """USER API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    banned: Banned
-    device: DeviceDictMode
-    firewall: Firewall
-    fortitoken: Fortitoken
-    fortitoken_cloud: FortitokenCloudDictMode
-    fsso: Fsso
-    guest: GuestDictMode
-    info: InfoDictMode
-    local: LocalDictMode
-    password_policy_conform: PasswordPolicyConformDictMode
-    proxy: Proxy
-    query: QueryDictMode
-    radius: RadiusDictMode
-    scim: ScimDictMode
-    tacacs_plus: TacacsPlusDictMode
-    collected_email: CollectedEmailDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize user category with HTTP client."""
-        ...
-
-
-class UserObjectMode:
-    """USER API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    banned: Banned
-    device: DeviceObjectMode
-    firewall: Firewall
-    fortitoken: Fortitoken
-    fortitoken_cloud: FortitokenCloudObjectMode
-    fsso: Fsso
-    guest: GuestObjectMode
-    info: InfoObjectMode
-    local: LocalObjectMode
-    password_policy_conform: PasswordPolicyConformObjectMode
-    proxy: Proxy
-    query: QueryObjectMode
-    radius: RadiusObjectMode
-    scim: ScimObjectMode
-    tacacs_plus: TacacsPlusObjectMode
-    collected_email: CollectedEmailObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize user category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class User:
-    """USER API category."""
+    """USER API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     banned: Banned
     device: Device

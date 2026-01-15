@@ -27,7 +27,7 @@ class TestAutoStandaloneClusterGet:
     def auto_test_get_list_all(self):
         """Test GET - retrieve standalone-cluster configuration."""
         try:
-            result = endpoint.get(response_mode="dict")
+            result = endpoint.get()
         except Exception as e:
             # HTTP 400/404/405/424/500/503 means feature not available/enabled, method not supported, or server error
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
@@ -36,16 +36,18 @@ class TestAutoStandaloneClusterGet:
         
         # Verify response
         assert result is not None
-        # Singleton CMDB endpoints return single dict
-        assert isinstance(result, dict)
+        # Singleton CMDB endpoints return single FortiObject
+        assert hasattr(result, "__dict__")  # FortiObject
         print(f"✅ Retrieved standalone-cluster configuration (singleton)")
-        print(f"   Config keys: {len(result)} fields")
+        # Convert to dict to count fields
+        result_dict = result.dict
+        print(f"   Config keys: {len(result_dict)} fields")
     
     
     def auto_test_get_with_vdom(self):
         """Test GET - with vdom parameter."""
         try:
-            result = endpoint.get(vdom="root", response_mode="dict")
+            result = endpoint.get(vdom="root")
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
                 pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
@@ -61,7 +63,6 @@ class TestAutoStandaloneClusterGet:
             result = endpoint.get(
                 filter="",  # No filter (get all)
                 q_format="name|None",  # Limit fields
-                response_mode="dict",
             )
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):

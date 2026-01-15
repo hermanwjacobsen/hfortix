@@ -6,53 +6,26 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .list import List, ListDictMode, ListObjectMode
-    from .status import Status, StatusDictMode, StatusObjectMode
-    from .utilization import Utilization, UtilizationDictMode, UtilizationObjectMode
+    from .list import List
+    from .status import Status
+    from .utilization import Utilization
 
 __all__ = [
     "List",
     "Status",
     "Utilization",
-    "IpamDictMode",
-    "IpamObjectMode",
+    "Ipam",
 ]
 
-class IpamDictMode:
-    """IPAM API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    list: ListDictMode
-    status: StatusDictMode
-    utilization: UtilizationDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ipam category with HTTP client."""
-        ...
-
-
-class IpamObjectMode:
-    """IPAM API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    list: ListObjectMode
-    status: StatusObjectMode
-    utilization: UtilizationObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ipam category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Ipam:
-    """IPAM API category."""
+    """IPAM API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     list: List
     status: Status

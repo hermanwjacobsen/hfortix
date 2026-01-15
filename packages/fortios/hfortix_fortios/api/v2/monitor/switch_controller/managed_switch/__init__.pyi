@@ -6,23 +6,23 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .bios import Bios, BiosDictMode, BiosObjectMode
-    from .bounce_port import BouncePort, BouncePortDictMode, BouncePortObjectMode
-    from .cable_status import CableStatus, CableStatusDictMode, CableStatusObjectMode
-    from .dhcp_snooping import DhcpSnooping, DhcpSnoopingDictMode, DhcpSnoopingObjectMode
-    from .faceplate_xml import FaceplateXml, FaceplateXmlDictMode, FaceplateXmlObjectMode
-    from .factory_reset import FactoryReset, FactoryResetDictMode, FactoryResetObjectMode
-    from .health_status import HealthStatus, HealthStatusDictMode, HealthStatusObjectMode
-    from .models import Models, ModelsDictMode, ModelsObjectMode
-    from .poe_reset import PoeReset, PoeResetDictMode, PoeResetObjectMode
-    from .port_health import PortHealth, PortHealthDictMode, PortHealthObjectMode
-    from .port_stats import PortStats, PortStatsDictMode, PortStatsObjectMode
-    from .port_stats_reset import PortStatsReset, PortStatsResetDictMode, PortStatsResetObjectMode
-    from .restart import Restart, RestartDictMode, RestartObjectMode
-    from .status import Status, StatusDictMode, StatusObjectMode
-    from .transceivers import Transceivers, TransceiversDictMode, TransceiversObjectMode
-    from .tx_rx import TxRx, TxRxDictMode, TxRxObjectMode
-    from .update import Update, UpdateDictMode, UpdateObjectMode
+    from .bios import Bios
+    from .bounce_port import BouncePort
+    from .cable_status import CableStatus
+    from .dhcp_snooping import DhcpSnooping
+    from .faceplate_xml import FaceplateXml
+    from .factory_reset import FactoryReset
+    from .health_status import HealthStatus
+    from .models import Models
+    from .poe_reset import PoeReset
+    from .port_health import PortHealth
+    from .port_stats import PortStats
+    from .port_stats_reset import PortStatsReset
+    from .restart import Restart
+    from .status import Status
+    from .transceivers import Transceivers
+    from .tx_rx import TxRx
+    from .update import Update
 
 __all__ = [
     "Bios",
@@ -42,73 +42,18 @@ __all__ = [
     "Transceivers",
     "TxRx",
     "Update",
-    "ManagedSwitchDictMode",
-    "ManagedSwitchObjectMode",
+    "ManagedSwitch",
 ]
 
-class ManagedSwitchDictMode:
-    """MANAGED_SWITCH API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    bios: BiosDictMode
-    bounce_port: BouncePortDictMode
-    cable_status: CableStatusDictMode
-    dhcp_snooping: DhcpSnoopingDictMode
-    faceplate_xml: FaceplateXmlDictMode
-    factory_reset: FactoryResetDictMode
-    health_status: HealthStatusDictMode
-    models: ModelsDictMode
-    poe_reset: PoeResetDictMode
-    port_health: PortHealthDictMode
-    port_stats: PortStatsDictMode
-    port_stats_reset: PortStatsResetDictMode
-    restart: RestartDictMode
-    status: StatusDictMode
-    transceivers: TransceiversDictMode
-    tx_rx: TxRxDictMode
-    update: UpdateDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize managed_switch category with HTTP client."""
-        ...
-
-
-class ManagedSwitchObjectMode:
-    """MANAGED_SWITCH API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    bios: BiosObjectMode
-    bounce_port: BouncePortObjectMode
-    cable_status: CableStatusObjectMode
-    dhcp_snooping: DhcpSnoopingObjectMode
-    faceplate_xml: FaceplateXmlObjectMode
-    factory_reset: FactoryResetObjectMode
-    health_status: HealthStatusObjectMode
-    models: ModelsObjectMode
-    poe_reset: PoeResetObjectMode
-    port_health: PortHealthObjectMode
-    port_stats: PortStatsObjectMode
-    port_stats_reset: PortStatsResetObjectMode
-    restart: RestartObjectMode
-    status: StatusObjectMode
-    transceivers: TransceiversObjectMode
-    tx_rx: TxRxObjectMode
-    update: UpdateObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize managed_switch category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class ManagedSwitch:
-    """MANAGED_SWITCH API category."""
+    """MANAGED_SWITCH API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     bios: Bios
     bounce_port: BouncePort

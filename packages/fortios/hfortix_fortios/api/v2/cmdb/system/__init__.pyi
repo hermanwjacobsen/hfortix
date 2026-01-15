@@ -6,135 +6,135 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .accprofile import Accprofile, AccprofileDictMode, AccprofileObjectMode
-    from .acme import Acme, AcmeDictMode, AcmeObjectMode
-    from .admin import Admin, AdminDictMode, AdminObjectMode
-    from .affinity_interrupt import AffinityInterrupt, AffinityInterruptDictMode, AffinityInterruptObjectMode
-    from .affinity_packet_redistribution import AffinityPacketRedistribution, AffinityPacketRedistributionDictMode, AffinityPacketRedistributionObjectMode
-    from .alarm import Alarm, AlarmDictMode, AlarmObjectMode
-    from .alias import Alias, AliasDictMode, AliasObjectMode
-    from .api_user import ApiUser, ApiUserDictMode, ApiUserObjectMode
-    from .arp_table import ArpTable, ArpTableDictMode, ArpTableObjectMode
-    from .auto_install import AutoInstall, AutoInstallDictMode, AutoInstallObjectMode
-    from .auto_script import AutoScript, AutoScriptDictMode, AutoScriptObjectMode
-    from .automation_action import AutomationAction, AutomationActionDictMode, AutomationActionObjectMode
-    from .automation_condition import AutomationCondition, AutomationConditionDictMode, AutomationConditionObjectMode
-    from .automation_destination import AutomationDestination, AutomationDestinationDictMode, AutomationDestinationObjectMode
-    from .automation_stitch import AutomationStitch, AutomationStitchDictMode, AutomationStitchObjectMode
-    from .automation_trigger import AutomationTrigger, AutomationTriggerDictMode, AutomationTriggerObjectMode
-    from .central_management import CentralManagement, CentralManagementDictMode, CentralManagementObjectMode
-    from .cloud_service import CloudService, CloudServiceDictMode, CloudServiceObjectMode
-    from .console import Console, ConsoleDictMode, ConsoleObjectMode
-    from .csf import Csf, CsfDictMode, CsfObjectMode
-    from .custom_language import CustomLanguage, CustomLanguageDictMode, CustomLanguageObjectMode
-    from .ddns import Ddns, DdnsDictMode, DdnsObjectMode
-    from .dedicated_mgmt import DedicatedMgmt, DedicatedMgmtDictMode, DedicatedMgmtObjectMode
-    from .device_upgrade import DeviceUpgrade, DeviceUpgradeDictMode, DeviceUpgradeObjectMode
-    from .device_upgrade_exemptions import DeviceUpgradeExemptions, DeviceUpgradeExemptionsDictMode, DeviceUpgradeExemptionsObjectMode
-    from .dns import Dns, DnsDictMode, DnsObjectMode
-    from .dns64 import Dns64, Dns64DictMode, Dns64ObjectMode
-    from .dns_database import DnsDatabase, DnsDatabaseDictMode, DnsDatabaseObjectMode
-    from .dns_server import DnsServer, DnsServerDictMode, DnsServerObjectMode
-    from .dscp_based_priority import DscpBasedPriority, DscpBasedPriorityDictMode, DscpBasedPriorityObjectMode
-    from .email_server import EmailServer, EmailServerDictMode, EmailServerObjectMode
-    from .evpn import Evpn, EvpnDictMode, EvpnObjectMode
-    from .external_resource import ExternalResource, ExternalResourceDictMode, ExternalResourceObjectMode
-    from .fabric_vpn import FabricVpn, FabricVpnDictMode, FabricVpnObjectMode
-    from .federated_upgrade import FederatedUpgrade, FederatedUpgradeDictMode, FederatedUpgradeObjectMode
-    from .fips_cc import FipsCc, FipsCcDictMode, FipsCcObjectMode
-    from .fortiguard import Fortiguard, FortiguardDictMode, FortiguardObjectMode
-    from .fortisandbox import Fortisandbox, FortisandboxDictMode, FortisandboxObjectMode
-    from .fsso_polling import FssoPolling, FssoPollingDictMode, FssoPollingObjectMode
-    from .ftm_push import FtmPush, FtmPushDictMode, FtmPushObjectMode
-    from .geneve import Geneve, GeneveDictMode, GeneveObjectMode
-    from .geoip_country import GeoipCountry, GeoipCountryDictMode, GeoipCountryObjectMode
-    from .geoip_override import GeoipOverride, GeoipOverrideDictMode, GeoipOverrideObjectMode
-    from .global_ import Global, GlobalDictMode, GlobalObjectMode
-    from .gre_tunnel import GreTunnel, GreTunnelDictMode, GreTunnelObjectMode
-    from .ha import Ha, HaDictMode, HaObjectMode
-    from .ha_monitor import HaMonitor, HaMonitorDictMode, HaMonitorObjectMode
-    from .health_check_fortiguard import HealthCheckFortiguard, HealthCheckFortiguardDictMode, HealthCheckFortiguardObjectMode
-    from .ike import Ike, IkeDictMode, IkeObjectMode
-    from .interface import Interface, InterfaceDictMode, InterfaceObjectMode
-    from .ipam import Ipam, IpamDictMode, IpamObjectMode
-    from .ipip_tunnel import IpipTunnel, IpipTunnelDictMode, IpipTunnelObjectMode
-    from .ips import Ips, IpsDictMode, IpsObjectMode
-    from .ips_urlfilter_dns import IpsUrlfilterDns, IpsUrlfilterDnsDictMode, IpsUrlfilterDnsObjectMode
-    from .ips_urlfilter_dns6 import IpsUrlfilterDns6, IpsUrlfilterDns6DictMode, IpsUrlfilterDns6ObjectMode
-    from .ipsec_aggregate import IpsecAggregate, IpsecAggregateDictMode, IpsecAggregateObjectMode
-    from .ipv6_neighbor_cache import Ipv6NeighborCache, Ipv6NeighborCacheDictMode, Ipv6NeighborCacheObjectMode
-    from .ipv6_tunnel import Ipv6Tunnel, Ipv6TunnelDictMode, Ipv6TunnelObjectMode
-    from .link_monitor import LinkMonitor, LinkMonitorDictMode, LinkMonitorObjectMode
-    from .lte_modem import LteModem, LteModemDictMode, LteModemObjectMode
-    from .mac_address_table import MacAddressTable, MacAddressTableDictMode, MacAddressTableObjectMode
-    from .mobile_tunnel import MobileTunnel, MobileTunnelDictMode, MobileTunnelObjectMode
-    from .modem import Modem, ModemDictMode, ModemObjectMode
-    from .nd_proxy import NdProxy, NdProxyDictMode, NdProxyObjectMode
-    from .netflow import Netflow, NetflowDictMode, NetflowObjectMode
-    from .network_visibility import NetworkVisibility, NetworkVisibilityDictMode, NetworkVisibilityObjectMode
-    from .ngfw_settings import NgfwSettings, NgfwSettingsDictMode, NgfwSettingsObjectMode
-    from .np6xlite import Np6xlite, Np6xliteDictMode, Np6xliteObjectMode
-    from .npu import Npu, NpuDictMode, NpuObjectMode
-    from .ntp import Ntp, NtpDictMode, NtpObjectMode
-    from .object_tagging import ObjectTagging, ObjectTaggingDictMode, ObjectTaggingObjectMode
-    from .password_policy import PasswordPolicy, PasswordPolicyDictMode, PasswordPolicyObjectMode
-    from .password_policy_guest_admin import PasswordPolicyGuestAdmin, PasswordPolicyGuestAdminDictMode, PasswordPolicyGuestAdminObjectMode
-    from .pcp_server import PcpServer, PcpServerDictMode, PcpServerObjectMode
-    from .physical_switch import PhysicalSwitch, PhysicalSwitchDictMode, PhysicalSwitchObjectMode
-    from .pppoe_interface import PppoeInterface, PppoeInterfaceDictMode, PppoeInterfaceObjectMode
-    from .probe_response import ProbeResponse, ProbeResponseDictMode, ProbeResponseObjectMode
-    from .proxy_arp import ProxyArp, ProxyArpDictMode, ProxyArpObjectMode
-    from .ptp import Ptp, PtpDictMode, PtpObjectMode
-    from .replacemsg_group import ReplacemsgGroup, ReplacemsgGroupDictMode, ReplacemsgGroupObjectMode
-    from .replacemsg_image import ReplacemsgImage, ReplacemsgImageDictMode, ReplacemsgImageObjectMode
-    from .resource_limits import ResourceLimits, ResourceLimitsDictMode, ResourceLimitsObjectMode
-    from .saml import Saml, SamlDictMode, SamlObjectMode
-    from .sdn_connector import SdnConnector, SdnConnectorDictMode, SdnConnectorObjectMode
-    from .sdn_proxy import SdnProxy, SdnProxyDictMode, SdnProxyObjectMode
-    from .sdn_vpn import SdnVpn, SdnVpnDictMode, SdnVpnObjectMode
-    from .sdwan import Sdwan, SdwanDictMode, SdwanObjectMode
-    from .session_helper import SessionHelper, SessionHelperDictMode, SessionHelperObjectMode
-    from .session_ttl import SessionTtl, SessionTtlDictMode, SessionTtlObjectMode
-    from .settings import Settings, SettingsDictMode, SettingsObjectMode
-    from .sflow import Sflow, SflowDictMode, SflowObjectMode
-    from .sit_tunnel import SitTunnel, SitTunnelDictMode, SitTunnelObjectMode
-    from .sms_server import SmsServer, SmsServerDictMode, SmsServerObjectMode
-    from .sov_sase import SovSase, SovSaseDictMode, SovSaseObjectMode
-    from .speed_test_schedule import SpeedTestSchedule, SpeedTestScheduleDictMode, SpeedTestScheduleObjectMode
-    from .speed_test_server import SpeedTestServer, SpeedTestServerDictMode, SpeedTestServerObjectMode
-    from .speed_test_setting import SpeedTestSetting, SpeedTestSettingDictMode, SpeedTestSettingObjectMode
-    from .ssh_config import SshConfig, SshConfigDictMode, SshConfigObjectMode
-    from .sso_admin import SsoAdmin, SsoAdminDictMode, SsoAdminObjectMode
-    from .sso_forticloud_admin import SsoForticloudAdmin, SsoForticloudAdminDictMode, SsoForticloudAdminObjectMode
-    from .sso_fortigate_cloud_admin import SsoFortigateCloudAdmin, SsoFortigateCloudAdminDictMode, SsoFortigateCloudAdminObjectMode
-    from .standalone_cluster import StandaloneCluster, StandaloneClusterDictMode, StandaloneClusterObjectMode
-    from .storage import Storage, StorageDictMode, StorageObjectMode
-    from .stp import Stp, StpDictMode, StpObjectMode
-    from .switch_interface import SwitchInterface, SwitchInterfaceDictMode, SwitchInterfaceObjectMode
-    from .timezone import Timezone, TimezoneDictMode, TimezoneObjectMode
-    from .tos_based_priority import TosBasedPriority, TosBasedPriorityDictMode, TosBasedPriorityObjectMode
-    from .vdom import Vdom, VdomDictMode, VdomObjectMode
-    from .vdom_dns import VdomDns, VdomDnsDictMode, VdomDnsObjectMode
-    from .vdom_exception import VdomException, VdomExceptionDictMode, VdomExceptionObjectMode
-    from .vdom_link import VdomLink, VdomLinkDictMode, VdomLinkObjectMode
-    from .vdom_netflow import VdomNetflow, VdomNetflowDictMode, VdomNetflowObjectMode
-    from .vdom_property import VdomProperty, VdomPropertyDictMode, VdomPropertyObjectMode
-    from .vdom_radius_server import VdomRadiusServer, VdomRadiusServerDictMode, VdomRadiusServerObjectMode
-    from .vdom_sflow import VdomSflow, VdomSflowDictMode, VdomSflowObjectMode
-    from .virtual_switch import VirtualSwitch, VirtualSwitchDictMode, VirtualSwitchObjectMode
-    from .virtual_wire_pair import VirtualWirePair, VirtualWirePairDictMode, VirtualWirePairObjectMode
-    from .vne_interface import VneInterface, VneInterfaceDictMode, VneInterfaceObjectMode
-    from .vxlan import Vxlan, VxlanDictMode, VxlanObjectMode
-    from .wccp import Wccp, WccpDictMode, WccpObjectMode
-    from .zone import Zone, ZoneDictMode, ZoneObjectMode
-    from .autoupdate import AutoupdateDictMode, AutoupdateObjectMode
-    from .dhcp import DhcpDictMode, DhcpObjectMode
-    from .dhcp6 import Dhcp6DictMode, Dhcp6ObjectMode
-    from .lldp import LldpDictMode, LldpObjectMode
-    from .modem3g import Modem3gDictMode, Modem3gObjectMode
-    from .replacemsg import ReplacemsgDictMode, ReplacemsgObjectMode
-    from .security_rating import SecurityRatingDictMode, SecurityRatingObjectMode
-    from .snmp import SnmpDictMode, SnmpObjectMode
+    from .accprofile import Accprofile
+    from .acme import Acme
+    from .admin import Admin
+    from .affinity_interrupt import AffinityInterrupt
+    from .affinity_packet_redistribution import AffinityPacketRedistribution
+    from .alarm import Alarm
+    from .alias import Alias
+    from .api_user import ApiUser
+    from .arp_table import ArpTable
+    from .auto_install import AutoInstall
+    from .auto_script import AutoScript
+    from .automation_action import AutomationAction
+    from .automation_condition import AutomationCondition
+    from .automation_destination import AutomationDestination
+    from .automation_stitch import AutomationStitch
+    from .automation_trigger import AutomationTrigger
+    from .central_management import CentralManagement
+    from .cloud_service import CloudService
+    from .console import Console
+    from .csf import Csf
+    from .custom_language import CustomLanguage
+    from .ddns import Ddns
+    from .dedicated_mgmt import DedicatedMgmt
+    from .device_upgrade import DeviceUpgrade
+    from .device_upgrade_exemptions import DeviceUpgradeExemptions
+    from .dns import Dns
+    from .dns64 import Dns64
+    from .dns_database import DnsDatabase
+    from .dns_server import DnsServer
+    from .dscp_based_priority import DscpBasedPriority
+    from .email_server import EmailServer
+    from .evpn import Evpn
+    from .external_resource import ExternalResource
+    from .fabric_vpn import FabricVpn
+    from .federated_upgrade import FederatedUpgrade
+    from .fips_cc import FipsCc
+    from .fortiguard import Fortiguard
+    from .fortisandbox import Fortisandbox
+    from .fsso_polling import FssoPolling
+    from .ftm_push import FtmPush
+    from .geneve import Geneve
+    from .geoip_country import GeoipCountry
+    from .geoip_override import GeoipOverride
+    from .global_ import Global
+    from .gre_tunnel import GreTunnel
+    from .ha import Ha
+    from .ha_monitor import HaMonitor
+    from .health_check_fortiguard import HealthCheckFortiguard
+    from .ike import Ike
+    from .interface import Interface
+    from .ipam import Ipam
+    from .ipip_tunnel import IpipTunnel
+    from .ips import Ips
+    from .ips_urlfilter_dns import IpsUrlfilterDns
+    from .ips_urlfilter_dns6 import IpsUrlfilterDns6
+    from .ipsec_aggregate import IpsecAggregate
+    from .ipv6_neighbor_cache import Ipv6NeighborCache
+    from .ipv6_tunnel import Ipv6Tunnel
+    from .link_monitor import LinkMonitor
+    from .lte_modem import LteModem
+    from .mac_address_table import MacAddressTable
+    from .mobile_tunnel import MobileTunnel
+    from .modem import Modem
+    from .nd_proxy import NdProxy
+    from .netflow import Netflow
+    from .network_visibility import NetworkVisibility
+    from .ngfw_settings import NgfwSettings
+    from .np6xlite import Np6xlite
+    from .npu import Npu
+    from .ntp import Ntp
+    from .object_tagging import ObjectTagging
+    from .password_policy import PasswordPolicy
+    from .password_policy_guest_admin import PasswordPolicyGuestAdmin
+    from .pcp_server import PcpServer
+    from .physical_switch import PhysicalSwitch
+    from .pppoe_interface import PppoeInterface
+    from .probe_response import ProbeResponse
+    from .proxy_arp import ProxyArp
+    from .ptp import Ptp
+    from .replacemsg_group import ReplacemsgGroup
+    from .replacemsg_image import ReplacemsgImage
+    from .resource_limits import ResourceLimits
+    from .saml import Saml
+    from .sdn_connector import SdnConnector
+    from .sdn_proxy import SdnProxy
+    from .sdn_vpn import SdnVpn
+    from .sdwan import Sdwan
+    from .session_helper import SessionHelper
+    from .session_ttl import SessionTtl
+    from .settings import Settings
+    from .sflow import Sflow
+    from .sit_tunnel import SitTunnel
+    from .sms_server import SmsServer
+    from .sov_sase import SovSase
+    from .speed_test_schedule import SpeedTestSchedule
+    from .speed_test_server import SpeedTestServer
+    from .speed_test_setting import SpeedTestSetting
+    from .ssh_config import SshConfig
+    from .sso_admin import SsoAdmin
+    from .sso_forticloud_admin import SsoForticloudAdmin
+    from .sso_fortigate_cloud_admin import SsoFortigateCloudAdmin
+    from .standalone_cluster import StandaloneCluster
+    from .storage import Storage
+    from .stp import Stp
+    from .switch_interface import SwitchInterface
+    from .timezone import Timezone
+    from .tos_based_priority import TosBasedPriority
+    from .vdom import Vdom
+    from .vdom_dns import VdomDns
+    from .vdom_exception import VdomException
+    from .vdom_link import VdomLink
+    from .vdom_netflow import VdomNetflow
+    from .vdom_property import VdomProperty
+    from .vdom_radius_server import VdomRadiusServer
+    from .vdom_sflow import VdomSflow
+    from .virtual_switch import VirtualSwitch
+    from .virtual_wire_pair import VirtualWirePair
+    from .vne_interface import VneInterface
+    from .vxlan import Vxlan
+    from .wccp import Wccp
+    from .zone import Zone
+    from .autoupdate import Autoupdate
+    from .dhcp import Dhcp
+    from .dhcp6 import Dhcp6
+    from .lldp import Lldp
+    from .modem3g import Modem3g
+    from .replacemsg import Replacemsg
+    from .security_rating import SecurityRating
+    from .snmp import Snmp
 
 __all__ = [
     "Accprofile",
@@ -258,297 +258,18 @@ __all__ = [
     "Vxlan",
     "Wccp",
     "Zone",
-    "SystemDictMode",
-    "SystemObjectMode",
+    "System",
 ]
 
-class SystemDictMode:
-    """SYSTEM API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    autoupdate: AutoupdateDictMode
-    dhcp: DhcpDictMode
-    dhcp6: Dhcp6DictMode
-    lldp: LldpDictMode
-    modem3g: Modem3gDictMode
-    replacemsg: ReplacemsgDictMode
-    security_rating: SecurityRatingDictMode
-    snmp: SnmpDictMode
-    accprofile: AccprofileDictMode
-    acme: AcmeDictMode
-    admin: AdminDictMode
-    affinity_interrupt: AffinityInterruptDictMode
-    affinity_packet_redistribution: AffinityPacketRedistributionDictMode
-    alarm: AlarmDictMode
-    alias: AliasDictMode
-    api_user: ApiUserDictMode
-    arp_table: ArpTableDictMode
-    auto_install: AutoInstallDictMode
-    auto_script: AutoScriptDictMode
-    automation_action: AutomationActionDictMode
-    automation_condition: AutomationConditionDictMode
-    automation_destination: AutomationDestinationDictMode
-    automation_stitch: AutomationStitchDictMode
-    automation_trigger: AutomationTriggerDictMode
-    central_management: CentralManagementDictMode
-    cloud_service: CloudServiceDictMode
-    console: ConsoleDictMode
-    csf: CsfDictMode
-    custom_language: CustomLanguageDictMode
-    ddns: DdnsDictMode
-    dedicated_mgmt: DedicatedMgmtDictMode
-    device_upgrade: DeviceUpgradeDictMode
-    device_upgrade_exemptions: DeviceUpgradeExemptionsDictMode
-    dns: DnsDictMode
-    dns64: Dns64DictMode
-    dns_database: DnsDatabaseDictMode
-    dns_server: DnsServerDictMode
-    dscp_based_priority: DscpBasedPriorityDictMode
-    email_server: EmailServerDictMode
-    evpn: EvpnDictMode
-    external_resource: ExternalResourceDictMode
-    fabric_vpn: FabricVpnDictMode
-    federated_upgrade: FederatedUpgradeDictMode
-    fips_cc: FipsCcDictMode
-    fortiguard: FortiguardDictMode
-    fortisandbox: FortisandboxDictMode
-    fsso_polling: FssoPollingDictMode
-    ftm_push: FtmPushDictMode
-    geneve: GeneveDictMode
-    geoip_country: GeoipCountryDictMode
-    geoip_override: GeoipOverrideDictMode
-    global_: GlobalDictMode
-    gre_tunnel: GreTunnelDictMode
-    ha: HaDictMode
-    ha_monitor: HaMonitorDictMode
-    health_check_fortiguard: HealthCheckFortiguardDictMode
-    ike: IkeDictMode
-    interface: InterfaceDictMode
-    ipam: IpamDictMode
-    ipip_tunnel: IpipTunnelDictMode
-    ips: IpsDictMode
-    ips_urlfilter_dns: IpsUrlfilterDnsDictMode
-    ips_urlfilter_dns6: IpsUrlfilterDns6DictMode
-    ipsec_aggregate: IpsecAggregateDictMode
-    ipv6_neighbor_cache: Ipv6NeighborCacheDictMode
-    ipv6_tunnel: Ipv6TunnelDictMode
-    link_monitor: LinkMonitorDictMode
-    lte_modem: LteModemDictMode
-    mac_address_table: MacAddressTableDictMode
-    mobile_tunnel: MobileTunnelDictMode
-    modem: ModemDictMode
-    nd_proxy: NdProxyDictMode
-    netflow: NetflowDictMode
-    network_visibility: NetworkVisibilityDictMode
-    ngfw_settings: NgfwSettingsDictMode
-    np6xlite: Np6xliteDictMode
-    npu: NpuDictMode
-    ntp: NtpDictMode
-    object_tagging: ObjectTaggingDictMode
-    password_policy: PasswordPolicyDictMode
-    password_policy_guest_admin: PasswordPolicyGuestAdminDictMode
-    pcp_server: PcpServerDictMode
-    physical_switch: PhysicalSwitchDictMode
-    pppoe_interface: PppoeInterfaceDictMode
-    probe_response: ProbeResponseDictMode
-    proxy_arp: ProxyArpDictMode
-    ptp: PtpDictMode
-    replacemsg_group: ReplacemsgGroupDictMode
-    replacemsg_image: ReplacemsgImageDictMode
-    resource_limits: ResourceLimitsDictMode
-    saml: SamlDictMode
-    sdn_connector: SdnConnectorDictMode
-    sdn_proxy: SdnProxyDictMode
-    sdn_vpn: SdnVpnDictMode
-    sdwan: SdwanDictMode
-    session_helper: SessionHelperDictMode
-    session_ttl: SessionTtlDictMode
-    settings: SettingsDictMode
-    sflow: SflowDictMode
-    sit_tunnel: SitTunnelDictMode
-    sms_server: SmsServerDictMode
-    sov_sase: SovSaseDictMode
-    speed_test_schedule: SpeedTestScheduleDictMode
-    speed_test_server: SpeedTestServerDictMode
-    speed_test_setting: SpeedTestSettingDictMode
-    ssh_config: SshConfigDictMode
-    sso_admin: SsoAdminDictMode
-    sso_forticloud_admin: SsoForticloudAdminDictMode
-    sso_fortigate_cloud_admin: SsoFortigateCloudAdminDictMode
-    standalone_cluster: StandaloneClusterDictMode
-    storage: StorageDictMode
-    stp: StpDictMode
-    switch_interface: SwitchInterfaceDictMode
-    timezone: TimezoneDictMode
-    tos_based_priority: TosBasedPriorityDictMode
-    vdom: VdomDictMode
-    vdom_dns: VdomDnsDictMode
-    vdom_exception: VdomExceptionDictMode
-    vdom_link: VdomLinkDictMode
-    vdom_netflow: VdomNetflowDictMode
-    vdom_property: VdomPropertyDictMode
-    vdom_radius_server: VdomRadiusServerDictMode
-    vdom_sflow: VdomSflowDictMode
-    virtual_switch: VirtualSwitchDictMode
-    virtual_wire_pair: VirtualWirePairDictMode
-    vne_interface: VneInterfaceDictMode
-    vxlan: VxlanDictMode
-    wccp: WccpDictMode
-    zone: ZoneDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize system category with HTTP client."""
-        ...
-
-
-class SystemObjectMode:
-    """SYSTEM API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    autoupdate: AutoupdateObjectMode
-    dhcp: DhcpObjectMode
-    dhcp6: Dhcp6ObjectMode
-    lldp: LldpObjectMode
-    modem3g: Modem3gObjectMode
-    replacemsg: ReplacemsgObjectMode
-    security_rating: SecurityRatingObjectMode
-    snmp: SnmpObjectMode
-    accprofile: AccprofileObjectMode
-    acme: AcmeObjectMode
-    admin: AdminObjectMode
-    affinity_interrupt: AffinityInterruptObjectMode
-    affinity_packet_redistribution: AffinityPacketRedistributionObjectMode
-    alarm: AlarmObjectMode
-    alias: AliasObjectMode
-    api_user: ApiUserObjectMode
-    arp_table: ArpTableObjectMode
-    auto_install: AutoInstallObjectMode
-    auto_script: AutoScriptObjectMode
-    automation_action: AutomationActionObjectMode
-    automation_condition: AutomationConditionObjectMode
-    automation_destination: AutomationDestinationObjectMode
-    automation_stitch: AutomationStitchObjectMode
-    automation_trigger: AutomationTriggerObjectMode
-    central_management: CentralManagementObjectMode
-    cloud_service: CloudServiceObjectMode
-    console: ConsoleObjectMode
-    csf: CsfObjectMode
-    custom_language: CustomLanguageObjectMode
-    ddns: DdnsObjectMode
-    dedicated_mgmt: DedicatedMgmtObjectMode
-    device_upgrade: DeviceUpgradeObjectMode
-    device_upgrade_exemptions: DeviceUpgradeExemptionsObjectMode
-    dns: DnsObjectMode
-    dns64: Dns64ObjectMode
-    dns_database: DnsDatabaseObjectMode
-    dns_server: DnsServerObjectMode
-    dscp_based_priority: DscpBasedPriorityObjectMode
-    email_server: EmailServerObjectMode
-    evpn: EvpnObjectMode
-    external_resource: ExternalResourceObjectMode
-    fabric_vpn: FabricVpnObjectMode
-    federated_upgrade: FederatedUpgradeObjectMode
-    fips_cc: FipsCcObjectMode
-    fortiguard: FortiguardObjectMode
-    fortisandbox: FortisandboxObjectMode
-    fsso_polling: FssoPollingObjectMode
-    ftm_push: FtmPushObjectMode
-    geneve: GeneveObjectMode
-    geoip_country: GeoipCountryObjectMode
-    geoip_override: GeoipOverrideObjectMode
-    global_: GlobalObjectMode
-    gre_tunnel: GreTunnelObjectMode
-    ha: HaObjectMode
-    ha_monitor: HaMonitorObjectMode
-    health_check_fortiguard: HealthCheckFortiguardObjectMode
-    ike: IkeObjectMode
-    interface: InterfaceObjectMode
-    ipam: IpamObjectMode
-    ipip_tunnel: IpipTunnelObjectMode
-    ips: IpsObjectMode
-    ips_urlfilter_dns: IpsUrlfilterDnsObjectMode
-    ips_urlfilter_dns6: IpsUrlfilterDns6ObjectMode
-    ipsec_aggregate: IpsecAggregateObjectMode
-    ipv6_neighbor_cache: Ipv6NeighborCacheObjectMode
-    ipv6_tunnel: Ipv6TunnelObjectMode
-    link_monitor: LinkMonitorObjectMode
-    lte_modem: LteModemObjectMode
-    mac_address_table: MacAddressTableObjectMode
-    mobile_tunnel: MobileTunnelObjectMode
-    modem: ModemObjectMode
-    nd_proxy: NdProxyObjectMode
-    netflow: NetflowObjectMode
-    network_visibility: NetworkVisibilityObjectMode
-    ngfw_settings: NgfwSettingsObjectMode
-    np6xlite: Np6xliteObjectMode
-    npu: NpuObjectMode
-    ntp: NtpObjectMode
-    object_tagging: ObjectTaggingObjectMode
-    password_policy: PasswordPolicyObjectMode
-    password_policy_guest_admin: PasswordPolicyGuestAdminObjectMode
-    pcp_server: PcpServerObjectMode
-    physical_switch: PhysicalSwitchObjectMode
-    pppoe_interface: PppoeInterfaceObjectMode
-    probe_response: ProbeResponseObjectMode
-    proxy_arp: ProxyArpObjectMode
-    ptp: PtpObjectMode
-    replacemsg_group: ReplacemsgGroupObjectMode
-    replacemsg_image: ReplacemsgImageObjectMode
-    resource_limits: ResourceLimitsObjectMode
-    saml: SamlObjectMode
-    sdn_connector: SdnConnectorObjectMode
-    sdn_proxy: SdnProxyObjectMode
-    sdn_vpn: SdnVpnObjectMode
-    sdwan: SdwanObjectMode
-    session_helper: SessionHelperObjectMode
-    session_ttl: SessionTtlObjectMode
-    settings: SettingsObjectMode
-    sflow: SflowObjectMode
-    sit_tunnel: SitTunnelObjectMode
-    sms_server: SmsServerObjectMode
-    sov_sase: SovSaseObjectMode
-    speed_test_schedule: SpeedTestScheduleObjectMode
-    speed_test_server: SpeedTestServerObjectMode
-    speed_test_setting: SpeedTestSettingObjectMode
-    ssh_config: SshConfigObjectMode
-    sso_admin: SsoAdminObjectMode
-    sso_forticloud_admin: SsoForticloudAdminObjectMode
-    sso_fortigate_cloud_admin: SsoFortigateCloudAdminObjectMode
-    standalone_cluster: StandaloneClusterObjectMode
-    storage: StorageObjectMode
-    stp: StpObjectMode
-    switch_interface: SwitchInterfaceObjectMode
-    timezone: TimezoneObjectMode
-    tos_based_priority: TosBasedPriorityObjectMode
-    vdom: VdomObjectMode
-    vdom_dns: VdomDnsObjectMode
-    vdom_exception: VdomExceptionObjectMode
-    vdom_link: VdomLinkObjectMode
-    vdom_netflow: VdomNetflowObjectMode
-    vdom_property: VdomPropertyObjectMode
-    vdom_radius_server: VdomRadiusServerObjectMode
-    vdom_sflow: VdomSflowObjectMode
-    virtual_switch: VirtualSwitchObjectMode
-    virtual_wire_pair: VirtualWirePairObjectMode
-    vne_interface: VneInterfaceObjectMode
-    vxlan: VxlanObjectMode
-    wccp: WccpObjectMode
-    zone: ZoneObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize system category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class System:
-    """SYSTEM API category."""
+    """SYSTEM API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     autoupdate: Autoupdate
     dhcp: Dhcp

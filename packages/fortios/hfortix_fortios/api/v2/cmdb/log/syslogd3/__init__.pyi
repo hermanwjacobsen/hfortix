@@ -6,57 +6,28 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .filter import Filter, FilterDictMode, FilterObjectMode
-    from .override_filter import OverrideFilter, OverrideFilterDictMode, OverrideFilterObjectMode
-    from .override_setting import OverrideSetting, OverrideSettingDictMode, OverrideSettingObjectMode
-    from .setting import Setting, SettingDictMode, SettingObjectMode
+    from .filter import Filter
+    from .override_filter import OverrideFilter
+    from .override_setting import OverrideSetting
+    from .setting import Setting
 
 __all__ = [
     "Filter",
     "OverrideFilter",
     "OverrideSetting",
     "Setting",
-    "Syslogd3DictMode",
-    "Syslogd3ObjectMode",
+    "Syslogd3",
 ]
 
-class Syslogd3DictMode:
-    """SYSLOGD3 API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    filter: FilterDictMode
-    override_filter: OverrideFilterDictMode
-    override_setting: OverrideSettingDictMode
-    setting: SettingDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize syslogd3 category with HTTP client."""
-        ...
-
-
-class Syslogd3ObjectMode:
-    """SYSLOGD3 API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    filter: FilterObjectMode
-    override_filter: OverrideFilterObjectMode
-    override_setting: OverrideSettingObjectMode
-    setting: SettingObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize syslogd3 category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Syslogd3:
-    """SYSLOGD3 API category."""
+    """SYSLOGD3 API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     filter: Filter
     override_filter: OverrideFilter

@@ -117,7 +117,7 @@ class CommunityHostsObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -152,7 +152,7 @@ class CommunityHosts6Object:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -173,7 +173,7 @@ class CommunityVdomsObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -279,12 +279,11 @@ class Community:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -298,9 +297,9 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> CommunityResponse: ...
+    ) -> CommunityObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -315,9 +314,9 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> CommunityResponse: ...
+    ) -> CommunityObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -331,13 +330,13 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[CommunityResponse]: ...
+    ) -> list[CommunityObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -353,11 +352,10 @@ class Community:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> CommunityObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -373,11 +371,10 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> CommunityObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -392,7 +389,6 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[CommunityObject]: ...
     
@@ -411,7 +407,6 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -430,9 +425,8 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> CommunityResponse: ...
+    ) -> CommunityObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -450,9 +444,8 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> CommunityResponse: ...
+    ) -> CommunityObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -469,9 +462,8 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[CommunityResponse]: ...
+    ) -> list[CommunityObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -488,7 +480,6 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -505,7 +496,6 @@ class Community:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> CommunityObject | list[CommunityObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -513,7 +503,7 @@ class Community:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -540,7 +530,6 @@ class Community:
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> CommunityObject: ...
     
@@ -568,7 +557,6 @@ class Community:
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -600,7 +588,7 @@ class Community:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -650,7 +638,6 @@ class Community:
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -679,7 +666,6 @@ class Community:
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> CommunityObject: ...
     
@@ -707,7 +693,6 @@ class Community:
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -739,7 +724,7 @@ class Community:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -789,7 +774,6 @@ class Community:
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -800,7 +784,6 @@ class Community:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> CommunityObject: ...
     
@@ -810,7 +793,6 @@ class Community:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -824,7 +806,7 @@ class Community:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -870,7 +852,6 @@ class Community:
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -882,7 +863,7 @@ class Community:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -891,931 +872,18 @@ class Community:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class CommunityDictMode:
-    """Community endpoint for dict response mode (default for this client).
-    
-    By default returns CommunityResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return CommunityObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[CommunityObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> CommunityResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[CommunityResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class CommunityObjectMode:
-    """Community endpoint for object response mode (default for this client).
-    
-    By default returns CommunityObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return CommunityResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> CommunityResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[CommunityResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[CommunityObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> CommunityObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Community",
-    "CommunityDictMode",
-    "CommunityObjectMode",
     "CommunityPayload",
+    "CommunityResponse",
     "CommunityObject",
 ]

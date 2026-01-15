@@ -104,12 +104,11 @@ class Geneve:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -123,9 +122,9 @@ class Geneve:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> GeneveResponse: ...
+    ) -> GeneveObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -140,9 +139,9 @@ class Geneve:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> GeneveResponse: ...
+    ) -> GeneveObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -156,13 +155,13 @@ class Geneve:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[GeneveResponse]: ...
+    ) -> list[GeneveObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -178,11 +177,10 @@ class Geneve:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> GeneveObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -198,11 +196,10 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> GeneveObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -217,7 +214,6 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[GeneveObject]: ...
     
@@ -236,7 +232,6 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -255,9 +250,8 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> GeneveResponse: ...
+    ) -> GeneveObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -275,9 +269,8 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> GeneveResponse: ...
+    ) -> GeneveObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -294,9 +287,8 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[GeneveResponse]: ...
+    ) -> list[GeneveObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -313,7 +305,6 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -330,7 +321,6 @@ class Geneve:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> GeneveObject | list[GeneveObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -338,7 +328,7 @@ class Geneve:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -355,7 +345,6 @@ class Geneve:
         dstport: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> GeneveObject: ...
     
@@ -373,7 +362,6 @@ class Geneve:
         dstport: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -395,7 +383,7 @@ class Geneve:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -425,7 +413,6 @@ class Geneve:
         dstport: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -444,7 +431,6 @@ class Geneve:
         dstport: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> GeneveObject: ...
     
@@ -462,7 +448,6 @@ class Geneve:
         dstport: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -484,7 +469,7 @@ class Geneve:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -514,7 +499,6 @@ class Geneve:
         dstport: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -525,7 +509,6 @@ class Geneve:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> GeneveObject: ...
     
@@ -535,7 +518,6 @@ class Geneve:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -549,7 +531,7 @@ class Geneve:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -585,7 +567,6 @@ class Geneve:
         dstport: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -597,7 +578,7 @@ class Geneve:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -606,731 +587,18 @@ class Geneve:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class GeneveDictMode:
-    """Geneve endpoint for dict response mode (default for this client).
-    
-    By default returns GeneveResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return GeneveObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[GeneveObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> GeneveResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[GeneveResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class GeneveObjectMode:
-    """Geneve endpoint for object response mode (default for this client).
-    
-    By default returns GeneveObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return GeneveResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> GeneveResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[GeneveResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[GeneveObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> GeneveObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: GenevePayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        type: Literal["ethernet", "ppp"] | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast"] | None = ...,
-        remote_ip: str | None = ...,
-        remote_ip6: str | None = ...,
-        dstport: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Geneve",
-    "GeneveDictMode",
-    "GeneveObjectMode",
     "GenevePayload",
+    "GeneveResponse",
     "GeneveObject",
 ]

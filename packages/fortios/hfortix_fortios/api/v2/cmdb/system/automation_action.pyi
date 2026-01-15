@@ -132,7 +132,7 @@ class AutomationActionEmailtoObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -157,7 +157,7 @@ class AutomationActionHttpheadersObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -182,7 +182,7 @@ class AutomationActionFormdataObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -203,7 +203,7 @@ class AutomationActionSdnconnectorObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -385,12 +385,11 @@ class AutomationAction:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -404,9 +403,9 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> AutomationActionResponse: ...
+    ) -> AutomationActionObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -421,9 +420,9 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> AutomationActionResponse: ...
+    ) -> AutomationActionObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -437,13 +436,13 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AutomationActionResponse]: ...
+    ) -> list[AutomationActionObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -459,11 +458,10 @@ class AutomationAction:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationActionObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -479,11 +477,10 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationActionObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -498,7 +495,6 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[AutomationActionObject]: ...
     
@@ -517,7 +513,6 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -536,9 +531,8 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> AutomationActionResponse: ...
+    ) -> AutomationActionObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -556,9 +550,8 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> AutomationActionResponse: ...
+    ) -> AutomationActionObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -575,9 +568,8 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[AutomationActionResponse]: ...
+    ) -> list[AutomationActionObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -594,7 +586,6 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -611,7 +602,6 @@ class AutomationAction:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> AutomationActionObject | list[AutomationActionObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -619,7 +609,7 @@ class AutomationAction:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -668,7 +658,6 @@ class AutomationAction:
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationActionObject: ...
     
@@ -718,7 +707,6 @@ class AutomationAction:
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -772,7 +760,7 @@ class AutomationAction:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -866,7 +854,6 @@ class AutomationAction:
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -917,7 +904,6 @@ class AutomationAction:
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationActionObject: ...
     
@@ -967,7 +953,6 @@ class AutomationAction:
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1021,7 +1006,7 @@ class AutomationAction:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -1115,7 +1100,6 @@ class AutomationAction:
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1126,7 +1110,6 @@ class AutomationAction:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AutomationActionObject: ...
     
@@ -1136,7 +1119,6 @@ class AutomationAction:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1150,7 +1132,7 @@ class AutomationAction:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -1218,7 +1200,6 @@ class AutomationAction:
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1230,7 +1211,7 @@ class AutomationAction:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -1239,1371 +1220,18 @@ class AutomationAction:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class AutomationActionDictMode:
-    """AutomationAction endpoint for dict response mode (default for this client).
-    
-    By default returns AutomationActionResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return AutomationActionObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[AutomationActionObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> AutomationActionResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[AutomationActionResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class AutomationActionObjectMode:
-    """AutomationAction endpoint for object response mode (default for this client).
-    
-    By default returns AutomationActionObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return AutomationActionResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> AutomationActionResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[AutomationActionResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[AutomationActionObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AutomationActionObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "AutomationAction",
-    "AutomationActionDictMode",
-    "AutomationActionObjectMode",
     "AutomationActionPayload",
+    "AutomationActionResponse",
     "AutomationActionObject",
 ]

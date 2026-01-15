@@ -6,20 +6,20 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .current_disk_usage import CurrentDiskUsage, CurrentDiskUsageDictMode, CurrentDiskUsageObjectMode
-    from .feature_set import FeatureSet, FeatureSetDictMode, FeatureSetObjectMode
-    from .fortianalyzer import Fortianalyzer, FortianalyzerDictMode, FortianalyzerObjectMode
-    from .fortianalyzer_queue import FortianalyzerQueue, FortianalyzerQueueDictMode, FortianalyzerQueueObjectMode
-    from .forticloud_report_list import ForticloudReportList, ForticloudReportListDictMode, ForticloudReportListObjectMode
-    from .historic_daily_remote_logs import HistoricDailyRemoteLogs, HistoricDailyRemoteLogsDictMode, HistoricDailyRemoteLogsObjectMode
-    from .hourly_disk_usage import HourlyDiskUsage, HourlyDiskUsageDictMode, HourlyDiskUsageObjectMode
-    from .local_report_list import LocalReportList, LocalReportListDictMode, LocalReportListObjectMode
-    from .av_archive import AvArchiveDictMode, AvArchiveObjectMode
-    from .device import DeviceDictMode, DeviceObjectMode
+    from .current_disk_usage import CurrentDiskUsage
+    from .feature_set import FeatureSet
+    from .fortianalyzer import Fortianalyzer
+    from .fortianalyzer_queue import FortianalyzerQueue
+    from .forticloud_report_list import ForticloudReportList
+    from .historic_daily_remote_logs import HistoricDailyRemoteLogs
+    from .hourly_disk_usage import HourlyDiskUsage
+    from .local_report_list import LocalReportList
+    from .av_archive import AvArchive
+    from .device import Device
     from .forticloud import Forticloud
-    from .forticloud_report import ForticloudReportDictMode, ForticloudReportObjectMode
-    from .local_report import LocalReportDictMode, LocalReportObjectMode
-    from .policy_archive import PolicyArchiveDictMode, PolicyArchiveObjectMode
+    from .forticloud_report import ForticloudReport
+    from .local_report import LocalReport
+    from .policy_archive import PolicyArchive
     from .stats import Stats
 
 __all__ = [
@@ -31,69 +31,18 @@ __all__ = [
     "HistoricDailyRemoteLogs",
     "HourlyDiskUsage",
     "LocalReportList",
-    "LogDictMode",
-    "LogObjectMode",
+    "Log",
 ]
 
-class LogDictMode:
-    """LOG API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    av_archive: AvArchiveDictMode
-    device: DeviceDictMode
-    forticloud: Forticloud
-    forticloud_report: ForticloudReportDictMode
-    local_report: LocalReportDictMode
-    policy_archive: PolicyArchiveDictMode
-    stats: Stats
-    current_disk_usage: CurrentDiskUsageDictMode
-    feature_set: FeatureSetDictMode
-    fortianalyzer: FortianalyzerDictMode
-    fortianalyzer_queue: FortianalyzerQueueDictMode
-    forticloud_report_list: ForticloudReportListDictMode
-    historic_daily_remote_logs: HistoricDailyRemoteLogsDictMode
-    hourly_disk_usage: HourlyDiskUsageDictMode
-    local_report_list: LocalReportListDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize log category with HTTP client."""
-        ...
-
-
-class LogObjectMode:
-    """LOG API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    av_archive: AvArchiveObjectMode
-    device: DeviceObjectMode
-    forticloud: Forticloud
-    forticloud_report: ForticloudReportObjectMode
-    local_report: LocalReportObjectMode
-    policy_archive: PolicyArchiveObjectMode
-    stats: Stats
-    current_disk_usage: CurrentDiskUsageObjectMode
-    feature_set: FeatureSetObjectMode
-    fortianalyzer: FortianalyzerObjectMode
-    fortianalyzer_queue: FortianalyzerQueueObjectMode
-    forticloud_report_list: ForticloudReportListObjectMode
-    historic_daily_remote_logs: HistoricDailyRemoteLogsObjectMode
-    hourly_disk_usage: HourlyDiskUsageObjectMode
-    local_report_list: LocalReportListObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize log category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Log:
-    """LOG API category."""
+    """LOG API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     av_archive: AvArchive
     device: Device

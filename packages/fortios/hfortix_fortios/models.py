@@ -149,12 +149,55 @@ class FortiObject:
             Original API response dictionary
 
         Examples:
-            >>> delete = fgt.api.cmdb.firewall.policy.delete(policyid=1, response_mode="object")
-            >>> delete.json
-            {'http_method': 'DELETE', 'status': 'success', 'http_status': 200, ...}
-            >>> delete.json['status']
-            'success'
+            >>> policy = fgt.api.cmdb.firewall.policy.get(policyid=1)
+            >>> policy.json
+            {'policyid': 1, 'name': 'my-policy', 'action': 'accept', ...}
+            >>> policy.json['action']
+            'accept'
         """
+        return self._data
+    
+    @property
+    def dict(self) -> dict:
+        """
+        Get the dictionary representation of the object.
+
+        Alias for `.json` property - provides an intuitive way to convert
+        FortiObject back to a plain dictionary when needed.
+
+        Returns:
+            Original API response dictionary
+
+        Examples:
+            >>> policy = fgt.api.cmdb.firewall.policy.get(policyid=1)
+            >>> policy.dict
+            {'policyid': 1, 'name': 'my-policy', 'action': 'accept', ...}
+            >>> 
+            >>> # Use when you need dict operations
+            >>> policy_dict = policy.dict
+            >>> policy_dict.update({'comment': 'Updated via API'})
+        """
+        return self._data
+    
+    @property
+    def raw(self) -> dict:
+        """
+        Get the raw API response data.
+
+        For most responses, this is identical to `.dict` and `.json`.
+        Reserved for future use if we need to store additional metadata
+        like HTTP headers, status codes, or request information.
+
+        Returns:
+            Original API response dictionary
+
+        Examples:
+            >>> policy = fgt.api.cmdb.firewall.policy.get(policyid=1)
+            >>> policy.raw
+            {'policyid': 1, 'name': 'my-policy', 'action': 'accept', ...}
+        """
+        # For now, returns the same as .dict and .json
+        # In future, could return full response with metadata if stored
         return self._data
 
     def __repr__(self) -> str:
@@ -343,59 +386,44 @@ class FortiObject:
 
 def process_response(
     result: Any,
-    response_mode: str | None,
-    client: Any = None,
     unwrap_single: bool = False,
 ) -> Any:
     """
-    Process API response based on response_mode setting.
+    Process API response - always returns FortiObject instances.
 
     Handles both raw_json=False (list of results) and raw_json=True (full response dict).
 
     Args:
         result: Raw API response (list or dict)
-        response_mode: Response mode - "dict", "object", or None (use client default)
-        client: HTTP client instance (to get default response_mode)
         unwrap_single: If True and result is single-item list, return just the item
 
     Returns:
-        Processed response - either dict/list or FortiObject/list[FortiObject]
+        Processed response - FortiObject or list[FortiObject]
 
     Examples:
-        >>> # Dict mode with raw_json=False (default)
+        >>> # List response
         >>> result = [{"name": "policy1", "srcaddr": [{"name": "addr1"}]}]
-        >>> process_response(result, "dict")
-        [{"name": "policy1", "srcaddr": [{"name": "addr1"}]}]
-
-        >>> # Object mode with raw_json=False
-        >>> objects = process_response(result, "object")
+        >>> objects = process_response(result)
         >>> objects[0].name
         'policy1'
         >>> objects[0].srcaddr  # Auto-flattened!
         ['addr1']
 
-        >>> # Object mode with raw_json=True
-        >>> result = {'results': [{"name": "policy1", ...}], 'http_status': 200, ...}
-        >>> response = process_response(result, "object")
-        >>> response['results'][0].name  # Results are FortiObjects
+        >>> # Single item with unwrap_single
+        >>> result = [{"name": "policy1"}]
+        >>> obj = process_response(result, unwrap_single=True)
+        >>> obj.name
         'policy1'
-        >>> response['http_status']  # Metadata preserved
+
+        >>> # Dict response with 'results' key (raw_json=True)
+        >>> result = {'results': [{"name": "policy1"}], 'http_status': 200}
+        >>> response = process_response(result)
+        >>> response['results'][0].name
+        'policy1'
+        >>> response['http_status']
         200
     """
-    # Determine the actual mode to use
-    mode = response_mode
-    if mode is None and client is not None:
-        mode = getattr(client, "_response_mode", "dict")
-    if mode is None:
-        mode = "dict"
-
-    # If dict mode, apply unwrap_single if needed
-    if mode == "dict":
-        if unwrap_single and isinstance(result, list) and len(result) == 1:
-            return result[0]
-        return result
-
-    # Object mode - wrap in FortiObject
+    # Wrap in FortiObject based on response type
     if isinstance(result, list):
         # raw_json=False: Direct list of results
         # Only wrap dict items in FortiObject; pass through non-dicts (strings, ints, etc.)

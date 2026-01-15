@@ -92,12 +92,11 @@ class AffinityPacketRedistribution:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -111,9 +110,9 @@ class AffinityPacketRedistribution:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> AffinityPacketRedistributionResponse: ...
+    ) -> AffinityPacketRedistributionObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -128,9 +127,9 @@ class AffinityPacketRedistribution:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> AffinityPacketRedistributionResponse: ...
+    ) -> AffinityPacketRedistributionObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -144,13 +143,13 @@ class AffinityPacketRedistribution:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AffinityPacketRedistributionResponse]: ...
+    ) -> list[AffinityPacketRedistributionObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -166,11 +165,10 @@ class AffinityPacketRedistribution:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -186,11 +184,10 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -205,7 +202,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[AffinityPacketRedistributionObject]: ...
     
@@ -224,7 +220,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -243,9 +238,8 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> AffinityPacketRedistributionResponse: ...
+    ) -> AffinityPacketRedistributionObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -263,9 +257,8 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> AffinityPacketRedistributionResponse: ...
+    ) -> AffinityPacketRedistributionObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -282,9 +275,8 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[AffinityPacketRedistributionResponse]: ...
+    ) -> list[AffinityPacketRedistributionObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -301,7 +293,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -318,7 +309,6 @@ class AffinityPacketRedistribution:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> AffinityPacketRedistributionObject | list[AffinityPacketRedistributionObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -326,7 +316,7 @@ class AffinityPacketRedistribution:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -340,7 +330,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
@@ -355,7 +344,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -374,7 +362,7 @@ class AffinityPacketRedistribution:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -398,7 +386,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -414,7 +401,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
@@ -429,7 +415,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -448,7 +433,7 @@ class AffinityPacketRedistribution:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -472,7 +457,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -483,7 +467,6 @@ class AffinityPacketRedistribution:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> AffinityPacketRedistributionObject: ...
     
@@ -493,7 +476,6 @@ class AffinityPacketRedistribution:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -507,7 +489,7 @@ class AffinityPacketRedistribution:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -540,7 +522,6 @@ class AffinityPacketRedistribution:
         affinity_cpumask: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -552,7 +533,7 @@ class AffinityPacketRedistribution:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -561,671 +542,18 @@ class AffinityPacketRedistribution:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class AffinityPacketRedistributionDictMode:
-    """AffinityPacketRedistribution endpoint for dict response mode (default for this client).
-    
-    By default returns AffinityPacketRedistributionResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return AffinityPacketRedistributionObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[AffinityPacketRedistributionObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[AffinityPacketRedistributionResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class AffinityPacketRedistributionObjectMode:
-    """AffinityPacketRedistribution endpoint for object response mode (default for this client).
-    
-    By default returns AffinityPacketRedistributionObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return AffinityPacketRedistributionResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[AffinityPacketRedistributionResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[AffinityPacketRedistributionObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> AffinityPacketRedistributionObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: AffinityPacketRedistributionPayload | None = ...,
-        id: int | None = ...,
-        interface: str | None = ...,
-        rxqid: int | None = ...,
-        round_robin: Literal["enable", "disable"] | None = ...,
-        affinity_cpumask: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "AffinityPacketRedistribution",
-    "AffinityPacketRedistributionDictMode",
-    "AffinityPacketRedistributionObjectMode",
     "AffinityPacketRedistributionPayload",
+    "AffinityPacketRedistributionResponse",
     "AffinityPacketRedistributionObject",
 ]

@@ -6,58 +6,27 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .app_lookup import AppLookup, AppLookupDictMode, AppLookupObjectMode
-    from .application_categories import ApplicationCategories, ApplicationCategoriesDictMode, ApplicationCategoriesObjectMode
-    from .antivirus import AntivirusDictMode, AntivirusObjectMode
+    from .app_lookup import AppLookup
+    from .application_categories import ApplicationCategories
+    from .antivirus import Antivirus
     from .blacklisted_certificates import BlacklistedCertificates
-    from .rating_lookup import RatingLookupDictMode, RatingLookupObjectMode
+    from .rating_lookup import RatingLookup
 
 __all__ = [
     "AppLookup",
     "ApplicationCategories",
-    "UtmDictMode",
-    "UtmObjectMode",
+    "Utm",
 ]
 
-class UtmDictMode:
-    """UTM API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    antivirus: AntivirusDictMode
-    blacklisted_certificates: BlacklistedCertificates
-    rating_lookup: RatingLookupDictMode
-    app_lookup: AppLookupDictMode
-    application_categories: ApplicationCategoriesDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize utm category with HTTP client."""
-        ...
-
-
-class UtmObjectMode:
-    """UTM API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    antivirus: AntivirusObjectMode
-    blacklisted_certificates: BlacklistedCertificates
-    rating_lookup: RatingLookupObjectMode
-    app_lookup: AppLookupObjectMode
-    application_categories: ApplicationCategoriesObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize utm category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Utm:
-    """UTM API category."""
+    """UTM API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     antivirus: Antivirus
     blacklisted_certificates: BlacklistedCertificates

@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .download import Download, DownloadDictMode, DownloadObjectMode
+    from .download import Download
 
 __all__ = [
     "Download",
-    "DebugDictMode",
-    "DebugObjectMode",
+    "Debug",
 ]
 
-class DebugDictMode:
-    """DEBUG API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    download: DownloadDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize debug category with HTTP client."""
-        ...
-
-
-class DebugObjectMode:
-    """DEBUG API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    download: DownloadObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize debug category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Debug:
-    """DEBUG API category."""
+    """DEBUG API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     download: Download
 

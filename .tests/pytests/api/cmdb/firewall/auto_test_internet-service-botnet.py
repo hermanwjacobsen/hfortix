@@ -27,7 +27,7 @@ class TestAutoInternetServiceBotnetGet:
     def auto_test_get_list_all(self):
         """Test GET - list all internet-service-botnet items."""
         try:
-            result = endpoint.get(response_mode="dict")
+            result = endpoint.get()
         except Exception as e:
             # HTTP 400/404/405/424/500/503 means feature not available/enabled, method not supported, or server error
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
@@ -43,14 +43,16 @@ class TestAutoInternetServiceBotnetGet:
         # If items exist, verify structure
         if len(result) > 0:
             item = result[0]
-            assert "id" in item
-            print(f"   First item id: {item.get('id', 'N/A')}")
+            # Access via attribute (FortiObject)
+            assert hasattr(item, "id")
+            mkey_value = getattr(item, "id", "N/A")
+            print(f"   First item id: {mkey_value}")
     
     
     def auto_test_get_with_vdom(self):
         """Test GET - with vdom parameter."""
         try:
-            result = endpoint.get(vdom="root", response_mode="dict")
+            result = endpoint.get(vdom="root")
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
                 pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
@@ -66,7 +68,6 @@ class TestAutoInternetServiceBotnetGet:
             result = endpoint.get(
                 filter="",  # No filter (get all)
                 q_format="name|id",  # Limit fields
-                response_mode="dict",
             )
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):

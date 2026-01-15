@@ -6,56 +6,27 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .historical_statistics import HistoricalStatistics, HistoricalStatisticsDictMode, HistoricalStatisticsObjectMode
-    from .realtime_proxy_statistics import RealtimeProxyStatistics, RealtimeProxyStatisticsDictMode, RealtimeProxyStatisticsObjectMode
-    from .realtime_statistics import RealtimeStatistics, RealtimeStatisticsDictMode, RealtimeStatisticsObjectMode
-    from .session import SessionDictMode, SessionObjectMode
+    from .historical_statistics import HistoricalStatistics
+    from .realtime_proxy_statistics import RealtimeProxyStatistics
+    from .realtime_statistics import RealtimeStatistics
+    from .session import Session
 
 __all__ = [
     "HistoricalStatistics",
     "RealtimeProxyStatistics",
     "RealtimeStatistics",
-    "FortiviewDictMode",
-    "FortiviewObjectMode",
+    "Fortiview",
 ]
 
-class FortiviewDictMode:
-    """FORTIVIEW API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    session: SessionDictMode
-    historical_statistics: HistoricalStatisticsDictMode
-    realtime_proxy_statistics: RealtimeProxyStatisticsDictMode
-    realtime_statistics: RealtimeStatisticsDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize fortiview category with HTTP client."""
-        ...
-
-
-class FortiviewObjectMode:
-    """FORTIVIEW API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    session: SessionObjectMode
-    historical_statistics: HistoricalStatisticsObjectMode
-    realtime_proxy_statistics: RealtimeProxyStatisticsObjectMode
-    realtime_statistics: RealtimeStatisticsObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize fortiview category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Fortiview:
-    """FORTIVIEW API category."""
+    """FORTIVIEW API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     session: Session
     historical_statistics: HistoricalStatistics

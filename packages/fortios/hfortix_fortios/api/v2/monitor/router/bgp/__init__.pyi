@@ -6,15 +6,15 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .clear_soft_in import ClearSoftIn, ClearSoftInDictMode, ClearSoftInObjectMode
-    from .clear_soft_out import ClearSoftOut, ClearSoftOutDictMode, ClearSoftOutObjectMode
-    from .neighbors import Neighbors, NeighborsDictMode, NeighborsObjectMode
-    from .neighbors6 import Neighbors6, Neighbors6DictMode, Neighbors6ObjectMode
-    from .neighbors_statistics import NeighborsStatistics, NeighborsStatisticsDictMode, NeighborsStatisticsObjectMode
-    from .paths import Paths, PathsDictMode, PathsObjectMode
-    from .paths6 import Paths6, Paths6DictMode, Paths6ObjectMode
-    from .paths_statistics import PathsStatistics, PathsStatisticsDictMode, PathsStatisticsObjectMode
-    from .soft_reset_neighbor import SoftResetNeighbor, SoftResetNeighborDictMode, SoftResetNeighborObjectMode
+    from .clear_soft_in import ClearSoftIn
+    from .clear_soft_out import ClearSoftOut
+    from .neighbors import Neighbors
+    from .neighbors6 import Neighbors6
+    from .neighbors_statistics import NeighborsStatistics
+    from .paths import Paths
+    from .paths6 import Paths6
+    from .paths_statistics import PathsStatistics
+    from .soft_reset_neighbor import SoftResetNeighbor
 
 __all__ = [
     "ClearSoftIn",
@@ -26,57 +26,18 @@ __all__ = [
     "Paths6",
     "PathsStatistics",
     "SoftResetNeighbor",
-    "BgpDictMode",
-    "BgpObjectMode",
+    "Bgp",
 ]
 
-class BgpDictMode:
-    """BGP API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    clear_soft_in: ClearSoftInDictMode
-    clear_soft_out: ClearSoftOutDictMode
-    neighbors: NeighborsDictMode
-    neighbors6: Neighbors6DictMode
-    neighbors_statistics: NeighborsStatisticsDictMode
-    paths: PathsDictMode
-    paths6: Paths6DictMode
-    paths_statistics: PathsStatisticsDictMode
-    soft_reset_neighbor: SoftResetNeighborDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize bgp category with HTTP client."""
-        ...
-
-
-class BgpObjectMode:
-    """BGP API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    clear_soft_in: ClearSoftInObjectMode
-    clear_soft_out: ClearSoftOutObjectMode
-    neighbors: NeighborsObjectMode
-    neighbors6: Neighbors6ObjectMode
-    neighbors_statistics: NeighborsStatisticsObjectMode
-    paths: PathsObjectMode
-    paths6: Paths6ObjectMode
-    paths_statistics: PathsStatisticsObjectMode
-    soft_reset_neighbor: SoftResetNeighborObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize bgp category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Bgp:
-    """BGP API category."""
+    """BGP API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     clear_soft_in: ClearSoftIn
     clear_soft_out: ClearSoftOut

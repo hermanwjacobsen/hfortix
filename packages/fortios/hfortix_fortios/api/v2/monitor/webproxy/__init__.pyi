@@ -6,44 +6,21 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .pacfile import PacfileDictMode, PacfileObjectMode
+    from .pacfile import Pacfile
 
 __all__ = [
-    "WebproxyDictMode",
-    "WebproxyObjectMode",
+    "Webproxy",
 ]
 
-class WebproxyDictMode:
-    """WEBPROXY API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    pacfile: PacfileDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize webproxy category with HTTP client."""
-        ...
-
-
-class WebproxyObjectMode:
-    """WEBPROXY API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    pacfile: PacfileObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize webproxy category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Webproxy:
-    """WEBPROXY API category."""
+    """WEBPROXY API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     pacfile: Pacfile
 

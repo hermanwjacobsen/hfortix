@@ -209,7 +209,7 @@ class SdnConnectorServerlistObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -234,7 +234,7 @@ class SdnConnectorExternalaccountlistObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -259,7 +259,7 @@ class SdnConnectorNicObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -286,7 +286,7 @@ class SdnConnectorRoutetableObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -307,7 +307,7 @@ class SdnConnectorCompartmentlistObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -328,7 +328,7 @@ class SdnConnectorOciregionlistObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -349,7 +349,7 @@ class SdnConnectorExternalipObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -370,7 +370,7 @@ class SdnConnectorRouteObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -393,7 +393,7 @@ class SdnConnectorGcpprojectlistObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -416,7 +416,7 @@ class SdnConnectorForwardingruleObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -633,12 +633,11 @@ class SdnConnector:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -652,9 +651,9 @@ class SdnConnector:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> SdnConnectorResponse: ...
+    ) -> SdnConnectorObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -669,9 +668,9 @@ class SdnConnector:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> SdnConnectorResponse: ...
+    ) -> SdnConnectorObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -685,13 +684,13 @@ class SdnConnector:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SdnConnectorResponse]: ...
+    ) -> list[SdnConnectorObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -707,11 +706,10 @@ class SdnConnector:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdnConnectorObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -727,11 +725,10 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdnConnectorObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -746,7 +743,6 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[SdnConnectorObject]: ...
     
@@ -765,7 +761,6 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -784,9 +779,8 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> SdnConnectorResponse: ...
+    ) -> SdnConnectorObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -804,9 +798,8 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> SdnConnectorResponse: ...
+    ) -> SdnConnectorObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -823,9 +816,8 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[SdnConnectorResponse]: ...
+    ) -> list[SdnConnectorObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -842,7 +834,6 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -859,7 +850,6 @@ class SdnConnector:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> SdnConnectorObject | list[SdnConnectorObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -867,7 +857,7 @@ class SdnConnector:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -930,7 +920,6 @@ class SdnConnector:
         update_interval: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdnConnectorObject: ...
     
@@ -994,7 +983,6 @@ class SdnConnector:
         update_interval: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1062,7 +1050,7 @@ class SdnConnector:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -1184,7 +1172,6 @@ class SdnConnector:
         update_interval: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1249,7 +1236,6 @@ class SdnConnector:
         update_interval: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdnConnectorObject: ...
     
@@ -1313,7 +1299,6 @@ class SdnConnector:
         update_interval: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1381,7 +1366,7 @@ class SdnConnector:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -1503,7 +1488,6 @@ class SdnConnector:
         update_interval: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1514,7 +1498,6 @@ class SdnConnector:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdnConnectorObject: ...
     
@@ -1524,7 +1507,6 @@ class SdnConnector:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1538,7 +1520,7 @@ class SdnConnector:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -1620,7 +1602,6 @@ class SdnConnector:
         update_interval: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1632,7 +1613,7 @@ class SdnConnector:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -1641,1651 +1622,18 @@ class SdnConnector:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class SdnConnectorDictMode:
-    """SdnConnector endpoint for dict response mode (default for this client).
-    
-    By default returns SdnConnectorResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return SdnConnectorObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[SdnConnectorObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> SdnConnectorResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[SdnConnectorResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class SdnConnectorObjectMode:
-    """SdnConnector endpoint for object response mode (default for this client).
-    
-    By default returns SdnConnectorObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return SdnConnectorResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> SdnConnectorResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[SdnConnectorResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[SdnConnectorObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> SdnConnectorObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: SdnConnectorPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        type: Literal["aci", "alicloud", "aws", "azure", "gcp", "nsx", "nuage", "oci", "openstack", "kubernetes", "vmware", "sepm", "aci-direct", "ibm", "nutanix", "sap"] | None = ...,
-        proxy: str | None = ...,
-        use_metadata_iam: Literal["disable", "enable"] | None = ...,
-        microsoft_365: Literal["disable", "enable"] | None = ...,
-        ha_status: Literal["disable", "enable"] | None = ...,
-        verify_certificate: Literal["disable", "enable"] | None = ...,
-        server: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_port: int | None = ...,
-        message_server_port: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        vcenter_server: str | None = ...,
-        vcenter_username: str | None = ...,
-        vcenter_password: str | None = ...,
-        access_key: str | None = ...,
-        secret_key: str | None = ...,
-        region: str | None = ...,
-        vpc_id: str | None = ...,
-        alt_resource_ip: Literal["disable", "enable"] | None = ...,
-        external_account_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tenant_id: str | None = ...,
-        client_id: str | None = ...,
-        client_secret: str | None = ...,
-        subscription_id: str | None = ...,
-        resource_group: str | None = ...,
-        login_endpoint: str | None = ...,
-        resource_url: str | None = ...,
-        azure_region: Literal["global", "china", "germany", "usgov", "local"] | None = ...,
-        nic: str | list[str] | list[dict[str, Any]] | None = ...,
-        route_table: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: str | None = ...,
-        compartment_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        oci_region_type: Literal["commercial", "government"] | None = ...,
-        oci_cert: str | None = ...,
-        oci_fingerprint: str | None = ...,
-        external_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        gcp_project_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        forwarding_rule: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_account: str | None = ...,
-        private_key: str | None = ...,
-        secret_token: str | None = ...,
-        domain: str | None = ...,
-        group_name: str | None = ...,
-        server_cert: str | None = ...,
-        server_ca_cert: str | None = ...,
-        api_key: str | None = ...,
-        ibm_region: Literal["dallas", "washington-dc", "london", "frankfurt", "sydney", "tokyo", "osaka", "toronto", "sao-paulo", "madrid"] | None = ...,
-        par_id: str | None = ...,
-        update_interval: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "SdnConnector",
-    "SdnConnectorDictMode",
-    "SdnConnectorObjectMode",
     "SdnConnectorPayload",
+    "SdnConnectorResponse",
     "SdnConnectorObject",
 ]

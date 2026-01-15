@@ -6,12 +6,12 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .add_license import AddLicense, AddLicenseDictMode, AddLicenseObjectMode
-    from .check_connectivity import CheckConnectivity, CheckConnectivityDictMode, CheckConnectivityObjectMode
-    from .create import Create, CreateDictMode, CreateObjectMode
-    from .deregister_device import DeregisterDevice, DeregisterDeviceDictMode, DeregisterDeviceObjectMode
-    from .login import Login, LoginDictMode, LoginObjectMode
-    from .transfer import Transfer, TransferDictMode, TransferObjectMode
+    from .add_license import AddLicense
+    from .check_connectivity import CheckConnectivity
+    from .create import Create
+    from .deregister_device import DeregisterDevice
+    from .login import Login
+    from .transfer import Transfer
 
 __all__ = [
     "AddLicense",
@@ -20,51 +20,18 @@ __all__ = [
     "DeregisterDevice",
     "Login",
     "Transfer",
-    "ForticareDictMode",
-    "ForticareObjectMode",
+    "Forticare",
 ]
 
-class ForticareDictMode:
-    """FORTICARE API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    add_license: AddLicenseDictMode
-    check_connectivity: CheckConnectivityDictMode
-    create: CreateDictMode
-    deregister_device: DeregisterDeviceDictMode
-    login: LoginDictMode
-    transfer: TransferDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize forticare category with HTTP client."""
-        ...
-
-
-class ForticareObjectMode:
-    """FORTICARE API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    add_license: AddLicenseObjectMode
-    check_connectivity: CheckConnectivityObjectMode
-    create: CreateObjectMode
-    deregister_device: DeregisterDeviceObjectMode
-    login: LoginObjectMode
-    transfer: TransferObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize forticare category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Forticare:
-    """FORTICARE API category."""
+    """FORTICARE API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     add_license: AddLicense
     check_connectivity: CheckConnectivity

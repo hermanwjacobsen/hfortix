@@ -11,45 +11,18 @@ if TYPE_CHECKING:
     from .webcache import Webcache
 
 __all__ = [
-    "WanoptDictMode",
-    "WanoptObjectMode",
+    "Wanopt",
 ]
 
-class WanoptDictMode:
-    """WANOPT API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    history: History
-    peer_stats: PeerStats
-    webcache: Webcache
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize wanopt category with HTTP client."""
-        ...
-
-
-class WanoptObjectMode:
-    """WANOPT API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    history: History
-    peer_stats: PeerStats
-    webcache: Webcache
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize wanopt category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Wanopt:
-    """WANOPT API category."""
+    """WANOPT API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     history: History
     peer_stats: PeerStats

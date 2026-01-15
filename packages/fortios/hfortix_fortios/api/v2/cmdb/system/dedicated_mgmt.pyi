@@ -99,12 +99,11 @@ class DedicatedMgmt:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -118,9 +117,9 @@ class DedicatedMgmt:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DedicatedMgmtResponse: ...
+    ) -> DedicatedMgmtObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -135,9 +134,9 @@ class DedicatedMgmt:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DedicatedMgmtResponse: ...
+    ) -> DedicatedMgmtObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -151,13 +150,13 @@ class DedicatedMgmt:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DedicatedMgmtResponse: ...
+    ) -> DedicatedMgmtObject: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -173,11 +172,10 @@ class DedicatedMgmt:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DedicatedMgmtObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -193,11 +191,10 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DedicatedMgmtObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -212,7 +209,6 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DedicatedMgmtObject: ...
     
@@ -231,7 +227,6 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -250,9 +245,8 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DedicatedMgmtResponse: ...
+    ) -> DedicatedMgmtObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -270,9 +264,8 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DedicatedMgmtResponse: ...
+    ) -> DedicatedMgmtObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -289,9 +282,8 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DedicatedMgmtResponse: ...
+    ) -> DedicatedMgmtObject: ...
     
     # Fallback overload for all other cases
     @overload
@@ -308,7 +300,6 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
@@ -325,7 +316,6 @@ class DedicatedMgmt:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> DedicatedMgmtObject | dict[str, Any]: ...
     
@@ -333,7 +323,7 @@ class DedicatedMgmt:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -349,7 +339,6 @@ class DedicatedMgmt:
         dhcp_end_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DedicatedMgmtObject: ...
     
@@ -366,7 +355,6 @@ class DedicatedMgmt:
         dhcp_end_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -387,7 +375,7 @@ class DedicatedMgmt:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -415,7 +403,6 @@ class DedicatedMgmt:
         dhcp_end_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -437,7 +424,6 @@ class DedicatedMgmt:
         dhcp_end_ip: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -449,7 +435,7 @@ class DedicatedMgmt:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -458,474 +444,18 @@ class DedicatedMgmt:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class DedicatedMgmtDictMode:
-    """DedicatedMgmt endpoint for dict response mode (default for this client).
-    
-    By default returns DedicatedMgmtResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return DedicatedMgmtObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DedicatedMgmtObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DedicatedMgmtObject: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> DedicatedMgmtResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> DedicatedMgmtResponse: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DedicatedMgmtObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class DedicatedMgmtObjectMode:
-    """DedicatedMgmt endpoint for object response mode (default for this client).
-    
-    By default returns DedicatedMgmtObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return DedicatedMgmtResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> DedicatedMgmtResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> DedicatedMgmtResponse: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> DedicatedMgmtObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> DedicatedMgmtObject: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DedicatedMgmtObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> DedicatedMgmtObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: DedicatedMgmtPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        interface: str | None = ...,
-        default_gateway: str | None = ...,
-        dhcp_server: Literal["enable", "disable"] | None = ...,
-        dhcp_netmask: str | None = ...,
-        dhcp_start_ip: str | None = ...,
-        dhcp_end_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "DedicatedMgmt",
-    "DedicatedMgmtDictMode",
-    "DedicatedMgmtObjectMode",
     "DedicatedMgmtPayload",
+    "DedicatedMgmtResponse",
     "DedicatedMgmtObject",
 ]

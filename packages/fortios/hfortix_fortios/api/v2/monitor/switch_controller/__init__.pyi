@@ -6,71 +6,32 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .detected_device import DetectedDevice, DetectedDeviceDictMode, DetectedDeviceObjectMode
-    from .known_nac_device_criteria_list import KnownNacDeviceCriteriaList, KnownNacDeviceCriteriaListDictMode, KnownNacDeviceCriteriaListObjectMode
-    from .matched_devices import MatchedDevices, MatchedDevicesDictMode, MatchedDevicesObjectMode
+    from .detected_device import DetectedDevice
+    from .known_nac_device_criteria_list import KnownNacDeviceCriteriaList
+    from .matched_devices import MatchedDevices
     from .fsw_firmware import FswFirmware
-    from .isl_lockdown import IslLockdownDictMode, IslLockdownObjectMode
-    from .managed_switch import ManagedSwitchDictMode, ManagedSwitchObjectMode
-    from .mclag_icl import MclagIclDictMode, MclagIclObjectMode
-    from .nac_device import NacDeviceDictMode, NacDeviceObjectMode
-    from .recommendation import RecommendationDictMode, RecommendationObjectMode
+    from .isl_lockdown import IslLockdown
+    from .managed_switch import ManagedSwitch
+    from .mclag_icl import MclagIcl
+    from .nac_device import NacDevice
+    from .recommendation import Recommendation
 
 __all__ = [
     "DetectedDevice",
     "KnownNacDeviceCriteriaList",
     "MatchedDevices",
-    "SwitchControllerDictMode",
-    "SwitchControllerObjectMode",
+    "SwitchController",
 ]
 
-class SwitchControllerDictMode:
-    """SWITCH_CONTROLLER API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    fsw_firmware: FswFirmware
-    isl_lockdown: IslLockdownDictMode
-    managed_switch: ManagedSwitchDictMode
-    mclag_icl: MclagIclDictMode
-    nac_device: NacDeviceDictMode
-    recommendation: RecommendationDictMode
-    detected_device: DetectedDeviceDictMode
-    known_nac_device_criteria_list: KnownNacDeviceCriteriaListDictMode
-    matched_devices: MatchedDevicesDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize switch_controller category with HTTP client."""
-        ...
-
-
-class SwitchControllerObjectMode:
-    """SWITCH_CONTROLLER API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    fsw_firmware: FswFirmware
-    isl_lockdown: IslLockdownObjectMode
-    managed_switch: ManagedSwitchObjectMode
-    mclag_icl: MclagIclObjectMode
-    nac_device: NacDeviceObjectMode
-    recommendation: RecommendationObjectMode
-    detected_device: DetectedDeviceObjectMode
-    known_nac_device_criteria_list: KnownNacDeviceCriteriaListObjectMode
-    matched_devices: MatchedDevicesObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize switch_controller category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class SwitchController:
-    """SWITCH_CONTROLLER API category."""
+    """SWITCH_CONTROLLER API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     fsw_firmware: FswFirmware
     isl_lockdown: IslLockdown

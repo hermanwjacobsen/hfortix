@@ -243,12 +243,11 @@ class Ldap:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -262,9 +261,9 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> LdapResponse: ...
+    ) -> LdapObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -279,9 +278,9 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> LdapResponse: ...
+    ) -> LdapObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -295,13 +294,13 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LdapResponse]: ...
+    ) -> list[LdapObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -317,11 +316,10 @@ class Ldap:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LdapObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -337,11 +335,10 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LdapObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -356,7 +353,6 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[LdapObject]: ...
     
@@ -375,7 +371,6 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -394,9 +389,8 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> LdapResponse: ...
+    ) -> LdapObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -414,9 +408,8 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> LdapResponse: ...
+    ) -> LdapObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -433,9 +426,8 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[LdapResponse]: ...
+    ) -> list[LdapObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -452,7 +444,6 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -469,7 +460,6 @@ class Ldap:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> LdapObject | list[LdapObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -477,7 +467,7 @@ class Ldap:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -528,7 +518,6 @@ class Ldap:
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LdapObject: ...
     
@@ -580,7 +569,6 @@ class Ldap:
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -636,7 +624,7 @@ class Ldap:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -734,7 +722,6 @@ class Ldap:
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -787,7 +774,6 @@ class Ldap:
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LdapObject: ...
     
@@ -839,7 +825,6 @@ class Ldap:
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -895,7 +880,7 @@ class Ldap:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -993,7 +978,6 @@ class Ldap:
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1004,7 +988,6 @@ class Ldap:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LdapObject: ...
     
@@ -1014,7 +997,6 @@ class Ldap:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1028,7 +1010,7 @@ class Ldap:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -1098,7 +1080,6 @@ class Ldap:
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1110,7 +1091,7 @@ class Ldap:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -1119,1411 +1100,18 @@ class Ldap:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class LdapDictMode:
-    """Ldap endpoint for dict response mode (default for this client).
-    
-    By default returns LdapResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return LdapObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[LdapObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> LdapResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[LdapResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class LdapObjectMode:
-    """Ldap endpoint for object response mode (default for this client).
-    
-    By default returns LdapObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return LdapResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> LdapResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[LdapResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[LdapObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> LdapObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Ldap",
-    "LdapDictMode",
-    "LdapObjectMode",
     "LdapPayload",
+    "LdapResponse",
     "LdapObject",
 ]

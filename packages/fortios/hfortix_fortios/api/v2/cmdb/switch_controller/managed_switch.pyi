@@ -458,7 +458,7 @@ class ManagedSwitchRouteoffloadrouterObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -481,7 +481,7 @@ class ManagedSwitchVlanObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -702,7 +702,7 @@ class ManagedSwitchPortsObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -727,7 +727,7 @@ class ManagedSwitchIpsourceguardObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -750,7 +750,7 @@ class ManagedSwitchStpinstanceObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -799,7 +799,7 @@ class ManagedSwitchSnmpcommunityObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -834,7 +834,7 @@ class ManagedSwitchSnmpuserObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -867,7 +867,7 @@ class ManagedSwitchRemotelogObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -898,7 +898,7 @@ class ManagedSwitchMirrorObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -929,7 +929,7 @@ class ManagedSwitchStaticmacObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -952,7 +952,7 @@ class ManagedSwitchCustomcommandObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -981,7 +981,7 @@ class ManagedSwitchDhcpsnoopingstaticclientObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -1006,7 +1006,7 @@ class ManagedSwitchRoutervrfObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -1045,7 +1045,7 @@ class ManagedSwitchSysteminterfaceObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -1086,7 +1086,7 @@ class ManagedSwitchRouterstaticObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -1139,7 +1139,7 @@ class ManagedSwitchSystemdhcpserverObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -1395,12 +1395,11 @@ class ManagedSwitch:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -1414,9 +1413,9 @@ class ManagedSwitch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ManagedSwitchResponse: ...
+    ) -> ManagedSwitchObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -1431,9 +1430,9 @@ class ManagedSwitch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ManagedSwitchResponse: ...
+    ) -> ManagedSwitchObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -1447,13 +1446,13 @@ class ManagedSwitch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ManagedSwitchResponse]: ...
+    ) -> list[ManagedSwitchObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -1469,11 +1468,10 @@ class ManagedSwitch:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -1489,11 +1487,10 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -1508,7 +1505,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[ManagedSwitchObject]: ...
     
@@ -1527,7 +1523,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -1546,9 +1541,8 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ManagedSwitchResponse: ...
+    ) -> ManagedSwitchObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -1566,9 +1560,8 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ManagedSwitchResponse: ...
+    ) -> ManagedSwitchObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -1585,9 +1578,8 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[ManagedSwitchResponse]: ...
+    ) -> list[ManagedSwitchObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -1604,7 +1596,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -1621,7 +1612,6 @@ class ManagedSwitch:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> ManagedSwitchObject | list[ManagedSwitchObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -1629,7 +1619,7 @@ class ManagedSwitch:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -1706,7 +1696,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
@@ -1784,7 +1773,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1866,7 +1854,7 @@ class ManagedSwitch:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -2016,7 +2004,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -2095,7 +2082,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
@@ -2173,7 +2159,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -2255,7 +2240,7 @@ class ManagedSwitch:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -2405,7 +2390,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -2416,7 +2400,6 @@ class ManagedSwitch:
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ManagedSwitchObject: ...
     
@@ -2426,7 +2409,6 @@ class ManagedSwitch:
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -2440,7 +2422,7 @@ class ManagedSwitch:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -2536,7 +2518,6 @@ class ManagedSwitch:
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -2548,7 +2529,7 @@ class ManagedSwitch:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -2557,1931 +2538,18 @@ class ManagedSwitch:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class ManagedSwitchDictMode:
-    """ManagedSwitch endpoint for dict response mode (default for this client).
-    
-    By default returns ManagedSwitchResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return ManagedSwitchObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        switch_id: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        switch_id: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        switch_id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[ManagedSwitchObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        switch_id: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> ManagedSwitchResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        switch_id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[ManagedSwitchResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class ManagedSwitchObjectMode:
-    """ManagedSwitch endpoint for object response mode (default for this client).
-    
-    By default returns ManagedSwitchObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return ManagedSwitchResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        switch_id: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        switch_id: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> ManagedSwitchResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        switch_id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[ManagedSwitchResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        switch_id: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        switch_id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[ManagedSwitchObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ManagedSwitchObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        switch_id: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ManagedSwitchPayload | None = ...,
-        switch_id: str | None = ...,
-        sn: str | None = ...,
-        description: str | None = ...,
-        switch_profile: str | None = ...,
-        access_profile: str | None = ...,
-        purdue_level: Literal["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"] | None = ...,
-        fsw_wan1_peer: str | None = ...,
-        fsw_wan1_admin: Literal["discovered", "disable", "enable"] | None = ...,
-        poe_pre_standard_detection: Literal["enable", "disable"] | None = ...,
-        dhcp_server_access_list: Literal["global", "enable", "disable"] | None = ...,
-        poe_detection_type: int | None = ...,
-        max_poe_budget: int | None = ...,
-        directly_connected: int | None = ...,
-        version: int | None = ...,
-        max_allowed_trunk_members: int | None = ...,
-        pre_provisioned: int | None = ...,
-        l3_discovered: int | None = ...,
-        mgmt_mode: int | None = ...,
-        tunnel_discovered: int | None = ...,
-        tdr_supported: str | None = ...,
-        dynamic_capability: str | None = ...,
-        switch_device_tag: str | None = ...,
-        switch_dhcp_opt43_key: str | None = ...,
-        mclag_igmp_snooping_aware: Literal["enable", "disable"] | None = ...,
-        dynamically_discovered: int | None = ...,
-        ptp_status: Literal["disable", "enable"] | None = ...,
-        ptp_profile: str | None = ...,
-        radius_nas_ip_override: Literal["disable", "enable"] | None = ...,
-        radius_nas_ip: str | None = ...,
-        route_offload: Literal["disable", "enable"] | None = ...,
-        route_offload_mclag: Literal["disable", "enable"] | None = ...,
-        route_offload_router: str | list[str] | list[dict[str, Any]] | None = ...,
-        vlan: str | list[str] | list[dict[str, Any]] | None = ...,
-        type: Literal["virtual", "physical"] | None = ...,
-        owner_vdom: str | None = ...,
-        flow_identity: str | None = ...,
-        staged_image_version: str | None = ...,
-        delayed_restart_trigger: int | None = ...,
-        firmware_provision: Literal["enable", "disable"] | None = ...,
-        firmware_provision_version: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_source_guard: str | list[str] | list[dict[str, Any]] | None = ...,
-        stp_settings: str | None = ...,
-        stp_instance: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_sysinfo: Literal["disable", "enable"] | None = ...,
-        snmp_sysinfo: str | None = ...,
-        override_snmp_trap_threshold: Literal["enable", "disable"] | None = ...,
-        snmp_trap_threshold: str | None = ...,
-        override_snmp_community: Literal["enable", "disable"] | None = ...,
-        snmp_community: str | list[str] | list[dict[str, Any]] | None = ...,
-        override_snmp_user: Literal["enable", "disable"] | None = ...,
-        snmp_user: str | list[str] | list[dict[str, Any]] | None = ...,
-        qos_drop_policy: Literal["taildrop", "random-early-detection"] | None = ...,
-        qos_red_probability: int | None = ...,
-        switch_log: str | None = ...,
-        remote_log: str | list[str] | list[dict[str, Any]] | None = ...,
-        storm_control: str | None = ...,
-        mirror: str | list[str] | list[dict[str, Any]] | None = ...,
-        static_mac: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        dhcp_snooping_static_client: str | list[str] | list[dict[str, Any]] | None = ...,
-        igmp_snooping: str | None = ...,
-        x802_1X_settings: str | None = ...,
-        router_vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        router_static: str | list[str] | list[dict[str, Any]] | None = ...,
-        system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "ManagedSwitch",
-    "ManagedSwitchDictMode",
-    "ManagedSwitchObjectMode",
     "ManagedSwitchPayload",
+    "ManagedSwitchResponse",
     "ManagedSwitchObject",
 ]

@@ -6,18 +6,18 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .admin import Admin, AdminDictMode, AdminObjectMode
-    from .alertmail import Alertmail, AlertmailDictMode, AlertmailObjectMode
-    from .auth import Auth, AuthDictMode, AuthObjectMode
-    from .automation import Automation, AutomationDictMode, AutomationObjectMode
-    from .fortiguard_wf import FortiguardWf, FortiguardWfDictMode, FortiguardWfObjectMode
-    from .http import Http, HttpDictMode, HttpObjectMode
-    from .mail import Mail, MailDictMode, MailObjectMode
-    from .nac_quar import NacQuar, NacQuarDictMode, NacQuarObjectMode
-    from .spam import Spam, SpamDictMode, SpamObjectMode
-    from .sslvpn import Sslvpn, SslvpnDictMode, SslvpnObjectMode
-    from .traffic_quota import TrafficQuota, TrafficQuotaDictMode, TrafficQuotaObjectMode
-    from .utm import Utm, UtmDictMode, UtmObjectMode
+    from .admin import Admin
+    from .alertmail import Alertmail
+    from .auth import Auth
+    from .automation import Automation
+    from .fortiguard_wf import FortiguardWf
+    from .http import Http
+    from .mail import Mail
+    from .nac_quar import NacQuar
+    from .spam import Spam
+    from .sslvpn import Sslvpn
+    from .traffic_quota import TrafficQuota
+    from .utm import Utm
 
 __all__ = [
     "Admin",
@@ -32,63 +32,18 @@ __all__ = [
     "Sslvpn",
     "TrafficQuota",
     "Utm",
-    "ReplacemsgDictMode",
-    "ReplacemsgObjectMode",
+    "Replacemsg",
 ]
 
-class ReplacemsgDictMode:
-    """REPLACEMSG API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    admin: AdminDictMode
-    alertmail: AlertmailDictMode
-    auth: AuthDictMode
-    automation: AutomationDictMode
-    fortiguard_wf: FortiguardWfDictMode
-    http: HttpDictMode
-    mail: MailDictMode
-    nac_quar: NacQuarDictMode
-    spam: SpamDictMode
-    sslvpn: SslvpnDictMode
-    traffic_quota: TrafficQuotaDictMode
-    utm: UtmDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize replacemsg category with HTTP client."""
-        ...
-
-
-class ReplacemsgObjectMode:
-    """REPLACEMSG API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    admin: AdminObjectMode
-    alertmail: AlertmailObjectMode
-    auth: AuthObjectMode
-    automation: AutomationObjectMode
-    fortiguard_wf: FortiguardWfObjectMode
-    http: HttpObjectMode
-    mail: MailObjectMode
-    nac_quar: NacQuarObjectMode
-    spam: SpamObjectMode
-    sslvpn: SslvpnObjectMode
-    traffic_quota: TrafficQuotaObjectMode
-    utm: UtmObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize replacemsg category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Replacemsg:
-    """REPLACEMSG API category."""
+    """REPLACEMSG API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     admin: Admin
     alertmail: Alertmail

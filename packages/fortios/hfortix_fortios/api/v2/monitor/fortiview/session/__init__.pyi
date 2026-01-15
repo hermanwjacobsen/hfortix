@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .cancel import Cancel, CancelDictMode, CancelObjectMode
+    from .cancel import Cancel
 
 __all__ = [
     "Cancel",
-    "SessionDictMode",
-    "SessionObjectMode",
+    "Session",
 ]
 
-class SessionDictMode:
-    """SESSION API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    cancel: CancelDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize session category with HTTP client."""
-        ...
-
-
-class SessionObjectMode:
-    """SESSION API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    cancel: CancelObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize session category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Session:
-    """SESSION API category."""
+    """SESSION API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     cancel: Cancel
 

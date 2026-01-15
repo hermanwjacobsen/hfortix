@@ -124,12 +124,11 @@ class ExternalIdentityProvider:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -143,9 +142,9 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ExternalIdentityProviderResponse: ...
+    ) -> ExternalIdentityProviderObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -160,9 +159,9 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ExternalIdentityProviderResponse: ...
+    ) -> ExternalIdentityProviderObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -176,13 +175,13 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ExternalIdentityProviderResponse]: ...
+    ) -> list[ExternalIdentityProviderObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -198,11 +197,10 @@ class ExternalIdentityProvider:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -218,11 +216,10 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -237,7 +234,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[ExternalIdentityProviderObject]: ...
     
@@ -256,7 +252,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -275,9 +270,8 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ExternalIdentityProviderResponse: ...
+    ) -> ExternalIdentityProviderObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -295,9 +289,8 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ExternalIdentityProviderResponse: ...
+    ) -> ExternalIdentityProviderObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -314,9 +307,8 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[ExternalIdentityProviderResponse]: ...
+    ) -> list[ExternalIdentityProviderObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -333,7 +325,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -350,7 +341,6 @@ class ExternalIdentityProvider:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> ExternalIdentityProviderObject | list[ExternalIdentityProviderObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -358,7 +348,7 @@ class ExternalIdentityProvider:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -380,7 +370,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
@@ -403,7 +392,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -430,7 +418,7 @@ class ExternalIdentityProvider:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -470,7 +458,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -494,7 +481,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
@@ -517,7 +503,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -544,7 +529,7 @@ class ExternalIdentityProvider:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -584,7 +569,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -595,7 +579,6 @@ class ExternalIdentityProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ExternalIdentityProviderObject: ...
     
@@ -605,7 +588,6 @@ class ExternalIdentityProvider:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -619,7 +601,7 @@ class ExternalIdentityProvider:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -660,7 +642,6 @@ class ExternalIdentityProvider:
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -672,7 +653,7 @@ class ExternalIdentityProvider:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -681,831 +662,18 @@ class ExternalIdentityProvider:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class ExternalIdentityProviderDictMode:
-    """ExternalIdentityProvider endpoint for dict response mode (default for this client).
-    
-    By default returns ExternalIdentityProviderResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return ExternalIdentityProviderObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[ExternalIdentityProviderObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[ExternalIdentityProviderResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class ExternalIdentityProviderObjectMode:
-    """ExternalIdentityProvider endpoint for object response mode (default for this client).
-    
-    By default returns ExternalIdentityProviderObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return ExternalIdentityProviderResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[ExternalIdentityProviderResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[ExternalIdentityProviderObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ExternalIdentityProviderObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "ExternalIdentityProvider",
-    "ExternalIdentityProviderDictMode",
-    "ExternalIdentityProviderObjectMode",
     "ExternalIdentityProviderPayload",
+    "ExternalIdentityProviderResponse",
     "ExternalIdentityProviderObject",
 ]

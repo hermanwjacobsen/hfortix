@@ -6,45 +6,22 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .close_multiple import CloseMultiple, CloseMultipleDictMode, CloseMultipleObjectMode
+    from .close_multiple import CloseMultiple
 
 __all__ = [
     "CloseMultiple",
-    "Session6DictMode",
-    "Session6ObjectMode",
+    "Session6",
 ]
 
-class Session6DictMode:
-    """SESSION6 API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    close_multiple: CloseMultipleDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize session6 category with HTTP client."""
-        ...
-
-
-class Session6ObjectMode:
-    """SESSION6 API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    close_multiple: CloseMultipleObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize session6 category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Session6:
-    """SESSION6 API category."""
+    """SESSION6 API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     close_multiple: CloseMultiple
 

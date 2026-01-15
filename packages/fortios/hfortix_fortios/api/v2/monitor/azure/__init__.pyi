@@ -9,41 +9,18 @@ if TYPE_CHECKING:
     from .application_list import ApplicationList
 
 __all__ = [
-    "AzureDictMode",
-    "AzureObjectMode",
+    "Azure",
 ]
 
-class AzureDictMode:
-    """AZURE API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    application_list: ApplicationList
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize azure category with HTTP client."""
-        ...
-
-
-class AzureObjectMode:
-    """AZURE API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    application_list: ApplicationList
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize azure category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Azure:
-    """AZURE API category."""
+    """AZURE API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     application_list: ApplicationList
 

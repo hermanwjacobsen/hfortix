@@ -6,14 +6,14 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .concentrator import Concentrator, ConcentratorDictMode, ConcentratorObjectMode
-    from .fec import Fec, FecDictMode, FecObjectMode
-    from .manualkey import Manualkey, ManualkeyDictMode, ManualkeyObjectMode
-    from .manualkey_interface import ManualkeyInterface, ManualkeyInterfaceDictMode, ManualkeyInterfaceObjectMode
-    from .phase1 import Phase1, Phase1DictMode, Phase1ObjectMode
-    from .phase1_interface import Phase1Interface, Phase1InterfaceDictMode, Phase1InterfaceObjectMode
-    from .phase2 import Phase2, Phase2DictMode, Phase2ObjectMode
-    from .phase2_interface import Phase2Interface, Phase2InterfaceDictMode, Phase2InterfaceObjectMode
+    from .concentrator import Concentrator
+    from .fec import Fec
+    from .manualkey import Manualkey
+    from .manualkey_interface import ManualkeyInterface
+    from .phase1 import Phase1
+    from .phase1_interface import Phase1Interface
+    from .phase2 import Phase2
+    from .phase2_interface import Phase2Interface
 
 __all__ = [
     "Concentrator",
@@ -24,55 +24,18 @@ __all__ = [
     "Phase1Interface",
     "Phase2",
     "Phase2Interface",
-    "IpsecDictMode",
-    "IpsecObjectMode",
+    "Ipsec",
 ]
 
-class IpsecDictMode:
-    """IPSEC API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    concentrator: ConcentratorDictMode
-    fec: FecDictMode
-    manualkey: ManualkeyDictMode
-    manualkey_interface: ManualkeyInterfaceDictMode
-    phase1: Phase1DictMode
-    phase1_interface: Phase1InterfaceDictMode
-    phase2: Phase2DictMode
-    phase2_interface: Phase2InterfaceDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ipsec category with HTTP client."""
-        ...
-
-
-class IpsecObjectMode:
-    """IPSEC API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    concentrator: ConcentratorObjectMode
-    fec: FecObjectMode
-    manualkey: ManualkeyObjectMode
-    manualkey_interface: ManualkeyInterfaceObjectMode
-    phase1: Phase1ObjectMode
-    phase1_interface: Phase1InterfaceObjectMode
-    phase2: Phase2ObjectMode
-    phase2_interface: Phase2InterfaceObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize ipsec category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Ipsec:
-    """IPSEC API category."""
+    """IPSEC API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     concentrator: Concentrator
     fec: Fec

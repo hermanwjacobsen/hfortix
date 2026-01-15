@@ -6,8 +6,8 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .fortiguard_categories import FortiguardCategories, FortiguardCategoriesDictMode, FortiguardCategoriesObjectMode
-    from .trusted_urls import TrustedUrls, TrustedUrlsDictMode, TrustedUrlsObjectMode
+    from .fortiguard_categories import FortiguardCategories
+    from .trusted_urls import TrustedUrls
     from .category_quota import CategoryQuota
     from .malicious_urls import MaliciousUrls
     from .override import Override
@@ -15,49 +15,18 @@ if TYPE_CHECKING:
 __all__ = [
     "FortiguardCategories",
     "TrustedUrls",
-    "WebfilterDictMode",
-    "WebfilterObjectMode",
+    "Webfilter",
 ]
 
-class WebfilterDictMode:
-    """WEBFILTER API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    category_quota: CategoryQuota
-    malicious_urls: MaliciousUrls
-    override: Override
-    fortiguard_categories: FortiguardCategoriesDictMode
-    trusted_urls: TrustedUrlsDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize webfilter category with HTTP client."""
-        ...
-
-
-class WebfilterObjectMode:
-    """WEBFILTER API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    category_quota: CategoryQuota
-    malicious_urls: MaliciousUrls
-    override: Override
-    fortiguard_categories: FortiguardCategoriesObjectMode
-    trusted_urls: TrustedUrlsObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize webfilter category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class Webfilter:
-    """WEBFILTER API category."""
+    """WEBFILTER API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     category_quota: CategoryQuota
     malicious_urls: MaliciousUrls

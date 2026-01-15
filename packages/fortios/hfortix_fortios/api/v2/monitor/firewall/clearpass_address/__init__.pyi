@@ -6,49 +6,24 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .add import Add, AddDictMode, AddObjectMode
-    from .delete import Delete, DeleteDictMode, DeleteObjectMode
+    from .add import Add
+    from .delete import Delete
 
 __all__ = [
     "Add",
     "Delete",
-    "ClearpassAddressDictMode",
-    "ClearpassAddressObjectMode",
+    "ClearpassAddress",
 ]
 
-class ClearpassAddressDictMode:
-    """CLEARPASS_ADDRESS API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    add: AddDictMode
-    delete: DeleteDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize clearpass_address category with HTTP client."""
-        ...
-
-
-class ClearpassAddressObjectMode:
-    """CLEARPASS_ADDRESS API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    add: AddObjectMode
-    delete: DeleteObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize clearpass_address category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class ClearpassAddress:
-    """CLEARPASS_ADDRESS API category."""
+    """CLEARPASS_ADDRESS API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     add: Add
     delete: Delete

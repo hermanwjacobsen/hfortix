@@ -199,7 +199,7 @@ class ServerIprangeObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -220,7 +220,7 @@ class ServerTftpserverObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -257,7 +257,7 @@ class ServerOptionsObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -278,7 +278,7 @@ class ServerVcistringObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -313,7 +313,7 @@ class ServerExcluderangeObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -352,7 +352,7 @@ class ServerReservedaddressObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -560,12 +560,11 @@ class Server:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -579,9 +578,9 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ServerResponse: ...
+    ) -> ServerObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -596,9 +595,9 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> ServerResponse: ...
+    ) -> ServerObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -612,13 +611,13 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ServerResponse]: ...
+    ) -> list[ServerObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -634,11 +633,10 @@ class Server:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ServerObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -654,11 +652,10 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ServerObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -673,7 +670,6 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[ServerObject]: ...
     
@@ -692,7 +688,6 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -711,9 +706,8 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ServerResponse: ...
+    ) -> ServerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -731,9 +725,8 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> ServerResponse: ...
+    ) -> ServerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -750,9 +743,8 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[ServerResponse]: ...
+    ) -> list[ServerObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -769,7 +761,6 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -786,7 +777,6 @@ class Server:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> ServerObject | list[ServerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -794,7 +784,7 @@ class Server:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -855,7 +845,6 @@ class Server:
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ServerObject: ...
     
@@ -917,7 +906,6 @@ class Server:
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -983,7 +971,7 @@ class Server:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -1101,7 +1089,6 @@ class Server:
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1164,7 +1151,6 @@ class Server:
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ServerObject: ...
     
@@ -1226,7 +1212,6 @@ class Server:
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1292,7 +1277,7 @@ class Server:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -1410,7 +1395,6 @@ class Server:
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1421,7 +1405,6 @@ class Server:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> ServerObject: ...
     
@@ -1431,7 +1414,6 @@ class Server:
         id: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1445,7 +1427,7 @@ class Server:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -1525,7 +1507,6 @@ class Server:
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1537,7 +1518,7 @@ class Server:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -1546,1611 +1527,18 @@ class Server:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class ServerDictMode:
-    """Server endpoint for dict response mode (default for this client).
-    
-    By default returns ServerResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return ServerObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[ServerObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> ServerResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[ServerResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class ServerObjectMode:
-    """Server endpoint for object response mode (default for this client).
-    
-    By default returns ServerObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return ServerResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> ServerResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[ServerResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        id: int,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        id: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[ServerObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> ServerObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        id: int,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Server",
-    "ServerDictMode",
-    "ServerObjectMode",
     "ServerPayload",
+    "ServerResponse",
     "ServerObject",
 ]

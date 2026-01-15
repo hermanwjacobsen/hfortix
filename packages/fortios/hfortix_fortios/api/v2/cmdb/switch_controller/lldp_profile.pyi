@@ -104,7 +104,7 @@ class LldpProfileMednetworkpolicyObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -129,7 +129,7 @@ class LldpProfileMedlocationserviceObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -156,7 +156,7 @@ class LldpProfileCustomtlvsObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -262,12 +262,11 @@ class LldpProfile:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -281,9 +280,9 @@ class LldpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> LldpProfileResponse: ...
+    ) -> LldpProfileObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -298,9 +297,9 @@ class LldpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> LldpProfileResponse: ...
+    ) -> LldpProfileObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -314,13 +313,13 @@ class LldpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LldpProfileResponse]: ...
+    ) -> list[LldpProfileObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -336,11 +335,10 @@ class LldpProfile:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LldpProfileObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -356,11 +354,10 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LldpProfileObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -375,7 +372,6 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[LldpProfileObject]: ...
     
@@ -394,7 +390,6 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -413,9 +408,8 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> LldpProfileResponse: ...
+    ) -> LldpProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -433,9 +427,8 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> LldpProfileResponse: ...
+    ) -> LldpProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -452,9 +445,8 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[LldpProfileResponse]: ...
+    ) -> list[LldpProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -471,7 +463,6 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -488,7 +479,6 @@ class LldpProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> LldpProfileObject | list[LldpProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -496,7 +486,7 @@ class LldpProfile:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -523,7 +513,6 @@ class LldpProfile:
         custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LldpProfileObject: ...
     
@@ -551,7 +540,6 @@ class LldpProfile:
         custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -583,7 +571,7 @@ class LldpProfile:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -633,7 +621,6 @@ class LldpProfile:
         custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -662,7 +649,6 @@ class LldpProfile:
         custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LldpProfileObject: ...
     
@@ -690,7 +676,6 @@ class LldpProfile:
         custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -722,7 +707,7 @@ class LldpProfile:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -772,7 +757,6 @@ class LldpProfile:
         custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -783,7 +767,6 @@ class LldpProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> LldpProfileObject: ...
     
@@ -793,7 +776,6 @@ class LldpProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -807,7 +789,7 @@ class LldpProfile:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -853,7 +835,6 @@ class LldpProfile:
         custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -865,7 +846,7 @@ class LldpProfile:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -874,931 +855,18 @@ class LldpProfile:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class LldpProfileDictMode:
-    """LldpProfile endpoint for dict response mode (default for this client).
-    
-    By default returns LldpProfileResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return LldpProfileObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[LldpProfileObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> LldpProfileResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[LldpProfileResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class LldpProfileObjectMode:
-    """LldpProfile endpoint for object response mode (default for this client).
-    
-    By default returns LldpProfileObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return LldpProfileResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> LldpProfileResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[LldpProfileResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[LldpProfileObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> LldpProfileObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: LldpProfilePayload | None = ...,
-        name: str | None = ...,
-        med_tlvs: Literal["inventory-management", "network-policy", "power-management", "location-identification"] | list[str] | None = ...,
-        x802_1_tlvs: Literal["port-vlan-id"] | list[str] | None = ...,
-        x802_3_tlvs: Literal["max-frame-size", "power-negotiation"] | list[str] | None = ...,
-        auto_isl: Literal["disable", "enable"] | None = ...,
-        auto_isl_hello_timer: int | None = ...,
-        auto_isl_receive_timeout: int | None = ...,
-        auto_isl_port_group: int | None = ...,
-        auto_mclag_icl: Literal["disable", "enable"] | None = ...,
-        auto_isl_auth: Literal["legacy", "strict", "relax"] | None = ...,
-        auto_isl_auth_user: str | None = ...,
-        auto_isl_auth_identity: str | None = ...,
-        auto_isl_auth_reauth: int | None = ...,
-        auto_isl_auth_encrypt: Literal["none", "mixed", "must"] | None = ...,
-        auto_isl_auth_macsec_profile: str | None = ...,
-        med_network_policy: str | list[str] | list[dict[str, Any]] | None = ...,
-        med_location_service: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_tlvs: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "LldpProfile",
-    "LldpProfileDictMode",
-    "LldpProfileObjectMode",
     "LldpProfilePayload",
+    "LldpProfileResponse",
     "LldpProfileObject",
 ]

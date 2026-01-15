@@ -104,7 +104,7 @@ class HsProfileOsuproviderObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -285,12 +285,11 @@ class HsProfile:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -304,9 +303,9 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> HsProfileResponse: ...
+    ) -> HsProfileObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -321,9 +320,9 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> HsProfileResponse: ...
+    ) -> HsProfileObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -337,13 +336,13 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[HsProfileResponse]: ...
+    ) -> list[HsProfileObject]: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -359,11 +358,10 @@ class HsProfile:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> HsProfileObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -379,11 +377,10 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> HsProfileObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -398,7 +395,6 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> list[HsProfileObject]: ...
     
@@ -417,7 +413,6 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -436,9 +431,8 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> HsProfileResponse: ...
+    ) -> HsProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -456,9 +450,8 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> HsProfileResponse: ...
+    ) -> HsProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -475,9 +468,8 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> list[HsProfileResponse]: ...
+    ) -> list[HsProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -494,7 +486,6 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
@@ -511,7 +502,6 @@ class HsProfile:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> HsProfileObject | list[HsProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
@@ -519,7 +509,7 @@ class HsProfile:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # POST overloads
     @overload
@@ -571,7 +561,6 @@ class HsProfile:
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> HsProfileObject: ...
     
@@ -624,7 +613,6 @@ class HsProfile:
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -681,7 +669,7 @@ class HsProfile:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def post(
         self,
@@ -781,7 +769,6 @@ class HsProfile:
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -835,7 +822,6 @@ class HsProfile:
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> HsProfileObject: ...
     
@@ -888,7 +874,6 @@ class HsProfile:
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -945,7 +930,7 @@ class HsProfile:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -1045,7 +1030,6 @@ class HsProfile:
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1056,7 +1040,6 @@ class HsProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> HsProfileObject: ...
     
@@ -1066,7 +1049,6 @@ class HsProfile:
         name: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1080,7 +1062,7 @@ class HsProfile:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def delete(
         self,
@@ -1151,7 +1133,6 @@ class HsProfile:
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1163,7 +1144,7 @@ class HsProfile:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -1172,1431 +1153,18 @@ class HsProfile:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class HsProfileDictMode:
-    """HsProfile endpoint for dict response mode (default for this client).
-    
-    By default returns HsProfileResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return HsProfileObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> list[HsProfileObject]: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> HsProfileResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> list[HsProfileResponse]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Object mode override
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # POST - Default overload (returns MutationResponse)
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Dict mode (default for DictMode class)
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Object mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # DELETE - Default overload (returns MutationResponse)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Dict mode (default for DictMode class)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class HsProfileObjectMode:
-    """HsProfile endpoint for object response mode (default for this client).
-    
-    By default returns HsProfileObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return HsProfileResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> HsProfileResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> list[HsProfileResponse]: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> list[HsProfileObject]: ...
-
-    # raw_json=True returns RawAPIResponse for POST
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # POST - Dict mode override
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # POST - Object mode override (requires explicit response_mode="object")
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # POST - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # POST - Default for ObjectMode (returns MutationResponse like DictMode)
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # raw_json=True returns RawAPIResponse for DELETE
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # DELETE - Dict mode override
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # DELETE - Object mode override (requires explicit response_mode="object")
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # DELETE - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> HsProfileObject: ...
-    
-    # DELETE - Default for ObjectMode (returns MutationResponse like DictMode)
-    def delete(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "HsProfile",
-    "HsProfileDictMode",
-    "HsProfileObjectMode",
     "HsProfilePayload",
+    "HsProfileResponse",
     "HsProfileObject",
 ]

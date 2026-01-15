@@ -6,87 +6,87 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix_core.http.interface import IHTTPClient
-    from .acme_certificate_status import AcmeCertificateStatus, AcmeCertificateStatusDictMode, AcmeCertificateStatusObjectMode
-    from .acquired_dns import AcquiredDns, AcquiredDnsDictMode, AcquiredDnsObjectMode
-    from .available_certificates import AvailableCertificates, AvailableCertificatesDictMode, AvailableCertificatesObjectMode
-    from .check_port_availability import CheckPortAvailability, CheckPortAvailabilityDictMode, CheckPortAvailabilityObjectMode
-    from .current_admins import CurrentAdmins, CurrentAdminsDictMode, CurrentAdminsObjectMode
-    from .global_resources import GlobalResources, GlobalResourcesDictMode, GlobalResourcesObjectMode
-    from .global_search import GlobalSearch, GlobalSearchDictMode, GlobalSearchObjectMode
-    from .ha_backup_hb_used import HaBackupHbUsed, HaBackupHbUsedDictMode, HaBackupHbUsedObjectMode
-    from .ha_checksums import HaChecksums, HaChecksumsDictMode, HaChecksumsObjectMode
-    from .ha_history import HaHistory, HaHistoryDictMode, HaHistoryObjectMode
-    from .ha_hw_interface import HaHwInterface, HaHwInterfaceDictMode, HaHwInterfaceObjectMode
-    from .ha_nonsync_checksums import HaNonsyncChecksums, HaNonsyncChecksumsDictMode, HaNonsyncChecksumsObjectMode
-    from .ha_statistics import HaStatistics, HaStatisticsDictMode, HaStatisticsObjectMode
-    from .ha_table_checksums import HaTableChecksums, HaTableChecksumsDictMode, HaTableChecksumsObjectMode
-    from .interface_connected_admins_info import InterfaceConnectedAdminsInfo, InterfaceConnectedAdminsInfoDictMode, InterfaceConnectedAdminsInfoObjectMode
-    from .ipconf import Ipconf, IpconfDictMode, IpconfObjectMode
-    from .link_monitor import LinkMonitor, LinkMonitorDictMode, LinkMonitorObjectMode
-    from .modem3g import Modem3g, Modem3gDictMode, Modem3gObjectMode
-    from .monitor_sensor import MonitorSensor, MonitorSensorDictMode, MonitorSensorObjectMode
-    from .resolve_fqdn import ResolveFqdn, ResolveFqdnDictMode, ResolveFqdnObjectMode
-    from .running_processes import RunningProcesses, RunningProcessesDictMode, RunningProcessesObjectMode
-    from .sensor_info import SensorInfo, SensorInfoDictMode, SensorInfoObjectMode
-    from .status import Status, StatusDictMode, StatusObjectMode
-    from .storage import Storage, StorageDictMode, StorageObjectMode
-    from .timezone import Timezone, TimezoneDictMode, TimezoneObjectMode
-    from .trusted_cert_authorities import TrustedCertAuthorities, TrustedCertAuthoritiesDictMode, TrustedCertAuthoritiesObjectMode
-    from .vdom_link import VdomLink, VdomLinkDictMode, VdomLinkObjectMode
-    from .vdom_resource import VdomResource, VdomResourceDictMode, VdomResourceObjectMode
-    from .vm_information import VmInformation, VmInformationDictMode, VmInformationObjectMode
-    from .admin import AdminDictMode, AdminObjectMode
-    from .api_user import ApiUserDictMode, ApiUserObjectMode
-    from .automation_action import AutomationActionDictMode, AutomationActionObjectMode
-    from .automation_stitch import AutomationStitchDictMode, AutomationStitchObjectMode
+    from .acme_certificate_status import AcmeCertificateStatus
+    from .acquired_dns import AcquiredDns
+    from .available_certificates import AvailableCertificates
+    from .check_port_availability import CheckPortAvailability
+    from .current_admins import CurrentAdmins
+    from .global_resources import GlobalResources
+    from .global_search import GlobalSearch
+    from .ha_backup_hb_used import HaBackupHbUsed
+    from .ha_checksums import HaChecksums
+    from .ha_history import HaHistory
+    from .ha_hw_interface import HaHwInterface
+    from .ha_nonsync_checksums import HaNonsyncChecksums
+    from .ha_statistics import HaStatistics
+    from .ha_table_checksums import HaTableChecksums
+    from .interface_connected_admins_info import InterfaceConnectedAdminsInfo
+    from .ipconf import Ipconf
+    from .link_monitor import LinkMonitor
+    from .modem3g import Modem3g
+    from .monitor_sensor import MonitorSensor
+    from .resolve_fqdn import ResolveFqdn
+    from .running_processes import RunningProcesses
+    from .sensor_info import SensorInfo
+    from .status import Status
+    from .storage import Storage
+    from .timezone import Timezone
+    from .trusted_cert_authorities import TrustedCertAuthorities
+    from .vdom_link import VdomLink
+    from .vdom_resource import VdomResource
+    from .vm_information import VmInformation
+    from .admin import Admin
+    from .api_user import ApiUser
+    from .automation_action import AutomationAction
+    from .automation_stitch import AutomationStitch
     from .available_interfaces import AvailableInterfaces
     from .botnet import Botnet
     from .botnet_domains import BotnetDomains
-    from .central_management import CentralManagementDictMode, CentralManagementObjectMode
-    from .certificate import CertificateDictMode, CertificateObjectMode
-    from .change_password import ChangePasswordDictMode, ChangePasswordObjectMode
-    from .cluster import ClusterDictMode, ClusterObjectMode
-    from .com_log import ComLogDictMode, ComLogObjectMode
-    from .config import ConfigDictMode, ConfigObjectMode
-    from .config_error_log import ConfigErrorLogDictMode, ConfigErrorLogObjectMode
+    from .central_management import CentralManagement
+    from .certificate import Certificate
+    from .change_password import ChangePassword
+    from .cluster import Cluster
+    from .com_log import ComLog
+    from .config import Config
+    from .config_error_log import ConfigErrorLog
     from .config_revision import ConfigRevision
     from .config_script import ConfigScript
-    from .config_sync import ConfigSyncDictMode, ConfigSyncObjectMode
-    from .crash_log import CrashLogDictMode, CrashLogObjectMode
+    from .config_sync import ConfigSync
+    from .crash_log import CrashLog
     from .csf import Csf
-    from .debug import DebugDictMode, DebugObjectMode
+    from .debug import Debug
     from .dhcp import Dhcp
-    from .dhcp6 import Dhcp6DictMode, Dhcp6ObjectMode
-    from .disconnect_admins import DisconnectAdminsDictMode, DisconnectAdminsObjectMode
-    from .external_resource import ExternalResourceDictMode, ExternalResourceObjectMode
+    from .dhcp6 import Dhcp6
+    from .disconnect_admins import DisconnectAdmins
+    from .external_resource import ExternalResource
     from .firmware import Firmware
-    from .fortiguard import FortiguardDictMode, FortiguardObjectMode
-    from .fortimanager import FortimanagerDictMode, FortimanagerObjectMode
-    from .fsck import FsckDictMode, FsckObjectMode
+    from .fortiguard import Fortiguard
+    from .fortimanager import Fortimanager
+    from .fsck import Fsck
     from .ha_peer import HaPeer
-    from .hscalefw_license import HscalefwLicenseDictMode, HscalefwLicenseObjectMode
+    from .hscalefw_license import HscalefwLicense
     from .interface import Interface
-    from .ipam import IpamDictMode, IpamObjectMode
-    from .logdisk import LogdiskDictMode, LogdiskObjectMode
-    from .lte_modem import LteModemDictMode, LteModemObjectMode
+    from .ipam import Ipam
+    from .logdisk import Logdisk
+    from .lte_modem import LteModem
     from .modem import Modem
-    from .modem5g import Modem5gDictMode, Modem5gObjectMode
-    from .ntp import NtpDictMode, NtpObjectMode
-    from .object import ObjectDictMode, ObjectObjectMode
-    from .os import OsDictMode, OsObjectMode
-    from .password_policy_conform import PasswordPolicyConformDictMode, PasswordPolicyConformObjectMode
-    from .performance import PerformanceDictMode, PerformanceObjectMode
-    from .private_data_encryption import PrivateDataEncryptionDictMode, PrivateDataEncryptionObjectMode
-    from .process import ProcessDictMode, ProcessObjectMode
-    from .resource import ResourceDictMode, ResourceObjectMode
-    from .sandbox import SandboxDictMode, SandboxObjectMode
-    from .sdn_connector import SdnConnectorDictMode, SdnConnectorObjectMode
+    from .modem5g import Modem5g
+    from .ntp import Ntp
+    from .object import Object
+    from .os import Os
+    from .password_policy_conform import PasswordPolicyConform
+    from .performance import Performance
+    from .private_data_encryption import PrivateDataEncryption
+    from .process import Process
+    from .resource import Resource
+    from .sandbox import Sandbox
+    from .sdn_connector import SdnConnector
     from .time import Time
-    from .traffic_history import TrafficHistoryDictMode, TrafficHistoryObjectMode
-    from .upgrade_report import UpgradeReportDictMode, UpgradeReportObjectMode
-    from .usb_device import UsbDeviceDictMode, UsbDeviceObjectMode
+    from .traffic_history import TrafficHistory
+    from .upgrade_report import UpgradeReport
+    from .usb_device import UsbDevice
     from .usb_log import UsbLog
-    from .vmlicense import VmlicenseDictMode, VmlicenseObjectMode
+    from .vmlicense import Vmlicense
 
 __all__ = [
     "AcmeCertificateStatus",
@@ -118,201 +118,18 @@ __all__ = [
     "VdomLink",
     "VdomResource",
     "VmInformation",
-    "SystemDictMode",
-    "SystemObjectMode",
+    "System",
 ]
 
-class SystemDictMode:
-    """SYSTEM API category for dict response mode.
-    
-    This class is returned when the client is instantiated with response_mode="dict" (default).
-    All endpoints return dict/TypedDict responses by default.
-    """
-    
-    admin: AdminDictMode
-    api_user: ApiUserDictMode
-    automation_action: AutomationActionDictMode
-    automation_stitch: AutomationStitchDictMode
-    available_interfaces: AvailableInterfaces
-    botnet: Botnet
-    botnet_domains: BotnetDomains
-    central_management: CentralManagementDictMode
-    certificate: CertificateDictMode
-    change_password: ChangePasswordDictMode
-    cluster: ClusterDictMode
-    com_log: ComLogDictMode
-    config: ConfigDictMode
-    config_error_log: ConfigErrorLogDictMode
-    config_revision: ConfigRevision
-    config_script: ConfigScript
-    config_sync: ConfigSyncDictMode
-    crash_log: CrashLogDictMode
-    csf: Csf
-    debug: DebugDictMode
-    dhcp: Dhcp
-    dhcp6: Dhcp6DictMode
-    disconnect_admins: DisconnectAdminsDictMode
-    external_resource: ExternalResourceDictMode
-    firmware: Firmware
-    fortiguard: FortiguardDictMode
-    fortimanager: FortimanagerDictMode
-    fsck: FsckDictMode
-    ha_peer: HaPeer
-    hscalefw_license: HscalefwLicenseDictMode
-    interface: Interface
-    ipam: IpamDictMode
-    logdisk: LogdiskDictMode
-    lte_modem: LteModemDictMode
-    modem: Modem
-    modem5g: Modem5gDictMode
-    ntp: NtpDictMode
-    object: ObjectDictMode
-    os: OsDictMode
-    password_policy_conform: PasswordPolicyConformDictMode
-    performance: PerformanceDictMode
-    private_data_encryption: PrivateDataEncryptionDictMode
-    process: ProcessDictMode
-    resource: ResourceDictMode
-    sandbox: SandboxDictMode
-    sdn_connector: SdnConnectorDictMode
-    time: Time
-    traffic_history: TrafficHistoryDictMode
-    upgrade_report: UpgradeReportDictMode
-    usb_device: UsbDeviceDictMode
-    usb_log: UsbLog
-    vmlicense: VmlicenseDictMode
-    acme_certificate_status: AcmeCertificateStatusDictMode
-    acquired_dns: AcquiredDnsDictMode
-    available_certificates: AvailableCertificatesDictMode
-    check_port_availability: CheckPortAvailabilityDictMode
-    current_admins: CurrentAdminsDictMode
-    global_resources: GlobalResourcesDictMode
-    global_search: GlobalSearchDictMode
-    ha_backup_hb_used: HaBackupHbUsedDictMode
-    ha_checksums: HaChecksumsDictMode
-    ha_history: HaHistoryDictMode
-    ha_hw_interface: HaHwInterfaceDictMode
-    ha_nonsync_checksums: HaNonsyncChecksumsDictMode
-    ha_statistics: HaStatisticsDictMode
-    ha_table_checksums: HaTableChecksumsDictMode
-    interface_connected_admins_info: InterfaceConnectedAdminsInfoDictMode
-    ipconf: IpconfDictMode
-    link_monitor: LinkMonitorDictMode
-    modem3g: Modem3gDictMode
-    monitor_sensor: MonitorSensorDictMode
-    resolve_fqdn: ResolveFqdnDictMode
-    running_processes: RunningProcessesDictMode
-    sensor_info: SensorInfoDictMode
-    status: StatusDictMode
-    storage: StorageDictMode
-    timezone: TimezoneDictMode
-    trusted_cert_authorities: TrustedCertAuthoritiesDictMode
-    vdom_link: VdomLinkDictMode
-    vdom_resource: VdomResourceDictMode
-    vm_information: VmInformationDictMode
 
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize system category with HTTP client."""
-        ...
-
-
-class SystemObjectMode:
-    """SYSTEM API category for object response mode.
-    
-    This class is returned when the client is instantiated with response_mode="object".
-    All endpoints return FortiObject responses by default.
-    """
-    
-    admin: AdminObjectMode
-    api_user: ApiUserObjectMode
-    automation_action: AutomationActionObjectMode
-    automation_stitch: AutomationStitchObjectMode
-    available_interfaces: AvailableInterfaces
-    botnet: Botnet
-    botnet_domains: BotnetDomains
-    central_management: CentralManagementObjectMode
-    certificate: CertificateObjectMode
-    change_password: ChangePasswordObjectMode
-    cluster: ClusterObjectMode
-    com_log: ComLogObjectMode
-    config: ConfigObjectMode
-    config_error_log: ConfigErrorLogObjectMode
-    config_revision: ConfigRevision
-    config_script: ConfigScript
-    config_sync: ConfigSyncObjectMode
-    crash_log: CrashLogObjectMode
-    csf: Csf
-    debug: DebugObjectMode
-    dhcp: Dhcp
-    dhcp6: Dhcp6ObjectMode
-    disconnect_admins: DisconnectAdminsObjectMode
-    external_resource: ExternalResourceObjectMode
-    firmware: Firmware
-    fortiguard: FortiguardObjectMode
-    fortimanager: FortimanagerObjectMode
-    fsck: FsckObjectMode
-    ha_peer: HaPeer
-    hscalefw_license: HscalefwLicenseObjectMode
-    interface: Interface
-    ipam: IpamObjectMode
-    logdisk: LogdiskObjectMode
-    lte_modem: LteModemObjectMode
-    modem: Modem
-    modem5g: Modem5gObjectMode
-    ntp: NtpObjectMode
-    object: ObjectObjectMode
-    os: OsObjectMode
-    password_policy_conform: PasswordPolicyConformObjectMode
-    performance: PerformanceObjectMode
-    private_data_encryption: PrivateDataEncryptionObjectMode
-    process: ProcessObjectMode
-    resource: ResourceObjectMode
-    sandbox: SandboxObjectMode
-    sdn_connector: SdnConnectorObjectMode
-    time: Time
-    traffic_history: TrafficHistoryObjectMode
-    upgrade_report: UpgradeReportObjectMode
-    usb_device: UsbDeviceObjectMode
-    usb_log: UsbLog
-    vmlicense: VmlicenseObjectMode
-    acme_certificate_status: AcmeCertificateStatusObjectMode
-    acquired_dns: AcquiredDnsObjectMode
-    available_certificates: AvailableCertificatesObjectMode
-    check_port_availability: CheckPortAvailabilityObjectMode
-    current_admins: CurrentAdminsObjectMode
-    global_resources: GlobalResourcesObjectMode
-    global_search: GlobalSearchObjectMode
-    ha_backup_hb_used: HaBackupHbUsedObjectMode
-    ha_checksums: HaChecksumsObjectMode
-    ha_history: HaHistoryObjectMode
-    ha_hw_interface: HaHwInterfaceObjectMode
-    ha_nonsync_checksums: HaNonsyncChecksumsObjectMode
-    ha_statistics: HaStatisticsObjectMode
-    ha_table_checksums: HaTableChecksumsObjectMode
-    interface_connected_admins_info: InterfaceConnectedAdminsInfoObjectMode
-    ipconf: IpconfObjectMode
-    link_monitor: LinkMonitorObjectMode
-    modem3g: Modem3gObjectMode
-    monitor_sensor: MonitorSensorObjectMode
-    resolve_fqdn: ResolveFqdnObjectMode
-    running_processes: RunningProcessesObjectMode
-    sensor_info: SensorInfoObjectMode
-    status: StatusObjectMode
-    storage: StorageObjectMode
-    timezone: TimezoneObjectMode
-    trusted_cert_authorities: TrustedCertAuthoritiesObjectMode
-    vdom_link: VdomLinkObjectMode
-    vdom_resource: VdomResourceObjectMode
-    vm_information: VmInformationObjectMode
-
-    def __init__(self, client: IHTTPClient, vdom: str | None = None) -> None:
-        """Initialize system category with HTTP client."""
-        ...
-
-
-# Base class for backwards compatibility
 class System:
-    """SYSTEM API category."""
+    """SYSTEM API category.
+    
+    All endpoints return FortiObject instances with:
+    - Attribute access: response.field
+    - Dictionary access: response["field"]
+    - Convert to dict: response.dict or response.json
+    """
     
     admin: Admin
     api_user: ApiUser

@@ -284,7 +284,7 @@ class SdwanFailalertinterfacesObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -313,7 +313,7 @@ class SdwanZoneObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -372,7 +372,7 @@ class SdwanMembersObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -501,7 +501,7 @@ class SdwanHealthcheckObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -652,7 +652,7 @@ class SdwanServiceObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -689,7 +689,7 @@ class SdwanNeighborObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -732,7 +732,7 @@ class SdwanDuplicationObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -834,12 +834,11 @@ class Sdwan:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -853,9 +852,9 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> SdwanResponse: ...
+    ) -> SdwanObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -870,9 +869,9 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> SdwanResponse: ...
+    ) -> SdwanObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -886,13 +885,13 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> SdwanResponse: ...
+    ) -> SdwanObject: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -908,11 +907,10 @@ class Sdwan:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdwanObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -928,11 +926,10 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdwanObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -947,7 +944,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdwanObject: ...
     
@@ -966,7 +962,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -985,9 +980,8 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> SdwanResponse: ...
+    ) -> SdwanObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -1005,9 +999,8 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> SdwanResponse: ...
+    ) -> SdwanObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -1024,9 +1017,8 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> SdwanResponse: ...
+    ) -> SdwanObject: ...
     
     # Fallback overload for all other cases
     @overload
@@ -1043,7 +1035,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
@@ -1060,7 +1051,6 @@ class Sdwan:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> SdwanObject | dict[str, Any]: ...
     
@@ -1068,7 +1058,7 @@ class Sdwan:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -1094,7 +1084,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> SdwanObject: ...
     
@@ -1121,7 +1110,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1152,7 +1140,7 @@ class Sdwan:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -1200,7 +1188,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1232,7 +1219,6 @@ class Sdwan:
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -1244,7 +1230,7 @@ class Sdwan:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -1253,584 +1239,18 @@ class Sdwan:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class SdwanDictMode:
-    """Sdwan endpoint for dict response mode (default for this client).
-    
-    By default returns SdwanResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return SdwanObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdwanObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdwanObject: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> SdwanResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> SdwanResponse: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdwanObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class SdwanObjectMode:
-    """Sdwan endpoint for object response mode (default for this client).
-    
-    By default returns SdwanObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return SdwanResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> SdwanResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> SdwanResponse: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> SdwanObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> SdwanObject: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> SdwanObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> SdwanObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Sdwan",
-    "SdwanDictMode",
-    "SdwanObjectMode",
     "SdwanPayload",
+    "SdwanResponse",
     "SdwanObject",
 ]

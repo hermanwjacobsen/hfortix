@@ -90,7 +90,7 @@ class DnsServerhostnameObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -111,7 +111,7 @@ class DnsDomainObject:
     
     # Methods from FortiObject
     def get_full(self, name: str) -> Any: ...
-    def to_dict(self) -> dict[str, Any]: ...
+    def to_dict(self) -> FortiObject: ...
     def keys(self) -> Any: ...
     def values(self) -> Generator[Any, None, None]: ...
     def items(self) -> Generator[tuple[str, Any], None, None]: ...
@@ -246,12 +246,11 @@ class Dns:
     """
     
     # ================================================================
-    # DEFAULT MODE OVERLOADS (no response_mode) - MUST BE FIRST
-    # These match when response_mode is NOT passed (client default is "dict")
+    # GET OVERLOADS - Always returns FortiObject
     # Pylance matches overloads top-to-bottom, so these must come first!
     # ================================================================
     
-    # Default mode: mkey as positional arg -> returns typed dict
+    # With mkey as positional arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -265,9 +264,9 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DnsResponse: ...
+    ) -> DnsObject: ...
     
-    # Default mode: mkey as keyword arg -> returns typed dict
+    # With mkey as keyword arg -> returns FortiObject
     @overload
     def get(
         self,
@@ -282,9 +281,9 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DnsResponse: ...
+    ) -> DnsObject: ...
     
-    # Default mode: no mkey -> returns list of typed dicts
+    # Without mkey -> returns list of FortiObjects
     @overload
     def get(
         self,
@@ -298,13 +297,13 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> DnsResponse: ...
+    ) -> DnsObject: ...
     
     # ================================================================
-    # EXPLICIT response_mode="object" OVERLOADS
+    # (removed - all GET now returns FortiObject)
     # ================================================================
     
-    # Object mode: mkey as positional arg -> returns single object
+    # With mkey as positional arg -> returns single object
     @overload
     def get(
         self,
@@ -320,11 +319,10 @@ class Dns:
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
         *,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DnsObject: ...
     
-    # Object mode: mkey as keyword arg -> returns single object
+    # With mkey as keyword arg -> returns single object
     @overload
     def get(
         self,
@@ -340,11 +338,10 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DnsObject: ...
     
-    # Object mode: no mkey -> returns list of objects
+    # With no mkey -> returns list of objects
     @overload
     def get(
         self,
@@ -359,7 +356,6 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DnsObject: ...
     
@@ -378,7 +374,6 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[True] = ...,
-        response_mode: Literal["object"] = ...,
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
@@ -397,9 +392,8 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DnsResponse: ...
+    ) -> DnsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
     @overload
@@ -417,9 +411,8 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DnsResponse: ...
+    ) -> DnsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
     @overload
@@ -436,9 +429,8 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] = ...,
         **kwargs: Any,
-    ) -> DnsResponse: ...
+    ) -> DnsObject: ...
     
     # Fallback overload for all other cases
     @overload
@@ -455,7 +447,6 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> dict[str, Any] | FortiObject: ...
     
@@ -472,7 +463,6 @@ class Dns:
         action: str | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: str | None = ...,
         **kwargs: Any,
     ) -> DnsObject | dict[str, Any]: ...
     
@@ -480,7 +470,7 @@ class Dns:
         self,
         vdom: str | None = ...,
         format: str = ...,
-    ) -> dict[str, Any]: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -517,7 +507,6 @@ class Dns:
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["object"],
         **kwargs: Any,
     ) -> DnsObject: ...
     
@@ -555,7 +544,6 @@ class Dns:
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: Literal[False] = ...,
-        response_mode: Literal["dict"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -597,7 +585,7 @@ class Dns:
         **kwargs: Any,
     ) -> RawAPIResponse: ...
     
-    # Default overload (no response_mode or raw_json specified)
+    # Default overload
     @overload
     def put(
         self,
@@ -667,7 +655,6 @@ class Dns:
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -710,7 +697,6 @@ class Dns:
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
         raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
         **kwargs: Any,
     ) -> MutationResponse: ...
     
@@ -722,7 +708,7 @@ class Dns:
     def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
     
     @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
+    def field_info(field_name: str) -> FortiObject: ...
     
     @staticmethod
     def validate_field(name: str, value: Any) -> bool: ...
@@ -731,705 +717,18 @@ class Dns:
     def required_fields() -> list[str]: ...
     
     @staticmethod
-    def defaults() -> dict[str, Any]: ...
+    def defaults() -> FortiObject: ...
     
     @staticmethod
-    def schema() -> dict[str, Any]: ...
+    def schema() -> FortiObject: ...
 
 
 # ================================================================
-# MODE-SPECIFIC CLASSES FOR CLIENT-LEVEL response_mode SUPPORT
-# ================================================================
-
-class DnsDictMode:
-    """Dns endpoint for dict response mode (default for this client).
-    
-    By default returns DnsResponse (TypedDict).
-    Can be overridden per-call with response_mode="object" to return DnsObject.
-    """
-    
-    # raw_json=True returns RawAPIResponse regardless of response_mode
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Object mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DnsObject: ...
-    
-    # Object mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DnsObject: ...
-    
-    # Dict mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> DnsResponse: ...
-    
-    # Dict mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict"] | None = ...,
-        **kwargs: Any,
-    ) -> DnsResponse: ...
-
-
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DnsObject: ...
-    
-    # PUT - Default overload (returns MutationResponse)
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # PUT - Dict mode (default for DictMode class)
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
-
-
-class DnsObjectMode:
-    """Dns endpoint for object response mode (default for this client).
-    
-    By default returns DnsObject (FortiObject).
-    Can be overridden per-call with response_mode="dict" to return DnsResponse (TypedDict).
-    """
-    
-    # raw_json=True returns RawAPIResponse for GET
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # Dict mode override with mkey (single item)
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> DnsResponse: ...
-    
-    # Dict mode override without mkey (list)
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> DnsResponse: ...
-    
-    # Object mode with mkey (single item) - default
-    @overload
-    def get(
-        self,
-        name: str,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> DnsObject: ...
-    
-    # Object mode without mkey (list) - default
-    @overload
-    def get(
-        self,
-        name: None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["object"] | None = ...,
-        **kwargs: Any,
-    ) -> DnsObject: ...
-
-
-    # PUT - Dict mode override
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["dict"],
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    # raw_json=True returns RawAPIResponse for PUT
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        raw_json: Literal[True],
-        **kwargs: Any,
-    ) -> RawAPIResponse: ...
-    
-    # PUT - Object mode override (requires explicit response_mode="object")
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        *,
-        response_mode: Literal["object"],
-        **kwargs: Any,
-    ) -> DnsObject: ...
-    
-    # PUT - Default overload (no response_mode specified, returns Object for ObjectMode)
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> DnsObject: ...
-    
-    # PUT - Default for ObjectMode (returns MutationResponse like DictMode)
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-
-
-    # Helper methods (inherited from base class)
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = ...,
-    ) -> bool: ...
-    
-    def set(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: bool = ...,
-        response_mode: Literal["dict", "object"] | None = ...,
-        **kwargs: Any,
-    ) -> MutationResponse: ...
-    
-    @staticmethod
-    def help(field_name: str | None = ...) -> str: ...
-    
-    @staticmethod
-    def fields(detailed: bool = ...) -> Union[list[str], list[dict[str, Any]]]: ...
-    
-    @staticmethod
-    def field_info(field_name: str) -> dict[str, Any]: ...
-    
-    @staticmethod
-    def validate_field(name: str, value: Any) -> bool: ...
-    
-    @staticmethod
-    def required_fields() -> list[str]: ...
-    
-    @staticmethod
-    def defaults() -> dict[str, Any]: ...
-    
-    @staticmethod
-    def schema() -> dict[str, Any]: ...
 
 
 __all__ = [
     "Dns",
-    "DnsDictMode",
-    "DnsObjectMode",
     "DnsPayload",
+    "DnsResponse",
     "DnsObject",
 ]

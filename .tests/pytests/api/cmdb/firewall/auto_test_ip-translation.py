@@ -27,7 +27,7 @@ class TestAutoIpTranslationGet:
     def auto_test_get_list_all(self):
         """Test GET - list all ip-translation items."""
         try:
-            result = endpoint.get(response_mode="dict")
+            result = endpoint.get()
         except Exception as e:
             # HTTP 400/404/405/424/500/503 means feature not available/enabled, method not supported, or server error
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
@@ -43,14 +43,16 @@ class TestAutoIpTranslationGet:
         # If items exist, verify structure
         if len(result) > 0:
             item = result[0]
-            assert "transid" in item
-            print(f"   First item transid: {item.get('transid', 'N/A')}")
+            # Access via attribute (FortiObject)
+            assert hasattr(item, "transid")
+            mkey_value = getattr(item, "transid", "N/A")
+            print(f"   First item transid: {mkey_value}")
     
     def auto_test_get_specific_item(self):
         """Test GET - retrieve specific ip-translation by transid."""
         # First get all items to find one to test with
         try:
-            all_items = endpoint.get(response_mode="dict")
+            all_items = endpoint.get()
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
                 pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
@@ -60,20 +62,20 @@ class TestAutoIpTranslationGet:
             pytest.skip("No existing ip-translation items to test with")
         
         # Get first item's transid
-        mkey_value = all_items[0]["transid"]
+        mkey_value = getattr(all_items[0], "transid")
         
         # Get specific item
-        result = endpoint.get(transid=mkey_value, response_mode="dict")
+        result = endpoint.get(transid=mkey_value)
         
-        # Since v0.5.33: querying by mkey returns single dict, not list
-        assert isinstance(result, dict)
-        assert result["transid"] == mkey_value
+        # Since v0.5.33: querying by mkey returns single FortiObject, not list
+        assert hasattr(result, "__dict__")  # FortiObject
+        assert getattr(result, "transid") == mkey_value
         print(f"✅ Retrieved ip-translation transid={mkey_value}")
     
     def auto_test_get_with_vdom(self):
         """Test GET - with vdom parameter."""
         try:
-            result = endpoint.get(vdom="root", response_mode="dict")
+            result = endpoint.get(vdom="root")
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
                 pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
@@ -89,7 +91,6 @@ class TestAutoIpTranslationGet:
             result = endpoint.get(
                 filter="",  # No filter (get all)
                 q_format="name|transid",  # Limit fields
-                response_mode="dict",
             )
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
@@ -109,7 +110,7 @@ class TestAutoIpTranslationExists:
         """Test exists() helper method."""
         # Get existing items
         try:
-            all_items = endpoint.get(response_mode="dict")
+            all_items = endpoint.get()
         except Exception as e:
             if any(code in str(e) for code in ["400", "404", "405", "424", "500", "503", "Bad Request", "Not Found", "Method Not Allowed", "Failed Dependency", "Internal Server Error", "Service Unavailable"]):
                 pytest.skip(f"Endpoint not available (feature may not be enabled, method not supported, or server error): {e}")
@@ -117,7 +118,7 @@ class TestAutoIpTranslationExists:
         
         if all_items and len(all_items) > 0:
             # Test with existing item
-            mkey_value = all_items[0]["transid"]
+            mkey_value = getattr(all_items[0], "transid")
             exists = endpoint.exists(transid=mkey_value)
             assert exists is True
             print(f"✅ exists(transid={mkey_value}) = True")
