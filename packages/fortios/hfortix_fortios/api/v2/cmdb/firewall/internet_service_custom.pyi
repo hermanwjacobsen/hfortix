@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -368,7 +367,7 @@ class InternetServiceCustom:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -380,7 +379,7 @@ class InternetServiceCustom:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -390,7 +389,7 @@ class InternetServiceCustom:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -413,7 +412,7 @@ class InternetServiceCustom:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -425,7 +424,7 @@ class InternetServiceCustom:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -435,7 +434,7 @@ class InternetServiceCustom:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -450,7 +449,7 @@ class InternetServiceCustom:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -458,13 +457,13 @@ class InternetServiceCustom:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -480,7 +479,7 @@ class InternetServiceCustom:
         comment: str | None = ...,
         entry: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

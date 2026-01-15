@@ -64,18 +64,100 @@ class FortiObject(Generic[_DataT]):
     """
 
     _data: dict[str, Any]
+    _raw_envelope: dict[str, Any] | None
+    _response_time: float | None
 
-    # Common API response fields (present in most responses, autocomplete available)
-    status: str  # "success" or "error"
-    http_status: int | None  # HTTP status code
-    error: int | None  # Error code (when status="error")
-    error_description: str | None  # Error message
-    vdom: str | None  # Virtual domain
-    serial: str | None  # Device serial number
-    version: str | None  # API version
-    build: int | None  # Firmware build number
+    # ========================================================================
+    # Explicit envelope properties (for autocomplete - these are common fields)
+    # ========================================================================
 
-    def __init__(self, data: dict[str, Any]) -> None:
+    @property
+    def http_status(self) -> int | None:
+        """HTTP status code (200, 404, 500, etc.)."""
+        ...
+
+    @property
+    def status(self) -> str | None:
+        """API response status ('success' or 'error')."""
+        ...
+
+    @property
+    def http_method(self) -> str | None:
+        """HTTP method used (GET, POST, PUT, DELETE)."""
+        ...
+
+    @property
+    def vdom(self) -> str | None:
+        """Virtual domain name."""
+        ...
+
+    @property
+    def mkey(self) -> str | int | None:
+        """Primary key (mkey) of created/modified object."""
+        ...
+
+    @property
+    def revision(self) -> str | None:
+        """Configuration revision number."""
+        ...
+
+    @property
+    def serial(self) -> str | None:
+        """Device serial number."""
+        ...
+
+    @property
+    def version(self) -> str | None:
+        """FortiOS version string (e.g., 'v7.6.5')."""
+        ...
+
+    @property
+    def build(self) -> int | None:
+        """FortiOS firmware build number."""
+        ...
+
+    @property
+    def http_response_time(self) -> float | None:
+        """
+        Response time in milliseconds for this API request.
+        
+        Returns None if timing was not tracked.
+        
+        Examples:
+            >>> result = fgt.api.cmdb.firewall.address.get()
+            >>> print(f"Query took {result.http_response_time:.1f}ms")
+            Query took 45.2ms
+        """
+        ...
+
+    @property
+    def http_stats(self) -> dict[str, Any]:
+        """
+        HTTP request/response statistics summary.
+        
+        Returns a dictionary with key HTTP stats for debugging and monitoring.
+        
+        Returns:
+            Dictionary with:
+                - status_code: HTTP status code (200, 404, etc.)
+                - response_time_ms: Response time in milliseconds
+                - method: HTTP method (GET, POST, PUT, DELETE)
+                - status: API status ('success' or 'error')
+                - vdom: Virtual domain name
+        
+        Examples:
+            >>> result = fgt.api.cmdb.firewall.address.get()
+            >>> print(result.http_stats)
+            {'status_code': 200, 'response_time_ms': 45.2, 'method': 'GET', 'status': 'success', 'vdom': 'root'}
+        """
+        ...
+
+    def __init__(
+        self,
+        data: dict[str, Any],
+        raw_envelope: dict[str, Any] | None = None,
+        response_time: float | None = None,
+    ) -> None:
         """
         Initialize FortiObject with API response data.
 
@@ -185,18 +267,21 @@ class FortiObject(Generic[_DataT]):
     @property
     def raw(self) -> dict[str, Any]:
         """
-        Get the raw API response data.
+        Get the raw/full API response envelope.
 
-        For most responses, this is identical to `.dict` and `.json`.
-        Reserved for future use if we need to store additional metadata.
+        Returns the complete API response including metadata like http_status,
+        status, vdom, revision, etc. Use this when you need to check response
+        status or access envelope-level information.
 
         Returns:
-            Original API response dictionary
+            Full API response envelope dictionary
 
         Examples:
             >>> policy = fgt.api.cmdb.firewall.policy.get(policyid=1)
             >>> policy.raw
-            {'policyid': 1, 'name': 'my-policy', ...}
+            {'http_status': 200, 'status': 'success', 'vdom': 'root', 'results': {...}}
+            >>> policy.raw['status']
+            'success'
         """
         ...
 
@@ -334,6 +419,8 @@ class FortiObjectList(list[_ObjectT], Generic[_ObjectT]):
         dict: Returns list of dictionaries (each FortiObject as dict)
         json: Returns pretty-printed JSON string  
         raw: Returns the full API response envelope
+        response_time: Response time in seconds
+        response_time_ms: Response time in milliseconds
     
     Examples:
         >>> policies = fgt.api.cmdb.firewall.policy.get()
@@ -357,14 +444,20 @@ class FortiObjectList(list[_ObjectT], Generic[_ObjectT]):
         >>> # Get full API envelope with metadata
         >>> policies.raw
         {'http_status': 200, 'vdom': 'root', 'results': [...], ...}
+        >>>
+        >>> # Check response timing
+        >>> print(f"Query took {policies.response_time_ms:.1f}ms")
+        Query took 125.3ms
     """
     
     _raw_envelope: dict[str, Any] | None
+    _response_time: float | None
     
     def __init__(
         self, 
         items: list[_ObjectT] | None = None, 
-        raw_envelope: dict[str, Any] | None = None
+        raw_envelope: dict[str, Any] | None = None,
+        response_time: float | None = None,
     ) -> None:
         """
         Initialize FortiObjectList.
@@ -372,7 +465,73 @@ class FortiObjectList(list[_ObjectT], Generic[_ObjectT]):
         Args:
             items: List of FortiObject instances or other items
             raw_envelope: The full API response envelope (optional)
+            response_time: Response time in seconds (optional)
         """
+        ...
+
+    # ========================================================================
+    # Response timing properties
+    # ========================================================================
+
+    @property
+    def http_response_time(self) -> float | None:
+        """Response time in milliseconds for this API request."""
+        ...
+
+    @property
+    def http_stats(self) -> dict[str, Any]:
+        """
+        HTTP request/response statistics summary.
+        
+        Returns a dictionary with key HTTP stats for debugging and monitoring.
+        
+        Returns:
+            Dictionary with:
+                - status_code: HTTP status code (200, 404, etc.)
+                - response_time_ms: Response time in milliseconds
+                - method: HTTP method (GET, POST, PUT, DELETE)
+                - status: API status ('success' or 'error')
+                - vdom: Virtual domain name
+        """
+        ...
+
+    # ========================================================================
+    # Envelope properties (common API response fields)
+    # ========================================================================
+
+    @property
+    def http_status(self) -> int | None:
+        """HTTP status code (200, 404, 500, etc.)."""
+        ...
+
+    @property
+    def status(self) -> str | None:
+        """API response status ('success' or 'error')."""
+        ...
+
+    @property
+    def http_method(self) -> str | None:
+        """HTTP method used (GET, POST, PUT, DELETE)."""
+        ...
+
+    @property
+    def vdom(self) -> str | None:
+        """Virtual domain name."""
+        ...
+
+    @property
+    def serial(self) -> str | None:
+        """Device serial number."""
+        ...
+
+    @property
+    def version(self) -> str | None:
+        """FortiOS version string (e.g., 'v7.6.5')."""
+        ...
+
+    @property
+    def build(self) -> int | None:
+        """FortiOS firmware build number."""
         ...
     
     @property
@@ -419,6 +578,7 @@ def process_response(
     result: list[dict[str, Any]],
     unwrap_single: Literal[False] = False,
     raw_envelope: dict[str, Any] | None = None,
+    response_time: float | None = None,
 ) -> FortiObjectList:
     """Process list response - returns FortiObjectList."""
     ...
@@ -428,6 +588,7 @@ def process_response(
     result: list[dict[str, Any]],
     unwrap_single: Literal[True],
     raw_envelope: dict[str, Any] | None = None,
+    response_time: float | None = None,
 ) -> FortiObject:
     """Process list response with unwrap_single - returns single FortiObject."""
     ...
@@ -437,6 +598,7 @@ def process_response(
     result: dict[str, Any],
     unwrap_single: bool = False,
     raw_envelope: dict[str, Any] | None = None,
+    response_time: float | None = None,
 ) -> FortiObject | FortiObjectList:
     """Process dict response - may return FortiObject or FortiObjectList."""
     ...
@@ -447,6 +609,7 @@ def process_response(
     result: Any,
     unwrap_single: bool = False,
     raw_envelope: dict[str, Any] | None = None,
+    response_time: float | None = None,
 ) -> Any:
     """Fallback for non-dict/list types - returns result as-is."""
     ...
@@ -455,6 +618,7 @@ def process_response(
     result: Any,
     unwrap_single: bool = False,
     raw_envelope: dict[str, Any] | None = None,
+    response_time: float | None = None,
 ) -> Any:
     """
     Process API response - always returns FortiObject instances.
@@ -463,6 +627,7 @@ def process_response(
         result: Raw API response (list or dict)
         unwrap_single: If True and result is single-item list, return just the item
         raw_envelope: Optional full API envelope to attach to FortiObjectList
+        response_time: Optional response time in seconds for the HTTP request
 
     Returns:
         Processed response - FortiObject, FortiObjectList, or dict with FortiObjects

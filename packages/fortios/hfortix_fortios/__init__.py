@@ -51,6 +51,13 @@ from .formatting import to_csv, to_dict, to_json, to_multiline, to_quoted
 from .help import help
 from .models import FortiObject, FortiObjectList
 
+# FortiManager proxy support
+from .fmg_proxy import (
+    FortiManagerProxy,
+    ProxyResponse,
+    DeviceResult,
+)
+
 # Import type definitions for IDE support
 from .types import (
     ActionType,
@@ -65,7 +72,7 @@ from .types import (
     StatusType,
 )
 
-__version__ = "0.5.75"
+__version__ = "0.5.76"
 
 __all__ = [
     # Main client
@@ -73,6 +80,10 @@ __all__ = [
     "FortiObject",
     "FortiObjectList",
     "configure_logging",
+    # FortiManager proxy
+    "FortiManagerProxy",
+    "ProxyResponse",
+    "DeviceResult",
     # Formatting utilities
     "to_json",
     "to_csv",

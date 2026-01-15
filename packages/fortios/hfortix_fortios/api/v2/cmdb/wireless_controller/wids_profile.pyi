@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -1068,7 +1067,7 @@ class WidsProfile:
         air_jack: Literal["enable", "disable"] | None = ...,
         wpa_ft_attack: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -1186,7 +1185,7 @@ class WidsProfile:
         air_jack: Literal["enable", "disable"] | None = ...,
         wpa_ft_attack: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -1302,7 +1301,7 @@ class WidsProfile:
         air_jack: Literal["enable", "disable"] | None = ...,
         wpa_ft_attack: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -1537,7 +1536,7 @@ class WidsProfile:
         air_jack: Literal["enable", "disable"] | None = ...,
         wpa_ft_attack: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -1655,7 +1654,7 @@ class WidsProfile:
         air_jack: Literal["enable", "disable"] | None = ...,
         wpa_ft_attack: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -1771,7 +1770,7 @@ class WidsProfile:
         air_jack: Literal["enable", "disable"] | None = ...,
         wpa_ft_attack: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -1786,7 +1785,7 @@ class WidsProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -1794,13 +1793,13 @@ class WidsProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -1922,7 +1921,7 @@ class WidsProfile:
         air_jack: Literal["enable", "disable"] | None = ...,
         wpa_ft_attack: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

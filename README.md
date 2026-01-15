@@ -9,9 +9,9 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ## 🎯 Current Status
 
-> **⚠️ BETA STATUS - Version 0.5.57**
+> **⚠️ BETA STATUS - Version 0.5.76**
 >
-> - **Current Version**: 0.5.57 (Released - January 14, 2026)
+> - **Current Version**: 0.5.76 (Released - January 15, 2026)
 > - **Schema Version**: v1.7.0 (1,348 endpoints with enhanced metadata)
 > - **Package Size**: ~30 MB (optimized with MetadataMixin refactoring)
 > - **Implementation**: Advanced Features (100% complete) - Production ready!
@@ -51,12 +51,35 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - Documentation: ✅ 100%
 - Release: ✅ 100%
 
-**Latest Release:** v0.5.45 - Enhanced fmt module in core, improved type annotations, key normalization
+**Latest Release:** v0.5.76 - FortiManager Proxy Support, Enhanced Response Properties
 
 **Test Coverage:** **All endpoints tested and passing!** ✅
 **Status:** Ready for production use - comprehensive feature set complete!
 
 **🔥 Latest Improvements (January 2026):**
+
+**v0.5.76 - FortiManager Proxy Support & Response Enhancements:**
+- 🎯 **FortiManagerProxy**: Route FortiOS API calls through FortiManager!
+  - Proxy API requests to managed FortiGate devices
+  - Full ADOM and device targeting support
+  - Session-based authentication with FortiManager
+  - JSON-RPC protocol support for FMG API
+- 🔧 **HTTPClientFMG**: New HTTP client for FortiManager in `hfortix_core`
+  - Extends BaseHTTPClient with retry/circuit-breaker support
+  - Session-based login/logout with token caching
+  - Proxy request method for FMG's `/sys/proxy/json` endpoint
+- 📦 **ProxiedFortiOS**: FortiOS-like interface through FMG
+  - Same API patterns: `proxied_fgt.api.cmdb.firewall.address.get()`
+  - Automatic request translation to FMG JSON-RPC format
+  - Full response wrapping with timing and metadata
+- ⚡ **http_stats property**: Simplified timing access
+  - `obj.http_stats` returns `{"http_response_time": 123.5}` (in milliseconds)
+- ⏱️ **Response timing properties**: Track API performance
+  - `obj.response_time` - Response time in seconds (float)
+  - `obj.response_time_ms` - Response time in milliseconds (int)
+- 📊 **Explicit envelope properties**: Clear access to API metadata
+  - `obj.revision`, `obj.serial`, `obj.build`, `obj.version`
+- 🔕 **Silent 404 handling**: `exists()` returns `False` without printing errors
 
 **v0.5.45 - Formatting & Type Improvements:**
 - ✨ **fmt module in core**: `from hfortix_core import fmt` - 13 formatting utilities

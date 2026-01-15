@@ -23,6 +23,7 @@ from .deprecation import (
     check_deprecated_fields,
     warn_deprecated_field,
 )
+from .http import HTTPClientFMG
 from .exceptions import (
     APIError,
     AuthenticationError,
@@ -64,7 +65,7 @@ from .types import (
     RequestInfo,
 )
 
-__version__ = "0.5.75"
+__version__ = "0.5.76"
 
 __all__ = [
     # Cache utilities
@@ -118,4 +119,6 @@ __all__ = [
     "format_connection_stats",
     "format_request_info",
     "print_debug_info",
+    # HTTP clients
+    "HTTPClientFMG",
 ]

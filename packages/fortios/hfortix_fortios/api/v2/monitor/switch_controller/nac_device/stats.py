@@ -210,20 +210,35 @@ class Stats(CRUDEndpoint, MetadataMixin):
             >>> if not fgt.api.monitor.switch_controller_nac_device_stats.exists(name="myobj"):
             ...     fgt.api.monitor.switch_controller_nac_device_stats.post(payload_dict=data)
         """
-        # Try to fetch the object - 404 means it doesn't exist
+        # Use direct request with silent error handling to avoid logging 404s
+        # This is expected behavior for exists() - 404 just means "doesn't exist"
+        endpoint = "/switch_controller/nac_device/stats"
+        endpoint = f"{endpoint}/{quote_path_param(name)}"
+        
+        # Make request with silent=True to suppress 404 error logging
+        # (404 is expected when checking existence - it just means "doesn't exist")
+        # Use _wrapped_client to access the underlying HTTPClient directly
+        # (self._client is ResponseProcessingClient, _wrapped_client is HTTPClient)
         try:
-            result = self.get(
-                name=name,
-                vdom=vdom
+            result = self._client._wrapped_client.get(
+                "monitor",
+                endpoint,
+                params=None,
+                vdom=vdom,
+                raw_json=True,
+                silent=True,
             )
-            response = result.raw if hasattr(result, 'raw') else result
-            # Check if response indicates success
-            return is_success(response)
-        except Exception as e:
-            # 404 means object doesn't exist - return False
-            # Any other error should be re-raised
-            error_str = str(e)
-            if '404' in error_str or 'Not Found' in error_str or 'ResourceNotFoundError' in str(type(e)):
-                return False
-            raise
+            
+            if isinstance(result, dict):
+                # Synchronous response - check status
+                return result.get("status") == "success"
+            else:
+                # Asynchronous response
+                async def _check() -> bool:
+                    r = await result
+                    return r.get("status") == "success"
+                return _check()
+        except Exception:
+            # Any error (404, network, etc.) means we can't confirm existence
+            return False
 

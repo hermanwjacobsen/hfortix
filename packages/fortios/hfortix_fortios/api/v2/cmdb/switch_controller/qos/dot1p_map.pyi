@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -348,7 +347,7 @@ class Dot1pMap:
         priority_6: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         priority_7: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -367,7 +366,7 @@ class Dot1pMap:
         priority_6: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         priority_7: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -384,7 +383,7 @@ class Dot1pMap:
         priority_6: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         priority_7: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -421,7 +420,7 @@ class Dot1pMap:
         priority_6: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         priority_7: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -440,7 +439,7 @@ class Dot1pMap:
         priority_6: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         priority_7: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -457,7 +456,7 @@ class Dot1pMap:
         priority_6: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         priority_7: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -472,7 +471,7 @@ class Dot1pMap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -480,13 +479,13 @@ class Dot1pMap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -509,7 +508,7 @@ class Dot1pMap:
         priority_6: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         priority_7: Literal["queue-0", "queue-1", "queue-2", "queue-3", "queue-4", "queue-5", "queue-6", "queue-7"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -467,7 +466,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -498,7 +497,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -527,7 +526,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -588,7 +587,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -619,7 +618,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -648,7 +647,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -663,7 +662,7 @@ class X8021x:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -671,13 +670,13 @@ class X8021x:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -712,7 +711,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -672,7 +671,7 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -709,7 +708,7 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -744,7 +743,7 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -817,7 +816,7 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -854,7 +853,7 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -889,7 +888,7 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -904,7 +903,7 @@ class SslSshProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -912,13 +911,13 @@ class SslSshProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -959,7 +958,7 @@ class SslSshProfile:
         mapi_over_https: Literal["enable", "disable"] | None = ...,
         supported_alpn: Literal["http1-1", "http2", "all", "none"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

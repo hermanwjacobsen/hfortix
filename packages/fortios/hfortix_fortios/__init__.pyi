@@ -7,6 +7,11 @@ from .client import FortiOS as FortiOS
 from .models import FortiObject as FortiObject
 from .models import FortiObjectList as FortiObjectList
 
+# FortiManager proxy support
+from .fmg_proxy import FortiManagerProxy as FortiManagerProxy
+from .fmg_proxy import ProxyResponse as ProxyResponse
+from .fmg_proxy import DeviceResult as DeviceResult
+
 # API categories (accessed via FortiOS instance, not imported directly)
 # These are exposed in __all__ for documentation but accessed as client.cmdb, client.log, etc.
 from .api import CMDB as CMDB
@@ -71,6 +76,10 @@ __all__ = [
     "FortiObject",
     "FortiObjectList",
     "configure_logging",
+    # FortiManager proxy
+    "FortiManagerProxy",
+    "ProxyResponse",
+    "DeviceResult",
     # Formatting utilities
     "to_json",
     "to_csv",

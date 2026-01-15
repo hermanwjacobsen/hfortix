@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -323,7 +322,7 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -337,7 +336,7 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -349,7 +348,7 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -376,7 +375,7 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -390,7 +389,7 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -402,7 +401,7 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -417,7 +416,7 @@ class IpipTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -425,13 +424,13 @@ class IpipTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -449,7 +448,7 @@ class IpipTunnel:
         use_sdwan: Literal["disable", "enable"] | None = ...,
         auto_asic_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

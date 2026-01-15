@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Any, Literal, Optional
+from typing import Any, Literal, Optional, Union, overload
 
 from hfortix_core.http.interface import IHTTPClient
+from hfortix_core.audit import AuditHandler
 from hfortix_fortios.api import API
 
 class FortiOS:
@@ -17,37 +18,88 @@ class FortiOS:
     - Get raw response: response.raw
     """
 
+    @overload
     def __init__(
         self,
-        host: str,
+        host: str | None = None,
         token: str | None = None,
         *,
         username: str | None = None,
         password: str | None = None,
-        port: int = 443,
+        client: IHTTPClient | None = None,
+        mode: Literal["sync"] = "sync",
         verify: bool = True,
-        timeout: float = 30.0,
         vdom: str | None = None,
+        port: int | None = None,
+        debug: str | bool | None = None,
+        debug_options: dict[str, Any] | None = None,
+        max_retries: int = 3,
+        connect_timeout: float = 10.0,
+        read_timeout: float = 300.0,
+        user_agent: str | None = None,
+        circuit_breaker_threshold: int = 10,
+        circuit_breaker_timeout: float = 30.0,
+        circuit_breaker_auto_retry: bool = False,
+        circuit_breaker_max_retries: int = 3,
+        circuit_breaker_retry_delay: float = 5.0,
+        max_connections: int = 10,
+        max_keepalive_connections: int = 5,
+        session_idle_timeout: int | float | None = 300,
+        read_only: bool = False,
+        track_operations: bool = False,
+        adaptive_retry: bool = False,
+        retry_strategy: Literal["exponential", "linear"] = "exponential",
+        retry_jitter: bool = False,
         error_mode: Literal["raise", "return", "print"] = "raise",
         error_format: Literal["detailed", "simple", "code_only"] = "detailed",
-        http_client: IHTTPClient | None = None,
+        audit_handler: AuditHandler | None = None,
+        audit_callback: Any | None = None,
+        user_context: dict[str, Any] | None = None,
+        trace_id: str | None = None,
     ) -> None:
-        """
-        Initialize FortiOS client.
+        """Initialize sync FortiOS client."""
+        ...
 
-        Args:
-            host: FortiGate hostname or IP address
-            token: API token for authentication
-            username: Username for username/password auth (alternative to token)
-            password: Password for username/password auth
-            port: HTTPS port (default: 443)
-            verify: Verify SSL certificate (default: True)
-            timeout: Request timeout in seconds (default: 30.0)
-            vdom: Default VDOM for all requests
-            error_mode: How to handle errors - "raise", "return", or "print"
-            error_format: Error message format - "detailed", "simple", or "code_only"
-            http_client: Custom HTTP client instance (optional)
-        """
+    @overload
+    def __init__(
+        self,
+        host: str | None = None,
+        token: str | None = None,
+        *,
+        username: str | None = None,
+        password: str | None = None,
+        client: IHTTPClient | None = None,
+        mode: Literal["async"],
+        verify: bool = True,
+        vdom: str | None = None,
+        port: int | None = None,
+        debug: str | bool | None = None,
+        debug_options: dict[str, Any] | None = None,
+        max_retries: int = 3,
+        connect_timeout: float = 10.0,
+        read_timeout: float = 300.0,
+        user_agent: str | None = None,
+        circuit_breaker_threshold: int = 10,
+        circuit_breaker_timeout: float = 30.0,
+        circuit_breaker_auto_retry: bool = False,
+        circuit_breaker_max_retries: int = 3,
+        circuit_breaker_retry_delay: float = 5.0,
+        max_connections: int = 10,
+        max_keepalive_connections: int = 5,
+        session_idle_timeout: int | float | None = 300,
+        read_only: bool = False,
+        track_operations: bool = False,
+        adaptive_retry: bool = False,
+        retry_strategy: Literal["exponential", "linear"] = "exponential",
+        retry_jitter: bool = False,
+        error_mode: Literal["raise", "return", "print"] = "raise",
+        error_format: Literal["detailed", "simple", "code_only"] = "detailed",
+        audit_handler: AuditHandler | None = None,
+        audit_callback: Any | None = None,
+        user_context: dict[str, Any] | None = None,
+        trace_id: str | None = None,
+    ) -> None:
+        """Initialize async FortiOS client."""
         ...
 
     @staticmethod

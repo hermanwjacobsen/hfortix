@@ -5,6 +5,76 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.76] - 2026-01-15
+
+### Added - **FortiManager Proxy Support**
+
+- ✅ **FortiManagerProxy client**: Route FortiOS API calls through FortiManager to managed devices
+- ✅ **HTTPClientFMG**: New HTTP client for FortiManager JSON-RPC API (in `hfortix_core`)
+- ✅ **Same FortiOS API**: Use the exact same `fgt.api.cmdb.*` and `fgt.api.monitor.*` patterns
+- ✅ **Full retry/circuit-breaker support**: Shares infrastructure with FortiOS HTTPClient
+
+**Usage:**
+```python
+from hfortix_fortios import FortiManagerProxy
+
+# Connect to FortiManager
+fmg = FortiManagerProxy(
+    host="fmg.example.com",
+    username="admin",
+    password="password",
+    adom="production",
+)
+
+# Get a proxied FortiOS client for a specific device
+fgt = fmg.proxy(device="firewall-01")
+
+# Use the exact same FortiOS API!
+addresses = fgt.api.cmdb.firewall.address.get()
+for addr in addresses:
+    print(f"{addr.name}: {addr.subnet}")
+```
+
+### Added - **Response Timing & Envelope Properties**
+
+- ✅ **Response timing**: `response_time` (seconds), `response_time_ms` (milliseconds), `http_stats` property
+- ✅ **Explicit envelope properties**: `http_method`, `http_status`, `status`, `vdom`, `mkey`, `revision`, `serial`, `version`, `build`
+- ✅ **FortiObjectList support**: Same properties available on list responses
+
+```python
+result = fgt.api.cmdb.firewall.address.get()
+print(f"Query took {result.response_time_ms:.1f}ms")
+print(result.http_stats)  # {'http_response_time': 206.4}
+```
+
+### Fixed - **Silent 404 for exists() Method**
+
+- ✅ **Silent 404 handling**: `exists()` no longer logs "Request failed: HTTP 404" messages
+- ✅ **Clean set() workflow**: No noisy 404 logs when checking existence before create/update
+
+### Fixed - **Mutation Methods Return FortiObject**
+
+- ✅ **Type stubs updated**: `post()`, `put()`, `delete()`, and `set()` now return `FortiObject` with full autocomplete
+- ✅ **Consistent API**: All endpoint methods return properly typed `FortiObject` instances
+
+### Fixed - **FortiObject.raw Property**
+
+- ✅ **Fixed `.raw` property**: Now returns the full API response envelope (with `status`, `http_status`, `vdom`, etc.)
+- ✅ **Fixed `exists()` method**: Properly detects existing objects
+- ✅ **Fixed `set()` method**: Now correctly uses `put()` for updates and `post()` for creates
+
+### Fixed - **Performance Test Utility and Client Type Stubs**
+
+- ✅ **Fixed `performance_test.py`**: Proper endpoint navigation including `monitor`/`cmdb` namespace
+- ✅ **Updated `client.pyi`**: Added all missing constructor parameters with proper `@overload`
+
+### Fixed - **Singleton Endpoint Response Handling**
+
+- ✅ **Fixed singleton endpoints**: Endpoints returning dict (not list) in `results` now wrap correctly
+- ✅ **Direct attribute access**: `result.mailto1` works for singleton endpoints
+
+---
+
 ## [0.5.75] - 2026-01-15
 
 ### Changed - **Improved Type Safety: Generic `FortiObjectList` for proper list iteration typing**

@@ -1,12 +1,10 @@
-# HFortix - Quick Reference (v0.5.57-beta)
+# HFortix - Quick Reference (v0.5.76-beta)
 
 ⚠️ **Breaking Changes in v0.5.0**: Convenience wrappers have been removed. Use direct API access via `fgt.api.*` instead.
 
-✨ **New in v0.5.57**: Major bug fixes for error handling, type stubs, and audit logging!
+✨ **New in v0.5.76**: FortiManager Proxy Support, Response timing properties, silent 404 for exists()!
 
 ✨ **New in v0.5.45**: Core `fmt` module with 13 formatting utilities, automatic key normalization (hyphens → underscores)!
-
-✨ **New in v0.5.32+**: Enhanced object mode with nested table field wrapping and single object returns when querying by mkey!
 
 ## Installation
 
@@ -45,6 +43,9 @@ from hfortix import FortiOS
 # Modular package imports (v0.4.0+)
 from hfortix_fortios import FortiOS
 from hfortix_core import FortinetError, APIError
+
+# FortiManager Proxy (v0.5.76+)
+from hfortix_fortios import FortiManagerProxy
 ```
 
 ### Exception Imports
@@ -479,6 +480,47 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 - Make too many rapid API calls (rate limiting)
 
 ## Advanced Features
+
+### FortiManager Proxy (NEW in v0.5.76!)
+
+Route FortiOS API calls through FortiManager to managed devices:
+
+```python
+from hfortix_fortios import FortiManagerProxy
+
+# Connect to FortiManager
+fmg = FortiManagerProxy(
+    host="fortimanager.example.com",
+    username="admin",
+    password="password",
+    adom="root",           # ADOM containing the device
+    verify=False
+)
+
+# Get a proxied FortiOS connection to a managed device
+proxied_fgt = fmg.get_device("fw01")
+
+# Use the same API as direct FortiOS!
+addresses = proxied_fgt.api.cmdb.firewall.address.get()
+for addr in addresses:
+    print(f"{addr.name}: {addr.subnet}")
+
+# Create, update, delete - all work through the proxy
+proxied_fgt.api.cmdb.firewall.address.post(
+    name="Server-01",
+    subnet="10.0.1.10/32",
+    vdom="root"
+)
+
+# Clean up
+fmg.logout()
+```
+
+**Key Features:**
+- Same API patterns as direct FortiOS connection
+- Full ADOM and device targeting
+- Session-based authentication with FortiManager
+- JSON-RPC protocol support
 
 ### Error Handling Configuration (NEW in v0.3.24!)
 

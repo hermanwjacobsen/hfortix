@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -306,7 +305,7 @@ class ApStatus:
         ssid: str | None = ...,
         status: Literal["rogue", "accepted", "suppressed"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -318,7 +317,7 @@ class ApStatus:
         ssid: str | None = ...,
         status: Literal["rogue", "accepted", "suppressed"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -328,7 +327,7 @@ class ApStatus:
         ssid: str | None = ...,
         status: Literal["rogue", "accepted", "suppressed"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -351,7 +350,7 @@ class ApStatus:
         ssid: str | None = ...,
         status: Literal["rogue", "accepted", "suppressed"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -363,7 +362,7 @@ class ApStatus:
         ssid: str | None = ...,
         status: Literal["rogue", "accepted", "suppressed"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -373,7 +372,7 @@ class ApStatus:
         ssid: str | None = ...,
         status: Literal["rogue", "accepted", "suppressed"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -388,7 +387,7 @@ class ApStatus:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -396,13 +395,13 @@ class ApStatus:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -418,7 +417,7 @@ class ApStatus:
         ssid: str | None = ...,
         status: Literal["rogue", "accepted", "suppressed"] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

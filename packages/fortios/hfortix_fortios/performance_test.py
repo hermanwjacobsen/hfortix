@@ -313,21 +313,17 @@ def test_endpoint_performance(
 
             # Determine API type and method
             parts = endpoint_path.split("/")
-            if parts[0] == "monitor":
-                path = "/".join(parts[1:])
-            elif parts[0] == "cmdb":
-                path = "/".join(parts[1:])
-            else:
+            if parts[0] not in ("monitor", "cmdb"):
                 results[endpoint_name] = {"error": "Unknown API type"}
                 continue
 
             # Navigate to endpoint and call method
             try:
-                # Get the API namespace
+                # Get the API namespace (starts at fgt.api)
                 api_obj = fgt.api
 
-                # Navigate through the path
-                for part in path.split("/"):
+                # Navigate through the full path (including monitor/cmdb)
+                for part in parts:
                     if hasattr(api_obj, part):
                         api_obj = getattr(api_obj, part)
                     else:

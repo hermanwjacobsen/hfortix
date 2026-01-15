@@ -707,30 +707,37 @@ class X8021x(CRUDEndpoint, MetadataMixin):
             - get(): Retrieve full object data
             - set(): Create or update automatically based on existence
         """
-        # Try to fetch the object - 404 means it doesn't exist
+        # Use direct request with silent error handling to avoid logging 404s
+        # This is expected behavior for exists() - 404 just means "doesn't exist"
+        endpoint = "/switch_controller/security_policy/x802_1x"
+        endpoint = f"{endpoint}/{name}"
+        
+        # Make request with silent=True to suppress 404 error logging
+        # (404 is expected when checking existence - it just means "doesn't exist")
+        # Use _wrapped_client to access the underlying HTTPClient directly
+        # (self._client is ResponseProcessingClient, _wrapped_client is HTTPClient)
         try:
-            result = self.get(
-                name=name,
-                vdom=vdom
+            result = self._client._wrapped_client.get(
+                "cmdb",
+                endpoint,
+                params=None,
+                vdom=vdom,
+                raw_json=True,
+                silent=True,
             )
-            response = result.raw if hasattr(result, 'raw') else result
             
-            if isinstance(response, dict):
+            if isinstance(result, dict):
                 # Synchronous response - check status
-                return is_success(response)
+                return result.get("status") == "success"
             else:
                 # Asynchronous response
                 async def _check() -> bool:
-                    r = await response
-                    return is_success(r)
+                    r = await result
+                    return r.get("status") == "success"
                 return _check()
-        except Exception as e:
-            # 404 means object doesn't exist - return False
-            # Any other error should be re-raised
-            error_str = str(e)
-            if '404' in error_str or 'Not Found' in error_str or 'ResourceNotFoundError' in str(type(e)):
-                return False
-            raise
+        except Exception:
+            # Any error (404, network, etc.) means we can't confirm existence
+            return False
 
 
     def set(
@@ -965,44 +972,4 @@ class X8021x(CRUDEndpoint, MetadataMixin):
             },
         )
 
-    # ========================================================================
-    # Helper: Check Existence
-    # ========================================================================
-    
-    def exists(
-        self,
-        name: str,
-        vdom: str | bool | None = None,
-    ) -> bool:
-        """
-        Check if switch_controller/security_policy/x802_1x object exists.
-        
-        Args:
-            name: Identifier to check
-            vdom: Virtual domain name
-            
-        Returns:
-            True if object exists, False otherwise
-            
-        Example:
-            >>> # Check before creating
-            >>> if not fgt.api.cmdb.switch_controller_security_policy_x802_1x.exists(name=1):
-            ...     fgt.api.cmdb.switch_controller_security_policy_x802_1x.post(payload_dict=data)
-        """
-        # Try to fetch the object - 404 means it doesn't exist
-        try:
-            result = self.get(
-                name=name,
-                vdom=vdom
-            )
-            response = result.raw if hasattr(result, 'raw') else result
-            # Check if response indicates success
-            return is_success(response)
-        except Exception as e:
-            # 404 means object doesn't exist - return False
-            # Any other error should be re-raised
-            error_str = str(e)
-            if '404' in error_str or 'Not Found' in error_str or 'ResourceNotFoundError' in str(type(e)):
-                return False
-            raise
 

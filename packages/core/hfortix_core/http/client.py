@@ -645,6 +645,7 @@ class HTTPClient(BaseHTTPClient):
         endpoint: Optional[str] = None,
         method: Optional[str] = None,
         params: Optional[dict[str, Any]] = None,
+        silent: bool = False,
     ) -> None:
         """
         Handle HTTP response errors consistently using FortiOS error handling
@@ -654,6 +655,7 @@ class HTTPClient(BaseHTTPClient):
             endpoint: API endpoint path for better error context
             method: HTTP method (GET, POST, PUT, DELETE)
             params: Request parameters (will be sanitized in error messages)
+            silent: If True, skip logging (for expected errors like 404 in exists())
 
         Raises:
             DuplicateEntryError: If entry already exists (-5, -15, -100)
@@ -686,22 +688,23 @@ class HTTPClient(BaseHTTPClient):
                         error_code
                     )
 
-                # Log the error with details
-                status = json_response.get("status")
-                http_status = json_response.get(
-                    "http_status", response.status_code
-                )
-                error_desc = json_response.get(
-                    "error_description", "Unknown error"
-                )
+                # Log the error with details (unless silent mode)
+                if not silent:
+                    status = json_response.get("status")
+                    http_status = json_response.get(
+                        "http_status", response.status_code
+                    )
+                    error_desc = json_response.get(
+                        "error_description", "Unknown error"
+                    )
 
-                logger.error(
-                    "Request failed: HTTP %d, status=%s, error=%s, description='%s'",  # noqa: E501
-                    http_status,
-                    status,
-                    error_code,
-                    error_desc,
-                )
+                    logger.error(
+                        "Request failed: HTTP %d, status=%s, error=%s, description='%s'",  # noqa: E501
+                        http_status,
+                        status,
+                        error_code,
+                        error_desc,
+                    )
 
                 # Use FortiOS-specific error handling with enhanced context
                 raise_for_status(
@@ -715,11 +718,12 @@ class HTTPClient(BaseHTTPClient):
                 # Response is not JSON (could be binary or HTML error page)
                 # This can happen with binary endpoints or proxy/firewall
                 # errors
-                logger.error(
-                    "Request failed: HTTP %d (non-JSON response, %d bytes)",
-                    response.status_code,
-                    len(response.content),
-                )
+                if not silent:
+                    logger.error(
+                        "Request failed: HTTP %d (non-JSON response, %d bytes)",
+                        response.status_code,
+                        len(response.content),
+                    )
                 response.raise_for_status()
 
     def _log_audit(
@@ -904,6 +908,7 @@ class HTTPClient(BaseHTTPClient):
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
         request_id: Optional[str] = None,
+        silent: bool = False,
     ) -> dict[str, Any]:
         """
         Generic request method for all API calls
@@ -919,6 +924,7 @@ class HTTPClient(BaseHTTPClient):
             return full response
             request_id: Optional correlation ID for tracking requests across
             logs
+            silent: If True, suppress error logging (for exists() checks)
 
         Returns:
             dict: If raw_json=False, returns response['results'] (or full
@@ -1152,6 +1158,7 @@ class HTTPClient(BaseHTTPClient):
                     endpoint=full_path,
                     method=method.upper(),
                     params=params,
+                    silent=silent,
                 )
 
                 # Record success in circuit breaker
@@ -1412,10 +1419,20 @@ class HTTPClient(BaseHTTPClient):
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
+        silent: bool = False,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
-        """GET request"""
+        """GET request
+        
+        Args:
+            api_type: API type (cmdb, monitor, etc.)
+            path: Endpoint path
+            params: Query parameters
+            vdom: Virtual domain
+            raw_json: Return raw JSON response
+            silent: If True, suppress error logging (for exists() checks)
+        """
         return self.request(
-            "GET", api_type, path, params=params, vdom=vdom, raw_json=raw_json
+            "GET", api_type, path, params=params, vdom=vdom, raw_json=raw_json, silent=silent
         )
 
     def get_binary(

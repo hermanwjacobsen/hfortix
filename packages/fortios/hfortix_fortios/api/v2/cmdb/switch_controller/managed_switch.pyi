@@ -1,7 +1,6 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
 from hfortix_fortios.models import FortiObject, FortiObjectList
-from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -1922,7 +1921,7 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -1998,7 +1997,7 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def post(
         self,
@@ -2072,7 +2071,7 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # PUT overloads
     @overload
@@ -2223,7 +2222,7 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -2299,7 +2298,7 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def put(
         self,
@@ -2373,7 +2372,7 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # DELETE overloads
     @overload
@@ -2388,7 +2387,7 @@ class ManagedSwitch:
         self,
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Default overload
     @overload
@@ -2396,13 +2395,13 @@ class ManagedSwitch:
         self,
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def delete(
         self,
         switch_id: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     def exists(
         self,
@@ -2482,7 +2481,7 @@ class ManagedSwitch:
         router_static: str | list[str] | list[dict[str, Any]] | None = ...,
         system_dhcp_server: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-    ) -> MutationResponse: ...
+    ) -> FortiObject: ...
     
     # Helper methods
     @staticmethod

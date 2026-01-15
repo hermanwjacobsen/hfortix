@@ -652,6 +652,7 @@ class FortiOS:
 
         # Wrap the client to enable response processing (object mode)
         from hfortix_fortios.models import process_response
+        import time as _time
 
         class ResponseProcessingClient:
             """Wrapper that automatically processes responses with FortiObject."""
@@ -673,10 +674,12 @@ class FortiOS:
                 for accessing the full API envelope.
                 """
                 # Always get full response to store in .raw property
+                start_time = _time.perf_counter()
                 result = self._wrapped_client.get(
                     api_type, path, params, vdom, raw_json=True
                 )
-                return process_response(result, unwrap_single=unwrap_single, raw_envelope=result)  # type: ignore
+                response_time = _time.perf_counter() - start_time
+                return process_response(result, unwrap_single=unwrap_single, raw_envelope=result, response_time=response_time)  # type: ignore
 
             def post(
                 self,
@@ -687,8 +690,10 @@ class FortiOS:
                 vdom=None,
             ):
                 """POST request with automatic response processing."""
+                start_time = _time.perf_counter()
                 result = self._wrapped_client.post(api_type, path, data, params, vdom, raw_json=True)  # type: ignore
-                return process_response(result, raw_envelope=result)  # type: ignore
+                response_time = _time.perf_counter() - start_time
+                return process_response(result, raw_envelope=result, response_time=response_time)  # type: ignore
 
             def put(
                 self,
@@ -699,8 +704,10 @@ class FortiOS:
                 vdom=None,
             ):
                 """PUT request with automatic response processing."""
+                start_time = _time.perf_counter()
                 result = self._wrapped_client.put(api_type, path, data, params, vdom, raw_json=True)  # type: ignore
-                return process_response(result, raw_envelope=result)  # type: ignore
+                response_time = _time.perf_counter() - start_time
+                return process_response(result, raw_envelope=result, response_time=response_time)  # type: ignore
 
             def delete(
                 self,
@@ -710,10 +717,12 @@ class FortiOS:
                 vdom=None,
             ):
                 """DELETE request with automatic response processing."""
+                start_time = _time.perf_counter()
                 result = self._wrapped_client.delete(
                     api_type, path, params, vdom, raw_json=True
                 )
-                return process_response(result, raw_envelope=result)  # type: ignore
+                response_time = _time.perf_counter() - start_time
+                return process_response(result, raw_envelope=result, response_time=response_time)  # type: ignore
 
             def __getattr__(self, name):
                 """Delegate all other attributes to the wrapped client."""
