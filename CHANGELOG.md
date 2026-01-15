@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.73] - 2026-01-15
+
+### Changed - **Improved Type Safety: Removed `__getitem__` from FortiObject stubs**
+
+**What Changed:**
+- ✅ **Removed `__getitem__` method from all generated type stubs** (`*Object` classes)
+- ✅ **Bracket access (`obj['field']`) now properly shows type errors**
+- ✅ **Forces attribute access (`obj.field`) for proper type checking**
+- ✅ **Invalid field access now detected by Pylance/type checkers**
+
+**Why:**
+Previously, `__getitem__(self, key: str) -> Any` allowed bracket notation but returned `Any`, defeating type checking. Invalid field access like `obj['nonexistent_field']` would not show errors.
+
+**Before (no type error):**
+```python
+rule = fg.api.cmdb.authentication.rule.get(name="test")
+rule['nonexistent_field']  # No error! Returns Any
+```
+
+**After (proper type error):**
+```python
+rule = fg.api.cmdb.authentication.rule.get(name="test")
+rule['srcintf']  # ❌ Error: "__getitem__" method not defined on type "RuleObject"
+rule.srcintf     # ✅ Works with full autocomplete and type checking
+rule.nonexistent # ❌ Error: Cannot access attribute "nonexistent" for class "RuleObject"
+```
+
+**Migration:**
+Use attribute access (`.field`) instead of bracket access (`['field']`):
+```python
+# ❌ OLD: rule['srcintf']
+# ✅ NEW: rule.srcintf
+```
+
+---
+
 ## [0.5.72] - 2026-01-15
 
 ### Changed

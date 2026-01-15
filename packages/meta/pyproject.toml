@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix"
-version = "0.5.72"
+version = "0.5.73"
 description = "Python SDK for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)"
 authors = [{name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}]
 readme = "README.md"
@@ -20,12 +20,12 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-    "hfortix-core>=0.5.72",
+    "hfortix-core>=0.5.73",
 ]
 
 [project.optional-dependencies]
-fortios = ["hfortix-fortios>=0.5.72"]
-all = ["hfortix-fortios>=0.5.72"]
+fortios = ["hfortix-fortios>=0.5.73"]
+all = ["hfortix-fortios>=0.5.73"]
 
 [project.urls]
 Homepage = "https://github.com/hermanwjacobsen/hfortix"
