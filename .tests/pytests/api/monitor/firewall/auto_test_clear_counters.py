@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.firewall/security_policy/clear_counters
+Auto-generated basic tests for monitor.firewall/acl6/clear_counters
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.security-policy.clear_counters.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.acl6.clear_counters.json
 Category: monitor
-Endpoint: /monitor/firewall/security-policy/clear_counters
+Endpoint: /monitor/firewall/acl6/clear_counters
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_clear_counters.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.firewall.security_policy.clear_counters
+endpoint = fgt.api.monitor.firewall.acl6.clear_counters
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoClearCountersGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/firewall/security_policy/clear_counters"
+TEST_ENDPOINT = "monitor/firewall/acl6/clear_counters"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.security-policy.clear_counters.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.acl6.clear_counters.json"
 TEST_HTTP_METHODS = ['GET']

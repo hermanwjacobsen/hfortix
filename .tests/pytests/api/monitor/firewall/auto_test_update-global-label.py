@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.firewall/security_policy/update_global_label
+Auto-generated basic tests for monitor.firewall/policy/update_global_label
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.security-policy.update-global-label.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.policy.update-global-label.json
 Category: monitor
-Endpoint: /monitor/firewall/security-policy/update-global-label
+Endpoint: /monitor/firewall/policy/update-global-label
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_update-global-label.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.firewall.security_policy.update_global_label
+endpoint = fgt.api.monitor.firewall.policy.update_global_label
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoUpdateGlobalLabelGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/firewall/security_policy/update_global_label"
+TEST_ENDPOINT = "monitor/firewall/policy/update_global_label"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.security-policy.update-global-label.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.policy.update-global-label.json"
 TEST_HTTP_METHODS = ['GET']

@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.wifi/vlan_probe/stop
+Auto-generated basic tests for monitor.wifi/spectrum/stop
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.vlan-probe.stop.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.spectrum.stop.json
 Category: monitor
-Endpoint: /monitor/wifi/vlan-probe/stop
+Endpoint: /monitor/wifi/spectrum/stop
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_stop.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.wifi.vlan_probe.stop
+endpoint = fgt.api.monitor.wifi.spectrum.stop
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoStopGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/wifi/vlan_probe/stop"
+TEST_ENDPOINT = "monitor/wifi/spectrum/stop"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.vlan-probe.stop.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.spectrum.stop.json"
 TEST_HTTP_METHODS = ['GET']

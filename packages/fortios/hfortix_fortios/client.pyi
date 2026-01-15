@@ -17,6 +17,39 @@ class FortiOS:
     - Get raw response: response.raw
     """
 
+    def __init__(
+        self,
+        host: str,
+        token: str | None = None,
+        *,
+        username: str | None = None,
+        password: str | None = None,
+        port: int = 443,
+        verify: bool = True,
+        timeout: float = 30.0,
+        vdom: str | None = None,
+        error_mode: Literal["raise", "return", "print"] = "raise",
+        error_format: Literal["detailed", "simple", "code_only"] = "detailed",
+        http_client: IHTTPClient | None = None,
+    ) -> None:
+        """
+        Initialize FortiOS client.
+
+        Args:
+            host: FortiGate hostname or IP address
+            token: API token for authentication
+            username: Username for username/password auth (alternative to token)
+            password: Password for username/password auth
+            port: HTTPS port (default: 443)
+            verify: Verify SSL certificate (default: True)
+            timeout: Request timeout in seconds (default: 30.0)
+            vdom: Default VDOM for all requests
+            error_mode: How to handle errors - "raise", "return", or "print"
+            error_format: Error message format - "detailed", "simple", or "code_only"
+            http_client: Custom HTTP client instance (optional)
+        """
+        ...
+
     @staticmethod
     def _validate_credentials(
         token: str | None,

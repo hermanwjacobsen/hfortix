@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for cmdb.log/syslogd4/override_filter
+Auto-generated basic tests for cmdb.log/syslogd/override_filter
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd4.override-filter.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd.override-filter.json
 Category: cmdb
-Endpoint: /cmdb/log.syslogd4/override-filter
+Endpoint: /cmdb/log.syslogd/override-filter
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_override-filter.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.cmdb.log.syslogd4.override_filter
+endpoint = fgt.api.cmdb.log.syslogd.override_filter
 
 
 @pytest.mark.api_call
@@ -89,7 +89,7 @@ class TestAutoOverrideFilterEnums:
     
     def auto_test_enum_severity(self):
         """Test enum field severity validation."""
-        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_filter as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_filter as validators
         
         valid_values = ['emergency', 'alert', 'critical', 'error', 'warning', 'notification', 'information', 'debug']
         
@@ -103,7 +103,7 @@ class TestAutoOverrideFilterEnums:
         print(f"✅ Enum field severity has {len(valid_values)} valid values")
     def auto_test_enum_forward_traffic(self):
         """Test enum field forward-traffic validation."""
-        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_filter as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_filter as validators
         
         valid_values = ['enable', 'disable']
         
@@ -117,7 +117,7 @@ class TestAutoOverrideFilterEnums:
         print(f"✅ Enum field forward-traffic has {len(valid_values)} valid values")
     def auto_test_enum_local_traffic(self):
         """Test enum field local-traffic validation."""
-        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_filter as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_filter as validators
         
         valid_values = ['enable', 'disable']
         
@@ -134,7 +134,7 @@ class TestAutoOverrideFilterEnums:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "cmdb/log/syslogd4/override_filter"
+TEST_ENDPOINT = "cmdb/log/syslogd/override_filter"
 TEST_CATEGORY = "cmdb"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd4.override-filter.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd.override-filter.json"
 TEST_HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE']

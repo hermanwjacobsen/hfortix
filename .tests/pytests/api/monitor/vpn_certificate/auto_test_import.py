@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.vpn_certificate/remote/import_
+Auto-generated basic tests for monitor.vpn_certificate/ca/import_
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/vpn-certificate.remote.import.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/vpn-certificate.ca.import.json
 Category: monitor
-Endpoint: /monitor/vpn-certificate/remote/import
+Endpoint: /monitor/vpn-certificate/ca/import
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_import.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.vpn_certificate.remote.import_
+endpoint = fgt.api.monitor.vpn_certificate.ca.import_
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoImportGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/vpn_certificate/remote/import_"
+TEST_ENDPOINT = "monitor/vpn_certificate/ca/import_"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/vpn-certificate.remote.import.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/vpn-certificate.ca.import.json"
 TEST_HTTP_METHODS = ['GET']

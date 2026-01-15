@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.72] - 2026-01-15
+
+### Changed
+- Updated `test_autocomplete.py` for unified FortiObject API
+  - File is now purely for **static analysis** (Pylance/type checking validation)
+  - Demonstrates autocomplete, type errors, and IDE integration
+  - NOT meant to be executed - just for checking IDE behavior
+  - Added comprehensive scenarios: `.dict`, `.json`, `.raw` properties, `raw_json=True`, nested tables, Literal validation
+
+---
+
 ## [0.5.71] - 2026-01-15
 
 ### Changed - **BREAKING: Simplified API - Removed `response_mode` parameter**

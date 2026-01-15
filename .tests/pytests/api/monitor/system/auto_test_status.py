@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.system/status
+Auto-generated basic tests for monitor.system/config_sync/status
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.status.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.config-sync.status.json
 Category: monitor
-Endpoint: /monitor/system/status
+Endpoint: /monitor/system/config-sync/status
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_status.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.system.status
+endpoint = fgt.api.monitor.system.config_sync.status
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoStatusGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/system/status"
+TEST_ENDPOINT = "monitor/system/config_sync/status"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.status.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.config-sync.status.json"
 TEST_HTTP_METHODS = ['GET']

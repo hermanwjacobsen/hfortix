@@ -23,9 +23,9 @@ class ServiceDictMode:
     All endpoints return dict/TypedDict responses by default.
     """
     
-    security_rating: security_rating.SecurityRatingDictMode
-    sniffer: sniffer.SnifferDictMode
-    system: system.SystemDictMode
+    security_rating: security_rating.SecurityRating  # No mode classes yet
+    sniffer: sniffer.Sniffer  # No mode classes yet
+    system: system.System  # No mode classes yet
 
     def __init__(self, client: IHTTPClient) -> None:
         """Initialize SERVICE category with HTTP client."""
@@ -39,9 +39,9 @@ class ServiceObjectMode:
     All endpoints return FortiObject responses by default.
     """
     
-    security_rating: security_rating.SecurityRatingObjectMode
-    sniffer: sniffer.SnifferObjectMode
-    system: system.SystemObjectMode
+    security_rating: security_rating.SecurityRating  # No mode classes yet
+    sniffer: sniffer.Sniffer  # No mode classes yet
+    system: system.System  # No mode classes yet
 
     def __init__(self, client: IHTTPClient) -> None:
         """Initialize SERVICE category with HTTP client."""

@@ -1,0 +1,1107 @@
+"""Test autocomplete with response_mode set at client level."""
+
+
+from typing import Literal, TYPE_CHECKING
+
+# Import types for type checking only (they exist in .pyi stubs)
+# Pylance uses the .pyi stub for type validation - the .py file doesn't need to have them
+if TYPE_CHECKING:
+    from hfortix_fortios.api.v2.cmdb.firewall.policy import PolicyPayload
+    from hfortix_fortios.api.v2.cmdb.firewall.address import AddressPayload, AddressResponse
+    from hfortix_fortios.api.v2.cmdb.authentication.rule import RulePayload
+
+from hfortix_fortios import FortiOS
+from hfortix import fmt
+
+
+# Create client with response_mode="object" at client level
+fg = FortiOS(
+    host="192.168.1.99",
+    token="your-api-token",
+)
+
+fgt_object = FortiOS(
+    host="192.168.1.99",
+    token="3f8a1c9d2e7b40561938c7f2d0e5b6a1",
+    port=443,
+    verify=False,
+    error_mode="return",
+    vdom="test",
+    response_mode="object"
+)
+
+
+# ============================================================
+# DEMONSTRATE DICT RESPONSE MODE AUTOCOMPLETE
+# ===========================================================
+
+
+# Single object endpoint - autocomplete works!
+settings = fg.api.cmdb.antivirus.settings.get(response_mode="dict")
+settings["grayware"]  # ✅ Autocomplete works
+settings["nonexistent_field"]  # ❌ Autocomplete shows error for nonexistent field
+
+
+address_list = fg.api.cmdb.firewall.address.get(response_mode="dict")
+for addr in address_list:
+    addr['name']    # WORKS
+    addr["subnet"]  # WORKS
+    addr["nonexistent_field"]  # ❌ Autocomplete shows error for nonexistent field
+
+
+address_list = fg.api.cmdb.firewall.address.get(response_mode="dict")
+print(address_list[0]["name"])  # WORKS
+print(address_list[0]["subnet"])  # WORKS
+print(address_list[0]["nonexistent_field"])  # ❌ Autocomplete shows error for nonexistent field
+
+# ============================================================
+# DEMONSTRATE OBJECT RESPONSE MODE AUTOCOMPLETE
+# ============================================================
+
+# Single object endpoint - autocomplete works!
+settings = fg.api.cmdb.antivirus.settings.get(response_mode="object")
+settings.grayware  # ✅ Autocomplete works
+settings.nonexistent_field  # ❌ Autocomplete shows error for nonexistent field
+
+# List endpoint - autocomplete works!
+addresses = fg.api.cmdb.firewall.address.get(response_mode="object")
+for address in addresses:
+    address.name  # ✅ Autocomplete works
+    address.subnet  # ✅ Autocomplete works
+    address.nonexistent_field  # ❌ Autocomplete shows error for nonexistent field
+
+addresses = fg.api.cmdb.firewall.address.get(response_mode="object")
+print(addresses[0].name)  # ✅ Autocomplete works
+print(addresses[0].subnet)  # ✅ Autocomplete works
+print(addresses[0].nonexistent_field)  # ❌ Autocomplete shows error for nonexistent field
+
+# Both positional and keyword mkey arguments work!
+group = fg.api.cmdb.firewall.service.group.get(name="test_duplicates", response_mode="object")  # Explicit parameter name
+for member in group.member:
+    member.name  # ✅ Autocomplete works
+    member.nonexistent_field  # ❌ Autocomplete shows error for nonexistent field
+
+
+# ============================================================
+# TEST: authentication.rule - the problematic case
+# ============================================================
+
+# Test WITHOUT explicit response_mode (should default to dict)
+rule_default = fg.api.cmdb.authentication.rule.get(name="test_rule1")
+for intf in rule_default["srcintf"]:
+    print(intf["name"])  # ✅ Has full autocomplete! No warnings!
+    assert any(intf['name'] == "port3" for intf in rule_default['srcintf']) # Should work
+    assert any(intf['nonexistent_field'] == "port3" for intf in rule_default['srcintf']) # Should show error for intf['nonexistent_field']
+    assert any(intf['name'] == "port3" for intf in rule_default['nonexistent_field']) # Should show error for rule_default['nonexistent_field']
+
+# Test with explicit response_mode="dict"
+rule_explicit = fg.api.cmdb.authentication.rule.get(name="test_rule1", response_mode="dict")
+for intf in rule_explicit["srcintf"]:
+    print(intf['name'])  # ✅ Has full autocomplete! No warnings!
+    print(intf["nonexistent_field"])  # ❌ Autocomplete shows error for nonexistent field
+
+
+group1 = fg.api.cmdb.firewall.service.group.get(name="test_duplicates", response_mode="dict")  # Keyword
+for member in group1["member"]:
+    member['name'] # ✅ Autocomplete works
+    member.nonexistent_field  # ❌ Autocomplete shows error for nonexistent field
+
+group2 = fg.api.cmdb.firewall.service.group.get(name="test_duplicates", response_mode="object")  # Keyword
+for member in group2.member:
+    member.name # ✅ Autocomplete works
+    member.nonexistent_field  # ❌ Autocomplete shows error for nonexistent field
+
+
+rule = fg.api.cmdb.authentication.rule.get(name="test_rule1", response_mode="dict") 
+print(rule['srcintf']) # prints [{'name': 'port3', 'q_origin_key': 'port3'}]
+assert isinstance(rule, dict)
+assert rule['name'] == "test_rule1"
+# Verify srcintf was updated to port3
+assert any(intf['name'] == "port3" for intf in rule['srcintf'])
+assert any(intf['name'] == "port3" for intf in rule['srcaddr'])
+assert any(intf['name'] == "port3" for intf in rule['nonexistent_field'])  # ❌ Autocomplete shows error for nonexistent field
+assert any(intf['name'] == "port3" for intf in rule['nonexistent_field'])  # ❌ Autocomplete shows error for nonexistent field
+
+
+# Test 1: WITHOUT response_mode - what's the inferred type?
+rule_default = fg.api.cmdb.authentication.rule.get(name="test_rule1")
+
+# Test 2: WITH explicit response_mode="dict"
+rule_explicit = fg.api.cmdb.authentication.rule.get(name="test_rule1", response_mode="dict")
+
+# Access a known field
+print(rule_default["name"])
+print(rule_explicit['name'])
+
+
+# Access nonexistent field - these should both show errors
+x = rule_default["nonexistent_field"]  # ❌ Autocomplete shows error for nonexistent field
+y = rule_explicit["nonexistent_field"]  # ❌ Autocomplete shows error for nonexistent field
+
+
+# ============================================================
+# SIMPLE TESTS FOR ALL CRUD METHODS (get, post, put, delete)
+# ============================================================
+
+# --- GET ---
+# Default mode (no response_mode) - should return TypedDict
+rule_get = fg.api.cmdb.authentication.rule.get(name="test_rule")
+rule_get["name"]  # ✅ Should work
+rule_get["status"]  # ✅ Should work
+rule_get["nonexistent"]  # ❌ Should show error
+
+# Object mode - should return Object
+rule_get_obj = fg.api.cmdb.authentication.rule.get(name="test_rule", response_mode="object")
+rule_get_obj.name  # ✅ Should work
+rule_get_obj.status  # ✅ Should work
+rule_get_obj.nonexistent  # ❌ Should show error
+
+# --- POST ---
+# Default mode (no response_mode) - returns MutationResponse TypedDict
+# NOTE: POST/PUT/DELETE return API status responses like {"status": "success", "http_status": 200}
+post_result = fg.api.cmdb.authentication.rule.post(name="new_rule", status="enable")
+post_result["status"]  # ✅ Works - MutationResponse has status field
+post_result["http_status"]  # ✅ Works - MutationResponse has http_status field
+post_result["nonexistent"]  # ❌ Shows error - not in MutationResponse
+
+# Object mode - should return Object (fetches the created object)
+post_result_obj = fg.api.cmdb.authentication.rule.post(name="new_rule", status="enable", response_mode="object")
+post_result_obj.name  # ✅ Should work
+post_result_obj.nonexistent  # ❌ Should show error
+
+# --- PUT ---
+# Default mode (no response_mode) - returns MutationResponse TypedDict
+put_result = fg.api.cmdb.authentication.rule.put(name="test_rule", status="disable")
+put_result["status"]  # ✅ Works - MutationResponse has status field
+put_result["http_status"]  # ✅ Works - MutationResponse has http_status field
+put_result["nonexistent"]  # ❌ Shows error - not in MutationResponse
+
+# Object mode - should return Object (fetches the updated object)
+put_result_obj = fg.api.cmdb.authentication.rule.put(name="test_rule", status="disable", response_mode="object")
+put_result_obj.name  # ✅ Should work  
+put_result_obj.nonexistent  # ❌ Should show error
+
+# --- DELETE ---
+# Default mode (no response_mode) - returns MutationResponse TypedDict
+delete_result = fg.api.cmdb.authentication.rule.delete(name="test_rule")
+delete_result["status"]  # ✅ Works - MutationResponse has status field
+delete_result["http_status"]  # ✅ Works - MutationResponse has http_status field
+delete_result["nonexistent"]  # ❌ Shows error - not in MutationResponse
+
+# Object mode - should return Object
+delete_result_obj = fg.api.cmdb.authentication.rule.delete(name="test_rule", response_mode="object")
+delete_result_obj.name  # ✅ Should work
+delete_result_obj.nonexistent  # ❌ Should show error
+
+
+# ============================================================
+# RAW_JSON=TRUE TESTS (returns full API envelope)
+# ============================================================
+
+# When raw_json=True, you get the complete FortiOS API response envelope
+# All valid fields have autocomplete with no warnings. Typos show errors.
+
+# --- GET with raw_json=True ---
+raw_get = fg.api.cmdb.authentication.rule.get(name="test_rule", raw_json=True)
+raw_get["http_method"]  # ✅ No error - valid field
+raw_get["http_status"]  # ✅ No error - valid field
+raw_get["status"]  # ✅ No error - valid field
+raw_get["vdom"]  # ✅ No error - valid field
+raw_get["results"]  # ✅ No error - valid field
+raw_get["nonexistent"]  # ❌ Shows error - not in RawAPIResponse
+
+# --- POST with raw_json=True ---
+raw_post = fg.api.cmdb.authentication.rule.post(name="new_rule", raw_json=True)
+raw_post["http_method"]  # ✅ No error - valid field
+raw_post["http_status"]  # ✅ No error - valid field
+raw_post["status"]  # ✅ No error - valid field
+raw_post["vdom"]  # ✅ No error - valid field
+raw_post["mkey"]  # ✅ No error - valid field
+raw_post["revision"]  # ✅ No error - valid field
+raw_post["nonexistent"]  # ❌ Shows error - not in RawAPIResponse
+
+# --- PUT with raw_json=True ---
+raw_put = fg.api.cmdb.authentication.rule.put(name="test_rule", raw_json=True)
+raw_put["http_method"]  # ✅ No error - valid field
+raw_put["http_status"]  # ✅ No error - valid field
+raw_put["status"]  # ✅ No error - valid field
+raw_put["vdom"]  # ✅ No error - valid field
+raw_put["mkey"]  # ✅ No error - valid field
+raw_put["nonexistent"]  # ❌ Shows error - not in RawAPIResponse
+
+# --- DELETE with raw_json=True ---
+raw_delete = fg.api.cmdb.authentication.rule.delete(name="test_rule", raw_json=True)
+raw_delete["http_method"]  # ✅ No error - valid field
+raw_delete["http_status"]  # ✅ No error - valid field
+raw_delete["status"]  # ✅ No error - valid field
+raw_delete["vdom"]  # ✅ No error - valid field
+raw_delete["mkey"]  # ✅ No error - valid field
+raw_delete["nonexistent"]  # ❌ Shows error - not in RawAPIResponse
+
+
+# ============================================================
+# PAYLOAD AUTOCOMPLETE (for POST/PUT data)
+# ============================================================
+# The Payload TypedDict provides autocomplete for fields you can send to the API.
+# Hover over fields to see validation hints (Default, Min, Max, MaxLen).
+# NOTE: Types imported via TYPE_CHECKING at top of file
+
+# --- Address Payload ---
+address_data: AddressPayload = {
+    "name": "my_address",  # ✅ Valid field - hover shows "MaxLen: 79"
+    "subnet": "10.0.0.0/24",  # ✅ Valid field
+    "type": "ipmask",  # ✅ Valid field with Literal autocomplete
+    "cache_ttl": 3600,  # ✅ Valid field - hover shows "Default: 0 | Min: 0 | Max: 86400"
+    "comment": "Test address",  # ✅ Valid field
+    "nonexistent_field": "value",  # ❌ Shows error - not a valid field
+}
+
+# --- Policy Payload ---
+policy_data: PolicyPayload = {
+    "name": "allow_web",  # ✅ Valid - hover shows "MaxLen: 35"
+    "policyid": 100,  # ✅ Valid - hover shows "Default: 0 | Min: 0 | Max: 4294967294"
+    "action": "accept",  # ✅ Valid - Literal["accept", "deny", "ipsec"]
+    "status": "enable",  # ✅ Valid - Literal["enable", "disable"]
+    "schedule": "always",  # ✅ Valid field
+    "srcintf": [{"name": "port1"}],  # ✅ Valid - list of dicts
+    "dstintf": [{"name": "port2"}],  # ✅ Valid
+    "srcaddr": [{"name": "all"}],  # ✅ Valid
+    "dstaddr": [{"name": "all"}],  # ✅ Valid
+    "service": [{"name": "HTTP"}],  # ✅ Valid
+    "nonexistent": "value",  # ❌ Shows error - not a valid field
+}
+
+# --- Policy Payload with INVALID Literal values ---
+# These NOW show Literal validation errors since we removed NotRequired wrapper from .pyi stub
+policy_data_invalid: PolicyPayload = {
+    "name": "test_policy",
+    "action": "invalid_action",  # ❌ Shows error - Literal["accept", "deny", "ipsec"] expected
+    "status": "maybe",  # ❌ Shows error - Literal["enable", "disable"] expected
+    "schedule_timeout": "sometimes",  # ❌ Shows error - Literal["enable", "disable"] expected
+}
+
+# --- Rule Payload ---
+rule_data: RulePayload = {
+    "name": "auth_rule",  # ✅ Valid field
+    "status": "enable",  # ✅ Valid - Literal["enable", "disable"]
+    "protocol": "http",  # ✅ Valid - Literal type with many options
+    "srcintf": [{"name": "port1"}],  # ✅ Valid
+    "srcaddr": [{"name": "all"}],  # ✅ Valid
+    "typo_field": "value",  # ❌ Shows error - catches typos!
+}
+
+
+# ============================================================
+# NESTED TABLE FIELD AUTOCOMPLETE
+# ============================================================
+# When you access table fields (lists), you get typed items with autocomplete.
+
+# --- Firewall Policy srcintf/dstintf ---
+policy = fg.api.cmdb.firewall.policy.get(policyid=1, response_mode="dict")
+for intf in policy["srcintf"]:
+    intf["name"]  # ✅ Autocomplete works
+    intf["nonexistent"]  # ❌ Shows error
+
+for addr in policy["srcaddr"]:
+    addr["name"]  # ✅ Autocomplete works
+    addr["nonexistent"]  # ❌ Shows error
+
+# --- Service Group members ---
+svc_group = fg.api.cmdb.firewall.service.group.get(name="Web Access", response_mode="dict")
+for member in svc_group["member"]:
+    member["name"]  # ✅ Autocomplete works
+    member["invalid"]  # ❌ Shows error
+
+result = fg.api.cmdb.antivirus.exempt_list.put(
+    name="test_exempt1",
+    comment="Updated exempt list comment by pytest",
+    hash_type="sha256",
+    hash="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",  # SHA256 hash (64 chars)
+    status1="disable"
+)
+
+# --- Address tagging ---
+addr = fg.api.cmdb.firewall.address.get(name="test", response_mode="dict")
+for tag in addr["tagging"]:
+    tag["name"]  # ✅ Valid
+    tag["category"]  # ✅ Valid
+    tag["tags"]  # ✅ Valid - nested list
+    tag["wrong"]  # ❌ Shows error
+
+
+# ============================================================
+# OBJECT MODE - ATTRIBUTE ACCESS
+# ============================================================
+# In object mode, you get attribute access with full autocomplete.
+
+
+
+policy_obj = fg.api.cmdb.firewall.policy.get(policyid=1, response_mode="object")
+policy_obj.name  # ✅ Autocomplete works
+policy_obj.policyid  # ✅ Autocomplete works
+policy_obj.action  # ✅ Autocomplete works
+policy_obj.srcintf  # ✅ Returns list of typed objects
+policy_obj.nonexistent  # ❌ Shows error
+
+# Nested objects in object mode
+for intf in policy_obj.srcintf:
+    intf.name  # ✅ Autocomplete works
+    intf.wrong  # ❌ Shows error
+
+
+# ============================================================
+# LITERAL TYPE AUTOCOMPLETE FOR ENUMS
+# ============================================================
+# Fields with options get Literal types for precise autocomplete.
+
+# When typing the value, IDE shows valid options:
+policy_data2: PolicyPayload = {
+    "action": "accept",  # ✅ Autocomplete shows: "accept", "deny", "ipsec"
+    "status": "enable",  # ✅ Autocomplete shows: "enable", "disable"
+    "logtraffic": "all",  # ✅ Autocomplete shows: "all", "utm", "disable"
+    "schedule_timeout": "maybe",  # ❌ Shows error
+}
+
+
+# ============================================================
+# LITERAL TYPE LIMITATIONS
+# ============================================================
+# Literal types provide autocomplete but have a KNOWN LIMITATION:
+# Python/Pylance does NOT validate Literal values in TypedDict dict literals.
+# This is a fundamental limitation of Python's type system, not our code.
+
+# Define a minimal TypedDict inline to test Literal behavior
+from typing import TypedDict
+
+class TestPayload(TypedDict, total=False):
+    action: Literal["accept", "deny"]
+    status: Literal["enable", "disable"]
+
+# ✅ WORKS: Direct Literal variable assignment catches errors
+action_value: Literal["accept", "deny", "ipsec"] = "invalid"  # ❌ Shows error
+status_value: Literal["enable", "disable"] = "maybe"  # ❌ Shows error
+
+# Test with inline TypedDict - DOES catch Literal errors!
+test_payload: TestPayload = {
+    "action": "invalid_action",  # ❌ Shows error - inline TypedDict validates!
+    "status": "maybe",  # ❌ Shows error - inline TypedDict validates!
+}
+
+# Compare: Imported TypedDict may NOT catch errors due to .pyi stub semantics
+# See policy_data_invalid above - Pylance uses .pyi stub which has different behavior
+
+# The Literal types still provide VALUE:
+# 1. IDE autocomplete shows valid options when typing
+# 2. Function calls with Literal params DO catch errors
+# 3. Direct variable assignment catches errors
+
+
+# ============================================================
+# RESPONSE TYPE CHECKING
+# ============================================================
+# The Response TypedDict shows all fields returned by the API.
+
+from hfortix_fortios.api.v2.cmdb.firewall.address import AddressResponse
+
+# Type annotation for response
+def process_address(addr: AddressResponse) -> str:
+    # All fields available with autocomplete
+    name = addr["name"]  # ✅ str
+    cache_ttl = addr["cache_ttl"]  # ✅ int
+    addr_type = addr["type"]  # ✅ Literal type
+    uuid = addr["uuid"]  # ✅ str
+    return f"{name}: {addr_type}"
+
+# Accessing invalid field shows error
+def bad_process(addr: AddressResponse) -> str:
+    return addr["invalid_field"]  # ❌ Shows error
+
+
+# ============================================================
+# VALIDATION HINTS IN HOVER DOCUMENTATION
+# ============================================================
+# Hover over any field to see validation constraints from the FortiOS schema.
+# 
+# Examples of what you'll see in hover tooltips:
+#
+# cache_ttl: NotRequired[int]  
+#   # Defines the minimal TTL of individual IP addresses | Default: 0 | Min: 0 | Max: 86400
+#
+# name: NotRequired[str]
+#   # Address name. | MaxLen: 79
+#
+# policyid: NotRequired[int]
+#   # Policy ID (0 - 4294967294). | Default: 0 | Min: 0 | Max: 4294967294
+#
+# These hints help you understand field constraints without consulting docs!
+
+fgt_object = FortiOS(
+    host="192.168.1.99",
+    token="*******",
+    port=443,
+    verify=False,
+    error_mode="return",
+    vdom="test",
+    response_mode="object"
+)
+
+# When client is created with response_mode="object", Pylance returns FortiOSObjectMode
+# This carries the response mode type through the entire API hierarchy:
+# FortiOSObjectMode -> APIObjectMode -> CMDBObjectMode -> FirewallObjectMode -> PolicyObjectMode
+# 
+# PolicyObj6ect is the final type returned by get() in object mode
+policies = fgt_object.api.cmdb.firewall.policy.get()
+for policy in policies:
+    policy.name  # ✅ Works - Pylance knows this returns PolicyObject
+    policy.nonexistent_field  # ❌ Shows error - not in PolicyObject
+
+
+
+policy1 = fgt_object.api.cmdb.firewall.policy.get(policyid=1)
+policy1.name  # ✅ Works - Pylance knows this returns PolicyObject
+policy1.nonexistent_field  # ❌ Shows error - not in PolicyObject
+
+
+
+
+policies = fgt_object.api.cmdb.firewall.policy.get(response_mode="dict")
+for policy in policies:
+    policy['name']  # ✅ Works - Pylance knows this returns PolicyObject
+    policy.nonexistent_field  # ❌ Shows error - not in PolicyObject
+
+
+# ============================================================
+# TEST SUBCATEGORY ACCESS (firewall.service)
+# ============================================================
+
+# Test that subcategories are accessible and have proper type hints
+service_groups = fg.api.cmdb.firewall.service.group.get()
+# Should show: (variable) service_groups: list[ServiceGroupResponse]
+
+service_custom = fg.api.cmdb.firewall.service.custom.get()
+# Should show: (variable) service_custom: list[ServiceCustomResponse]
+
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+#                                                                 #
+# These should all work without Pylance errors or warnings!       #
+#                                                                 #
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+###################################################################
+
+services_dict = fg.api.cmdb.firewall.service.custom.get(response_mode="dict")
+for service in services_dict:
+    print(service['name'], service['protocol'], service['tcp_portrange'] if service.get('tcp_portrange') else '')
+
+# Dict: {'name': 'AFS3', 'q_origin_key': 'AFS3', 'uuid': '8f249214-e181-51f0-befa-182aa3c1b281', 'uuid-idx': 15996, 'proxy': 'disable', 'category': 'File Access', 'protocol': 'TCP/UDP/UDP-Lite/SCTP', 'helper': 'auto', 'iprange': '0.0.0.0', 'fqdn': '', 'tcp-portrange': '7000-7009', 'udp-portrange': '7000-7009', 'udplite-portrange': '', 'sctp-portrange': '', 'tcp-halfclose-timer': 0, 'tcp-halfopen-timer': 0, 'tcp-timewait-timer': 0, 'tcp-rst-timer': 0, 'udp-idle-timer': 0, 'session-ttl': '0', 'check-reset-range': 'default', 'comment': '', 'color': 0, 'app-service-type': 'disable', 'app-category': [], 'application': [], 'fabric-object': 'disable'}
+
+for service in fg.api.cmdb.firewall.service.custom.get(response_mode="object"):
+    print("-------------------------------------------------")
+    print(f"Service Name: {service.name}")
+    print(f"  Protocol: {service.protocol}")
+    if service.tcp_portrange:
+        print(f"    TCP Port Range: {service.tcp_portrange}")
+
+
+
+def create_firewall_service():
+    """Test: Create firewall services"""
+    result1 = fgt_object.api.cmdb.firewall.service.custom.post(
+        name="test_service1",
+        protocol="TCP/UDP/UDP-Lite/SCTP",
+        tcp_portrange="8080"
+    )
+    assert result1 is not None
+    assert result1.status == "success"
+
+    result2 = fgt_object.api.cmdb.firewall.service.custom.post(
+        name="test_service2",
+        protocol="TCP/UDP/UDP-Lite/SCTP",
+        udp_portrange="9090"
+    )
+    assert result2 is not None
+    assert result2.status == "success"
+
+
+def create_firewall_service_group1():
+    """Test: Create firewall service group"""
+    result = fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_service_group1",
+        member=[
+            {"name": "test_service1"},
+            {"name": "test_service2"}
+        ]
+    )
+    assert result is not None
+    assert result.status == "success"
+
+
+def create_firewall_service_group2():
+    """Test: Create firewall service group"""
+    result = fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_service_group2",
+        member=[
+            "test_service1",
+            "test_service2"
+        ]
+    )
+    assert result is not None
+    assert result.status == "success"
+
+
+def create_radius_server():
+    result = fgt_object.api.cmdb.user.radius.post(
+    name="test_radius",
+    server="192.168.1.100",
+    secret="mysecret",
+    accounting_server=[
+        {"id": 1, "server": "192.168.1.101"},
+        {"id": 2, "server": "192.168.1.102"}
+        ]
+    )
+    assert result is not None
+    assert result.status == "success"
+
+def multiple_format_test():
+    result = fgt_object.api.cmdb.firewall.policy.post(
+    name="test_policy_multi_format",
+    srcintf=["port3", "port4"],              # List of strings
+    dstintf="port3",                          # Single string
+    srcaddr=[{"name": "all"}],             # Already formatted
+    dstaddr="all",                          # Single string
+    service=["HTTP", "HTTPS"],               # List of strings
+    action="accept",
+    schedule="always"
+    )
+    assert result is not None
+    assert result.status == "success"
+
+
+def traditional_format():
+    result = fgt_object.api.cmdb.firewall.shaper.traffic_shaper.post(
+    name="test_shaper1",
+    per_ip=[
+        {"name": "test_shaper1"},
+        {"name": "test_shaper2"}
+    ]
+    )
+    assert result is not None
+    assert result.status == "success"
+
+
+def mixed_format():
+    result = fgt_object.api.cmdb.firewall.shaper.traffic_shaper.post(
+    name="test_shaper2",
+    per_ip=[
+        {"name": "shaper1"},
+        "shaper2"                             # Mix formats!
+    ]
+    )
+    assert result is not None
+    assert result.status == "success"
+
+def test_single_vs_list():
+    """Test: Single item string vs single-item list"""
+    # Single string
+    result1 = fgt_object.api.cmdb.firewall.addrgrp.post(
+        name="test_single_member",
+        member="all"  # Single string
+    )
+    assert result1.status == "success"
+    
+    # Single-item list
+    result2 = fgt_object.api.cmdb.firewall.addrgrp.post(
+        name="test_list_one_member",
+        member=["all"]  # List with one item
+    )
+    assert result2.status == "success"
+
+def test_large_list():
+    """Test: Large number of members"""
+    # First create many addresses
+    for i in range(20):
+        fgt_object.api.cmdb.firewall.address.post(
+            name=f"test_addr_{i}",  # Changed to match member list
+            subnet=f"10.0.{i}.0/24"
+        )
+    
+    # Then create group with all of them using string list
+    members = [f"test_addr_{i}" for i in range(20)]
+    result = fgt_object.api.cmdb.firewall.addrgrp.post(
+        name="test_large_group",
+        member=members  # List of 20 strings → auto-converted
+    )
+    assert result.status == "success"
+
+def test_whitespace():
+    """Test: Strings with whitespace"""
+    result = fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_whitespace_group",
+        member=[
+            " test_service1 ",  # Leading/trailing spaces
+            "test_service2",
+            "\ttest_service1\n"  # Tabs and newlines
+        ]
+    )
+    # This might fail if normalizer doesn't strip whitespace
+    # Good to know for future enhancement
+
+def test_special_chars():
+    """Test: Names with special characters"""
+    # Create service with special chars
+    fgt_object.api.cmdb.firewall.service.custom.post(
+        name="test_service-with-dashes",
+        protocol="TCP/UDP/UDP-Lite/SCTP",
+        tcp_portrange="8080"
+    )
+    
+    result = fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_special_chars",
+        member=["test_service-with-dashes"]  # Dashes in name
+    )
+    assert result.status == "success"
+
+def test_update_with_flexible_format():
+    """Test: PUT operations with flexible formats"""
+    # Create with traditional format
+    fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_update_group",
+        member=[{"name": "test_service1"}]
+    )
+    
+    # Update with string list format
+    result = fgt_object.api.cmdb.firewall.service.group.put(
+        name="test_update_group",
+        member=["test_service1", "test_service2"]  # Different format
+    )
+    assert result.status == "success"
+
+def test_empty_none_values():
+    """Test: Empty lists and None values are handled gracefully"""
+    # For firewall policy, srcintf/dstintf are REQUIRED
+    # So test with fields that CAN be empty
+    result = fgt_object.api.cmdb.firewall.policy.post(
+        name="test_empty_values",
+        srcintf="any",          # Required - must provide
+        dstintf="any",          # Required - must provide
+        srcaddr="all",          # Required
+        dstaddr="all",          # Required
+        service="ALL",          # Required
+        action="deny",
+        schedule="always",
+        # Optional fields that CAN be empty/None:
+        internet_service_src_custom=[],     # Empty list is OK
+        internet_service_custom=None,       # None is OK
+        users=None,                          # None is OK for optional fields
+        groups=[]                            # Empty list for optional fields
+    )
+    assert result is not None
+    assert result.status == "success"
+    print("✓ test_empty_none_values: Empty/None for optional fields works")
+
+
+def test_empty_none_values_validation():
+    """Test: Normalizer handles empty values, FortiOS validates them"""
+
+    try:
+        result = fgt_object.api.cmdb.firewall.policy.post(
+            name="test_invalid_empty",
+            srcintf=None,  # This will become [] 
+            dstintf=None,  # This will become []
+            srcaddr="all",
+            dstaddr="all",
+            service="ALL",
+            action="deny",
+            schedule="always"
+        )
+        # Should not reach here - FortiOS should reject
+        assert False, "Expected validation error from FortiOS"
+    except Exception as e:
+        # This is expected - FortiOS validation caught it
+        assert "invalid" in str(e).lower() or "required" in str(e).lower()
+    
+    print("✓ test_empty_none_values: Normalizer passed [], FortiOS validated correctly")
+
+
+def test_long_names():
+    """Test: Long names are handled correctly"""
+    long_name = "test_service_" + "x" * 50  # FortiOS has name limits
+    
+    try:
+        fgt_object.api.cmdb.firewall.service.custom.post(
+            name=long_name,
+            protocol="TCP/UDP/UDP-Lite/SCTP",
+            tcp_portrange="7777"
+        )
+        
+        result = fgt_object.api.cmdb.firewall.service.group.post(
+            name="test_long_name_ref",
+            member=[long_name]
+        )
+        assert result.status == "success"
+        print(f"✓ test_long_names: Names up to {len(long_name)} chars work")
+    except Exception as e:
+        # FortiOS might have a limit - that's OK
+        print(f"  Note: FortiOS name limit is around {len(long_name)} chars: {e}")
+
+def test_unicode_names():
+    """Test: Unicode characters in names (if FortiOS supports)"""
+    try:
+        fgt_object.api.cmdb.firewall.service.custom.post(
+            name="test_service_café",  # Accented character
+            protocol="TCP/UDP/UDP-Lite/SCTP",
+            tcp_portrange="6666"
+        )
+        
+        result = fgt_object.api.cmdb.firewall.service.group.post(
+            name="test_unicode",
+            member=["test_service_café"]
+        )
+        assert result.status == "success"
+        print("✓ test_unicode_names: Unicode characters supported")
+    except Exception as e:
+        print(f"  Note: FortiOS may not support unicode in names: {e}")
+
+def test_duplicate_members():
+    """Test: Duplicate members are handled (deduplicated or rejected)"""
+    result = fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_duplicates",
+        member=[
+            "test_service1",
+            "test_service2",
+            "test_service1",  # Duplicate
+            "test_service1"   # Another duplicate
+        ]
+    )
+    assert result.status == "success"
+    
+    # ✅ FIX: Add response_mode="object"
+    group = fgt_object.api.cmdb.firewall.service.group.get(
+        name="test_duplicates",  # Positional argument
+        response_mode="object"  # <-- ADD THIS!
+    )
+    print(group)
+    unique_count = len(set(m.name for m in group.member))
+    total_count = len(group.member)
+    
+    if unique_count == total_count:
+        print(f"✓ test_duplicates: FortiOS deduplicated ({unique_count} unique members)")
+    else:
+        print(f"✓ test_duplicates: FortiOS kept duplicates ({total_count} total, {unique_count} unique)")
+
+def test_case_sensitivity():
+    """Test: Name matching is case-sensitive or not"""
+    # Delete if exists from previous run
+    try:
+        fgt_object.api.cmdb.firewall.service.custom.delete(name="Test_Service_MixedCase")
+    except:
+        pass  # Doesn't exist, that's fine
+    
+    # Create service with mixed case
+    fgt_object.api.cmdb.firewall.service.custom.post(
+        name="Test_Service_MixedCase",
+        protocol="TCP/UDP/UDP-Lite/SCTP",
+        tcp_portrange="5555"
+    )
+    
+    # Try exact case
+    result1 = fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_case_exact",
+        member=["Test_Service_MixedCase"]
+    )
+    assert result1.status == "success"
+    
+    # Try different case
+
+    try:
+        result2 = fgt_object.api.cmdb.firewall.service.group.post(
+            name="test_case_different",
+            member=["test_service_mixedcase"]  # All lowercase
+        )
+        print("  Note: FortiOS is case-INSENSITIVE for names")
+    except Exception as e:
+        if "not found" in str(e).lower():
+            print("✓ test_case_sensitivity: FortiOS is case-SENSITIVE")
+
+
+def test_full_crud_cycle():
+    """Test: Complete CRUD cycle with flexible formats"""
+    # Create with string list
+    create_result = fgt_object.api.cmdb.firewall.service.group.post(
+        name="test_crud_lifecycle",
+        member=["test_service1"]
+    )
+    assert create_result.status == "success"
+    
+    # Read
+    group = fgt_object.api.cmdb.firewall.service.group.get(name="test_crud_lifecycle")
+    assert group.name == "test_crud_lifecycle"
+    assert len(group.member) == 1
+    
+    # Update with dict format
+    update_result = fgt_object.api.cmdb.firewall.service.group.put(
+        name="test_crud_lifecycle",
+        member=[{"name": "test_service1"}, {"name": "test_service2"}]
+    )
+    assert update_result.status == "success"
+    
+    # Read again
+    group = fgt_object.api.cmdb.firewall.service.group.get(name="test_crud_lifecycle")
+    assert len(group.member) == 2
+    
+    # Delete
+    delete_result = fgt_object.api.cmdb.firewall.service.group.delete(name="test_crud_lifecycle")
+    assert delete_result.status == "success"
+    
+    # Verify deleted
+    assert not fgt_object.api.cmdb.firewall.service.group.exists(name="test_crud_lifecycle")
+    print("✓ test_full_crud_cycle: Complete lifecycle with mixed formats")
+
+def test_performance_timing():
+    """Test: Performance comparison between formats"""
+    import time
+    
+    # Create 10 addresses
+    for i in range(10):
+        fgt_object.api.cmdb.firewall.address.post(
+            name=f"test_perf_{i}",
+            subnet=f"10.10.{i}.0/24"
+        )
+    
+    members = [f"test_perf_{i}" for i in range(10)]
+    
+    # Time string format
+    start = time.time()
+    fgt_object.api.cmdb.firewall.addrgrp.post(
+        name="test_perf_string",
+        member=members  # String list
+    )
+    string_time = time.time() - start
+    
+    # Time dict format
+    start = time.time()
+    fgt_object.api.cmdb.firewall.addrgrp.post(
+        name="test_perf_dict",
+        member=[{"name": m} for m in members]  # Dict list
+    )
+    dict_time = time.time() - start
+    
+    print(f"✓ test_performance_timing: String={string_time:.3f}s, Dict={dict_time:.3f}s")
+
+
+def test_get_authentication_rule_defaults():
+    """Test: Get authentication rule defaults"""
+    result = fg.api.cmdb.authentication.rule.defaults()
+    assert result is not None
+
+def test_set_address():
+    """Test: Update firewall address"""
+    result = fg.api.cmdb.firewall.address.set(
+        name="test_address1",
+        subnet="172.16.0.0 255.255.0.0"
+    )
+
+# Test helper methods on DictMode client (fg)
+fg.api.cmdb.firewall.service.group.exists(name="test_crud_lifecycle")
+fg.api.cmdb.authentication.rule.defaults()
+fg.api.cmdb.authentication.rule.schema()
+fg.api.cmdb.authentication.rule.help()
+fg.api.cmdb.authentication.rule.help("name")
+fg.api.cmdb.authentication.rule.fields()
+fg.api.cmdb.authentication.rule.fields(detailed=True)
+fg.api.cmdb.authentication.rule.field_info("name")
+fg.api.cmdb.authentication.rule.validate_field("status", "enable")
+fg.api.cmdb.authentication.rule.required_fields()
+
+# Test helper methods on ObjectMode client (fgt_object)
+fgt_object.api.cmdb.firewall.service.group.exists(name="test_crud_lifecycle")
+fgt_object.api.cmdb.firewall.policy.defaults()
+fgt_object.api.cmdb.firewall.policy.schema()
+fgt_object.api.cmdb.firewall.policy.help()
+fgt_object.api.cmdb.firewall.policy.help("name")
+fgt_object.api.cmdb.firewall.policy.fields()
+fgt_object.api.cmdb.firewall.policy.fields(detailed=True)
+fgt_object.api.cmdb.firewall.policy.field_info("action")
+fgt_object.api.cmdb.firewall.policy.validate_field("action", "accept")
+fgt_object.api.cmdb.firewall.policy.required_fields()
+
+
+
+def test_api_response_conversion(self):
+    """
+    Test converting API responses between object and dict modes.
+    """
+    # Simulated API response
+    api_response = {
+        "name": "HTTP",
+        "protocol": "TCP",
+        "tcp_portrange": ["80", "8080"]
+    }
+    
+    # Should handle dict conversion - result might be dict or original type
+    result = fmt.to_dict(api_response)
+    if isinstance(result, dict):
+        assert result.get("name") == "HTTP"  
+    else:
+        # If not converted, original should still be accessible
+        assert api_response["name"] == "HTTP"
+    
+    # Should handle list conversion for display
+    ports_list = fmt.to_list(api_response["tcp_portrange"])
+    assert len(ports_list) == 2
+
+
+if __name__ == "__main__":
+
+    policies = fgt_object.api.cmdb.firewall.policy.get(response_mode="object")
+    for policy in policies:
+        if policy.name.startswith("test_"):
+            fgt_object.api.cmdb.firewall.policy.delete(policyid=policy.policyid)
+            
+    shapers = fgt_object.api.cmdb.firewall.shaper.traffic_shaper.get()
+    for shaper in shapers:
+        if shaper.name.startswith("test_"):
+            fgt_object.api.cmdb.firewall.shaper.traffic_shaper.delete(name=shaper.name) 
+
+    addrgoups = fgt_object.api.cmdb.firewall.addrgrp.get()
+    for addrgroup in addrgoups:
+        if addrgroup.name.startswith("test_"):
+            fgt_object.api.cmdb.firewall.addrgrp.delete(name=addrgroup.name)    
+    
+    addresses = fgt_object.api.cmdb.firewall.address.get()
+    for address in addresses:
+        if address.name.startswith("test_"):
+            fgt_object.api.cmdb.firewall.address.delete(name=address.name)  
+
+    service_groups = fgt_object.api.cmdb.firewall.service.group.get()    
+    for service_group in service_groups:
+        if service_group.name.startswith("test_"):
+            fgt_object.api.cmdb.firewall.service.group.delete(name=service_group.name)  
+
+
+    service_custom = fgt_object.api.cmdb.firewall.service.custom.get()
+    for service in service_custom:  
+        if service.name.startswith("test_"):
+            fgt_object.api.cmdb.firewall.service.custom.delete(name=service.name)
+    
+
+    shapers = fgt_object.api.cmdb.firewall.shaper.traffic_shaper.get()
+    for shaper in shapers:
+        if shaper.name.startswith("test_"):
+            print(f"Deleting shaper: {shaper.name}")
+            fgt_object.api.cmdb.firewall.shaper.traffic_shaper.delete(name=shaper.name)
+      
+    radius_servers = fgt_object.api.cmdb.user.radius.get()
+    for server in radius_servers:   
+        if server.name.startswith("test_"):
+            fgt_object.api.cmdb.user.radius.delete(name=server.name)
+
+
+    create_firewall_service()
+    print("✓ create_firewall_service passed with object model")        
+
+    create_firewall_service_group1() 
+    print("✓ create_firewall_service_group passed with object model")        
+    
+    create_firewall_service_group2() 
+    print("✓ create_firewall_service_group passed with object model")      
+
+    create_radius_server()
+    print("✓ create_radius_server passed with object model")
+
+    mixed_format()
+    print("✓ mixed_format passed with object model")      
+
+    multiple_format_test()
+    print("✓ multiple_format_test passed with object model")
+
+    test_single_vs_list()
+    print("✓ test_single_vs_list passed with object model")
+
+    # test_whitespace()
+    # print("✓ test_whitespace passed with object model")
+
+    test_special_chars()
+    print("✓ test_special_chars passed with object model")
+
+    test_large_list()
+    print("✓ test_large_list passed with object model")
+
+    test_update_with_flexible_format()
+    print("✓ test_update_with_flexible_format passed with object model")
+
+    test_empty_none_values()
+    print("✓ test_empty_none_values passed with object model")
+
+    test_empty_none_values_validation()
+    print("✓ test_empty_none_values_validation passed with object model")
+
+    test_long_names()
+    print("✓ test_long_names passed with object model")
+
+    test_unicode_names()
+    print("✓ test_unicode_names passed with object model")
+
+    test_duplicate_members()
+    print("✓ test_duplicate_members passed with object model")
+
+    test_case_sensitivity()
+    print("✓ test_case_sensitivity passed with object model")
+
+    test_full_crud_cycle()
+    print("✓ test_full_crud_cycle passed with object model")
+
+    test_performance_timing()
+    print("✓ test_performance_timing passed with object model")
+
+    print("\n✓ All tests passed!")

@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.firewall/sessions
+Auto-generated basic tests for monitor.firewall/proxy/sessions
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.sessions.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.proxy.sessions.json
 Category: monitor
-Endpoint: /monitor/firewall/sessions
+Endpoint: /monitor/firewall/proxy/sessions
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_sessions.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.firewall.sessions
+endpoint = fgt.api.monitor.firewall.proxy.sessions
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoSessionsGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/firewall/sessions"
+TEST_ENDPOINT = "monitor/firewall/proxy/sessions"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.sessions.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.proxy.sessions.json"
 TEST_HTTP_METHODS = ['GET']

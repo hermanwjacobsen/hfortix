@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.endpoint_control/installer/download
+Auto-generated basic tests for monitor.endpoint_control/avatar/download
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/endpoint-control.installer.download.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/endpoint-control.avatar.download.json
 Category: monitor
-Endpoint: /monitor/endpoint-control/installer/download
+Endpoint: /monitor/endpoint-control/avatar/download
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_download.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.endpoint_control.installer.download
+endpoint = fgt.api.monitor.endpoint_control.avatar.download
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoDownloadGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/endpoint_control/installer/download"
+TEST_ENDPOINT = "monitor/endpoint_control/avatar/download"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/endpoint-control.installer.download.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/endpoint-control.avatar.download.json"
 TEST_HTTP_METHODS = ['GET']

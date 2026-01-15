@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.switch_controller/managed_switch/update
+Auto-generated basic tests for monitor.switch_controller/isl_lockdown/update
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/switch-controller.managed-switch.update.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/switch-controller.isl-lockdown.update.json
 Category: monitor
-Endpoint: /monitor/switch-controller/managed-switch/update
+Endpoint: /monitor/switch-controller/isl-lockdown/update
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_update.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.switch_controller.managed_switch.update
+endpoint = fgt.api.monitor.switch_controller.isl_lockdown.update
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoUpdateGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/switch_controller/managed_switch/update"
+TEST_ENDPOINT = "monitor/switch_controller/isl_lockdown/update"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/switch-controller.managed-switch.update.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/switch-controller.isl-lockdown.update.json"
 TEST_HTTP_METHODS = ['GET']

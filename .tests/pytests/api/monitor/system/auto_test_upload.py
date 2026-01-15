@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.system/vmlicense/upload
+Auto-generated basic tests for monitor.system/lte_modem/upload
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.vmlicense.upload.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.lte-modem.upload.json
 Category: monitor
-Endpoint: /monitor/system/vmlicense/upload
+Endpoint: /monitor/system/lte-modem/upload
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_upload.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.system.vmlicense.upload
+endpoint = fgt.api.monitor.system.lte_modem.upload
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoUploadGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/system/vmlicense/upload"
+TEST_ENDPOINT = "monitor/system/lte_modem/upload"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.vmlicense.upload.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.lte-modem.upload.json"
 TEST_HTTP_METHODS = ['GET']

@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.system/vmlicense/download
+Auto-generated basic tests for monitor.system/crash_log/download
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.vmlicense.download.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.crash-log.download.json
 Category: monitor
-Endpoint: /monitor/system/vmlicense/download
+Endpoint: /monitor/system/crash-log/download
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_download.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.system.vmlicense.download
+endpoint = fgt.api.monitor.system.crash_log.download
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoDownloadGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/system/vmlicense/download"
+TEST_ENDPOINT = "monitor/system/crash_log/download"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.vmlicense.download.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.crash-log.download.json"
 TEST_HTTP_METHODS = ['GET']

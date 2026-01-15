@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for cmdb.firewall/ssl/setting
+Auto-generated basic tests for cmdb.firewall/ssh/setting
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/firewall.ssl.setting.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/firewall.ssh.setting.json
 Category: cmdb
-Endpoint: /cmdb/firewall.ssl/setting
+Endpoint: /cmdb/firewall.ssh/setting
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_setting.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.cmdb.firewall.ssl.setting
+endpoint = fgt.api.cmdb.firewall.ssh.setting
 
 
 @pytest.mark.api_call
@@ -80,49 +80,6 @@ class TestAutoSettingExists:
     
 
 
-@pytest.mark.validator
-@pytest.mark.parallel_safe
-class TestAutoSettingValidators:
-    """Auto-generated validator tests."""
-    
-    def auto_test_validator_import(self):
-        """Test that validators can be imported."""
-        try:
-            from hfortix_fortios.api.v2.cmdb.firewall.ssl._helpers import setting as validators
-            print(f"✅ Successfully imported validators for setting")
-            
-            # Check validator functions exist (they use HTTP method naming: post, put, get)
-            assert hasattr(validators, "validate_firewall_ssl_setting_post")
-            assert hasattr(validators, "validate_firewall_ssl_setting_put")
-            print("✅ Validator functions exist")
-        except ImportError as e:
-            pytest.fail(f"Failed to import validators: {e}")
-    
-    def auto_test_validator_create_all_required(self):
-        """Test create validator with all required fields."""
-        from hfortix_fortios.api.v2.cmdb.firewall.ssl._helpers import setting as validators
-        
-        # Build minimal valid config with all required fields
-        config = {
-            "cert-cache-capacity": 200,  # integer
-            "cert-cache-timeout": 10,  # integer
-            "cert-manager-cache-timeout": 72,  # integer
-            "no-matching-cipher-action": "bypass",  # option
-            "proxy-connect-timeout": 30,  # integer
-            "resigned-short-lived-certificate": "enable",  # option
-            "session-cache-capacity": 500,  # integer
-            "session-cache-timeout": 20,  # integer
-            "ssl-dh-bits": "768",  # option
-            "ssl-send-empty-frags": "enable",  # option
-        }
-        
-        try:
-            result = validators.validate_setting_create(config)
-            assert result is True or isinstance(result, dict)
-            print(f"✅ Validator accepted minimal config with required fields")
-        except Exception as e:
-            # Validators may do additional checks, log but don't fail
-            print(f"⚠️  Validator raised: {e}")
 
 
 @pytest.mark.validator
@@ -130,54 +87,26 @@ class TestAutoSettingValidators:
 class TestAutoSettingEnums:
     """Auto-generated enum validation tests."""
     
-    def auto_test_enum_ssl_dh_bits(self):
-        """Test enum field ssl-dh-bits validation."""
-        from hfortix_fortios.api.v2.cmdb.firewall.ssl._helpers import setting as validators
-        
-        valid_values = ['768', '1024', '1536', '2048']
-        
-        # Test each valid value
-        for value in valid_values:
-            config = {"ssl-dh-bits": value}
-            # Validators should accept any valid enum value
-            # Note: Full validation requires all required fields
-            print(f"   Valid enum value: ssl-dh-bits={value}")
-        
-        print(f"✅ Enum field ssl-dh-bits has {len(valid_values)} valid values")
-    def auto_test_enum_ssl_send_empty_frags(self):
-        """Test enum field ssl-send-empty-frags validation."""
-        from hfortix_fortios.api.v2.cmdb.firewall.ssl._helpers import setting as validators
+    def auto_test_enum_host_trusted_checking(self):
+        """Test enum field host-trusted-checking validation."""
+        from hfortix_fortios.api.v2.cmdb.firewall.ssh._helpers import setting as validators
         
         valid_values = ['enable', 'disable']
         
         # Test each valid value
         for value in valid_values:
-            config = {"ssl-send-empty-frags": value}
+            config = {"host-trusted-checking": value}
             # Validators should accept any valid enum value
             # Note: Full validation requires all required fields
-            print(f"   Valid enum value: ssl-send-empty-frags={value}")
+            print(f"   Valid enum value: host-trusted-checking={value}")
         
-        print(f"✅ Enum field ssl-send-empty-frags has {len(valid_values)} valid values")
-    def auto_test_enum_no_matching_cipher_action(self):
-        """Test enum field no-matching-cipher-action validation."""
-        from hfortix_fortios.api.v2.cmdb.firewall.ssl._helpers import setting as validators
-        
-        valid_values = ['bypass', 'drop']
-        
-        # Test each valid value
-        for value in valid_values:
-            config = {"no-matching-cipher-action": value}
-            # Validators should accept any valid enum value
-            # Note: Full validation requires all required fields
-            print(f"   Valid enum value: no-matching-cipher-action={value}")
-        
-        print(f"✅ Enum field no-matching-cipher-action has {len(valid_values)} valid values")
+        print(f"✅ Enum field host-trusted-checking has {len(valid_values)} valid values")
 
 
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "cmdb/firewall/ssl/setting"
+TEST_ENDPOINT = "cmdb/firewall/ssh/setting"
 TEST_CATEGORY = "cmdb"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/firewall.ssl.setting.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/firewall.ssh.setting.json"
 TEST_HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE']

@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.system/lte_modem/upgrade
+Auto-generated basic tests for monitor.system/firmware/upgrade
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.lte-modem.upgrade.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.firmware.upgrade.json
 Category: monitor
-Endpoint: /monitor/system/lte-modem/upgrade
+Endpoint: /monitor/system/firmware/upgrade
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_upgrade.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.system.lte_modem.upgrade
+endpoint = fgt.api.monitor.system.firmware.upgrade
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoUpgradeGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/system/lte_modem/upgrade"
+TEST_ENDPOINT = "monitor/system/firmware/upgrade"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.lte-modem.upgrade.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.firmware.upgrade.json"
 TEST_HTTP_METHODS = ['GET']

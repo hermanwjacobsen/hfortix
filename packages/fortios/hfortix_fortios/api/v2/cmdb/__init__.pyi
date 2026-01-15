@@ -57,43 +57,43 @@ class CMDBDictMode:
     All endpoints return dict/TypedDict responses by default.
     """
     
-    alertemail: alertemail.AlertemailDictMode
-    antivirus: antivirus.AntivirusDictMode
-    application: application.ApplicationDictMode
-    authentication: authentication.AuthenticationDictMode
-    automation: automation.AutomationDictMode
-    casb: casb.CasbDictMode
-    certificate: certificate.CertificateDictMode
-    diameter_filter: diameter_filter.DiameterFilterDictMode
-    dlp: dlp.DlpDictMode
-    dnsfilter: dnsfilter.DnsfilterDictMode
-    emailfilter: emailfilter.EmailfilterDictMode
-    endpoint_control: endpoint_control.EndpointControlDictMode
-    ethernet_oam: ethernet_oam.EthernetOamDictMode
-    extension_controller: extension_controller.ExtensionControllerDictMode
-    file_filter: file_filter.FileFilterDictMode
-    firewall: firewall.FirewallDictMode
-    ftp_proxy: ftp_proxy.FtpProxyDictMode
-    icap: icap.IcapDictMode
-    ips: ips.IpsDictMode
-    log: log.LogDictMode
-    monitoring: monitoring.MonitoringDictMode
-    report: report.ReportDictMode
-    router: router.RouterDictMode
-    rule: rule.RuleDictMode
-    sctp_filter: sctp_filter.SctpFilterDictMode
-    switch_controller: switch_controller.SwitchControllerDictMode
-    system: system.SystemDictMode
-    user: user.UserDictMode
-    videofilter: videofilter.VideofilterDictMode
-    virtual_patch: virtual_patch.VirtualPatchDictMode
-    voip: voip.VoipDictMode
-    vpn: vpn.VpnDictMode
-    waf: waf.WafDictMode
-    web_proxy: web_proxy.WebProxyDictMode
-    webfilter: webfilter.WebfilterDictMode
-    wireless_controller: wireless_controller.WirelessControllerDictMode
-    ztna: ztna.ZtnaDictMode
+    alertemail: alertemail.Alertemail  # No mode classes yet
+    antivirus: antivirus.Antivirus  # No mode classes yet
+    application: application.Application  # No mode classes yet
+    authentication: authentication.Authentication  # No mode classes yet
+    automation: automation.Automation  # No mode classes yet
+    casb: casb.Casb  # No mode classes yet
+    certificate: certificate.Certificate  # No mode classes yet
+    diameter_filter: diameter_filter.DiameterFilter  # No mode classes yet
+    dlp: dlp.Dlp  # No mode classes yet
+    dnsfilter: dnsfilter.Dnsfilter  # No mode classes yet
+    emailfilter: emailfilter.Emailfilter  # No mode classes yet
+    endpoint_control: endpoint_control.EndpointControl  # No mode classes yet
+    ethernet_oam: ethernet_oam.EthernetOam  # No mode classes yet
+    extension_controller: extension_controller.ExtensionController  # No mode classes yet
+    file_filter: file_filter.FileFilter  # No mode classes yet
+    firewall: firewall.Firewall  # No mode classes yet
+    ftp_proxy: ftp_proxy.FtpProxy  # No mode classes yet
+    icap: icap.Icap  # No mode classes yet
+    ips: ips.Ips  # No mode classes yet
+    log: log.Log  # No mode classes yet
+    monitoring: monitoring.Monitoring  # No mode classes yet
+    report: report.Report  # No mode classes yet
+    router: router.Router  # No mode classes yet
+    rule: rule.Rule  # No mode classes yet
+    sctp_filter: sctp_filter.SctpFilter  # No mode classes yet
+    switch_controller: switch_controller.SwitchController  # No mode classes yet
+    system: system.System  # No mode classes yet
+    user: user.User  # No mode classes yet
+    videofilter: videofilter.Videofilter  # No mode classes yet
+    virtual_patch: virtual_patch.VirtualPatch  # No mode classes yet
+    voip: voip.Voip  # No mode classes yet
+    vpn: vpn.Vpn  # No mode classes yet
+    waf: waf.Waf  # No mode classes yet
+    web_proxy: web_proxy.WebProxy  # No mode classes yet
+    webfilter: webfilter.Webfilter  # No mode classes yet
+    wireless_controller: wireless_controller.WirelessController  # No mode classes yet
+    ztna: ztna.Ztna  # No mode classes yet
 
     def __init__(self, client: IHTTPClient) -> None:
         """Initialize CMDB category with HTTP client."""
@@ -107,43 +107,43 @@ class CMDBObjectMode:
     All endpoints return FortiObject responses by default.
     """
     
-    alertemail: alertemail.AlertemailObjectMode
-    antivirus: antivirus.AntivirusObjectMode
-    application: application.ApplicationObjectMode
-    authentication: authentication.AuthenticationObjectMode
-    automation: automation.AutomationObjectMode
-    casb: casb.CasbObjectMode
-    certificate: certificate.CertificateObjectMode
-    diameter_filter: diameter_filter.DiameterFilterObjectMode
-    dlp: dlp.DlpObjectMode
-    dnsfilter: dnsfilter.DnsfilterObjectMode
-    emailfilter: emailfilter.EmailfilterObjectMode
-    endpoint_control: endpoint_control.EndpointControlObjectMode
-    ethernet_oam: ethernet_oam.EthernetOamObjectMode
-    extension_controller: extension_controller.ExtensionControllerObjectMode
-    file_filter: file_filter.FileFilterObjectMode
-    firewall: firewall.FirewallObjectMode
-    ftp_proxy: ftp_proxy.FtpProxyObjectMode
-    icap: icap.IcapObjectMode
-    ips: ips.IpsObjectMode
-    log: log.LogObjectMode
-    monitoring: monitoring.MonitoringObjectMode
-    report: report.ReportObjectMode
-    router: router.RouterObjectMode
-    rule: rule.RuleObjectMode
-    sctp_filter: sctp_filter.SctpFilterObjectMode
-    switch_controller: switch_controller.SwitchControllerObjectMode
-    system: system.SystemObjectMode
-    user: user.UserObjectMode
-    videofilter: videofilter.VideofilterObjectMode
-    virtual_patch: virtual_patch.VirtualPatchObjectMode
-    voip: voip.VoipObjectMode
-    vpn: vpn.VpnObjectMode
-    waf: waf.WafObjectMode
-    web_proxy: web_proxy.WebProxyObjectMode
-    webfilter: webfilter.WebfilterObjectMode
-    wireless_controller: wireless_controller.WirelessControllerObjectMode
-    ztna: ztna.ZtnaObjectMode
+    alertemail: alertemail.Alertemail  # No mode classes yet
+    antivirus: antivirus.Antivirus  # No mode classes yet
+    application: application.Application  # No mode classes yet
+    authentication: authentication.Authentication  # No mode classes yet
+    automation: automation.Automation  # No mode classes yet
+    casb: casb.Casb  # No mode classes yet
+    certificate: certificate.Certificate  # No mode classes yet
+    diameter_filter: diameter_filter.DiameterFilter  # No mode classes yet
+    dlp: dlp.Dlp  # No mode classes yet
+    dnsfilter: dnsfilter.Dnsfilter  # No mode classes yet
+    emailfilter: emailfilter.Emailfilter  # No mode classes yet
+    endpoint_control: endpoint_control.EndpointControl  # No mode classes yet
+    ethernet_oam: ethernet_oam.EthernetOam  # No mode classes yet
+    extension_controller: extension_controller.ExtensionController  # No mode classes yet
+    file_filter: file_filter.FileFilter  # No mode classes yet
+    firewall: firewall.Firewall  # No mode classes yet
+    ftp_proxy: ftp_proxy.FtpProxy  # No mode classes yet
+    icap: icap.Icap  # No mode classes yet
+    ips: ips.Ips  # No mode classes yet
+    log: log.Log  # No mode classes yet
+    monitoring: monitoring.Monitoring  # No mode classes yet
+    report: report.Report  # No mode classes yet
+    router: router.Router  # No mode classes yet
+    rule: rule.Rule  # No mode classes yet
+    sctp_filter: sctp_filter.SctpFilter  # No mode classes yet
+    switch_controller: switch_controller.SwitchController  # No mode classes yet
+    system: system.System  # No mode classes yet
+    user: user.User  # No mode classes yet
+    videofilter: videofilter.Videofilter  # No mode classes yet
+    virtual_patch: virtual_patch.VirtualPatch  # No mode classes yet
+    voip: voip.Voip  # No mode classes yet
+    vpn: vpn.Vpn  # No mode classes yet
+    waf: waf.Waf  # No mode classes yet
+    web_proxy: web_proxy.WebProxy  # No mode classes yet
+    webfilter: webfilter.Webfilter  # No mode classes yet
+    wireless_controller: wireless_controller.WirelessController  # No mode classes yet
+    ztna: ztna.Ztna  # No mode classes yet
 
     def __init__(self, client: IHTTPClient) -> None:
         """Initialize CMDB category with HTTP client."""

@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for cmdb.log/syslogd4/override_setting
+Auto-generated basic tests for cmdb.log/syslogd/override_setting
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd4.override-setting.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd.override-setting.json
 Category: cmdb
-Endpoint: /cmdb/log.syslogd4/override-setting
+Endpoint: /cmdb/log.syslogd/override-setting
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_override-setting.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.cmdb.log.syslogd4.override_setting
+endpoint = fgt.api.cmdb.log.syslogd.override_setting
 
 
 @pytest.mark.api_call
@@ -88,19 +88,19 @@ class TestAutoOverrideSettingValidators:
     def auto_test_validator_import(self):
         """Test that validators can be imported."""
         try:
-            from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_setting as validators
+            from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_setting as validators
             print(f"✅ Successfully imported validators for override-setting")
             
             # Check validator functions exist (they use HTTP method naming: post, put, get)
-            assert hasattr(validators, "validate_log_syslogd4_override_setting_post")
-            assert hasattr(validators, "validate_log_syslogd4_override_setting_put")
+            assert hasattr(validators, "validate_log_syslogd_override_setting_post")
+            assert hasattr(validators, "validate_log_syslogd_override_setting_put")
             print("✅ Validator functions exist")
         except ImportError as e:
             pytest.fail(f"Failed to import validators: {e}")
     
     def auto_test_validator_create_all_required(self):
         """Test create validator with all required fields."""
-        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_setting as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_setting as validators
         
         # Build minimal valid config with all required fields
         config = {
@@ -124,7 +124,7 @@ class TestAutoOverrideSettingEnums:
     
     def auto_test_enum_status(self):
         """Test enum field status validation."""
-        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_setting as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_setting as validators
         
         valid_values = ['enable', 'disable']
         
@@ -138,7 +138,7 @@ class TestAutoOverrideSettingEnums:
         print(f"✅ Enum field status has {len(valid_values)} valid values")
     def auto_test_enum_mode(self):
         """Test enum field mode validation."""
-        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_setting as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_setting as validators
         
         valid_values = ['udp', 'legacy-reliable', 'reliable']
         
@@ -152,7 +152,7 @@ class TestAutoOverrideSettingEnums:
         print(f"✅ Enum field mode has {len(valid_values)} valid values")
     def auto_test_enum_use_management_vdom(self):
         """Test enum field use-management-vdom validation."""
-        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import override_setting as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd._helpers import override_setting as validators
         
         valid_values = ['enable', 'disable']
         
@@ -169,7 +169,7 @@ class TestAutoOverrideSettingEnums:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "cmdb/log/syslogd4/override_setting"
+TEST_ENDPOINT = "cmdb/log/syslogd/override_setting"
 TEST_CATEGORY = "cmdb"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd4.override-setting.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd.override-setting.json"
 TEST_HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE']

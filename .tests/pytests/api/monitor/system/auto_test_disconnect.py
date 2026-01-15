@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.system/modem/disconnect
+Auto-generated basic tests for monitor.system/ha_peer/disconnect
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.modem.disconnect.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.ha-peer.disconnect.json
 Category: monitor
-Endpoint: /monitor/system/modem/disconnect
+Endpoint: /monitor/system/ha-peer/disconnect
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_disconnect.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.system.modem.disconnect
+endpoint = fgt.api.monitor.system.ha_peer.disconnect
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoDisconnectGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/system/modem/disconnect"
+TEST_ENDPOINT = "monitor/system/ha_peer/disconnect"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.modem.disconnect.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.ha-peer.disconnect.json"
 TEST_HTTP_METHODS = ['GET']

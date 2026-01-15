@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.system/password_policy_conform/select
+Auto-generated basic tests for monitor.system/change_password/select
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.password-policy-conform.select.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.change-password.select.json
 Category: monitor
-Endpoint: /monitor/system/password-policy-conform/select
+Endpoint: /monitor/system/change-password/select
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_select.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.system.password_policy_conform.select
+endpoint = fgt.api.monitor.system.change_password.select
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoSelectGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/system/password_policy_conform/select"
+TEST_ENDPOINT = "monitor/system/change_password/select"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.password-policy-conform.select.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.change-password.select.json"
 TEST_HTTP_METHODS = ['GET']

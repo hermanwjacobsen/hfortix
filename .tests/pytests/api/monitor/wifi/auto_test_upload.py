@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.wifi/region_image/upload
+Auto-generated basic tests for monitor.wifi/firmware/upload
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.region-image.upload.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.firmware.upload.json
 Category: monitor
-Endpoint: /monitor/wifi/region-image/upload
+Endpoint: /monitor/wifi/firmware/upload
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_upload.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.wifi.region_image.upload
+endpoint = fgt.api.monitor.wifi.firmware.upload
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoUploadGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/wifi/region_image/upload"
+TEST_ENDPOINT = "monitor/wifi/firmware/upload"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.region-image.upload.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/wifi.firmware.upload.json"
 TEST_HTTP_METHODS = ['GET']

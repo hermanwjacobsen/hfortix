@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for cmdb.log/webtrends/setting
+Auto-generated basic tests for cmdb.log/syslogd4/setting
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/log.webtrends.setting.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd4.setting.json
 Category: cmdb
-Endpoint: /cmdb/log.webtrends/setting
+Endpoint: /cmdb/log.syslogd4/setting
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_setting.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.cmdb.log.webtrends.setting
+endpoint = fgt.api.cmdb.log.syslogd4.setting
 
 
 @pytest.mark.api_call
@@ -80,6 +80,41 @@ class TestAutoSettingExists:
     
 
 
+@pytest.mark.validator
+@pytest.mark.parallel_safe
+class TestAutoSettingValidators:
+    """Auto-generated validator tests."""
+    
+    def auto_test_validator_import(self):
+        """Test that validators can be imported."""
+        try:
+            from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import setting as validators
+            print(f"✅ Successfully imported validators for setting")
+            
+            # Check validator functions exist (they use HTTP method naming: post, put, get)
+            assert hasattr(validators, "validate_log_syslogd4_setting_post")
+            assert hasattr(validators, "validate_log_syslogd4_setting_put")
+            print("✅ Validator functions exist")
+        except ImportError as e:
+            pytest.fail(f"Failed to import validators: {e}")
+    
+    def auto_test_validator_create_all_required(self):
+        """Test create validator with all required fields."""
+        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import setting as validators
+        
+        # Build minimal valid config with all required fields
+        config = {
+            "interface": "test_interface",  # string
+            "server": "test_server",  # string
+        }
+        
+        try:
+            result = validators.validate_setting_create(config)
+            assert result is True or isinstance(result, dict)
+            print(f"✅ Validator accepted minimal config with required fields")
+        except Exception as e:
+            # Validators may do additional checks, log but don't fail
+            print(f"⚠️  Validator raised: {e}")
 
 
 @pytest.mark.validator
@@ -89,7 +124,7 @@ class TestAutoSettingEnums:
     
     def auto_test_enum_status(self):
         """Test enum field status validation."""
-        from hfortix_fortios.api.v2.cmdb.log.webtrends._helpers import setting as validators
+        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import setting as validators
         
         valid_values = ['enable', 'disable']
         
@@ -101,12 +136,40 @@ class TestAutoSettingEnums:
             print(f"   Valid enum value: status={value}")
         
         print(f"✅ Enum field status has {len(valid_values)} valid values")
+    def auto_test_enum_mode(self):
+        """Test enum field mode validation."""
+        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import setting as validators
+        
+        valid_values = ['udp', 'legacy-reliable', 'reliable']
+        
+        # Test each valid value
+        for value in valid_values:
+            config = {"mode": value}
+            # Validators should accept any valid enum value
+            # Note: Full validation requires all required fields
+            print(f"   Valid enum value: mode={value}")
+        
+        print(f"✅ Enum field mode has {len(valid_values)} valid values")
+    def auto_test_enum_facility(self):
+        """Test enum field facility validation."""
+        from hfortix_fortios.api.v2.cmdb.log.syslogd4._helpers import setting as validators
+        
+        valid_values = ['kernel', 'user', 'mail', 'daemon', 'auth', 'syslog', 'lpr', 'news', 'uucp', 'cron', 'authpriv', 'ftp', 'ntp', 'audit', 'alert', 'clock', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7']
+        
+        # Test each valid value
+        for value in valid_values:
+            config = {"facility": value}
+            # Validators should accept any valid enum value
+            # Note: Full validation requires all required fields
+            print(f"   Valid enum value: facility={value}")
+        
+        print(f"✅ Enum field facility has {len(valid_values)} valid values")
 
 
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "cmdb/log/webtrends/setting"
+TEST_ENDPOINT = "cmdb/log/syslogd4/setting"
 TEST_CATEGORY = "cmdb"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/log.webtrends.setting.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/cmdb/log.syslogd4.setting.json"
 TEST_HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE']

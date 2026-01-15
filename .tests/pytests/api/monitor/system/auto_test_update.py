@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.system/sdn_connector/update
+Auto-generated basic tests for monitor.system/ha_peer/update
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.sdn-connector.update.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/system.ha-peer.update.json
 Category: monitor
-Endpoint: /monitor/system/sdn-connector/update
+Endpoint: /monitor/system/ha-peer/update
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_update.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.system.sdn_connector.update
+endpoint = fgt.api.monitor.system.ha_peer.update
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoUpdateGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/system/sdn_connector/update"
+TEST_ENDPOINT = "monitor/system/ha_peer/update"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.sdn-connector.update.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/system.ha-peer.update.json"
 TEST_HTTP_METHODS = ['GET']

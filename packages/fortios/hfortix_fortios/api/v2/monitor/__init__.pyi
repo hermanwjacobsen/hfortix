@@ -52,38 +52,38 @@ class MonitorDictMode:
     All endpoints return dict/TypedDict responses by default.
     """
     
-    azure: azure.AzureDictMode
-    casb: casb.CasbDictMode
-    endpoint_control: endpoint_control.EndpointControlDictMode
-    extender_controller: extender_controller.ExtenderControllerDictMode
-    extension_controller: extension_controller.ExtensionControllerDictMode
-    firewall: firewall.FirewallDictMode
-    firmware: firmware.FirmwareDictMode
-    fortiguard: fortiguard.FortiguardDictMode
-    fortiview: fortiview.FortiviewDictMode
-    geoip: geoip.GeoipDictMode
-    ips: ips.IpsDictMode
-    license: license.LicenseDictMode
-    log: log.LogDictMode
-    network: network.NetworkDictMode
-    registration: registration.RegistrationDictMode
-    router: router.RouterDictMode
-    sdwan: sdwan.SdwanDictMode
-    service: service.ServiceDictMode
-    switch_controller: switch_controller.SwitchControllerDictMode
-    system: system.SystemDictMode
-    user: user.UserDictMode
-    utm: utm.UtmDictMode
-    videofilter: videofilter.VideofilterDictMode
-    virtual_wan: virtual_wan.VirtualWanDictMode
-    vpn: vpn.VpnDictMode
-    vpn_certificate: vpn_certificate.VpnCertificateDictMode
-    wanopt: wanopt.WanoptDictMode
-    web_ui: web_ui.WebUiDictMode
-    webcache: webcache.WebcacheDictMode
-    webfilter: webfilter.WebfilterDictMode
-    webproxy: webproxy.WebproxyDictMode
-    wifi: wifi.WifiDictMode
+    azure: azure.Azure  # No mode classes yet
+    casb: casb.Casb  # No mode classes yet
+    endpoint_control: endpoint_control.EndpointControl  # No mode classes yet
+    extender_controller: extender_controller.ExtenderController  # No mode classes yet
+    extension_controller: extension_controller.ExtensionController  # No mode classes yet
+    firewall: firewall.Firewall  # No mode classes yet
+    firmware: firmware.Firmware  # No mode classes yet
+    fortiguard: fortiguard.Fortiguard  # No mode classes yet
+    fortiview: fortiview.Fortiview  # No mode classes yet
+    geoip: geoip.Geoip  # No mode classes yet
+    ips: ips.Ips  # No mode classes yet
+    license: license.License  # No mode classes yet
+    log: log.Log  # No mode classes yet
+    network: network.Network  # No mode classes yet
+    registration: registration.Registration  # No mode classes yet
+    router: router.Router  # No mode classes yet
+    sdwan: sdwan.Sdwan  # No mode classes yet
+    service: service.Service  # No mode classes yet
+    switch_controller: switch_controller.SwitchController  # No mode classes yet
+    system: system.System  # No mode classes yet
+    user: user.User  # No mode classes yet
+    utm: utm.Utm  # No mode classes yet
+    videofilter: videofilter.Videofilter  # No mode classes yet
+    virtual_wan: virtual_wan.VirtualWan  # No mode classes yet
+    vpn: vpn.Vpn  # No mode classes yet
+    vpn_certificate: vpn_certificate.VpnCertificate  # No mode classes yet
+    wanopt: wanopt.Wanopt  # No mode classes yet
+    web_ui: web_ui.WebUi  # No mode classes yet
+    webcache: webcache.Webcache  # No mode classes yet
+    webfilter: webfilter.Webfilter  # No mode classes yet
+    webproxy: webproxy.Webproxy  # No mode classes yet
+    wifi: wifi.Wifi  # No mode classes yet
 
     def __init__(self, client: IHTTPClient) -> None:
         """Initialize MONITOR category with HTTP client."""
@@ -97,38 +97,38 @@ class MonitorObjectMode:
     All endpoints return FortiObject responses by default.
     """
     
-    azure: azure.AzureObjectMode
-    casb: casb.CasbObjectMode
-    endpoint_control: endpoint_control.EndpointControlObjectMode
-    extender_controller: extender_controller.ExtenderControllerObjectMode
-    extension_controller: extension_controller.ExtensionControllerObjectMode
-    firewall: firewall.FirewallObjectMode
-    firmware: firmware.FirmwareObjectMode
-    fortiguard: fortiguard.FortiguardObjectMode
-    fortiview: fortiview.FortiviewObjectMode
-    geoip: geoip.GeoipObjectMode
-    ips: ips.IpsObjectMode
-    license: license.LicenseObjectMode
-    log: log.LogObjectMode
-    network: network.NetworkObjectMode
-    registration: registration.RegistrationObjectMode
-    router: router.RouterObjectMode
-    sdwan: sdwan.SdwanObjectMode
-    service: service.ServiceObjectMode
-    switch_controller: switch_controller.SwitchControllerObjectMode
-    system: system.SystemObjectMode
-    user: user.UserObjectMode
-    utm: utm.UtmObjectMode
-    videofilter: videofilter.VideofilterObjectMode
-    virtual_wan: virtual_wan.VirtualWanObjectMode
-    vpn: vpn.VpnObjectMode
-    vpn_certificate: vpn_certificate.VpnCertificateObjectMode
-    wanopt: wanopt.WanoptObjectMode
-    web_ui: web_ui.WebUiObjectMode
-    webcache: webcache.WebcacheObjectMode
-    webfilter: webfilter.WebfilterObjectMode
-    webproxy: webproxy.WebproxyObjectMode
-    wifi: wifi.WifiObjectMode
+    azure: azure.Azure  # No mode classes yet
+    casb: casb.Casb  # No mode classes yet
+    endpoint_control: endpoint_control.EndpointControl  # No mode classes yet
+    extender_controller: extender_controller.ExtenderController  # No mode classes yet
+    extension_controller: extension_controller.ExtensionController  # No mode classes yet
+    firewall: firewall.Firewall  # No mode classes yet
+    firmware: firmware.Firmware  # No mode classes yet
+    fortiguard: fortiguard.Fortiguard  # No mode classes yet
+    fortiview: fortiview.Fortiview  # No mode classes yet
+    geoip: geoip.Geoip  # No mode classes yet
+    ips: ips.Ips  # No mode classes yet
+    license: license.License  # No mode classes yet
+    log: log.Log  # No mode classes yet
+    network: network.Network  # No mode classes yet
+    registration: registration.Registration  # No mode classes yet
+    router: router.Router  # No mode classes yet
+    sdwan: sdwan.Sdwan  # No mode classes yet
+    service: service.Service  # No mode classes yet
+    switch_controller: switch_controller.SwitchController  # No mode classes yet
+    system: system.System  # No mode classes yet
+    user: user.User  # No mode classes yet
+    utm: utm.Utm  # No mode classes yet
+    videofilter: videofilter.Videofilter  # No mode classes yet
+    virtual_wan: virtual_wan.VirtualWan  # No mode classes yet
+    vpn: vpn.Vpn  # No mode classes yet
+    vpn_certificate: vpn_certificate.VpnCertificate  # No mode classes yet
+    wanopt: wanopt.Wanopt  # No mode classes yet
+    web_ui: web_ui.WebUi  # No mode classes yet
+    webcache: webcache.Webcache  # No mode classes yet
+    webfilter: webfilter.Webfilter  # No mode classes yet
+    webproxy: webproxy.Webproxy  # No mode classes yet
+    wifi: wifi.Wifi  # No mode classes yet
 
     def __init__(self, client: IHTTPClient) -> None:
         """Initialize MONITOR category with HTTP client."""

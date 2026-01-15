@@ -1,9 +1,9 @@
 """
-Auto-generated basic tests for monitor.firewall/session6/close_multiple
+Auto-generated basic tests for monitor.firewall/session/close_multiple
 
-Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.session6.close-multiple.json
+Generated from schema: /app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.session.close-multiple.json
 Category: monitor
-Endpoint: /monitor/firewall/session6/close-multiple
+Endpoint: /monitor/firewall/session/close-multiple
 
 These are BASIC automated tests. For comprehensive testing, create
 manual tests in test_close-multiple.py
@@ -16,7 +16,7 @@ Test naming convention:
 import pytest
 from __client__ import fgt
 
-endpoint = fgt.api.monitor.firewall.session6.close_multiple
+endpoint = fgt.api.monitor.firewall.session.close_multiple
 
 
 @pytest.mark.api_call
@@ -63,7 +63,7 @@ class TestAutoCloseMultipleGet:
 
 
 # Metadata for test discovery
-TEST_ENDPOINT = "monitor/firewall/session6/close_multiple"
+TEST_ENDPOINT = "monitor/firewall/session/close_multiple"
 TEST_CATEGORY = "monitor"
-TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.session6.close-multiple.json"
+TEST_SCHEMA = "/app/dev/classes/fortinet/schema/7.6.5/monitor/firewall.session.close-multiple.json"
 TEST_HTTP_METHODS = ['GET']
