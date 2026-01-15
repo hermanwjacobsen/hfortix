@@ -72,12 +72,12 @@ class FortiObject(Generic[_DataT]):
     # ========================================================================
 
     @property
-    def http_status(self) -> int | None:
+    def http_status_code(self) -> int | None:
         """HTTP status code (200, 404, 500, etc.)."""
         ...
 
     @property
-    def status(self) -> str | None:
+    def http_status(self) -> str | None:
         """API response status ('success' or 'error')."""
         ...
 
@@ -139,16 +139,16 @@ class FortiObject(Generic[_DataT]):
         
         Returns:
             Dictionary with:
-                - status_code: HTTP status code (200, 404, etc.)
-                - response_time_ms: Response time in milliseconds
-                - method: HTTP method (GET, POST, PUT, DELETE)
-                - status: API status ('success' or 'error')
+                - http_status_code: HTTP status code (200, 404, etc.)
+                - http_response_time: Response time in milliseconds
+                - http_method: HTTP method (GET, POST, PUT, DELETE)
+                - http_status: API status ('success' or 'error')
                 - vdom: Virtual domain name
         
         Examples:
             >>> result = fgt.api.cmdb.firewall.address.get()
             >>> print(result.http_stats)
-            {'status_code': 200, 'response_time_ms': 45.2, 'method': 'GET', 'status': 'success', 'vdom': 'root'}
+            {'http_status_code': 200, 'http_response_time': 45.2, 'http_method': 'GET', 'http_status': 'success', 'vdom': 'root'}
         """
         ...
 
@@ -487,10 +487,10 @@ class FortiObjectList(list[_ObjectT], Generic[_ObjectT]):
         
         Returns:
             Dictionary with:
-                - status_code: HTTP status code (200, 404, etc.)
-                - response_time_ms: Response time in milliseconds
-                - method: HTTP method (GET, POST, PUT, DELETE)
-                - status: API status ('success' or 'error')
+                - http_status_code: HTTP status code (200, 404, etc.)
+                - http_response_time: Response time in milliseconds
+                - http_method: HTTP method (GET, POST, PUT, DELETE)
+                - http_status: API status ('success' or 'error')
                 - vdom: Virtual domain name
         """
         ...
@@ -500,12 +500,12 @@ class FortiObjectList(list[_ObjectT], Generic[_ObjectT]):
     # ========================================================================
 
     @property
-    def http_status(self) -> int | None:
+    def http_status_code(self) -> int | None:
         """HTTP status code (200, 404, 500, etc.)."""
         ...
 
     @property
-    def status(self) -> str | None:
+    def http_status(self) -> str | None:
         """API response status ('success' or 'error')."""
         ...
 

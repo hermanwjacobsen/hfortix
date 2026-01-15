@@ -78,15 +78,20 @@ class FortiObject:
     # ========================================================================
 
     @property
-    def http_status(self) -> int | None:
+    def http_status_code(self) -> int | None:
         """HTTP status code (200, 404, 500, etc.)."""
         if self._raw_envelope:
             return self._raw_envelope.get("http_status")
         return self._data.get("http_status")
 
     @property
-    def status(self) -> str | None:
-        """API response status ('success' or 'error')."""
+    def http_status(self) -> str | None:
+        """API response status ('success' or 'error').
+        
+        Note: This returns the API envelope status, not object fields.
+        Object fields like 'status' are accessed via attribute (obj.status)
+        or dict access (obj["status"]).
+        """
         if self._raw_envelope:
             return self._raw_envelope.get("status")
         return self._data.get("status")
@@ -163,22 +168,22 @@ class FortiObject:
         
         Returns:
             Dictionary with:
-                - status_code: HTTP status code (200, 404, etc.)
-                - response_time_ms: Response time in milliseconds
-                - method: HTTP method (GET, POST, PUT, DELETE)
-                - status: API status ('success' or 'error')
+                - http_status_code: HTTP status code (200, 404, etc.)
+                - http_response_time: Response time in milliseconds
+                - http_method: HTTP method (GET, POST, PUT, DELETE)
+                - http_status: API status ('success' or 'error')
                 - vdom: Virtual domain name
         
         Examples:
             >>> result = fgt.api.cmdb.firewall.address.get()
             >>> print(result.http_stats)
-            {'status_code': 200, 'response_time_ms': 45.2, 'method': 'GET', 'status': 'success', 'vdom': 'root'}
+            {'http_status_code': 200, 'http_response_time': 45.2, 'http_method': 'GET', 'http_status': 'success', 'vdom': 'root'}
         """
         return {
-            "status_code": self.http_status,
-            "response_time_ms": self.http_response_time,
-            "method": self.http_method,
-            "status": self.status,
+            "http_status_code": self.http_status_code,
+            "http_response_time": self.http_response_time,
+            "http_method": self.http_method,
+            "http_status": self.http_status,
             "vdom": self.vdom,
         }
 
@@ -638,22 +643,22 @@ class FortiObjectList(list):
         
         Returns:
             Dictionary with:
-                - status_code: HTTP status code (200, 404, etc.)
-                - response_time_ms: Response time in milliseconds
-                - method: HTTP method (GET, POST, PUT, DELETE)
-                - status: API status ('success' or 'error')
+                - http_status_code: HTTP status code (200, 404, etc.)
+                - http_response_time: Response time in milliseconds
+                - http_method: HTTP method (GET, POST, PUT, DELETE)
+                - http_status: API status ('success' or 'error')
                 - vdom: Virtual domain name
         
         Examples:
             >>> policies = fgt.api.cmdb.firewall.policy.get()
             >>> print(policies.http_stats)
-            {'status_code': 200, 'response_time_ms': 125.3, 'method': 'GET', 'status': 'success', 'vdom': 'root'}
+            {'http_status_code': 200, 'http_response_time': 125.3, 'http_method': 'GET', 'http_status': 'success', 'vdom': 'root'}
         """
         return {
-            "status_code": self.http_status,
-            "response_time_ms": self.http_response_time,
-            "method": self.http_method,
-            "status": self.status,
+            "http_status_code": self.http_status_code,
+            "http_response_time": self.http_response_time,
+            "http_method": self.http_method,
+            "http_status": self.http_status,
             "vdom": self.vdom,
         }
 
@@ -662,12 +667,12 @@ class FortiObjectList(list):
     # ========================================================================
 
     @property
-    def http_status(self) -> int | None:
+    def http_status_code(self) -> int | None:
         """HTTP status code (200, 404, 500, etc.)."""
         return self._raw_envelope.get("http_status") if self._raw_envelope else None
 
     @property
-    def status(self) -> str | None:
+    def http_status(self) -> str | None:
         """API response status ('success' or 'error')."""
         return self._raw_envelope.get("status") if self._raw_envelope else None
 

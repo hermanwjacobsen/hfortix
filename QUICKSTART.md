@@ -1,8 +1,8 @@
-# HFortix - Quick Reference (v0.5.76-beta)
+# HFortix - Quick Reference (v0.5.77-beta)
 
 ⚠️ **Breaking Changes in v0.5.0**: Convenience wrappers have been removed. Use direct API access via `fgt.api.*` instead.
 
-✨ **New in v0.5.76**: FortiManager Proxy Support, Response timing properties, silent 404 for exists()!
+✨ **New in v0.5.77**: FortiManager Proxy Support, Response timing properties, silent 404 for exists()!
 
 ✨ **New in v0.5.45**: Core `fmt` module with 13 formatting utilities, automatic key normalization (hyphens → underscores)!
 
@@ -44,7 +44,7 @@ from hfortix import FortiOS
 from hfortix_fortios import FortiOS
 from hfortix_core import FortinetError, APIError
 
-# FortiManager Proxy (v0.5.76+)
+# FortiManager Proxy (v0.5.77+)
 from hfortix_fortios import FortiManagerProxy
 ```
 
@@ -481,7 +481,7 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 
 ## Advanced Features
 
-### FortiManager Proxy (NEW in v0.5.76!)
+### FortiManager Proxy (NEW in v0.5.77!)
 
 Route FortiOS API calls through FortiManager to managed devices:
 

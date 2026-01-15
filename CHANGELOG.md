@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.77] - 2026-01-15
+
+### Changed - **Renamed envelope properties to avoid collision**
+
+- ✅ **`status` → `http_status`**: API response status ("success"/"error") now accessed via `http_status`
+- ✅ **`http_status` → `http_status_code`**: HTTP status code (200, 404, etc.) now accessed via `http_status_code`
+- ✅ **Updated `http_stats` dict**: Keys now use `http_` prefix consistently
+
+**Why:**
+The previous `.status` property on `FortiObject` shadowed the actual object field `status` that many FortiOS objects use (e.g., `status: "enable"` on firewall policies). This caused:
+- `policy.status` → returned `"success"` (API envelope) instead of `"enable"` (object field)
+- `policy["status"]` → returned `"enable"` (correct, but inconsistent)
+
+**Migration:**
+```python
+# Before (0.5.76)
+result.status           # API status ("success"/"error")
+result.http_status      # HTTP code (200, 404)
+
+# After (0.5.77)
+result.http_status      # API status ("success"/"error")
+result.http_status_code # HTTP code (200, 404)
+
+# Object fields now accessible directly
+policy.status           # "enable" or "disable" (actual object field)
+```
+
+---
+
 ## [0.5.76] - 2026-01-15
 
 ### Added - **FortiManager Proxy Support**
