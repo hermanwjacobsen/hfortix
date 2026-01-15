@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -383,7 +383,7 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ServerObject]: ...
+    ) -> FortiObjectList[ServerObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -403,7 +403,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -421,7 +420,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # With no mkey -> returns list of objects
@@ -438,25 +436,7 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ServerObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ServerObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -472,7 +452,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -490,7 +469,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -507,8 +485,7 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ServerObject]: ...
+    ) -> FortiObjectList[ServerObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -524,7 +501,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -539,7 +515,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ServerObject | list[ServerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -575,7 +550,6 @@ class Server:
         prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     @overload
@@ -604,38 +578,7 @@ class Server:
         prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        rapid_commit: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        dns_service: Literal["delegated", "default", "specify"] | None = ...,
-        dns_search_list: Literal["delegated", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        domain: str | None = ...,
-        subnet: str | None = ...,
-        interface: str | None = ...,
-        delegated_prefix_route: Literal["disable", "enable"] | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        upstream_interface: str | None = ...,
-        delegated_prefix_iaid: int | None = ...,
-        ip_mode: Literal["range", "delegated"] | None = ...,
-        prefix_mode: Literal["dhcp6", "ra"] | None = ...,
-        prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -691,7 +634,6 @@ class Server:
         prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -721,7 +663,6 @@ class Server:
         prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     @overload
@@ -750,38 +691,7 @@ class Server:
         prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        rapid_commit: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        dns_service: Literal["delegated", "default", "specify"] | None = ...,
-        dns_search_list: Literal["delegated", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        domain: str | None = ...,
-        subnet: str | None = ...,
-        interface: str | None = ...,
-        delegated_prefix_route: Literal["disable", "enable"] | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        upstream_interface: str | None = ...,
-        delegated_prefix_iaid: int | None = ...,
-        ip_mode: Literal["range", "delegated"] | None = ...,
-        prefix_mode: Literal["dhcp6", "ra"] | None = ...,
-        prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -837,7 +747,6 @@ class Server:
         prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -846,7 +755,6 @@ class Server:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     @overload
@@ -854,17 +762,7 @@ class Server:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -878,7 +776,6 @@ class Server:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -912,7 +809,6 @@ class Server:
         prefix_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

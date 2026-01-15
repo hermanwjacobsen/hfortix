@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -230,7 +230,7 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ShapingProfileObject]: ...
+    ) -> FortiObjectList[ShapingProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -250,7 +250,6 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -268,7 +267,6 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -285,25 +283,7 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ShapingProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        profile_name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ShapingProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -319,7 +299,6 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -337,7 +316,6 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -354,8 +332,7 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ShapingProfileObject]: ...
+    ) -> FortiObjectList[ShapingProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -371,7 +348,6 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -386,7 +362,6 @@ class ShapingProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ShapingProfileObject | list[ShapingProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -407,7 +382,6 @@ class ShapingProfile:
         default_class_id: int | None = ...,
         shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingProfileObject: ...
     
     @overload
@@ -421,23 +395,7 @@ class ShapingProfile:
         default_class_id: int | None = ...,
         shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ShapingProfilePayload | None = ...,
-        profile_name: str | None = ...,
-        comment: str | None = ...,
-        type: Literal["policing", "queuing"] | None = ...,
-        npu_offloading: Literal["disable", "enable"] | None = ...,
-        default_class_id: int | None = ...,
-        shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -463,7 +421,6 @@ class ShapingProfile:
         default_class_id: int | None = ...,
         shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -478,7 +435,6 @@ class ShapingProfile:
         default_class_id: int | None = ...,
         shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingProfileObject: ...
     
     @overload
@@ -492,23 +448,7 @@ class ShapingProfile:
         default_class_id: int | None = ...,
         shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ShapingProfilePayload | None = ...,
-        profile_name: str | None = ...,
-        comment: str | None = ...,
-        type: Literal["policing", "queuing"] | None = ...,
-        npu_offloading: Literal["disable", "enable"] | None = ...,
-        default_class_id: int | None = ...,
-        shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -534,7 +474,6 @@ class ShapingProfile:
         default_class_id: int | None = ...,
         shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -543,7 +482,6 @@ class ShapingProfile:
         self,
         profile_name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingProfileObject: ...
     
     @overload
@@ -551,17 +489,7 @@ class ShapingProfile:
         self,
         profile_name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        profile_name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -575,7 +503,6 @@ class ShapingProfile:
         self,
         profile_name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -594,7 +521,6 @@ class ShapingProfile:
         default_class_id: int | None = ...,
         shaping_entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -993,7 +993,6 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdwanObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1011,7 +1010,6 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdwanObject: ...
     
     # With no mkey -> returns list of objects
@@ -1028,25 +1026,7 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdwanObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -1062,7 +1042,6 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdwanObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1080,7 +1059,6 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdwanObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1097,7 +1075,6 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdwanObject: ...
     
     # Fallback overload for all other cases
@@ -1114,7 +1091,6 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -1129,7 +1105,6 @@ class Sdwan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SdwanObject | dict[str, Any]: ...
     
     def get_schema(
@@ -1161,7 +1136,6 @@ class Sdwan:
         neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdwanObject: ...
     
     @overload
@@ -1186,34 +1160,7 @@ class Sdwan:
         neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SdwanPayload | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        load_balance_mode: Literal["source-ip-based", "weight-based", "usage-based", "source-dest-ip-based", "measured-volume-based"] | None = ...,
-        speedtest_bypass_routing: Literal["disable", "enable"] | None = ...,
-        duplication_max_num: int | None = ...,
-        duplication_max_discrepancy: int | None = ...,
-        neighbor_hold_down: Literal["enable", "disable"] | None = ...,
-        neighbor_hold_down_time: int | None = ...,
-        app_perf_log_period: int | None = ...,
-        neighbor_hold_boot_time: int | None = ...,
-        fail_detect: Literal["enable", "disable"] | None = ...,
-        fail_alert_interfaces: str | list[str] | list[dict[str, Any]] | None = ...,
-        zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        members: str | list[str] | list[dict[str, Any]] | None = ...,
-        health_check: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        duplication: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1261,7 +1208,6 @@ class Sdwan:
         neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1291,7 +1237,6 @@ class Sdwan:
         neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
         duplication: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

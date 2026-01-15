@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -234,7 +234,7 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SnmpCommunityObject]: ...
+    ) -> FortiObjectList[SnmpCommunityObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -254,7 +254,6 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SnmpCommunityObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -272,7 +271,6 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SnmpCommunityObject: ...
     
     # With no mkey -> returns list of objects
@@ -289,25 +287,7 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SnmpCommunityObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[SnmpCommunityObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -323,7 +303,6 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SnmpCommunityObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -341,7 +320,6 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SnmpCommunityObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -358,8 +336,7 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SnmpCommunityObject]: ...
+    ) -> FortiObjectList[SnmpCommunityObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -375,7 +352,6 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -390,7 +366,6 @@ class SnmpCommunity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SnmpCommunityObject | list[SnmpCommunityObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -420,7 +395,6 @@ class SnmpCommunity:
         trap_v2c_rport: int | None = ...,
         events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SnmpCommunityObject: ...
     
     @overload
@@ -443,32 +417,7 @@ class SnmpCommunity:
         trap_v2c_rport: int | None = ...,
         events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: SnmpCommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["disable", "enable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["disable", "enable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["disable", "enable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["disable", "enable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -512,7 +461,6 @@ class SnmpCommunity:
         trap_v2c_rport: int | None = ...,
         events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -536,7 +484,6 @@ class SnmpCommunity:
         trap_v2c_rport: int | None = ...,
         events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SnmpCommunityObject: ...
     
     @overload
@@ -559,32 +506,7 @@ class SnmpCommunity:
         trap_v2c_rport: int | None = ...,
         events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SnmpCommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["disable", "enable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["disable", "enable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["disable", "enable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["disable", "enable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -628,7 +550,6 @@ class SnmpCommunity:
         trap_v2c_rport: int | None = ...,
         events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -637,7 +558,6 @@ class SnmpCommunity:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SnmpCommunityObject: ...
     
     @overload
@@ -645,17 +565,7 @@ class SnmpCommunity:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -669,7 +579,6 @@ class SnmpCommunity:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -697,7 +606,6 @@ class SnmpCommunity:
         trap_v2c_rport: int | None = ...,
         events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "ent-conf-change", "l2mac"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

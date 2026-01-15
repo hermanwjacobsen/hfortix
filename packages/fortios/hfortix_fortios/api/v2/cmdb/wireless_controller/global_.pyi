@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -280,7 +280,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -298,7 +297,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # With no mkey -> returns list of objects
@@ -315,25 +313,7 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -349,7 +329,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -367,7 +346,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -384,7 +362,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Fallback overload for all other cases
@@ -401,7 +378,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -416,7 +392,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> GlobalObject | dict[str, Any]: ...
     
     def get_schema(
@@ -464,7 +439,6 @@ class Global:
         max_wids_entry: int | None = ...,
         max_ble_device: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     @overload
@@ -505,50 +479,7 @@ class Global:
         max_wids_entry: int | None = ...,
         max_ble_device: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: GlobalPayload | None = ...,
-        name: str | None = ...,
-        location: str | None = ...,
-        acd_process_count: int | None = ...,
-        wpad_process_count: int | None = ...,
-        image_download: Literal["enable", "disable"] | None = ...,
-        rolling_wtp_upgrade: Literal["enable", "disable"] | None = ...,
-        rolling_wtp_upgrade_threshold: str | None = ...,
-        max_retransmit: int | None = ...,
-        control_message_offload: Literal["ebp-frame", "aeroscout-tag", "ap-list", "sta-list", "sta-cap-list", "stats", "aeroscout-mu", "sta-health", "spectral-analysis"] | list[str] | None = ...,
-        data_ethernet_II: Literal["enable", "disable"] | None = ...,
-        link_aggregation: Literal["enable", "disable"] | None = ...,
-        mesh_eth_type: int | None = ...,
-        fiapp_eth_type: int | None = ...,
-        discovery_mc_addr: str | None = ...,
-        discovery_mc_addr6: str | None = ...,
-        max_clients: int | None = ...,
-        rogue_scan_mac_adjacency: int | None = ...,
-        ipsec_base_ip: str | None = ...,
-        wtp_share: Literal["enable", "disable"] | None = ...,
-        tunnel_mode: Literal["compatible", "strict"] | None = ...,
-        nac_interval: int | None = ...,
-        ap_log_server: Literal["enable", "disable"] | None = ...,
-        ap_log_server_ip: str | None = ...,
-        ap_log_server_port: int | None = ...,
-        max_sta_offline: int | None = ...,
-        max_sta_offline_ip2mac: int | None = ...,
-        max_sta_cap: int | None = ...,
-        max_sta_cap_wtp: int | None = ...,
-        max_rogue_ap: int | None = ...,
-        max_rogue_ap_wtp: int | None = ...,
-        max_rogue_sta: int | None = ...,
-        max_wids_entry: int | None = ...,
-        max_ble_device: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -628,7 +559,6 @@ class Global:
         max_wids_entry: int | None = ...,
         max_ble_device: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -674,7 +604,6 @@ class Global:
         max_wids_entry: int | None = ...,
         max_ble_device: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

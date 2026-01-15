@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -235,7 +235,7 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ExternalResourceObject]: ...
+    ) -> FortiObjectList[ExternalResourceObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -255,7 +255,6 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalResourceObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -273,7 +272,6 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalResourceObject: ...
     
     # With no mkey -> returns list of objects
@@ -290,25 +288,7 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExternalResourceObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ExternalResourceObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -324,7 +304,6 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalResourceObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -342,7 +321,6 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalResourceObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -359,8 +337,7 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExternalResourceObject]: ...
+    ) -> FortiObjectList[ExternalResourceObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -376,7 +353,6 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -391,7 +367,6 @@ class ExternalResource:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ExternalResourceObject | list[ExternalResourceObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -431,7 +406,6 @@ class ExternalResource:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalResourceObject: ...
     
     @overload
@@ -464,42 +438,7 @@ class ExternalResource:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalResourcePayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["category", "domain", "malware", "address", "mac-address", "data", "generic-address"] | None = ...,
-        namespace: str | None = ...,
-        object_array_path: str | None = ...,
-        address_name_field: str | None = ...,
-        address_data_field: str | None = ...,
-        address_comment_field: str | None = ...,
-        update_method: Literal["feed", "push"] | None = ...,
-        category: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        comments: str | None = ...,
-        resource: str | None = ...,
-        user_agent: str | None = ...,
-        server_identity_check: Literal["none", "basic", "full"] | None = ...,
-        refresh_rate: int | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -563,7 +502,6 @@ class ExternalResource:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -597,7 +535,6 @@ class ExternalResource:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalResourceObject: ...
     
     @overload
@@ -630,42 +567,7 @@ class ExternalResource:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalResourcePayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["category", "domain", "malware", "address", "mac-address", "data", "generic-address"] | None = ...,
-        namespace: str | None = ...,
-        object_array_path: str | None = ...,
-        address_name_field: str | None = ...,
-        address_data_field: str | None = ...,
-        address_comment_field: str | None = ...,
-        update_method: Literal["feed", "push"] | None = ...,
-        category: int | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        comments: str | None = ...,
-        resource: str | None = ...,
-        user_agent: str | None = ...,
-        server_identity_check: Literal["none", "basic", "full"] | None = ...,
-        refresh_rate: int | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -729,7 +631,6 @@ class ExternalResource:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -738,7 +639,6 @@ class ExternalResource:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalResourceObject: ...
     
     @overload
@@ -746,17 +646,7 @@ class ExternalResource:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -770,7 +660,6 @@ class ExternalResource:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -808,7 +697,6 @@ class ExternalResource:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

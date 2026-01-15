@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -268,7 +268,7 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[X8021xObject]: ...
+    ) -> FortiObjectList[X8021xObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -288,7 +288,6 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -306,7 +305,6 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xObject: ...
     
     # With no mkey -> returns list of objects
@@ -323,25 +321,7 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[X8021xObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[X8021xObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -357,7 +337,6 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -375,7 +354,6 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -392,8 +370,7 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[X8021xObject]: ...
+    ) -> FortiObjectList[X8021xObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -409,7 +386,6 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -424,7 +400,6 @@ class X8021x:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> X8021xObject | list[X8021xObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -462,7 +437,6 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xObject: ...
     
     @overload
@@ -493,40 +467,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: X8021xPayload | None = ...,
-        name: str | None = ...,
-        security_mode: Literal["802.1X", "802.1X-mac-based"] | None = ...,
-        user_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        mac_auth_bypass: Literal["disable", "enable"] | None = ...,
-        auth_order: Literal["dot1x-mab", "mab-dot1x", "mab"] | None = ...,
-        auth_priority: Literal["legacy", "dot1x-mab", "mab-dot1x"] | None = ...,
-        open_auth: Literal["disable", "enable"] | None = ...,
-        eap_passthru: Literal["disable", "enable"] | None = ...,
-        eap_auto_untagged_vlans: Literal["disable", "enable"] | None = ...,
-        guest_vlan: Literal["disable", "enable"] | None = ...,
-        guest_vlan_id: str | None = ...,
-        guest_auth_delay: int | None = ...,
-        auth_fail_vlan: Literal["disable", "enable"] | None = ...,
-        auth_fail_vlan_id: str | None = ...,
-        framevid_apply: Literal["disable", "enable"] | None = ...,
-        radius_timeout_overwrite: Literal["disable", "enable"] | None = ...,
-        policy_type: Literal["802.1X"] | None = ...,
-        authserver_timeout_period: int | None = ...,
-        authserver_timeout_vlan: Literal["disable", "enable"] | None = ...,
-        authserver_timeout_vlanid: str | None = ...,
-        authserver_timeout_tagged: Literal["disable", "lldp-voice", "static"] | None = ...,
-        authserver_timeout_tagged_vlanid: str | None = ...,
-        dacl: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -586,7 +527,6 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -618,7 +558,6 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xObject: ...
     
     @overload
@@ -649,40 +588,7 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: X8021xPayload | None = ...,
-        name: str | None = ...,
-        security_mode: Literal["802.1X", "802.1X-mac-based"] | None = ...,
-        user_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        mac_auth_bypass: Literal["disable", "enable"] | None = ...,
-        auth_order: Literal["dot1x-mab", "mab-dot1x", "mab"] | None = ...,
-        auth_priority: Literal["legacy", "dot1x-mab", "mab-dot1x"] | None = ...,
-        open_auth: Literal["disable", "enable"] | None = ...,
-        eap_passthru: Literal["disable", "enable"] | None = ...,
-        eap_auto_untagged_vlans: Literal["disable", "enable"] | None = ...,
-        guest_vlan: Literal["disable", "enable"] | None = ...,
-        guest_vlan_id: str | None = ...,
-        guest_auth_delay: int | None = ...,
-        auth_fail_vlan: Literal["disable", "enable"] | None = ...,
-        auth_fail_vlan_id: str | None = ...,
-        framevid_apply: Literal["disable", "enable"] | None = ...,
-        radius_timeout_overwrite: Literal["disable", "enable"] | None = ...,
-        policy_type: Literal["802.1X"] | None = ...,
-        authserver_timeout_period: int | None = ...,
-        authserver_timeout_vlan: Literal["disable", "enable"] | None = ...,
-        authserver_timeout_vlanid: str | None = ...,
-        authserver_timeout_tagged: Literal["disable", "lldp-voice", "static"] | None = ...,
-        authserver_timeout_tagged_vlanid: str | None = ...,
-        dacl: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -742,7 +648,6 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -751,7 +656,6 @@ class X8021x:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xObject: ...
     
     @overload
@@ -759,17 +663,7 @@ class X8021x:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -783,7 +677,6 @@ class X8021x:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -819,7 +712,6 @@ class X8021x:
         authserver_timeout_tagged_vlanid: str | None = ...,
         dacl: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

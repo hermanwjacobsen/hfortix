@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -255,7 +255,7 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[TtlPolicyObject]: ...
+    ) -> FortiObjectList[TtlPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -275,7 +275,6 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TtlPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -293,7 +292,6 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TtlPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -310,25 +308,7 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[TtlPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[TtlPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -344,7 +324,6 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TtlPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -362,7 +341,6 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TtlPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -379,8 +357,7 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[TtlPolicyObject]: ...
+    ) -> FortiObjectList[TtlPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -396,7 +373,6 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -411,7 +387,6 @@ class TtlPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> TtlPolicyObject | list[TtlPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -434,7 +409,6 @@ class TtlPolicy:
         schedule: str | None = ...,
         ttl: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TtlPolicyObject: ...
     
     @overload
@@ -450,25 +424,7 @@ class TtlPolicy:
         schedule: str | None = ...,
         ttl: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: TtlPolicyPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        action: Literal["accept", "deny"] | None = ...,
-        srcintf: str | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        schedule: str | None = ...,
-        ttl: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -498,7 +454,6 @@ class TtlPolicy:
         schedule: str | None = ...,
         ttl: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -515,7 +470,6 @@ class TtlPolicy:
         schedule: str | None = ...,
         ttl: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TtlPolicyObject: ...
     
     @overload
@@ -531,25 +485,7 @@ class TtlPolicy:
         schedule: str | None = ...,
         ttl: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: TtlPolicyPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        action: Literal["accept", "deny"] | None = ...,
-        srcintf: str | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        schedule: str | None = ...,
-        ttl: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -579,7 +515,6 @@ class TtlPolicy:
         schedule: str | None = ...,
         ttl: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -588,7 +523,6 @@ class TtlPolicy:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TtlPolicyObject: ...
     
     @overload
@@ -596,17 +530,7 @@ class TtlPolicy:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -620,7 +544,6 @@ class TtlPolicy:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -641,7 +564,6 @@ class TtlPolicy:
         schedule: str | None = ...,
         ttl: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

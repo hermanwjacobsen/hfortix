@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -242,7 +242,7 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[IppoolObject]: ...
+    ) -> FortiObjectList[IppoolObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -262,7 +262,6 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IppoolObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -280,7 +279,6 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IppoolObject: ...
     
     # With no mkey -> returns list of objects
@@ -297,25 +295,7 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[IppoolObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[IppoolObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -331,7 +311,6 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IppoolObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -349,7 +328,6 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IppoolObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -366,8 +344,7 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[IppoolObject]: ...
+    ) -> FortiObjectList[IppoolObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -383,7 +360,6 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -398,7 +374,6 @@ class Ippool:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> IppoolObject | list[IppoolObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -440,7 +415,6 @@ class Ippool:
         privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
         subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IppoolObject: ...
     
     @overload
@@ -475,44 +449,7 @@ class Ippool:
         privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
         subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: IppoolPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["overload", "one-to-one", "fixed-port-range", "port-block-allocation"] | None = ...,
-        startip: str | None = ...,
-        endip: str | None = ...,
-        startport: int | None = ...,
-        endport: int | None = ...,
-        source_startip: str | None = ...,
-        source_endip: str | None = ...,
-        block_size: int | None = ...,
-        port_per_user: int | None = ...,
-        num_blocks_per_user: int | None = ...,
-        pba_timeout: int | None = ...,
-        pba_interim_log: int | None = ...,
-        permit_any_host: Literal["disable", "enable"] | None = ...,
-        arp_reply: Literal["disable", "enable"] | None = ...,
-        arp_intf: str | None = ...,
-        associated_interface: str | None = ...,
-        comments: str | None = ...,
-        nat64: Literal["disable", "enable"] | None = ...,
-        add_nat64_route: Literal["disable", "enable"] | None = ...,
-        source_prefix6: str | None = ...,
-        client_prefix_length: int | None = ...,
-        tcp_session_quota: int | None = ...,
-        udp_session_quota: int | None = ...,
-        icmp_session_quota: int | None = ...,
-        privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
-        subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -580,7 +517,6 @@ class Ippool:
         privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
         subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -616,7 +552,6 @@ class Ippool:
         privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
         subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IppoolObject: ...
     
     @overload
@@ -651,44 +586,7 @@ class Ippool:
         privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
         subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: IppoolPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["overload", "one-to-one", "fixed-port-range", "port-block-allocation"] | None = ...,
-        startip: str | None = ...,
-        endip: str | None = ...,
-        startport: int | None = ...,
-        endport: int | None = ...,
-        source_startip: str | None = ...,
-        source_endip: str | None = ...,
-        block_size: int | None = ...,
-        port_per_user: int | None = ...,
-        num_blocks_per_user: int | None = ...,
-        pba_timeout: int | None = ...,
-        pba_interim_log: int | None = ...,
-        permit_any_host: Literal["disable", "enable"] | None = ...,
-        arp_reply: Literal["disable", "enable"] | None = ...,
-        arp_intf: str | None = ...,
-        associated_interface: str | None = ...,
-        comments: str | None = ...,
-        nat64: Literal["disable", "enable"] | None = ...,
-        add_nat64_route: Literal["disable", "enable"] | None = ...,
-        source_prefix6: str | None = ...,
-        client_prefix_length: int | None = ...,
-        tcp_session_quota: int | None = ...,
-        udp_session_quota: int | None = ...,
-        icmp_session_quota: int | None = ...,
-        privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
-        subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -756,7 +654,6 @@ class Ippool:
         privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
         subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -765,7 +662,6 @@ class Ippool:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IppoolObject: ...
     
     @overload
@@ -773,17 +669,7 @@ class Ippool:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -797,7 +683,6 @@ class Ippool:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -837,7 +722,6 @@ class Ippool:
         privileged_port_use_pba: Literal["disable", "enable"] | None = ...,
         subnet_broadcast_in_ippool: Literal["disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

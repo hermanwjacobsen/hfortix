@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -229,7 +229,6 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PtpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -247,7 +246,6 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PtpObject: ...
     
     # With no mkey -> returns list of objects
@@ -264,25 +262,7 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PtpObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -298,7 +278,6 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PtpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -316,7 +295,6 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PtpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -333,7 +311,6 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PtpObject: ...
     
     # Fallback overload for all other cases
@@ -350,7 +327,6 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -365,7 +341,6 @@ class Ptp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PtpObject | dict[str, Any]: ...
     
     def get_schema(
@@ -387,7 +362,6 @@ class Ptp:
         server_mode: Literal["enable", "disable"] | None = ...,
         server_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PtpObject: ...
     
     @overload
@@ -402,24 +376,7 @@ class Ptp:
         server_mode: Literal["enable", "disable"] | None = ...,
         server_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PtpPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        mode: Literal["multicast", "hybrid"] | None = ...,
-        delay_mechanism: Literal["E2E", "P2P"] | None = ...,
-        request_interval: int | None = ...,
-        interface: str | None = ...,
-        server_mode: Literal["enable", "disable"] | None = ...,
-        server_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -447,7 +404,6 @@ class Ptp:
         server_mode: Literal["enable", "disable"] | None = ...,
         server_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -467,7 +423,6 @@ class Ptp:
         server_mode: Literal["enable", "disable"] | None = ...,
         server_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

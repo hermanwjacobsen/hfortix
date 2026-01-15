@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -202,7 +202,7 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[DomainFilterObject]: ...
+    ) -> FortiObjectList[DomainFilterObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -222,7 +222,6 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainFilterObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -240,7 +239,6 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainFilterObject: ...
     
     # With no mkey -> returns list of objects
@@ -257,25 +255,7 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DomainFilterObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[DomainFilterObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -291,7 +271,6 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainFilterObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -309,7 +288,6 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainFilterObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -326,8 +304,7 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DomainFilterObject]: ...
+    ) -> FortiObjectList[DomainFilterObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -343,7 +320,6 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -358,7 +334,6 @@ class DomainFilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> DomainFilterObject | list[DomainFilterObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -377,7 +352,6 @@ class DomainFilter:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainFilterObject: ...
     
     @overload
@@ -389,21 +363,7 @@ class DomainFilter:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: DomainFilterPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -425,7 +385,6 @@ class DomainFilter:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -438,7 +397,6 @@ class DomainFilter:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainFilterObject: ...
     
     @overload
@@ -450,21 +408,7 @@ class DomainFilter:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: DomainFilterPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -486,7 +430,6 @@ class DomainFilter:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -495,7 +438,6 @@ class DomainFilter:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainFilterObject: ...
     
     @overload
@@ -503,17 +445,7 @@ class DomainFilter:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -527,7 +459,6 @@ class DomainFilter:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -544,7 +475,6 @@ class DomainFilter:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -1021,7 +1021,7 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ReplacemsgGroupObject]: ...
+    ) -> FortiObjectList[ReplacemsgGroupObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -1041,7 +1041,6 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ReplacemsgGroupObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1059,7 +1058,6 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ReplacemsgGroupObject: ...
     
     # With no mkey -> returns list of objects
@@ -1076,25 +1074,7 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ReplacemsgGroupObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ReplacemsgGroupObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -1110,7 +1090,6 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ReplacemsgGroupObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1128,7 +1107,6 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ReplacemsgGroupObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1145,8 +1123,7 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ReplacemsgGroupObject]: ...
+    ) -> FortiObjectList[ReplacemsgGroupObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -1162,7 +1139,6 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1177,7 +1153,6 @@ class ReplacemsgGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ReplacemsgGroupObject | list[ReplacemsgGroupObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1211,7 +1186,6 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ReplacemsgGroupObject: ...
     
     @overload
@@ -1238,36 +1212,7 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ReplacemsgGroupPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        group_type: Literal["default", "utm", "auth"] | None = ...,
-        mail: str | list[str] | list[dict[str, Any]] | None = ...,
-        http: str | list[str] | list[dict[str, Any]] | None = ...,
-        webproxy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ftp: str | list[str] | list[dict[str, Any]] | None = ...,
-        fortiguard_wf: str | list[str] | list[dict[str, Any]] | None = ...,
-        spam: str | list[str] | list[dict[str, Any]] | None = ...,
-        alertmail: str | list[str] | list[dict[str, Any]] | None = ...,
-        admin: str | list[str] | list[dict[str, Any]] | None = ...,
-        auth: str | list[str] | list[dict[str, Any]] | None = ...,
-        sslvpn: str | list[str] | list[dict[str, Any]] | None = ...,
-        nac_quar: str | list[str] | list[dict[str, Any]] | None = ...,
-        traffic_quota: str | list[str] | list[dict[str, Any]] | None = ...,
-        utm: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_message: str | list[str] | list[dict[str, Any]] | None = ...,
-        icap: str | list[str] | list[dict[str, Any]] | None = ...,
-        automation: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1319,7 +1264,6 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -1347,7 +1291,6 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ReplacemsgGroupObject: ...
     
     @overload
@@ -1374,36 +1317,7 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ReplacemsgGroupPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        group_type: Literal["default", "utm", "auth"] | None = ...,
-        mail: str | list[str] | list[dict[str, Any]] | None = ...,
-        http: str | list[str] | list[dict[str, Any]] | None = ...,
-        webproxy: str | list[str] | list[dict[str, Any]] | None = ...,
-        ftp: str | list[str] | list[dict[str, Any]] | None = ...,
-        fortiguard_wf: str | list[str] | list[dict[str, Any]] | None = ...,
-        spam: str | list[str] | list[dict[str, Any]] | None = ...,
-        alertmail: str | list[str] | list[dict[str, Any]] | None = ...,
-        admin: str | list[str] | list[dict[str, Any]] | None = ...,
-        auth: str | list[str] | list[dict[str, Any]] | None = ...,
-        sslvpn: str | list[str] | list[dict[str, Any]] | None = ...,
-        nac_quar: str | list[str] | list[dict[str, Any]] | None = ...,
-        traffic_quota: str | list[str] | list[dict[str, Any]] | None = ...,
-        utm: str | list[str] | list[dict[str, Any]] | None = ...,
-        custom_message: str | list[str] | list[dict[str, Any]] | None = ...,
-        icap: str | list[str] | list[dict[str, Any]] | None = ...,
-        automation: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1455,7 +1369,6 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1464,7 +1377,6 @@ class ReplacemsgGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ReplacemsgGroupObject: ...
     
     @overload
@@ -1472,17 +1384,7 @@ class ReplacemsgGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1496,7 +1398,6 @@ class ReplacemsgGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1528,7 +1429,6 @@ class ReplacemsgGroup:
         icap: str | list[str] | list[dict[str, Any]] | None = ...,
         automation: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

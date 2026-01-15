@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -179,7 +179,7 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[OverrideObject]: ...
+    ) -> FortiObjectList[OverrideObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -199,7 +199,6 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OverrideObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -217,7 +216,6 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OverrideObject: ...
     
     # With no mkey -> returns list of objects
@@ -234,25 +232,7 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[OverrideObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[OverrideObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -268,7 +248,6 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OverrideObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -286,7 +265,6 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OverrideObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -303,8 +281,7 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[OverrideObject]: ...
+    ) -> FortiObjectList[OverrideObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -320,7 +297,6 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -335,7 +311,6 @@ class Override:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> OverrideObject | list[OverrideObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -361,7 +336,6 @@ class Override:
         expires: str | None = ...,
         initiator: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OverrideObject: ...
     
     @overload
@@ -380,28 +354,7 @@ class Override:
         expires: str | None = ...,
         initiator: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: OverridePayload | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        scope: Literal["user", "user-group", "ip", "ip6"] | None = ...,
-        ip: str | None = ...,
-        user: str | None = ...,
-        user_group: str | None = ...,
-        old_profile: str | None = ...,
-        new_profile: str | None = ...,
-        ip6: str | None = ...,
-        expires: str | None = ...,
-        initiator: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -437,7 +390,6 @@ class Override:
         expires: str | None = ...,
         initiator: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -457,7 +409,6 @@ class Override:
         expires: str | None = ...,
         initiator: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OverrideObject: ...
     
     @overload
@@ -476,28 +427,7 @@ class Override:
         expires: str | None = ...,
         initiator: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: OverridePayload | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        scope: Literal["user", "user-group", "ip", "ip6"] | None = ...,
-        ip: str | None = ...,
-        user: str | None = ...,
-        user_group: str | None = ...,
-        old_profile: str | None = ...,
-        new_profile: str | None = ...,
-        ip6: str | None = ...,
-        expires: str | None = ...,
-        initiator: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -533,7 +463,6 @@ class Override:
         expires: str | None = ...,
         initiator: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -542,7 +471,6 @@ class Override:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OverrideObject: ...
     
     @overload
@@ -550,17 +478,7 @@ class Override:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -574,7 +492,6 @@ class Override:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -598,7 +515,6 @@ class Override:
         expires: str | None = ...,
         initiator: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

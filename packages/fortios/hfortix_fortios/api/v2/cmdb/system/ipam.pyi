@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -295,7 +295,6 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IpamObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -313,7 +312,6 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IpamObject: ...
     
     # With no mkey -> returns list of objects
@@ -330,25 +328,7 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IpamObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -364,7 +344,6 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IpamObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -382,7 +361,6 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IpamObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -399,7 +377,6 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IpamObject: ...
     
     # Fallback overload for all other cases
@@ -416,7 +393,6 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -431,7 +407,6 @@ class Ipam:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> IpamObject | dict[str, Any]: ...
     
     def get_schema(
@@ -455,7 +430,6 @@ class Ipam:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IpamObject: ...
     
     @overload
@@ -472,26 +446,7 @@ class Ipam:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: IpamPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        server_type: Literal["fabric-root"] | None = ...,
-        automatic_conflict_resolution: Literal["disable", "enable"] | None = ...,
-        require_subnet_size_match: Literal["disable", "enable"] | None = ...,
-        manage_lan_addresses: Literal["disable", "enable"] | None = ...,
-        manage_lan_extension_addresses: Literal["disable", "enable"] | None = ...,
-        manage_ssid_addresses: Literal["disable", "enable"] | None = ...,
-        pools: str | list[str] | list[dict[str, Any]] | None = ...,
-        rules: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -523,7 +478,6 @@ class Ipam:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -545,7 +499,6 @@ class Ipam:
         pools: str | list[str] | list[dict[str, Any]] | None = ...,
         rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

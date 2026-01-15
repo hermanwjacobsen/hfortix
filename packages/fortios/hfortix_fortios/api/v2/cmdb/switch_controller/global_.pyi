@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -348,7 +348,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -366,7 +365,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # With no mkey -> returns list of objects
@@ -383,25 +381,7 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -417,7 +397,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -435,7 +414,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -452,7 +430,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Fallback overload for all other cases
@@ -469,7 +446,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -484,7 +460,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> GlobalObject | dict[str, Any]: ...
     
     def get_schema(
@@ -526,7 +501,6 @@ class Global:
         switch_on_deauth: Literal["no-op", "factory-reset"] | None = ...,
         firewall_auth_user_hold_period: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     @overload
@@ -561,44 +535,7 @@ class Global:
         switch_on_deauth: Literal["no-op", "factory-reset"] | None = ...,
         firewall_auth_user_hold_period: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: GlobalPayload | None = ...,
-        mac_aging_interval: int | None = ...,
-        https_image_push: Literal["enable", "disable"] | None = ...,
-        vlan_all_mode: Literal["all", "defined"] | None = ...,
-        vlan_optimization: Literal["prune", "configured", "none"] | None = ...,
-        vlan_identity: Literal["description", "name"] | None = ...,
-        disable_discovery: str | list[str] | list[dict[str, Any]] | None = ...,
-        mac_retention_period: int | None = ...,
-        default_virtual_switch_vlan: str | None = ...,
-        dhcp_server_access_list: Literal["enable", "disable"] | None = ...,
-        dhcp_option82_format: Literal["ascii", "legacy"] | None = ...,
-        dhcp_option82_circuit_id: Literal["intfname", "vlan", "hostname", "mode", "description"] | list[str] | None = ...,
-        dhcp_option82_remote_id: Literal["mac", "hostname", "ip"] | list[str] | None = ...,
-        dhcp_snoop_client_req: Literal["drop-untrusted", "forward-untrusted"] | None = ...,
-        dhcp_snoop_client_db_exp: int | None = ...,
-        dhcp_snoop_db_per_port_learn_limit: int | None = ...,
-        log_mac_limit_violations: Literal["enable", "disable"] | None = ...,
-        mac_violation_timer: int | None = ...,
-        sn_dns_resolution: Literal["enable", "disable"] | None = ...,
-        mac_event_logging: Literal["enable", "disable"] | None = ...,
-        bounce_quarantined_link: Literal["disable", "enable"] | None = ...,
-        quarantine_mode: Literal["by-vlan", "by-redirect"] | None = ...,
-        update_user_device: Literal["mac-cache", "lldp", "dhcp-snooping", "l2-db", "l3-db"] | list[str] | None = ...,
-        custom_command: str | list[str] | list[dict[str, Any]] | None = ...,
-        fips_enforce: Literal["disable", "enable"] | None = ...,
-        firmware_provision_on_authorization: Literal["enable", "disable"] | None = ...,
-        switch_on_deauth: Literal["no-op", "factory-reset"] | None = ...,
-        firewall_auth_user_hold_period: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -666,7 +603,6 @@ class Global:
         switch_on_deauth: Literal["no-op", "factory-reset"] | None = ...,
         firewall_auth_user_hold_period: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -706,7 +642,6 @@ class Global:
         switch_on_deauth: Literal["no-op", "factory-reset"] | None = ...,
         firewall_auth_user_hold_period: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

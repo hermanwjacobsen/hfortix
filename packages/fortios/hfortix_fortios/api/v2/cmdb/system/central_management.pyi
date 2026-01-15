@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -310,7 +310,6 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralManagementObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -328,7 +327,6 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralManagementObject: ...
     
     # With no mkey -> returns list of objects
@@ -345,25 +343,7 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralManagementObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -379,7 +359,6 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralManagementObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -397,7 +376,6 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralManagementObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -414,7 +392,6 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralManagementObject: ...
     
     # Fallback overload for all other cases
@@ -431,7 +408,6 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -446,7 +422,6 @@ class CentralManagement:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> CentralManagementObject | dict[str, Any]: ...
     
     def get_schema(
@@ -484,7 +459,6 @@ class CentralManagement:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralManagementObject: ...
     
     @overload
@@ -515,40 +489,7 @@ class CentralManagement:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: CentralManagementPayload | None = ...,
-        mode: Literal["normal", "backup"] | None = ...,
-        type: Literal["fortimanager", "fortiguard", "none"] | None = ...,
-        fortigate_cloud_sso_default_profile: str | None = ...,
-        schedule_config_restore: Literal["enable", "disable"] | None = ...,
-        schedule_script_restore: Literal["enable", "disable"] | None = ...,
-        allow_push_configuration: Literal["enable", "disable"] | None = ...,
-        allow_push_firmware: Literal["enable", "disable"] | None = ...,
-        allow_remote_firmware_upgrade: Literal["enable", "disable"] | None = ...,
-        allow_monitor: Literal["enable", "disable"] | None = ...,
-        serial_number: str | None = ...,
-        fmg: str | None = ...,
-        fmg_source_ip: str | None = ...,
-        fmg_source_ip6: str | None = ...,
-        local_cert: str | None = ...,
-        ca_cert: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        fmg_update_port: Literal["8890", "443"] | None = ...,
-        fmg_update_http_header: Literal["enable", "disable"] | None = ...,
-        include_default_servers: Literal["enable", "disable"] | None = ...,
-        enc_algorithm: Literal["default", "high", "low"] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -608,7 +549,6 @@ class CentralManagement:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -644,7 +584,6 @@ class CentralManagement:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

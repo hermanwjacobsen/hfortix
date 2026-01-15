@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -211,7 +211,7 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SdnVpnObject]: ...
+    ) -> FortiObjectList[SdnVpnObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -231,7 +231,6 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdnVpnObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -249,7 +248,6 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdnVpnObject: ...
     
     # With no mkey -> returns list of objects
@@ -266,25 +264,7 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SdnVpnObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[SdnVpnObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -300,7 +280,6 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdnVpnObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -318,7 +297,6 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdnVpnObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -335,8 +313,7 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SdnVpnObject]: ...
+    ) -> FortiObjectList[SdnVpnObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -352,7 +329,6 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -367,7 +343,6 @@ class SdnVpn:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SdnVpnObject | list[SdnVpnObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -401,7 +376,6 @@ class SdnVpn:
         status: int | None = ...,
         code: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdnVpnObject: ...
     
     @overload
@@ -428,36 +402,7 @@ class SdnVpn:
         status: int | None = ...,
         code: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: SdnVpnPayload | None = ...,
-        name: str | None = ...,
-        sdn: str | None = ...,
-        remote_type: Literal["vgw", "tgw"] | None = ...,
-        routing_type: Literal["static", "dynamic"] | None = ...,
-        vgw_id: str | None = ...,
-        tgw_id: str | None = ...,
-        subnet_id: str | None = ...,
-        bgp_as: int | None = ...,
-        cgw_gateway: str | None = ...,
-        nat_traversal: Literal["disable", "enable"] | None = ...,
-        tunnel_interface: str | None = ...,
-        internal_interface: str | None = ...,
-        local_cidr: str | None = ...,
-        remote_cidr: str | None = ...,
-        cgw_name: str | None = ...,
-        psksecret: str | None = ...,
-        type: int | None = ...,
-        status: int | None = ...,
-        code: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -509,7 +454,6 @@ class SdnVpn:
         status: int | None = ...,
         code: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -537,7 +481,6 @@ class SdnVpn:
         status: int | None = ...,
         code: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdnVpnObject: ...
     
     @overload
@@ -564,36 +507,7 @@ class SdnVpn:
         status: int | None = ...,
         code: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SdnVpnPayload | None = ...,
-        name: str | None = ...,
-        sdn: str | None = ...,
-        remote_type: Literal["vgw", "tgw"] | None = ...,
-        routing_type: Literal["static", "dynamic"] | None = ...,
-        vgw_id: str | None = ...,
-        tgw_id: str | None = ...,
-        subnet_id: str | None = ...,
-        bgp_as: int | None = ...,
-        cgw_gateway: str | None = ...,
-        nat_traversal: Literal["disable", "enable"] | None = ...,
-        tunnel_interface: str | None = ...,
-        internal_interface: str | None = ...,
-        local_cidr: str | None = ...,
-        remote_cidr: str | None = ...,
-        cgw_name: str | None = ...,
-        psksecret: str | None = ...,
-        type: int | None = ...,
-        status: int | None = ...,
-        code: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -645,7 +559,6 @@ class SdnVpn:
         status: int | None = ...,
         code: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -654,7 +567,6 @@ class SdnVpn:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SdnVpnObject: ...
     
     @overload
@@ -662,17 +574,7 @@ class SdnVpn:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -686,7 +588,6 @@ class SdnVpn:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -718,7 +619,6 @@ class SdnVpn:
         status: int | None = ...,
         code: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

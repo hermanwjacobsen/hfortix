@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -288,7 +288,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -306,7 +305,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -323,25 +321,7 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -357,7 +337,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -375,7 +354,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -392,7 +370,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Fallback overload for all other cases
@@ -409,7 +386,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -424,7 +400,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -462,7 +437,6 @@ class Setting:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     @overload
@@ -493,40 +467,7 @@ class Setting:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SettingPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        ips_archive: Literal["enable", "disable"] | None = ...,
-        certificate_verification: Literal["enable", "disable"] | None = ...,
-        serial: str | list[str] | list[dict[str, Any]] | None = ...,
-        preshared_key: str | None = ...,
-        access_config: Literal["enable", "disable"] | None = ...,
-        hmac_algorithm: Literal["sha256"] | None = ...,
-        enc_algorithm: Literal["high-medium", "high", "low"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        conn_timeout: int | None = ...,
-        monitor_keepalive_period: int | None = ...,
-        monitor_failure_retry_period: int | None = ...,
-        certificate: str | None = ...,
-        source_ip: str | None = ...,
-        upload_option: Literal["store-and-upload", "realtime", "1-minute", "5-minute"] | None = ...,
-        upload_interval: Literal["daily", "weekly", "monthly"] | None = ...,
-        upload_day: str | None = ...,
-        upload_time: str | None = ...,
-        priority: Literal["default", "low"] | None = ...,
-        max_log_rate: int | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -586,7 +527,6 @@ class Setting:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -622,7 +562,6 @@ class Setting:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

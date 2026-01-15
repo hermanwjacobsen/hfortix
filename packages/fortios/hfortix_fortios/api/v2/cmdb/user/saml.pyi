@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -224,7 +224,7 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SamlObject]: ...
+    ) -> FortiObjectList[SamlObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -244,7 +244,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -262,7 +261,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # With no mkey -> returns list of objects
@@ -279,25 +277,7 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SamlObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[SamlObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -313,7 +293,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -331,7 +310,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -348,8 +326,7 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SamlObject]: ...
+    ) -> FortiObjectList[SamlObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -365,7 +342,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -380,7 +356,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SamlObject | list[SamlObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -417,7 +392,6 @@ class Saml:
         group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
         reauth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     @overload
@@ -447,39 +421,7 @@ class Saml:
         group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
         reauth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: SamlPayload | None = ...,
-        name: str | None = ...,
-        cert: str | None = ...,
-        entity_id: str | None = ...,
-        single_sign_on_url: str | None = ...,
-        single_logout_url: str | None = ...,
-        idp_entity_id: str | None = ...,
-        idp_single_sign_on_url: str | None = ...,
-        idp_single_logout_url: str | None = ...,
-        idp_cert: str | None = ...,
-        scim_client: str | None = ...,
-        scim_user_attr_type: Literal["user-name", "display-name", "external-id", "email"] | None = ...,
-        scim_group_attr_type: Literal["display-name", "external-id"] | None = ...,
-        user_name: str | None = ...,
-        group_name: str | None = ...,
-        digest_method: Literal["sha1", "sha256"] | None = ...,
-        require_signed_resp_and_asrt: Literal["enable", "disable"] | None = ...,
-        limit_relaystate: Literal["enable", "disable"] | None = ...,
-        clock_tolerance: int | None = ...,
-        adfs_claim: Literal["enable", "disable"] | None = ...,
-        user_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
-        group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
-        reauth: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -537,7 +479,6 @@ class Saml:
         group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
         reauth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -568,7 +509,6 @@ class Saml:
         group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
         reauth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     @overload
@@ -598,39 +538,7 @@ class Saml:
         group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
         reauth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SamlPayload | None = ...,
-        name: str | None = ...,
-        cert: str | None = ...,
-        entity_id: str | None = ...,
-        single_sign_on_url: str | None = ...,
-        single_logout_url: str | None = ...,
-        idp_entity_id: str | None = ...,
-        idp_single_sign_on_url: str | None = ...,
-        idp_single_logout_url: str | None = ...,
-        idp_cert: str | None = ...,
-        scim_client: str | None = ...,
-        scim_user_attr_type: Literal["user-name", "display-name", "external-id", "email"] | None = ...,
-        scim_group_attr_type: Literal["display-name", "external-id"] | None = ...,
-        user_name: str | None = ...,
-        group_name: str | None = ...,
-        digest_method: Literal["sha1", "sha256"] | None = ...,
-        require_signed_resp_and_asrt: Literal["enable", "disable"] | None = ...,
-        limit_relaystate: Literal["enable", "disable"] | None = ...,
-        clock_tolerance: int | None = ...,
-        adfs_claim: Literal["enable", "disable"] | None = ...,
-        user_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
-        group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
-        reauth: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -688,7 +596,6 @@ class Saml:
         group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
         reauth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -697,7 +604,6 @@ class Saml:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     @overload
@@ -705,17 +611,7 @@ class Saml:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -729,7 +625,6 @@ class Saml:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -764,7 +659,6 @@ class Saml:
         group_claim_type: Literal["email", "given-name", "name", "upn", "common-name", "email-adfs-1x", "group", "upn-adfs-1x", "role", "sur-name", "ppid", "name-identifier", "authentication-method", "deny-only-group-sid", "deny-only-primary-sid", "deny-only-primary-group-sid", "group-sid", "primary-group-sid", "primary-sid", "windows-account-name"] | None = ...,
         reauth: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

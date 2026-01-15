@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -196,7 +196,7 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[DnsblObject]: ...
+    ) -> FortiObjectList[DnsblObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -216,7 +216,6 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsblObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -234,7 +233,6 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsblObject: ...
     
     # With no mkey -> returns list of objects
@@ -251,25 +249,7 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DnsblObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[DnsblObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -285,7 +265,6 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsblObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -303,7 +282,6 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsblObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -320,8 +298,7 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DnsblObject]: ...
+    ) -> FortiObjectList[DnsblObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -337,7 +314,6 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -352,7 +328,6 @@ class Dnsbl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> DnsblObject | list[DnsblObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -371,7 +346,6 @@ class Dnsbl:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsblObject: ...
     
     @overload
@@ -383,21 +357,7 @@ class Dnsbl:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: DnsblPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -419,7 +379,6 @@ class Dnsbl:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -432,7 +391,6 @@ class Dnsbl:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsblObject: ...
     
     @overload
@@ -444,21 +402,7 @@ class Dnsbl:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: DnsblPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -480,7 +424,6 @@ class Dnsbl:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -489,7 +432,6 @@ class Dnsbl:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsblObject: ...
     
     @overload
@@ -497,17 +439,7 @@ class Dnsbl:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -521,7 +453,6 @@ class Dnsbl:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -538,7 +469,6 @@ class Dnsbl:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

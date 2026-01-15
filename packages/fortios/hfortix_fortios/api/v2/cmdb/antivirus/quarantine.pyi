@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -184,7 +184,6 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QuarantineObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -202,7 +201,6 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QuarantineObject: ...
     
     # With no mkey -> returns list of objects
@@ -219,25 +217,7 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QuarantineObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -253,7 +233,6 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QuarantineObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -271,7 +250,6 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QuarantineObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -288,7 +266,6 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QuarantineObject: ...
     
     # Fallback overload for all other cases
@@ -305,7 +282,6 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -320,7 +296,6 @@ class Quarantine:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> QuarantineObject | dict[str, Any]: ...
     
     def get_schema(
@@ -344,7 +319,6 @@ class Quarantine:
         lowspace: Literal["drop-new", "ovrw-old"] | None = ...,
         destination: Literal["NULL", "disk", "FortiAnalyzer"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QuarantineObject: ...
     
     @overload
@@ -361,26 +335,7 @@ class Quarantine:
         lowspace: Literal["drop-new", "ovrw-old"] | None = ...,
         destination: Literal["NULL", "disk", "FortiAnalyzer"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: QuarantinePayload | None = ...,
-        agelimit: int | None = ...,
-        maxfilesize: int | None = ...,
-        quarantine_quota: int | None = ...,
-        drop_infected: Literal["imap", "smtp", "pop3", "http", "ftp", "nntp", "imaps", "smtps", "pop3s", "https", "ftps", "mapi", "cifs", "ssh"] | list[str] | None = ...,
-        store_infected: Literal["imap", "smtp", "pop3", "http", "ftp", "nntp", "imaps", "smtps", "pop3s", "https", "ftps", "mapi", "cifs", "ssh"] | list[str] | None = ...,
-        drop_machine_learning: Literal["imap", "smtp", "pop3", "http", "ftp", "nntp", "imaps", "smtps", "pop3s", "https", "ftps", "mapi", "cifs", "ssh"] | list[str] | None = ...,
-        store_machine_learning: Literal["imap", "smtp", "pop3", "http", "ftp", "nntp", "imaps", "smtps", "pop3s", "https", "ftps", "mapi", "cifs", "ssh"] | list[str] | None = ...,
-        lowspace: Literal["drop-new", "ovrw-old"] | None = ...,
-        destination: Literal["NULL", "disk", "FortiAnalyzer"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -412,7 +367,6 @@ class Quarantine:
         lowspace: Literal["drop-new", "ovrw-old"] | None = ...,
         destination: Literal["NULL", "disk", "FortiAnalyzer"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -434,7 +388,6 @@ class Quarantine:
         lowspace: Literal["drop-new", "ovrw-old"] | None = ...,
         destination: Literal["NULL", "disk", "FortiAnalyzer"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

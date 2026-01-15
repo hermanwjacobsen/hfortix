@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -315,7 +315,7 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SaasApplicationObject]: ...
+    ) -> FortiObjectList[SaasApplicationObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -335,7 +335,6 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SaasApplicationObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -353,7 +352,6 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SaasApplicationObject: ...
     
     # With no mkey -> returns list of objects
@@ -370,25 +368,7 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SaasApplicationObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[SaasApplicationObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -404,7 +384,6 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SaasApplicationObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -422,7 +401,6 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SaasApplicationObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -439,8 +417,7 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SaasApplicationObject]: ...
+    ) -> FortiObjectList[SaasApplicationObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -456,7 +433,6 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -471,7 +447,6 @@ class SaasApplication:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SaasApplicationObject | list[SaasApplicationObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -495,7 +470,6 @@ class SaasApplication:
         output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SaasApplicationObject: ...
     
     @overload
@@ -512,26 +486,7 @@ class SaasApplication:
         output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: SaasApplicationPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["built-in", "customized"] | None = ...,
-        casb_name: str | None = ...,
-        description: str | None = ...,
-        domains: str | list[str] | list[dict[str, Any]] | None = ...,
-        output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
-        input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -563,7 +518,6 @@ class SaasApplication:
         output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -581,7 +535,6 @@ class SaasApplication:
         output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SaasApplicationObject: ...
     
     @overload
@@ -598,26 +551,7 @@ class SaasApplication:
         output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SaasApplicationPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["built-in", "customized"] | None = ...,
-        casb_name: str | None = ...,
-        description: str | None = ...,
-        domains: str | list[str] | list[dict[str, Any]] | None = ...,
-        output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
-        input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -649,7 +583,6 @@ class SaasApplication:
         output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -658,7 +591,6 @@ class SaasApplication:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SaasApplicationObject: ...
     
     @overload
@@ -666,17 +598,7 @@ class SaasApplication:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -690,7 +612,6 @@ class SaasApplication:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -712,7 +633,6 @@ class SaasApplication:
         output_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         input_attributes: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

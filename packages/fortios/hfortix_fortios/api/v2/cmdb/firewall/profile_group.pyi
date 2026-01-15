@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -228,7 +228,7 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ProfileGroupObject]: ...
+    ) -> FortiObjectList[ProfileGroupObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -248,7 +248,6 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileGroupObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -266,7 +265,6 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileGroupObject: ...
     
     # With no mkey -> returns list of objects
@@ -283,25 +281,7 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileGroupObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ProfileGroupObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -317,7 +297,6 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileGroupObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -335,7 +314,6 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileGroupObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -352,8 +330,7 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileGroupObject]: ...
+    ) -> FortiObjectList[ProfileGroupObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -369,7 +346,6 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -384,7 +360,6 @@ class ProfileGroup:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ProfileGroupObject | list[ProfileGroupObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -420,7 +395,6 @@ class ProfileGroup:
         ssh_filter_profile: str | None = ...,
         casb_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileGroupObject: ...
     
     @overload
@@ -449,38 +423,7 @@ class ProfileGroup:
         ssh_filter_profile: str | None = ...,
         casb_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ProfileGroupPayload | None = ...,
-        name: str | None = ...,
-        profile_protocol_options: str | None = ...,
-        ssl_ssh_profile: str | None = ...,
-        av_profile: str | None = ...,
-        webfilter_profile: str | None = ...,
-        dnsfilter_profile: str | None = ...,
-        emailfilter_profile: str | None = ...,
-        dlp_profile: str | None = ...,
-        file_filter_profile: str | None = ...,
-        ips_sensor: str | None = ...,
-        application_list: str | None = ...,
-        voip_profile: str | None = ...,
-        ips_voip_filter: str | None = ...,
-        sctp_filter_profile: str | None = ...,
-        diameter_filter_profile: str | None = ...,
-        virtual_patch_profile: str | None = ...,
-        icap_profile: str | None = ...,
-        videofilter_profile: str | None = ...,
-        waf_profile: str | None = ...,
-        ssh_filter_profile: str | None = ...,
-        casb_profile: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -536,7 +479,6 @@ class ProfileGroup:
         ssh_filter_profile: str | None = ...,
         casb_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -566,7 +508,6 @@ class ProfileGroup:
         ssh_filter_profile: str | None = ...,
         casb_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileGroupObject: ...
     
     @overload
@@ -595,38 +536,7 @@ class ProfileGroup:
         ssh_filter_profile: str | None = ...,
         casb_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ProfileGroupPayload | None = ...,
-        name: str | None = ...,
-        profile_protocol_options: str | None = ...,
-        ssl_ssh_profile: str | None = ...,
-        av_profile: str | None = ...,
-        webfilter_profile: str | None = ...,
-        dnsfilter_profile: str | None = ...,
-        emailfilter_profile: str | None = ...,
-        dlp_profile: str | None = ...,
-        file_filter_profile: str | None = ...,
-        ips_sensor: str | None = ...,
-        application_list: str | None = ...,
-        voip_profile: str | None = ...,
-        ips_voip_filter: str | None = ...,
-        sctp_filter_profile: str | None = ...,
-        diameter_filter_profile: str | None = ...,
-        virtual_patch_profile: str | None = ...,
-        icap_profile: str | None = ...,
-        videofilter_profile: str | None = ...,
-        waf_profile: str | None = ...,
-        ssh_filter_profile: str | None = ...,
-        casb_profile: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -682,7 +592,6 @@ class ProfileGroup:
         ssh_filter_profile: str | None = ...,
         casb_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -691,7 +600,6 @@ class ProfileGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileGroupObject: ...
     
     @overload
@@ -699,17 +607,7 @@ class ProfileGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -723,7 +621,6 @@ class ProfileGroup:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -757,7 +654,6 @@ class ProfileGroup:
         ssh_filter_profile: str | None = ...,
         casb_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

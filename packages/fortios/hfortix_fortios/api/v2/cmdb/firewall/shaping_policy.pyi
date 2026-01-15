@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -1289,7 +1289,7 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ShapingPolicyObject]: ...
+    ) -> FortiObjectList[ShapingPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -1309,7 +1309,6 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1327,7 +1326,6 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -1344,25 +1342,7 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ShapingPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ShapingPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -1378,7 +1358,6 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1396,7 +1375,6 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1413,8 +1391,7 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ShapingPolicyObject]: ...
+    ) -> FortiObjectList[ShapingPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -1430,7 +1407,6 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1445,7 +1421,6 @@ class ShapingPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ShapingPolicyObject | list[ShapingPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1506,7 +1481,6 @@ class ShapingPolicy:
         cos_mask: str | None = ...,
         cos: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingPolicyObject: ...
     
     @overload
@@ -1560,63 +1534,7 @@ class ShapingPolicy:
         cos_mask: str | None = ...,
         cos: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ShapingPolicyPayload | None = ...,
-        id: int | None = ...,
-        uuid: str | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        ip_version: Literal["4", "6"] | None = ...,
-        traffic_type: Literal["forwarding", "local-in", "local-out"] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service: Literal["enable", "disable"] | None = ...,
-        internet_service_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src: Literal["enable", "disable"] | None = ...,
-        internet_service_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        schedule: str | None = ...,
-        users: str | list[str] | list[dict[str, Any]] | None = ...,
-        groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        app_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        app_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        url_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        tos_mask: str | None = ...,
-        tos: str | None = ...,
-        tos_negate: Literal["enable", "disable"] | None = ...,
-        traffic_shaper: str | None = ...,
-        traffic_shaper_reverse: str | None = ...,
-        per_ip_shaper: str | None = ...,
-        class_id: int | None = ...,
-        diffserv_forward: Literal["enable", "disable"] | None = ...,
-        diffserv_reverse: Literal["enable", "disable"] | None = ...,
-        diffservcode_forward: str | None = ...,
-        diffservcode_rev: str | None = ...,
-        cos_mask: str | None = ...,
-        cos: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1722,7 +1640,6 @@ class ShapingPolicy:
         cos_mask: str | None = ...,
         cos: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -1777,7 +1694,6 @@ class ShapingPolicy:
         cos_mask: str | None = ...,
         cos: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingPolicyObject: ...
     
     @overload
@@ -1831,63 +1747,7 @@ class ShapingPolicy:
         cos_mask: str | None = ...,
         cos: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ShapingPolicyPayload | None = ...,
-        id: int | None = ...,
-        uuid: str | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        ip_version: Literal["4", "6"] | None = ...,
-        traffic_type: Literal["forwarding", "local-in", "local-out"] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service: Literal["enable", "disable"] | None = ...,
-        internet_service_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src: Literal["enable", "disable"] | None = ...,
-        internet_service_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        schedule: str | None = ...,
-        users: str | list[str] | list[dict[str, Any]] | None = ...,
-        groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        app_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        app_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        url_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        tos_mask: str | None = ...,
-        tos: str | None = ...,
-        tos_negate: Literal["enable", "disable"] | None = ...,
-        traffic_shaper: str | None = ...,
-        traffic_shaper_reverse: str | None = ...,
-        per_ip_shaper: str | None = ...,
-        class_id: int | None = ...,
-        diffserv_forward: Literal["enable", "disable"] | None = ...,
-        diffserv_reverse: Literal["enable", "disable"] | None = ...,
-        diffservcode_forward: str | None = ...,
-        diffservcode_rev: str | None = ...,
-        cos_mask: str | None = ...,
-        cos: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1993,7 +1853,6 @@ class ShapingPolicy:
         cos_mask: str | None = ...,
         cos: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -2002,7 +1861,6 @@ class ShapingPolicy:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ShapingPolicyObject: ...
     
     @overload
@@ -2010,17 +1868,7 @@ class ShapingPolicy:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -2034,7 +1882,6 @@ class ShapingPolicy:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -2093,7 +1940,6 @@ class ShapingPolicy:
         cos_mask: str | None = ...,
         cos: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

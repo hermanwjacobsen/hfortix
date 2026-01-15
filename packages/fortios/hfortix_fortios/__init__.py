@@ -49,7 +49,7 @@ from hfortix_core import (
 from .client import FortiOS
 from .formatting import to_csv, to_dict, to_json, to_multiline, to_quoted
 from .help import help
-from .models import FortiObject
+from .models import FortiObject, FortiObjectList
 
 # Import type definitions for IDE support
 from .types import (
@@ -65,12 +65,13 @@ from .types import (
     StatusType,
 )
 
-__version__ = "0.5.57"
+__version__ = "0.5.75"
 
 __all__ = [
     # Main client
     "FortiOS",
     "FortiObject",
+    "FortiObjectList",
     "configure_logging",
     # Formatting utilities
     "to_json",

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -202,7 +202,7 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ProfileProtocolOptionsObject]: ...
+    ) -> FortiObjectList[ProfileProtocolOptionsObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -222,7 +222,6 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileProtocolOptionsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -240,7 +239,6 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileProtocolOptionsObject: ...
     
     # With no mkey -> returns list of objects
@@ -257,25 +255,7 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileProtocolOptionsObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ProfileProtocolOptionsObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -291,7 +271,6 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileProtocolOptionsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -309,7 +288,6 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileProtocolOptionsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -326,8 +304,7 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileProtocolOptionsObject]: ...
+    ) -> FortiObjectList[ProfileProtocolOptionsObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -343,7 +320,6 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -358,7 +334,6 @@ class ProfileProtocolOptions:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ProfileProtocolOptionsObject | list[ProfileProtocolOptionsObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -390,7 +365,6 @@ class ProfileProtocolOptions:
         mail_signature: str | None = ...,
         rpc_over_http: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileProtocolOptionsObject: ...
     
     @overload
@@ -415,34 +389,7 @@ class ProfileProtocolOptions:
         mail_signature: str | None = ...,
         rpc_over_http: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ProfileProtocolOptionsPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        replacemsg_group: str | None = ...,
-        oversize_log: Literal["disable", "enable"] | None = ...,
-        switching_protocols_log: Literal["disable", "enable"] | None = ...,
-        http: str | None = ...,
-        ftp: str | None = ...,
-        imap: str | None = ...,
-        mapi: str | None = ...,
-        pop3: str | None = ...,
-        smtp: str | None = ...,
-        nntp: str | None = ...,
-        ssh: str | None = ...,
-        dns: str | None = ...,
-        cifs: str | None = ...,
-        mail_signature: str | None = ...,
-        rpc_over_http: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -490,7 +437,6 @@ class ProfileProtocolOptions:
         mail_signature: str | None = ...,
         rpc_over_http: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -516,7 +462,6 @@ class ProfileProtocolOptions:
         mail_signature: str | None = ...,
         rpc_over_http: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileProtocolOptionsObject: ...
     
     @overload
@@ -541,34 +486,7 @@ class ProfileProtocolOptions:
         mail_signature: str | None = ...,
         rpc_over_http: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ProfileProtocolOptionsPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        replacemsg_group: str | None = ...,
-        oversize_log: Literal["disable", "enable"] | None = ...,
-        switching_protocols_log: Literal["disable", "enable"] | None = ...,
-        http: str | None = ...,
-        ftp: str | None = ...,
-        imap: str | None = ...,
-        mapi: str | None = ...,
-        pop3: str | None = ...,
-        smtp: str | None = ...,
-        nntp: str | None = ...,
-        ssh: str | None = ...,
-        dns: str | None = ...,
-        cifs: str | None = ...,
-        mail_signature: str | None = ...,
-        rpc_over_http: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -616,7 +534,6 @@ class ProfileProtocolOptions:
         mail_signature: str | None = ...,
         rpc_over_http: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -625,7 +542,6 @@ class ProfileProtocolOptions:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileProtocolOptionsObject: ...
     
     @overload
@@ -633,17 +549,7 @@ class ProfileProtocolOptions:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -657,7 +563,6 @@ class ProfileProtocolOptions:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -687,7 +592,6 @@ class ProfileProtocolOptions:
         mail_signature: str | None = ...,
         rpc_over_http: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

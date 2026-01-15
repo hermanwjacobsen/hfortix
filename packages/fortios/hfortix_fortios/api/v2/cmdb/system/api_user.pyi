@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -267,7 +267,7 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ApiUserObject]: ...
+    ) -> FortiObjectList[ApiUserObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -287,7 +287,6 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ApiUserObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -305,7 +304,6 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ApiUserObject: ...
     
     # With no mkey -> returns list of objects
@@ -322,25 +320,7 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ApiUserObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ApiUserObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -356,7 +336,6 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ApiUserObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -374,7 +353,6 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ApiUserObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -391,8 +369,7 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ApiUserObject]: ...
+    ) -> FortiObjectList[ApiUserObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -408,7 +385,6 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -423,7 +399,6 @@ class ApiUser:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ApiUserObject | list[ApiUserObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -447,7 +422,6 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ApiUserObject: ...
     
     @overload
@@ -464,26 +438,7 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ApiUserPayload | None = ...,
-        name: str | None = ...,
-        comments: str | None = ...,
-        api_key: str | None = ...,
-        accprofile: str | None = ...,
-        schedule: str | None = ...,
-        cors_allow_origin: str | None = ...,
-        peer_auth: Literal["enable", "disable"] | None = ...,
-        peer_group: str | None = ...,
-        trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -515,7 +470,6 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -533,7 +487,6 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ApiUserObject: ...
     
     @overload
@@ -550,26 +503,7 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ApiUserPayload | None = ...,
-        name: str | None = ...,
-        comments: str | None = ...,
-        api_key: str | None = ...,
-        accprofile: str | None = ...,
-        schedule: str | None = ...,
-        cors_allow_origin: str | None = ...,
-        peer_auth: Literal["enable", "disable"] | None = ...,
-        peer_group: str | None = ...,
-        trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -601,7 +535,6 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -610,7 +543,6 @@ class ApiUser:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ApiUserObject: ...
     
     @overload
@@ -618,17 +550,7 @@ class ApiUser:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -642,7 +564,6 @@ class ApiUser:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -664,7 +585,6 @@ class ApiUser:
         peer_group: str | None = ...,
         trusthost: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

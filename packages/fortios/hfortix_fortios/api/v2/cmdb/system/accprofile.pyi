@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -245,7 +245,7 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AccprofileObject]: ...
+    ) -> FortiObjectList[AccprofileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -265,7 +265,6 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccprofileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -283,7 +282,6 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccprofileObject: ...
     
     # With no mkey -> returns list of objects
@@ -300,25 +298,7 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AccprofileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[AccprofileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -334,7 +314,6 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccprofileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -352,7 +331,6 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccprofileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -369,8 +347,7 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AccprofileObject]: ...
+    ) -> FortiObjectList[AccprofileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -386,7 +363,6 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -401,7 +377,6 @@ class Accprofile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> AccprofileObject | list[AccprofileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -445,7 +420,6 @@ class Accprofile:
         system_execute_ssh: Literal["enable", "disable"] | None = ...,
         system_execute_telnet: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccprofileObject: ...
     
     @overload
@@ -482,46 +456,7 @@ class Accprofile:
         system_execute_ssh: Literal["enable", "disable"] | None = ...,
         system_execute_telnet: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: AccprofilePayload | None = ...,
-        name: str | None = ...,
-        scope: Literal["vdom", "global"] | None = ...,
-        comments: str | None = ...,
-        secfabgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        ftviewgrp: Literal["none", "read", "read-write"] | None = ...,
-        authgrp: Literal["none", "read", "read-write"] | None = ...,
-        sysgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        netgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        loggrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        fwgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        vpngrp: Literal["none", "read", "read-write"] | None = ...,
-        utmgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        wanoptgrp: Literal["none", "read", "read-write"] | None = ...,
-        wifi: Literal["none", "read", "read-write"] | None = ...,
-        netgrp_permission: str | None = ...,
-        sysgrp_permission: str | None = ...,
-        fwgrp_permission: str | None = ...,
-        loggrp_permission: str | None = ...,
-        utmgrp_permission: str | None = ...,
-        secfabgrp_permission: str | None = ...,
-        admintimeout_override: Literal["enable", "disable"] | None = ...,
-        admintimeout: int | None = ...,
-        cli_diagnose: Literal["enable", "disable"] | None = ...,
-        cli_get: Literal["enable", "disable"] | None = ...,
-        cli_show: Literal["enable", "disable"] | None = ...,
-        cli_exec: Literal["enable", "disable"] | None = ...,
-        cli_config: Literal["enable", "disable"] | None = ...,
-        system_execute_ssh: Literal["enable", "disable"] | None = ...,
-        system_execute_telnet: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -593,7 +528,6 @@ class Accprofile:
         system_execute_ssh: Literal["enable", "disable"] | None = ...,
         system_execute_telnet: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -631,7 +565,6 @@ class Accprofile:
         system_execute_ssh: Literal["enable", "disable"] | None = ...,
         system_execute_telnet: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccprofileObject: ...
     
     @overload
@@ -668,46 +601,7 @@ class Accprofile:
         system_execute_ssh: Literal["enable", "disable"] | None = ...,
         system_execute_telnet: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: AccprofilePayload | None = ...,
-        name: str | None = ...,
-        scope: Literal["vdom", "global"] | None = ...,
-        comments: str | None = ...,
-        secfabgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        ftviewgrp: Literal["none", "read", "read-write"] | None = ...,
-        authgrp: Literal["none", "read", "read-write"] | None = ...,
-        sysgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        netgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        loggrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        fwgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        vpngrp: Literal["none", "read", "read-write"] | None = ...,
-        utmgrp: Literal["none", "read", "read-write", "custom"] | None = ...,
-        wanoptgrp: Literal["none", "read", "read-write"] | None = ...,
-        wifi: Literal["none", "read", "read-write"] | None = ...,
-        netgrp_permission: str | None = ...,
-        sysgrp_permission: str | None = ...,
-        fwgrp_permission: str | None = ...,
-        loggrp_permission: str | None = ...,
-        utmgrp_permission: str | None = ...,
-        secfabgrp_permission: str | None = ...,
-        admintimeout_override: Literal["enable", "disable"] | None = ...,
-        admintimeout: int | None = ...,
-        cli_diagnose: Literal["enable", "disable"] | None = ...,
-        cli_get: Literal["enable", "disable"] | None = ...,
-        cli_show: Literal["enable", "disable"] | None = ...,
-        cli_exec: Literal["enable", "disable"] | None = ...,
-        cli_config: Literal["enable", "disable"] | None = ...,
-        system_execute_ssh: Literal["enable", "disable"] | None = ...,
-        system_execute_telnet: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -779,7 +673,6 @@ class Accprofile:
         system_execute_ssh: Literal["enable", "disable"] | None = ...,
         system_execute_telnet: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -788,7 +681,6 @@ class Accprofile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccprofileObject: ...
     
     @overload
@@ -796,17 +688,7 @@ class Accprofile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -820,7 +702,6 @@ class Accprofile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -862,7 +743,6 @@ class Accprofile:
         system_execute_ssh: Literal["enable", "disable"] | None = ...,
         system_execute_telnet: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

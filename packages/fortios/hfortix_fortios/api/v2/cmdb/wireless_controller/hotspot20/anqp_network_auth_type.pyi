@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -141,7 +141,7 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AnqpNetworkAuthTypeObject]: ...
+    ) -> FortiObjectList[AnqpNetworkAuthTypeObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -161,7 +161,6 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AnqpNetworkAuthTypeObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -179,7 +178,6 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AnqpNetworkAuthTypeObject: ...
     
     # With no mkey -> returns list of objects
@@ -196,25 +194,7 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AnqpNetworkAuthTypeObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[AnqpNetworkAuthTypeObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -230,7 +210,6 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AnqpNetworkAuthTypeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -248,7 +227,6 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AnqpNetworkAuthTypeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -265,8 +243,7 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AnqpNetworkAuthTypeObject]: ...
+    ) -> FortiObjectList[AnqpNetworkAuthTypeObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -282,7 +259,6 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -297,7 +273,6 @@ class AnqpNetworkAuthType:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> AnqpNetworkAuthTypeObject | list[AnqpNetworkAuthTypeObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -315,7 +290,6 @@ class AnqpNetworkAuthType:
         auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AnqpNetworkAuthTypeObject: ...
     
     @overload
@@ -326,20 +300,7 @@ class AnqpNetworkAuthType:
         auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: AnqpNetworkAuthTypePayload | None = ...,
-        name: str | None = ...,
-        auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
-        url: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -359,7 +320,6 @@ class AnqpNetworkAuthType:
         auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -371,7 +331,6 @@ class AnqpNetworkAuthType:
         auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AnqpNetworkAuthTypeObject: ...
     
     @overload
@@ -382,20 +341,7 @@ class AnqpNetworkAuthType:
         auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: AnqpNetworkAuthTypePayload | None = ...,
-        name: str | None = ...,
-        auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
-        url: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -415,7 +361,6 @@ class AnqpNetworkAuthType:
         auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -424,7 +369,6 @@ class AnqpNetworkAuthType:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AnqpNetworkAuthTypeObject: ...
     
     @overload
@@ -432,17 +376,7 @@ class AnqpNetworkAuthType:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -456,7 +390,6 @@ class AnqpNetworkAuthType:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -472,7 +405,6 @@ class AnqpNetworkAuthType:
         auth_type: Literal["acceptance-of-terms", "online-enrollment", "http-redirection", "dns-redirection"] | None = ...,
         url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

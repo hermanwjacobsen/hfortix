@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -171,7 +171,7 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[MacPolicyObject]: ...
+    ) -> FortiObjectList[MacPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -191,7 +191,6 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MacPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -209,7 +208,6 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MacPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -226,25 +224,7 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[MacPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[MacPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -260,7 +240,6 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MacPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -278,7 +257,6 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MacPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -295,8 +273,7 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[MacPolicyObject]: ...
+    ) -> FortiObjectList[MacPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -312,7 +289,6 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -327,7 +303,6 @@ class MacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MacPolicyObject | list[MacPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -351,7 +326,6 @@ class MacPolicy:
         bounce_port_duration: int | None = ...,
         poe_reset: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MacPolicyObject: ...
     
     @overload
@@ -368,26 +342,7 @@ class MacPolicy:
         bounce_port_duration: int | None = ...,
         poe_reset: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: MacPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        vlan: str | None = ...,
-        traffic_policy: str | None = ...,
-        count: Literal["disable", "enable"] | None = ...,
-        bounce_port_link: Literal["disable", "enable"] | None = ...,
-        bounce_port_duration: int | None = ...,
-        poe_reset: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -419,7 +374,6 @@ class MacPolicy:
         bounce_port_duration: int | None = ...,
         poe_reset: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -437,7 +391,6 @@ class MacPolicy:
         bounce_port_duration: int | None = ...,
         poe_reset: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MacPolicyObject: ...
     
     @overload
@@ -454,26 +407,7 @@ class MacPolicy:
         bounce_port_duration: int | None = ...,
         poe_reset: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: MacPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        vlan: str | None = ...,
-        traffic_policy: str | None = ...,
-        count: Literal["disable", "enable"] | None = ...,
-        bounce_port_link: Literal["disable", "enable"] | None = ...,
-        bounce_port_duration: int | None = ...,
-        poe_reset: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -505,7 +439,6 @@ class MacPolicy:
         bounce_port_duration: int | None = ...,
         poe_reset: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -514,7 +447,6 @@ class MacPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MacPolicyObject: ...
     
     @overload
@@ -522,17 +454,7 @@ class MacPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -546,7 +468,6 @@ class MacPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -568,7 +489,6 @@ class MacPolicy:
         bounce_port_duration: int | None = ...,
         poe_reset: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -365,7 +365,7 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[InterfacePolicyObject]: ...
+    ) -> FortiObjectList[InterfacePolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -385,7 +385,6 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterfacePolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -403,7 +402,6 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterfacePolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -420,25 +418,7 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[InterfacePolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        policyid: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[InterfacePolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -454,7 +434,6 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterfacePolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -472,7 +451,6 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterfacePolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -489,8 +467,7 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[InterfacePolicyObject]: ...
+    ) -> FortiObjectList[InterfacePolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -506,7 +483,6 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -521,7 +497,6 @@ class InterfacePolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> InterfacePolicyObject | list[InterfacePolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -560,7 +535,6 @@ class InterfacePolicy:
         dlp_profile_status: Literal["enable", "disable"] | None = ...,
         dlp_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterfacePolicyObject: ...
     
     @overload
@@ -592,41 +566,7 @@ class InterfacePolicy:
         dlp_profile_status: Literal["enable", "disable"] | None = ...,
         dlp_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: InterfacePolicyPayload | None = ...,
-        policyid: int | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        logtraffic: Literal["all", "utm", "disable"] | None = ...,
-        interface: str | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        application_list_status: Literal["enable", "disable"] | None = ...,
-        application_list: str | None = ...,
-        ips_sensor_status: Literal["enable", "disable"] | None = ...,
-        ips_sensor: str | None = ...,
-        dsri: Literal["enable", "disable"] | None = ...,
-        av_profile_status: Literal["enable", "disable"] | None = ...,
-        av_profile: str | None = ...,
-        webfilter_profile_status: Literal["enable", "disable"] | None = ...,
-        webfilter_profile: str | None = ...,
-        casb_profile_status: Literal["enable", "disable"] | None = ...,
-        casb_profile: str | None = ...,
-        emailfilter_profile_status: Literal["enable", "disable"] | None = ...,
-        emailfilter_profile: str | None = ...,
-        dlp_profile_status: Literal["enable", "disable"] | None = ...,
-        dlp_profile: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -688,7 +628,6 @@ class InterfacePolicy:
         dlp_profile_status: Literal["enable", "disable"] | None = ...,
         dlp_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -721,7 +660,6 @@ class InterfacePolicy:
         dlp_profile_status: Literal["enable", "disable"] | None = ...,
         dlp_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterfacePolicyObject: ...
     
     @overload
@@ -753,41 +691,7 @@ class InterfacePolicy:
         dlp_profile_status: Literal["enable", "disable"] | None = ...,
         dlp_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: InterfacePolicyPayload | None = ...,
-        policyid: int | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        logtraffic: Literal["all", "utm", "disable"] | None = ...,
-        interface: str | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        application_list_status: Literal["enable", "disable"] | None = ...,
-        application_list: str | None = ...,
-        ips_sensor_status: Literal["enable", "disable"] | None = ...,
-        ips_sensor: str | None = ...,
-        dsri: Literal["enable", "disable"] | None = ...,
-        av_profile_status: Literal["enable", "disable"] | None = ...,
-        av_profile: str | None = ...,
-        webfilter_profile_status: Literal["enable", "disable"] | None = ...,
-        webfilter_profile: str | None = ...,
-        casb_profile_status: Literal["enable", "disable"] | None = ...,
-        casb_profile: str | None = ...,
-        emailfilter_profile_status: Literal["enable", "disable"] | None = ...,
-        emailfilter_profile: str | None = ...,
-        dlp_profile_status: Literal["enable", "disable"] | None = ...,
-        dlp_profile: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -849,7 +753,6 @@ class InterfacePolicy:
         dlp_profile_status: Literal["enable", "disable"] | None = ...,
         dlp_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -858,7 +761,6 @@ class InterfacePolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterfacePolicyObject: ...
     
     @overload
@@ -866,17 +768,7 @@ class InterfacePolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        policyid: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -890,7 +782,6 @@ class InterfacePolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -927,7 +818,6 @@ class InterfacePolicy:
         dlp_profile_status: Literal["enable", "disable"] | None = ...,
         dlp_profile: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -703,7 +703,6 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IsisObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -721,7 +720,6 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IsisObject: ...
     
     # With no mkey -> returns list of objects
@@ -738,25 +736,7 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IsisObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -772,7 +752,6 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IsisObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -790,7 +769,6 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IsisObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -807,7 +785,6 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IsisObject: ...
     
     # Fallback overload for all other cases
@@ -824,7 +801,6 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -839,7 +815,6 @@ class Isis:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> IsisObject | dict[str, Any]: ...
     
     def get_schema(
@@ -895,7 +870,6 @@ class Isis:
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IsisObject: ...
     
     @overload
@@ -944,58 +918,7 @@ class Isis:
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: IsisPayload | None = ...,
-        is_type: Literal["level-1-2", "level-1", "level-2-only"] | None = ...,
-        adv_passive_only: Literal["enable", "disable"] | None = ...,
-        adv_passive_only6: Literal["enable", "disable"] | None = ...,
-        auth_mode_l1: Literal["password", "md5"] | None = ...,
-        auth_mode_l2: Literal["password", "md5"] | None = ...,
-        auth_password_l1: str | None = ...,
-        auth_password_l2: str | None = ...,
-        auth_keychain_l1: str | None = ...,
-        auth_keychain_l2: str | None = ...,
-        auth_sendonly_l1: Literal["enable", "disable"] | None = ...,
-        auth_sendonly_l2: Literal["enable", "disable"] | None = ...,
-        ignore_lsp_errors: Literal["enable", "disable"] | None = ...,
-        lsp_gen_interval_l1: int | None = ...,
-        lsp_gen_interval_l2: int | None = ...,
-        lsp_refresh_interval: int | None = ...,
-        max_lsp_lifetime: int | None = ...,
-        spf_interval_exp_l1: str | None = ...,
-        spf_interval_exp_l2: str | None = ...,
-        dynamic_hostname: Literal["enable", "disable"] | None = ...,
-        adjacency_check: Literal["enable", "disable"] | None = ...,
-        adjacency_check6: Literal["enable", "disable"] | None = ...,
-        overload_bit: Literal["enable", "disable"] | None = ...,
-        overload_bit_suppress: Literal["external", "interlevel"] | list[str] | None = ...,
-        overload_bit_on_startup: int | None = ...,
-        default_originate: Literal["enable", "disable"] | None = ...,
-        default_originate6: Literal["enable", "disable"] | None = ...,
-        metric_style: Literal["narrow", "wide", "transition", "narrow-transition", "narrow-transition-l1", "narrow-transition-l2", "wide-l1", "wide-l2", "wide-transition", "wide-transition-l1", "wide-transition-l2", "transition-l1", "transition-l2"] | None = ...,
-        redistribute_l1: Literal["enable", "disable"] | None = ...,
-        redistribute_l1_list: str | None = ...,
-        redistribute_l2: Literal["enable", "disable"] | None = ...,
-        redistribute_l2_list: str | None = ...,
-        redistribute6_l1: Literal["enable", "disable"] | None = ...,
-        redistribute6_l1_list: str | None = ...,
-        redistribute6_l2: Literal["enable", "disable"] | None = ...,
-        redistribute6_l2_list: str | None = ...,
-        isis_net: str | list[str] | list[dict[str, Any]] | None = ...,
-        isis_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1091,7 +1014,6 @@ class Isis:
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1145,7 +1067,6 @@ class Isis:
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

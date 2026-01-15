@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -247,7 +247,7 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ProxyAddrgrpObject]: ...
+    ) -> FortiObjectList[ProxyAddrgrpObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -267,7 +267,6 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddrgrpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -285,7 +284,6 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddrgrpObject: ...
     
     # With no mkey -> returns list of objects
@@ -302,25 +300,7 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProxyAddrgrpObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ProxyAddrgrpObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -336,7 +316,6 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddrgrpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -354,7 +333,6 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddrgrpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -371,8 +349,7 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProxyAddrgrpObject]: ...
+    ) -> FortiObjectList[ProxyAddrgrpObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -388,7 +365,6 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -403,7 +379,6 @@ class ProxyAddrgrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ProxyAddrgrpObject | list[ProxyAddrgrpObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -425,7 +400,6 @@ class ProxyAddrgrp:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddrgrpObject: ...
     
     @overload
@@ -440,24 +414,7 @@ class ProxyAddrgrp:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ProxyAddrgrpPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["src", "dst"] | None = ...,
-        uuid: str | None = ...,
-        member: str | list[str] | list[dict[str, Any]] | None = ...,
-        color: int | None = ...,
-        tagging: str | list[str] | list[dict[str, Any]] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -485,7 +442,6 @@ class ProxyAddrgrp:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -501,7 +457,6 @@ class ProxyAddrgrp:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddrgrpObject: ...
     
     @overload
@@ -516,24 +471,7 @@ class ProxyAddrgrp:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ProxyAddrgrpPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["src", "dst"] | None = ...,
-        uuid: str | None = ...,
-        member: str | list[str] | list[dict[str, Any]] | None = ...,
-        color: int | None = ...,
-        tagging: str | list[str] | list[dict[str, Any]] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -561,7 +499,6 @@ class ProxyAddrgrp:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -570,7 +507,6 @@ class ProxyAddrgrp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddrgrpObject: ...
     
     @overload
@@ -578,17 +514,7 @@ class ProxyAddrgrp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -602,7 +528,6 @@ class ProxyAddrgrp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -622,7 +547,6 @@ class ProxyAddrgrp:
         tagging: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

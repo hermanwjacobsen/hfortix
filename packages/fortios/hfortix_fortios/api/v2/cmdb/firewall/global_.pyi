@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -152,7 +152,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -170,7 +169,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # With no mkey -> returns list of objects
@@ -187,25 +185,7 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -221,7 +201,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -239,7 +218,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -256,7 +234,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     # Fallback overload for all other cases
@@ -273,7 +250,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -288,7 +264,6 @@ class Global:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> GlobalObject | dict[str, Any]: ...
     
     def get_schema(
@@ -304,7 +279,6 @@ class Global:
         payload_dict: GlobalPayload | None = ...,
         banned_ip_persistency: Literal["disabled", "permanent-only", "all"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalObject: ...
     
     @overload
@@ -313,18 +287,7 @@ class Global:
         payload_dict: GlobalPayload | None = ...,
         banned_ip_persistency: Literal["disabled", "permanent-only", "all"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: GlobalPayload | None = ...,
-        banned_ip_persistency: Literal["disabled", "permanent-only", "all"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -340,7 +303,6 @@ class Global:
         payload_dict: GlobalPayload | None = ...,
         banned_ip_persistency: Literal["disabled", "permanent-only", "all"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -354,7 +316,6 @@ class Global:
         payload_dict: GlobalPayload | None = ...,
         banned_ip_persistency: Literal["disabled", "permanent-only", "all"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

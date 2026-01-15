@@ -118,7 +118,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         q_action: Literal["default", "schema"] | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
-        raw_json: bool = False,
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -146,7 +145,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
                 - action (str): Special actions - "schema", "default"
                 See FortiOS REST API documentation for complete list.
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
-            raw_json: If True, return raw API response without processing.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
@@ -241,7 +239,7 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
             unwrap_single = False
         
         return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json, unwrap_single=unwrap_single
+            "cmdb", endpoint, params=params, vdom=vdom, unwrap_single=unwrap_single
         )
 
     def get_schema(
@@ -303,7 +301,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         q_after: str | None = None,
         q_scope: str | None = None,
         vdom: str | bool | None = None,
-        raw_json: bool = False,
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -328,7 +325,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
                   - List of strings: ["val1", "val2"] → [{'id': 'val1'}, ...]
                   - List of dicts: [{'id': 1}] (recommended)
             vdom: Virtual domain name.
-            raw_json: If True, return raw API response.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
@@ -408,7 +404,7 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
             params["scope"] = q_scope
         
         return self._client.put(
-            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json
+            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom
         )
 
     # ========================================================================
@@ -431,7 +427,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         q_nkey: str | None = None,
         q_scope: str | None = None,
         vdom: str | bool | None = None,
-        raw_json: bool = False,
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -456,7 +451,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
                   - List of strings: ["val1", "val2"] → [{'id': 'val1'}, ...]
                   - List of dicts: [{'id': 1}] (recommended)
             vdom: Virtual domain name. Use True for global, string for specific VDOM.
-            raw_json: If True, return raw API response without processing.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
@@ -533,7 +527,7 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
             params["scope"] = q_scope
         
         return self._client.post(
-            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json
+            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom
         )
 
     # ========================================================================
@@ -546,7 +540,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         id: int | None = None,
         q_scope: str | None = None,
         vdom: str | bool | None = None,
-        raw_json: bool = False,
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -558,7 +551,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         Args:
             id: Primary key identifier
             vdom: Virtual domain name
-            raw_json: If True, return raw API response
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
@@ -590,7 +582,7 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
             params["scope"] = q_scope
         
         return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+            "cmdb", endpoint, params=params, vdom=vdom
         )
 
     def exists(
@@ -627,11 +619,11 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         """
         # Try to fetch the object - 404 means it doesn't exist
         try:
-            response = self.get(
+            result = self.get(
                 id=id,
-                vdom=vdom,
-                raw_json=True
+                vdom=vdom
             )
+            response = result.raw if hasattr(result, 'raw') else result
             
             if isinstance(response, dict):
                 # Synchronous response - check status
@@ -663,7 +655,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         include_subdomains: Literal["enable", "disable"] | None = None,
         entries: str | list[str] | list[dict[str, Any]] | None = None,
         vdom: str | bool | None = None,
-        raw_json: bool = False,
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
         **kwargs: Any,
@@ -685,7 +676,6 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
             include_subdomains: Field include-subdomains
             entries: Field entries
             vdom: Virtual domain name
-            raw_json: If True, return raw API response
             **kwargs: Additional parameters passed to PUT or POST
 
         Returns:
@@ -744,10 +734,10 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         # Check if resource exists
         if self.exists(id=mkey_value, vdom=vdom):
             # Update existing resource
-            return self.put(payload_dict=payload_data, vdom=vdom, raw_json=raw_json, **kwargs)
+            return self.put(payload_dict=payload_data, vdom=vdom, **kwargs)
         else:
             # Create new resource
-            return self.post(payload_dict=payload_data, vdom=vdom, raw_json=raw_json, **kwargs)
+            return self.post(payload_dict=payload_data, vdom=vdom, **kwargs)
 
     # ========================================================================
     # Action: Move
@@ -866,11 +856,11 @@ class Urlfilter(CRUDEndpoint, MetadataMixin):
         """
         # Try to fetch the object - 404 means it doesn't exist
         try:
-            response = self.get(
+            result = self.get(
                 id=id,
-                vdom=vdom,
-                raw_json=True
+                vdom=vdom
             )
+            response = result.raw if hasattr(result, 'raw') else result
             # Check if response indicates success
             return is_success(response)
         except Exception as e:

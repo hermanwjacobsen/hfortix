@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -1048,7 +1048,7 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[VipObject]: ...
+    ) -> FortiObjectList[VipObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -1068,7 +1068,6 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VipObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1086,7 +1085,6 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VipObject: ...
     
     # With no mkey -> returns list of objects
@@ -1103,25 +1101,7 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VipObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[VipObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -1137,7 +1117,6 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VipObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1155,7 +1134,6 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VipObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1172,8 +1150,7 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VipObject]: ...
+    ) -> FortiObjectList[VipObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -1189,7 +1166,6 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -1204,7 +1180,6 @@ class Vip:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> VipObject | list[VipObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -1317,7 +1292,6 @@ class Vip:
         gslb_domain_name: str | None = ...,
         gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VipObject: ...
     
     @overload
@@ -1423,115 +1397,7 @@ class Vip:
         gslb_domain_name: str | None = ...,
         gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: VipPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        uuid: str | None = ...,
-        comment: str | None = ...,
-        type: Literal["static-nat", "load-balance", "server-load-balance", "dns-translation", "fqdn", "access-proxy"] | None = ...,
-        server_type: Literal["http", "https", "imaps", "pop3s", "smtps", "ssl", "tcp", "udp", "ip"] | None = ...,
-        dns_mapping_ttl: int | None = ...,
-        ldb_method: Literal["static", "round-robin", "weighted", "least-session", "least-rtt", "first-alive", "http-host"] | None = ...,
-        src_filter: str | list[str] | list[dict[str, Any]] | None = ...,
-        src_vip_filter: Literal["disable", "enable"] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        extip: str | None = ...,
-        extaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        h2_support: Literal["enable", "disable"] | None = ...,
-        h3_support: Literal["enable", "disable"] | None = ...,
-        quic: str | None = ...,
-        nat44: Literal["disable", "enable"] | None = ...,
-        nat46: Literal["disable", "enable"] | None = ...,
-        add_nat46_route: Literal["disable", "enable"] | None = ...,
-        mappedip: str | list[str] | list[dict[str, Any]] | None = ...,
-        mapped_addr: str | None = ...,
-        extintf: str | None = ...,
-        arp_reply: Literal["disable", "enable"] | None = ...,
-        http_redirect: Literal["enable", "disable"] | None = ...,
-        persistence: Literal["none", "http-cookie", "ssl-session-id"] | None = ...,
-        nat_source_vip: Literal["disable", "enable"] | None = ...,
-        portforward: Literal["disable", "enable"] | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        protocol: Literal["tcp", "udp", "sctp", "icmp"] | None = ...,
-        extport: str | None = ...,
-        mappedport: str | None = ...,
-        gratuitous_arp_interval: int | None = ...,
-        srcintf_filter: str | list[str] | list[dict[str, Any]] | None = ...,
-        portmapping_type: Literal["1-to-1", "m-to-n"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        realservers: str | list[str] | list[dict[str, Any]] | None = ...,
-        http_cookie_domain_from_host: Literal["disable", "enable"] | None = ...,
-        http_cookie_domain: str | None = ...,
-        http_cookie_path: str | None = ...,
-        http_cookie_generation: int | None = ...,
-        http_cookie_age: int | None = ...,
-        http_cookie_share: Literal["disable", "same-ip"] | None = ...,
-        https_cookie_secure: Literal["disable", "enable"] | None = ...,
-        http_multiplex: Literal["enable", "disable"] | None = ...,
-        http_multiplex_ttl: int | None = ...,
-        http_multiplex_max_request: int | None = ...,
-        http_multiplex_max_concurrent_request: int | None = ...,
-        http_ip_header: Literal["enable", "disable"] | None = ...,
-        http_ip_header_name: str | None = ...,
-        outlook_web_access: Literal["disable", "enable"] | None = ...,
-        weblogic_server: Literal["disable", "enable"] | None = ...,
-        websphere_server: Literal["disable", "enable"] | None = ...,
-        ssl_mode: Literal["half", "full"] | None = ...,
-        ssl_certificate: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048", "3072", "4096"] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low", "custom"] | None = ...,
-        ssl_cipher_suites: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_server_algorithm: Literal["high", "medium", "low", "custom", "client"] | None = ...,
-        ssl_server_cipher_suites: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_pfs: Literal["require", "deny", "allow"] | None = ...,
-        ssl_min_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_max_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_server_min_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3", "client"] | None = ...,
-        ssl_server_max_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3", "client"] | None = ...,
-        ssl_accept_ffdhe_groups: Literal["enable", "disable"] | None = ...,
-        ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
-        ssl_client_fallback: Literal["disable", "enable"] | None = ...,
-        ssl_client_renegotiation: Literal["allow", "deny", "secure"] | None = ...,
-        ssl_client_session_state_type: Literal["disable", "time", "count", "both"] | None = ...,
-        ssl_client_session_state_timeout: int | None = ...,
-        ssl_client_session_state_max: int | None = ...,
-        ssl_client_rekey_count: int | None = ...,
-        ssl_server_renegotiation: Literal["enable", "disable"] | None = ...,
-        ssl_server_session_state_type: Literal["disable", "time", "count", "both"] | None = ...,
-        ssl_server_session_state_timeout: int | None = ...,
-        ssl_server_session_state_max: int | None = ...,
-        ssl_http_location_conversion: Literal["enable", "disable"] | None = ...,
-        ssl_http_match_host: Literal["enable", "disable"] | None = ...,
-        ssl_hpkp: Literal["disable", "enable", "report-only"] | None = ...,
-        ssl_hpkp_primary: str | None = ...,
-        ssl_hpkp_backup: str | None = ...,
-        ssl_hpkp_age: int | None = ...,
-        ssl_hpkp_report_uri: str | None = ...,
-        ssl_hpkp_include_subdomains: Literal["disable", "enable"] | None = ...,
-        ssl_hsts: Literal["disable", "enable"] | None = ...,
-        ssl_hsts_age: int | None = ...,
-        ssl_hsts_include_subdomains: Literal["disable", "enable"] | None = ...,
-        monitor: str | list[str] | list[dict[str, Any]] | None = ...,
-        max_embryonic_connections: int | None = ...,
-        color: int | None = ...,
-        ipv6_mappedip: str | None = ...,
-        ipv6_mappedport: str | None = ...,
-        one_click_gslb_server: Literal["disable", "enable"] | None = ...,
-        gslb_hostname: str | None = ...,
-        gslb_domain_name: str | None = ...,
-        gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1741,7 +1607,6 @@ class Vip:
         gslb_domain_name: str | None = ...,
         gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -1848,7 +1713,6 @@ class Vip:
         gslb_domain_name: str | None = ...,
         gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VipObject: ...
     
     @overload
@@ -1954,115 +1818,7 @@ class Vip:
         gslb_domain_name: str | None = ...,
         gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: VipPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        uuid: str | None = ...,
-        comment: str | None = ...,
-        type: Literal["static-nat", "load-balance", "server-load-balance", "dns-translation", "fqdn", "access-proxy"] | None = ...,
-        server_type: Literal["http", "https", "imaps", "pop3s", "smtps", "ssl", "tcp", "udp", "ip"] | None = ...,
-        dns_mapping_ttl: int | None = ...,
-        ldb_method: Literal["static", "round-robin", "weighted", "least-session", "least-rtt", "first-alive", "http-host"] | None = ...,
-        src_filter: str | list[str] | list[dict[str, Any]] | None = ...,
-        src_vip_filter: Literal["disable", "enable"] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        extip: str | None = ...,
-        extaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        h2_support: Literal["enable", "disable"] | None = ...,
-        h3_support: Literal["enable", "disable"] | None = ...,
-        quic: str | None = ...,
-        nat44: Literal["disable", "enable"] | None = ...,
-        nat46: Literal["disable", "enable"] | None = ...,
-        add_nat46_route: Literal["disable", "enable"] | None = ...,
-        mappedip: str | list[str] | list[dict[str, Any]] | None = ...,
-        mapped_addr: str | None = ...,
-        extintf: str | None = ...,
-        arp_reply: Literal["disable", "enable"] | None = ...,
-        http_redirect: Literal["enable", "disable"] | None = ...,
-        persistence: Literal["none", "http-cookie", "ssl-session-id"] | None = ...,
-        nat_source_vip: Literal["disable", "enable"] | None = ...,
-        portforward: Literal["disable", "enable"] | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        protocol: Literal["tcp", "udp", "sctp", "icmp"] | None = ...,
-        extport: str | None = ...,
-        mappedport: str | None = ...,
-        gratuitous_arp_interval: int | None = ...,
-        srcintf_filter: str | list[str] | list[dict[str, Any]] | None = ...,
-        portmapping_type: Literal["1-to-1", "m-to-n"] | None = ...,
-        empty_cert_action: Literal["accept", "block", "accept-unmanageable"] | None = ...,
-        user_agent_detect: Literal["disable", "enable"] | None = ...,
-        client_cert: Literal["disable", "enable"] | None = ...,
-        realservers: str | list[str] | list[dict[str, Any]] | None = ...,
-        http_cookie_domain_from_host: Literal["disable", "enable"] | None = ...,
-        http_cookie_domain: str | None = ...,
-        http_cookie_path: str | None = ...,
-        http_cookie_generation: int | None = ...,
-        http_cookie_age: int | None = ...,
-        http_cookie_share: Literal["disable", "same-ip"] | None = ...,
-        https_cookie_secure: Literal["disable", "enable"] | None = ...,
-        http_multiplex: Literal["enable", "disable"] | None = ...,
-        http_multiplex_ttl: int | None = ...,
-        http_multiplex_max_request: int | None = ...,
-        http_multiplex_max_concurrent_request: int | None = ...,
-        http_ip_header: Literal["enable", "disable"] | None = ...,
-        http_ip_header_name: str | None = ...,
-        outlook_web_access: Literal["disable", "enable"] | None = ...,
-        weblogic_server: Literal["disable", "enable"] | None = ...,
-        websphere_server: Literal["disable", "enable"] | None = ...,
-        ssl_mode: Literal["half", "full"] | None = ...,
-        ssl_certificate: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048", "3072", "4096"] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low", "custom"] | None = ...,
-        ssl_cipher_suites: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_server_algorithm: Literal["high", "medium", "low", "custom", "client"] | None = ...,
-        ssl_server_cipher_suites: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_pfs: Literal["require", "deny", "allow"] | None = ...,
-        ssl_min_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_max_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_server_min_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3", "client"] | None = ...,
-        ssl_server_max_version: Literal["ssl-3.0", "tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3", "client"] | None = ...,
-        ssl_accept_ffdhe_groups: Literal["enable", "disable"] | None = ...,
-        ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
-        ssl_client_fallback: Literal["disable", "enable"] | None = ...,
-        ssl_client_renegotiation: Literal["allow", "deny", "secure"] | None = ...,
-        ssl_client_session_state_type: Literal["disable", "time", "count", "both"] | None = ...,
-        ssl_client_session_state_timeout: int | None = ...,
-        ssl_client_session_state_max: int | None = ...,
-        ssl_client_rekey_count: int | None = ...,
-        ssl_server_renegotiation: Literal["enable", "disable"] | None = ...,
-        ssl_server_session_state_type: Literal["disable", "time", "count", "both"] | None = ...,
-        ssl_server_session_state_timeout: int | None = ...,
-        ssl_server_session_state_max: int | None = ...,
-        ssl_http_location_conversion: Literal["enable", "disable"] | None = ...,
-        ssl_http_match_host: Literal["enable", "disable"] | None = ...,
-        ssl_hpkp: Literal["disable", "enable", "report-only"] | None = ...,
-        ssl_hpkp_primary: str | None = ...,
-        ssl_hpkp_backup: str | None = ...,
-        ssl_hpkp_age: int | None = ...,
-        ssl_hpkp_report_uri: str | None = ...,
-        ssl_hpkp_include_subdomains: Literal["disable", "enable"] | None = ...,
-        ssl_hsts: Literal["disable", "enable"] | None = ...,
-        ssl_hsts_age: int | None = ...,
-        ssl_hsts_include_subdomains: Literal["disable", "enable"] | None = ...,
-        monitor: str | list[str] | list[dict[str, Any]] | None = ...,
-        max_embryonic_connections: int | None = ...,
-        color: int | None = ...,
-        ipv6_mappedip: str | None = ...,
-        ipv6_mappedport: str | None = ...,
-        one_click_gslb_server: Literal["disable", "enable"] | None = ...,
-        gslb_hostname: str | None = ...,
-        gslb_domain_name: str | None = ...,
-        gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -2272,7 +2028,6 @@ class Vip:
         gslb_domain_name: str | None = ...,
         gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -2281,7 +2036,6 @@ class Vip:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VipObject: ...
     
     @overload
@@ -2289,17 +2043,7 @@ class Vip:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -2313,7 +2057,6 @@ class Vip:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -2424,7 +2167,6 @@ class Vip:
         gslb_domain_name: str | None = ...,
         gslb_public_ips: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

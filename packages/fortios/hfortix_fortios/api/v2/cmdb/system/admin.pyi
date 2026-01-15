@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -433,7 +433,7 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AdminObject]: ...
+    ) -> FortiObjectList[AdminObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -453,7 +453,6 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AdminObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -471,7 +470,6 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AdminObject: ...
     
     # With no mkey -> returns list of objects
@@ -488,25 +486,7 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AdminObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[AdminObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -522,7 +502,6 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AdminObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -540,7 +519,6 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AdminObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -557,8 +535,7 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AdminObject]: ...
+    ) -> FortiObjectList[AdminObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -574,7 +551,6 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -589,7 +565,6 @@ class Admin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> AdminObject | list[AdminObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -656,7 +631,6 @@ class Admin:
         status: str | None = ...,
         list: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AdminObject: ...
     
     @overload
@@ -716,69 +690,7 @@ class Admin:
         status: str | None = ...,
         list: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: AdminPayload | None = ...,
-        name: str | None = ...,
-        remote_auth: Literal["enable", "disable"] | None = ...,
-        remote_group: str | None = ...,
-        wildcard: Literal["enable", "disable"] | None = ...,
-        password: str | None = ...,
-        peer_auth: Literal["enable", "disable"] | None = ...,
-        peer_group: str | None = ...,
-        trusthost1: str | None = ...,
-        trusthost2: str | None = ...,
-        trusthost3: str | None = ...,
-        trusthost4: str | None = ...,
-        trusthost5: str | None = ...,
-        trusthost6: str | None = ...,
-        trusthost7: str | None = ...,
-        trusthost8: str | None = ...,
-        trusthost9: str | None = ...,
-        trusthost10: str | None = ...,
-        ip6_trusthost1: str | None = ...,
-        ip6_trusthost2: str | None = ...,
-        ip6_trusthost3: str | None = ...,
-        ip6_trusthost4: str | None = ...,
-        ip6_trusthost5: str | None = ...,
-        ip6_trusthost6: str | None = ...,
-        ip6_trusthost7: str | None = ...,
-        ip6_trusthost8: str | None = ...,
-        ip6_trusthost9: str | None = ...,
-        ip6_trusthost10: str | None = ...,
-        accprofile: str | None = ...,
-        allow_remove_admin_session: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        ssh_public_key1: str | None = ...,
-        ssh_public_key2: str | None = ...,
-        ssh_public_key3: str | None = ...,
-        ssh_certificate: str | None = ...,
-        schedule: str | None = ...,
-        accprofile_override: Literal["enable", "disable"] | None = ...,
-        vdom_override: Literal["enable", "disable"] | None = ...,
-        password_expire: str | None = ...,
-        force_password_change: Literal["enable", "disable"] | None = ...,
-        two_factor: Literal["disable", "fortitoken", "fortitoken-cloud", "email", "sms"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        fortitoken: str | None = ...,
-        email_to: str | None = ...,
-        sms_server: Literal["fortiguard", "custom"] | None = ...,
-        sms_custom_server: str | None = ...,
-        sms_phone: str | None = ...,
-        guest_auth: Literal["disable", "enable"] | None = ...,
-        guest_usergroups: str | list[str] | list[dict[str, Any]] | None = ...,
-        guest_lang: str | None = ...,
-        status: str | None = ...,
-        list: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -896,7 +808,6 @@ class Admin:
         status: str | None = ...,
         list: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -957,7 +868,6 @@ class Admin:
         status: str | None = ...,
         list: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AdminObject: ...
     
     @overload
@@ -1017,69 +927,7 @@ class Admin:
         status: str | None = ...,
         list: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: AdminPayload | None = ...,
-        name: str | None = ...,
-        remote_auth: Literal["enable", "disable"] | None = ...,
-        remote_group: str | None = ...,
-        wildcard: Literal["enable", "disable"] | None = ...,
-        password: str | None = ...,
-        peer_auth: Literal["enable", "disable"] | None = ...,
-        peer_group: str | None = ...,
-        trusthost1: str | None = ...,
-        trusthost2: str | None = ...,
-        trusthost3: str | None = ...,
-        trusthost4: str | None = ...,
-        trusthost5: str | None = ...,
-        trusthost6: str | None = ...,
-        trusthost7: str | None = ...,
-        trusthost8: str | None = ...,
-        trusthost9: str | None = ...,
-        trusthost10: str | None = ...,
-        ip6_trusthost1: str | None = ...,
-        ip6_trusthost2: str | None = ...,
-        ip6_trusthost3: str | None = ...,
-        ip6_trusthost4: str | None = ...,
-        ip6_trusthost5: str | None = ...,
-        ip6_trusthost6: str | None = ...,
-        ip6_trusthost7: str | None = ...,
-        ip6_trusthost8: str | None = ...,
-        ip6_trusthost9: str | None = ...,
-        ip6_trusthost10: str | None = ...,
-        accprofile: str | None = ...,
-        allow_remove_admin_session: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        ssh_public_key1: str | None = ...,
-        ssh_public_key2: str | None = ...,
-        ssh_public_key3: str | None = ...,
-        ssh_certificate: str | None = ...,
-        schedule: str | None = ...,
-        accprofile_override: Literal["enable", "disable"] | None = ...,
-        vdom_override: Literal["enable", "disable"] | None = ...,
-        password_expire: str | None = ...,
-        force_password_change: Literal["enable", "disable"] | None = ...,
-        two_factor: Literal["disable", "fortitoken", "fortitoken-cloud", "email", "sms"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        fortitoken: str | None = ...,
-        email_to: str | None = ...,
-        sms_server: Literal["fortiguard", "custom"] | None = ...,
-        sms_custom_server: str | None = ...,
-        sms_phone: str | None = ...,
-        guest_auth: Literal["disable", "enable"] | None = ...,
-        guest_usergroups: str | list[str] | list[dict[str, Any]] | None = ...,
-        guest_lang: str | None = ...,
-        status: str | None = ...,
-        list: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1197,7 +1045,6 @@ class Admin:
         status: str | None = ...,
         list: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1206,7 +1053,6 @@ class Admin:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AdminObject: ...
     
     @overload
@@ -1214,17 +1060,7 @@ class Admin:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1238,7 +1074,6 @@ class Admin:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1303,7 +1138,6 @@ class Admin:
         status: str | None = ...,
         list: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

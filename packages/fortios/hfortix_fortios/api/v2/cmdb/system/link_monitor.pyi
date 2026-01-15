@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -409,7 +409,7 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LinkMonitorObject]: ...
+    ) -> FortiObjectList[LinkMonitorObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -429,7 +429,6 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LinkMonitorObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -447,7 +446,6 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LinkMonitorObject: ...
     
     # With no mkey -> returns list of objects
@@ -464,25 +462,7 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LinkMonitorObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[LinkMonitorObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -498,7 +478,6 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LinkMonitorObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -516,7 +495,6 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LinkMonitorObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -533,8 +511,7 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LinkMonitorObject]: ...
+    ) -> FortiObjectList[LinkMonitorObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -550,7 +527,6 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -565,7 +541,6 @@ class LinkMonitor:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> LinkMonitorObject | list[LinkMonitorObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -614,7 +589,6 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LinkMonitorObject: ...
     
     @overload
@@ -656,51 +630,7 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: LinkMonitorPayload | None = ...,
-        name: str | None = ...,
-        addr_mode: Literal["ipv4", "ipv6"] | None = ...,
-        srcintf: str | None = ...,
-        server_config: Literal["default", "individual"] | None = ...,
-        server_type: Literal["static", "dynamic"] | None = ...,
-        server: str | list[str] | list[dict[str, Any]] | None = ...,
-        protocol: Literal["ping", "tcp-echo", "udp-echo", "http", "https", "twamp"] | list[str] | None = ...,
-        port: int | None = ...,
-        gateway_ip: str | None = ...,
-        gateway_ip6: str | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        source_ip: str | None = ...,
-        source_ip6: str | None = ...,
-        http_get: str | None = ...,
-        http_agent: str | None = ...,
-        http_match: str | None = ...,
-        interval: int | None = ...,
-        probe_timeout: int | None = ...,
-        failtime: int | None = ...,
-        recoverytime: int | None = ...,
-        probe_count: int | None = ...,
-        security_mode: Literal["none", "authentication"] | None = ...,
-        password: str | None = ...,
-        packet_size: int | None = ...,
-        ha_priority: int | None = ...,
-        fail_weight: int | None = ...,
-        update_cascade_interface: Literal["enable", "disable"] | None = ...,
-        update_static_route: Literal["enable", "disable"] | None = ...,
-        update_policy_route: Literal["enable", "disable"] | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        diffservcode: str | None = ...,
-        class_id: int | None = ...,
-        service_detection: Literal["enable", "disable"] | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -782,7 +712,6 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -825,7 +754,6 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LinkMonitorObject: ...
     
     @overload
@@ -867,51 +795,7 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: LinkMonitorPayload | None = ...,
-        name: str | None = ...,
-        addr_mode: Literal["ipv4", "ipv6"] | None = ...,
-        srcintf: str | None = ...,
-        server_config: Literal["default", "individual"] | None = ...,
-        server_type: Literal["static", "dynamic"] | None = ...,
-        server: str | list[str] | list[dict[str, Any]] | None = ...,
-        protocol: Literal["ping", "tcp-echo", "udp-echo", "http", "https", "twamp"] | list[str] | None = ...,
-        port: int | None = ...,
-        gateway_ip: str | None = ...,
-        gateway_ip6: str | None = ...,
-        route: str | list[str] | list[dict[str, Any]] | None = ...,
-        source_ip: str | None = ...,
-        source_ip6: str | None = ...,
-        http_get: str | None = ...,
-        http_agent: str | None = ...,
-        http_match: str | None = ...,
-        interval: int | None = ...,
-        probe_timeout: int | None = ...,
-        failtime: int | None = ...,
-        recoverytime: int | None = ...,
-        probe_count: int | None = ...,
-        security_mode: Literal["none", "authentication"] | None = ...,
-        password: str | None = ...,
-        packet_size: int | None = ...,
-        ha_priority: int | None = ...,
-        fail_weight: int | None = ...,
-        update_cascade_interface: Literal["enable", "disable"] | None = ...,
-        update_static_route: Literal["enable", "disable"] | None = ...,
-        update_policy_route: Literal["enable", "disable"] | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        diffservcode: str | None = ...,
-        class_id: int | None = ...,
-        service_detection: Literal["enable", "disable"] | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -993,7 +877,6 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1002,7 +885,6 @@ class LinkMonitor:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LinkMonitorObject: ...
     
     @overload
@@ -1010,17 +892,7 @@ class LinkMonitor:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1034,7 +906,6 @@ class LinkMonitor:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1081,7 +952,6 @@ class LinkMonitor:
         service_detection: Literal["enable", "disable"] | None = ...,
         server_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

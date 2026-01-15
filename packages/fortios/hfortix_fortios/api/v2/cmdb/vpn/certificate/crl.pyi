@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -187,7 +187,7 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[CrlObject]: ...
+    ) -> FortiObjectList[CrlObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -207,7 +207,6 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CrlObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -225,7 +224,6 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CrlObject: ...
     
     # With no mkey -> returns list of objects
@@ -242,25 +240,7 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CrlObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[CrlObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -276,7 +256,6 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CrlObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -294,7 +273,6 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CrlObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -311,8 +289,7 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CrlObject]: ...
+    ) -> FortiObjectList[CrlObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -328,7 +305,6 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -343,7 +319,6 @@ class Crl:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> CrlObject | list[CrlObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -371,7 +346,6 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CrlObject: ...
     
     @overload
@@ -392,30 +366,7 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: CrlPayload | None = ...,
-        name: str | None = ...,
-        crl: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        update_vdom: str | None = ...,
-        ldap_server: str | None = ...,
-        ldap_username: str | None = ...,
-        ldap_password: str | None = ...,
-        http_url: str | None = ...,
-        scep_url: str | None = ...,
-        scep_cert: str | None = ...,
-        update_interval: int | None = ...,
-        source_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -455,7 +406,6 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -477,7 +427,6 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CrlObject: ...
     
     @overload
@@ -498,30 +447,7 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: CrlPayload | None = ...,
-        name: str | None = ...,
-        crl: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        update_vdom: str | None = ...,
-        ldap_server: str | None = ...,
-        ldap_username: str | None = ...,
-        ldap_password: str | None = ...,
-        http_url: str | None = ...,
-        scep_url: str | None = ...,
-        scep_cert: str | None = ...,
-        update_interval: int | None = ...,
-        source_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -561,7 +487,6 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -587,7 +512,6 @@ class Crl:
         update_interval: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

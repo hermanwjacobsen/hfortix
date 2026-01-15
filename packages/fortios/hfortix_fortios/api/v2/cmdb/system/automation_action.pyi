@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -491,7 +491,7 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AutomationActionObject]: ...
+    ) -> FortiObjectList[AutomationActionObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -511,7 +511,6 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationActionObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -529,7 +528,6 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationActionObject: ...
     
     # With no mkey -> returns list of objects
@@ -546,25 +544,7 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AutomationActionObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[AutomationActionObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -580,7 +560,6 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationActionObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -598,7 +577,6 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationActionObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -615,8 +593,7 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AutomationActionObject]: ...
+    ) -> FortiObjectList[AutomationActionObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -632,7 +609,6 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -647,7 +623,6 @@ class AutomationAction:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> AutomationActionObject | list[AutomationActionObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -702,7 +677,6 @@ class AutomationAction:
         security_tag: str | None = ...,
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationActionObject: ...
     
     @overload
@@ -750,57 +724,7 @@ class AutomationAction:
         security_tag: str | None = ...,
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -894,7 +818,6 @@ class AutomationAction:
         security_tag: str | None = ...,
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -943,7 +866,6 @@ class AutomationAction:
         security_tag: str | None = ...,
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationActionObject: ...
     
     @overload
@@ -991,57 +913,7 @@ class AutomationAction:
         security_tag: str | None = ...,
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationActionPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        action_type: Literal["email", "fortiexplorer-notification", "alert", "disable-ssid", "system-actions", "quarantine", "quarantine-forticlient", "quarantine-nsx", "quarantine-fortinac", "ban-ip", "aws-lambda", "azure-function", "google-cloud-function", "alicloud-function", "webhook", "cli-script", "diagnose-script", "regular-expression", "slack-notification", "microsoft-teams-notification"] | None = ...,
-        system_action: Literal["reboot", "shutdown", "backup-config"] | None = ...,
-        tls_certificate: str | None = ...,
-        forticare_email: Literal["enable", "disable"] | None = ...,
-        email_to: str | list[str] | list[dict[str, Any]] | None = ...,
-        email_from: str | None = ...,
-        email_subject: str | None = ...,
-        minimum_interval: int | None = ...,
-        aws_api_key: str | None = ...,
-        azure_function_authorization: Literal["anonymous", "function", "admin"] | None = ...,
-        azure_api_key: str | None = ...,
-        alicloud_function_authorization: Literal["anonymous", "function"] | None = ...,
-        alicloud_access_key_id: str | None = ...,
-        alicloud_access_key_secret: str | None = ...,
-        message_type: Literal["text", "json", "form-data"] | None = ...,
-        message: str | None = ...,
-        replacement_message: Literal["enable", "disable"] | None = ...,
-        replacemsg_group: str | None = ...,
-        protocol: Literal["http", "https"] | None = ...,
-        method: Literal["post", "put", "get", "patch", "delete"] | None = ...,
-        uri: str | None = ...,
-        http_body: str | None = ...,
-        port: int | None = ...,
-        http_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        form_data: str | list[str] | list[dict[str, Any]] | None = ...,
-        verify_host_cert: Literal["enable", "disable"] | None = ...,
-        script: str | None = ...,
-        output_size: int | None = ...,
-        timeout: int | None = ...,
-        duration: int | None = ...,
-        output_interval: int | None = ...,
-        file_only: Literal["enable", "disable"] | None = ...,
-        execute_security_fabric: Literal["enable", "disable"] | None = ...,
-        accprofile: str | None = ...,
-        regular_expression: str | None = ...,
-        log_debug_print: Literal["enable", "disable"] | None = ...,
-        security_tag: str | None = ...,
-        sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1135,7 +1007,6 @@ class AutomationAction:
         security_tag: str | None = ...,
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1144,7 +1015,6 @@ class AutomationAction:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationActionObject: ...
     
     @overload
@@ -1152,17 +1022,7 @@ class AutomationAction:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1176,7 +1036,6 @@ class AutomationAction:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1229,7 +1088,6 @@ class AutomationAction:
         security_tag: str | None = ...,
         sdn_connector: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

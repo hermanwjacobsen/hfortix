@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -271,7 +271,7 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AccessControlListObject]: ...
+    ) -> FortiObjectList[AccessControlListObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -291,7 +291,6 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccessControlListObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -309,7 +308,6 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccessControlListObject: ...
     
     # With no mkey -> returns list of objects
@@ -326,25 +324,7 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AccessControlListObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[AccessControlListObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -360,7 +340,6 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccessControlListObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -378,7 +357,6 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccessControlListObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -395,8 +373,7 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AccessControlListObject]: ...
+    ) -> FortiObjectList[AccessControlListObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -412,7 +389,6 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -427,7 +403,6 @@ class AccessControlList:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> AccessControlListObject | list[AccessControlListObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -446,7 +421,6 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccessControlListObject: ...
     
     @overload
@@ -458,21 +432,7 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: AccessControlListPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
-        layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -494,7 +454,6 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -507,7 +466,6 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccessControlListObject: ...
     
     @overload
@@ -519,21 +477,7 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: AccessControlListPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
-        layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -555,7 +499,6 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -564,7 +507,6 @@ class AccessControlList:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AccessControlListObject: ...
     
     @overload
@@ -572,17 +514,7 @@ class AccessControlList:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -596,7 +528,6 @@ class AccessControlList:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -613,7 +544,6 @@ class AccessControlList:
         layer3_ipv4_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         layer3_ipv6_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

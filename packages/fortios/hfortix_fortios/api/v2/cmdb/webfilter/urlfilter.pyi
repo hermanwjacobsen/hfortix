@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -233,7 +233,7 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[UrlfilterObject]: ...
+    ) -> FortiObjectList[UrlfilterObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -253,7 +253,6 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlfilterObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -271,7 +270,6 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlfilterObject: ...
     
     # With no mkey -> returns list of objects
@@ -288,25 +286,7 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UrlfilterObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[UrlfilterObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -322,7 +302,6 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlfilterObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -340,7 +319,6 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlfilterObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -357,8 +335,7 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UrlfilterObject]: ...
+    ) -> FortiObjectList[UrlfilterObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -374,7 +351,6 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -389,7 +365,6 @@ class Urlfilter:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> UrlfilterObject | list[UrlfilterObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -412,7 +387,6 @@ class Urlfilter:
         include_subdomains: Literal["enable", "disable"] | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlfilterObject: ...
     
     @overload
@@ -428,25 +402,7 @@ class Urlfilter:
         include_subdomains: Literal["enable", "disable"] | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: UrlfilterPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        one_arm_ips_urlfilter: Literal["enable", "disable"] | None = ...,
-        ip_addr_block: Literal["enable", "disable"] | None = ...,
-        ip4_mapped_ip6: Literal["enable", "disable"] | None = ...,
-        include_subdomains: Literal["enable", "disable"] | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -476,7 +432,6 @@ class Urlfilter:
         include_subdomains: Literal["enable", "disable"] | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -493,7 +448,6 @@ class Urlfilter:
         include_subdomains: Literal["enable", "disable"] | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlfilterObject: ...
     
     @overload
@@ -509,25 +463,7 @@ class Urlfilter:
         include_subdomains: Literal["enable", "disable"] | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: UrlfilterPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        one_arm_ips_urlfilter: Literal["enable", "disable"] | None = ...,
-        ip_addr_block: Literal["enable", "disable"] | None = ...,
-        ip4_mapped_ip6: Literal["enable", "disable"] | None = ...,
-        include_subdomains: Literal["enable", "disable"] | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -557,7 +493,6 @@ class Urlfilter:
         include_subdomains: Literal["enable", "disable"] | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -566,7 +501,6 @@ class Urlfilter:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlfilterObject: ...
     
     @overload
@@ -574,17 +508,7 @@ class Urlfilter:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -598,7 +522,6 @@ class Urlfilter:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -619,7 +542,6 @@ class Urlfilter:
         include_subdomains: Literal["enable", "disable"] | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -658,7 +658,7 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[PolicyObject]: ...
+    ) -> FortiObjectList[PolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -678,7 +678,6 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -696,7 +695,6 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -713,25 +711,7 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        seq_num: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[PolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -747,7 +727,6 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -765,7 +744,6 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -782,8 +760,7 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PolicyObject]: ...
+    ) -> FortiObjectList[PolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -799,7 +776,6 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -814,7 +790,6 @@ class Policy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PolicyObject | list[PolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -855,7 +830,6 @@ class Policy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PolicyObject: ...
     
     @overload
@@ -889,43 +863,7 @@ class Policy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: PolicyPayload | None = ...,
-        seq_num: int | None = ...,
-        input_device: str | list[str] | list[dict[str, Any]] | None = ...,
-        input_device_negate: Literal["enable", "disable"] | None = ...,
-        src: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        src_negate: Literal["enable", "disable"] | None = ...,
-        dst: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dst_negate: Literal["enable", "disable"] | None = ...,
-        action: Literal["deny", "permit"] | None = ...,
-        protocol: int | None = ...,
-        start_port: int | None = ...,
-        end_port: int | None = ...,
-        start_source_port: int | None = ...,
-        end_source_port: int | None = ...,
-        gateway: str | None = ...,
-        output_device: str | None = ...,
-        tos: str | None = ...,
-        tos_mask: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        internet_service_id: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        users: str | list[str] | list[dict[str, Any]] | None = ...,
-        groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -991,7 +929,6 @@ class Policy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -1026,7 +963,6 @@ class Policy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PolicyObject: ...
     
     @overload
@@ -1060,43 +996,7 @@ class Policy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PolicyPayload | None = ...,
-        seq_num: int | None = ...,
-        input_device: str | list[str] | list[dict[str, Any]] | None = ...,
-        input_device_negate: Literal["enable", "disable"] | None = ...,
-        src: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        src_negate: Literal["enable", "disable"] | None = ...,
-        dst: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dst_negate: Literal["enable", "disable"] | None = ...,
-        action: Literal["deny", "permit"] | None = ...,
-        protocol: int | None = ...,
-        start_port: int | None = ...,
-        end_port: int | None = ...,
-        start_source_port: int | None = ...,
-        end_source_port: int | None = ...,
-        gateway: str | None = ...,
-        output_device: str | None = ...,
-        tos: str | None = ...,
-        tos_mask: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        internet_service_id: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        users: str | list[str] | list[dict[str, Any]] | None = ...,
-        groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1162,7 +1062,6 @@ class Policy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1171,7 +1070,6 @@ class Policy:
         self,
         seq_num: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PolicyObject: ...
     
     @overload
@@ -1179,17 +1077,7 @@ class Policy:
         self,
         seq_num: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        seq_num: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1203,7 +1091,6 @@ class Policy:
         self,
         seq_num: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1242,7 +1129,6 @@ class Policy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

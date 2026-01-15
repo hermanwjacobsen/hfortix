@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -181,7 +181,7 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[CustomObject]: ...
+    ) -> FortiObjectList[CustomObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -201,7 +201,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -219,7 +218,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # With no mkey -> returns list of objects
@@ -236,25 +234,7 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CustomObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        tag: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[CustomObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -270,7 +250,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -288,7 +267,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -305,8 +283,7 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CustomObject]: ...
+    ) -> FortiObjectList[CustomObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -322,7 +299,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -337,7 +313,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> CustomObject | list[CustomObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -365,7 +340,6 @@ class Custom:
         action: Literal["pass", "block"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     @overload
@@ -386,30 +360,7 @@ class Custom:
         action: Literal["pass", "block"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: CustomPayload | None = ...,
-        tag: str | None = ...,
-        signature: str | None = ...,
-        rule_id: int | None = ...,
-        severity: str | None = ...,
-        location: str | list[str] | None = ...,
-        os: str | list[str] | None = ...,
-        application: str | list[str] | None = ...,
-        protocol: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        log: Literal["disable", "enable"] | None = ...,
-        log_packet: Literal["disable", "enable"] | None = ...,
-        action: Literal["pass", "block"] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -449,7 +400,6 @@ class Custom:
         action: Literal["pass", "block"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -471,7 +421,6 @@ class Custom:
         action: Literal["pass", "block"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     @overload
@@ -492,30 +441,7 @@ class Custom:
         action: Literal["pass", "block"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: CustomPayload | None = ...,
-        tag: str | None = ...,
-        signature: str | None = ...,
-        rule_id: int | None = ...,
-        severity: str | None = ...,
-        location: str | list[str] | None = ...,
-        os: str | list[str] | None = ...,
-        application: str | list[str] | None = ...,
-        protocol: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        log: Literal["disable", "enable"] | None = ...,
-        log_packet: Literal["disable", "enable"] | None = ...,
-        action: Literal["pass", "block"] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -555,7 +481,6 @@ class Custom:
         action: Literal["pass", "block"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -564,7 +489,6 @@ class Custom:
         self,
         tag: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     @overload
@@ -572,17 +496,7 @@ class Custom:
         self,
         tag: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        tag: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -596,7 +510,6 @@ class Custom:
         self,
         tag: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -622,7 +535,6 @@ class Custom:
         action: Literal["pass", "block"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

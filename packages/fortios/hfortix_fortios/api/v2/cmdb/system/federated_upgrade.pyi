@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -307,7 +307,6 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FederatedUpgradeObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -325,7 +324,6 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FederatedUpgradeObject: ...
     
     # With no mkey -> returns list of objects
@@ -342,25 +340,7 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FederatedUpgradeObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -376,7 +356,6 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FederatedUpgradeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -394,7 +373,6 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FederatedUpgradeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -411,7 +389,6 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FederatedUpgradeObject: ...
     
     # Fallback overload for all other cases
@@ -428,7 +405,6 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -443,7 +419,6 @@ class FederatedUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> FederatedUpgradeObject | dict[str, Any]: ...
     
     def get_schema(
@@ -470,7 +445,6 @@ class FederatedUpgrade:
         starter_admin: str | None = ...,
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FederatedUpgradeObject: ...
     
     @overload
@@ -490,29 +464,7 @@ class FederatedUpgrade:
         starter_admin: str | None = ...,
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: FederatedUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        source: Literal["user", "auto-firmware-upgrade", "forced-upgrade"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        failure_device: str | None = ...,
-        upgrade_id: int | None = ...,
-        next_path_index: int | None = ...,
-        ignore_signing_errors: Literal["enable", "disable"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        node_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -550,7 +502,6 @@ class FederatedUpgrade:
         starter_admin: str | None = ...,
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -575,7 +526,6 @@ class FederatedUpgrade:
         starter_admin: str | None = ...,
         node_list: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

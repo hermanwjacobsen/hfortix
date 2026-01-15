@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -164,7 +164,6 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalSettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -182,7 +181,6 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalSettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -199,25 +197,7 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalSettingObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -233,7 +213,6 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalSettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -251,7 +230,6 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalSettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -268,7 +246,6 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalSettingObject: ...
     
     # Fallback overload for all other cases
@@ -285,7 +262,6 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -300,7 +276,6 @@ class GlobalSetting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> GlobalSettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -319,7 +294,6 @@ class GlobalSetting:
         full_second_warning_threshold: int | None = ...,
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GlobalSettingObject: ...
     
     @overload
@@ -331,21 +305,7 @@ class GlobalSetting:
         full_second_warning_threshold: int | None = ...,
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: GlobalSettingPayload | None = ...,
-        max_size: int | None = ...,
-        full_first_warning_threshold: int | None = ...,
-        full_second_warning_threshold: int | None = ...,
-        full_final_warning_threshold: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -367,7 +327,6 @@ class GlobalSetting:
         full_second_warning_threshold: int | None = ...,
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -384,7 +343,6 @@ class GlobalSetting:
         full_second_warning_threshold: int | None = ...,
         full_final_warning_threshold: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

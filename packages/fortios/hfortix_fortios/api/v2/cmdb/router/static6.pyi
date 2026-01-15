@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -250,7 +250,7 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[Static6Object]: ...
+    ) -> FortiObjectList[Static6Object]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -270,7 +270,6 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Static6Object: ...
     
     # With mkey as keyword arg -> returns single object
@@ -288,7 +287,6 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Static6Object: ...
     
     # With no mkey -> returns list of objects
@@ -305,25 +303,7 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[Static6Object]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        seq_num: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[Static6Object]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -339,7 +319,6 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Static6Object: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -357,7 +336,6 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Static6Object: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -374,8 +352,7 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[Static6Object]: ...
+    ) -> FortiObjectList[Static6Object]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -391,7 +368,6 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -406,7 +382,6 @@ class Static6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Static6Object | list[Static6Object] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -439,7 +414,6 @@ class Static6:
         bfd: Literal["enable", "disable"] | None = ...,
         tag: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Static6Object: ...
     
     @overload
@@ -465,35 +439,7 @@ class Static6:
         bfd: Literal["enable", "disable"] | None = ...,
         tag: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: Static6Payload | None = ...,
-        seq_num: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        dst: str | None = ...,
-        gateway: str | None = ...,
-        device: str | None = ...,
-        devindex: int | None = ...,
-        distance: int | None = ...,
-        weight: int | None = ...,
-        priority: int | None = ...,
-        comment: str | None = ...,
-        blackhole: Literal["enable", "disable"] | None = ...,
-        dynamic_gateway: Literal["enable", "disable"] | None = ...,
-        sdwan_zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | None = ...,
-        link_monitor_exempt: Literal["enable", "disable"] | None = ...,
-        vrf: int | None = ...,
-        bfd: Literal["enable", "disable"] | None = ...,
-        tag: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -543,7 +489,6 @@ class Static6:
         bfd: Literal["enable", "disable"] | None = ...,
         tag: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -570,7 +515,6 @@ class Static6:
         bfd: Literal["enable", "disable"] | None = ...,
         tag: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Static6Object: ...
     
     @overload
@@ -596,35 +540,7 @@ class Static6:
         bfd: Literal["enable", "disable"] | None = ...,
         tag: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: Static6Payload | None = ...,
-        seq_num: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        dst: str | None = ...,
-        gateway: str | None = ...,
-        device: str | None = ...,
-        devindex: int | None = ...,
-        distance: int | None = ...,
-        weight: int | None = ...,
-        priority: int | None = ...,
-        comment: str | None = ...,
-        blackhole: Literal["enable", "disable"] | None = ...,
-        dynamic_gateway: Literal["enable", "disable"] | None = ...,
-        sdwan_zone: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr: str | None = ...,
-        link_monitor_exempt: Literal["enable", "disable"] | None = ...,
-        vrf: int | None = ...,
-        bfd: Literal["enable", "disable"] | None = ...,
-        tag: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -674,7 +590,6 @@ class Static6:
         bfd: Literal["enable", "disable"] | None = ...,
         tag: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -683,7 +598,6 @@ class Static6:
         self,
         seq_num: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Static6Object: ...
     
     @overload
@@ -691,17 +605,7 @@ class Static6:
         self,
         seq_num: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        seq_num: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -715,7 +619,6 @@ class Static6:
         self,
         seq_num: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -746,7 +649,6 @@ class Static6:
         bfd: Literal["enable", "disable"] | None = ...,
         tag: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

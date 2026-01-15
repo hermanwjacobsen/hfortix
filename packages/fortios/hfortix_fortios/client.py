@@ -665,14 +665,18 @@ class FortiOS:
                 path: str,
                 params=None,
                 vdom=None,
-                raw_json=False,
                 unwrap_single=False,
             ):
-                """GET request with automatic response processing."""
+                """GET request with automatic response processing.
+                
+                Always returns FortiObject/FortiObjectList with .raw property
+                for accessing the full API envelope.
+                """
+                # Always get full response to store in .raw property
                 result = self._wrapped_client.get(
-                    api_type, path, params, vdom, raw_json
+                    api_type, path, params, vdom, raw_json=True
                 )
-                return process_response(result, unwrap_single=unwrap_single)  # type: ignore
+                return process_response(result, unwrap_single=unwrap_single, raw_envelope=result)  # type: ignore
 
             def post(
                 self,
@@ -681,11 +685,10 @@ class FortiOS:
                 data=None,
                 params=None,
                 vdom=None,
-                raw_json=False,
             ):
                 """POST request with automatic response processing."""
-                result = self._wrapped_client.post(api_type, path, data, params, vdom, raw_json)  # type: ignore
-                return process_response(result)  # type: ignore
+                result = self._wrapped_client.post(api_type, path, data, params, vdom, raw_json=True)  # type: ignore
+                return process_response(result, raw_envelope=result)  # type: ignore
 
             def put(
                 self,
@@ -694,11 +697,10 @@ class FortiOS:
                 data=None,
                 params=None,
                 vdom=None,
-                raw_json=False,
             ):
                 """PUT request with automatic response processing."""
-                result = self._wrapped_client.put(api_type, path, data, params, vdom, raw_json)  # type: ignore
-                return process_response(result)  # type: ignore
+                result = self._wrapped_client.put(api_type, path, data, params, vdom, raw_json=True)  # type: ignore
+                return process_response(result, raw_envelope=result)  # type: ignore
 
             def delete(
                 self,
@@ -706,13 +708,12 @@ class FortiOS:
                 path: str,
                 params=None,
                 vdom=None,
-                raw_json=False,
             ):
                 """DELETE request with automatic response processing."""
                 result = self._wrapped_client.delete(
-                    api_type, path, params, vdom, raw_json
+                    api_type, path, params, vdom, raw_json=True
                 )
-                return process_response(result)  # type: ignore
+                return process_response(result, raw_envelope=result)  # type: ignore
 
             def __getattr__(self, name):
                 """Delegate all other attributes to the wrapped client."""
@@ -903,8 +904,7 @@ class FortiOS:
     def request(
         self,
         config: dict[str, Any],
-        raw_json: bool = False,
-    ) -> Union[dict[str, Any], Any]:
+    ) -> Any:
         """
         Execute a generic API request from FortiGate GUI API preview JSON
 
@@ -920,11 +920,9 @@ class FortiOS:
                     (e.g., "/api/v2/cmdb/firewall/address")
                 - params: Optional query parameters dict
                 - data: Optional request body for POST/PUT
-            raw_json: If True, return full API response; if False,
-                return only results
 
         Returns:
-            API response dictionary (format depends on raw_json parameter)
+            Full API response dictionary with http_status, results, etc.
 
         Raises:
             ValueError: If config is missing required fields or has
@@ -1031,13 +1029,14 @@ class FortiOS:
         vdom: Optional[Union[str, bool]] = params.pop("vdom", None)
 
         # Make the request using the underlying client
+        # Always use raw_json=True to get full response envelope
         if method == "GET":
             return self._client.get(
                 api_type=api_type,
                 path=path,
                 params=params if params else None,
                 vdom=vdom,
-                raw_json=raw_json,
+                raw_json=True,
             )
         elif method == "POST":
             if not data:
@@ -1050,7 +1049,7 @@ class FortiOS:
                 data=data,
                 params=params if params else None,
                 vdom=vdom,
-                raw_json=raw_json,
+                raw_json=True,
             )
         elif method == "PUT":
             if not data:
@@ -1061,7 +1060,7 @@ class FortiOS:
                 data=data,
                 params=params if params else None,
                 vdom=vdom,
-                raw_json=raw_json,
+                raw_json=True,
             )
         elif method == "DELETE":
             return self._client.delete(
@@ -1069,7 +1068,7 @@ class FortiOS:
                 path=path,
                 params=params if params else None,
                 vdom=vdom,
-                raw_json=raw_json,
+                raw_json=True,
             )
         else:
             # Should never reach here due to earlier validation

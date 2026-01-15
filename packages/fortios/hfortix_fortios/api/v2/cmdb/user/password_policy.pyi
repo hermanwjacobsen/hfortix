@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -181,7 +181,7 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[PasswordPolicyObject]: ...
+    ) -> FortiObjectList[PasswordPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -201,7 +201,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -219,7 +218,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -236,25 +234,7 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PasswordPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[PasswordPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -270,7 +250,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -288,7 +267,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -305,8 +283,7 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PasswordPolicyObject]: ...
+    ) -> FortiObjectList[PasswordPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -322,7 +299,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -337,7 +313,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PasswordPolicyObject | list[PasswordPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -365,7 +340,6 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     @overload
@@ -386,30 +360,7 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: PasswordPolicyPayload | None = ...,
-        name: str | None = ...,
-        expire_status: Literal["enable", "disable"] | None = ...,
-        expire_days: int | None = ...,
-        warn_days: int | None = ...,
-        expired_password_renewal: Literal["enable", "disable"] | None = ...,
-        minimum_length: int | None = ...,
-        min_lower_case_letter: int | None = ...,
-        min_upper_case_letter: int | None = ...,
-        min_non_alphanumeric: int | None = ...,
-        min_number: int | None = ...,
-        min_change_characters: int | None = ...,
-        reuse_password: Literal["enable", "disable"] | None = ...,
-        reuse_password_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -449,7 +400,6 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -471,7 +421,6 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     @overload
@@ -492,30 +441,7 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PasswordPolicyPayload | None = ...,
-        name: str | None = ...,
-        expire_status: Literal["enable", "disable"] | None = ...,
-        expire_days: int | None = ...,
-        warn_days: int | None = ...,
-        expired_password_renewal: Literal["enable", "disable"] | None = ...,
-        minimum_length: int | None = ...,
-        min_lower_case_letter: int | None = ...,
-        min_upper_case_letter: int | None = ...,
-        min_non_alphanumeric: int | None = ...,
-        min_number: int | None = ...,
-        min_change_characters: int | None = ...,
-        reuse_password: Literal["enable", "disable"] | None = ...,
-        reuse_password_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -555,7 +481,6 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -564,7 +489,6 @@ class PasswordPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     @overload
@@ -572,17 +496,7 @@ class PasswordPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -596,7 +510,6 @@ class PasswordPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -622,7 +535,6 @@ class PasswordPolicy:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

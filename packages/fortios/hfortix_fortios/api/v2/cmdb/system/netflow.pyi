@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -296,7 +296,6 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NetflowObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -314,7 +313,6 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NetflowObject: ...
     
     # With no mkey -> returns list of objects
@@ -331,25 +329,7 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NetflowObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -365,7 +345,6 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NetflowObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -383,7 +362,6 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NetflowObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -400,7 +378,6 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NetflowObject: ...
     
     # Fallback overload for all other cases
@@ -417,7 +394,6 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -432,7 +408,6 @@ class Netflow:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> NetflowObject | dict[str, Any]: ...
     
     def get_schema(
@@ -454,7 +429,6 @@ class Netflow:
         exclusion_filters: str | list[str] | list[dict[str, Any]] | None = ...,
         collectors: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NetflowObject: ...
     
     @overload
@@ -469,24 +443,7 @@ class Netflow:
         exclusion_filters: str | list[str] | list[dict[str, Any]] | None = ...,
         collectors: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: NetflowPayload | None = ...,
-        active_flow_timeout: int | None = ...,
-        inactive_flow_timeout: int | None = ...,
-        template_tx_timeout: int | None = ...,
-        template_tx_counter: int | None = ...,
-        session_cache_size: Literal["min", "default", "max"] | None = ...,
-        exclusion_filters: str | list[str] | list[dict[str, Any]] | None = ...,
-        collectors: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -514,7 +471,6 @@ class Netflow:
         exclusion_filters: str | list[str] | list[dict[str, Any]] | None = ...,
         collectors: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -534,7 +490,6 @@ class Netflow:
         exclusion_filters: str | list[str] | list[dict[str, Any]] | None = ...,
         collectors: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

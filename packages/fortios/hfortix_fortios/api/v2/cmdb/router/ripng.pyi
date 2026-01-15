@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -652,7 +652,6 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RipngObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -670,7 +669,6 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RipngObject: ...
     
     # With no mkey -> returns list of objects
@@ -687,25 +685,7 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RipngObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -721,7 +701,6 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RipngObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -739,7 +718,6 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RipngObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -756,7 +734,6 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RipngObject: ...
     
     # Fallback overload for all other cases
@@ -773,7 +750,6 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -788,7 +764,6 @@ class Ripng:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> RipngObject | dict[str, Any]: ...
     
     def get_schema(
@@ -818,7 +793,6 @@ class Ripng:
         garbage_timer: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RipngObject: ...
     
     @overload
@@ -841,32 +815,7 @@ class Ripng:
         garbage_timer: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: RipngPayload | None = ...,
-        default_information_originate: Literal["enable", "disable"] | None = ...,
-        default_metric: int | None = ...,
-        max_out_metric: int | None = ...,
-        distance: str | list[str] | list[dict[str, Any]] | None = ...,
-        distribute_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        network: str | list[str] | list[dict[str, Any]] | None = ...,
-        aggregate_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        offset_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        passive_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        update_timer: int | None = ...,
-        timeout_timer: int | None = ...,
-        garbage_timer: int | None = ...,
-        interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -910,7 +859,6 @@ class Ripng:
         garbage_timer: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -938,7 +886,6 @@ class Ripng:
         garbage_timer: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

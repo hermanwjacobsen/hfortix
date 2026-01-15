@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -201,7 +201,7 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[BleProfileObject]: ...
+    ) -> FortiObjectList[BleProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -221,7 +221,6 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BleProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -239,7 +238,6 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BleProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -256,25 +254,7 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[BleProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[BleProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -290,7 +270,6 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BleProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -308,7 +287,6 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BleProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -325,8 +303,7 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[BleProfileObject]: ...
+    ) -> FortiObjectList[BleProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -342,7 +319,6 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -357,7 +333,6 @@ class BleProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> BleProfileObject | list[BleProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -390,7 +365,6 @@ class BleProfile:
         scan_interval: int | None = ...,
         scan_window: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BleProfileObject: ...
     
     @overload
@@ -416,35 +390,7 @@ class BleProfile:
         scan_interval: int | None = ...,
         scan_window: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: BleProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        advertising: Literal["ibeacon", "eddystone-uid", "eddystone-url"] | list[str] | None = ...,
-        ibeacon_uuid: str | None = ...,
-        major_id: int | None = ...,
-        minor_id: int | None = ...,
-        eddystone_namespace: str | None = ...,
-        eddystone_instance: str | None = ...,
-        eddystone_url: str | None = ...,
-        txpower: Literal["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"] | None = ...,
-        beacon_interval: int | None = ...,
-        ble_scanning: Literal["enable", "disable"] | None = ...,
-        scan_type: Literal["active", "passive"] | None = ...,
-        scan_threshold: str | None = ...,
-        scan_period: int | None = ...,
-        scan_time: int | None = ...,
-        scan_interval: int | None = ...,
-        scan_window: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -494,7 +440,6 @@ class BleProfile:
         scan_interval: int | None = ...,
         scan_window: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -521,7 +466,6 @@ class BleProfile:
         scan_interval: int | None = ...,
         scan_window: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BleProfileObject: ...
     
     @overload
@@ -547,35 +491,7 @@ class BleProfile:
         scan_interval: int | None = ...,
         scan_window: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: BleProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        advertising: Literal["ibeacon", "eddystone-uid", "eddystone-url"] | list[str] | None = ...,
-        ibeacon_uuid: str | None = ...,
-        major_id: int | None = ...,
-        minor_id: int | None = ...,
-        eddystone_namespace: str | None = ...,
-        eddystone_instance: str | None = ...,
-        eddystone_url: str | None = ...,
-        txpower: Literal["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"] | None = ...,
-        beacon_interval: int | None = ...,
-        ble_scanning: Literal["enable", "disable"] | None = ...,
-        scan_type: Literal["active", "passive"] | None = ...,
-        scan_threshold: str | None = ...,
-        scan_period: int | None = ...,
-        scan_time: int | None = ...,
-        scan_interval: int | None = ...,
-        scan_window: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -625,7 +541,6 @@ class BleProfile:
         scan_interval: int | None = ...,
         scan_window: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -634,7 +549,6 @@ class BleProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BleProfileObject: ...
     
     @overload
@@ -642,17 +556,7 @@ class BleProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -666,7 +570,6 @@ class BleProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -697,7 +600,6 @@ class BleProfile:
         scan_interval: int | None = ...,
         scan_window: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -306,7 +306,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -324,7 +323,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # With no mkey -> returns list of objects
@@ -341,25 +339,7 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -375,7 +355,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -393,7 +372,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -410,7 +388,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     # Fallback overload for all other cases
@@ -427,7 +404,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -442,7 +418,6 @@ class Saml:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SamlObject | dict[str, Any]: ...
     
     def get_schema(
@@ -476,7 +451,6 @@ class Saml:
         life: int | None = ...,
         service_providers: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SamlObject: ...
     
     @overload
@@ -503,36 +477,7 @@ class Saml:
         life: int | None = ...,
         service_providers: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SamlPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        role: Literal["identity-provider", "service-provider"] | None = ...,
-        default_login_page: Literal["normal", "sso"] | None = ...,
-        default_profile: str | None = ...,
-        cert: str | None = ...,
-        binding_protocol: Literal["post", "redirect"] | None = ...,
-        portal_url: str | None = ...,
-        entity_id: str | None = ...,
-        single_sign_on_url: str | None = ...,
-        single_logout_url: str | None = ...,
-        idp_entity_id: str | None = ...,
-        idp_single_sign_on_url: str | None = ...,
-        idp_single_logout_url: str | None = ...,
-        idp_cert: str | None = ...,
-        server_address: str | None = ...,
-        require_signed_resp_and_asrt: Literal["enable", "disable"] | None = ...,
-        tolerance: int | None = ...,
-        life: int | None = ...,
-        service_providers: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -584,7 +529,6 @@ class Saml:
         life: int | None = ...,
         service_providers: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -616,7 +560,6 @@ class Saml:
         life: int | None = ...,
         service_providers: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

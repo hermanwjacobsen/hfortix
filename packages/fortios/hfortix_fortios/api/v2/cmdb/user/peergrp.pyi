@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -179,7 +179,7 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[PeergrpObject]: ...
+    ) -> FortiObjectList[PeergrpObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -199,7 +199,6 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PeergrpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -217,7 +216,6 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PeergrpObject: ...
     
     # With no mkey -> returns list of objects
@@ -234,25 +232,7 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PeergrpObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[PeergrpObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -268,7 +248,6 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PeergrpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -286,7 +265,6 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PeergrpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -303,8 +281,7 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PeergrpObject]: ...
+    ) -> FortiObjectList[PeergrpObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -320,7 +297,6 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -335,7 +311,6 @@ class Peergrp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PeergrpObject | list[PeergrpObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -352,7 +327,6 @@ class Peergrp:
         name: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PeergrpObject: ...
     
     @overload
@@ -362,19 +336,7 @@ class Peergrp:
         name: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: PeergrpPayload | None = ...,
-        name: str | None = ...,
-        member: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -392,7 +354,6 @@ class Peergrp:
         name: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -403,7 +364,6 @@ class Peergrp:
         name: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PeergrpObject: ...
     
     @overload
@@ -413,19 +373,7 @@ class Peergrp:
         name: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PeergrpPayload | None = ...,
-        name: str | None = ...,
-        member: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -443,7 +391,6 @@ class Peergrp:
         name: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -452,7 +399,6 @@ class Peergrp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PeergrpObject: ...
     
     @overload
@@ -460,17 +406,7 @@ class Peergrp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -484,7 +420,6 @@ class Peergrp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -499,7 +434,6 @@ class Peergrp:
         name: str | None = ...,
         member: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

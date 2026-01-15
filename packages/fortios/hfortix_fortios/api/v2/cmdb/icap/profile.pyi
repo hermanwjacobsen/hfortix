@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -365,7 +365,7 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ProfileObject]: ...
+    ) -> FortiObjectList[ProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -385,7 +385,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -403,7 +402,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -420,25 +418,7 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -454,7 +434,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -472,7 +451,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -489,8 +467,7 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileObject]: ...
+    ) -> FortiObjectList[ProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -506,7 +483,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -521,7 +497,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ProfileObject | list[ProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -567,7 +542,6 @@ class Profile:
         icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
         respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     @overload
@@ -606,48 +580,7 @@ class Profile:
         icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
         respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ProfilePayload | None = ...,
-        replacemsg_group: str | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        request: Literal["disable", "enable"] | None = ...,
-        response: Literal["disable", "enable"] | None = ...,
-        file_transfer: Literal["ssh", "ftp"] | list[str] | None = ...,
-        streaming_content_bypass: Literal["disable", "enable"] | None = ...,
-        ocr_only: Literal["disable", "enable"] | None = ...,
-        size_limit_204: int | None = ...,
-        response_204: Literal["disable", "enable"] | None = ...,
-        preview: Literal["disable", "enable"] | None = ...,
-        preview_data_length: int | None = ...,
-        request_server: str | None = ...,
-        response_server: str | None = ...,
-        file_transfer_server: str | None = ...,
-        request_failure: Literal["error", "bypass"] | None = ...,
-        response_failure: Literal["error", "bypass"] | None = ...,
-        file_transfer_failure: Literal["error", "bypass"] | None = ...,
-        request_path: str | None = ...,
-        response_path: str | None = ...,
-        file_transfer_path: str | None = ...,
-        methods: Literal["delete", "get", "head", "options", "post", "put", "trace", "connect", "other"] | list[str] | None = ...,
-        response_req_hdr: Literal["disable", "enable"] | None = ...,
-        respmod_default_action: Literal["forward", "bypass"] | None = ...,
-        icap_block_log: Literal["disable", "enable"] | None = ...,
-        chunk_encap: Literal["disable", "enable"] | None = ...,
-        extension_feature: Literal["scan-progress"] | list[str] | None = ...,
-        scan_progress_interval: int | None = ...,
-        timeout: int | None = ...,
-        icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -723,7 +656,6 @@ class Profile:
         icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
         respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -763,7 +695,6 @@ class Profile:
         icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
         respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     @overload
@@ -802,48 +733,7 @@ class Profile:
         icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
         respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ProfilePayload | None = ...,
-        replacemsg_group: str | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        request: Literal["disable", "enable"] | None = ...,
-        response: Literal["disable", "enable"] | None = ...,
-        file_transfer: Literal["ssh", "ftp"] | list[str] | None = ...,
-        streaming_content_bypass: Literal["disable", "enable"] | None = ...,
-        ocr_only: Literal["disable", "enable"] | None = ...,
-        size_limit_204: int | None = ...,
-        response_204: Literal["disable", "enable"] | None = ...,
-        preview: Literal["disable", "enable"] | None = ...,
-        preview_data_length: int | None = ...,
-        request_server: str | None = ...,
-        response_server: str | None = ...,
-        file_transfer_server: str | None = ...,
-        request_failure: Literal["error", "bypass"] | None = ...,
-        response_failure: Literal["error", "bypass"] | None = ...,
-        file_transfer_failure: Literal["error", "bypass"] | None = ...,
-        request_path: str | None = ...,
-        response_path: str | None = ...,
-        file_transfer_path: str | None = ...,
-        methods: Literal["delete", "get", "head", "options", "post", "put", "trace", "connect", "other"] | list[str] | None = ...,
-        response_req_hdr: Literal["disable", "enable"] | None = ...,
-        respmod_default_action: Literal["forward", "bypass"] | None = ...,
-        icap_block_log: Literal["disable", "enable"] | None = ...,
-        chunk_encap: Literal["disable", "enable"] | None = ...,
-        extension_feature: Literal["scan-progress"] | list[str] | None = ...,
-        scan_progress_interval: int | None = ...,
-        timeout: int | None = ...,
-        icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
-        respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -919,7 +809,6 @@ class Profile:
         icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
         respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -928,7 +817,6 @@ class Profile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     @overload
@@ -936,17 +824,7 @@ class Profile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -960,7 +838,6 @@ class Profile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1004,7 +881,6 @@ class Profile:
         icap_headers: str | list[str] | list[dict[str, Any]] | None = ...,
         respmod_forward_rules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

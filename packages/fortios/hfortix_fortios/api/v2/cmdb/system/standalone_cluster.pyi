@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -409,7 +409,6 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> StandaloneClusterObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -427,7 +426,6 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> StandaloneClusterObject: ...
     
     # With no mkey -> returns list of objects
@@ -444,25 +442,7 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> StandaloneClusterObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -478,7 +458,6 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> StandaloneClusterObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -496,7 +475,6 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> StandaloneClusterObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -513,7 +491,6 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> StandaloneClusterObject: ...
     
     # Fallback overload for all other cases
@@ -530,7 +507,6 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -545,7 +521,6 @@ class StandaloneCluster:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> StandaloneClusterObject | dict[str, Any]: ...
     
     def get_schema(
@@ -573,7 +548,6 @@ class StandaloneCluster:
         helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> StandaloneClusterObject: ...
     
     @overload
@@ -594,30 +568,7 @@ class StandaloneCluster:
         helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: StandaloneClusterPayload | None = ...,
-        standalone_group_id: int | None = ...,
-        group_member_id: int | None = ...,
-        layer2_connection: Literal["available", "unavailable"] | None = ...,
-        session_sync_dev: str | list[str] | None = ...,
-        encryption: Literal["enable", "disable"] | None = ...,
-        psksecret: str | None = ...,
-        asymmetric_traffic_control: Literal["cps-preferred", "strict-anti-replay"] | None = ...,
-        cluster_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        pingsvr_monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        monitor_prefix: str | list[str] | list[dict[str, Any]] | None = ...,
-        helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -657,7 +608,6 @@ class StandaloneCluster:
         helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -683,7 +633,6 @@ class StandaloneCluster:
         helper_traffic_bounce: Literal["enable", "disable"] | None = ...,
         utm_traffic_bounce: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -394,7 +394,6 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FortiguardObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -412,7 +411,6 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FortiguardObject: ...
     
     # With no mkey -> returns list of objects
@@ -429,25 +427,7 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FortiguardObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -463,7 +443,6 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FortiguardObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -481,7 +460,6 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FortiguardObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -498,7 +476,6 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FortiguardObject: ...
     
     # Fallback overload for all other cases
@@ -515,7 +492,6 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -530,7 +506,6 @@ class Fortiguard:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> FortiguardObject | dict[str, Any]: ...
     
     def get_schema(
@@ -604,7 +579,6 @@ class Fortiguard:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FortiguardObject: ...
     
     @overload
@@ -671,76 +645,7 @@ class Fortiguard:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: FortiguardPayload | None = ...,
-        fortiguard_anycast: Literal["enable", "disable"] | None = ...,
-        fortiguard_anycast_source: Literal["fortinet", "aws", "debug"] | None = ...,
-        protocol: Literal["udp", "http", "https"] | None = ...,
-        port: Literal["8888", "53", "80", "443"] | None = ...,
-        load_balance_servers: int | None = ...,
-        auto_join_forticloud: Literal["enable", "disable"] | None = ...,
-        update_server_location: Literal["automatic", "usa", "eu"] | None = ...,
-        sandbox_region: str | None = ...,
-        sandbox_inline_scan: Literal["enable", "disable"] | None = ...,
-        update_ffdb: Literal["enable", "disable"] | None = ...,
-        update_uwdb: Literal["enable", "disable"] | None = ...,
-        update_dldb: Literal["enable", "disable"] | None = ...,
-        update_extdb: Literal["enable", "disable"] | None = ...,
-        update_build_proxy: Literal["enable", "disable"] | None = ...,
-        persistent_connection: Literal["enable", "disable"] | None = ...,
-        auto_firmware_upgrade: Literal["enable", "disable"] | None = ...,
-        auto_firmware_upgrade_day: Literal["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] | list[str] | None = ...,
-        auto_firmware_upgrade_delay: int | None = ...,
-        auto_firmware_upgrade_start_hour: int | None = ...,
-        auto_firmware_upgrade_end_hour: int | None = ...,
-        FDS_license_expiring_days: int | None = ...,
-        subscribe_update_notification: Literal["enable", "disable"] | None = ...,
-        antispam_force_off: Literal["enable", "disable"] | None = ...,
-        antispam_cache: Literal["enable", "disable"] | None = ...,
-        antispam_cache_ttl: int | None = ...,
-        antispam_cache_mpermille: int | None = ...,
-        antispam_license: int | None = ...,
-        antispam_expiration: int | None = ...,
-        antispam_timeout: int | None = ...,
-        outbreak_prevention_force_off: Literal["enable", "disable"] | None = ...,
-        outbreak_prevention_cache: Literal["enable", "disable"] | None = ...,
-        outbreak_prevention_cache_ttl: int | None = ...,
-        outbreak_prevention_cache_mpermille: int | None = ...,
-        outbreak_prevention_license: int | None = ...,
-        outbreak_prevention_expiration: int | None = ...,
-        outbreak_prevention_timeout: int | None = ...,
-        webfilter_force_off: Literal["enable", "disable"] | None = ...,
-        webfilter_cache: Literal["enable", "disable"] | None = ...,
-        webfilter_cache_ttl: int | None = ...,
-        webfilter_license: int | None = ...,
-        webfilter_expiration: int | None = ...,
-        webfilter_timeout: int | None = ...,
-        sdns_server_ip: str | list[str] | None = ...,
-        sdns_server_port: int | None = ...,
-        anycast_sdns_server_ip: str | None = ...,
-        anycast_sdns_server_port: int | None = ...,
-        sdns_options: Literal["include-question-section"] | list[str] | None = ...,
-        source_ip: str | None = ...,
-        source_ip6: str | None = ...,
-        proxy_server_ip: str | None = ...,
-        proxy_server_port: int | None = ...,
-        proxy_username: str | None = ...,
-        proxy_password: str | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_server_ip6: str | None = ...,
-        ddns_server_port: int | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -872,7 +777,6 @@ class Fortiguard:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -944,7 +848,6 @@ class Fortiguard:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

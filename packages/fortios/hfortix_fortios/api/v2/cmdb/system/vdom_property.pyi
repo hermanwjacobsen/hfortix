@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -218,7 +218,7 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[VdomPropertyObject]: ...
+    ) -> FortiObjectList[VdomPropertyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -238,7 +238,6 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VdomPropertyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -256,7 +255,6 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VdomPropertyObject: ...
     
     # With no mkey -> returns list of objects
@@ -273,25 +271,7 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VdomPropertyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[VdomPropertyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -307,7 +287,6 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VdomPropertyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -325,7 +304,6 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VdomPropertyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -342,8 +320,7 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VdomPropertyObject]: ...
+    ) -> FortiObjectList[VdomPropertyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -359,7 +336,6 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -374,7 +350,6 @@ class VdomProperty:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> VdomPropertyObject | list[VdomPropertyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -410,7 +385,6 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VdomPropertyObject: ...
     
     @overload
@@ -439,38 +413,7 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: VdomPropertyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        snmp_index: int | None = ...,
-        session: str | list[str] | None = ...,
-        ipsec_phase1: str | list[str] | None = ...,
-        ipsec_phase2: str | list[str] | None = ...,
-        ipsec_phase1_interface: str | list[str] | None = ...,
-        ipsec_phase2_interface: str | list[str] | None = ...,
-        dialup_tunnel: str | list[str] | None = ...,
-        firewall_policy: str | list[str] | None = ...,
-        firewall_address: str | list[str] | None = ...,
-        firewall_addrgrp: str | list[str] | None = ...,
-        custom_service: str | list[str] | None = ...,
-        service_group: str | list[str] | None = ...,
-        onetime_schedule: str | list[str] | None = ...,
-        recurring_schedule: str | list[str] | None = ...,
-        user: str | list[str] | None = ...,
-        user_group: str | list[str] | None = ...,
-        sslvpn: str | list[str] | None = ...,
-        proxy: str | list[str] | None = ...,
-        log_disk_quota: str | list[str] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -526,7 +469,6 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -556,7 +498,6 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VdomPropertyObject: ...
     
     @overload
@@ -585,38 +526,7 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: VdomPropertyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        snmp_index: int | None = ...,
-        session: str | list[str] | None = ...,
-        ipsec_phase1: str | list[str] | None = ...,
-        ipsec_phase2: str | list[str] | None = ...,
-        ipsec_phase1_interface: str | list[str] | None = ...,
-        ipsec_phase2_interface: str | list[str] | None = ...,
-        dialup_tunnel: str | list[str] | None = ...,
-        firewall_policy: str | list[str] | None = ...,
-        firewall_address: str | list[str] | None = ...,
-        firewall_addrgrp: str | list[str] | None = ...,
-        custom_service: str | list[str] | None = ...,
-        service_group: str | list[str] | None = ...,
-        onetime_schedule: str | list[str] | None = ...,
-        recurring_schedule: str | list[str] | None = ...,
-        user: str | list[str] | None = ...,
-        user_group: str | list[str] | None = ...,
-        sslvpn: str | list[str] | None = ...,
-        proxy: str | list[str] | None = ...,
-        log_disk_quota: str | list[str] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -672,7 +582,6 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -681,7 +590,6 @@ class VdomProperty:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VdomPropertyObject: ...
     
     @overload
@@ -689,17 +597,7 @@ class VdomProperty:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -713,7 +611,6 @@ class VdomProperty:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -747,7 +644,6 @@ class VdomProperty:
         proxy: str | list[str] | None = ...,
         log_disk_quota: str | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

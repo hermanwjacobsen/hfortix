@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -300,7 +300,7 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LocalObject]: ...
+    ) -> FortiObjectList[LocalObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -320,7 +320,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -338,7 +337,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # With no mkey -> returns list of objects
@@ -355,25 +353,7 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LocalObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[LocalObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -389,7 +369,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -407,7 +386,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -424,8 +402,7 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LocalObject]: ...
+    ) -> FortiObjectList[LocalObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -441,7 +418,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -456,7 +432,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> LocalObject | list[LocalObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -512,7 +487,6 @@ class Local:
         est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
         details: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     @overload
@@ -561,58 +535,7 @@ class Local:
         est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
         details: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        password: str | None = ...,
-        comments: str | None = ...,
-        private_key: str | None = ...,
-        certificate: str | None = ...,
-        csr: str | None = ...,
-        state: str | None = ...,
-        scep_url: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        auto_regenerate_days: int | None = ...,
-        auto_regenerate_days_warning: int | None = ...,
-        scep_password: str | None = ...,
-        ca_identifier: str | None = ...,
-        name_encoding: Literal["printable", "utf8"] | None = ...,
-        source_ip: str | None = ...,
-        ike_localid: str | None = ...,
-        ike_localid_type: Literal["asn1dn", "fqdn"] | None = ...,
-        enroll_protocol: Literal["none", "scep", "cmpv2", "acme2", "est"] | None = ...,
-        private_key_retain: Literal["enable", "disable"] | None = ...,
-        cmp_server: str | None = ...,
-        cmp_path: str | None = ...,
-        cmp_server_cert: str | None = ...,
-        cmp_regeneration_method: Literal["keyupate", "renewal"] | None = ...,
-        acme_ca_url: str | None = ...,
-        acme_domain: str | None = ...,
-        acme_email: str | None = ...,
-        acme_eab_key_id: str | None = ...,
-        acme_eab_key_hmac: str | None = ...,
-        acme_rsa_key_size: int | None = ...,
-        acme_renew_window: int | None = ...,
-        est_server: str | None = ...,
-        est_ca_id: str | None = ...,
-        est_http_username: str | None = ...,
-        est_http_password: str | None = ...,
-        est_client_cert: str | None = ...,
-        est_server_cert: str | None = ...,
-        est_srp_username: str | None = ...,
-        est_srp_password: str | None = ...,
-        est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
-        details: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -708,7 +631,6 @@ class Local:
         est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
         details: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -762,7 +684,6 @@ class Local:
         est_regeneration_method: Literal["create-new-key", "use-existing-key"] | None = ...,
         details: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

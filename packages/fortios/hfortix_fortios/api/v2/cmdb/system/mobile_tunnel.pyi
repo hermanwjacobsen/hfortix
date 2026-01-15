@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -242,7 +242,7 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[MobileTunnelObject]: ...
+    ) -> FortiObjectList[MobileTunnelObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -262,7 +262,6 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MobileTunnelObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -280,7 +279,6 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MobileTunnelObject: ...
     
     # With no mkey -> returns list of objects
@@ -297,25 +295,7 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[MobileTunnelObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[MobileTunnelObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -331,7 +311,6 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MobileTunnelObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -349,7 +328,6 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MobileTunnelObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -366,8 +344,7 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[MobileTunnelObject]: ...
+    ) -> FortiObjectList[MobileTunnelObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -383,7 +360,6 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -398,7 +374,6 @@ class MobileTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MobileTunnelObject | list[MobileTunnelObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -428,7 +403,6 @@ class MobileTunnel:
         tunnel_mode: Literal["gre"] | None = ...,
         network: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MobileTunnelObject: ...
     
     @overload
@@ -451,32 +425,7 @@ class MobileTunnel:
         tunnel_mode: Literal["gre"] | None = ...,
         network: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: MobileTunnelPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        roaming_interface: str | None = ...,
-        home_agent: str | None = ...,
-        home_address: str | None = ...,
-        renew_interval: int | None = ...,
-        lifetime: int | None = ...,
-        reg_interval: int | None = ...,
-        reg_retry: int | None = ...,
-        n_mhae_spi: int | None = ...,
-        n_mhae_key_type: Literal["ascii", "base64"] | None = ...,
-        n_mhae_key: str | None = ...,
-        hash_algorithm: Literal["hmac-md5"] | None = ...,
-        tunnel_mode: Literal["gre"] | None = ...,
-        network: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -520,7 +469,6 @@ class MobileTunnel:
         tunnel_mode: Literal["gre"] | None = ...,
         network: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -544,7 +492,6 @@ class MobileTunnel:
         tunnel_mode: Literal["gre"] | None = ...,
         network: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MobileTunnelObject: ...
     
     @overload
@@ -567,32 +514,7 @@ class MobileTunnel:
         tunnel_mode: Literal["gre"] | None = ...,
         network: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: MobileTunnelPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        roaming_interface: str | None = ...,
-        home_agent: str | None = ...,
-        home_address: str | None = ...,
-        renew_interval: int | None = ...,
-        lifetime: int | None = ...,
-        reg_interval: int | None = ...,
-        reg_retry: int | None = ...,
-        n_mhae_spi: int | None = ...,
-        n_mhae_key_type: Literal["ascii", "base64"] | None = ...,
-        n_mhae_key: str | None = ...,
-        hash_algorithm: Literal["hmac-md5"] | None = ...,
-        tunnel_mode: Literal["gre"] | None = ...,
-        network: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -636,7 +558,6 @@ class MobileTunnel:
         tunnel_mode: Literal["gre"] | None = ...,
         network: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -645,7 +566,6 @@ class MobileTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MobileTunnelObject: ...
     
     @overload
@@ -653,17 +573,7 @@ class MobileTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -677,7 +587,6 @@ class MobileTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -705,7 +614,6 @@ class MobileTunnel:
         tunnel_mode: Literal["gre"] | None = ...,
         network: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

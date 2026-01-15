@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -240,7 +240,7 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[DeviceUpgradeObject]: ...
+    ) -> FortiObjectList[DeviceUpgradeObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -260,7 +260,6 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DeviceUpgradeObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -278,7 +277,6 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DeviceUpgradeObject: ...
     
     # With no mkey -> returns list of objects
@@ -295,25 +293,7 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DeviceUpgradeObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        serial: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[DeviceUpgradeObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -329,7 +309,6 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DeviceUpgradeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -347,7 +326,6 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DeviceUpgradeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -364,8 +342,7 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DeviceUpgradeObject]: ...
+    ) -> FortiObjectList[DeviceUpgradeObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -381,7 +358,6 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -396,7 +372,6 @@ class DeviceUpgrade:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> DeviceUpgradeObject | list[DeviceUpgradeObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -426,7 +401,6 @@ class DeviceUpgrade:
         allow_download: Literal["enable", "disable"] | None = ...,
         failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DeviceUpgradeObject: ...
     
     @overload
@@ -449,32 +423,7 @@ class DeviceUpgrade:
         allow_download: Literal["enable", "disable"] | None = ...,
         failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: DeviceUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        next_path_index: int | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        serial: str | None = ...,
-        timing: Literal["immediate", "scheduled"] | None = ...,
-        maximum_minutes: int | None = ...,
-        time: str | None = ...,
-        setup_time: str | None = ...,
-        upgrade_path: str | None = ...,
-        device_type: Literal["fortigate", "fortiswitch", "fortiap", "fortiextender"] | None = ...,
-        allow_download: Literal["enable", "disable"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -518,7 +467,6 @@ class DeviceUpgrade:
         allow_download: Literal["enable", "disable"] | None = ...,
         failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -542,7 +490,6 @@ class DeviceUpgrade:
         allow_download: Literal["enable", "disable"] | None = ...,
         failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DeviceUpgradeObject: ...
     
     @overload
@@ -565,32 +512,7 @@ class DeviceUpgrade:
         allow_download: Literal["enable", "disable"] | None = ...,
         failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: DeviceUpgradePayload | None = ...,
-        status: Literal["disabled", "initialized", "downloading", "device-disconnected", "ready", "coordinating", "staging", "final-check", "upgrade-devices", "cancelled", "confirmed", "done", "failed"] | None = ...,
-        ha_reboot_controller: str | None = ...,
-        next_path_index: int | None = ...,
-        known_ha_members: str | list[str] | list[dict[str, Any]] | None = ...,
-        initial_version: str | None = ...,
-        starter_admin: str | None = ...,
-        serial: str | None = ...,
-        timing: Literal["immediate", "scheduled"] | None = ...,
-        maximum_minutes: int | None = ...,
-        time: str | None = ...,
-        setup_time: str | None = ...,
-        upgrade_path: str | None = ...,
-        device_type: Literal["fortigate", "fortiswitch", "fortiap", "fortiextender"] | None = ...,
-        allow_download: Literal["enable", "disable"] | None = ...,
-        failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -634,7 +556,6 @@ class DeviceUpgrade:
         allow_download: Literal["enable", "disable"] | None = ...,
         failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -643,7 +564,6 @@ class DeviceUpgrade:
         self,
         serial: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DeviceUpgradeObject: ...
     
     @overload
@@ -651,17 +571,7 @@ class DeviceUpgrade:
         self,
         serial: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        serial: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -675,7 +585,6 @@ class DeviceUpgrade:
         self,
         serial: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -703,7 +612,6 @@ class DeviceUpgrade:
         allow_download: Literal["enable", "disable"] | None = ...,
         failure_reason: Literal["none", "internal", "timeout", "device-type-unsupported", "download-failed", "device-missing", "version-unavailable", "staging-failed", "reboot-failed", "device-not-reconnected", "node-not-ready", "no-final-confirmation", "no-confirmation-query", "config-error-log-nonempty", "csf-tree-not-supported", "firmware-changed", "node-failed", "image-missing"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

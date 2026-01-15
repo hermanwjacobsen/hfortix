@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -298,7 +298,7 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[DdnsObject]: ...
+    ) -> FortiObjectList[DdnsObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -318,7 +318,6 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DdnsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -336,7 +335,6 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DdnsObject: ...
     
     # With no mkey -> returns list of objects
@@ -353,25 +351,7 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DdnsObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        ddnsid: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[DdnsObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -387,7 +367,6 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DdnsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -405,7 +384,6 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DdnsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -422,8 +400,7 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DdnsObject]: ...
+    ) -> FortiObjectList[DdnsObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -439,7 +416,6 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -454,7 +430,6 @@ class Ddns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> DdnsObject | list[DdnsObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -489,7 +464,6 @@ class Ddns:
         bound_ip: str | None = ...,
         monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DdnsObject: ...
     
     @overload
@@ -517,37 +491,7 @@ class Ddns:
         bound_ip: str | None = ...,
         monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: DdnsPayload | None = ...,
-        ddnsid: int | None = ...,
-        ddns_server: Literal["dyndns.org", "dyns.net", "tzo.com", "vavic.com", "dipdns.net", "now.net.cn", "dhs.org", "easydns.com", "genericDDNS", "FortiGuardDDNS", "noip.com"] | None = ...,
-        addr_type: Literal["ipv4", "ipv6"] | None = ...,
-        server_type: Literal["ipv4", "ipv6"] | None = ...,
-        ddns_server_addr: str | list[str] | list[dict[str, Any]] | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_ttl: int | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_domain: str | None = ...,
-        ddns_username: str | None = ...,
-        ddns_sn: str | None = ...,
-        ddns_password: str | None = ...,
-        use_public_ip: Literal["disable", "enable"] | None = ...,
-        update_interval: int | None = ...,
-        clear_text: Literal["disable", "enable"] | None = ...,
-        ssl_certificate: str | None = ...,
-        bound_ip: str | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -601,7 +545,6 @@ class Ddns:
         bound_ip: str | None = ...,
         monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -630,7 +573,6 @@ class Ddns:
         bound_ip: str | None = ...,
         monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DdnsObject: ...
     
     @overload
@@ -658,37 +600,7 @@ class Ddns:
         bound_ip: str | None = ...,
         monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: DdnsPayload | None = ...,
-        ddnsid: int | None = ...,
-        ddns_server: Literal["dyndns.org", "dyns.net", "tzo.com", "vavic.com", "dipdns.net", "now.net.cn", "dhs.org", "easydns.com", "genericDDNS", "FortiGuardDDNS", "noip.com"] | None = ...,
-        addr_type: Literal["ipv4", "ipv6"] | None = ...,
-        server_type: Literal["ipv4", "ipv6"] | None = ...,
-        ddns_server_addr: str | list[str] | list[dict[str, Any]] | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_ttl: int | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_domain: str | None = ...,
-        ddns_username: str | None = ...,
-        ddns_sn: str | None = ...,
-        ddns_password: str | None = ...,
-        use_public_ip: Literal["disable", "enable"] | None = ...,
-        update_interval: int | None = ...,
-        clear_text: Literal["disable", "enable"] | None = ...,
-        ssl_certificate: str | None = ...,
-        bound_ip: str | None = ...,
-        monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -742,7 +654,6 @@ class Ddns:
         bound_ip: str | None = ...,
         monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -751,7 +662,6 @@ class Ddns:
         self,
         ddnsid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DdnsObject: ...
     
     @overload
@@ -759,17 +669,7 @@ class Ddns:
         self,
         ddnsid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        ddnsid: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -783,7 +683,6 @@ class Ddns:
         self,
         ddnsid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -816,7 +715,6 @@ class Ddns:
         bound_ip: str | None = ...,
         monitor_interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

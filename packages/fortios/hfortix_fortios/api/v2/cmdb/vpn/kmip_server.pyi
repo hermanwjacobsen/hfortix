@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -228,7 +228,7 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[KmipServerObject]: ...
+    ) -> FortiObjectList[KmipServerObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -248,7 +248,6 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> KmipServerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -266,7 +265,6 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> KmipServerObject: ...
     
     # With no mkey -> returns list of objects
@@ -283,25 +281,7 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[KmipServerObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[KmipServerObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -317,7 +297,6 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> KmipServerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -335,7 +314,6 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> KmipServerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -352,8 +330,7 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[KmipServerObject]: ...
+    ) -> FortiObjectList[KmipServerObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -369,7 +346,6 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -384,7 +360,6 @@ class KmipServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> KmipServerObject | list[KmipServerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -409,7 +384,6 @@ class KmipServer:
         vrf_select: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> KmipServerObject: ...
     
     @overload
@@ -427,27 +401,7 @@ class KmipServer:
         vrf_select: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: KmipServerPayload | None = ...,
-        name: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        source_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -481,7 +435,6 @@ class KmipServer:
         vrf_select: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -500,7 +453,6 @@ class KmipServer:
         vrf_select: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> KmipServerObject: ...
     
     @overload
@@ -518,27 +470,7 @@ class KmipServer:
         vrf_select: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: KmipServerPayload | None = ...,
-        name: str | None = ...,
-        server_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        source_ip: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -572,7 +504,6 @@ class KmipServer:
         vrf_select: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -581,7 +512,6 @@ class KmipServer:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> KmipServerObject: ...
     
     @overload
@@ -589,17 +519,7 @@ class KmipServer:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -613,7 +533,6 @@ class KmipServer:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -636,7 +555,6 @@ class KmipServer:
         vrf_select: int | None = ...,
         source_ip: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

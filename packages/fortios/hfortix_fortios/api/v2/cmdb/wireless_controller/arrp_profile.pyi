@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -259,7 +259,7 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ArrpProfileObject]: ...
+    ) -> FortiObjectList[ArrpProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -279,7 +279,6 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ArrpProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -297,7 +296,6 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ArrpProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -314,25 +312,7 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ArrpProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ArrpProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -348,7 +328,6 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ArrpProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -366,7 +345,6 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ArrpProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -383,8 +361,7 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ArrpProfileObject]: ...
+    ) -> FortiObjectList[ArrpProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -400,7 +377,6 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -415,7 +391,6 @@ class ArrpProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ArrpProfileObject | list[ArrpProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -452,7 +427,6 @@ class ArrpProfile:
         darrp_optimize: int | None = ...,
         darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ArrpProfileObject: ...
     
     @overload
@@ -482,39 +456,7 @@ class ArrpProfile:
         darrp_optimize: int | None = ...,
         darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ArrpProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        selection_period: int | None = ...,
-        monitor_period: int | None = ...,
-        weight_managed_ap: int | None = ...,
-        weight_rogue_ap: int | None = ...,
-        weight_noise_floor: int | None = ...,
-        weight_channel_load: int | None = ...,
-        weight_spectral_rssi: int | None = ...,
-        weight_weather_channel: int | None = ...,
-        weight_dfs_channel: int | None = ...,
-        threshold_ap: int | None = ...,
-        threshold_noise_floor: str | None = ...,
-        threshold_channel_load: int | None = ...,
-        threshold_spectral_rssi: str | None = ...,
-        threshold_tx_retries: int | None = ...,
-        threshold_rx_errors: int | None = ...,
-        include_weather_channel: Literal["enable", "disable"] | None = ...,
-        include_dfs_channel: Literal["enable", "disable"] | None = ...,
-        override_darrp_optimize: Literal["enable", "disable"] | None = ...,
-        darrp_optimize: int | None = ...,
-        darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -572,7 +514,6 @@ class ArrpProfile:
         darrp_optimize: int | None = ...,
         darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -603,7 +544,6 @@ class ArrpProfile:
         darrp_optimize: int | None = ...,
         darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ArrpProfileObject: ...
     
     @overload
@@ -633,39 +573,7 @@ class ArrpProfile:
         darrp_optimize: int | None = ...,
         darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ArrpProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        selection_period: int | None = ...,
-        monitor_period: int | None = ...,
-        weight_managed_ap: int | None = ...,
-        weight_rogue_ap: int | None = ...,
-        weight_noise_floor: int | None = ...,
-        weight_channel_load: int | None = ...,
-        weight_spectral_rssi: int | None = ...,
-        weight_weather_channel: int | None = ...,
-        weight_dfs_channel: int | None = ...,
-        threshold_ap: int | None = ...,
-        threshold_noise_floor: str | None = ...,
-        threshold_channel_load: int | None = ...,
-        threshold_spectral_rssi: str | None = ...,
-        threshold_tx_retries: int | None = ...,
-        threshold_rx_errors: int | None = ...,
-        include_weather_channel: Literal["enable", "disable"] | None = ...,
-        include_dfs_channel: Literal["enable", "disable"] | None = ...,
-        override_darrp_optimize: Literal["enable", "disable"] | None = ...,
-        darrp_optimize: int | None = ...,
-        darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -723,7 +631,6 @@ class ArrpProfile:
         darrp_optimize: int | None = ...,
         darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -732,7 +639,6 @@ class ArrpProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ArrpProfileObject: ...
     
     @overload
@@ -740,17 +646,7 @@ class ArrpProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -764,7 +660,6 @@ class ArrpProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -799,7 +694,6 @@ class ArrpProfile:
         darrp_optimize: int | None = ...,
         darrp_optimize_schedules: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -4,9 +4,8 @@ from typing import Literal
 import logging
 
 from .client import FortiOS as FortiOS
-from .client import FortiOSDictMode as FortiOSDictMode
-from .client import FortiOSObjectMode as FortiOSObjectMode
 from .models import FortiObject as FortiObject
+from .models import FortiObjectList as FortiObjectList
 
 # API categories (accessed via FortiOS instance, not imported directly)
 # These are exposed in __all__ for documentation but accessed as client.cmdb, client.log, etc.
@@ -69,9 +68,8 @@ __version__: str
 __all__ = [
     # Main client
     "FortiOS",
-    "FortiOSDictMode",
-    "FortiOSObjectMode",
     "FortiObject",
+    "FortiObjectList",
     "configure_logging",
     # Formatting utilities
     "to_json",

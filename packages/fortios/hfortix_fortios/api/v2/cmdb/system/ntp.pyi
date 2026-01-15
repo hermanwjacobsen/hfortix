@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -310,7 +310,6 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NtpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -328,7 +327,6 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NtpObject: ...
     
     # With no mkey -> returns list of objects
@@ -345,25 +343,7 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NtpObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -379,7 +359,6 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NtpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -397,7 +376,6 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NtpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -414,7 +392,6 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NtpObject: ...
     
     # Fallback overload for all other cases
@@ -431,7 +408,6 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -446,7 +422,6 @@ class Ntp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> NtpObject | dict[str, Any]: ...
     
     def get_schema(
@@ -473,7 +448,6 @@ class Ntp:
         key_id: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NtpObject: ...
     
     @overload
@@ -493,29 +467,7 @@ class Ntp:
         key_id: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: NtpPayload | None = ...,
-        ntpsync: Literal["enable", "disable"] | None = ...,
-        type: Literal["fortiguard", "custom"] | None = ...,
-        syncinterval: int | None = ...,
-        ntpserver: str | list[str] | list[dict[str, Any]] | None = ...,
-        source_ip: str | None = ...,
-        source_ip6: str | None = ...,
-        server_mode: Literal["enable", "disable"] | None = ...,
-        authentication: Literal["enable", "disable"] | None = ...,
-        key_type: Literal["MD5", "SHA1", "SHA256"] | None = ...,
-        key: str | None = ...,
-        key_id: int | None = ...,
-        interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -553,7 +505,6 @@ class Ntp:
         key_id: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -578,7 +529,6 @@ class Ntp:
         key_id: int | None = ...,
         interface: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

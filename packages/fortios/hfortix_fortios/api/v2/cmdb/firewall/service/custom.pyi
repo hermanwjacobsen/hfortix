@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -330,7 +330,7 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[CustomObject]: ...
+    ) -> FortiObjectList[CustomObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -350,7 +350,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -368,7 +367,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # With no mkey -> returns list of objects
@@ -385,25 +383,7 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CustomObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[CustomObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -419,7 +399,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -437,7 +416,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -454,8 +432,7 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CustomObject]: ...
+    ) -> FortiObjectList[CustomObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -471,7 +448,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -486,7 +462,6 @@ class Custom:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> CustomObject | list[CustomObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -529,7 +504,6 @@ class Custom:
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     @overload
@@ -565,45 +539,7 @@ class Custom:
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: CustomPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        proxy: Literal["enable", "disable"] | None = ...,
-        category: str | None = ...,
-        protocol: Literal["TCP/UDP/UDP-Lite/SCTP", "ICMP", "ICMP6", "IP", "HTTP", "FTP", "CONNECT", "SOCKS-TCP", "SOCKS-UDP", "ALL"] | None = ...,
-        helper: Literal["auto", "disable", "ftp", "tftp", "ras", "h323", "tns", "mms", "sip", "pptp", "rtsp", "dns-udp", "dns-tcp", "pmap", "rsh", "dcerpc", "mgcp"] | None = ...,
-        iprange: str | None = ...,
-        fqdn: str | None = ...,
-        protocol_number: int | None = ...,
-        icmptype: int | None = ...,
-        icmpcode: int | None = ...,
-        tcp_portrange: str | None = ...,
-        udp_portrange: str | None = ...,
-        udplite_portrange: str | None = ...,
-        sctp_portrange: str | None = ...,
-        tcp_halfclose_timer: int | None = ...,
-        tcp_halfopen_timer: int | None = ...,
-        tcp_timewait_timer: int | None = ...,
-        tcp_rst_timer: int | None = ...,
-        udp_idle_timer: int | None = ...,
-        session_ttl: str | None = ...,
-        check_reset_range: Literal["disable", "strict", "default"] | None = ...,
-        comment: str | None = ...,
-        color: int | None = ...,
-        app_service_type: Literal["disable", "app-id", "app-category"] | None = ...,
-        app_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        fabric_object: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -673,7 +609,6 @@ class Custom:
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -710,7 +645,6 @@ class Custom:
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     @overload
@@ -746,45 +680,7 @@ class Custom:
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: CustomPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        proxy: Literal["enable", "disable"] | None = ...,
-        category: str | None = ...,
-        protocol: Literal["TCP/UDP/UDP-Lite/SCTP", "ICMP", "ICMP6", "IP", "HTTP", "FTP", "CONNECT", "SOCKS-TCP", "SOCKS-UDP", "ALL"] | None = ...,
-        helper: Literal["auto", "disable", "ftp", "tftp", "ras", "h323", "tns", "mms", "sip", "pptp", "rtsp", "dns-udp", "dns-tcp", "pmap", "rsh", "dcerpc", "mgcp"] | None = ...,
-        iprange: str | None = ...,
-        fqdn: str | None = ...,
-        protocol_number: int | None = ...,
-        icmptype: int | None = ...,
-        icmpcode: int | None = ...,
-        tcp_portrange: str | None = ...,
-        udp_portrange: str | None = ...,
-        udplite_portrange: str | None = ...,
-        sctp_portrange: str | None = ...,
-        tcp_halfclose_timer: int | None = ...,
-        tcp_halfopen_timer: int | None = ...,
-        tcp_timewait_timer: int | None = ...,
-        tcp_rst_timer: int | None = ...,
-        udp_idle_timer: int | None = ...,
-        session_ttl: str | None = ...,
-        check_reset_range: Literal["disable", "strict", "default"] | None = ...,
-        comment: str | None = ...,
-        color: int | None = ...,
-        app_service_type: Literal["disable", "app-id", "app-category"] | None = ...,
-        app_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        fabric_object: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -854,7 +750,6 @@ class Custom:
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -863,7 +758,6 @@ class Custom:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CustomObject: ...
     
     @overload
@@ -871,17 +765,7 @@ class Custom:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -895,7 +779,6 @@ class Custom:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -936,7 +819,6 @@ class Custom:
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

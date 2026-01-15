@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -340,7 +340,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -358,7 +357,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -375,25 +373,7 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -409,7 +389,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -427,7 +406,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -444,7 +422,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Fallback overload for all other cases
@@ -461,7 +438,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -476,7 +452,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -515,7 +490,6 @@ class Setting:
         cors: Literal["disable", "enable"] | None = ...,
         cors_allowed_origins: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     @overload
@@ -547,41 +521,7 @@ class Setting:
         cors: Literal["disable", "enable"] | None = ...,
         cors_allowed_origins: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SettingPayload | None = ...,
-        auth_type: Literal["http", "https", "ftp", "telnet"] | list[str] | None = ...,
-        auth_cert: str | None = ...,
-        auth_ca_cert: str | None = ...,
-        auth_secure_http: Literal["enable", "disable"] | None = ...,
-        auth_http_basic: Literal["enable", "disable"] | None = ...,
-        auth_ssl_allow_renegotiation: Literal["enable", "disable"] | None = ...,
-        auth_src_mac: Literal["enable", "disable"] | None = ...,
-        auth_on_demand: Literal["always", "implicitly"] | None = ...,
-        auth_timeout: int | None = ...,
-        auth_timeout_type: Literal["idle-timeout", "hard-timeout", "new-session"] | None = ...,
-        auth_portal_timeout: int | None = ...,
-        radius_ses_timeout_act: Literal["hard-timeout", "ignore-timeout"] | None = ...,
-        auth_blackout_time: int | None = ...,
-        auth_invalid_max: int | None = ...,
-        auth_lockout_threshold: int | None = ...,
-        auth_lockout_duration: int | None = ...,
-        per_policy_disclaimer: Literal["enable", "disable"] | None = ...,
-        auth_ports: str | list[str] | list[dict[str, Any]] | None = ...,
-        auth_ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        auth_ssl_max_proto_version: Literal["sslv3", "tlsv1", "tlsv1-1", "tlsv1-2", "tlsv1-3"] | None = ...,
-        auth_ssl_sigalgs: Literal["no-rsa-pss", "all"] | None = ...,
-        default_user_password_policy: str | None = ...,
-        cors: Literal["disable", "enable"] | None = ...,
-        cors_allowed_origins: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -643,7 +583,6 @@ class Setting:
         cors: Literal["disable", "enable"] | None = ...,
         cors_allowed_origins: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -680,7 +619,6 @@ class Setting:
         cors: Literal["disable", "enable"] | None = ...,
         cors_allowed_origins: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

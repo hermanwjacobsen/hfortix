@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -374,7 +374,7 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[CommunityObject]: ...
+    ) -> FortiObjectList[CommunityObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -394,7 +394,6 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CommunityObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -412,7 +411,6 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CommunityObject: ...
     
     # With no mkey -> returns list of objects
@@ -429,25 +427,7 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CommunityObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[CommunityObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -463,7 +443,6 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CommunityObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -481,7 +460,6 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CommunityObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -498,8 +476,7 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CommunityObject]: ...
+    ) -> FortiObjectList[CommunityObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -515,7 +492,6 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -530,7 +506,6 @@ class Community:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> CommunityObject | list[CommunityObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -563,7 +538,6 @@ class Community:
         mib_view: str | None = ...,
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CommunityObject: ...
     
     @overload
@@ -589,35 +563,7 @@ class Community:
         mib_view: str | None = ...,
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -667,7 +613,6 @@ class Community:
         mib_view: str | None = ...,
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -694,7 +639,6 @@ class Community:
         mib_view: str | None = ...,
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CommunityObject: ...
     
     @overload
@@ -720,35 +664,7 @@ class Community:
         mib_view: str | None = ...,
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: CommunityPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        hosts: str | list[str] | list[dict[str, Any]] | None = ...,
-        hosts6: str | list[str] | list[dict[str, Any]] | None = ...,
-        query_v1_status: Literal["enable", "disable"] | None = ...,
-        query_v1_port: int | None = ...,
-        query_v2c_status: Literal["enable", "disable"] | None = ...,
-        query_v2c_port: int | None = ...,
-        trap_v1_status: Literal["enable", "disable"] | None = ...,
-        trap_v1_lport: int | None = ...,
-        trap_v1_rport: int | None = ...,
-        trap_v2c_status: Literal["enable", "disable"] | None = ...,
-        trap_v2c_lport: int | None = ...,
-        trap_v2c_rport: int | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -798,7 +714,6 @@ class Community:
         mib_view: str | None = ...,
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -807,7 +722,6 @@ class Community:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CommunityObject: ...
     
     @overload
@@ -815,17 +729,7 @@ class Community:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -839,7 +743,6 @@ class Community:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -870,7 +773,6 @@ class Community:
         mib_view: str | None = ...,
         vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -267,7 +267,7 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[VxlanObject]: ...
+    ) -> FortiObjectList[VxlanObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -287,7 +287,6 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VxlanObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -305,7 +304,6 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VxlanObject: ...
     
     # With no mkey -> returns list of objects
@@ -322,25 +320,7 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VxlanObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[VxlanObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -356,7 +336,6 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VxlanObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -374,7 +353,6 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VxlanObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -391,8 +369,7 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VxlanObject]: ...
+    ) -> FortiObjectList[VxlanObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -408,7 +385,6 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -423,7 +399,6 @@ class Vxlan:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> VxlanObject | list[VxlanObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -450,7 +425,6 @@ class Vxlan:
         evpn_id: int | None = ...,
         learn_from_traffic: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VxlanObject: ...
     
     @overload
@@ -470,29 +444,7 @@ class Vxlan:
         evpn_id: int | None = ...,
         learn_from_traffic: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: VxlanPayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast", "ipv4-multicast", "ipv6-multicast"] | None = ...,
-        remote_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        local_ip: str | None = ...,
-        remote_ip6: str | list[str] | list[dict[str, Any]] | None = ...,
-        local_ip6: str | None = ...,
-        dstport: int | None = ...,
-        multicast_ttl: int | None = ...,
-        evpn_id: int | None = ...,
-        learn_from_traffic: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -530,7 +482,6 @@ class Vxlan:
         evpn_id: int | None = ...,
         learn_from_traffic: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -551,7 +502,6 @@ class Vxlan:
         evpn_id: int | None = ...,
         learn_from_traffic: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VxlanObject: ...
     
     @overload
@@ -571,29 +521,7 @@ class Vxlan:
         evpn_id: int | None = ...,
         learn_from_traffic: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: VxlanPayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        vni: int | None = ...,
-        ip_version: Literal["ipv4-unicast", "ipv6-unicast", "ipv4-multicast", "ipv6-multicast"] | None = ...,
-        remote_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        local_ip: str | None = ...,
-        remote_ip6: str | list[str] | list[dict[str, Any]] | None = ...,
-        local_ip6: str | None = ...,
-        dstport: int | None = ...,
-        multicast_ttl: int | None = ...,
-        evpn_id: int | None = ...,
-        learn_from_traffic: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -631,7 +559,6 @@ class Vxlan:
         evpn_id: int | None = ...,
         learn_from_traffic: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -640,7 +567,6 @@ class Vxlan:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VxlanObject: ...
     
     @overload
@@ -648,17 +574,7 @@ class Vxlan:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -672,7 +588,6 @@ class Vxlan:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -697,7 +612,6 @@ class Vxlan:
         evpn_id: int | None = ...,
         learn_from_traffic: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

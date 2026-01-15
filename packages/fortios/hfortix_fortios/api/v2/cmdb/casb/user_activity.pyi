@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -277,7 +277,7 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[UserActivityObject]: ...
+    ) -> FortiObjectList[UserActivityObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -297,7 +297,6 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserActivityObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -315,7 +314,6 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserActivityObject: ...
     
     # With no mkey -> returns list of objects
@@ -332,25 +330,7 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UserActivityObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[UserActivityObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -366,7 +346,6 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserActivityObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -384,7 +363,6 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserActivityObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -401,8 +379,7 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UserActivityObject]: ...
+    ) -> FortiObjectList[UserActivityObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -418,7 +395,6 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -433,7 +409,6 @@ class UserActivity:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> UserActivityObject | list[UserActivityObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -459,7 +434,6 @@ class UserActivity:
         match: str | list[str] | list[dict[str, Any]] | None = ...,
         control_options: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserActivityObject: ...
     
     @overload
@@ -478,28 +452,7 @@ class UserActivity:
         match: str | list[str] | list[dict[str, Any]] | None = ...,
         control_options: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: UserActivityPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        description: str | None = ...,
-        type: Literal["built-in", "customized"] | None = ...,
-        casb_name: str | None = ...,
-        application: str | None = ...,
-        category: Literal["activity-control", "tenant-control", "domain-control", "safe-search-control", "advanced-tenant-control", "other"] | None = ...,
-        match_strategy: Literal["and", "or"] | None = ...,
-        match: str | list[str] | list[dict[str, Any]] | None = ...,
-        control_options: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -535,7 +488,6 @@ class UserActivity:
         match: str | list[str] | list[dict[str, Any]] | None = ...,
         control_options: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -555,7 +507,6 @@ class UserActivity:
         match: str | list[str] | list[dict[str, Any]] | None = ...,
         control_options: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserActivityObject: ...
     
     @overload
@@ -574,28 +525,7 @@ class UserActivity:
         match: str | list[str] | list[dict[str, Any]] | None = ...,
         control_options: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: UserActivityPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        description: str | None = ...,
-        type: Literal["built-in", "customized"] | None = ...,
-        casb_name: str | None = ...,
-        application: str | None = ...,
-        category: Literal["activity-control", "tenant-control", "domain-control", "safe-search-control", "advanced-tenant-control", "other"] | None = ...,
-        match_strategy: Literal["and", "or"] | None = ...,
-        match: str | list[str] | list[dict[str, Any]] | None = ...,
-        control_options: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -631,7 +561,6 @@ class UserActivity:
         match: str | list[str] | list[dict[str, Any]] | None = ...,
         control_options: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -640,7 +569,6 @@ class UserActivity:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserActivityObject: ...
     
     @overload
@@ -648,17 +576,7 @@ class UserActivity:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -672,7 +590,6 @@ class UserActivity:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -696,7 +613,6 @@ class UserActivity:
         match: str | list[str] | list[dict[str, Any]] | None = ...,
         control_options: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -358,7 +358,7 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[HsProfileObject]: ...
+    ) -> FortiObjectList[HsProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -378,7 +378,6 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HsProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -396,7 +395,6 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HsProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -413,25 +411,7 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[HsProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[HsProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -447,7 +427,6 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HsProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -465,7 +444,6 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HsProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -482,8 +460,7 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[HsProfileObject]: ...
+    ) -> FortiObjectList[HsProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -499,7 +476,6 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -514,7 +490,6 @@ class HsProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> HsProfileObject | list[HsProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -572,7 +547,6 @@ class HsProfile:
         wba_charging_currency: str | None = ...,
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HsProfileObject: ...
     
     @overload
@@ -623,60 +597,7 @@ class HsProfile:
         wba_charging_currency: str | None = ...,
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -776,7 +697,6 @@ class HsProfile:
         wba_charging_currency: str | None = ...,
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -828,7 +748,6 @@ class HsProfile:
         wba_charging_currency: str | None = ...,
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HsProfileObject: ...
     
     @overload
@@ -879,60 +798,7 @@ class HsProfile:
         wba_charging_currency: str | None = ...,
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: HsProfilePayload | None = ...,
-        name: str | None = ...,
-        release: int | None = ...,
-        access_network_type: Literal["private-network", "private-network-with-guest-access", "chargeable-public-network", "free-public-network", "personal-device-network", "emergency-services-only-network", "test-or-experimental", "wildcard"] | None = ...,
-        access_network_internet: Literal["enable", "disable"] | None = ...,
-        access_network_asra: Literal["enable", "disable"] | None = ...,
-        access_network_esr: Literal["enable", "disable"] | None = ...,
-        access_network_uesa: Literal["enable", "disable"] | None = ...,
-        venue_group: Literal["unspecified", "assembly", "business", "educational", "factory", "institutional", "mercantile", "residential", "storage", "utility", "vehicular", "outdoor"] | None = ...,
-        venue_type: Literal["unspecified", "arena", "stadium", "passenger-terminal", "amphitheater", "amusement-park", "place-of-worship", "convention-center", "library", "museum", "restaurant", "theater", "bar", "coffee-shop", "zoo-or-aquarium", "emergency-center", "doctor-office", "bank", "fire-station", "police-station", "post-office", "professional-office", "research-facility", "attorney-office", "primary-school", "secondary-school", "university-or-college", "factory", "hospital", "long-term-care-facility", "rehab-center", "group-home", "prison-or-jail", "retail-store", "grocery-market", "auto-service-station", "shopping-mall", "gas-station", "private", "hotel-or-motel", "dormitory", "boarding-house", "automobile", "airplane", "bus", "ferry", "ship-or-boat", "train", "motor-bike", "muni-mesh-network", "city-park", "rest-area", "traffic-control", "bus-stop", "kiosk"] | None = ...,
-        hessid: str | None = ...,
-        proxy_arp: Literal["enable", "disable"] | None = ...,
-        l2tif: Literal["enable", "disable"] | None = ...,
-        pame_bi: Literal["disable", "enable"] | None = ...,
-        anqp_domain_id: int | None = ...,
-        domain_name: str | None = ...,
-        osu_ssid: str | None = ...,
-        gas_comeback_delay: int | None = ...,
-        gas_fragmentation_limit: int | None = ...,
-        dgaf: Literal["enable", "disable"] | None = ...,
-        deauth_request_timeout: int | None = ...,
-        wnm_sleep_mode: Literal["enable", "disable"] | None = ...,
-        bss_transition: Literal["enable", "disable"] | None = ...,
-        venue_name: str | None = ...,
-        venue_url: str | None = ...,
-        roaming_consortium: str | None = ...,
-        nai_realm: str | None = ...,
-        oper_friendly_name: str | None = ...,
-        oper_icon: str | None = ...,
-        advice_of_charge: str | None = ...,
-        osu_provider_nai: str | None = ...,
-        terms_and_conditions: str | None = ...,
-        osu_provider: str | list[str] | list[dict[str, Any]] | None = ...,
-        wan_metrics: str | None = ...,
-        network_auth: str | None = ...,
-        x3gpp_plmn: str | None = ...,
-        conn_cap: str | None = ...,
-        qos_map: str | None = ...,
-        ip_addr_type: str | None = ...,
-        wba_open_roaming: Literal["disable", "enable"] | None = ...,
-        wba_financial_clearing_provider: str | None = ...,
-        wba_data_clearing_provider: str | None = ...,
-        wba_charging_currency: str | None = ...,
-        wba_charging_rate: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1032,7 +898,6 @@ class HsProfile:
         wba_charging_currency: str | None = ...,
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1041,7 +906,6 @@ class HsProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HsProfileObject: ...
     
     @overload
@@ -1049,17 +913,7 @@ class HsProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1073,7 +927,6 @@ class HsProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1129,7 +982,6 @@ class HsProfile:
         wba_charging_currency: str | None = ...,
         wba_charging_rate: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

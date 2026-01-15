@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -206,7 +206,7 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[GreTunnelObject]: ...
+    ) -> FortiObjectList[GreTunnelObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -226,7 +226,6 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GreTunnelObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -244,7 +243,6 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GreTunnelObject: ...
     
     # With no mkey -> returns list of objects
@@ -261,25 +259,7 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[GreTunnelObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[GreTunnelObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -295,7 +275,6 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GreTunnelObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -313,7 +292,6 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GreTunnelObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -330,8 +308,7 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[GreTunnelObject]: ...
+    ) -> FortiObjectList[GreTunnelObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -347,7 +324,6 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -362,7 +338,6 @@ class GreTunnel:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> GreTunnelObject | list[GreTunnelObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -395,7 +370,6 @@ class GreTunnel:
         keepalive_interval: int | None = ...,
         keepalive_failtimes: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GreTunnelObject: ...
     
     @overload
@@ -421,35 +395,7 @@ class GreTunnel:
         keepalive_interval: int | None = ...,
         keepalive_failtimes: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: GreTunnelPayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        ip_version: Literal["4", "6"] | None = ...,
-        remote_gw6: str | None = ...,
-        local_gw6: str | None = ...,
-        remote_gw: str | None = ...,
-        local_gw: str | None = ...,
-        use_sdwan: Literal["disable", "enable"] | None = ...,
-        sequence_number_transmission: Literal["disable", "enable"] | None = ...,
-        sequence_number_reception: Literal["disable", "enable"] | None = ...,
-        checksum_transmission: Literal["disable", "enable"] | None = ...,
-        checksum_reception: Literal["disable", "enable"] | None = ...,
-        key_outbound: int | None = ...,
-        key_inbound: int | None = ...,
-        dscp_copying: Literal["disable", "enable"] | None = ...,
-        diffservcode: str | None = ...,
-        keepalive_interval: int | None = ...,
-        keepalive_failtimes: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -499,7 +445,6 @@ class GreTunnel:
         keepalive_interval: int | None = ...,
         keepalive_failtimes: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -526,7 +471,6 @@ class GreTunnel:
         keepalive_interval: int | None = ...,
         keepalive_failtimes: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GreTunnelObject: ...
     
     @overload
@@ -552,35 +496,7 @@ class GreTunnel:
         keepalive_interval: int | None = ...,
         keepalive_failtimes: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: GreTunnelPayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        ip_version: Literal["4", "6"] | None = ...,
-        remote_gw6: str | None = ...,
-        local_gw6: str | None = ...,
-        remote_gw: str | None = ...,
-        local_gw: str | None = ...,
-        use_sdwan: Literal["disable", "enable"] | None = ...,
-        sequence_number_transmission: Literal["disable", "enable"] | None = ...,
-        sequence_number_reception: Literal["disable", "enable"] | None = ...,
-        checksum_transmission: Literal["disable", "enable"] | None = ...,
-        checksum_reception: Literal["disable", "enable"] | None = ...,
-        key_outbound: int | None = ...,
-        key_inbound: int | None = ...,
-        dscp_copying: Literal["disable", "enable"] | None = ...,
-        diffservcode: str | None = ...,
-        keepalive_interval: int | None = ...,
-        keepalive_failtimes: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -630,7 +546,6 @@ class GreTunnel:
         keepalive_interval: int | None = ...,
         keepalive_failtimes: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -639,7 +554,6 @@ class GreTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GreTunnelObject: ...
     
     @overload
@@ -647,17 +561,7 @@ class GreTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -671,7 +575,6 @@ class GreTunnel:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -702,7 +605,6 @@ class GreTunnel:
         keepalive_interval: int | None = ...,
         keepalive_failtimes: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

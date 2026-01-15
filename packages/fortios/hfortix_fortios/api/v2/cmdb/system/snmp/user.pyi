@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -269,7 +269,7 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[UserObject]: ...
+    ) -> FortiObjectList[UserObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -289,7 +289,6 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -307,7 +306,6 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserObject: ...
     
     # With no mkey -> returns list of objects
@@ -324,25 +322,7 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UserObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[UserObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -358,7 +338,6 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -376,7 +355,6 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -393,8 +371,7 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UserObject]: ...
+    ) -> FortiObjectList[UserObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -410,7 +387,6 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -425,7 +401,6 @@ class User:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> UserObject | list[UserObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -463,7 +438,6 @@ class User:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserObject: ...
     
     @overload
@@ -494,40 +468,7 @@ class User:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: UserPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trap_status: Literal["enable", "disable"] | None = ...,
-        trap_lport: int | None = ...,
-        trap_rport: int | None = ...,
-        queries: Literal["enable", "disable"] | None = ...,
-        query_port: int | None = ...,
-        notify_hosts: str | list[str] | None = ...,
-        notify_hosts6: str | list[str] | None = ...,
-        source_ip: str | None = ...,
-        source_ipv6: str | None = ...,
-        ha_direct: Literal["enable", "disable"] | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        security_level: Literal["no-auth-no-priv", "auth-no-priv", "auth-priv"] | None = ...,
-        auth_proto: Literal["md5", "sha", "sha224", "sha256", "sha384", "sha512"] | None = ...,
-        auth_pwd: str | None = ...,
-        priv_proto: Literal["aes", "des", "aes256", "aes256cisco"] | None = ...,
-        priv_pwd: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -587,7 +528,6 @@ class User:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -619,7 +559,6 @@ class User:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserObject: ...
     
     @overload
@@ -650,40 +589,7 @@ class User:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: UserPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        trap_status: Literal["enable", "disable"] | None = ...,
-        trap_lport: int | None = ...,
-        trap_rport: int | None = ...,
-        queries: Literal["enable", "disable"] | None = ...,
-        query_port: int | None = ...,
-        notify_hosts: str | list[str] | None = ...,
-        notify_hosts6: str | list[str] | None = ...,
-        source_ip: str | None = ...,
-        source_ipv6: str | None = ...,
-        ha_direct: Literal["enable", "disable"] | None = ...,
-        events: Literal["cpu-high", "mem-low", "log-full", "intf-ip", "vpn-tun-up", "vpn-tun-down", "ha-switch", "ha-hb-failure", "ips-signature", "ips-anomaly", "av-virus", "av-oversize", "av-pattern", "av-fragmented", "fm-if-change", "fm-conf-change", "bgp-established", "bgp-backward-transition", "ha-member-up", "ha-member-down", "ent-conf-change", "av-conserve", "av-bypass", "av-oversize-passed", "av-oversize-blocked", "ips-pkg-update", "ips-fail-open", "faz-disconnect", "faz", "wc-ap-up", "wc-ap-down", "fswctl-session-up", "fswctl-session-down", "load-balance-real-server-down", "device-new", "per-cpu-high", "dhcp", "pool-usage", "ippool", "interface", "ospf-nbr-state-change", "ospf-virtnbr-state-change", "bfd"] | list[str] | None = ...,
-        mib_view: str | None = ...,
-        vdoms: str | list[str] | list[dict[str, Any]] | None = ...,
-        security_level: Literal["no-auth-no-priv", "auth-no-priv", "auth-priv"] | None = ...,
-        auth_proto: Literal["md5", "sha", "sha224", "sha256", "sha384", "sha512"] | None = ...,
-        auth_pwd: str | None = ...,
-        priv_proto: Literal["aes", "des", "aes256", "aes256cisco"] | None = ...,
-        priv_pwd: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -743,7 +649,6 @@ class User:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -752,7 +657,6 @@ class User:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UserObject: ...
     
     @overload
@@ -760,17 +664,7 @@ class User:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -784,7 +678,6 @@ class User:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -820,7 +713,6 @@ class User:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

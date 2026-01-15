@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -188,7 +188,6 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xSettingsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -206,7 +205,6 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xSettingsObject: ...
     
     # With no mkey -> returns list of objects
@@ -223,25 +221,7 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xSettingsObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -257,7 +237,6 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xSettingsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -275,7 +254,6 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xSettingsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -292,7 +270,6 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xSettingsObject: ...
     
     # Fallback overload for all other cases
@@ -309,7 +286,6 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -324,7 +300,6 @@ class X8021xSettings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> X8021xSettingsObject | dict[str, Any]: ...
     
     def get_schema(
@@ -349,7 +324,6 @@ class X8021xSettings:
         mac_called_station_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> X8021xSettingsObject: ...
     
     @overload
@@ -367,27 +341,7 @@ class X8021xSettings:
         mac_called_station_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: X8021xSettingsPayload | None = ...,
-        link_down_auth: Literal["set-unauth", "no-action"] | None = ...,
-        reauth_period: int | None = ...,
-        max_reauth_attempt: int | None = ...,
-        tx_period: int | None = ...,
-        mab_reauth: Literal["disable", "enable"] | None = ...,
-        mac_username_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
-        mac_password_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
-        mac_calling_station_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
-        mac_called_station_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
-        mac_case: Literal["lowercase", "uppercase"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -421,7 +375,6 @@ class X8021xSettings:
         mac_called_station_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -444,7 +397,6 @@ class X8021xSettings:
         mac_called_station_delimiter: Literal["colon", "hyphen", "none", "single-hyphen"] | None = ...,
         mac_case: Literal["lowercase", "uppercase"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

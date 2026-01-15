@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -200,7 +200,6 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SysinfoObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -218,7 +217,6 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SysinfoObject: ...
     
     # With no mkey -> returns list of objects
@@ -235,25 +233,7 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SysinfoObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -269,7 +249,6 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SysinfoObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -287,7 +266,6 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SysinfoObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -304,7 +282,6 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SysinfoObject: ...
     
     # Fallback overload for all other cases
@@ -321,7 +298,6 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -336,7 +312,6 @@ class Sysinfo:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SysinfoObject | dict[str, Any]: ...
     
     def get_schema(
@@ -364,7 +339,6 @@ class Sysinfo:
         append_index: Literal["enable", "disable"] | None = ...,
         non_mgmt_vdom_query: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SysinfoObject: ...
     
     @overload
@@ -385,30 +359,7 @@ class Sysinfo:
         append_index: Literal["enable", "disable"] | None = ...,
         non_mgmt_vdom_query: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SysinfoPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        engine_id_type: Literal["text", "hex", "mac"] | None = ...,
-        engine_id: str | None = ...,
-        description: str | None = ...,
-        contact_info: str | None = ...,
-        location: str | None = ...,
-        trap_high_cpu_threshold: int | None = ...,
-        trap_low_memory_threshold: int | None = ...,
-        trap_log_full_threshold: int | None = ...,
-        trap_free_memory_threshold: int | None = ...,
-        trap_freeable_memory_threshold: int | None = ...,
-        append_index: Literal["enable", "disable"] | None = ...,
-        non_mgmt_vdom_query: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -448,7 +399,6 @@ class Sysinfo:
         append_index: Literal["enable", "disable"] | None = ...,
         non_mgmt_vdom_query: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -474,7 +424,6 @@ class Sysinfo:
         append_index: Literal["enable", "disable"] | None = ...,
         non_mgmt_vdom_query: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

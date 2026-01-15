@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -169,7 +169,7 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[UtmProfileObject]: ...
+    ) -> FortiObjectList[UtmProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -189,7 +189,6 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UtmProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -207,7 +206,6 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UtmProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -224,25 +222,7 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UtmProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[UtmProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -258,7 +238,6 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UtmProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -276,7 +255,6 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UtmProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -293,8 +271,7 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UtmProfileObject]: ...
+    ) -> FortiObjectList[UtmProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -310,7 +287,6 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -325,7 +301,6 @@ class UtmProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> UtmProfileObject | list[UtmProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -348,7 +323,6 @@ class UtmProfile:
         webfilter_profile: str | None = ...,
         scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UtmProfileObject: ...
     
     @overload
@@ -364,25 +338,7 @@ class UtmProfile:
         webfilter_profile: str | None = ...,
         scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: UtmProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        utm_log: Literal["enable", "disable"] | None = ...,
-        ips_sensor: str | None = ...,
-        application_list: str | None = ...,
-        antivirus_profile: str | None = ...,
-        webfilter_profile: str | None = ...,
-        scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -412,7 +368,6 @@ class UtmProfile:
         webfilter_profile: str | None = ...,
         scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -429,7 +384,6 @@ class UtmProfile:
         webfilter_profile: str | None = ...,
         scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UtmProfileObject: ...
     
     @overload
@@ -445,25 +399,7 @@ class UtmProfile:
         webfilter_profile: str | None = ...,
         scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: UtmProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        utm_log: Literal["enable", "disable"] | None = ...,
-        ips_sensor: str | None = ...,
-        application_list: str | None = ...,
-        antivirus_profile: str | None = ...,
-        webfilter_profile: str | None = ...,
-        scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -493,7 +429,6 @@ class UtmProfile:
         webfilter_profile: str | None = ...,
         scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -502,7 +437,6 @@ class UtmProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UtmProfileObject: ...
     
     @overload
@@ -510,17 +444,7 @@ class UtmProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -534,7 +458,6 @@ class UtmProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -555,7 +478,6 @@ class UtmProfile:
         webfilter_profile: str | None = ...,
         scan_botnet_connections: Literal["disable", "monitor", "block"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

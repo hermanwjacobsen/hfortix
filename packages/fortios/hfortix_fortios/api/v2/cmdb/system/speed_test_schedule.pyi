@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -269,7 +269,7 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SpeedTestScheduleObject]: ...
+    ) -> FortiObjectList[SpeedTestScheduleObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -289,7 +289,6 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SpeedTestScheduleObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -307,7 +306,6 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SpeedTestScheduleObject: ...
     
     # With no mkey -> returns list of objects
@@ -324,25 +322,7 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SpeedTestScheduleObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        interface: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[SpeedTestScheduleObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -358,7 +338,6 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SpeedTestScheduleObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -376,7 +355,6 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SpeedTestScheduleObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -393,8 +371,7 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SpeedTestScheduleObject]: ...
+    ) -> FortiObjectList[SpeedTestScheduleObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -410,7 +387,6 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -425,7 +401,6 @@ class SpeedTestSchedule:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SpeedTestScheduleObject | list[SpeedTestScheduleObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -463,7 +438,6 @@ class SpeedTestSchedule:
         retries: int | None = ...,
         retry_pause: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SpeedTestScheduleObject: ...
     
     @overload
@@ -494,40 +468,7 @@ class SpeedTestSchedule:
         retries: int | None = ...,
         retry_pause: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: SpeedTestSchedulePayload | None = ...,
-        interface: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        diffserv: str | None = ...,
-        server_name: str | None = ...,
-        mode: Literal["UDP", "TCP", "Auto"] | None = ...,
-        schedules: str | list[str] | list[dict[str, Any]] | None = ...,
-        dynamic_server: Literal["disable", "enable"] | None = ...,
-        ctrl_port: int | None = ...,
-        server_port: int | None = ...,
-        update_shaper: Literal["disable", "local", "remote", "both"] | None = ...,
-        update_inbandwidth: Literal["disable", "enable"] | None = ...,
-        update_outbandwidth: Literal["disable", "enable"] | None = ...,
-        update_interface_shaping: Literal["disable", "enable"] | None = ...,
-        update_inbandwidth_maximum: int | None = ...,
-        update_inbandwidth_minimum: int | None = ...,
-        update_outbandwidth_maximum: int | None = ...,
-        update_outbandwidth_minimum: int | None = ...,
-        expected_inbandwidth_minimum: int | None = ...,
-        expected_inbandwidth_maximum: int | None = ...,
-        expected_outbandwidth_minimum: int | None = ...,
-        expected_outbandwidth_maximum: int | None = ...,
-        retries: int | None = ...,
-        retry_pause: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -587,7 +528,6 @@ class SpeedTestSchedule:
         retries: int | None = ...,
         retry_pause: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -619,7 +559,6 @@ class SpeedTestSchedule:
         retries: int | None = ...,
         retry_pause: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SpeedTestScheduleObject: ...
     
     @overload
@@ -650,40 +589,7 @@ class SpeedTestSchedule:
         retries: int | None = ...,
         retry_pause: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SpeedTestSchedulePayload | None = ...,
-        interface: str | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        diffserv: str | None = ...,
-        server_name: str | None = ...,
-        mode: Literal["UDP", "TCP", "Auto"] | None = ...,
-        schedules: str | list[str] | list[dict[str, Any]] | None = ...,
-        dynamic_server: Literal["disable", "enable"] | None = ...,
-        ctrl_port: int | None = ...,
-        server_port: int | None = ...,
-        update_shaper: Literal["disable", "local", "remote", "both"] | None = ...,
-        update_inbandwidth: Literal["disable", "enable"] | None = ...,
-        update_outbandwidth: Literal["disable", "enable"] | None = ...,
-        update_interface_shaping: Literal["disable", "enable"] | None = ...,
-        update_inbandwidth_maximum: int | None = ...,
-        update_inbandwidth_minimum: int | None = ...,
-        update_outbandwidth_maximum: int | None = ...,
-        update_outbandwidth_minimum: int | None = ...,
-        expected_inbandwidth_minimum: int | None = ...,
-        expected_inbandwidth_maximum: int | None = ...,
-        expected_outbandwidth_minimum: int | None = ...,
-        expected_outbandwidth_maximum: int | None = ...,
-        retries: int | None = ...,
-        retry_pause: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -743,7 +649,6 @@ class SpeedTestSchedule:
         retries: int | None = ...,
         retry_pause: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -752,7 +657,6 @@ class SpeedTestSchedule:
         self,
         interface: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SpeedTestScheduleObject: ...
     
     @overload
@@ -760,17 +664,7 @@ class SpeedTestSchedule:
         self,
         interface: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        interface: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -784,7 +678,6 @@ class SpeedTestSchedule:
         self,
         interface: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -820,7 +713,6 @@ class SpeedTestSchedule:
         retries: int | None = ...,
         retry_pause: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

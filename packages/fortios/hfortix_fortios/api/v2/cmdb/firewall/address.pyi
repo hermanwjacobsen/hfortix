@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -532,7 +532,7 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AddressObject]: ...
+    ) -> FortiObjectList[AddressObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -552,7 +552,6 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AddressObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -570,7 +569,6 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AddressObject: ...
     
     # With no mkey -> returns list of objects
@@ -587,25 +585,7 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AddressObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[AddressObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -621,7 +601,6 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AddressObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -639,7 +618,6 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AddressObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -656,8 +634,7 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AddressObject]: ...
+    ) -> FortiObjectList[AddressObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -673,7 +650,6 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -688,7 +664,6 @@ class Address:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> AddressObject | list[AddressObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -748,7 +723,6 @@ class Address:
         passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AddressObject: ...
     
     @overload
@@ -801,62 +775,7 @@ class Address:
         passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: AddressPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        subnet: str | None = ...,
-        type: Literal["ipmask", "iprange", "fqdn", "geography", "wildcard", "dynamic", "interface-subnet", "mac", "route-tag"] | None = ...,
-        route_tag: int | None = ...,
-        sub_type: Literal["sdn", "clearpass-spt", "fsso", "rsso", "ems-tag", "fortivoice-tag", "fortinac-tag", "swc-tag", "device-identification", "external-resource", "obsolete"] | None = ...,
-        clearpass_spt: Literal["unknown", "healthy", "quarantine", "checkup", "transient", "infected"] | None = ...,
-        macaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        start_ip: str | None = ...,
-        end_ip: str | None = ...,
-        fqdn: str | None = ...,
-        country: str | None = ...,
-        wildcard_fqdn: str | None = ...,
-        cache_ttl: int | None = ...,
-        wildcard: str | None = ...,
-        sdn: str | None = ...,
-        fsso_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        sso_attribute_value: str | list[str] | list[dict[str, Any]] | None = ...,
-        interface: str | None = ...,
-        tenant: str | None = ...,
-        organization: str | None = ...,
-        epg_name: str | None = ...,
-        subnet_name: str | None = ...,
-        sdn_tag: str | None = ...,
-        policy_group: str | None = ...,
-        obj_tag: str | None = ...,
-        obj_type: Literal["ip", "mac"] | None = ...,
-        tag_detection_level: str | None = ...,
-        tag_type: str | None = ...,
-        hw_vendor: str | None = ...,
-        hw_model: str | None = ...,
-        os: str | None = ...,
-        sw_version: str | None = ...,
-        comment: str | None = ...,
-        associated_interface: str | None = ...,
-        color: int | None = ...,
-        filter: str | None = ...,
-        sdn_addr_type: Literal["private", "public", "all"] | None = ...,
-        node_ip_only: Literal["enable", "disable"] | None = ...,
-        obj_id: str | None = ...,
-        list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tagging: str | list[str] | list[dict[str, Any]] | None = ...,
-        allow_routing: Literal["enable", "disable"] | None = ...,
-        passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
-        fabric_object: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -960,7 +879,6 @@ class Address:
         passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -1014,7 +932,6 @@ class Address:
         passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AddressObject: ...
     
     @overload
@@ -1067,62 +984,7 @@ class Address:
         passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: AddressPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        subnet: str | None = ...,
-        type: Literal["ipmask", "iprange", "fqdn", "geography", "wildcard", "dynamic", "interface-subnet", "mac", "route-tag"] | None = ...,
-        route_tag: int | None = ...,
-        sub_type: Literal["sdn", "clearpass-spt", "fsso", "rsso", "ems-tag", "fortivoice-tag", "fortinac-tag", "swc-tag", "device-identification", "external-resource", "obsolete"] | None = ...,
-        clearpass_spt: Literal["unknown", "healthy", "quarantine", "checkup", "transient", "infected"] | None = ...,
-        macaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        start_ip: str | None = ...,
-        end_ip: str | None = ...,
-        fqdn: str | None = ...,
-        country: str | None = ...,
-        wildcard_fqdn: str | None = ...,
-        cache_ttl: int | None = ...,
-        wildcard: str | None = ...,
-        sdn: str | None = ...,
-        fsso_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        sso_attribute_value: str | list[str] | list[dict[str, Any]] | None = ...,
-        interface: str | None = ...,
-        tenant: str | None = ...,
-        organization: str | None = ...,
-        epg_name: str | None = ...,
-        subnet_name: str | None = ...,
-        sdn_tag: str | None = ...,
-        policy_group: str | None = ...,
-        obj_tag: str | None = ...,
-        obj_type: Literal["ip", "mac"] | None = ...,
-        tag_detection_level: str | None = ...,
-        tag_type: str | None = ...,
-        hw_vendor: str | None = ...,
-        hw_model: str | None = ...,
-        os: str | None = ...,
-        sw_version: str | None = ...,
-        comment: str | None = ...,
-        associated_interface: str | None = ...,
-        color: int | None = ...,
-        filter: str | None = ...,
-        sdn_addr_type: Literal["private", "public", "all"] | None = ...,
-        node_ip_only: Literal["enable", "disable"] | None = ...,
-        obj_id: str | None = ...,
-        list: str | list[str] | list[dict[str, Any]] | None = ...,
-        tagging: str | list[str] | list[dict[str, Any]] | None = ...,
-        allow_routing: Literal["enable", "disable"] | None = ...,
-        passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
-        fabric_object: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1226,7 +1088,6 @@ class Address:
         passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1235,7 +1096,6 @@ class Address:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AddressObject: ...
     
     @overload
@@ -1243,17 +1103,7 @@ class Address:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1267,7 +1117,6 @@ class Address:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1325,7 +1174,6 @@ class Address:
         passive_fqdn_learning: Literal["disable", "enable"] | None = ...,
         fabric_object: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

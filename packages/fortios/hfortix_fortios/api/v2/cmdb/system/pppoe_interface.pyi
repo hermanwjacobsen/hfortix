@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -210,7 +210,7 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[PppoeInterfaceObject]: ...
+    ) -> FortiObjectList[PppoeInterfaceObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -230,7 +230,6 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PppoeInterfaceObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -248,7 +247,6 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PppoeInterfaceObject: ...
     
     # With no mkey -> returns list of objects
@@ -265,25 +263,7 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PppoeInterfaceObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[PppoeInterfaceObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -299,7 +279,6 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PppoeInterfaceObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -317,7 +296,6 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PppoeInterfaceObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -334,8 +312,7 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PppoeInterfaceObject]: ...
+    ) -> FortiObjectList[PppoeInterfaceObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -351,7 +328,6 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -366,7 +342,6 @@ class PppoeInterface:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PppoeInterfaceObject | list[PppoeInterfaceObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -400,7 +375,6 @@ class PppoeInterface:
         lcp_echo_interval: int | None = ...,
         lcp_max_echo_fails: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PppoeInterfaceObject: ...
     
     @overload
@@ -427,36 +401,7 @@ class PppoeInterface:
         lcp_echo_interval: int | None = ...,
         lcp_max_echo_fails: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: PppoeInterfacePayload | None = ...,
-        name: str | None = ...,
-        dial_on_demand: Literal["enable", "disable"] | None = ...,
-        ipv6: Literal["enable", "disable"] | None = ...,
-        device: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        pppoe_egress_cos: Literal["cos0", "cos1", "cos2", "cos3", "cos4", "cos5", "cos6", "cos7"] | None = ...,
-        auth_type: Literal["auto", "pap", "chap", "mschapv1", "mschapv2"] | None = ...,
-        ipunnumbered: str | None = ...,
-        pppoe_unnumbered_negotiate: Literal["enable", "disable"] | None = ...,
-        idle_timeout: int | None = ...,
-        multilink: Literal["enable", "disable"] | None = ...,
-        mrru: int | None = ...,
-        disc_retry_timeout: int | None = ...,
-        padt_retry_timeout: int | None = ...,
-        service_name: str | None = ...,
-        ac_name: str | None = ...,
-        lcp_echo_interval: int | None = ...,
-        lcp_max_echo_fails: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -508,7 +453,6 @@ class PppoeInterface:
         lcp_echo_interval: int | None = ...,
         lcp_max_echo_fails: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -536,7 +480,6 @@ class PppoeInterface:
         lcp_echo_interval: int | None = ...,
         lcp_max_echo_fails: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PppoeInterfaceObject: ...
     
     @overload
@@ -563,36 +506,7 @@ class PppoeInterface:
         lcp_echo_interval: int | None = ...,
         lcp_max_echo_fails: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PppoeInterfacePayload | None = ...,
-        name: str | None = ...,
-        dial_on_demand: Literal["enable", "disable"] | None = ...,
-        ipv6: Literal["enable", "disable"] | None = ...,
-        device: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        pppoe_egress_cos: Literal["cos0", "cos1", "cos2", "cos3", "cos4", "cos5", "cos6", "cos7"] | None = ...,
-        auth_type: Literal["auto", "pap", "chap", "mschapv1", "mschapv2"] | None = ...,
-        ipunnumbered: str | None = ...,
-        pppoe_unnumbered_negotiate: Literal["enable", "disable"] | None = ...,
-        idle_timeout: int | None = ...,
-        multilink: Literal["enable", "disable"] | None = ...,
-        mrru: int | None = ...,
-        disc_retry_timeout: int | None = ...,
-        padt_retry_timeout: int | None = ...,
-        service_name: str | None = ...,
-        ac_name: str | None = ...,
-        lcp_echo_interval: int | None = ...,
-        lcp_max_echo_fails: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -644,7 +558,6 @@ class PppoeInterface:
         lcp_echo_interval: int | None = ...,
         lcp_max_echo_fails: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -653,7 +566,6 @@ class PppoeInterface:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PppoeInterfaceObject: ...
     
     @overload
@@ -661,17 +573,7 @@ class PppoeInterface:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -685,7 +587,6 @@ class PppoeInterface:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -717,7 +618,6 @@ class PppoeInterface:
         lcp_echo_interval: int | None = ...,
         lcp_max_echo_fails: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

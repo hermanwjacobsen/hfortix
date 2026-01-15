@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -232,7 +232,7 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[FctemsObject]: ...
+    ) -> FortiObjectList[FctemsObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -252,7 +252,6 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FctemsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -270,7 +269,6 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FctemsObject: ...
     
     # With no mkey -> returns list of objects
@@ -287,25 +285,7 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[FctemsObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        ems_id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[FctemsObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -321,7 +301,6 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FctemsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -339,7 +318,6 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FctemsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -356,8 +334,7 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[FctemsObject]: ...
+    ) -> FortiObjectList[FctemsObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -373,7 +350,6 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -388,7 +364,6 @@ class Fctems:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> FctemsObject | list[FctemsObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -427,7 +402,6 @@ class Fctems:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FctemsObject: ...
     
     @overload
@@ -459,41 +433,7 @@ class Fctems:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: FctemsPayload | None = ...,
-        ems_id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        name: str | None = ...,
-        dirty_reason: Literal["none", "mismatched-ems-sn"] | None = ...,
-        fortinetone_cloud_authentication: Literal["enable", "disable"] | None = ...,
-        cloud_authentication_access_key: str | None = ...,
-        server: str | None = ...,
-        https_port: int | None = ...,
-        serial_number: str | None = ...,
-        tenant_id: str | None = ...,
-        source_ip: str | None = ...,
-        pull_sysinfo: Literal["enable", "disable"] | None = ...,
-        pull_vulnerabilities: Literal["enable", "disable"] | None = ...,
-        pull_tags: Literal["enable", "disable"] | None = ...,
-        pull_malware_hash: Literal["enable", "disable"] | None = ...,
-        capabilities: Literal["fabric-auth", "silent-approval", "websocket", "websocket-malware", "push-ca-certs", "common-tags-api", "tenant-id", "client-avatars", "single-vdom-connector", "fgt-sysinfo-api", "ztna-server-info", "used-tags"] | list[str] | None = ...,
-        call_timeout: int | None = ...,
-        out_of_sync_threshold: int | None = ...,
-        send_tags_to_all_vdoms: Literal["enable", "disable"] | None = ...,
-        websocket_override: Literal["enable", "disable"] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        trust_ca_cn: Literal["enable", "disable"] | None = ...,
-        verifying_ca: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -555,7 +495,6 @@ class Fctems:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -588,7 +527,6 @@ class Fctems:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FctemsObject: ...
     
     @overload
@@ -620,41 +558,7 @@ class Fctems:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: FctemsPayload | None = ...,
-        ems_id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        name: str | None = ...,
-        dirty_reason: Literal["none", "mismatched-ems-sn"] | None = ...,
-        fortinetone_cloud_authentication: Literal["enable", "disable"] | None = ...,
-        cloud_authentication_access_key: str | None = ...,
-        server: str | None = ...,
-        https_port: int | None = ...,
-        serial_number: str | None = ...,
-        tenant_id: str | None = ...,
-        source_ip: str | None = ...,
-        pull_sysinfo: Literal["enable", "disable"] | None = ...,
-        pull_vulnerabilities: Literal["enable", "disable"] | None = ...,
-        pull_tags: Literal["enable", "disable"] | None = ...,
-        pull_malware_hash: Literal["enable", "disable"] | None = ...,
-        capabilities: Literal["fabric-auth", "silent-approval", "websocket", "websocket-malware", "push-ca-certs", "common-tags-api", "tenant-id", "client-avatars", "single-vdom-connector", "fgt-sysinfo-api", "ztna-server-info", "used-tags"] | list[str] | None = ...,
-        call_timeout: int | None = ...,
-        out_of_sync_threshold: int | None = ...,
-        send_tags_to_all_vdoms: Literal["enable", "disable"] | None = ...,
-        websocket_override: Literal["enable", "disable"] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        trust_ca_cn: Literal["enable", "disable"] | None = ...,
-        verifying_ca: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -716,7 +620,6 @@ class Fctems:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -725,7 +628,6 @@ class Fctems:
         self,
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> FctemsObject: ...
     
     @overload
@@ -733,17 +635,7 @@ class Fctems:
         self,
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        ems_id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -757,7 +649,6 @@ class Fctems:
         self,
         ems_id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -794,7 +685,6 @@ class Fctems:
         trust_ca_cn: Literal["enable", "disable"] | None = ...,
         verifying_ca: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

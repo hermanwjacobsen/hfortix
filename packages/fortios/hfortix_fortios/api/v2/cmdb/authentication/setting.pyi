@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -323,7 +323,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -341,7 +340,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -358,25 +356,7 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -392,7 +372,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -410,7 +389,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -427,7 +405,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Fallback overload for all other cases
@@ -444,7 +421,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -459,7 +435,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -495,7 +470,6 @@ class Setting:
         user_cert_ca: str | list[str] | list[dict[str, Any]] | None = ...,
         dev_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     @overload
@@ -524,38 +498,7 @@ class Setting:
         user_cert_ca: str | list[str] | list[dict[str, Any]] | None = ...,
         dev_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SettingPayload | None = ...,
-        active_auth_scheme: str | None = ...,
-        sso_auth_scheme: str | None = ...,
-        update_time: str | None = ...,
-        persistent_cookie: Literal["enable", "disable"] | None = ...,
-        ip_auth_cookie: Literal["enable", "disable"] | None = ...,
-        cookie_max_age: int | None = ...,
-        cookie_refresh_div: int | None = ...,
-        captive_portal_type: Literal["fqdn", "ip"] | None = ...,
-        captive_portal_ip: str | None = ...,
-        captive_portal_ip6: str | None = ...,
-        captive_portal: str | None = ...,
-        captive_portal6: str | None = ...,
-        cert_auth: Literal["enable", "disable"] | None = ...,
-        cert_captive_portal: str | None = ...,
-        cert_captive_portal_ip: str | None = ...,
-        cert_captive_portal_port: int | None = ...,
-        captive_portal_port: int | None = ...,
-        auth_https: Literal["enable", "disable"] | None = ...,
-        captive_portal_ssl_port: int | None = ...,
-        user_cert_ca: str | list[str] | list[dict[str, Any]] | None = ...,
-        dev_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -611,7 +554,6 @@ class Setting:
         user_cert_ca: str | list[str] | list[dict[str, Any]] | None = ...,
         dev_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -645,7 +587,6 @@ class Setting:
         user_cert_ca: str | list[str] | list[dict[str, Any]] | None = ...,
         dev_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -405,7 +405,7 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ProxyAddressObject]: ...
+    ) -> FortiObjectList[ProxyAddressObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -425,7 +425,6 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddressObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -443,7 +442,6 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddressObject: ...
     
     # With no mkey -> returns list of objects
@@ -460,25 +458,7 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProxyAddressObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ProxyAddressObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -494,7 +474,6 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddressObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -512,7 +491,6 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddressObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -529,8 +507,7 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProxyAddressObject]: ...
+    ) -> FortiObjectList[ProxyAddressObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -546,7 +523,6 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -561,7 +537,6 @@ class ProxyAddress:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ProxyAddressObject | list[ProxyAddressObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -597,7 +572,6 @@ class ProxyAddress:
         comment: str | None = ...,
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddressObject: ...
     
     @overload
@@ -626,38 +600,7 @@ class ProxyAddress:
         comment: str | None = ...,
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ProxyAddressPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        type: Literal["host-regex", "url", "category", "method", "ua", "header", "src-advanced", "dst-advanced", "saas"] | None = ...,
-        host: str | None = ...,
-        host_regex: str | None = ...,
-        path: str | None = ...,
-        query: str | None = ...,
-        referrer: Literal["enable", "disable"] | None = ...,
-        category: str | list[str] | list[dict[str, Any]] | None = ...,
-        method: Literal["get", "post", "put", "head", "connect", "trace", "options", "delete", "update", "patch", "other"] | list[str] | None = ...,
-        ua: Literal["chrome", "ms", "firefox", "safari", "ie", "edge", "other"] | list[str] | None = ...,
-        ua_min_ver: str | None = ...,
-        ua_max_ver: str | None = ...,
-        header_name: str | None = ...,
-        header: str | None = ...,
-        case_sensitivity: Literal["disable", "enable"] | None = ...,
-        header_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        color: int | None = ...,
-        tagging: str | list[str] | list[dict[str, Any]] | None = ...,
-        comment: str | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -713,7 +656,6 @@ class ProxyAddress:
         comment: str | None = ...,
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -743,7 +685,6 @@ class ProxyAddress:
         comment: str | None = ...,
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddressObject: ...
     
     @overload
@@ -772,38 +713,7 @@ class ProxyAddress:
         comment: str | None = ...,
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ProxyAddressPayload | None = ...,
-        name: str | None = ...,
-        uuid: str | None = ...,
-        type: Literal["host-regex", "url", "category", "method", "ua", "header", "src-advanced", "dst-advanced", "saas"] | None = ...,
-        host: str | None = ...,
-        host_regex: str | None = ...,
-        path: str | None = ...,
-        query: str | None = ...,
-        referrer: Literal["enable", "disable"] | None = ...,
-        category: str | list[str] | list[dict[str, Any]] | None = ...,
-        method: Literal["get", "post", "put", "head", "connect", "trace", "options", "delete", "update", "patch", "other"] | list[str] | None = ...,
-        ua: Literal["chrome", "ms", "firefox", "safari", "ie", "edge", "other"] | list[str] | None = ...,
-        ua_min_ver: str | None = ...,
-        ua_max_ver: str | None = ...,
-        header_name: str | None = ...,
-        header: str | None = ...,
-        case_sensitivity: Literal["disable", "enable"] | None = ...,
-        header_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        color: int | None = ...,
-        tagging: str | list[str] | list[dict[str, Any]] | None = ...,
-        comment: str | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -859,7 +769,6 @@ class ProxyAddress:
         comment: str | None = ...,
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -868,7 +777,6 @@ class ProxyAddress:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProxyAddressObject: ...
     
     @overload
@@ -876,17 +784,7 @@ class ProxyAddress:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -900,7 +798,6 @@ class ProxyAddress:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -934,7 +831,6 @@ class ProxyAddress:
         comment: str | None = ...,
         application: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

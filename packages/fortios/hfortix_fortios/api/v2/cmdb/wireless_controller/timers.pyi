@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -252,7 +252,6 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TimersObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -270,7 +269,6 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TimersObject: ...
     
     # With no mkey -> returns list of objects
@@ -287,25 +285,7 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TimersObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -321,7 +301,6 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TimersObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -339,7 +318,6 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TimersObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -356,7 +334,6 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TimersObject: ...
     
     # Fallback overload for all other cases
@@ -373,7 +350,6 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -388,7 +364,6 @@ class Timers:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> TimersObject | dict[str, Any]: ...
     
     def get_schema(
@@ -429,7 +404,6 @@ class Timers:
         ap_reboot_wait_time: str | None = ...,
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TimersObject: ...
     
     @overload
@@ -463,43 +437,7 @@ class Timers:
         ap_reboot_wait_time: str | None = ...,
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: TimersPayload | None = ...,
-        echo_interval: int | None = ...,
-        nat_session_keep_alive: int | None = ...,
-        discovery_interval: int | None = ...,
-        client_idle_timeout: int | None = ...,
-        client_idle_rehome_timeout: int | None = ...,
-        auth_timeout: int | None = ...,
-        rogue_ap_log: int | None = ...,
-        fake_ap_log: int | None = ...,
-        sta_offline_cleanup: int | None = ...,
-        sta_offline_ip2mac_cleanup: int | None = ...,
-        sta_cap_cleanup: int | None = ...,
-        rogue_ap_cleanup: int | None = ...,
-        rogue_sta_cleanup: int | None = ...,
-        wids_entry_cleanup: int | None = ...,
-        ble_device_cleanup: int | None = ...,
-        sta_stats_interval: int | None = ...,
-        vap_stats_interval: int | None = ...,
-        radio_stats_interval: int | None = ...,
-        sta_capability_interval: int | None = ...,
-        sta_locate_timer: int | None = ...,
-        ipsec_intf_cleanup: int | None = ...,
-        ble_scan_report_intv: int | None = ...,
-        drma_interval: int | None = ...,
-        ap_reboot_wait_interval1: int | None = ...,
-        ap_reboot_wait_time: str | None = ...,
-        ap_reboot_wait_interval2: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -565,7 +503,6 @@ class Timers:
         ap_reboot_wait_time: str | None = ...,
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -604,7 +541,6 @@ class Timers:
         ap_reboot_wait_time: str | None = ...,
         ap_reboot_wait_interval2: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -227,7 +227,7 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SslServerObject]: ...
+    ) -> FortiObjectList[SslServerObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -247,7 +247,6 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SslServerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -265,7 +264,6 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SslServerObject: ...
     
     # With no mkey -> returns list of objects
@@ -282,25 +280,7 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SslServerObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[SslServerObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -316,7 +296,6 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SslServerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -334,7 +313,6 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SslServerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -351,8 +329,7 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SslServerObject]: ...
+    ) -> FortiObjectList[SslServerObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -368,7 +345,6 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -383,7 +359,6 @@ class SslServer:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SslServerObject | list[SslServerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -412,7 +387,6 @@ class SslServer:
         ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
         url_rewrite: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SslServerObject: ...
     
     @overload
@@ -434,31 +408,7 @@ class SslServer:
         ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
         url_rewrite: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: SslServerPayload | None = ...,
-        name: str | None = ...,
-        ip: str | None = ...,
-        port: int | None = ...,
-        ssl_mode: Literal["half", "full"] | None = ...,
-        add_header_x_forwarded_proto: Literal["enable", "disable"] | None = ...,
-        mapped_port: int | None = ...,
-        ssl_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        ssl_client_renegotiation: Literal["allow", "deny", "secure"] | None = ...,
-        ssl_min_version: Literal["tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_max_version: Literal["tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
-        url_rewrite: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -500,7 +450,6 @@ class SslServer:
         ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
         url_rewrite: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -523,7 +472,6 @@ class SslServer:
         ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
         url_rewrite: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SslServerObject: ...
     
     @overload
@@ -545,31 +493,7 @@ class SslServer:
         ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
         url_rewrite: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SslServerPayload | None = ...,
-        name: str | None = ...,
-        ip: str | None = ...,
-        port: int | None = ...,
-        ssl_mode: Literal["half", "full"] | None = ...,
-        add_header_x_forwarded_proto: Literal["enable", "disable"] | None = ...,
-        mapped_port: int | None = ...,
-        ssl_cert: str | list[str] | list[dict[str, Any]] | None = ...,
-        ssl_dh_bits: Literal["768", "1024", "1536", "2048"] | None = ...,
-        ssl_algorithm: Literal["high", "medium", "low"] | None = ...,
-        ssl_client_renegotiation: Literal["allow", "deny", "secure"] | None = ...,
-        ssl_min_version: Literal["tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_max_version: Literal["tls-1.0", "tls-1.1", "tls-1.2", "tls-1.3"] | None = ...,
-        ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
-        url_rewrite: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -611,7 +535,6 @@ class SslServer:
         ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
         url_rewrite: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -620,7 +543,6 @@ class SslServer:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SslServerObject: ...
     
     @overload
@@ -628,17 +550,7 @@ class SslServer:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -652,7 +564,6 @@ class SslServer:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -679,7 +590,6 @@ class SslServer:
         ssl_send_empty_frags: Literal["enable", "disable"] | None = ...,
         url_rewrite: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

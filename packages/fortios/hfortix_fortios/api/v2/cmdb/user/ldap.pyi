@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -305,7 +305,7 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LdapObject]: ...
+    ) -> FortiObjectList[LdapObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -325,7 +325,6 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LdapObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -343,7 +342,6 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LdapObject: ...
     
     # With no mkey -> returns list of objects
@@ -360,25 +358,7 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LdapObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[LdapObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -394,7 +374,6 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LdapObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -412,7 +391,6 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LdapObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -429,8 +407,7 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LdapObject]: ...
+    ) -> FortiObjectList[LdapObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -446,7 +423,6 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -461,7 +437,6 @@ class Ldap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> LdapObject | list[LdapObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -518,7 +493,6 @@ class Ldap:
         antiphish: Literal["enable", "disable"] | None = ...,
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LdapObject: ...
     
     @overload
@@ -568,59 +542,7 @@ class Ldap:
         antiphish: Literal["enable", "disable"] | None = ...,
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -718,7 +640,6 @@ class Ldap:
         antiphish: Literal["enable", "disable"] | None = ...,
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -769,7 +690,6 @@ class Ldap:
         antiphish: Literal["enable", "disable"] | None = ...,
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LdapObject: ...
     
     @overload
@@ -819,59 +739,7 @@ class Ldap:
         antiphish: Literal["enable", "disable"] | None = ...,
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: LdapPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        status_ttl: int | None = ...,
-        server_identity_check: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        source_port: int | None = ...,
-        cnid: str | None = ...,
-        dn: str | None = ...,
-        type: Literal["simple", "anonymous", "regular"] | None = ...,
-        two_factor: Literal["disable", "fortitoken-cloud"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        two_factor_filter: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        group_member_check: Literal["user-attr", "group-object", "posix-group-object"] | None = ...,
-        group_search_base: str | None = ...,
-        group_object_filter: str | None = ...,
-        group_filter: str | None = ...,
-        secure: Literal["disable", "starttls", "ldaps"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        ca_cert: str | None = ...,
-        port: int | None = ...,
-        password_expiry_warning: Literal["enable", "disable"] | None = ...,
-        password_renewal: Literal["enable", "disable"] | None = ...,
-        member_attr: str | None = ...,
-        account_key_processing: Literal["same", "strip"] | None = ...,
-        account_key_cert_field: Literal["othername", "rfc822name", "dnsname", "cn"] | None = ...,
-        account_key_filter: str | None = ...,
-        search_type: Literal["recursive"] | list[str] | None = ...,
-        client_cert_auth: Literal["enable", "disable"] | None = ...,
-        client_cert: str | None = ...,
-        obtain_user_info: Literal["enable", "disable"] | None = ...,
-        user_info_exchange_server: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        antiphish: Literal["enable", "disable"] | None = ...,
-        password_attr: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -969,7 +837,6 @@ class Ldap:
         antiphish: Literal["enable", "disable"] | None = ...,
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -978,7 +845,6 @@ class Ldap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LdapObject: ...
     
     @overload
@@ -986,17 +852,7 @@ class Ldap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1010,7 +866,6 @@ class Ldap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1065,7 +920,6 @@ class Ldap:
         antiphish: Literal["enable", "disable"] | None = ...,
         password_attr: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

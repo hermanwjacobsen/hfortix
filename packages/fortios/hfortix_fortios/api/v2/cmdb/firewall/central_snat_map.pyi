@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -553,7 +553,7 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[CentralSnatMapObject]: ...
+    ) -> FortiObjectList[CentralSnatMapObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -573,7 +573,6 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralSnatMapObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -591,7 +590,6 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralSnatMapObject: ...
     
     # With no mkey -> returns list of objects
@@ -608,25 +606,7 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CentralSnatMapObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        policyid: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[CentralSnatMapObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -642,7 +622,6 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralSnatMapObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -660,7 +639,6 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralSnatMapObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -677,8 +655,7 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[CentralSnatMapObject]: ...
+    ) -> FortiObjectList[CentralSnatMapObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -694,7 +671,6 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -709,7 +685,6 @@ class CentralSnatMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> CentralSnatMapObject | list[CentralSnatMapObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -746,7 +721,6 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralSnatMapObject: ...
     
     @overload
@@ -776,39 +750,7 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: CentralSnatMapPayload | None = ...,
-        policyid: int | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["ipv4", "ipv6"] | None = ...,
-        srcintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        orig_addr: str | list[str] | list[dict[str, Any]] | None = ...,
-        orig_addr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        dst_addr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dst_addr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        protocol: int | None = ...,
-        orig_port: str | None = ...,
-        nat: Literal["disable", "enable"] | None = ...,
-        nat46: Literal["enable", "disable"] | None = ...,
-        nat64: Literal["enable", "disable"] | None = ...,
-        nat_ippool: str | list[str] | list[dict[str, Any]] | None = ...,
-        nat_ippool6: str | list[str] | list[dict[str, Any]] | None = ...,
-        port_preserve: Literal["enable", "disable"] | None = ...,
-        port_random: Literal["enable", "disable"] | None = ...,
-        nat_port: str | None = ...,
-        dst_port: str | None = ...,
-        comments: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -866,7 +808,6 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -897,7 +838,6 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralSnatMapObject: ...
     
     @overload
@@ -927,39 +867,7 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: CentralSnatMapPayload | None = ...,
-        policyid: int | None = ...,
-        uuid: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["ipv4", "ipv6"] | None = ...,
-        srcintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        orig_addr: str | list[str] | list[dict[str, Any]] | None = ...,
-        orig_addr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        dst_addr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dst_addr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        protocol: int | None = ...,
-        orig_port: str | None = ...,
-        nat: Literal["disable", "enable"] | None = ...,
-        nat46: Literal["enable", "disable"] | None = ...,
-        nat64: Literal["enable", "disable"] | None = ...,
-        nat_ippool: str | list[str] | list[dict[str, Any]] | None = ...,
-        nat_ippool6: str | list[str] | list[dict[str, Any]] | None = ...,
-        port_preserve: Literal["enable", "disable"] | None = ...,
-        port_random: Literal["enable", "disable"] | None = ...,
-        nat_port: str | None = ...,
-        dst_port: str | None = ...,
-        comments: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1017,7 +925,6 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1026,7 +933,6 @@ class CentralSnatMap:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> CentralSnatMapObject: ...
     
     @overload
@@ -1034,17 +940,7 @@ class CentralSnatMap:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        policyid: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1058,7 +954,6 @@ class CentralSnatMap:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1093,7 +988,6 @@ class CentralSnatMap:
         dst_port: str | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

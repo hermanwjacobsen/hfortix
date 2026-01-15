@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -164,7 +164,7 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[UrlMatchObject]: ...
+    ) -> FortiObjectList[UrlMatchObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -184,7 +184,6 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlMatchObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -202,7 +201,6 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlMatchObject: ...
     
     # With no mkey -> returns list of objects
@@ -219,25 +217,7 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UrlMatchObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[UrlMatchObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -253,7 +233,6 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlMatchObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -271,7 +250,6 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlMatchObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -288,8 +266,7 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[UrlMatchObject]: ...
+    ) -> FortiObjectList[UrlMatchObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -305,7 +282,6 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -320,7 +296,6 @@ class UrlMatch:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> UrlMatchObject | list[UrlMatchObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -342,7 +317,6 @@ class UrlMatch:
         cache_exemption: Literal["enable", "disable"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlMatchObject: ...
     
     @overload
@@ -357,24 +331,7 @@ class UrlMatch:
         cache_exemption: Literal["enable", "disable"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: UrlMatchPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        url_pattern: str | None = ...,
-        forward_server: str | None = ...,
-        fast_fallback: str | None = ...,
-        cache_exemption: Literal["enable", "disable"] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -402,7 +359,6 @@ class UrlMatch:
         cache_exemption: Literal["enable", "disable"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -418,7 +374,6 @@ class UrlMatch:
         cache_exemption: Literal["enable", "disable"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlMatchObject: ...
     
     @overload
@@ -433,24 +388,7 @@ class UrlMatch:
         cache_exemption: Literal["enable", "disable"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: UrlMatchPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        url_pattern: str | None = ...,
-        forward_server: str | None = ...,
-        fast_fallback: str | None = ...,
-        cache_exemption: Literal["enable", "disable"] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -478,7 +416,6 @@ class UrlMatch:
         cache_exemption: Literal["enable", "disable"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -487,7 +424,6 @@ class UrlMatch:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> UrlMatchObject: ...
     
     @overload
@@ -495,17 +431,7 @@ class UrlMatch:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -519,7 +445,6 @@ class UrlMatch:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -539,7 +464,6 @@ class UrlMatch:
         cache_exemption: Literal["enable", "disable"] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

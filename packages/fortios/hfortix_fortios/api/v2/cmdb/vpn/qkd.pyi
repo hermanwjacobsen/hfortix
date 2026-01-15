@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -205,7 +205,7 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[QkdObject]: ...
+    ) -> FortiObjectList[QkdObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -225,7 +225,6 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QkdObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -243,7 +242,6 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QkdObject: ...
     
     # With no mkey -> returns list of objects
@@ -260,25 +258,7 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[QkdObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[QkdObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -294,7 +274,6 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QkdObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -312,7 +291,6 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QkdObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -329,8 +307,7 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[QkdObject]: ...
+    ) -> FortiObjectList[QkdObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -346,7 +323,6 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -361,7 +337,6 @@ class Qkd:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> QkdObject | list[QkdObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -383,7 +358,6 @@ class Qkd:
         certificate: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QkdObject: ...
     
     @overload
@@ -398,24 +372,7 @@ class Qkd:
         certificate: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: QkdPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        port: int | None = ...,
-        id: str | None = ...,
-        peer: str | None = ...,
-        certificate: str | list[str] | list[dict[str, Any]] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -443,7 +400,6 @@ class Qkd:
         certificate: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -459,7 +415,6 @@ class Qkd:
         certificate: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QkdObject: ...
     
     @overload
@@ -474,24 +429,7 @@ class Qkd:
         certificate: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: QkdPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        port: int | None = ...,
-        id: str | None = ...,
-        peer: str | None = ...,
-        certificate: str | list[str] | list[dict[str, Any]] | None = ...,
-        comment: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -519,7 +457,6 @@ class Qkd:
         certificate: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -528,7 +465,6 @@ class Qkd:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QkdObject: ...
     
     @overload
@@ -536,17 +472,7 @@ class Qkd:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -560,7 +486,6 @@ class Qkd:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -580,7 +505,6 @@ class Qkd:
         certificate: str | list[str] | list[dict[str, Any]] | None = ...,
         comment: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

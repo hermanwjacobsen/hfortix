@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -354,7 +354,7 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[AutomationTriggerObject]: ...
+    ) -> FortiObjectList[AutomationTriggerObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -374,7 +374,6 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationTriggerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -392,7 +391,6 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationTriggerObject: ...
     
     # With no mkey -> returns list of objects
@@ -409,25 +407,7 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AutomationTriggerObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[AutomationTriggerObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -443,7 +423,6 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationTriggerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -461,7 +440,6 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationTriggerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -478,8 +456,7 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[AutomationTriggerObject]: ...
+    ) -> FortiObjectList[AutomationTriggerObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -495,7 +472,6 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -510,7 +486,6 @@ class AutomationTrigger:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> AutomationTriggerObject | list[AutomationTriggerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -546,7 +521,6 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationTriggerObject: ...
     
     @overload
@@ -575,38 +549,7 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: AutomationTriggerPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        trigger_type: Literal["event-based", "scheduled"] | None = ...,
-        event_type: Literal["ioc", "event-log", "reboot", "low-memory", "high-cpu", "license-near-expiry", "local-cert-near-expiry", "ha-failover", "config-change", "security-rating-summary", "virus-ips-db-updated", "faz-event", "incoming-webhook", "fabric-event", "ips-logs", "anomaly-logs", "virus-logs", "ssh-logs", "webfilter-violation", "traffic-violation", "stitch"] | None = ...,
-        license_type: Literal["forticare-support", "fortiguard-webfilter", "fortiguard-antispam", "fortiguard-antivirus", "fortiguard-ips", "fortiguard-management", "forticloud", "any"] | None = ...,
-        report_type: Literal["posture", "coverage", "optimization", "any"] | None = ...,
-        stitch_name: str | None = ...,
-        logid: str | list[str] | list[dict[str, Any]] | None = ...,
-        trigger_frequency: Literal["hourly", "daily", "weekly", "monthly", "once"] | None = ...,
-        trigger_weekday: Literal["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] | None = ...,
-        trigger_day: int | None = ...,
-        trigger_hour: int | None = ...,
-        trigger_minute: int | None = ...,
-        trigger_datetime: str | None = ...,
-        fields: str | list[str] | list[dict[str, Any]] | None = ...,
-        faz_event_name: str | None = ...,
-        faz_event_severity: str | None = ...,
-        faz_event_tags: str | None = ...,
-        serial: str | None = ...,
-        fabric_event_name: str | None = ...,
-        fabric_event_severity: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -662,7 +605,6 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -692,7 +634,6 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationTriggerObject: ...
     
     @overload
@@ -721,38 +662,7 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: AutomationTriggerPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        trigger_type: Literal["event-based", "scheduled"] | None = ...,
-        event_type: Literal["ioc", "event-log", "reboot", "low-memory", "high-cpu", "license-near-expiry", "local-cert-near-expiry", "ha-failover", "config-change", "security-rating-summary", "virus-ips-db-updated", "faz-event", "incoming-webhook", "fabric-event", "ips-logs", "anomaly-logs", "virus-logs", "ssh-logs", "webfilter-violation", "traffic-violation", "stitch"] | None = ...,
-        license_type: Literal["forticare-support", "fortiguard-webfilter", "fortiguard-antispam", "fortiguard-antivirus", "fortiguard-ips", "fortiguard-management", "forticloud", "any"] | None = ...,
-        report_type: Literal["posture", "coverage", "optimization", "any"] | None = ...,
-        stitch_name: str | None = ...,
-        logid: str | list[str] | list[dict[str, Any]] | None = ...,
-        trigger_frequency: Literal["hourly", "daily", "weekly", "monthly", "once"] | None = ...,
-        trigger_weekday: Literal["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] | None = ...,
-        trigger_day: int | None = ...,
-        trigger_hour: int | None = ...,
-        trigger_minute: int | None = ...,
-        trigger_datetime: str | None = ...,
-        fields: str | list[str] | list[dict[str, Any]] | None = ...,
-        faz_event_name: str | None = ...,
-        faz_event_severity: str | None = ...,
-        faz_event_tags: str | None = ...,
-        serial: str | None = ...,
-        fabric_event_name: str | None = ...,
-        fabric_event_severity: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -808,7 +718,6 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -817,7 +726,6 @@ class AutomationTrigger:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> AutomationTriggerObject: ...
     
     @overload
@@ -825,17 +733,7 @@ class AutomationTrigger:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -849,7 +747,6 @@ class AutomationTrigger:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -883,7 +780,6 @@ class AutomationTrigger:
         fabric_event_name: str | None = ...,
         fabric_event_severity: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

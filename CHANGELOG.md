@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.75] - 2026-01-15
+
+### Changed - **Improved Type Safety: Generic `FortiObjectList` for proper list iteration typing**
+
+**What Changed:**
+- ✅ **Made `FortiObjectList` generic**: Now `FortiObjectList[T]` where T is the specific object type
+- ✅ **List iteration now properly typed**: Iterating over policy list returns `PolicyObject`, not generic `FortiObject`
+- ✅ **Nested table field access now type-checked**: `policy.srcaddr` returns properly typed objects
+- ✅ **Removed `raw_json` parameter from public API**: Use `.raw` property instead
+
+**Why:**
+Previously, `FortiObjectList` was typed as `list[FortiObject]`, so when iterating over a list of policies, Pylance couldn't detect invalid attribute access like `policy.nonexistent`.
+
+**Before (no type error on list iteration):**
+```python
+policies = fg.api.cmdb.firewall.policy.get()
+for policy in policies:
+    policy.nonexistent  # No error! FortiObject accepts any attribute
+```
+
+**After (proper type error):**
+```python
+policies = fg.api.cmdb.firewall.policy.get()  # FortiObjectList[PolicyObject]
+for policy in policies:
+    policy.name         # ✅ Works - PolicyObject has 'name'
+    policy.nonexistent  # ❌ Error: Cannot access attribute "nonexistent" for class "PolicyObject"
+
+for addr in policy.srcaddr:  # list[PolicySrcaddrObject]
+    addr.name           # ✅ Works
+    addr.nonexistent    # ❌ Error: Attribute "nonexistent" is unknown
+```
+
+**Also in this release:**
+- Removed `raw_json` parameter from `FortiOS.request()` method
+- Updated all docstrings to reference `.raw` property instead of `raw_json` parameter
+- Cleaned up internal `raw_json` references (internal calls still use `raw_json=True`)
+
+---
+
 ## [0.5.74] - 2026-01-15
 
 ### Changed - **Improved Type Safety: Removed `**kwargs: Any` from type stubs**

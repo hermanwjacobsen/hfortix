@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -284,7 +284,7 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[DnsDatabaseObject]: ...
+    ) -> FortiObjectList[DnsDatabaseObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -304,7 +304,6 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsDatabaseObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -322,7 +321,6 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsDatabaseObject: ...
     
     # With no mkey -> returns list of objects
@@ -339,25 +337,7 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DnsDatabaseObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[DnsDatabaseObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -373,7 +353,6 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsDatabaseObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -391,7 +370,6 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsDatabaseObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -408,8 +386,7 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DnsDatabaseObject]: ...
+    ) -> FortiObjectList[DnsDatabaseObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -425,7 +402,6 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -440,7 +416,6 @@ class DnsDatabase:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> DnsDatabaseObject | list[DnsDatabaseObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -476,7 +451,6 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsDatabaseObject: ...
     
     @overload
@@ -505,38 +479,7 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: DnsDatabasePayload | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        domain: str | None = ...,
-        allow_transfer: str | list[str] | None = ...,
-        type: Literal["primary", "secondary"] | None = ...,
-        view: Literal["shadow", "public", "shadow-ztna", "proxy"] | None = ...,
-        ip_primary: str | None = ...,
-        primary_name: str | None = ...,
-        contact: str | None = ...,
-        ttl: int | None = ...,
-        authoritative: Literal["enable", "disable"] | None = ...,
-        forwarder: str | list[str] | None = ...,
-        forwarder6: str | None = ...,
-        source_ip: str | None = ...,
-        source_ip6: str | None = ...,
-        source_ip_interface: str | None = ...,
-        rr_max: int | None = ...,
-        dns_entry: str | list[str] | list[dict[str, Any]] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -592,7 +535,6 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -622,7 +564,6 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsDatabaseObject: ...
     
     @overload
@@ -651,38 +592,7 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: DnsDatabasePayload | None = ...,
-        name: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        domain: str | None = ...,
-        allow_transfer: str | list[str] | None = ...,
-        type: Literal["primary", "secondary"] | None = ...,
-        view: Literal["shadow", "public", "shadow-ztna", "proxy"] | None = ...,
-        ip_primary: str | None = ...,
-        primary_name: str | None = ...,
-        contact: str | None = ...,
-        ttl: int | None = ...,
-        authoritative: Literal["enable", "disable"] | None = ...,
-        forwarder: str | list[str] | None = ...,
-        forwarder6: str | None = ...,
-        source_ip: str | None = ...,
-        source_ip6: str | None = ...,
-        source_ip_interface: str | None = ...,
-        rr_max: int | None = ...,
-        dns_entry: str | list[str] | list[dict[str, Any]] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -738,7 +648,6 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -747,7 +656,6 @@ class DnsDatabase:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsDatabaseObject: ...
     
     @overload
@@ -755,17 +663,7 @@ class DnsDatabase:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -779,7 +677,6 @@ class DnsDatabase:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -813,7 +710,6 @@ class DnsDatabase:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

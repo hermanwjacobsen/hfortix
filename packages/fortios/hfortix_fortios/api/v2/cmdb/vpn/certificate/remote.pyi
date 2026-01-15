@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -145,7 +145,7 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[RemoteObject]: ...
+    ) -> FortiObjectList[RemoteObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -165,7 +165,6 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RemoteObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -183,7 +182,6 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RemoteObject: ...
     
     # With no mkey -> returns list of objects
@@ -200,25 +198,7 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[RemoteObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[RemoteObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -234,7 +214,6 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RemoteObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -252,7 +231,6 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RemoteObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -269,8 +247,7 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[RemoteObject]: ...
+    ) -> FortiObjectList[RemoteObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -286,7 +263,6 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -301,7 +277,6 @@ class Remote:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> RemoteObject | list[RemoteObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -320,7 +295,6 @@ class Remote:
         range: Literal["global", "vdom"] | None = ...,
         source: Literal["factory", "user", "bundle"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RemoteObject: ...
     
     @overload
@@ -332,21 +306,7 @@ class Remote:
         range: Literal["global", "vdom"] | None = ...,
         source: Literal["factory", "user", "bundle"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: RemotePayload | None = ...,
-        name: str | None = ...,
-        remote: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -368,7 +328,6 @@ class Remote:
         range: Literal["global", "vdom"] | None = ...,
         source: Literal["factory", "user", "bundle"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -381,7 +340,6 @@ class Remote:
         range: Literal["global", "vdom"] | None = ...,
         source: Literal["factory", "user", "bundle"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> RemoteObject: ...
     
     @overload
@@ -393,21 +351,7 @@ class Remote:
         range: Literal["global", "vdom"] | None = ...,
         source: Literal["factory", "user", "bundle"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: RemotePayload | None = ...,
-        name: str | None = ...,
-        remote: str | None = ...,
-        range: Literal["global", "vdom"] | None = ...,
-        source: Literal["factory", "user", "bundle"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -429,7 +373,6 @@ class Remote:
         range: Literal["global", "vdom"] | None = ...,
         source: Literal["factory", "user", "bundle"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -446,7 +389,6 @@ class Remote:
         range: Literal["global", "vdom"] | None = ...,
         source: Literal["factory", "user", "bundle"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

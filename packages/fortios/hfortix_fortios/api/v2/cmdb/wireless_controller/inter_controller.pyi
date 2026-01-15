@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -227,7 +227,6 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterControllerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -245,7 +244,6 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterControllerObject: ...
     
     # With no mkey -> returns list of objects
@@ -262,25 +260,7 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterControllerObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -296,7 +276,6 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterControllerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -314,7 +293,6 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterControllerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -331,7 +309,6 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterControllerObject: ...
     
     # Fallback overload for all other cases
@@ -348,7 +325,6 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -363,7 +339,6 @@ class InterController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> InterControllerObject | dict[str, Any]: ...
     
     def get_schema(
@@ -385,7 +360,6 @@ class InterController:
         fast_failover_wait: int | None = ...,
         inter_controller_peer: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> InterControllerObject: ...
     
     @overload
@@ -400,24 +374,7 @@ class InterController:
         fast_failover_wait: int | None = ...,
         inter_controller_peer: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: InterControllerPayload | None = ...,
-        inter_controller_mode: Literal["disable", "l2-roaming", "1+1"] | None = ...,
-        l3_roaming: Literal["enable", "disable"] | None = ...,
-        inter_controller_key: str | None = ...,
-        inter_controller_pri: Literal["primary", "secondary"] | None = ...,
-        fast_failover_max: int | None = ...,
-        fast_failover_wait: int | None = ...,
-        inter_controller_peer: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -445,7 +402,6 @@ class InterController:
         fast_failover_wait: int | None = ...,
         inter_controller_peer: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -465,7 +421,6 @@ class InterController:
         fast_failover_wait: int | None = ...,
         inter_controller_peer: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

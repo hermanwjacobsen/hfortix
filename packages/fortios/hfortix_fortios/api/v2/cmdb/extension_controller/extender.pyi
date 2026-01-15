@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -210,7 +210,7 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ExtenderObject]: ...
+    ) -> FortiObjectList[ExtenderObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -230,7 +230,6 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -248,7 +247,6 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderObject: ...
     
     # With no mkey -> returns list of objects
@@ -265,25 +263,7 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExtenderObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ExtenderObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -299,7 +279,6 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -317,7 +296,6 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -334,8 +312,7 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExtenderObject]: ...
+    ) -> FortiObjectList[ExtenderObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -351,7 +328,6 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -366,7 +342,6 @@ class Extender:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ExtenderObject | list[ExtenderObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -399,7 +374,6 @@ class Extender:
         wan_extension: str | None = ...,
         firmware_provision_latest: Literal["disable", "once"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderObject: ...
     
     @overload
@@ -425,35 +399,7 @@ class Extender:
         wan_extension: str | None = ...,
         firmware_provision_latest: Literal["disable", "once"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ExtenderPayload | None = ...,
-        name: str | None = ...,
-        id: str | None = ...,
-        authorized: Literal["discovered", "disable", "enable"] | None = ...,
-        ext_name: str | None = ...,
-        description: str | None = ...,
-        device_id: int | None = ...,
-        extension_type: Literal["wan-extension", "lan-extension"] | None = ...,
-        profile: str | None = ...,
-        override_allowaccess: Literal["enable", "disable"] | None = ...,
-        allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
-        override_login_password_change: Literal["enable", "disable"] | None = ...,
-        login_password_change: Literal["yes", "default", "no"] | None = ...,
-        login_password: str | None = ...,
-        override_enforce_bandwidth: Literal["enable", "disable"] | None = ...,
-        enforce_bandwidth: Literal["enable", "disable"] | None = ...,
-        bandwidth_limit: int | None = ...,
-        wan_extension: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -503,7 +449,6 @@ class Extender:
         wan_extension: str | None = ...,
         firmware_provision_latest: Literal["disable", "once"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -530,7 +475,6 @@ class Extender:
         wan_extension: str | None = ...,
         firmware_provision_latest: Literal["disable", "once"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderObject: ...
     
     @overload
@@ -556,35 +500,7 @@ class Extender:
         wan_extension: str | None = ...,
         firmware_provision_latest: Literal["disable", "once"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ExtenderPayload | None = ...,
-        name: str | None = ...,
-        id: str | None = ...,
-        authorized: Literal["discovered", "disable", "enable"] | None = ...,
-        ext_name: str | None = ...,
-        description: str | None = ...,
-        device_id: int | None = ...,
-        extension_type: Literal["wan-extension", "lan-extension"] | None = ...,
-        profile: str | None = ...,
-        override_allowaccess: Literal["enable", "disable"] | None = ...,
-        allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
-        override_login_password_change: Literal["enable", "disable"] | None = ...,
-        login_password_change: Literal["yes", "default", "no"] | None = ...,
-        login_password: str | None = ...,
-        override_enforce_bandwidth: Literal["enable", "disable"] | None = ...,
-        enforce_bandwidth: Literal["enable", "disable"] | None = ...,
-        bandwidth_limit: int | None = ...,
-        wan_extension: str | None = ...,
-        firmware_provision_latest: Literal["disable", "once"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -634,7 +550,6 @@ class Extender:
         wan_extension: str | None = ...,
         firmware_provision_latest: Literal["disable", "once"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -643,7 +558,6 @@ class Extender:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderObject: ...
     
     @overload
@@ -651,17 +565,7 @@ class Extender:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -675,7 +579,6 @@ class Extender:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -706,7 +609,6 @@ class Extender:
         wan_extension: str | None = ...,
         firmware_provision_latest: Literal["disable", "once"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

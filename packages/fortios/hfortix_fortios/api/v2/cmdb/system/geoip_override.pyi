@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -245,7 +245,7 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[GeoipOverrideObject]: ...
+    ) -> FortiObjectList[GeoipOverrideObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -265,7 +265,6 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GeoipOverrideObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -283,7 +282,6 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GeoipOverrideObject: ...
     
     # With no mkey -> returns list of objects
@@ -300,25 +298,7 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[GeoipOverrideObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[GeoipOverrideObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -334,7 +314,6 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GeoipOverrideObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -352,7 +331,6 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GeoipOverrideObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -369,8 +347,7 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[GeoipOverrideObject]: ...
+    ) -> FortiObjectList[GeoipOverrideObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -386,7 +363,6 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -401,7 +377,6 @@ class GeoipOverride:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> GeoipOverrideObject | list[GeoipOverrideObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -421,7 +396,6 @@ class GeoipOverride:
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GeoipOverrideObject: ...
     
     @overload
@@ -434,22 +408,7 @@ class GeoipOverride:
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: GeoipOverridePayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        country_id: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -473,7 +432,6 @@ class GeoipOverride:
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -487,7 +445,6 @@ class GeoipOverride:
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GeoipOverrideObject: ...
     
     @overload
@@ -500,22 +457,7 @@ class GeoipOverride:
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: GeoipOverridePayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        country_id: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -539,7 +481,6 @@ class GeoipOverride:
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -548,7 +489,6 @@ class GeoipOverride:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GeoipOverrideObject: ...
     
     @overload
@@ -556,17 +496,7 @@ class GeoipOverride:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -580,7 +510,6 @@ class GeoipOverride:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -598,7 +527,6 @@ class GeoipOverride:
         ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
         ip6_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

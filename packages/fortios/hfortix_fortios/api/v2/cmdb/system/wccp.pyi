@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -221,7 +221,7 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[WccpObject]: ...
+    ) -> FortiObjectList[WccpObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -241,7 +241,6 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WccpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -259,7 +258,6 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WccpObject: ...
     
     # With no mkey -> returns list of objects
@@ -276,25 +274,7 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[WccpObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        service_id: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[WccpObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -310,7 +290,6 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WccpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -328,7 +307,6 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WccpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -345,8 +323,7 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[WccpObject]: ...
+    ) -> FortiObjectList[WccpObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -362,7 +339,6 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -377,7 +353,6 @@ class Wccp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> WccpObject | list[WccpObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -415,7 +390,6 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WccpObject: ...
     
     @overload
@@ -446,40 +420,7 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: WccpPayload | None = ...,
-        service_id: str | None = ...,
-        router_id: str | None = ...,
-        cache_id: str | None = ...,
-        group_address: str | None = ...,
-        server_list: str | list[str] | None = ...,
-        router_list: str | list[str] | None = ...,
-        ports_defined: Literal["source", "destination"] | None = ...,
-        server_type: Literal["forward", "proxy"] | None = ...,
-        ports: str | list[str] | None = ...,
-        authentication: Literal["enable", "disable"] | None = ...,
-        password: str | None = ...,
-        forward_method: Literal["GRE", "L2", "any"] | None = ...,
-        cache_engine_method: Literal["GRE", "L2"] | None = ...,
-        service_type: Literal["auto", "standard", "dynamic"] | None = ...,
-        primary_hash: Literal["src-ip", "dst-ip", "src-port", "dst-port"] | list[str] | None = ...,
-        priority: int | None = ...,
-        protocol: int | None = ...,
-        assignment_weight: int | None = ...,
-        assignment_bucket_format: Literal["wccp-v2", "cisco-implementation"] | None = ...,
-        return_method: Literal["GRE", "L2", "any"] | None = ...,
-        assignment_method: Literal["HASH", "MASK", "any"] | None = ...,
-        assignment_srcaddr_mask: str | None = ...,
-        assignment_dstaddr_mask: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -539,7 +480,6 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -571,7 +511,6 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WccpObject: ...
     
     @overload
@@ -602,40 +541,7 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: WccpPayload | None = ...,
-        service_id: str | None = ...,
-        router_id: str | None = ...,
-        cache_id: str | None = ...,
-        group_address: str | None = ...,
-        server_list: str | list[str] | None = ...,
-        router_list: str | list[str] | None = ...,
-        ports_defined: Literal["source", "destination"] | None = ...,
-        server_type: Literal["forward", "proxy"] | None = ...,
-        ports: str | list[str] | None = ...,
-        authentication: Literal["enable", "disable"] | None = ...,
-        password: str | None = ...,
-        forward_method: Literal["GRE", "L2", "any"] | None = ...,
-        cache_engine_method: Literal["GRE", "L2"] | None = ...,
-        service_type: Literal["auto", "standard", "dynamic"] | None = ...,
-        primary_hash: Literal["src-ip", "dst-ip", "src-port", "dst-port"] | list[str] | None = ...,
-        priority: int | None = ...,
-        protocol: int | None = ...,
-        assignment_weight: int | None = ...,
-        assignment_bucket_format: Literal["wccp-v2", "cisco-implementation"] | None = ...,
-        return_method: Literal["GRE", "L2", "any"] | None = ...,
-        assignment_method: Literal["HASH", "MASK", "any"] | None = ...,
-        assignment_srcaddr_mask: str | None = ...,
-        assignment_dstaddr_mask: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -695,7 +601,6 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -704,7 +609,6 @@ class Wccp:
         self,
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WccpObject: ...
     
     @overload
@@ -712,17 +616,7 @@ class Wccp:
         self,
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        service_id: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -736,7 +630,6 @@ class Wccp:
         self,
         service_id: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -772,7 +665,6 @@ class Wccp:
         assignment_srcaddr_mask: str | None = ...,
         assignment_dstaddr_mask: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -326,7 +326,7 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[NacPolicyObject]: ...
+    ) -> FortiObjectList[NacPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -346,7 +346,6 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NacPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -364,7 +363,6 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NacPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -381,25 +379,7 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[NacPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[NacPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -415,7 +395,6 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NacPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -433,7 +412,6 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NacPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -450,8 +428,7 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[NacPolicyObject]: ...
+    ) -> FortiObjectList[NacPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -467,7 +444,6 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -482,7 +458,6 @@ class NacPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> NacPolicyObject | list[NacPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -523,7 +498,6 @@ class NacPolicy:
         firewall_address: str | None = ...,
         ssid_policy: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NacPolicyObject: ...
     
     @overload
@@ -557,43 +531,7 @@ class NacPolicy:
         firewall_address: str | None = ...,
         ssid_policy: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: NacPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        category: Literal["device", "firewall-user", "ems-tag", "fortivoice-tag", "vulnerability"] | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        match_type: Literal["dynamic", "override"] | None = ...,
-        match_period: int | None = ...,
-        match_remove: Literal["default", "link-down"] | None = ...,
-        mac: str | None = ...,
-        hw_vendor: str | None = ...,
-        type: str | None = ...,
-        family: str | None = ...,
-        os: str | None = ...,
-        hw_version: str | None = ...,
-        sw_version: str | None = ...,
-        host: str | None = ...,
-        user: str | None = ...,
-        src: str | None = ...,
-        user_group: str | None = ...,
-        ems_tag: str | None = ...,
-        fortivoice_tag: str | None = ...,
-        severity: str | list[str] | list[dict[str, Any]] | None = ...,
-        switch_fortilink: str | None = ...,
-        switch_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        switch_mac_policy: str | None = ...,
-        firewall_address: str | None = ...,
-        ssid_policy: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -659,7 +597,6 @@ class NacPolicy:
         firewall_address: str | None = ...,
         ssid_policy: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -694,7 +631,6 @@ class NacPolicy:
         firewall_address: str | None = ...,
         ssid_policy: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NacPolicyObject: ...
     
     @overload
@@ -728,43 +664,7 @@ class NacPolicy:
         firewall_address: str | None = ...,
         ssid_policy: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: NacPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        category: Literal["device", "firewall-user", "ems-tag", "fortivoice-tag", "vulnerability"] | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        match_type: Literal["dynamic", "override"] | None = ...,
-        match_period: int | None = ...,
-        match_remove: Literal["default", "link-down"] | None = ...,
-        mac: str | None = ...,
-        hw_vendor: str | None = ...,
-        type: str | None = ...,
-        family: str | None = ...,
-        os: str | None = ...,
-        hw_version: str | None = ...,
-        sw_version: str | None = ...,
-        host: str | None = ...,
-        user: str | None = ...,
-        src: str | None = ...,
-        user_group: str | None = ...,
-        ems_tag: str | None = ...,
-        fortivoice_tag: str | None = ...,
-        severity: str | list[str] | list[dict[str, Any]] | None = ...,
-        switch_fortilink: str | None = ...,
-        switch_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        switch_mac_policy: str | None = ...,
-        firewall_address: str | None = ...,
-        ssid_policy: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -830,7 +730,6 @@ class NacPolicy:
         firewall_address: str | None = ...,
         ssid_policy: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -839,7 +738,6 @@ class NacPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> NacPolicyObject: ...
     
     @overload
@@ -847,17 +745,7 @@ class NacPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -871,7 +759,6 @@ class NacPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -910,7 +797,6 @@ class NacPolicy:
         firewall_address: str | None = ...,
         ssid_policy: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

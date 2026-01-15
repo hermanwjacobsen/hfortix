@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -137,7 +137,7 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[YoutubeKeyObject]: ...
+    ) -> FortiObjectList[YoutubeKeyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -157,7 +157,6 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> YoutubeKeyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -175,7 +174,6 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> YoutubeKeyObject: ...
     
     # With no mkey -> returns list of objects
@@ -192,25 +190,7 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[YoutubeKeyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[YoutubeKeyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -226,7 +206,6 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> YoutubeKeyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -244,7 +223,6 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> YoutubeKeyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -261,8 +239,7 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[YoutubeKeyObject]: ...
+    ) -> FortiObjectList[YoutubeKeyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -278,7 +255,6 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -293,7 +269,6 @@ class YoutubeKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> YoutubeKeyObject | list[YoutubeKeyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -310,7 +285,6 @@ class YoutubeKey:
         id: int | None = ...,
         key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> YoutubeKeyObject: ...
     
     @overload
@@ -320,19 +294,7 @@ class YoutubeKey:
         id: int | None = ...,
         key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: YoutubeKeyPayload | None = ...,
-        id: int | None = ...,
-        key: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -350,7 +312,6 @@ class YoutubeKey:
         id: int | None = ...,
         key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -361,7 +322,6 @@ class YoutubeKey:
         id: int | None = ...,
         key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> YoutubeKeyObject: ...
     
     @overload
@@ -371,19 +331,7 @@ class YoutubeKey:
         id: int | None = ...,
         key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: YoutubeKeyPayload | None = ...,
-        id: int | None = ...,
-        key: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -401,7 +349,6 @@ class YoutubeKey:
         id: int | None = ...,
         key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -410,7 +357,6 @@ class YoutubeKey:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> YoutubeKeyObject: ...
     
     @overload
@@ -418,17 +364,7 @@ class YoutubeKey:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -442,7 +378,6 @@ class YoutubeKey:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -457,7 +392,6 @@ class YoutubeKey:
         id: int | None = ...,
         key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

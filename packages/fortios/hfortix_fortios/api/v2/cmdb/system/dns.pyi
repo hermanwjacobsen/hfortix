@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -350,7 +350,6 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -368,7 +367,6 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsObject: ...
     
     # With no mkey -> returns list of objects
@@ -385,25 +383,7 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -419,7 +399,6 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -437,7 +416,6 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -454,7 +432,6 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsObject: ...
     
     # Fallback overload for all other cases
@@ -471,7 +448,6 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -486,7 +462,6 @@ class Dns:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> DnsObject | dict[str, Any]: ...
     
     def get_schema(
@@ -529,7 +504,6 @@ class Dns:
         hostname_ttl: int | None = ...,
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DnsObject: ...
     
     @overload
@@ -565,45 +539,7 @@ class Dns:
         hostname_ttl: int | None = ...,
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: DnsPayload | None = ...,
-        primary: str | None = ...,
-        secondary: str | None = ...,
-        protocol: Literal["cleartext", "dot", "doh"] | list[str] | None = ...,
-        ssl_certificate: str | None = ...,
-        server_hostname: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain: str | list[str] | list[dict[str, Any]] | None = ...,
-        ip6_primary: str | None = ...,
-        ip6_secondary: str | None = ...,
-        timeout: int | None = ...,
-        retry: int | None = ...,
-        dns_cache_limit: int | None = ...,
-        dns_cache_ttl: int | None = ...,
-        cache_notfound_responses: Literal["disable", "enable"] | None = ...,
-        source_ip: str | None = ...,
-        source_ip_interface: str | None = ...,
-        root_servers: str | list[str] | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_select_method: Literal["least-rtt", "failover"] | None = ...,
-        alt_primary: str | None = ...,
-        alt_secondary: str | None = ...,
-        log: Literal["disable", "error", "all"] | None = ...,
-        fqdn_cache_ttl: int | None = ...,
-        fqdn_max_refresh: int | None = ...,
-        fqdn_min_refresh: int | None = ...,
-        hostname_ttl: int | None = ...,
-        hostname_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -673,7 +609,6 @@ class Dns:
         hostname_ttl: int | None = ...,
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -714,7 +649,6 @@ class Dns:
         hostname_ttl: int | None = ...,
         hostname_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

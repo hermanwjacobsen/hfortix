@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -240,7 +240,7 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[QosMapObject]: ...
+    ) -> FortiObjectList[QosMapObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -260,7 +260,6 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosMapObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -278,7 +277,6 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosMapObject: ...
     
     # With no mkey -> returns list of objects
@@ -295,25 +293,7 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[QosMapObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[QosMapObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -329,7 +309,6 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosMapObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -347,7 +326,6 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosMapObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -364,8 +342,7 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[QosMapObject]: ...
+    ) -> FortiObjectList[QosMapObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -381,7 +358,6 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -396,7 +372,6 @@ class QosMap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> QosMapObject | list[QosMapObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -414,7 +389,6 @@ class QosMap:
         dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
         dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosMapObject: ...
     
     @overload
@@ -425,20 +399,7 @@ class QosMap:
         dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
         dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: QosMapPayload | None = ...,
-        name: str | None = ...,
-        dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -458,7 +419,6 @@ class QosMap:
         dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
         dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -470,7 +430,6 @@ class QosMap:
         dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
         dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosMapObject: ...
     
     @overload
@@ -481,20 +440,7 @@ class QosMap:
         dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
         dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: QosMapPayload | None = ...,
-        name: str | None = ...,
-        dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -514,7 +460,6 @@ class QosMap:
         dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
         dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -523,7 +468,6 @@ class QosMap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosMapObject: ...
     
     @overload
@@ -531,17 +475,7 @@ class QosMap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -555,7 +489,6 @@ class QosMap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -571,7 +504,6 @@ class QosMap:
         dscp_except: str | list[str] | list[dict[str, Any]] | None = ...,
         dscp_range: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

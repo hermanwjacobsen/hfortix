@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -165,7 +165,7 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[Ippool6Object]: ...
+    ) -> FortiObjectList[Ippool6Object]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -185,7 +185,6 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Ippool6Object: ...
     
     # With mkey as keyword arg -> returns single object
@@ -203,7 +202,6 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Ippool6Object: ...
     
     # With no mkey -> returns list of objects
@@ -220,25 +218,7 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[Ippool6Object]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[Ippool6Object]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -254,7 +234,6 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Ippool6Object: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -272,7 +251,6 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Ippool6Object: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -289,8 +267,7 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[Ippool6Object]: ...
+    ) -> FortiObjectList[Ippool6Object]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -306,7 +283,6 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -321,7 +297,6 @@ class Ippool6:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Ippool6Object | list[Ippool6Object] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -345,7 +320,6 @@ class Ippool6:
         nat46: Literal["disable", "enable"] | None = ...,
         add_nat46_route: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Ippool6Object: ...
     
     @overload
@@ -362,26 +336,7 @@ class Ippool6:
         nat46: Literal["disable", "enable"] | None = ...,
         add_nat46_route: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: Ippool6Payload | None = ...,
-        name: str | None = ...,
-        type: Literal["overload", "nptv6"] | None = ...,
-        startip: str | None = ...,
-        endip: str | None = ...,
-        internal_prefix: str | None = ...,
-        external_prefix: str | None = ...,
-        comments: str | None = ...,
-        nat46: Literal["disable", "enable"] | None = ...,
-        add_nat46_route: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -413,7 +368,6 @@ class Ippool6:
         nat46: Literal["disable", "enable"] | None = ...,
         add_nat46_route: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -431,7 +385,6 @@ class Ippool6:
         nat46: Literal["disable", "enable"] | None = ...,
         add_nat46_route: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Ippool6Object: ...
     
     @overload
@@ -448,26 +401,7 @@ class Ippool6:
         nat46: Literal["disable", "enable"] | None = ...,
         add_nat46_route: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: Ippool6Payload | None = ...,
-        name: str | None = ...,
-        type: Literal["overload", "nptv6"] | None = ...,
-        startip: str | None = ...,
-        endip: str | None = ...,
-        internal_prefix: str | None = ...,
-        external_prefix: str | None = ...,
-        comments: str | None = ...,
-        nat46: Literal["disable", "enable"] | None = ...,
-        add_nat46_route: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -499,7 +433,6 @@ class Ippool6:
         nat46: Literal["disable", "enable"] | None = ...,
         add_nat46_route: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -508,7 +441,6 @@ class Ippool6:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> Ippool6Object: ...
     
     @overload
@@ -516,17 +448,7 @@ class Ippool6:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -540,7 +462,6 @@ class Ippool6:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -562,7 +483,6 @@ class Ippool6:
         nat46: Literal["disable", "enable"] | None = ...,
         add_nat46_route: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

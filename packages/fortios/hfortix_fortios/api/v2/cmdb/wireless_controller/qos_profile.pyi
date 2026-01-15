@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -389,7 +389,7 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[QosProfileObject]: ...
+    ) -> FortiObjectList[QosProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -409,7 +409,6 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -427,7 +426,6 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -444,25 +442,7 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[QosProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[QosProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -478,7 +458,6 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -496,7 +475,6 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -513,8 +491,7 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[QosProfileObject]: ...
+    ) -> FortiObjectList[QosProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -530,7 +507,6 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -545,7 +521,6 @@ class QosProfile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> QosProfileObject | list[QosProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -583,7 +558,6 @@ class QosProfile:
         wmm_be_dscp: int | None = ...,
         wmm_bk_dscp: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosProfileObject: ...
     
     @overload
@@ -614,40 +588,7 @@ class QosProfile:
         wmm_be_dscp: int | None = ...,
         wmm_bk_dscp: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: QosProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        uplink: int | None = ...,
-        downlink: int | None = ...,
-        uplink_sta: int | None = ...,
-        downlink_sta: int | None = ...,
-        burst: Literal["enable", "disable"] | None = ...,
-        wmm: Literal["enable", "disable"] | None = ...,
-        wmm_uapsd: Literal["enable", "disable"] | None = ...,
-        call_admission_control: Literal["enable", "disable"] | None = ...,
-        call_capacity: int | None = ...,
-        bandwidth_admission_control: Literal["enable", "disable"] | None = ...,
-        bandwidth_capacity: int | None = ...,
-        dscp_wmm_mapping: Literal["enable", "disable"] | None = ...,
-        dscp_wmm_vo: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_wmm_vi: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_wmm_be: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_wmm_bk: str | list[str] | list[dict[str, Any]] | None = ...,
-        wmm_dscp_marking: Literal["enable", "disable"] | None = ...,
-        wmm_vo_dscp: int | None = ...,
-        wmm_vi_dscp: int | None = ...,
-        wmm_be_dscp: int | None = ...,
-        wmm_bk_dscp: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -707,7 +648,6 @@ class QosProfile:
         wmm_be_dscp: int | None = ...,
         wmm_bk_dscp: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -739,7 +679,6 @@ class QosProfile:
         wmm_be_dscp: int | None = ...,
         wmm_bk_dscp: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosProfileObject: ...
     
     @overload
@@ -770,40 +709,7 @@ class QosProfile:
         wmm_be_dscp: int | None = ...,
         wmm_bk_dscp: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: QosProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        uplink: int | None = ...,
-        downlink: int | None = ...,
-        uplink_sta: int | None = ...,
-        downlink_sta: int | None = ...,
-        burst: Literal["enable", "disable"] | None = ...,
-        wmm: Literal["enable", "disable"] | None = ...,
-        wmm_uapsd: Literal["enable", "disable"] | None = ...,
-        call_admission_control: Literal["enable", "disable"] | None = ...,
-        call_capacity: int | None = ...,
-        bandwidth_admission_control: Literal["enable", "disable"] | None = ...,
-        bandwidth_capacity: int | None = ...,
-        dscp_wmm_mapping: Literal["enable", "disable"] | None = ...,
-        dscp_wmm_vo: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_wmm_vi: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_wmm_be: str | list[str] | list[dict[str, Any]] | None = ...,
-        dscp_wmm_bk: str | list[str] | list[dict[str, Any]] | None = ...,
-        wmm_dscp_marking: Literal["enable", "disable"] | None = ...,
-        wmm_vo_dscp: int | None = ...,
-        wmm_vi_dscp: int | None = ...,
-        wmm_be_dscp: int | None = ...,
-        wmm_bk_dscp: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -863,7 +769,6 @@ class QosProfile:
         wmm_be_dscp: int | None = ...,
         wmm_bk_dscp: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -872,7 +777,6 @@ class QosProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> QosProfileObject: ...
     
     @overload
@@ -880,17 +784,7 @@ class QosProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -904,7 +798,6 @@ class QosProfile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -940,7 +833,6 @@ class QosProfile:
         wmm_be_dscp: int | None = ...,
         wmm_bk_dscp: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

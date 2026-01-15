@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -227,7 +227,7 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ExchangeObject]: ...
+    ) -> FortiObjectList[ExchangeObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -247,7 +247,6 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExchangeObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -265,7 +264,6 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExchangeObject: ...
     
     # With no mkey -> returns list of objects
@@ -282,25 +280,7 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExchangeObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ExchangeObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -316,7 +296,6 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExchangeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -334,7 +313,6 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExchangeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -351,8 +329,7 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExchangeObject]: ...
+    ) -> FortiObjectList[ExchangeObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -368,7 +345,6 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -383,7 +359,6 @@ class Exchange:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ExchangeObject | list[ExchangeObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -412,7 +387,6 @@ class Exchange:
         auto_discover_kdc: Literal["enable", "disable"] | None = ...,
         kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExchangeObject: ...
     
     @overload
@@ -434,31 +408,7 @@ class Exchange:
         auto_discover_kdc: Literal["enable", "disable"] | None = ...,
         kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ExchangePayload | None = ...,
-        name: str | None = ...,
-        server_name: str | None = ...,
-        domain_name: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        ip: str | None = ...,
-        connect_protocol: Literal["rpc-over-tcp", "rpc-over-http", "rpc-over-https"] | None = ...,
-        validate_server_certificate: Literal["disable", "enable"] | None = ...,
-        auth_type: Literal["spnego", "ntlm", "kerberos"] | None = ...,
-        auth_level: Literal["connect", "call", "packet", "integrity", "privacy"] | None = ...,
-        http_auth_type: Literal["basic", "ntlm"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        auto_discover_kdc: Literal["enable", "disable"] | None = ...,
-        kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -500,7 +450,6 @@ class Exchange:
         auto_discover_kdc: Literal["enable", "disable"] | None = ...,
         kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -523,7 +472,6 @@ class Exchange:
         auto_discover_kdc: Literal["enable", "disable"] | None = ...,
         kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExchangeObject: ...
     
     @overload
@@ -545,31 +493,7 @@ class Exchange:
         auto_discover_kdc: Literal["enable", "disable"] | None = ...,
         kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ExchangePayload | None = ...,
-        name: str | None = ...,
-        server_name: str | None = ...,
-        domain_name: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        ip: str | None = ...,
-        connect_protocol: Literal["rpc-over-tcp", "rpc-over-http", "rpc-over-https"] | None = ...,
-        validate_server_certificate: Literal["disable", "enable"] | None = ...,
-        auth_type: Literal["spnego", "ntlm", "kerberos"] | None = ...,
-        auth_level: Literal["connect", "call", "packet", "integrity", "privacy"] | None = ...,
-        http_auth_type: Literal["basic", "ntlm"] | None = ...,
-        ssl_min_proto_version: Literal["default", "SSLv3", "TLSv1", "TLSv1-1", "TLSv1-2", "TLSv1-3"] | None = ...,
-        auto_discover_kdc: Literal["enable", "disable"] | None = ...,
-        kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -611,7 +535,6 @@ class Exchange:
         auto_discover_kdc: Literal["enable", "disable"] | None = ...,
         kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -620,7 +543,6 @@ class Exchange:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExchangeObject: ...
     
     @overload
@@ -628,17 +550,7 @@ class Exchange:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -652,7 +564,6 @@ class Exchange:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -679,7 +590,6 @@ class Exchange:
         auto_discover_kdc: Literal["enable", "disable"] | None = ...,
         kdc_ip: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -172,7 +172,6 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingsObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -190,7 +189,6 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingsObject: ...
     
     # With no mkey -> returns list of objects
@@ -207,25 +205,7 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingsObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -241,7 +221,6 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingsObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -259,7 +238,6 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingsObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -276,7 +254,6 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingsObject: ...
     
     # Fallback overload for all other cases
@@ -293,7 +270,6 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -308,7 +284,6 @@ class Settings:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SettingsObject | dict[str, Any]: ...
     
     def get_schema(
@@ -329,7 +304,6 @@ class Settings:
         proxy_inline_ips: Literal["disable", "enable"] | None = ...,
         ha_session_pickup: Literal["connectivity", "security"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingsObject: ...
     
     @overload
@@ -343,23 +317,7 @@ class Settings:
         proxy_inline_ips: Literal["disable", "enable"] | None = ...,
         ha_session_pickup: Literal["connectivity", "security"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SettingsPayload | None = ...,
-        packet_log_history: int | None = ...,
-        packet_log_post_attack: int | None = ...,
-        packet_log_memory: int | None = ...,
-        ips_packet_quota: int | None = ...,
-        proxy_inline_ips: Literal["disable", "enable"] | None = ...,
-        ha_session_pickup: Literal["connectivity", "security"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -385,7 +343,6 @@ class Settings:
         proxy_inline_ips: Literal["disable", "enable"] | None = ...,
         ha_session_pickup: Literal["connectivity", "security"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -404,7 +361,6 @@ class Settings:
         proxy_inline_ips: Literal["disable", "enable"] | None = ...,
         ha_session_pickup: Literal["connectivity", "security"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

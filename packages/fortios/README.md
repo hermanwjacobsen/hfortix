@@ -172,16 +172,14 @@ vpn_logs = fgt.api.log.disk.event.vpn.get(rows=50)
 traffic = fgt.api.log.memory.traffic.forward.get(rows=100)
 ```
 
-### 🎨 Pretty Printing with FortiObject (NEW in v0.5.19!)
+### 🎨 Pretty Printing with FortiObject
 
-**Clean, readable output for FortiOS data** using `response_mode="object"`:
+**Clean, readable output for FortiOS data** - all methods return FortiObject by default:
 
 ```python
-# Enable object mode for pretty methods
 fgt = FortiOS(
     host="192.168.1.99",
     token="your-token",
-    response_mode="object"  # Returns FortiObject instead of dict
 )
 
 # Get policies and print cleanly

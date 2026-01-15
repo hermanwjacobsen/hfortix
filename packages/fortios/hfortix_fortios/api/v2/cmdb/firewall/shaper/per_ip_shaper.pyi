@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -169,7 +169,7 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[PerIpShaperObject]: ...
+    ) -> FortiObjectList[PerIpShaperObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -189,7 +189,6 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PerIpShaperObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -207,7 +206,6 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PerIpShaperObject: ...
     
     # With no mkey -> returns list of objects
@@ -224,25 +222,7 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PerIpShaperObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[PerIpShaperObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -258,7 +238,6 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PerIpShaperObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -276,7 +255,6 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PerIpShaperObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -293,8 +271,7 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[PerIpShaperObject]: ...
+    ) -> FortiObjectList[PerIpShaperObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -310,7 +287,6 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -325,7 +301,6 @@ class PerIpShaper:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PerIpShaperObject | list[PerIpShaperObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -350,7 +325,6 @@ class PerIpShaper:
         diffservcode_forward: str | None = ...,
         diffservcode_rev: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PerIpShaperObject: ...
     
     @overload
@@ -368,27 +342,7 @@ class PerIpShaper:
         diffservcode_forward: str | None = ...,
         diffservcode_rev: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: PerIpShaperPayload | None = ...,
-        name: str | None = ...,
-        max_bandwidth: int | None = ...,
-        bandwidth_unit: Literal["kbps", "mbps", "gbps"] | None = ...,
-        max_concurrent_session: int | None = ...,
-        max_concurrent_tcp_session: int | None = ...,
-        max_concurrent_udp_session: int | None = ...,
-        diffserv_forward: Literal["enable", "disable"] | None = ...,
-        diffserv_reverse: Literal["enable", "disable"] | None = ...,
-        diffservcode_forward: str | None = ...,
-        diffservcode_rev: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -422,7 +376,6 @@ class PerIpShaper:
         diffservcode_forward: str | None = ...,
         diffservcode_rev: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -441,7 +394,6 @@ class PerIpShaper:
         diffservcode_forward: str | None = ...,
         diffservcode_rev: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PerIpShaperObject: ...
     
     @overload
@@ -459,27 +411,7 @@ class PerIpShaper:
         diffservcode_forward: str | None = ...,
         diffservcode_rev: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PerIpShaperPayload | None = ...,
-        name: str | None = ...,
-        max_bandwidth: int | None = ...,
-        bandwidth_unit: Literal["kbps", "mbps", "gbps"] | None = ...,
-        max_concurrent_session: int | None = ...,
-        max_concurrent_tcp_session: int | None = ...,
-        max_concurrent_udp_session: int | None = ...,
-        diffserv_forward: Literal["enable", "disable"] | None = ...,
-        diffserv_reverse: Literal["enable", "disable"] | None = ...,
-        diffservcode_forward: str | None = ...,
-        diffservcode_rev: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -513,7 +445,6 @@ class PerIpShaper:
         diffservcode_forward: str | None = ...,
         diffservcode_rev: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -522,7 +453,6 @@ class PerIpShaper:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PerIpShaperObject: ...
     
     @overload
@@ -530,17 +460,7 @@ class PerIpShaper:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -554,7 +474,6 @@ class PerIpShaper:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -577,7 +496,6 @@ class PerIpShaper:
         diffservcode_forward: str | None = ...,
         diffservcode_rev: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

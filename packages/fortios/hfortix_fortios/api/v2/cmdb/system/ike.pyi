@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -244,7 +244,6 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IkeObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -262,7 +261,6 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IkeObject: ...
     
     # With no mkey -> returns list of objects
@@ -279,25 +277,7 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IkeObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -313,7 +293,6 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IkeObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -331,7 +310,6 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IkeObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -348,7 +326,6 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IkeObject: ...
     
     # Fallback overload for all other cases
@@ -365,7 +342,6 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -380,7 +356,6 @@ class Ike:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> IkeObject | dict[str, Any]: ...
     
     def get_schema(
@@ -419,7 +394,6 @@ class Ike:
         dh_group_31: str | None = ...,
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> IkeObject: ...
     
     @overload
@@ -451,41 +425,7 @@ class Ike:
         dh_group_31: str | None = ...,
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: IkePayload | None = ...,
-        embryonic_limit: int | None = ...,
-        dh_multiprocess: Literal["enable", "disable"] | None = ...,
-        dh_worker_count: int | None = ...,
-        dh_mode: Literal["software", "hardware"] | None = ...,
-        dh_keypair_cache: Literal["enable", "disable"] | None = ...,
-        dh_keypair_count: int | None = ...,
-        dh_keypair_throttle: Literal["enable", "disable"] | None = ...,
-        dh_group_1: str | None = ...,
-        dh_group_2: str | None = ...,
-        dh_group_5: str | None = ...,
-        dh_group_14: str | None = ...,
-        dh_group_15: str | None = ...,
-        dh_group_16: str | None = ...,
-        dh_group_17: str | None = ...,
-        dh_group_18: str | None = ...,
-        dh_group_19: str | None = ...,
-        dh_group_20: str | None = ...,
-        dh_group_21: str | None = ...,
-        dh_group_27: str | None = ...,
-        dh_group_28: str | None = ...,
-        dh_group_29: str | None = ...,
-        dh_group_30: str | None = ...,
-        dh_group_31: str | None = ...,
-        dh_group_32: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -547,7 +487,6 @@ class Ike:
         dh_group_31: str | None = ...,
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -584,7 +523,6 @@ class Ike:
         dh_group_31: str | None = ...,
         dh_group_32: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

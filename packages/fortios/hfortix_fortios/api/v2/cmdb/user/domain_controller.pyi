@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -326,7 +326,7 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[DomainControllerObject]: ...
+    ) -> FortiObjectList[DomainControllerObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -346,7 +346,6 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainControllerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -364,7 +363,6 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainControllerObject: ...
     
     # With no mkey -> returns list of objects
@@ -381,25 +379,7 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DomainControllerObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[DomainControllerObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -415,7 +395,6 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainControllerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -433,7 +412,6 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainControllerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -450,8 +428,7 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[DomainControllerObject]: ...
+    ) -> FortiObjectList[DomainControllerObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -467,7 +444,6 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -482,7 +458,6 @@ class DomainController:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> DomainControllerObject | list[DomainControllerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -521,7 +496,6 @@ class DomainController:
         adlds_ip6: str | None = ...,
         adlds_port: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainControllerObject: ...
     
     @overload
@@ -553,41 +527,7 @@ class DomainController:
         adlds_ip6: str | None = ...,
         adlds_port: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: DomainControllerPayload | None = ...,
-        name: str | None = ...,
-        ad_mode: Literal["none", "ds", "lds"] | None = ...,
-        hostname: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        ip_address: str | None = ...,
-        ip6: str | None = ...,
-        port: int | None = ...,
-        source_ip_address: str | None = ...,
-        source_ip6: str | None = ...,
-        source_port: int | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        extra_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain_name: str | None = ...,
-        replication_port: int | None = ...,
-        ldap_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        change_detection: Literal["enable", "disable"] | None = ...,
-        change_detection_period: int | None = ...,
-        dns_srv_lookup: Literal["enable", "disable"] | None = ...,
-        adlds_dn: str | None = ...,
-        adlds_ip_address: str | None = ...,
-        adlds_ip6: str | None = ...,
-        adlds_port: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -649,7 +589,6 @@ class DomainController:
         adlds_ip6: str | None = ...,
         adlds_port: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -682,7 +621,6 @@ class DomainController:
         adlds_ip6: str | None = ...,
         adlds_port: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainControllerObject: ...
     
     @overload
@@ -714,41 +652,7 @@ class DomainController:
         adlds_ip6: str | None = ...,
         adlds_port: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: DomainControllerPayload | None = ...,
-        name: str | None = ...,
-        ad_mode: Literal["none", "ds", "lds"] | None = ...,
-        hostname: str | None = ...,
-        username: str | None = ...,
-        password: str | None = ...,
-        ip_address: str | None = ...,
-        ip6: str | None = ...,
-        port: int | None = ...,
-        source_ip_address: str | None = ...,
-        source_ip6: str | None = ...,
-        source_port: int | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        extra_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        domain_name: str | None = ...,
-        replication_port: int | None = ...,
-        ldap_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        change_detection: Literal["enable", "disable"] | None = ...,
-        change_detection_period: int | None = ...,
-        dns_srv_lookup: Literal["enable", "disable"] | None = ...,
-        adlds_dn: str | None = ...,
-        adlds_ip_address: str | None = ...,
-        adlds_ip6: str | None = ...,
-        adlds_port: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -810,7 +714,6 @@ class DomainController:
         adlds_ip6: str | None = ...,
         adlds_port: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -819,7 +722,6 @@ class DomainController:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> DomainControllerObject: ...
     
     @overload
@@ -827,17 +729,7 @@ class DomainController:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -851,7 +743,6 @@ class DomainController:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -888,7 +779,6 @@ class DomainController:
         adlds_ip6: str | None = ...,
         adlds_port: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

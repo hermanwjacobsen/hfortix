@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -194,7 +194,7 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[TacacsPlusObject]: ...
+    ) -> FortiObjectList[TacacsPlusObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -214,7 +214,6 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TacacsPlusObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -232,7 +231,6 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TacacsPlusObject: ...
     
     # With no mkey -> returns list of objects
@@ -249,25 +247,7 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[TacacsPlusObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[TacacsPlusObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -283,7 +263,6 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TacacsPlusObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -301,7 +280,6 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TacacsPlusObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -318,8 +296,7 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[TacacsPlusObject]: ...
+    ) -> FortiObjectList[TacacsPlusObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -335,7 +312,6 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -350,7 +326,6 @@ class TacacsPlus:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> TacacsPlusObject | list[TacacsPlusObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -380,7 +355,6 @@ class TacacsPlus:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TacacsPlusObject: ...
     
     @overload
@@ -403,32 +377,7 @@ class TacacsPlus:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: TacacsPlusPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        port: int | None = ...,
-        key: str | None = ...,
-        secondary_key: str | None = ...,
-        tertiary_key: str | None = ...,
-        status_ttl: int | None = ...,
-        authen_type: Literal["mschap", "chap", "pap", "ascii", "auto"] | None = ...,
-        authorization: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -472,7 +421,6 @@ class TacacsPlus:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -496,7 +444,6 @@ class TacacsPlus:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TacacsPlusObject: ...
     
     @overload
@@ -519,32 +466,7 @@ class TacacsPlus:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: TacacsPlusPayload | None = ...,
-        name: str | None = ...,
-        server: str | None = ...,
-        secondary_server: str | None = ...,
-        tertiary_server: str | None = ...,
-        port: int | None = ...,
-        key: str | None = ...,
-        secondary_key: str | None = ...,
-        tertiary_key: str | None = ...,
-        status_ttl: int | None = ...,
-        authen_type: Literal["mschap", "chap", "pap", "ascii", "auto"] | None = ...,
-        authorization: Literal["enable", "disable"] | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -588,7 +510,6 @@ class TacacsPlus:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -597,7 +518,6 @@ class TacacsPlus:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> TacacsPlusObject: ...
     
     @overload
@@ -605,17 +525,7 @@ class TacacsPlus:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -629,7 +539,6 @@ class TacacsPlus:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -657,7 +566,6 @@ class TacacsPlus:
         interface: str | None = ...,
         vrf_select: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -234,7 +234,7 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[WebPortalObject]: ...
+    ) -> FortiObjectList[WebPortalObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -254,7 +254,6 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WebPortalObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -272,7 +271,6 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WebPortalObject: ...
     
     # With no mkey -> returns list of objects
@@ -289,25 +287,7 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[WebPortalObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[WebPortalObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -323,7 +303,6 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WebPortalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -341,7 +320,6 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WebPortalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -358,8 +336,7 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[WebPortalObject]: ...
+    ) -> FortiObjectList[WebPortalObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -375,7 +352,6 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -390,7 +366,6 @@ class WebPortal:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> WebPortalObject | list[WebPortalObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -429,7 +404,6 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WebPortalObject: ...
     
     @overload
@@ -461,41 +435,7 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: WebPortalPayload | None = ...,
-        name: str | None = ...,
-        vip: str | None = ...,
-        host: str | None = ...,
-        decrypted_traffic_mirror: str | None = ...,
-        log_blocked_traffic: Literal["disable", "enable"] | None = ...,
-        auth_portal: Literal["disable", "enable"] | None = ...,
-        auth_virtual_host: str | None = ...,
-        vip6: str | None = ...,
-        auth_rule: str | None = ...,
-        display_bookmark: Literal["enable", "disable"] | None = ...,
-        focus_bookmark: Literal["enable", "disable"] | None = ...,
-        display_status: Literal["enable", "disable"] | None = ...,
-        display_history: Literal["enable", "disable"] | None = ...,
-        policy_auth_sso: Literal["enable", "disable"] | None = ...,
-        heading: str | None = ...,
-        theme: Literal["jade", "neutrino", "mariner", "graphite", "melongene", "jet-stream", "security-fabric", "dark-matter", "onyx", "eclipse"] | None = ...,
-        clipboard: Literal["enable", "disable"] | None = ...,
-        default_window_width: int | None = ...,
-        default_window_height: int | None = ...,
-        cookie_age: int | None = ...,
-        forticlient_download: Literal["enable", "disable"] | None = ...,
-        customize_forticlient_download_url: Literal["enable", "disable"] | None = ...,
-        windows_forticlient_download_url: str | None = ...,
-        macos_forticlient_download_url: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -557,7 +497,6 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -590,7 +529,6 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WebPortalObject: ...
     
     @overload
@@ -622,41 +560,7 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: WebPortalPayload | None = ...,
-        name: str | None = ...,
-        vip: str | None = ...,
-        host: str | None = ...,
-        decrypted_traffic_mirror: str | None = ...,
-        log_blocked_traffic: Literal["disable", "enable"] | None = ...,
-        auth_portal: Literal["disable", "enable"] | None = ...,
-        auth_virtual_host: str | None = ...,
-        vip6: str | None = ...,
-        auth_rule: str | None = ...,
-        display_bookmark: Literal["enable", "disable"] | None = ...,
-        focus_bookmark: Literal["enable", "disable"] | None = ...,
-        display_status: Literal["enable", "disable"] | None = ...,
-        display_history: Literal["enable", "disable"] | None = ...,
-        policy_auth_sso: Literal["enable", "disable"] | None = ...,
-        heading: str | None = ...,
-        theme: Literal["jade", "neutrino", "mariner", "graphite", "melongene", "jet-stream", "security-fabric", "dark-matter", "onyx", "eclipse"] | None = ...,
-        clipboard: Literal["enable", "disable"] | None = ...,
-        default_window_width: int | None = ...,
-        default_window_height: int | None = ...,
-        cookie_age: int | None = ...,
-        forticlient_download: Literal["enable", "disable"] | None = ...,
-        customize_forticlient_download_url: Literal["enable", "disable"] | None = ...,
-        windows_forticlient_download_url: str | None = ...,
-        macos_forticlient_download_url: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -718,7 +622,6 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -727,7 +630,6 @@ class WebPortal:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WebPortalObject: ...
     
     @overload
@@ -735,17 +637,7 @@ class WebPortal:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -759,7 +651,6 @@ class WebPortal:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -796,7 +687,6 @@ class WebPortal:
         windows_forticlient_download_url: str | None = ...,
         macos_forticlient_download_url: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

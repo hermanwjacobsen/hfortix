@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -309,7 +309,7 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ProfileObject]: ...
+    ) -> FortiObjectList[ProfileObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -329,7 +329,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -347,7 +346,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # With no mkey -> returns list of objects
@@ -364,25 +362,7 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ProfileObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -398,7 +378,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -416,7 +395,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -433,8 +411,7 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ProfileObject]: ...
+    ) -> FortiObjectList[ProfileObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -450,7 +427,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -465,7 +441,6 @@ class Profile:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ProfileObject | list[ProfileObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -513,7 +488,6 @@ class Profile:
         extended_log: Literal["enable", "disable"] | None = ...,
         scan_mode: Literal["default", "legacy"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     @overload
@@ -554,50 +528,7 @@ class Profile:
         extended_log: Literal["enable", "disable"] | None = ...,
         scan_mode: Literal["default", "legacy"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        replacemsg_group: str | None = ...,
-        feature_set: Literal["flow", "proxy"] | None = ...,
-        fortisandbox_mode: Literal["inline", "analytics-suspicious", "analytics-everything"] | None = ...,
-        fortisandbox_max_upload: int | None = ...,
-        analytics_ignore_filetype: int | None = ...,
-        analytics_accept_filetype: int | None = ...,
-        analytics_db: Literal["disable", "enable"] | None = ...,
-        mobile_malware_db: Literal["disable", "enable"] | None = ...,
-        http: str | None = ...,
-        ftp: str | None = ...,
-        imap: str | None = ...,
-        pop3: str | None = ...,
-        smtp: str | None = ...,
-        mapi: str | None = ...,
-        nntp: str | None = ...,
-        cifs: str | None = ...,
-        ssh: str | None = ...,
-        nac_quar: str | None = ...,
-        content_disarm: str | None = ...,
-        outbreak_prevention_archive_scan: Literal["disable", "enable"] | None = ...,
-        external_blocklist_enable_all: Literal["disable", "enable"] | None = ...,
-        external_blocklist: str | list[str] | list[dict[str, Any]] | None = ...,
-        ems_threat_feed: Literal["disable", "enable"] | None = ...,
-        fortindr_error_action: Literal["log-only", "block", "ignore"] | None = ...,
-        fortindr_timeout_action: Literal["log-only", "block", "ignore"] | None = ...,
-        fortisandbox_scan_timeout: int | None = ...,
-        fortisandbox_error_action: Literal["log-only", "block", "ignore"] | None = ...,
-        fortisandbox_timeout_action: Literal["log-only", "block", "ignore"] | None = ...,
-        av_virus_log: Literal["enable", "disable"] | None = ...,
-        extended_log: Literal["enable", "disable"] | None = ...,
-        scan_mode: Literal["default", "legacy"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -677,7 +608,6 @@ class Profile:
         extended_log: Literal["enable", "disable"] | None = ...,
         scan_mode: Literal["default", "legacy"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -719,7 +649,6 @@ class Profile:
         extended_log: Literal["enable", "disable"] | None = ...,
         scan_mode: Literal["default", "legacy"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     @overload
@@ -760,50 +689,7 @@ class Profile:
         extended_log: Literal["enable", "disable"] | None = ...,
         scan_mode: Literal["default", "legacy"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ProfilePayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        replacemsg_group: str | None = ...,
-        feature_set: Literal["flow", "proxy"] | None = ...,
-        fortisandbox_mode: Literal["inline", "analytics-suspicious", "analytics-everything"] | None = ...,
-        fortisandbox_max_upload: int | None = ...,
-        analytics_ignore_filetype: int | None = ...,
-        analytics_accept_filetype: int | None = ...,
-        analytics_db: Literal["disable", "enable"] | None = ...,
-        mobile_malware_db: Literal["disable", "enable"] | None = ...,
-        http: str | None = ...,
-        ftp: str | None = ...,
-        imap: str | None = ...,
-        pop3: str | None = ...,
-        smtp: str | None = ...,
-        mapi: str | None = ...,
-        nntp: str | None = ...,
-        cifs: str | None = ...,
-        ssh: str | None = ...,
-        nac_quar: str | None = ...,
-        content_disarm: str | None = ...,
-        outbreak_prevention_archive_scan: Literal["disable", "enable"] | None = ...,
-        external_blocklist_enable_all: Literal["disable", "enable"] | None = ...,
-        external_blocklist: str | list[str] | list[dict[str, Any]] | None = ...,
-        ems_threat_feed: Literal["disable", "enable"] | None = ...,
-        fortindr_error_action: Literal["log-only", "block", "ignore"] | None = ...,
-        fortindr_timeout_action: Literal["log-only", "block", "ignore"] | None = ...,
-        fortisandbox_scan_timeout: int | None = ...,
-        fortisandbox_error_action: Literal["log-only", "block", "ignore"] | None = ...,
-        fortisandbox_timeout_action: Literal["log-only", "block", "ignore"] | None = ...,
-        av_virus_log: Literal["enable", "disable"] | None = ...,
-        extended_log: Literal["enable", "disable"] | None = ...,
-        scan_mode: Literal["default", "legacy"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -883,7 +769,6 @@ class Profile:
         extended_log: Literal["enable", "disable"] | None = ...,
         scan_mode: Literal["default", "legacy"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -892,7 +777,6 @@ class Profile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ProfileObject: ...
     
     @overload
@@ -900,17 +784,7 @@ class Profile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -924,7 +798,6 @@ class Profile:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -970,7 +843,6 @@ class Profile:
         extended_log: Literal["enable", "disable"] | None = ...,
         scan_mode: Literal["default", "legacy"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

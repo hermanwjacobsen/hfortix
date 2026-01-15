@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -785,7 +785,6 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OspfObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -803,7 +802,6 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OspfObject: ...
     
     # With no mkey -> returns list of objects
@@ -820,25 +818,7 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OspfObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -854,7 +834,6 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OspfObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -872,7 +851,6 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OspfObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -889,7 +867,6 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OspfObject: ...
     
     # Fallback overload for all other cases
@@ -906,7 +883,6 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -921,7 +897,6 @@ class Ospf:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> OspfObject | dict[str, Any]: ...
     
     def get_schema(
@@ -969,7 +944,6 @@ class Ospf:
         distribute_list: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> OspfObject: ...
     
     @overload
@@ -1010,50 +984,7 @@ class Ospf:
         distribute_list: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: OspfPayload | None = ...,
-        abr_type: Literal["cisco", "ibm", "shortcut", "standard"] | None = ...,
-        auto_cost_ref_bandwidth: int | None = ...,
-        distance_external: int | None = ...,
-        distance_inter_area: int | None = ...,
-        distance_intra_area: int | None = ...,
-        database_overflow: Literal["enable", "disable"] | None = ...,
-        database_overflow_max_lsas: int | None = ...,
-        database_overflow_time_to_recover: int | None = ...,
-        default_information_originate: Literal["enable", "always", "disable"] | None = ...,
-        default_information_metric: int | None = ...,
-        default_information_metric_type: Literal["1", "2"] | None = ...,
-        default_information_route_map: str | None = ...,
-        default_metric: int | None = ...,
-        distance: int | None = ...,
-        lsa_refresh_interval: int | None = ...,
-        rfc1583_compatible: Literal["enable", "disable"] | None = ...,
-        router_id: str | None = ...,
-        spf_timers: str | None = ...,
-        bfd: Literal["enable", "disable"] | None = ...,
-        log_neighbour_changes: Literal["enable", "disable"] | None = ...,
-        distribute_list_in: str | None = ...,
-        distribute_route_map_in: str | None = ...,
-        restart_mode: Literal["none", "lls", "graceful-restart"] | None = ...,
-        restart_period: int | None = ...,
-        restart_on_topology_change: Literal["enable", "disable"] | None = ...,
-        area: str | list[str] | list[dict[str, Any]] | None = ...,
-        ospf_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        network: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        passive_interface: str | list[str] | list[dict[str, Any]] | None = ...,
-        summary_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        distribute_list: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1133,7 +1064,6 @@ class Ospf:
         distribute_list: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1179,7 +1109,6 @@ class Ospf:
         distribute_list: str | list[str] | list[dict[str, Any]] | None = ...,
         redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

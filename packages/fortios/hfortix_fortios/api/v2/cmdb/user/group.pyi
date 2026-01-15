@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -389,7 +389,7 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[GroupObject]: ...
+    ) -> FortiObjectList[GroupObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -409,7 +409,6 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GroupObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -427,7 +426,6 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GroupObject: ...
     
     # With no mkey -> returns list of objects
@@ -444,25 +442,7 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[GroupObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[GroupObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -478,7 +458,6 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GroupObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -496,7 +475,6 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GroupObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -513,8 +491,7 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[GroupObject]: ...
+    ) -> FortiObjectList[GroupObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -530,7 +507,6 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -545,7 +521,6 @@ class Group:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> GroupObject | list[GroupObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -584,7 +559,6 @@ class Group:
         multiple_guest_add: Literal["disable", "enable"] | None = ...,
         guest: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GroupObject: ...
     
     @overload
@@ -616,41 +590,7 @@ class Group:
         multiple_guest_add: Literal["disable", "enable"] | None = ...,
         guest: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: GroupPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        group_type: Literal["firewall", "fsso-service", "rsso", "guest"] | None = ...,
-        authtimeout: int | None = ...,
-        auth_concurrent_override: Literal["enable", "disable"] | None = ...,
-        auth_concurrent_value: int | None = ...,
-        http_digest_realm: str | None = ...,
-        sso_attribute_value: str | None = ...,
-        member: str | list[str] | list[dict[str, Any]] | None = ...,
-        match: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: Literal["email", "auto-generate", "specify"] | None = ...,
-        password: Literal["auto-generate", "specify", "disable"] | None = ...,
-        user_name: Literal["disable", "enable"] | None = ...,
-        sponsor: Literal["optional", "mandatory", "disabled"] | None = ...,
-        company: Literal["optional", "mandatory", "disabled"] | None = ...,
-        email: Literal["disable", "enable"] | None = ...,
-        mobile_phone: Literal["disable", "enable"] | None = ...,
-        sms_server: Literal["fortiguard", "custom"] | None = ...,
-        sms_custom_server: str | None = ...,
-        expire_type: Literal["immediately", "first-successful-login"] | None = ...,
-        expire: int | None = ...,
-        max_accounts: int | None = ...,
-        multiple_guest_add: Literal["disable", "enable"] | None = ...,
-        guest: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -712,7 +652,6 @@ class Group:
         multiple_guest_add: Literal["disable", "enable"] | None = ...,
         guest: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -745,7 +684,6 @@ class Group:
         multiple_guest_add: Literal["disable", "enable"] | None = ...,
         guest: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GroupObject: ...
     
     @overload
@@ -777,41 +715,7 @@ class Group:
         multiple_guest_add: Literal["disable", "enable"] | None = ...,
         guest: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: GroupPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        group_type: Literal["firewall", "fsso-service", "rsso", "guest"] | None = ...,
-        authtimeout: int | None = ...,
-        auth_concurrent_override: Literal["enable", "disable"] | None = ...,
-        auth_concurrent_value: int | None = ...,
-        http_digest_realm: str | None = ...,
-        sso_attribute_value: str | None = ...,
-        member: str | list[str] | list[dict[str, Any]] | None = ...,
-        match: str | list[str] | list[dict[str, Any]] | None = ...,
-        user_id: Literal["email", "auto-generate", "specify"] | None = ...,
-        password: Literal["auto-generate", "specify", "disable"] | None = ...,
-        user_name: Literal["disable", "enable"] | None = ...,
-        sponsor: Literal["optional", "mandatory", "disabled"] | None = ...,
-        company: Literal["optional", "mandatory", "disabled"] | None = ...,
-        email: Literal["disable", "enable"] | None = ...,
-        mobile_phone: Literal["disable", "enable"] | None = ...,
-        sms_server: Literal["fortiguard", "custom"] | None = ...,
-        sms_custom_server: str | None = ...,
-        expire_type: Literal["immediately", "first-successful-login"] | None = ...,
-        expire: int | None = ...,
-        max_accounts: int | None = ...,
-        multiple_guest_add: Literal["disable", "enable"] | None = ...,
-        guest: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -873,7 +777,6 @@ class Group:
         multiple_guest_add: Literal["disable", "enable"] | None = ...,
         guest: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -882,7 +785,6 @@ class Group:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> GroupObject: ...
     
     @overload
@@ -890,17 +792,7 @@ class Group:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -914,7 +806,6 @@ class Group:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -951,7 +842,6 @@ class Group:
         multiple_guest_add: Literal["disable", "enable"] | None = ...,
         guest: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -213,7 +213,7 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ExtenderVapObject]: ...
+    ) -> FortiObjectList[ExtenderVapObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -233,7 +233,6 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderVapObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -251,7 +250,6 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderVapObject: ...
     
     # With no mkey -> returns list of objects
@@ -268,25 +266,7 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExtenderVapObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ExtenderVapObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -302,7 +282,6 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderVapObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -320,7 +299,6 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderVapObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -337,8 +315,7 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExtenderVapObject]: ...
+    ) -> FortiObjectList[ExtenderVapObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -354,7 +331,6 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -369,7 +345,6 @@ class ExtenderVap:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ExtenderVapObject | list[ExtenderVapObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -405,7 +380,6 @@ class ExtenderVap:
         end_ip: str | None = ...,
         allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderVapObject: ...
     
     @overload
@@ -434,38 +408,7 @@ class ExtenderVap:
         end_ip: str | None = ...,
         allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ExtenderVapPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["local-vap", "lan-ext-vap"] | None = ...,
-        ssid: str | None = ...,
-        max_clients: int | None = ...,
-        broadcast_ssid: Literal["disable", "enable"] | None = ...,
-        security: Literal["OPEN", "WPA2-Personal", "WPA-WPA2-Personal", "WPA3-SAE", "WPA3-SAE-Transition", "WPA2-Enterprise", "WPA3-Enterprise-only", "WPA3-Enterprise-transition", "WPA3-Enterprise-192-bit"] | None = ...,
-        dtim: int | None = ...,
-        rts_threshold: int | None = ...,
-        pmf: Literal["disabled", "optional", "required"] | None = ...,
-        target_wake_time: Literal["disable", "enable"] | None = ...,
-        bss_color_partial: Literal["disable", "enable"] | None = ...,
-        mu_mimo: Literal["disable", "enable"] | None = ...,
-        passphrase: str | None = ...,
-        sae_password: str | None = ...,
-        auth_server_address: str | None = ...,
-        auth_server_port: int | None = ...,
-        auth_server_secret: str | None = ...,
-        ip_address: str | None = ...,
-        start_ip: str | None = ...,
-        end_ip: str | None = ...,
-        allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -521,7 +464,6 @@ class ExtenderVap:
         end_ip: str | None = ...,
         allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -551,7 +493,6 @@ class ExtenderVap:
         end_ip: str | None = ...,
         allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderVapObject: ...
     
     @overload
@@ -580,38 +521,7 @@ class ExtenderVap:
         end_ip: str | None = ...,
         allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ExtenderVapPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["local-vap", "lan-ext-vap"] | None = ...,
-        ssid: str | None = ...,
-        max_clients: int | None = ...,
-        broadcast_ssid: Literal["disable", "enable"] | None = ...,
-        security: Literal["OPEN", "WPA2-Personal", "WPA-WPA2-Personal", "WPA3-SAE", "WPA3-SAE-Transition", "WPA2-Enterprise", "WPA3-Enterprise-only", "WPA3-Enterprise-transition", "WPA3-Enterprise-192-bit"] | None = ...,
-        dtim: int | None = ...,
-        rts_threshold: int | None = ...,
-        pmf: Literal["disabled", "optional", "required"] | None = ...,
-        target_wake_time: Literal["disable", "enable"] | None = ...,
-        bss_color_partial: Literal["disable", "enable"] | None = ...,
-        mu_mimo: Literal["disable", "enable"] | None = ...,
-        passphrase: str | None = ...,
-        sae_password: str | None = ...,
-        auth_server_address: str | None = ...,
-        auth_server_port: int | None = ...,
-        auth_server_secret: str | None = ...,
-        ip_address: str | None = ...,
-        start_ip: str | None = ...,
-        end_ip: str | None = ...,
-        allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -667,7 +577,6 @@ class ExtenderVap:
         end_ip: str | None = ...,
         allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -676,7 +585,6 @@ class ExtenderVap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExtenderVapObject: ...
     
     @overload
@@ -684,17 +592,7 @@ class ExtenderVap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -708,7 +606,6 @@ class ExtenderVap:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -742,7 +639,6 @@ class ExtenderVap:
         end_ip: str | None = ...,
         allowaccess: Literal["ping", "telnet", "http", "https", "ssh", "snmp"] | list[str] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

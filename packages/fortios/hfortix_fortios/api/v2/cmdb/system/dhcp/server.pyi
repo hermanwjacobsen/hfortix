@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -688,7 +688,7 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ServerObject]: ...
+    ) -> FortiObjectList[ServerObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -708,7 +708,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -726,7 +725,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # With no mkey -> returns list of objects
@@ -743,25 +741,7 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ServerObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ServerObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -777,7 +757,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -795,7 +774,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -812,8 +790,7 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ServerObject]: ...
+    ) -> FortiObjectList[ServerObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -829,7 +806,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -844,7 +820,6 @@ class Server:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ServerObject | list[ServerObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -911,7 +886,6 @@ class Server:
         relay_agent: str | None = ...,
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     @overload
@@ -971,69 +945,7 @@ class Server:
         relay_agent: str | None = ...,
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1151,7 +1063,6 @@ class Server:
         relay_agent: str | None = ...,
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -1212,7 +1123,6 @@ class Server:
         relay_agent: str | None = ...,
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     @overload
@@ -1272,69 +1182,7 @@ class Server:
         relay_agent: str | None = ...,
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ServerPayload | None = ...,
-        id: int | None = ...,
-        status: Literal["disable", "enable"] | None = ...,
-        lease_time: int | None = ...,
-        mac_acl_default_action: Literal["assign", "block"] | None = ...,
-        forticlient_on_net_status: Literal["disable", "enable"] | None = ...,
-        dns_service: Literal["local", "default", "specify"] | None = ...,
-        dns_server1: str | None = ...,
-        dns_server2: str | None = ...,
-        dns_server3: str | None = ...,
-        dns_server4: str | None = ...,
-        wifi_ac_service: Literal["specify", "local"] | None = ...,
-        wifi_ac1: str | None = ...,
-        wifi_ac2: str | None = ...,
-        wifi_ac3: str | None = ...,
-        ntp_service: Literal["local", "default", "specify"] | None = ...,
-        ntp_server1: str | None = ...,
-        ntp_server2: str | None = ...,
-        ntp_server3: str | None = ...,
-        domain: str | None = ...,
-        wins_server1: str | None = ...,
-        wins_server2: str | None = ...,
-        default_gateway: str | None = ...,
-        next_server: str | None = ...,
-        netmask: str | None = ...,
-        interface: str | None = ...,
-        ip_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        timezone_option: Literal["disable", "default", "specify"] | None = ...,
-        timezone: str | None = ...,
-        tftp_server: str | list[str] | list[dict[str, Any]] | None = ...,
-        filename: str | None = ...,
-        options: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_type: Literal["regular", "ipsec"] | None = ...,
-        ip_mode: Literal["range", "usrgrp"] | None = ...,
-        conflicted_ip_timeout: int | None = ...,
-        ipsec_lease_hold: int | None = ...,
-        auto_configuration: Literal["disable", "enable"] | None = ...,
-        dhcp_settings_from_fortiipam: Literal["disable", "enable"] | None = ...,
-        auto_managed_status: Literal["disable", "enable"] | None = ...,
-        ddns_update: Literal["disable", "enable"] | None = ...,
-        ddns_update_override: Literal["disable", "enable"] | None = ...,
-        ddns_server_ip: str | None = ...,
-        ddns_zone: str | None = ...,
-        ddns_auth: Literal["disable", "tsig"] | None = ...,
-        ddns_keyname: str | None = ...,
-        ddns_key: str | None = ...,
-        ddns_ttl: int | None = ...,
-        vci_match: Literal["disable", "enable"] | None = ...,
-        vci_string: str | list[str] | list[dict[str, Any]] | None = ...,
-        exclude_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        shared_subnet: Literal["disable", "enable"] | None = ...,
-        relay_agent: str | None = ...,
-        reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1452,7 +1300,6 @@ class Server:
         relay_agent: str | None = ...,
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1461,7 +1308,6 @@ class Server:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ServerObject: ...
     
     @overload
@@ -1469,17 +1315,7 @@ class Server:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1493,7 +1329,6 @@ class Server:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1558,7 +1393,6 @@ class Server:
         relay_agent: str | None = ...,
         reserved_address: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

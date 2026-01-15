@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -208,7 +208,7 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[BwordObject]: ...
+    ) -> FortiObjectList[BwordObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -228,7 +228,6 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BwordObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -246,7 +245,6 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BwordObject: ...
     
     # With no mkey -> returns list of objects
@@ -263,25 +261,7 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[BwordObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[BwordObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -297,7 +277,6 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BwordObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -315,7 +294,6 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BwordObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -332,8 +310,7 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[BwordObject]: ...
+    ) -> FortiObjectList[BwordObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -349,7 +326,6 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -364,7 +340,6 @@ class Bword:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> BwordObject | list[BwordObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -383,7 +358,6 @@ class Bword:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BwordObject: ...
     
     @overload
@@ -395,21 +369,7 @@ class Bword:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: BwordPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -431,7 +391,6 @@ class Bword:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -444,7 +403,6 @@ class Bword:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BwordObject: ...
     
     @overload
@@ -456,21 +414,7 @@ class Bword:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: BwordPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -492,7 +436,6 @@ class Bword:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -501,7 +444,6 @@ class Bword:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BwordObject: ...
     
     @overload
@@ -509,17 +451,7 @@ class Bword:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -533,7 +465,6 @@ class Bword:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -550,7 +481,6 @@ class Bword:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -258,7 +258,7 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[H2qpOsuProviderObject]: ...
+    ) -> FortiObjectList[H2qpOsuProviderObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -278,7 +278,6 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> H2qpOsuProviderObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -296,7 +295,6 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> H2qpOsuProviderObject: ...
     
     # With no mkey -> returns list of objects
@@ -313,25 +311,7 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[H2qpOsuProviderObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[H2qpOsuProviderObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -347,7 +327,6 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> H2qpOsuProviderObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -365,7 +344,6 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> H2qpOsuProviderObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -382,8 +360,7 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[H2qpOsuProviderObject]: ...
+    ) -> FortiObjectList[H2qpOsuProviderObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -399,7 +376,6 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -414,7 +390,6 @@ class H2qpOsuProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> H2qpOsuProviderObject | list[H2qpOsuProviderObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -436,7 +411,6 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> H2qpOsuProviderObject: ...
     
     @overload
@@ -451,24 +425,7 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: H2qpOsuProviderPayload | None = ...,
-        name: str | None = ...,
-        friendly_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_uri: str | None = ...,
-        osu_method: Literal["oma-dm", "soap-xml-spp", "reserved"] | list[str] | None = ...,
-        osu_nai: str | None = ...,
-        service_description: str | list[str] | list[dict[str, Any]] | None = ...,
-        icon: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -496,7 +453,6 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -512,7 +468,6 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> H2qpOsuProviderObject: ...
     
     @overload
@@ -527,24 +482,7 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: H2qpOsuProviderPayload | None = ...,
-        name: str | None = ...,
-        friendly_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        server_uri: str | None = ...,
-        osu_method: Literal["oma-dm", "soap-xml-spp", "reserved"] | list[str] | None = ...,
-        osu_nai: str | None = ...,
-        service_description: str | list[str] | list[dict[str, Any]] | None = ...,
-        icon: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -572,7 +510,6 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -581,7 +518,6 @@ class H2qpOsuProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> H2qpOsuProviderObject: ...
     
     @overload
@@ -589,17 +525,7 @@ class H2qpOsuProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -613,7 +539,6 @@ class H2qpOsuProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -633,7 +558,6 @@ class H2qpOsuProvider:
         service_description: str | list[str] | list[dict[str, Any]] | None = ...,
         icon: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -178,7 +178,7 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ManualkeyObject]: ...
+    ) -> FortiObjectList[ManualkeyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -198,7 +198,6 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ManualkeyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -216,7 +215,6 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ManualkeyObject: ...
     
     # With no mkey -> returns list of objects
@@ -233,25 +231,7 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ManualkeyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ManualkeyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -267,7 +247,6 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ManualkeyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -285,7 +264,6 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ManualkeyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -302,8 +280,7 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ManualkeyObject]: ...
+    ) -> FortiObjectList[ManualkeyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -319,7 +296,6 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -334,7 +310,6 @@ class Manualkey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ManualkeyObject | list[ManualkeyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -360,7 +335,6 @@ class Manualkey:
         remotespi: str | None = ...,
         npu_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ManualkeyObject: ...
     
     @overload
@@ -379,28 +353,7 @@ class Manualkey:
         remotespi: str | None = ...,
         npu_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ManualkeyPayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        remote_gw: str | None = ...,
-        local_gw: str | None = ...,
-        authentication: Literal["null", "md5", "sha1", "sha256", "sha384", "sha512"] | None = ...,
-        encryption: Literal["null", "des", "3des", "aes128", "aes192", "aes256", "aria128", "aria192", "aria256", "seed"] | None = ...,
-        authkey: str | None = ...,
-        enckey: str | None = ...,
-        localspi: str | None = ...,
-        remotespi: str | None = ...,
-        npu_offload: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -436,7 +389,6 @@ class Manualkey:
         remotespi: str | None = ...,
         npu_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -456,7 +408,6 @@ class Manualkey:
         remotespi: str | None = ...,
         npu_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ManualkeyObject: ...
     
     @overload
@@ -475,28 +426,7 @@ class Manualkey:
         remotespi: str | None = ...,
         npu_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ManualkeyPayload | None = ...,
-        name: str | None = ...,
-        interface: str | None = ...,
-        remote_gw: str | None = ...,
-        local_gw: str | None = ...,
-        authentication: Literal["null", "md5", "sha1", "sha256", "sha384", "sha512"] | None = ...,
-        encryption: Literal["null", "des", "3des", "aes128", "aes192", "aes256", "aria128", "aria192", "aria256", "seed"] | None = ...,
-        authkey: str | None = ...,
-        enckey: str | None = ...,
-        localspi: str | None = ...,
-        remotespi: str | None = ...,
-        npu_offload: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -532,7 +462,6 @@ class Manualkey:
         remotespi: str | None = ...,
         npu_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -541,7 +470,6 @@ class Manualkey:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ManualkeyObject: ...
     
     @overload
@@ -549,17 +477,7 @@ class Manualkey:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -573,7 +491,6 @@ class Manualkey:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -597,7 +514,6 @@ class Manualkey:
         remotespi: str | None = ...,
         npu_offload: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

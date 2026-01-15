@@ -118,7 +118,6 @@ class Global(CRUDEndpoint, MetadataMixin):
         q_action: Literal["default", "schema"] | None = None,
         payload_dict: dict[str, Any] | None = None,
         vdom: str | bool | None = None,
-        raw_json: bool = False,
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -145,7 +144,6 @@ class Global(CRUDEndpoint, MetadataMixin):
                 - action (str): Special actions - "schema", "default"
                 See FortiOS REST API documentation for complete list.
             vdom: Virtual domain name. Use True for global, string for specific VDOM, None for default.
-            raw_json: If True, return raw API response without processing.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
@@ -236,7 +234,7 @@ class Global(CRUDEndpoint, MetadataMixin):
             unwrap_single = False
         
         return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json, unwrap_single=unwrap_single
+            "cmdb", endpoint, params=params, vdom=vdom, unwrap_single=unwrap_single
         )
 
     def get_schema(
@@ -542,7 +540,6 @@ class Global(CRUDEndpoint, MetadataMixin):
         q_after: str | None = None,
         q_scope: str | None = None,
         vdom: str | bool | None = None,
-        raw_json: bool = False,
         error_mode: Literal["raise", "return", "print"] | None = None,
         error_format: Literal["detailed", "simple", "code_only"] | None = None,
     ):  # type: ignore[no-untyped-def]
@@ -811,7 +808,6 @@ class Global(CRUDEndpoint, MetadataMixin):
             application_bandwidth_tracking: Enable/disable application bandwidth tracking.
             tls_session_cache: Enable/disable TLS session cache.
             vdom: Virtual domain name.
-            raw_json: If True, return raw API response.
             error_mode: Override client-level error_mode. "raise" raises exceptions, "return" returns error dict, "print" prints errors.
             error_format: Override client-level error_format. "detailed" provides full context, "simple" is concise, "code_only" returns just status code.
 
@@ -1133,7 +1129,7 @@ class Global(CRUDEndpoint, MetadataMixin):
             params["scope"] = q_scope
         
         return self._client.put(
-            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom, raw_json=raw_json
+            "cmdb", endpoint, data=payload_data, params=params, vdom=vdom
         )
 
 
@@ -1257,11 +1253,11 @@ class Global(CRUDEndpoint, MetadataMixin):
         """
         # Try to fetch the object - 404 means it doesn't exist
         try:
-            response = self.get(
+            result = self.get(
                 name=name,
-                vdom=vdom,
-                raw_json=True
+                vdom=vdom
             )
+            response = result.raw if hasattr(result, 'raw') else result
             # Check if response indicates success
             return is_success(response)
         except Exception as e:

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -186,7 +186,7 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ExternalIdentityProviderObject]: ...
+    ) -> FortiObjectList[ExternalIdentityProviderObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -206,7 +206,6 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalIdentityProviderObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -224,7 +223,6 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalIdentityProviderObject: ...
     
     # With no mkey -> returns list of objects
@@ -241,25 +239,7 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExternalIdentityProviderObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ExternalIdentityProviderObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -275,7 +255,6 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalIdentityProviderObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -293,7 +272,6 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalIdentityProviderObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -310,8 +288,7 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ExternalIdentityProviderObject]: ...
+    ) -> FortiObjectList[ExternalIdentityProviderObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -327,7 +304,6 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -342,7 +318,6 @@ class ExternalIdentityProvider:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ExternalIdentityProviderObject | list[ExternalIdentityProviderObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -370,7 +345,6 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalIdentityProviderObject: ...
     
     @overload
@@ -391,30 +365,7 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -454,7 +405,6 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -476,7 +426,6 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalIdentityProviderObject: ...
     
     @overload
@@ -497,30 +446,7 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ExternalIdentityProviderPayload | None = ...,
-        name: str | None = ...,
-        type: Literal["ms-graph"] | None = ...,
-        version: Literal["v1.0", "beta"] | None = ...,
-        url: str | None = ...,
-        user_attr_name: str | None = ...,
-        group_attr_name: str | None = ...,
-        port: int | None = ...,
-        source_ip: str | None = ...,
-        interface_select_method: Literal["auto", "sdwan", "specify"] | None = ...,
-        interface: str | None = ...,
-        vrf_select: int | None = ...,
-        server_identity_check: Literal["disable", "enable"] | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -560,7 +486,6 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -569,7 +494,6 @@ class ExternalIdentityProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ExternalIdentityProviderObject: ...
     
     @overload
@@ -577,17 +501,7 @@ class ExternalIdentityProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -601,7 +515,6 @@ class ExternalIdentityProvider:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -627,7 +540,6 @@ class ExternalIdentityProvider:
         server_identity_check: Literal["disable", "enable"] | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

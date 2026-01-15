@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -250,7 +250,7 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[VlanPolicyObject]: ...
+    ) -> FortiObjectList[VlanPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -270,7 +270,6 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VlanPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -288,7 +287,6 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VlanPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -305,25 +303,7 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VlanPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[VlanPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -339,7 +319,6 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VlanPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -357,7 +336,6 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VlanPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -374,8 +352,7 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[VlanPolicyObject]: ...
+    ) -> FortiObjectList[VlanPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -391,7 +368,6 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -406,7 +382,6 @@ class VlanPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> VlanPolicyObject | list[VlanPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -429,7 +404,6 @@ class VlanPolicy:
         allowed_vlans_all: Literal["enable", "disable"] | None = ...,
         discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VlanPolicyObject: ...
     
     @overload
@@ -445,25 +419,7 @@ class VlanPolicy:
         allowed_vlans_all: Literal["enable", "disable"] | None = ...,
         discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: VlanPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        vlan: str | None = ...,
-        allowed_vlans: str | list[str] | list[dict[str, Any]] | None = ...,
-        untagged_vlans: str | list[str] | list[dict[str, Any]] | None = ...,
-        allowed_vlans_all: Literal["enable", "disable"] | None = ...,
-        discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -493,7 +449,6 @@ class VlanPolicy:
         allowed_vlans_all: Literal["enable", "disable"] | None = ...,
         discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -510,7 +465,6 @@ class VlanPolicy:
         allowed_vlans_all: Literal["enable", "disable"] | None = ...,
         discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VlanPolicyObject: ...
     
     @overload
@@ -526,25 +480,7 @@ class VlanPolicy:
         allowed_vlans_all: Literal["enable", "disable"] | None = ...,
         discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: VlanPolicyPayload | None = ...,
-        name: str | None = ...,
-        description: str | None = ...,
-        fortilink: str | None = ...,
-        vlan: str | None = ...,
-        allowed_vlans: str | list[str] | list[dict[str, Any]] | None = ...,
-        untagged_vlans: str | list[str] | list[dict[str, Any]] | None = ...,
-        allowed_vlans_all: Literal["enable", "disable"] | None = ...,
-        discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -574,7 +510,6 @@ class VlanPolicy:
         allowed_vlans_all: Literal["enable", "disable"] | None = ...,
         discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -583,7 +518,6 @@ class VlanPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> VlanPolicyObject: ...
     
     @overload
@@ -591,17 +525,7 @@ class VlanPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -615,7 +539,6 @@ class VlanPolicy:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -636,7 +559,6 @@ class VlanPolicy:
         allowed_vlans_all: Literal["enable", "disable"] | None = ...,
         discard_mode: Literal["none", "all-untagged", "all-tagged"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

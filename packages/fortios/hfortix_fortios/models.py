@@ -6,7 +6,8 @@ Provides zero-maintenance object wrappers for FortiOS API responses.
 
 from __future__ import annotations
 
-from typing import Any
+import json as json_module
+from typing import Any, Iterator
 
 
 class FortiObject:
@@ -22,6 +23,7 @@ class FortiObject:
     - No maintenance - automatically handles new fields
     - Auto-flattening of member_table fields for clean access
     - Escape hatch via get_full() for raw data access
+    - Access full API envelope via .raw property
 
     Examples:
         >>> # From dict response
@@ -43,19 +45,26 @@ class FortiObject:
         >>> # Convert back to dict
         >>> obj.to_dict()
         {'name': 'policy1', 'srcaddr': [{'name': 'addr1'}]}
+        >>>
+        >>> # Access full API envelope
+        >>> obj.raw
+        {'http_status': 200, 'status': 'success', 'results': {...}}
 
     Args:
         data: Dictionary from FortiOS API response
+        raw_envelope: Optional full API response envelope (with http_status, results, etc.)
     """
 
-    def __init__(self, data: dict):
+    def __init__(self, data: dict, raw_envelope: dict | None = None):
         """
         Initialize FortiObject with API response data.
 
         Args:
             data: Dictionary containing the API response fields
+            raw_envelope: Optional full API response envelope
         """
         self._data = data
+        self._raw_envelope = raw_envelope
 
     def __getattr__(self, name: str) -> Any:
         """
@@ -384,30 +393,126 @@ class FortiObject:
         return value
 
 
+class FortiObjectList(list):
+    """
+    A list of FortiObject instances with convenient access to raw API response.
+    
+    This class extends the standard list to provide additional properties
+    for accessing the data in different formats. It stores the full API
+    envelope so you can access metadata like http_status, vdom, etc.
+    
+    Properties:
+        dict: Returns list of dictionaries (each FortiObject as dict)
+        json: Returns pretty-printed JSON string  
+        raw: Returns the full API response envelope
+    
+    Examples:
+        >>> policies = fgt.api.cmdb.firewall.policy.get()
+        >>> policies[0].name  # Access like normal list of FortiObjects
+        'my-policy'
+        >>> 
+        >>> # Get as list of dicts
+        >>> policies.dict
+        [{'policyid': 1, 'name': 'my-policy', ...}, ...]
+        >>>
+        >>> # Get pretty JSON string
+        >>> print(policies.json)
+        [
+          {
+            "policyid": 1,
+            "name": "my-policy",
+            ...
+          }
+        ]
+        >>>
+        >>> # Get full API envelope with metadata
+        >>> policies.raw
+        {'http_status': 200, 'vdom': 'root', 'results': [...], ...}
+    """
+    
+    def __init__(self, items: list | None = None, raw_envelope: dict | None = None):
+        """
+        Initialize FortiObjectList.
+        
+        Args:
+            items: List of FortiObject instances or other items
+            raw_envelope: The full API response envelope (optional)
+        """
+        super().__init__(items or [])
+        self._raw_envelope = raw_envelope
+    
+    @property
+    def dict(self) -> list[dict]:
+        """
+        Get list of dictionaries.
+        
+        Converts each FortiObject back to its dictionary representation.
+        Non-FortiObject items are returned as-is.
+        
+        Returns:
+            List of dictionaries
+        """
+        return [
+            item.to_dict() if isinstance(item, FortiObject) else item
+            for item in self
+        ]
+    
+    @property
+    def json(self) -> str:
+        """
+        Get pretty-printed JSON string of the list.
+        
+        Returns:
+            JSON string with 2-space indentation
+        """
+        import json
+        return json.dumps(self.dict, indent=2)
+    
+    @property
+    def raw(self) -> dict | list[dict]:
+        """
+        Get the full API response envelope.
+        
+        Returns the complete API response including metadata like
+        http_status, vdom, revision, build, etc. If no envelope
+        was stored, returns the list of dicts.
+        
+        Returns:
+            Full API envelope dict, or list of dicts if no envelope available
+        """
+        if self._raw_envelope is not None:
+            return self._raw_envelope
+        return self.dict
+
+
 def process_response(
     result: Any,
     unwrap_single: bool = False,
+    raw_envelope: dict | None = None,
 ) -> Any:
     """
     Process API response - always returns FortiObject instances.
 
-    Handles both raw_json=False (list of results) and raw_json=True (full response dict).
+    Handles list responses (results array) and dict responses (full envelope).
 
     Args:
         result: Raw API response (list or dict)
         unwrap_single: If True and result is single-item list, return just the item
+        raw_envelope: Optional full API envelope to attach to FortiObjectList
 
     Returns:
-        Processed response - FortiObject or list[FortiObject]
+        Processed response - FortiObject, FortiObjectList, or dict with FortiObjects
 
     Examples:
-        >>> # List response
+        >>> # List response - returns FortiObjectList
         >>> result = [{"name": "policy1", "srcaddr": [{"name": "addr1"}]}]
         >>> objects = process_response(result)
         >>> objects[0].name
         'policy1'
         >>> objects[0].srcaddr  # Auto-flattened!
         ['addr1']
+        >>> objects.raw  # Access full envelope
+        {'http_status': 200, 'results': [...]}
 
         >>> # Single item with unwrap_single
         >>> result = [{"name": "policy1"}]
@@ -415,7 +520,7 @@ def process_response(
         >>> obj.name
         'policy1'
 
-        >>> # Dict response with 'results' key (raw_json=True)
+        >>> # Dict response with 'results' key (full envelope)
         >>> result = {'results': [{"name": "policy1"}], 'http_status': 200}
         >>> response = process_response(result)
         >>> response['results'][0].name
@@ -425,7 +530,7 @@ def process_response(
     """
     # Wrap in FortiObject based on response type
     if isinstance(result, list):
-        # raw_json=False: Direct list of results
+        # Direct list of results
         # Only wrap dict items in FortiObject; pass through non-dicts (strings, ints, etc.)
         wrapped = [
             FortiObject(item) if isinstance(item, dict) else item
@@ -437,12 +542,13 @@ def process_response(
         if unwrap_single and len(wrapped) == 1:
             return wrapped[0]
 
-        return wrapped
+        # Return FortiObjectList with raw envelope for .raw property access
+        return FortiObjectList(wrapped, raw_envelope=raw_envelope)
+    
     elif isinstance(result, dict):
-        # Check if this is a raw_json=True response with 'results' key
+        # Check if this is a full response envelope with 'results' key
         if "results" in result and isinstance(result["results"], list):
-            # raw_json=True: Preserve full response but wrap results in FortiObject
-            # Only wrap dict items; pass through non-dicts
+            # Full envelope: Wrap results in FortiObject, store envelope for .raw
             wrapped_results = [
                 FortiObject(item) if isinstance(item, dict) else item
                 for item in result["results"]
@@ -450,9 +556,10 @@ def process_response(
 
             # If unwrap_single=True and we have exactly 1 item, unwrap it
             if unwrap_single and len(wrapped_results) == 1:
-                return {**result, "results": wrapped_results[0]}
+                return wrapped_results[0]
 
-            return {**result, "results": wrapped_results}
+            # Return FortiObjectList with the full envelope as raw
+            return FortiObjectList(wrapped_results, raw_envelope=result)
         else:
             # Single object response (e.g., get with specific ID)
             return FortiObject(result)

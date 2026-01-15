@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -157,7 +157,7 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[WispObject]: ...
+    ) -> FortiObjectList[WispObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -177,7 +177,6 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WispObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -195,7 +194,6 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WispObject: ...
     
     # With no mkey -> returns list of objects
@@ -212,25 +210,7 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[WispObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[WispObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -246,7 +226,6 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WispObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -264,7 +243,6 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WispObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -281,8 +259,7 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[WispObject]: ...
+    ) -> FortiObjectList[WispObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -298,7 +275,6 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -313,7 +289,6 @@ class Wisp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> WispObject | list[WispObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -335,7 +310,6 @@ class Wisp:
         max_connections: int | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WispObject: ...
     
     @overload
@@ -350,24 +324,7 @@ class Wisp:
         max_connections: int | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: WispPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        outgoing_ip: str | None = ...,
-        server_ip: str | None = ...,
-        server_port: int | None = ...,
-        max_connections: int | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -395,7 +352,6 @@ class Wisp:
         max_connections: int | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -411,7 +367,6 @@ class Wisp:
         max_connections: int | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WispObject: ...
     
     @overload
@@ -426,24 +381,7 @@ class Wisp:
         max_connections: int | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: WispPayload | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        outgoing_ip: str | None = ...,
-        server_ip: str | None = ...,
-        server_port: int | None = ...,
-        max_connections: int | None = ...,
-        timeout: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -471,7 +409,6 @@ class Wisp:
         max_connections: int | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -480,7 +417,6 @@ class Wisp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> WispObject: ...
     
     @overload
@@ -488,17 +424,7 @@ class Wisp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -512,7 +438,6 @@ class Wisp:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -532,7 +457,6 @@ class Wisp:
         max_connections: int | None = ...,
         timeout: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

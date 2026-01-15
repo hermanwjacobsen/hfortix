@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -606,7 +606,7 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LocalInPolicyObject]: ...
+    ) -> FortiObjectList[LocalInPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -626,7 +626,6 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalInPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -644,7 +643,6 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalInPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -661,25 +659,7 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LocalInPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        policyid: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[LocalInPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -695,7 +675,6 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalInPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -713,7 +692,6 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalInPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -730,8 +708,7 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LocalInPolicyObject]: ...
+    ) -> FortiObjectList[LocalInPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -747,7 +724,6 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -762,7 +738,6 @@ class LocalInPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> LocalInPolicyObject | list[LocalInPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -800,7 +775,6 @@ class LocalInPolicy:
         logtraffic: Literal["enable", "disable"] | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalInPolicyObject: ...
     
     @overload
@@ -831,40 +805,7 @@ class LocalInPolicy:
         logtraffic: Literal["enable", "disable"] | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: LocalInPolicyPayload | None = ...,
-        policyid: int | None = ...,
-        uuid: str | None = ...,
-        ha_mgmt_intf_only: Literal["enable", "disable"] | None = ...,
-        intf: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr_negate: Literal["enable", "disable"] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src: Literal["enable", "disable"] | None = ...,
-        internet_service_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr_negate: Literal["enable", "disable"] | None = ...,
-        action: Literal["accept", "deny"] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_negate: Literal["enable", "disable"] | None = ...,
-        internet_service_src_negate: Literal["enable", "disable"] | None = ...,
-        schedule: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        virtual_patch: Literal["enable", "disable"] | None = ...,
-        logtraffic: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -924,7 +865,6 @@ class LocalInPolicy:
         logtraffic: Literal["enable", "disable"] | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -956,7 +896,6 @@ class LocalInPolicy:
         logtraffic: Literal["enable", "disable"] | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalInPolicyObject: ...
     
     @overload
@@ -987,40 +926,7 @@ class LocalInPolicy:
         logtraffic: Literal["enable", "disable"] | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: LocalInPolicyPayload | None = ...,
-        policyid: int | None = ...,
-        uuid: str | None = ...,
-        ha_mgmt_intf_only: Literal["enable", "disable"] | None = ...,
-        intf: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr_negate: Literal["enable", "disable"] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src: Literal["enable", "disable"] | None = ...,
-        internet_service_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr_negate: Literal["enable", "disable"] | None = ...,
-        action: Literal["accept", "deny"] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_negate: Literal["enable", "disable"] | None = ...,
-        internet_service_src_negate: Literal["enable", "disable"] | None = ...,
-        schedule: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        virtual_patch: Literal["enable", "disable"] | None = ...,
-        logtraffic: Literal["enable", "disable"] | None = ...,
-        comments: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1080,7 +986,6 @@ class LocalInPolicy:
         logtraffic: Literal["enable", "disable"] | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -1089,7 +994,6 @@ class LocalInPolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalInPolicyObject: ...
     
     @overload
@@ -1097,17 +1001,7 @@ class LocalInPolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        policyid: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -1121,7 +1015,6 @@ class LocalInPolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -1157,7 +1050,6 @@ class LocalInPolicy:
         logtraffic: Literal["enable", "disable"] | None = ...,
         comments: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

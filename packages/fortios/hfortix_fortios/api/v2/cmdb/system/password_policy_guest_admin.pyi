@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -192,7 +192,6 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyGuestAdminObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -210,7 +209,6 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyGuestAdminObject: ...
     
     # With no mkey -> returns list of objects
@@ -227,25 +225,7 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyGuestAdminObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -261,7 +241,6 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyGuestAdminObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -279,7 +258,6 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyGuestAdminObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -296,7 +274,6 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyGuestAdminObject: ...
     
     # Fallback overload for all other cases
@@ -313,7 +290,6 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -328,7 +304,6 @@ class PasswordPolicyGuestAdmin:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PasswordPolicyGuestAdminObject | dict[str, Any]: ...
     
     def get_schema(
@@ -354,7 +329,6 @@ class PasswordPolicyGuestAdmin:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyGuestAdminObject: ...
     
     @overload
@@ -373,28 +347,7 @@ class PasswordPolicyGuestAdmin:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PasswordPolicyGuestAdminPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        apply_to: Literal["guest-admin-password"] | list[str] | None = ...,
-        minimum_length: int | None = ...,
-        min_lower_case_letter: int | None = ...,
-        min_upper_case_letter: int | None = ...,
-        min_non_alphanumeric: int | None = ...,
-        min_number: int | None = ...,
-        expire_status: Literal["enable", "disable"] | None = ...,
-        expire_day: int | None = ...,
-        reuse_password: Literal["enable", "disable"] | None = ...,
-        reuse_password_limit: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -430,7 +383,6 @@ class PasswordPolicyGuestAdmin:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -454,7 +406,6 @@ class PasswordPolicyGuestAdmin:
         reuse_password: Literal["enable", "disable"] | None = ...,
         reuse_password_limit: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

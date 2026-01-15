@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -178,7 +178,7 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ScimObject]: ...
+    ) -> FortiObjectList[ScimObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -198,7 +198,6 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ScimObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -216,7 +215,6 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ScimObject: ...
     
     # With no mkey -> returns list of objects
@@ -233,25 +231,7 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ScimObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ScimObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -267,7 +247,6 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ScimObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -285,7 +264,6 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ScimObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -302,8 +280,7 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ScimObject]: ...
+    ) -> FortiObjectList[ScimObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -319,7 +296,6 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -334,7 +310,6 @@ class Scim:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ScimObject | list[ScimObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -359,7 +334,6 @@ class Scim:
         client_identity_check: Literal["enable", "disable"] | None = ...,
         cascade: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ScimObject: ...
     
     @overload
@@ -377,27 +351,7 @@ class Scim:
         client_identity_check: Literal["enable", "disable"] | None = ...,
         cascade: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ScimPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        base_url: str | None = ...,
-        auth_method: Literal["token", "base"] | None = ...,
-        token_certificate: str | None = ...,
-        secret: str | None = ...,
-        certificate: str | None = ...,
-        client_identity_check: Literal["enable", "disable"] | None = ...,
-        cascade: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -431,7 +385,6 @@ class Scim:
         client_identity_check: Literal["enable", "disable"] | None = ...,
         cascade: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -450,7 +403,6 @@ class Scim:
         client_identity_check: Literal["enable", "disable"] | None = ...,
         cascade: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ScimObject: ...
     
     @overload
@@ -468,27 +420,7 @@ class Scim:
         client_identity_check: Literal["enable", "disable"] | None = ...,
         cascade: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ScimPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        base_url: str | None = ...,
-        auth_method: Literal["token", "base"] | None = ...,
-        token_certificate: str | None = ...,
-        secret: str | None = ...,
-        certificate: str | None = ...,
-        client_identity_check: Literal["enable", "disable"] | None = ...,
-        cascade: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -522,7 +454,6 @@ class Scim:
         client_identity_check: Literal["enable", "disable"] | None = ...,
         cascade: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -531,7 +462,6 @@ class Scim:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ScimObject: ...
     
     @overload
@@ -539,17 +469,7 @@ class Scim:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -563,7 +483,6 @@ class Scim:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -586,7 +505,6 @@ class Scim:
         client_identity_check: Literal["enable", "disable"] | None = ...,
         cascade: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -306,7 +306,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -324,7 +323,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # With no mkey -> returns list of objects
@@ -341,25 +339,7 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -375,7 +355,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -393,7 +372,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -410,7 +388,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     # Fallback overload for all other cases
@@ -427,7 +404,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -442,7 +418,6 @@ class Setting:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SettingObject | dict[str, Any]: ...
     
     def get_schema(
@@ -486,7 +461,6 @@ class Setting:
         custom_log_fields: str | list[str] | list[dict[str, Any]] | None = ...,
         anonymization_hash: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SettingObject: ...
     
     @overload
@@ -523,46 +497,7 @@ class Setting:
         custom_log_fields: str | list[str] | list[dict[str, Any]] | None = ...,
         anonymization_hash: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SettingPayload | None = ...,
-        resolve_ip: Literal["enable", "disable"] | None = ...,
-        resolve_port: Literal["enable", "disable"] | None = ...,
-        log_user_in_upper: Literal["enable", "disable"] | None = ...,
-        fwpolicy_implicit_log: Literal["enable", "disable"] | None = ...,
-        fwpolicy6_implicit_log: Literal["enable", "disable"] | None = ...,
-        extended_log: Literal["enable", "disable"] | None = ...,
-        local_in_allow: Literal["enable", "disable"] | None = ...,
-        local_in_deny_unicast: Literal["enable", "disable"] | None = ...,
-        local_in_deny_broadcast: Literal["enable", "disable"] | None = ...,
-        local_in_policy_log: Literal["enable", "disable"] | None = ...,
-        local_out: Literal["enable", "disable"] | None = ...,
-        local_out_ioc_detection: Literal["enable", "disable"] | None = ...,
-        daemon_log: Literal["enable", "disable"] | None = ...,
-        neighbor_event: Literal["enable", "disable"] | None = ...,
-        brief_traffic_format: Literal["enable", "disable"] | None = ...,
-        user_anonymize: Literal["enable", "disable"] | None = ...,
-        expolicy_implicit_log: Literal["enable", "disable"] | None = ...,
-        log_policy_comment: Literal["enable", "disable"] | None = ...,
-        faz_override: Literal["enable", "disable"] | None = ...,
-        syslog_override: Literal["enable", "disable"] | None = ...,
-        rest_api_set: Literal["enable", "disable"] | None = ...,
-        rest_api_get: Literal["enable", "disable"] | None = ...,
-        rest_api_performance: Literal["enable", "disable"] | None = ...,
-        long_live_session_stat: Literal["enable", "disable"] | None = ...,
-        extended_utm_log: Literal["enable", "disable"] | None = ...,
-        zone_name: Literal["enable", "disable"] | None = ...,
-        web_svc_perf: Literal["enable", "disable"] | None = ...,
-        custom_log_fields: str | list[str] | list[dict[str, Any]] | None = ...,
-        anonymization_hash: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -634,7 +569,6 @@ class Setting:
         custom_log_fields: str | list[str] | list[dict[str, Any]] | None = ...,
         anonymization_hash: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -676,7 +610,6 @@ class Setting:
         custom_log_fields: str | list[str] | list[dict[str, Any]] | None = ...,
         anonymization_hash: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

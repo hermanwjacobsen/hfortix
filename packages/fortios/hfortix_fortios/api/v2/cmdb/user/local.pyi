@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -249,7 +249,7 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LocalObject]: ...
+    ) -> FortiObjectList[LocalObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -269,7 +269,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -287,7 +286,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # With no mkey -> returns list of objects
@@ -304,25 +302,7 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LocalObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[LocalObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -338,7 +318,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -356,7 +335,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -373,8 +351,7 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LocalObject]: ...
+    ) -> FortiObjectList[LocalObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -390,7 +367,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -405,7 +381,6 @@ class Local:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> LocalObject | list[LocalObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -447,7 +422,6 @@ class Local:
         qkd_profile: str | None = ...,
         username_sensitivity: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     @overload
@@ -482,44 +456,7 @@ class Local:
         qkd_profile: str | None = ...,
         username_sensitivity: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["password", "radius", "tacacs+", "ldap", "saml"] | None = ...,
-        passwd: str | None = ...,
-        ldap_server: str | None = ...,
-        radius_server: str | None = ...,
-        tacacs_plus_server: str | None = ...,
-        saml_server: str | None = ...,
-        two_factor: Literal["disable", "fortitoken", "fortitoken-cloud", "email", "sms"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        fortitoken: str | None = ...,
-        email_to: str | None = ...,
-        sms_server: Literal["fortiguard", "custom"] | None = ...,
-        sms_custom_server: str | None = ...,
-        sms_phone: str | None = ...,
-        passwd_policy: str | None = ...,
-        passwd_time: str | None = ...,
-        authtimeout: int | None = ...,
-        workstation: str | None = ...,
-        auth_concurrent_override: Literal["enable", "disable"] | None = ...,
-        auth_concurrent_value: int | None = ...,
-        ppk_secret: str | None = ...,
-        ppk_identity: str | None = ...,
-        qkd_profile: str | None = ...,
-        username_sensitivity: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -587,7 +524,6 @@ class Local:
         qkd_profile: str | None = ...,
         username_sensitivity: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -623,7 +559,6 @@ class Local:
         qkd_profile: str | None = ...,
         username_sensitivity: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     @overload
@@ -658,44 +593,7 @@ class Local:
         qkd_profile: str | None = ...,
         username_sensitivity: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: LocalPayload | None = ...,
-        name: str | None = ...,
-        id: int | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        type: Literal["password", "radius", "tacacs+", "ldap", "saml"] | None = ...,
-        passwd: str | None = ...,
-        ldap_server: str | None = ...,
-        radius_server: str | None = ...,
-        tacacs_plus_server: str | None = ...,
-        saml_server: str | None = ...,
-        two_factor: Literal["disable", "fortitoken", "fortitoken-cloud", "email", "sms"] | None = ...,
-        two_factor_authentication: Literal["fortitoken", "email", "sms"] | None = ...,
-        two_factor_notification: Literal["email", "sms"] | None = ...,
-        fortitoken: str | None = ...,
-        email_to: str | None = ...,
-        sms_server: Literal["fortiguard", "custom"] | None = ...,
-        sms_custom_server: str | None = ...,
-        sms_phone: str | None = ...,
-        passwd_policy: str | None = ...,
-        passwd_time: str | None = ...,
-        authtimeout: int | None = ...,
-        workstation: str | None = ...,
-        auth_concurrent_override: Literal["enable", "disable"] | None = ...,
-        auth_concurrent_value: int | None = ...,
-        ppk_secret: str | None = ...,
-        ppk_identity: str | None = ...,
-        qkd_profile: str | None = ...,
-        username_sensitivity: Literal["disable", "enable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -763,7 +661,6 @@ class Local:
         qkd_profile: str | None = ...,
         username_sensitivity: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -772,7 +669,6 @@ class Local:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LocalObject: ...
     
     @overload
@@ -780,17 +676,7 @@ class Local:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -804,7 +690,6 @@ class Local:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -844,7 +729,6 @@ class Local:
         qkd_profile: str | None = ...,
         username_sensitivity: Literal["disable", "enable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

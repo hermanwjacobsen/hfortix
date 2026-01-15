@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -2088,7 +2088,6 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BgpObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -2106,7 +2105,6 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BgpObject: ...
     
     # With no mkey -> returns list of objects
@@ -2123,25 +2121,7 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BgpObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -2157,7 +2137,6 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BgpObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -2175,7 +2154,6 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BgpObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -2192,7 +2170,6 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BgpObject: ...
     
     # Fallback overload for all other cases
@@ -2209,7 +2186,6 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -2224,7 +2200,6 @@ class Bgp:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> BgpObject | dict[str, Any]: ...
     
     def get_schema(
@@ -2305,7 +2280,6 @@ class Bgp:
         vrf: str | list[str] | list[dict[str, Any]] | None = ...,
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> BgpObject: ...
     
     @overload
@@ -2379,83 +2353,7 @@ class Bgp:
         vrf: str | list[str] | list[dict[str, Any]] | None = ...,
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: BgpPayload | None = ...,
-        asn: str | None = ...,
-        router_id: str | None = ...,
-        keepalive_timer: int | None = ...,
-        holdtime_timer: int | None = ...,
-        always_compare_med: Literal["enable", "disable"] | None = ...,
-        bestpath_as_path_ignore: Literal["enable", "disable"] | None = ...,
-        bestpath_cmp_confed_aspath: Literal["enable", "disable"] | None = ...,
-        bestpath_cmp_routerid: Literal["enable", "disable"] | None = ...,
-        bestpath_med_confed: Literal["enable", "disable"] | None = ...,
-        bestpath_med_missing_as_worst: Literal["enable", "disable"] | None = ...,
-        client_to_client_reflection: Literal["enable", "disable"] | None = ...,
-        dampening: Literal["enable", "disable"] | None = ...,
-        deterministic_med: Literal["enable", "disable"] | None = ...,
-        ebgp_multipath: Literal["enable", "disable"] | None = ...,
-        ibgp_multipath: Literal["enable", "disable"] | None = ...,
-        enforce_first_as: Literal["enable", "disable"] | None = ...,
-        fast_external_failover: Literal["enable", "disable"] | None = ...,
-        log_neighbour_changes: Literal["enable", "disable"] | None = ...,
-        network_import_check: Literal["enable", "disable"] | None = ...,
-        ignore_optional_capability: Literal["enable", "disable"] | None = ...,
-        additional_path: Literal["enable", "disable"] | None = ...,
-        additional_path6: Literal["enable", "disable"] | None = ...,
-        additional_path_vpnv4: Literal["enable", "disable"] | None = ...,
-        additional_path_vpnv6: Literal["enable", "disable"] | None = ...,
-        multipath_recursive_distance: Literal["enable", "disable"] | None = ...,
-        recursive_next_hop: Literal["enable", "disable"] | None = ...,
-        recursive_inherit_priority: Literal["enable", "disable"] | None = ...,
-        tag_resolve_mode: Literal["disable", "preferred", "merge", "merge-all"] | None = ...,
-        cluster_id: str | None = ...,
-        confederation_identifier: int | None = ...,
-        confederation_peers: str | list[str] | list[dict[str, Any]] | None = ...,
-        dampening_route_map: str | None = ...,
-        dampening_reachability_half_life: int | None = ...,
-        dampening_reuse: int | None = ...,
-        dampening_suppress: int | None = ...,
-        dampening_max_suppress_time: int | None = ...,
-        dampening_unreachability_half_life: int | None = ...,
-        default_local_preference: int | None = ...,
-        scan_time: int | None = ...,
-        distance_external: int | None = ...,
-        distance_internal: int | None = ...,
-        distance_local: int | None = ...,
-        synchronization: Literal["enable", "disable"] | None = ...,
-        graceful_restart: Literal["enable", "disable"] | None = ...,
-        graceful_restart_time: int | None = ...,
-        graceful_stalepath_time: int | None = ...,
-        graceful_update_delay: int | None = ...,
-        graceful_end_on_timer: Literal["enable", "disable"] | None = ...,
-        additional_path_select: int | None = ...,
-        additional_path_select6: int | None = ...,
-        additional_path_select_vpnv4: int | None = ...,
-        additional_path_select_vpnv6: int | None = ...,
-        cross_family_conditional_adv: Literal["enable", "disable"] | None = ...,
-        aggregate_address: str | list[str] | list[dict[str, Any]] | None = ...,
-        aggregate_address6: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor_range: str | list[str] | list[dict[str, Any]] | None = ...,
-        neighbor_range6: str | list[str] | list[dict[str, Any]] | None = ...,
-        network: str | list[str] | list[dict[str, Any]] | None = ...,
-        network6: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute: str | list[str] | list[dict[str, Any]] | None = ...,
-        redistribute6: str | list[str] | list[dict[str, Any]] | None = ...,
-        admin_distance: str | list[str] | list[dict[str, Any]] | None = ...,
-        vrf: str | list[str] | list[dict[str, Any]] | None = ...,
-        vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -2601,7 +2499,6 @@ class Bgp:
         vrf: str | list[str] | list[dict[str, Any]] | None = ...,
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -2680,7 +2577,6 @@ class Bgp:
         vrf: str | list[str] | list[dict[str, Any]] | None = ...,
         vrf6: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

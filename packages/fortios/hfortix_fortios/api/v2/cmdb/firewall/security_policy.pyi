@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -1854,7 +1854,7 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[SecurityPolicyObject]: ...
+    ) -> FortiObjectList[SecurityPolicyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -1874,7 +1874,6 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SecurityPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -1892,7 +1891,6 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SecurityPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -1909,25 +1907,7 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SecurityPolicyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        policyid: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[SecurityPolicyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -1943,7 +1923,6 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SecurityPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -1961,7 +1940,6 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SecurityPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -1978,8 +1956,7 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[SecurityPolicyObject]: ...
+    ) -> FortiObjectList[SecurityPolicyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -1995,7 +1972,6 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -2010,7 +1986,6 @@ class SecurityPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> SecurityPolicyObject | list[SecurityPolicyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -2106,7 +2081,6 @@ class SecurityPolicy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SecurityPolicyObject: ...
     
     @overload
@@ -2195,98 +2169,7 @@ class SecurityPolicy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: SecurityPolicyPayload | None = ...,
-        uuid: str | None = ...,
-        policyid: int | None = ...,
-        name: str | None = ...,
-        comments: str | None = ...,
-        srcintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr_negate: Literal["enable", "disable"] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr_negate: Literal["enable", "disable"] | None = ...,
-        srcaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr6_negate: Literal["enable", "disable"] | None = ...,
-        dstaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr6_negate: Literal["enable", "disable"] | None = ...,
-        internet_service: Literal["enable", "disable"] | None = ...,
-        internet_service_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_negate: Literal["enable", "disable"] | None = ...,
-        internet_service_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src: Literal["enable", "disable"] | None = ...,
-        internet_service_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_negate: Literal["enable", "disable"] | None = ...,
-        internet_service_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6: Literal["enable", "disable"] | None = ...,
-        internet_service6_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_negate: Literal["enable", "disable"] | None = ...,
-        internet_service6_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src: Literal["enable", "disable"] | None = ...,
-        internet_service6_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_negate: Literal["enable", "disable"] | None = ...,
-        internet_service6_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        enforce_default_app_port: Literal["enable", "disable"] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_negate: Literal["enable", "disable"] | None = ...,
-        action: Literal["accept", "deny"] | None = ...,
-        send_deny_packet: Literal["disable", "enable"] | None = ...,
-        schedule: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        logtraffic: Literal["all", "utm", "disable"] | None = ...,
-        learning_mode: Literal["enable", "disable"] | None = ...,
-        nat46: Literal["enable", "disable"] | None = ...,
-        nat64: Literal["enable", "disable"] | None = ...,
-        profile_type: Literal["single", "group"] | None = ...,
-        profile_group: str | None = ...,
-        profile_protocol_options: str | None = ...,
-        ssl_ssh_profile: str | None = ...,
-        av_profile: str | None = ...,
-        webfilter_profile: str | None = ...,
-        dnsfilter_profile: str | None = ...,
-        emailfilter_profile: str | None = ...,
-        dlp_profile: str | None = ...,
-        file_filter_profile: str | None = ...,
-        ips_sensor: str | None = ...,
-        application_list: str | None = ...,
-        voip_profile: str | None = ...,
-        ips_voip_filter: str | None = ...,
-        sctp_filter_profile: str | None = ...,
-        diameter_filter_profile: str | None = ...,
-        virtual_patch_profile: str | None = ...,
-        icap_profile: str | None = ...,
-        videofilter_profile: str | None = ...,
-        ssh_filter_profile: str | None = ...,
-        casb_profile: str | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        app_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        url_category: str | list[str] | None = ...,
-        app_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        users: str | list[str] | list[dict[str, Any]] | None = ...,
-        fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -2462,7 +2345,6 @@ class SecurityPolicy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -2552,7 +2434,6 @@ class SecurityPolicy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SecurityPolicyObject: ...
     
     @overload
@@ -2641,98 +2522,7 @@ class SecurityPolicy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: SecurityPolicyPayload | None = ...,
-        uuid: str | None = ...,
-        policyid: int | None = ...,
-        name: str | None = ...,
-        comments: str | None = ...,
-        srcintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstintf: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr_negate: Literal["enable", "disable"] | None = ...,
-        dstaddr: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr_negate: Literal["enable", "disable"] | None = ...,
-        srcaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        srcaddr6_negate: Literal["enable", "disable"] | None = ...,
-        dstaddr6: str | list[str] | list[dict[str, Any]] | None = ...,
-        dstaddr6_negate: Literal["enable", "disable"] | None = ...,
-        internet_service: Literal["enable", "disable"] | None = ...,
-        internet_service_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_negate: Literal["enable", "disable"] | None = ...,
-        internet_service_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src: Literal["enable", "disable"] | None = ...,
-        internet_service_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_negate: Literal["enable", "disable"] | None = ...,
-        internet_service_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6: Literal["enable", "disable"] | None = ...,
-        internet_service6_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_negate: Literal["enable", "disable"] | None = ...,
-        internet_service6_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src: Literal["enable", "disable"] | None = ...,
-        internet_service6_src_name: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_negate: Literal["enable", "disable"] | None = ...,
-        internet_service6_src_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_custom: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_custom_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        internet_service6_src_fortiguard: str | list[str] | list[dict[str, Any]] | None = ...,
-        enforce_default_app_port: Literal["enable", "disable"] | None = ...,
-        service: str | list[str] | list[dict[str, Any]] | None = ...,
-        service_negate: Literal["enable", "disable"] | None = ...,
-        action: Literal["accept", "deny"] | None = ...,
-        send_deny_packet: Literal["disable", "enable"] | None = ...,
-        schedule: str | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        logtraffic: Literal["all", "utm", "disable"] | None = ...,
-        learning_mode: Literal["enable", "disable"] | None = ...,
-        nat46: Literal["enable", "disable"] | None = ...,
-        nat64: Literal["enable", "disable"] | None = ...,
-        profile_type: Literal["single", "group"] | None = ...,
-        profile_group: str | None = ...,
-        profile_protocol_options: str | None = ...,
-        ssl_ssh_profile: str | None = ...,
-        av_profile: str | None = ...,
-        webfilter_profile: str | None = ...,
-        dnsfilter_profile: str | None = ...,
-        emailfilter_profile: str | None = ...,
-        dlp_profile: str | None = ...,
-        file_filter_profile: str | None = ...,
-        ips_sensor: str | None = ...,
-        application_list: str | None = ...,
-        voip_profile: str | None = ...,
-        ips_voip_filter: str | None = ...,
-        sctp_filter_profile: str | None = ...,
-        diameter_filter_profile: str | None = ...,
-        virtual_patch_profile: str | None = ...,
-        icap_profile: str | None = ...,
-        videofilter_profile: str | None = ...,
-        ssh_filter_profile: str | None = ...,
-        casb_profile: str | None = ...,
-        application: str | list[str] | list[dict[str, Any]] | None = ...,
-        app_category: str | list[str] | list[dict[str, Any]] | None = ...,
-        url_category: str | list[str] | None = ...,
-        app_group: str | list[str] | list[dict[str, Any]] | None = ...,
-        groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        users: str | list[str] | list[dict[str, Any]] | None = ...,
-        fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -2908,7 +2698,6 @@ class SecurityPolicy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -2917,7 +2706,6 @@ class SecurityPolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> SecurityPolicyObject: ...
     
     @overload
@@ -2925,17 +2713,7 @@ class SecurityPolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        policyid: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -2949,7 +2727,6 @@ class SecurityPolicy:
         self,
         policyid: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -3043,7 +2820,6 @@ class SecurityPolicy:
         users: str | list[str] | list[dict[str, Any]] | None = ...,
         fsso_groups: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

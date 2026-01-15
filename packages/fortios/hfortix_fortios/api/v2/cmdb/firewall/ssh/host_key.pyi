@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -165,7 +165,7 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[HostKeyObject]: ...
+    ) -> FortiObjectList[HostKeyObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -185,7 +185,6 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HostKeyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -203,7 +202,6 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HostKeyObject: ...
     
     # With no mkey -> returns list of objects
@@ -220,25 +218,7 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[HostKeyObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[HostKeyObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -254,7 +234,6 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HostKeyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -272,7 +251,6 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HostKeyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -289,8 +267,7 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[HostKeyObject]: ...
+    ) -> FortiObjectList[HostKeyObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -306,7 +283,6 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -321,7 +297,6 @@ class HostKey:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> HostKeyObject | list[HostKeyObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -345,7 +320,6 @@ class HostKey:
         hostname: str | None = ...,
         public_key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HostKeyObject: ...
     
     @overload
@@ -362,26 +336,7 @@ class HostKey:
         hostname: str | None = ...,
         public_key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: HostKeyPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["trusted", "revoked"] | None = ...,
-        type: Literal["RSA", "DSA", "ECDSA", "ED25519", "RSA-CA", "DSA-CA", "ECDSA-CA", "ED25519-CA"] | None = ...,
-        nid: Literal["256", "384", "521"] | None = ...,
-        usage: Literal["transparent-proxy", "access-proxy"] | None = ...,
-        ip: str | None = ...,
-        port: int | None = ...,
-        hostname: str | None = ...,
-        public_key: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -413,7 +368,6 @@ class HostKey:
         hostname: str | None = ...,
         public_key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -431,7 +385,6 @@ class HostKey:
         hostname: str | None = ...,
         public_key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HostKeyObject: ...
     
     @overload
@@ -448,26 +401,7 @@ class HostKey:
         hostname: str | None = ...,
         public_key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: HostKeyPayload | None = ...,
-        name: str | None = ...,
-        status: Literal["trusted", "revoked"] | None = ...,
-        type: Literal["RSA", "DSA", "ECDSA", "ED25519", "RSA-CA", "DSA-CA", "ECDSA-CA", "ED25519-CA"] | None = ...,
-        nid: Literal["256", "384", "521"] | None = ...,
-        usage: Literal["transparent-proxy", "access-proxy"] | None = ...,
-        ip: str | None = ...,
-        port: int | None = ...,
-        hostname: str | None = ...,
-        public_key: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -499,7 +433,6 @@ class HostKey:
         hostname: str | None = ...,
         public_key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -508,7 +441,6 @@ class HostKey:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> HostKeyObject: ...
     
     @overload
@@ -516,17 +448,7 @@ class HostKey:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -540,7 +462,6 @@ class HostKey:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -562,7 +483,6 @@ class HostKey:
         hostname: str | None = ...,
         public_key: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

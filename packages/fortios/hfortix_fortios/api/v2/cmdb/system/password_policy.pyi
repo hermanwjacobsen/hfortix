@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -196,7 +196,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -214,7 +213,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # With no mkey -> returns list of objects
@@ -231,25 +229,7 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -265,7 +245,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -283,7 +262,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -300,7 +278,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     # Fallback overload for all other cases
@@ -317,7 +294,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> dict[str, Any] | FortiObject: ...
     
     def get(
@@ -332,7 +308,6 @@ class PasswordPolicy:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> PasswordPolicyObject | dict[str, Any]: ...
     
     def get_schema(
@@ -359,7 +334,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         login_lockout_upon_weaker_encryption: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> PasswordPolicyObject: ...
     
     @overload
@@ -379,29 +353,7 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         login_lockout_upon_weaker_encryption: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: PasswordPolicyPayload | None = ...,
-        status: Literal["enable", "disable"] | None = ...,
-        apply_to: Literal["admin-password", "ipsec-preshared-key"] | list[str] | None = ...,
-        minimum_length: int | None = ...,
-        min_lower_case_letter: int | None = ...,
-        min_upper_case_letter: int | None = ...,
-        min_non_alphanumeric: int | None = ...,
-        min_number: int | None = ...,
-        expire_status: Literal["enable", "disable"] | None = ...,
-        expire_day: int | None = ...,
-        reuse_password: Literal["enable", "disable"] | None = ...,
-        reuse_password_limit: int | None = ...,
-        login_lockout_upon_weaker_encryption: Literal["enable", "disable"] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -439,7 +391,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         login_lockout_upon_weaker_encryption: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -464,7 +415,6 @@ class PasswordPolicy:
         reuse_password_limit: int | None = ...,
         login_lockout_upon_weaker_encryption: Literal["enable", "disable"] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

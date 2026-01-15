@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -193,7 +193,7 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[ContentHeaderObject]: ...
+    ) -> FortiObjectList[ContentHeaderObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -213,7 +213,6 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ContentHeaderObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -231,7 +230,6 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ContentHeaderObject: ...
     
     # With no mkey -> returns list of objects
@@ -248,25 +246,7 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ContentHeaderObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        id: int | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[ContentHeaderObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -282,7 +262,6 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ContentHeaderObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -300,7 +279,6 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ContentHeaderObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -317,8 +295,7 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[ContentHeaderObject]: ...
+    ) -> FortiObjectList[ContentHeaderObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -334,7 +311,6 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -349,7 +325,6 @@ class ContentHeader:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> ContentHeaderObject | list[ContentHeaderObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -368,7 +343,6 @@ class ContentHeader:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ContentHeaderObject: ...
     
     @overload
@@ -380,21 +354,7 @@ class ContentHeader:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: ContentHeaderPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -416,7 +376,6 @@ class ContentHeader:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -429,7 +388,6 @@ class ContentHeader:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ContentHeaderObject: ...
     
     @overload
@@ -441,21 +399,7 @@ class ContentHeader:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: ContentHeaderPayload | None = ...,
-        id: int | None = ...,
-        name: str | None = ...,
-        comment: str | None = ...,
-        entries: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -477,7 +421,6 @@ class ContentHeader:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -486,7 +429,6 @@ class ContentHeader:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> ContentHeaderObject: ...
     
     @overload
@@ -494,17 +436,7 @@ class ContentHeader:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        id: int | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -518,7 +450,6 @@ class ContentHeader:
         self,
         id: int | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -535,7 +466,6 @@ class ContentHeader:
         comment: str | None = ...,
         entries: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods

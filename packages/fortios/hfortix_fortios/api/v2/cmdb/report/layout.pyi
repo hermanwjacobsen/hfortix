@@ -1,7 +1,7 @@
 from typing import TypedDict, Literal, Any, Coroutine, Union, overload, Generator, final
 from typing_extensions import NotRequired
-from hfortix_fortios.models import FortiObject
-from hfortix_core.types import MutationResponse, RawAPIResponse
+from hfortix_fortios.models import FortiObject, FortiObjectList
+from hfortix_core.types import MutationResponse
 
 # Payload TypedDict for IDE autocomplete (for POST/PUT - fields are optional via total=False)
 # NOTE: We intentionally DON'T use NotRequired wrapper because:
@@ -275,7 +275,7 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-    ) -> list[LayoutObject]: ...
+    ) -> FortiObjectList[LayoutObject]: ...
     
     # ================================================================
     # (removed - all GET now returns FortiObject)
@@ -295,7 +295,6 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LayoutObject: ...
     
     # With mkey as keyword arg -> returns single object
@@ -313,7 +312,6 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LayoutObject: ...
     
     # With no mkey -> returns list of objects
@@ -330,25 +328,7 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LayoutObject]: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def get(
-        self,
-        name: str | None = ...,
-        filter: str | list[str] | None = ...,
-        count: int | None = ...,
-        start: int | None = ...,
-        payload_dict: dict[str, Any] | None = ...,
-        range: list[int] | None = ...,
-        sort: str | None = ...,
-        format: str | None = ...,
-        action: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
+    ) -> FortiObjectList[LayoutObject]: ...
     
     # Dict mode with mkey provided as positional arg (single dict)
     @overload
@@ -364,7 +344,6 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LayoutObject: ...
     
     # Dict mode with mkey provided as keyword arg (single dict)
@@ -382,7 +361,6 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LayoutObject: ...
     
     # Dict mode - list of dicts (no mkey/name provided) - keyword-only signature
@@ -399,8 +377,7 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
-    ) -> list[LayoutObject]: ...
+    ) -> FortiObjectList[LayoutObject]: ...
     
     # Fallback overload for all other cases
     @overload
@@ -416,7 +393,6 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> Union[dict[str, Any], list[dict[str, Any]], FortiObject, list[FortiObject]]: ...
     
     def get(
@@ -431,7 +407,6 @@ class Layout:
         format: str | None = ...,
         action: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> LayoutObject | list[LayoutObject] | dict[str, Any] | list[dict[str, Any]]: ...
     
     def get_schema(
@@ -463,7 +438,6 @@ class Layout:
         page: str | None = ...,
         body_item: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LayoutObject: ...
     
     @overload
@@ -488,34 +462,7 @@ class Layout:
         page: str | None = ...,
         body_item: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def post(
-        self,
-        payload_dict: LayoutPayload | None = ...,
-        name: str | None = ...,
-        title: str | None = ...,
-        subtitle: str | None = ...,
-        description: str | None = ...,
-        style_theme: str | None = ...,
-        options: Literal["include-table-of-content", "auto-numbering-heading", "view-chart-as-heading", "show-html-navbar-before-heading", "dummy-option"] | list[str] | None = ...,
-        format: Literal["pdf"] | list[str] | None = ...,
-        schedule_type: Literal["demand", "daily", "weekly"] | None = ...,
-        day: Literal["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] | None = ...,
-        time: str | None = ...,
-        cutoff_option: Literal["run-time", "custom"] | None = ...,
-        cutoff_time: str | None = ...,
-        email_send: Literal["enable", "disable"] | None = ...,
-        email_recipients: str | None = ...,
-        max_pdf_report: int | None = ...,
-        page: str | None = ...,
-        body_item: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -563,7 +510,6 @@ class Layout:
         page: str | None = ...,
         body_item: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # PUT overloads
@@ -589,7 +535,6 @@ class Layout:
         page: str | None = ...,
         body_item: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LayoutObject: ...
     
     @overload
@@ -614,34 +559,7 @@ class Layout:
         page: str | None = ...,
         body_item: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def put(
-        self,
-        payload_dict: LayoutPayload | None = ...,
-        name: str | None = ...,
-        title: str | None = ...,
-        subtitle: str | None = ...,
-        description: str | None = ...,
-        style_theme: str | None = ...,
-        options: Literal["include-table-of-content", "auto-numbering-heading", "view-chart-as-heading", "show-html-navbar-before-heading", "dummy-option"] | list[str] | None = ...,
-        format: Literal["pdf"] | list[str] | None = ...,
-        schedule_type: Literal["demand", "daily", "weekly"] | None = ...,
-        day: Literal["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"] | None = ...,
-        time: str | None = ...,
-        cutoff_option: Literal["run-time", "custom"] | None = ...,
-        cutoff_time: str | None = ...,
-        email_send: Literal["enable", "disable"] | None = ...,
-        email_recipients: str | None = ...,
-        max_pdf_report: int | None = ...,
-        page: str | None = ...,
-        body_item: str | list[str] | list[dict[str, Any]] | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -689,7 +607,6 @@ class Layout:
         page: str | None = ...,
         body_item: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # DELETE overloads
@@ -698,7 +615,6 @@ class Layout:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> LayoutObject: ...
     
     @overload
@@ -706,17 +622,7 @@ class Layout:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: Literal[False] = ...,
     ) -> MutationResponse: ...
-    
-    # raw_json=True returns the full API envelope
-    @overload
-    def delete(
-        self,
-        name: str | None = ...,
-        vdom: str | bool | None = ...,
-        raw_json: Literal[True] = ...,
-    ) -> RawAPIResponse: ...
     
     # Default overload
     @overload
@@ -730,7 +636,6 @@ class Layout:
         self,
         name: str | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     def exists(
@@ -760,7 +665,6 @@ class Layout:
         page: str | None = ...,
         body_item: str | list[str] | list[dict[str, Any]] | None = ...,
         vdom: str | bool | None = ...,
-        raw_json: bool = ...,
     ) -> MutationResponse: ...
     
     # Helper methods
