@@ -835,8 +835,10 @@ def process_response(
                 # results is some other type (string, int, etc.) - wrap envelope
                 return FortiObject(result, raw_envelope=result, response_time=response_time)
         else:
-            # Single object response without 'results' key
-            return FortiObject(result, raw_envelope=raw_envelope, response_time=response_time)
+            # Envelope-only response without 'results' key (e.g., DELETE, some POST/PUT)
+            # Store envelope in raw_envelope, use empty dict for _data so object fields
+            # don't collide with envelope fields like 'status'
+            return FortiObject({}, raw_envelope=result, response_time=response_time)
 
     # Return as-is for any other type
     return result
