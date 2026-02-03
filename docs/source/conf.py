@@ -39,19 +39,45 @@ source_suffix = {
 suppress_warnings = ['myst.header']
 toctree_maxdepth = 3
 
+# Performance optimizations
+import multiprocessing
+
+# Use all available cores for parallel processing
+num_cores = multiprocessing.cpu_count()
+parallel_read = num_cores
+parallel_write = num_cores
+
+# Reduce memory usage
+keep_warnings = 10  # Only keep last 10 warnings
+
+# Disable slow features for ReadTheDocs builds
+if os.environ.get('READTHEDOCS') == 'True':
+    # Skip intersphinx inventory loading (slow)
+    intersphinx_timeout = 5
+    # Optimize navigation
+    html_theme_options = {
+        'navigation_depth': 4,
+        'collapse_navigation': False,  # Keep expanded
+        'sticky_navigation': True,
+        'includehidden': True,
+        'titles_only': False,
+    }
+else:
+    html_theme_options = {
+        'navigation_depth': 4,
+        'collapse_navigation': False,
+        'sticky_navigation': True,
+        'includehidden': True,
+        'titles_only': False,
+    }
+
 # -- Options for HTML output -------------------------------------------------
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 html_css_files = ['custom.css']
 
-html_theme_options = {
-    'navigation_depth': 4,
-    'collapse_navigation': False,
-    'sticky_navigation': True,
-    'includehidden': True,
-    'titles_only': False,
-}
+# html_theme_options defined above based on environment
 
 html_context = {
     'display_github': True,
