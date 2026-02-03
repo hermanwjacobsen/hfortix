@@ -8,12 +8,6 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11"
-  jobs:
-    post_install:
-      # Install all split packages so autodoc can import them
-      - pip install -e packages/core
-      - pip install -e packages/fortios
-      - pip install -e packages/meta
 
 sphinx:
   configuration: docs/source/conf.py
@@ -21,15 +15,9 @@ sphinx:
 
 python:
   install:
-    # Install the core package
+    # Install the component packages from PyPI
     - method: pip
-      path: packages/core
-    # Install the fortios package
-    - method: pip
-      path: packages/fortios
-    # Install the meta package
-    - method: pip
-      path: packages/meta
+      path: .
     # Install documentation dependencies
     - requirements: docs/requirements.txt
 

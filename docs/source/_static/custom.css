@@ -1,0 +1,13 @@
+/* Custom CSS for HFortix documentation */
+
+.wy-nav-content {
+    max-width: 1200px;
+}
+
+code {
+    font-size: 90%;
+}
+
+pre {
+    font-size: 85%;
+}

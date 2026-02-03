@@ -1,471 +1,144 @@
-# HFortix - FortiGate & FortiOS Automation Library
-
-**Type-safe Python SDK for FortiGate firewall automation, FortiOS REST API client, and FortiManager integration**
-
-Automate FortiGate configuration, monitoring, and management with a modern Python library featuring complete type safety, async support, and 1,348+ FortiOS API endpoints.
+# HFortix
 
 [![PyPI version](https://badge.fury.io/py/hfortix.svg)](https://pypi.org/project/hfortix/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Documentation](https://img.shields.io/badge/docs-ReadTheDocs-blue.svg)](https://hfortix.readthedocs.io/)
-[![Downloads](https://static.pepy.tech/badge/hfortix)](https://pepy.tech/project/hfortix)
-[![Type Hints](https://img.shields.io/badge/type--hints-100%25-brightgreen.svg)](https://www.python.org/dev/peps/pep-0484/)
-[![Async Support](https://img.shields.io/badge/async-supported-green.svg)](https://docs.python.org/3/library/asyncio.html)
+[![Documentation Status](https://readthedocs.org/projects/hfortix/badge/?version=latest)](https://hfortix.readthedocs.io/en/latest/)
+[![License](https://img.shields.io/badge/License-Proprietary-blue.svg)](LICENSE)
 [![Typing: Typed](https://img.shields.io/badge/typing-typed-green.svg)](https://peps.python.org/pep-0561/)
 
-## Quick Start
+**HFortix** is the meta-package that installs all HFortix components for Fortinet automation. Install this package to get the complete suite of tools for FortiOS/FortiGate automation.
+
+## 🚀 Quick Start
 
 ```bash
+pip install hfortix
+```
+
+This single command installs:
+- `hfortix-core` - Core infrastructure and utilities
+- `hfortix-fortios` - FortiOS/FortiGate API client
+
+```python
+from hfortix_fortios import FortiOS
+
+# Connect to your FortiGate
+with FortiOS(host="192.168.1.99", token="your-api-token") as fgt:
+    # Get system status
+    status = fgt.api.monitor.system.status.get()
+    print(f"Hostname: {status['hostname']}, Model: {status['model']}")
+    
+    # Create firewall address
+    fgt.api.cmdb.firewall.address.post(
+        name="web-server",
+        subnet="10.0.1.100/32",
+        comment="Production web server"
+    )
+```
+
+## 📦 What's Included
+
+When you install `hfortix`, you automatically get:
+
+### hfortix-fortios
+Complete FortiOS/FortiGate API client with:
+- 1,348 FortiOS 7.6.5 endpoints
+- Full type hints and IDE autocomplete
+- Async/await support
+- Batch transactions and atomic operations
+- Comprehensive error handling
+- Rate limiting and retry logic
+
+### hfortix-core
+Foundational infrastructure including:
+- Observable HTTP client
+- Event-driven monitoring
+- Base abstractions and protocols
+- Shared utilities
+
+## ✨ Key Features
+
+- **🎯 Complete API Coverage** - All CMDB, Monitor, Log, and Service endpoints
+- **💪 Fully Typed** - Complete type hints with .pyi stubs
+- **⚡ Modern & Fast** - Async/await support, HTTP/2, connection pooling
+- **🛡️ Production Ready** - Comprehensive error handling and validation
+- **🔄 Simplified Syntax** - Simple list format auto-converts to FortiOS dict format
+- **📦 Batch Transactions** - Atomic configuration changes with automatic commit/rollback
+- **🔍 API Inspection** - Debug and audit API interactions
+
+## 📚 Documentation
+
+- **[HFortix Documentation](https://hfortix.readthedocs.io/)** - Getting started and guides
+- **[FortiOS Client Docs](https://hfortix-fortios.readthedocs.io/)** - Complete API reference
+- **[Core Library Docs](https://hfortix-core.readthedocs.io/)** - Infrastructure details
+
+## 🔗 Individual Packages
+
+If you only need specific components, you can install them separately:
+
+```bash
+# Just the FortiOS client (includes hfortix-core as dependency)
 pip install hfortix-fortios
+
+# Just the core infrastructure (for custom implementations)
+pip install hfortix-core
 ```
 
+## 🆚 Package Comparison
+
+| Package | Purpose | Dependencies | Use When |
+|---------|---------|--------------|----------|
+| `hfortix` | Meta-package | All packages | You want everything |
+| `hfortix-fortios` | FortiOS API client | hfortix-core | FortiGate automation |
+| `hfortix-core` | Core infrastructure | httpx, typing-extensions | Building custom clients |
+
+## 📖 Quick Examples
+
+### Firewall Management
 ```python
 from hfortix_fortios import FortiOS
 
-# Connect to FortiGate
-fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-
-# Get system status (Monitor endpoint - use dict access for untyped fields)
-status = fgt.api.monitor.system.status.get()
-print(f"Hostname: {status['hostname']}, Model: {status['model']}")
-
-# Create firewall address
-fgt.api.cmdb.firewall.address.post(
-    name="webserver",
-    subnet="10.0.1.100 255.255.255.255",
-    comment="Production web server"
-)
-
-# Query with filters
-addresses = fgt.api.cmdb.firewall.address.get(
-    filter="subnet==10.0.0.0/8"
-)
-
-# Close connection
-fgt.close()
+with FortiOS(host="192.168.1.99", token="token") as fgt:
+    # Create firewall policy
+    fgt.api.cmdb.firewall.policy.post(
+        name="Allow-Web",
+        srcintf=["internal"],
+        dstintf=["wan1"],
+        srcaddr=["all"],
+        dstaddr=["web-server"],
+        service=["HTTP", "HTTPS"],
+        action="accept"
+    )
 ```
 
-## Features
-
-### ✅ Complete API Coverage
-- **1,348 FortiOS 7.6.5 endpoints** - All CMDB, Monitor, Log, and Service endpoints
-- **FortiManager JSON-RPC proxy** - Manage multiple devices through FortiManager
-- **FortiAnalyzer** (coming soon)
-
-### ✅ Type Safety & IDE Support
-- **100% type coverage for CMDB endpoints** - Full autocomplete and validation
-- **Partial coverage for Monitor/Log endpoints** - Some response fields documented
-- **`.pyi` stub files** for excellent IDE integration
-- **Pydantic validation** for request payloads
-
-### ✅ Flexible Response Access
-```python
-# FortiObject - Multiple access methods
-addr = fgt.api.cmdb.firewall.address.get(name="server1")
-
-# Attribute access (recommended)
-print(addr.subnet)  # Full autocomplete ✅
-
-# Dictionary access
-print(addr['subnet'])  # Also works
-
-# Convert to dict/JSON
-print(addr.dict)      # Dictionary representation
-print(addr.json)      # Pretty-printed JSON string
-print(addr.raw)       # Full API envelope with metadata
-
-# Query by mkey returns SINGLE object (not list)
-addr = fgt.api.cmdb.firewall.address.get(name="server1")
-print(addr.subnet)  # Direct access, no need for addr[0]
-
-# Nested objects fully supported
-group = fgt.api.cmdb.firewall.service.group.get(name="MyGroup")
-for member in group.member:
-    print(member.name)  # FortiObjects all the way down
-```
-
-> **Note**: Monitor and Log endpoints have incomplete response field types due to FortiOS API schema limitations. Attribute access (e.g., `status.hostname`) works at runtime but may show type errors in your IDE. Use dictionary access (`status['hostname']`) to avoid IDE warnings, or use `.json`/`.raw` to inspect the full response. Field names match FNDN documentation with hyphens (`-`) converted to underscores (`_`).
-
-### ✅ Batch Transactions (FortiOS 6.4.0+)
-```python
-# Atomic configuration changes with automatic commit/rollback
-with fgt.transaction() as txn:
-    # All changes in this block are atomic
-    fgt.api.cmdb.system.interface.post({...})
-    fgt.api.cmdb.firewall.address.post({...})
-    fgt.api.cmdb.firewall.policy.post({...})
-    # Auto-commits on success, auto-aborts on exception
-
-# Decorator pattern for reusable transactional functions
-@fgt.transactional(timeout=120)
-def setup_infrastructure():
-    fgt.api.cmdb.system.interface.post({...})
-    fgt.api.cmdb.firewall.address.post({...})
-    return {"status": "success"}
-
-setup_infrastructure()  # Runs in transaction
-
-# Manual control for complex scenarios
-with fgt.transaction(auto_commit=False) as txn:
-    fgt.api.cmdb.firewall.policy.post({...})
-    if validation_passes():
-        txn.commit()  # Apply changes
-    else:
-        txn.rollback()  # Undo everything
-
-# See docs/fortios/TRANSACTIONS.md for complete guide
-```
-
-### ✅ API Request Inspection
-```python
-# See exactly what request was made
-result = fgt.api.cmdb.firewall.policy.get(filter='srcaddr==internal')
-print(result.http_api_request)
-# {
-#     'method': 'GET',
-#     'url': 'https://192.168.1.99/api/v2/cmdb/firewall/policy',
-#     'params': {'filter': 'srcaddr==internal', 'vdom': 'root'},
-#     'data': None,
-#     'timestamp': 1706889600.123
-# }
-
-# For FortiManager proxy, use fmg_api_request (alias for http_api_request)
-result = fmg.devices['FGT-01'].api.cmdb.firewall.policy.get()
-print(result.fmg_api_request)  # Shows FMG proxy request details
-
-# Use cases: debugging, audit logging, troubleshooting
-# See docs/fortios/API_REQUEST_INSPECTION.md for complete guide
-```
-
-### ✅ Modern Python Features
-- **Async/await support** for concurrent operations
-- **Synchronous API** for simple scripts
-- **Context managers** for automatic cleanup
-- **Type hints** throughout
-- **Python 3.10+** with modern syntax
-
-### ✅ Production Ready
-- **Comprehensive error handling** with detailed exceptions
-- **Audit logging** with pluggable handlers (Kafka, webhooks, databases)
-- **Rate limiting** and exponential backoff retry
-- **Circuit breaker** pattern for resilience
-- **Request/response debugging** tools
-
-### ✅ Comprehensive Testing
-- **1,447 schema validator tests** - 100% coverage of all 1,348 endpoints (offline, ~5s execution)
-- **80+ live integration tests** - Real API testing with FortiGate/FortiManager
-- **Unit tests** - HTTP client, response processing, error handling
-- **CI/CD ready** - Fast offline tests for every commit
-- See `TESTING.md` and `.tests/` for details
-
-### ✅ Developer Experience
-- **No string manipulation** - everything is a method call
-- **IDE autocomplete** for all endpoints and parameters
-- **Built-in validation** catches errors before API calls
-- **Extensive documentation** with examples
-- **Custom wrappers** - easily create your own convenience methods  
-
-## Current Status
-
-> **⚠️ BETA STATUS**  
-> Version 0.5.152 is production-ready but remains in beta until v1.0.0. Breaking changes are possible before v1.0.0, however after v0.5.150 breaking changes are not expected at this time (if any). The SDK is stable and suitable for production use with comprehensive test coverage.
-> 
-> **Recommended**: Stay on version 0.5.150+ for maximum stability.
-
-**Version**: 0.5.152 (Released: February 2, 2026)  
-**FortiOS Coverage**: 7.6.5 (1,348 endpoints)  
-**Package Size**: ~30 MB (with type stubs)  
-**Status**: Production Ready ✅
-
-### Test Coverage Summary
-
-**Comprehensive test suite** with 2,566+ test functions across 67 test files:
-
-| Category | Test Files | Test Functions | Coverage |
-|----------|-----------|----------------|----------|
-| **Live Endpoint Tests** | 251 | ~1,800+ | CMDB (180), Monitor (63), Log (4), Service (4) |
-| **Validators & Helpers** | 40 | ~650+ | 75+ utility functions tested |
-| **Unit Tests** | 12 | ~100+ | Core HTTP, response processing, utils |
-| **Integration Tests** | 3 | ~15+ | Client lifecycle, hooks, stats |
-| **Total** | **318** | **2,566+** | **Extensive coverage across all layers** |
-
-**Test Categories:**
-- ✅ **Endpoint Tests**: 251 files testing real API endpoints (CMDB, Monitor, Log, Service)
-- ✅ **Validator Tests**: 40 files covering 75+ validation functions (network, firewall, schedules, SSH/SSL)
-- ✅ **Unit Tests**: Core HTTP client, response processing, error handling, formatting
-- ✅ **Integration Tests**: FortiOS client lifecycle, hooks system, statistics tracking
-- ✅ **Edge Cases**: Special scenarios, list handling, parameter normalization
-
-**Key Testing Features:**
-- 🔬 Parallel execution support for validator tests (no API calls)
-- 🎯 Sequential execution for endpoint tests (respects API rate limits)
-- 📊 Comprehensive coverage of all 1,348+ FortiOS API endpoints
-- 🛡️ Validation testing for 75+ helper functions and validators
-- 🔄 Integration testing for async/sync clients and proxy functionality
-
-## Documentation
-
-📚 **Full documentation**: https://hfortix.readthedocs.io/
-
-- [Quick Start Guide](https://hfortix.readthedocs.io/en/latest/fortios/getting-started/quickstart.html) / [QUICKSTART.md](QUICKSTART.md)
-- [API Reference](https://hfortix.readthedocs.io/en/latest/fortios/api-documentation/)
-- **[Batch Transactions](docs/fortios/TRANSACTIONS.md)** - Atomic configuration changes with commit/rollback
-- **[API Request Inspection](docs/fortios/API_REQUEST_INSPECTION.md)** - Debug and audit API interactions
-- [FortiManager Proxy](https://hfortix.readthedocs.io/en/latest/fortios/guides/fmg-proxy.html)
-- [Custom Wrappers Guide](https://hfortix.readthedocs.io/en/latest/fortios/guides/custom-wrappers.html)
-- [Error Handling](https://hfortix.readthedocs.io/en/latest/fortios/guides/error-handling.html)
-- [Filtering & Queries](https://hfortix.readthedocs.io/en/latest/fortios/guides/filtering.html)
-- [Async Guide](docs/fortios/ASYNC_GUIDE.md)
-- [Performance Testing](docs/fortios/PERFORMANCE_TESTING.md)
-- [Test Coverage](TESTING.md) - Detailed test suite documentation
-- [Security Best Practices](docs/SECURITY.md)
-- [Changelog](CHANGELOG.md)
-
-## Installation
-
-### Standard Installation
-```bash
-pip install hfortix-fortios
-# or
-pip install hfortix[fortios]  # Meta-package
-```
-
-### Alternative Packages
-```bash
-pip install hfortix           # Core only (minimal)
-pip install hfortix[all]      # Everything
-```
-
-### Minimal Installation (No Stubs)
-```bash
-pip install hfortix-fortios[minimal]
-# Smaller package, basic type hints only
-```
-
-## Examples
-
-### Authentication Options
-
+### Batch Transactions
 ```python
 from hfortix_fortios import FortiOS
 
-# Option 1: API Token (recommended)
-fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-
-# Option 2: Username/Password (session-based)
-fgt = FortiOS(host="192.168.1.99", username="admin", password="password")
-
-# Option 3: Environment Variables
-# Set: FORTIOS_HOST, FORTIOS_TOKEN (or FORTIOS_USERNAME, FORTIOS_PASSWORD)
-fgt = FortiOS()  # Automatically loads from environment
-
-# Close connection when done
-fgt.close()
+with FortiOS(host="192.168.1.99", token="token") as fgt:
+    # Atomic batch operation
+    with fgt.transaction() as txn:
+        txn.add(fgt.api.cmdb.firewall.address.post, name="server1", subnet="10.0.1.1/32")
+        txn.add(fgt.api.cmdb.firewall.address.post, name="server2", subnet="10.0.1.2/32")
+        # Both addresses created or both rolled back on error
 ```
 
-### Basic Operations
-
+### Async Support
 ```python
-from hfortix_fortios import FortiOS
+from hfortix_fortios import AsyncFortiOS
 
-# Connect to FortiGate
-fgt = FortiOS(host="192.168.1.99", token="your-api-token")
-
-# Create
-fgt.api.cmdb.firewall.address.post(
-    name="server1",
-    subnet="10.0.1.50 255.255.255.255"
-)
-
-# Read
-addr = fgt.api.cmdb.firewall.address.get(name="server1")
-print(f"Address: {addr.subnet}")
-
-# Update
-fgt.api.cmdb.firewall.address.put(
-    name="server1",
-    comment="Updated comment"
-)
-
-# Delete
-fgt.api.cmdb.firewall.address.delete(name="server1")
-
-# Close connection
-fgt.close()
+async with AsyncFortiOS(host="192.168.1.99", token="token") as fgt:
+    status = await fgt.api.monitor.system.status.get()
+    addresses = await fgt.api.cmdb.firewall.address.get()
 ```
 
-### FortiManager Proxy
+## 🤝 Contributing
 
-```python
-from hfortix_fortios import FortiManagerProxy
+This is a proprietary library. For support or feature requests, please contact the maintainer.
 
-# Connect to FortiManager
-fmg = FortiManagerProxy(
-    host="fortimanager.example.com",
-    username="admin",
-    password="password"
-)
+## 📄 License
 
-# Login to target device
-fmg.login(device="fw-branch-01", adom="production")
-
-# Use same API as FortiOS
-addresses = fmg.api.cmdb.firewall.address.get()
-
-# Monitor operations (use dict access for untyped fields)
-status = fmg.api.monitor.system.status.get()
-print(status['hostname'])
-
-# Logout and close
-fmg.logout()
-fmg.close()
-```
-
-### Error Handling
-
-```python
-from hfortix_core.exceptions import (
-    APIError,
-    ResourceNotFoundError,
-    ValidationError
-)
-
-try:
-    addr = fgt.api.cmdb.firewall.address.get(name="notfound")
-except ResourceNotFoundError as e:
-    print(f"Address not found: {e}")
-except APIError as e:
-    print(f"HTTP {e.http_status}: {e.message}")
-```
-
-### Advanced Features
-
-```python
-# Pydantic model validation
-from hfortix_fortios.api.models.cmdb.firewall.address import AddressModel
-
-addr_model = AddressModel(
-    name="server1",
-    subnet="10.0.1.50 255.255.255.255",
-    comment="Validated address"
-)
-fgt.api.cmdb.firewall.address.post(payload_dict=addr_model.to_fortios_dict())
-
-# Action methods
-if fgt.api.cmdb.firewall.address.exists(name="server1"):
-    print("Address exists!")
-
-# Move policy
-fgt.api.cmdb.firewall.policy.move(
-    policyid=10,
-    action="before",
-    reference_policyid=5
-)
-
-# Clone object
-fgt.api.cmdb.firewall.address.clone(
-    name="original",
-    new_name="cloned"
-)
-
-# Read-only mode (safe testing)
-fgt_readonly = FortiOS(host="...", token="...", read_only=True)
-# All write operations will raise exceptions
-
-# Track operations (audit logging)
-fgt_tracked = FortiOS(host="...", token="...", track_operations=True)
-operations = fgt_tracked.get_operations()
-```
-
-## API Coverage
-
-| Category | Endpoints | Endpoint Coverage | Response Field Types |
-|----------|-----------|-------------------|----------------------|
-| **CMDB** (Configuration) | 561 | ✅ 100% | ✅ 100% autocomplete |
-| **Monitor** (Status/Stats) | 490 | ✅ 100% | ⚠️ Partial autocomplete |
-| **Log** (Query Logs) | 286 | ✅ 100% | ⚠️ Partial autocomplete |
-| **Service** (Operations) | 11 | ✅ 100% | ✅ 100% autocomplete |
-| **Total** | **1,348** | ✅ **100%** | **886 fully typed** |
-
-> **All 1,348 endpoints are fully implemented and functional.** Response field types indicate IDE autocomplete availability for response fields. CMDB endpoints have complete field documentation, while Monitor/Log have partial coverage due to FortiOS API schema limitations.
-
-## Key Capabilities
-
-### Type Safety
-- **100% CMDB type coverage** - Full IDE autocomplete for all configuration endpoints
-- **Partial Monitor/Log coverage** - Use dictionary access for undocumented fields
-- **Pydantic validation** for request payloads
-- **Literal types** for enum parameters
-- **`.json` and `.raw`** always available for response inspection
-
-### Advanced Features
-- **Capabilities detection** - Query endpoint support at runtime (`SUPPORTS_CREATE`, `SUPPORTS_MOVE`, etc.)
-- **Action methods** - `move()`, `clone()`, `exists()` helpers for common operations
-- **Schema introspection** - Runtime `get_schema()` for all endpoints
-- **Query parameters** - Advanced filtering, sorting, pagination
-- **Pydantic models** - 1,065+ models for request validation
-- **Read-only mode** - Safe testing with `read_only=True`
-- **Operation tracking** - Audit logging with `track_operations=True`
-- **Custom HTTP clients** - Implement `IHTTPClient` protocol for custom behavior
-- **Performance testing** - Built-in `performance_test()` utility
-
-
-### Enterprise Ready
-- **Comprehensive error handling** with typed exceptions
-- **Circuit breaker** pattern for resilience
-- **Exponential backoff** retry logic
-- **Rate limiting** support
-- **Async/await** support for concurrency
-- **Context managers** for automatic cleanup
-- **Audit logging** with pluggable handlers
-
-## Requirements
-
-- Python 3.10 or higher
-- FortiOS 7.x (tested on 7.6.5)
-- FortiManager 7.x (for proxy features)
-
-## Support & Development
-
-- **Issues**: [GitHub Issues](https://github.com/hermanwjacobsen/hfortix/issues)
-- **Documentation**: [ReadTheDocs](https://hfortix.readthedocs.io/)
-- **Changelog**: [CHANGELOG.md](CHANGELOG.md)
-- **License**: Proprietary (see [LICENSE](LICENSE))
-
-## Latest Release (v0.5.152)
-
-**February 2, 2026**
-
-### New Features
-
-- ✅ **Batch Transactions** - Atomic configuration changes with commit/rollback (FortiOS 6.4.0+)
-  - Context manager pattern: `with fgt.transaction() as txn:`
-  - Decorator pattern: `@fgt.transactional()`
-  - Manual control: `txn.commit()`, `txn.rollback()`
-  - Transaction inspection: `txn.show()`, `fgt.list_transactions()` (FortiOS 7.4.1+)
-  - See [TRANSACTIONS.md](docs/fortios/TRANSACTIONS.md) for complete guide
-
-- ✅ **API Request Inspection** - Debug and audit API interactions
-  - Access via `result.http_api_request` and `result.fmg_api_request`
-  - Complete request/response details for debugging
-  - Audit logging and performance analysis
-  - See [API_REQUEST_INSPECTION.md](docs/fortios/API_REQUEST_INSPECTION.md) for guide
-
-See [CHANGELOG.md](CHANGELOG.md) for complete version history.
-
-## Project Structure
-
-```
-hfortix/
-├── packages/
-│   ├── core/          # hfortix-core (HTTP client, exceptions)
-│   ├── fortios/       # hfortix-fortios (FortiOS/FMG client)
-│   └── meta/          # hfortix (meta-package)
-```
-
-## Contributing
-
-For feature requests or bug reports, please [open an issue](https://github.com/hermanwjacobsen/hfortix/issues) on GitHub.
+Proprietary License - See individual package LICENSE files for details.
 
 ---
 
-**Made with ❤️ for the Fortinet community**
+**HFortix** - Modern Python SDKs for Fortinet automation
