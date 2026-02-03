@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix"
-version = "0.5.154"
+version = "0.5.155"
 description = "Type-safe Python SDK for FortiGate firewall automation and FortiOS REST API - 1,348+ endpoints with async support and complete type safety"
 authors = [{name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}]
 maintainers = [{name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}]
@@ -43,8 +43,8 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "hfortix-core>=0.5.154",
-    "hfortix-fortios>=0.5.154",
+    "hfortix-core>=0.5.155",
+    "hfortix-fortios>=0.5.155",
 ]
 
 [project.optional-dependencies]
