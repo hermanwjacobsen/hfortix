@@ -61,7 +61,7 @@ Changelog = "https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md"
 Download = "https://pypi.org/project/hfortix/#files"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
 
 [tool.setuptools.package-data]
 hfortix = ["py.typed"]
