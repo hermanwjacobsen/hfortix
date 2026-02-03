@@ -1,1 +1,0 @@
-print("⚠️ /monitor/sdwan - Currently skipped - no SD-WAN environment available for testing")

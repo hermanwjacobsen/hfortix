@@ -4,202 +4,64 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix"
-version = "0.5.150"
-description = "Meta-package for HFortix - Python SDK for Fortinet Products (FortiOS, FortiManager, FortiAnalyzer)"
+version = "0.5.154"
+description = "Type-safe Python SDK for FortiGate firewall automation and FortiOS REST API - 1,348+ endpoints with async support and complete type safety"
+authors = [{name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}]
+maintainers = [{name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}]
 readme = "README.md"
-authors = [
-    {name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}
+requires-python = ">=3.10"
+license = {text = "Proprietary"}
+keywords = [
+    "fortinet", "fortigate", "fortios", "fortimanager", "fortianalyzer",
+    "api", "sdk", "rest-api", "automation", "network-automation",
+    "firewall", "security", "network-security",
+    "typed", "type-hints", "pydantic", "async", "asyncio",
+    "configuration-management", "infrastructure-as-code", "iac",
+    "network-as-code", "network-administration", "devops", "netops"
 ]
-maintainers = [
-    {name = "Herman W. Jacobsen", email = "herman@wjacobsen.fo"}
-]
-keywords = ["hfortix", "fortinet", "fortigate", "fortios", "fortimanager", "fortianalyzer", "api", "sdk", "firewall", "security"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: System Administrators",
-    "Topic :: System :: Networking :: Firewalls",
-    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Telecommunications Industry",
+    "Intended Audience :: Information Technology",
     "License :: Other/Proprietary License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Networking",
+    "Topic :: System :: Networking :: Firewalls",
+    "Topic :: System :: Networking :: Monitoring",
+    "Topic :: System :: Systems Administration",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Framework :: AsyncIO",
+    "Framework :: Pydantic",
     "Typing :: Typed",
-    "Operating System :: OS Independent",
 ]
-requires-python = ">=3.10"
-# Meta-package: just depends on the actual implementation packages
 dependencies = [
-    "hfortix-core>=0.5.150",
-    "hfortix-fortios>=0.5.150",
+    "hfortix-core>=0.5.154",
+    "hfortix-fortios>=0.5.154",
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "black>=23.0.0",
-    "flake8>=6.0.0",
-    "mypy>=1.5.0",
-    "python-dotenv>=1.0.0",
-]
+fortios = ["hfortix-fortios>=0.5.154"]
+all = ["hfortix-fortios>=0.5.154"]
 
 [project.urls]
 Homepage = "https://github.com/hermanwjacobsen/hfortix"
-Documentation = "https://github.com/hermanwjacobsen/hfortix/blob/main/README.md"
 Repository = "https://github.com/hermanwjacobsen/hfortix"
+Documentation = "https://hfortix.readthedocs.io/"
 "Bug Tracker" = "https://github.com/hermanwjacobsen/hfortix/issues"
 Changelog = "https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md"
-
-# Meta-package: no code to package, just dependencies
-
-[tool.black]
-line-length = 79
-target-version = ['py310', 'py311', 'py312']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-  # directories
-  \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | build
-  | dist
-  | X
-  | Tests
-  | packages/fortios/hfortix_fortios/api
-)/
-'''
-
-[tool.flake8]
-max-line-length = 79
-extend-ignore = ["E203", "W503"]
-exclude = [
-    ".git",
-    "__pycache__",
-    "build",
-    "dist",
-    ".eggs",
-    "*.egg-info",
-    ".tox",
-    ".venv",
-    "venv",
-    "X",
-    "Tests",
-    "hfortix/FortiOS/api/v2",  # Auto-generated API files
-]
-per-file-ignores = [
-    "hfortix/FortiOS/api/v2/*:E501,W293,W291,F541",  # Generated files can have long lines, whitespace, unused f-strings
-]
-
-[tool.mypy]
-python_version = "3.10"  # Changed from 3.8 to match code syntax (str | None)
-warn_return_any = false
-warn_unused_configs = true
-# Gradually enable stricter settings
-disallow_untyped_defs = false  # TODO: Enable incrementally
-disallow_incomplete_defs = false  # TODO: Enable incrementally
-check_untyped_defs = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = false  # Disabled to allow ignores for Pyright
-warn_no_return = true
-warn_unreachable = false
-strict_equality = true
-# Additional strict checks (enabled)
-show_error_codes = true
-show_error_context = true
-pretty = true
-# PEP 561 compliance
-namespace_packages = true
-explicit_package_bases = true
-# Add package paths to help mypy resolve imports correctly
-mypy_path = "packages/fortios:packages/core"
-# Exclude v2 API (has hyphenated directory names)
-exclude = [
-    "hfortix/FortiOS/api/v2/",
-]
-
-# Allow some flexibility for generated code
-[[tool.mypy.overrides]]
-module = "hfortix.FortiOS.api.v2.*"
-disallow_untyped_defs = false
-warn_return_any = false
-
-[tool.pytest.ini_options]
-testpaths = [".tests/pytests"]
-pythonpath = [".tests/pytests"]
-python_files = ["test_*.py", "auto_test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*", "auto_test_*"]
-norecursedirs = [
-    ".*",
-    "build",
-    "dist",
-    "X",
-    "Tests",
-    ".venv",
-    "venv",
-]
-addopts = [
-    "--verbose",
-    "--strict-markers",
-    "--tb=short",
-    "--import-mode=importlib",
-]
-filterwarnings = [
-    "ignore::pytest.PytestAssertRewriteWarning",
-]
-markers = [
-    "integration: marks tests as integration tests (require FortiGate access)",
-    "unit: marks tests as unit tests (no external dependencies)",
-    "api_call: marks tests that make real API calls to FortiGate",
-    "read_only: marks tests that only perform read operations (GET)",
-    "validator: marks tests that only test validation logic (no API calls)",
-    "parallel_safe: marks tests that can safely run in parallel",
-]
-
-[tool.coverage.run]
-source = ["hfortix"]
-omit = [
-    "*/tests/*",
-    "*/.dev/*",
-    "*/__pycache__/*",
-]
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if __name__ == .__main__.:",
-    "if TYPE_CHECKING:",
-]
-
-[tool.bandit]
-exclude_dirs = ["X", "Tests", "tests", ".venv", "venv", "build", "dist"]
-# Exclude files with SSH key format strings (not actual keys)
-exclude = [
-    "*/system/cloud_service.py",
-    "*/firewall/ssh*.py",
-]
-# B101: assert_used - False positives in test code
-# B104: hardcoded_bind_all_interfaces - False positives (default config values, not actual bindings)
-# B106: hardcoded_password_funcarg - Test credentials in performance/utility code
-# B110: try_except_pass - Acceptable in test/utility error handling
-# B601: shell_injection - False positives
-skips = ["B101", "B104", "B106", "B110", "B601"]
-
-[tool.isort]
-profile = "black"
-line_length = 79
-skip_gitignore = true
-extend_skip = ["X", "Tests", ".venv", "venv", "packages/fortios/hfortix_fortios/api"]
+"Source Code" = "https://github.com/hermanwjacobsen/hfortix"
+Download = "https://pypi.org/project/hfortix/#files"
 
 [tool.setuptools.packages.find]
-exclude = ["*"]
+where = ["src"]
+
+[tool.setuptools.package-data]
+hfortix = ["py.typed"]
