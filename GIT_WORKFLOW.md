@@ -1,181 +1,264 @@
-# Git Workflow - Private & Public Repos
+# Git Workflow - Multi-Repo Development
 
-## Repository Structure
+## Repository Architecture
 
-This project uses a **dual-repository strategy**:
+This project uses a **multi-repository structure** where each package is an independent git repository:
 
-### 🔒 Private Repo: `hfortix-dev`
+### 🔒 Private Development Repo: `hfortix-dev`
 **URL:** https://github.com/hermanwjacobsen/hfortix-dev
 
-Contains the **full development environment**:
-- ✅ `packages/*/src/` - Public source code
-- ✅ `packages/*/dev/` - Private dev assets (tests, generators, schemas, docs, examples)
-- ✅ Development scripts
-- ✅ Test suites
-- ✅ Internal documentation
-- ✅ Generator and schema files
+**Tracks:**
+- `packages/*/dev/` - Tests, schemas, generators, internal docs
+- `scripts/` - Development tools
+- `.github/` - CI/CD, AI context
 
-### 📦 Public Repo: `hfortix`
-**URL:** https://github.com/hermanwjacobsen/hfortix
+**Does NOT track:**
+- `packages/*/src/` - These are separate git repos (excluded via `.gitignore`)
 
-Contains **only public source code**:
-- ✅ `packages/*/src/` - Public source code
-- ✅ Public documentation
-- ✅ README, LICENSE, CHANGELOG
-- ❌ No `packages/*/dev/` folders
-- ❌ No private development assets
+### 📦 Public Package Repos (Independent)
+
+| Package | URL | Local Path |
+| --- | --- | --- |
+| **hfortix-fortios** | [github.com/hermanwjacobsen/hfortix-fortios](https://github.com/hermanwjacobsen/hfortix-fortios) | `packages/fortios/src/` |
+| **hfortix-core** | [github.com/hermanwjacobsen/hfortix-core](https://github.com/hermanwjacobsen/hfortix-core) | `packages/core/src/` |
+| **hfortix** | [github.com/hermanwjacobsen/hfortix](https://github.com/hermanwjacobsen/hfortix) | `packages/meta/src/` |
+
+Each `packages/*/src/` directory is a **complete git repository** with its own `.git/` directory.
 
 ---
 
-## Git Remote Configuration
+## Initial Setup
 
 ```bash
-# Private repo (main development)
-origin  → https://github.com/hermanwjacobsen/hfortix-dev.git
+# 1. Clone the private development repo
+git clone https://github.com/hermanwjacobsen/hfortix-dev.git
+cd hfortix-dev
 
-# Public repo (filtered releases)
-public  → https://github.com/hermanwjacobsen/hfortix.git
+# 2. Clone each public repo into packages/*/src/
+cd packages/fortios
+git clone https://github.com/hermanwjacobsen/hfortix-fortios.git src
+
+cd ../core
+git clone https://github.com/hermanwjacobsen/hfortix-core.git src
+
+cd ../meta
+git clone https://github.com/hermanwjacobsen/hfortix.git src
+
+cd ../..
+
+# 3. Install packages in editable mode
+pip install -e packages/core/src
+pip install -e packages/fortios/src
+pip install -e packages/meta/src
 ```
 
 ---
 
-## Development Workflow
+## Development Workflows
 
-### 1. Daily Development (Private Repo)
+### Working on Source Code (packages/*/src/)
 
-All development happens in the **private repo** (`hfortix-dev`):
+Each `packages/*/src/` is a **separate git repository**. Push changes directly:
 
 ```bash
+# Example: Work on FortiOS source code
+cd packages/fortios/src
+
 # Make changes
+vim hfortix_fortios/client.py
+
+# Standard git workflow
 git add .
-git commit -m "Your commit message"
+git commit -m "Add new feature"
+git push  # ✅ Pushes to github.com/hermanwjacobsen/hfortix-fortios
 
-# Push to private repo (default)
-git push origin main
+# Same pattern for other packages:
+# cd packages/core/src && git push      → hfortix-core
+# cd packages/meta/src && git push      → hfortix
 ```
 
-### 2. Sync to Public Repo
+### Working on Development Assets (packages/*/dev/)
 
-When ready to release to public:
+Development assets are tracked in **hfortix-dev**:
 
 ```bash
-# Run the sync script
-./scripts/sync_to_public.sh
+# Navigate to hfortix-dev root
+cd /app/dev/classes/fortinet
+
+# Make changes to tests, schemas, generators
+vim packages/fortios/dev/tests/test_client.py
+vim packages/fortios/dev/schema/7.6.5/firewall.policy.json
+
+# Standard git workflow for hfortix-dev
+git add packages/fortios/dev/
+git commit -m "Add new tests and update schema"
+git push  # ✅ Pushes to github.com/hermanwjacobsen/hfortix-dev
 ```
 
-This script will:
-1. ✅ Create a temporary branch
-2. ✅ Remove all `packages/*/dev/` folders
-3. ✅ Remove private scripts and files
-4. ✅ Push to public repo
-5. ✅ Clean up and return to main branch
+### Working on Documentation
 
-### 3. Tag a Release (Optional)
-
-After syncing to public, create a release tag:
-
+**Public Documentation** (ReadTheDocs):
 ```bash
-# Tag in private repo
-git tag v1.0.0
-git push origin --tags
+# Public docs live in packages/*/src/docs/ (part of public repos)
+cd packages/fortios/src
 
-# Tag in public repo
-git push public --tags
+vim docs/source/guides/quickstart.rst
+git add docs/
+git commit -m "Update quickstart guide"
+git push  # ✅ Pushes to hfortix-fortios
+
+# Trigger ReadTheDocs build automatically
+```
+
+**Internal Documentation:**
+```bash
+# Internal docs live in hfortix-dev
+cd /app/dev/classes/fortinet
+
+vim packages/fortios/dev/internal-docs/architecture.md
+git add packages/fortios/dev/internal-docs/
+git commit -m "Update architecture docs"
+git push  # ✅ Pushes to hfortix-dev
 ```
 
 ---
 
-## What Gets Synced?
+## Common Tasks
 
-### ✅ Included in Public Repo:
-- `packages/core/src/` - Core package source code
-- `packages/fortios/src/` - FortiOS package source code
-- `packages/meta/src/` - Meta package source code
-- `packages/*/pyproject.toml` - Package configuration
-- `README.md`, `LICENSE`, `CHANGELOG.md` - Documentation
-- `docs/` - Public documentation
-- `.github/workflows/` - CI/CD workflows (if any)
+### Check Status Across All Repos
 
-### ❌ Excluded from Public Repo:
-- `packages/*/dev/` - All private development assets
-  - `dev/tests/` - Test suites
-  - `dev/generator/` - Code generators
-  - `dev/schema/` - API schemas
-  - `dev/docs/` - Internal documentation
-  - `dev/examples/` - Example scripts
-- `scripts/sync_to_public.sh` - Sync script itself
-- `.github/prompts/` - GitHub Copilot prompts
-- `.env` - Environment variables (already in .gitignore)
+```bash
+# Check hfortix-dev (private)
+cd /app/dev/classes/fortinet && git status
+
+# Check public repos
+cd packages/fortios/src && git status  # hfortix-fortios
+cd packages/core/src && git status     # hfortix-core  
+cd packages/meta/src && git status     # hfortix (meta)
+```
+
+### Pull Latest Changes
+
+```bash
+# Pull from hfortix-dev
+cd /app/dev/classes/fortinet && git pull
+
+# Pull from public repos
+cd packages/fortios/src && git pull
+cd packages/core/src && git pull
+cd packages/meta/src && git pull
+```
+
+### Create a New Feature
+
+```bash
+# 1. Create feature branch in public repo
+cd packages/fortios/src
+git checkout -b feature/new-endpoint
+vim hfortix_fortios/api/v2/cmdb/system/admin.py
+git commit -m "Add system admin endpoint"
+git push -u origin feature/new-endpoint
+
+# 2. Add tests in hfortix-dev
+cd /app/dev/classes/fortinet
+vim packages/fortios/dev/tests/live/cmdb/test_system_admin.py
+git add packages/fortios/dev/tests/
+git commit -m "Add tests for system admin endpoint"
+git push
+
+# 3. Merge feature branch via GitHub PR (in public repo)
+# 4. Pull merged changes locally
+cd packages/fortios/src && git checkout main && git pull
+```
+
+### Release a New Version
+
+```bash
+# 1. Update version in public repo
+cd packages/fortios/src
+vim pyproject.toml  # Bump version to 0.5.155
+git commit -m "Bump version to 0.5.155"
+git tag v0.5.155
+git push && git push --tags
+
+# 2. Build and publish to PyPI (if applicable)
+python -m build
+python -m twine upload dist/*
+
+# 3. Update changelog in hfortix-dev
+cd /app/dev/classes/fortinet
+vim CHANGELOG.md
+git commit -m "Update changelog for v0.5.155"
+git push
+```
+
+---
+
+## File Location Quick Reference
+
+| Content Type | Location | Git Repo | Push Command |
+| --- | --- | --- | --- |
+| Source code | `packages/*/src/hfortix_*/` | Public (separate .git/) | `cd packages/*/src && git push` |
+| Public docs | `packages/*/src/docs/` | Public (same as source) | `cd packages/*/src && git push` |
+| Tests | `packages/*/dev/tests/` | hfortix-dev | `git push` (from root) |
+| Schemas | `packages/*/dev/schema/` | hfortix-dev | `git push` (from root) |
+| Generators | `packages/*/dev/generator/` | hfortix-dev | `git push` (from root) |
+| Internal docs | `packages/*/dev/internal-docs/` | hfortix-dev | `git push` (from root) |
+
+---
+
+## Important Notes
+
+1. **No Sync Script**: The old `scripts/push_src_to_public_repos.sh` and `scripts/sync_to_public.sh` scripts have been **removed**. Each `packages/*/src/` is now a full git repository - push directly from those directories.
+
+2. **Separate Git Histories**: Each public repo maintains its own git history. The hfortix-dev repo only tracks development assets.
+
+3. **Editable Installs**: With `pip install -e packages/*/src`, Python imports resolve to your local source code automatically.
+
+4. **ReadTheDocs**: Builds trigger automatically when you push to public repos. Documentation is optimized with parallel processing and no PDF/ePub generation.
+
+5. **Testing**: Run tests from `packages/*/dev/tests/` - they will use your local editable-installed source code.
 
 ---
 
 ## Troubleshooting
 
-### Sync script fails
+**Q: I accidentally committed packages/*/src/ to hfortix-dev!**
 ```bash
-# Ensure you're on main branch
-git checkout main
-
-# Ensure working directory is clean
-git status
-
-# If you have uncommitted changes, commit them first
-git add .
-git commit -m "Your changes"
+# Remove from git tracking (keeps files locally)
+git rm -r --cached packages/fortios/src/
+git commit -m "Remove src/ from tracking"
+git push
 ```
 
-### Force update public repo
-If the sync gets out of sync:
-
+**Q: How do I know which repo I'm in?**
 ```bash
-# The sync script uses --force automatically
-./scripts/sync_to_public.sh
-```
-
-### Manually push to public
-If you need to manually sync:
-
-```bash
-# Create a temporary branch
-git checkout -b public-temp
-
-# Remove dev folders
-find packages -type d -name "dev" -exec git rm -rf {} +
-git rm -rf .github/prompts/
-git rm -f scripts/sync_to_public.sh
-
-# Commit and push
-git commit -m "Public release"
-git push public public-temp:main --force
-
-# Return to main
-git checkout main
-git branch -D public-temp
-```
-
----
-
-## Quick Reference
-
-```bash
-# Push to private repo (daily work)
-git push origin main
-
-# Sync to public repo (releases)
-./scripts/sync_to_public.sh
-
-# Check remote configuration
+# Check current repo's remote URL
 git remote -v
 
-# View what would be synced
-git ls-files | grep -E "^packages/.*/src/"
+# From hfortix-dev root: origin → hfortix-dev.git
+# From packages/fortios/src: origin → hfortix-fortios.git
+```
+
+**Q: I want to work on multiple packages simultaneously**
+```bash
+# Make changes to multiple packages
+cd packages/fortios/src
+vim hfortix_fortios/client.py
+git commit -m "Update fortios client"
+git push
+
+cd ../core/src
+vim hfortix_core/http.py
+git commit -m "Update core HTTP client"
+git push
+
+# Push to hfortix-dev for test changes
+cd /app/dev/classes/fortinet
+git commit -m "Update tests for both packages"
+git push
 ```
 
 ---
 
-## Notes
-
-- **Always develop in the private repo** (`hfortix-dev`)
-- **Never commit directly to public repo** - use the sync script
-- **Keep .env files private** - never commit secrets
-- The sync script is **safe** - it creates a temporary branch and doesn't affect your main branch
+**Made with ❤️ for efficient multi-repo development**

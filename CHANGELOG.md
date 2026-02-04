@@ -1,4 +1,9 @@
-# [0.5.154] - 2026-02-02
+# Changelog
+
+> **Note**: All HFortix packages (hfortix-fortios, hfortix-core, hfortix) maintain synchronized versioning.
+> This changelog is identical across the root repository and all public package repositories.
+
+## [0.5.154] - 2026-02-02
 
 ### Improved
 

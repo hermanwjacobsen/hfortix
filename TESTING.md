@@ -9,27 +9,27 @@ The HFortix project maintains extensive test coverage across all layers of the S
 ## Test Suite Statistics
 
 | Metric | Count |
-|--------|-------|
+| --- | --- |
 | **Schema Validator Test Files** | 786 files (1,348 endpoints) |
 | **Schema Validator Tests** | 1,447 tests |
 | **Live Integration Test Files** | 80+ files |
 | **Total API Endpoints Covered** | 1,348 (FortiOS 7.6.5) |
 | **Execution Time (Schema)** | ~5 seconds (parallel) |
-| **Test Documentation** | `.tests/README.md`, `.tests/INDEX.md`, `.tests/TESTCOVERAGE.md` |
+| **Test Documentation** | `packages/fortios/dev/tests/README.md`, `packages/fortios/dev/tests/INDEX.md` |
 
 ## Quick Start
 
-See `.tests/README.md` for complete usage instructions.
+See `packages/fortios/dev/tests/README.md` for complete usage instructions.
 
 ```bash
 # Run all tests
-cd .tests && python3 run_all_tests.py
+cd packages/fortios/dev/tests && python run_all_tests.py
 
 # Schema validators only (fast, no API)
-cd .tests && python3 run_all_tests.py --schema-only
+cd packages/fortios/dev/tests && python run_all_tests.py --schema-only
 
 # Live integration tests
-cd .tests && python3 run_all_tests.py --live-only --live-client=fgt
+cd packages/fortios/dev/tests && python run_all_tests.py --live-only --live-client=fgt
 ```
 
 ## Test Categories
@@ -46,7 +46,7 @@ Automated tests for all generated endpoint validator functions - **no API calls 
 | **Service (Operations)** | 11 | 100% of generated Service endpoints |
 | **Total** | **1,348** | **100% of FortiOS 7.6.5 endpoints** |
 
-**Location**: `.tests/schema-validators/api/`
+**Location**: `packages/fortios/dev/tests/schema-validators/api/`
 
 **What's Tested**:
 - Validator function imports (1,348 tests)
@@ -65,7 +65,7 @@ Automated tests for all generated endpoint validator functions - **no API calls 
 
 Real API integration tests against live FortiGate/FortiManager devices.
 
-**Location**: `.tests/live/`
+**Location**: `packages/fortios/dev/tests/live/`
 
 **Coverage Areas**:
 - **Endpoints** (`endpoints/`) - CMDB, Monitor, Log, Service API tests
@@ -77,7 +77,7 @@ Real API integration tests against live FortiGate/FortiManager devices.
 
 ### 3. Validator & Helper Component Tests (40+ files, 75+ functions)
 
-**Location**: `.tests/live/validators/`
+**Location**: `packages/fortios/dev/tests/live/validators/`
 
 Unit tests for all validation and helper utility functions:
 
@@ -188,7 +188,7 @@ Unit tests for all validation and helper utility functions:
 - **Metadata Mixin** (`test_metadata_mixin.py`) - Schema metadata mixing
 - **FortiOS Formatting** (`test_fortios_formatting.py`) - FortiOS-specific formatting
 
-**Location**: `.tests/live/validators/`
+**Location**: `packages/fortios/dev/tests/live/validators/`
 
 **Coverage**: 75+ utility functions fully tested with valid cases, invalid cases, edge cases, and optional value handling
 
@@ -212,7 +212,7 @@ Low-level unit tests for core functionality:
 | `test_encode_path.py` | URL path encoding |
 | `test_forti_object_types.py` | FortiObject type system |
 
-**Location**: `.tests/live/unit/`
+**Location**: `packages/fortios/dev/tests/live/unit/`
 
 **Coverage**: Core HTTP client, response processing, error handling, async operations, formatting
 
@@ -226,7 +226,7 @@ End-to-end integration tests:
 | `test_hooks.py` | Hooks system (pre-request, post-response, error hooks) |
 | `test_http_client_stats.py` | HTTP client statistics tracking |
 
-**Location**: `.tests/live/integration/`
+**Location**: `packages/fortios/dev/tests/live/integration/`
 
 **Coverage**: Client initialization, authentication, hook execution, statistics collection
 
@@ -238,7 +238,7 @@ FortiManager JSON-RPC proxy functionality:
 |-----------|----------|
 | `test_client.py` | FMG proxy client (login, device selection, ADOM, API passthrough) |
 
-**Location**: `.tests/live/fmgproxy/`
+**Location**: `packages/fortios/dev/tests/live/fmgproxy/`
 
 **Coverage**: FortiManager proxy authentication, device targeting, API operations
 
@@ -246,7 +246,7 @@ FortiManager JSON-RPC proxy functionality:
 
 Special scenario and edge case handling:
 
-**Location**: `.tests/live/x_egde_cases/`
+**Location**: `packages/fortios/dev/tests/live/x_egde_cases/`
 
 **Coverage**: 
 - List handling edge cases
@@ -267,7 +267,7 @@ Additional pytest-based tests:
 | `api/log/test_memory.py` | Memory log queries |
 | `api/log/test_disk.py` | Disk log queries |
 
-**Location**: `.tests/pytests/`
+**Location**: `packages/fortios/dev/tests/pytests/`
 
 ## Test Execution Strategy
 
@@ -316,7 +316,7 @@ def test_function_name():
 
 ### Run All Tests
 ```bash
-cd .tests/live
+cd packages/fortios/dev/tests/live
 python __run__.py
 ```
 
@@ -384,7 +384,7 @@ Our test suite is continuously improved through:
 ## Test Files Location
 
 ```
-.tests/
+packages/fortios/dev/tests/
 ├── live/
 │   ├── endpoints/
 │   │   ├── cmdb/          # 180 CMDB endpoint tests
