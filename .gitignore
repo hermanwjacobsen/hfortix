@@ -113,3 +113,6 @@ packages/*/docs/source/generated/
 .mypy_cache/
 
 # NOTE: Do NOT ignore .github/ (workflows, templates, etc.)
+
+# Dev-only Claude Code instructions must never be published
+CLAUDE.md
