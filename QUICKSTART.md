@@ -1,6 +1,4 @@
-# HFortix - Quick Reference (v0.5.154)
-
-✨ **New in v0.5.154**: Enhanced PyPI metadata!
+# HFortix - Quick Reference
 
 ✨ **New in v0.5.152**: Batch Transactions with commit/rollback, HTTP API Request Inspection for debugging and audit logging!
 
@@ -250,11 +248,14 @@ fgt.api.cmdb.firewall.address.post(
 ## Package Information
 
 ```python
-from hfortix import get_available_modules, get_version
+import hfortix
 
-print(get_version())
-print(get_available_modules())  
-# {'FortiOS': True, 'FortiManager': False, 'FortiAnalyzer': False}
+print(hfortix.__version__)
+
+# Optional clients are None unless their package is installed
+print(hfortix.FortiManager is not None)  # needs hfortix-fortimanager
+print(hfortix.FortiCare is not None)     # needs hfortix-forticare
+print(hfortix.FortiZTP is not None)      # needs hfortix-fortiztp
 ```
 
 ## Common Patterns
@@ -415,13 +416,13 @@ fgt.api.log.disk.virus.*               # Antivirus logs
 | -100 | Name already exists |
 | -651 | Invalid input/format |
 
-See `exceptions_forti.py` for complete list of 387 error codes.
+See `hfortix_core.exceptions` (`FORTIOS_ERROR_CODES`) for the complete list of 387 error codes.
 
 ## Tips
 
 ✅ **DO:**
 
-- Use API tokens (only authentication method supported)
+- Use API tokens (recommended; username/password works only on FortiOS ≤7.4.x)
 - Handle specific exceptions
 - Set `verify=True` in production
 - Use pagination for large datasets

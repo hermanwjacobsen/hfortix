@@ -50,10 +50,18 @@ Complete FortiOS/FortiGate API client with:
 
 ### hfortix-core
 Foundational infrastructure including:
-- Observable HTTP client
-- Event-driven monitoring
-- Base abstractions and protocols
-- Shared utilities
+- Shared HTTP client framework (retry logic, circuit breaker, rate limiting)
+- Exception hierarchy and error-code mapping
+- Audit logging and debugging utilities
+- Base abstractions and shared utilities
+
+### Optional extras
+
+```bash
+pip install "hfortix[forticare]"   # + hfortix-forticare (FortiCare asset management)
+pip install "hfortix[fortiztp]"    # + hfortix-fortiztp (FortiZTP provisioning)
+pip install "hfortix[all]"         # everything above
+```
 
 ## ✨ Key Features
 
@@ -87,7 +95,7 @@ pip install hfortix-core
 
 | Package | Purpose | Dependencies | Use When |
 |---------|---------|--------------|----------|
-| `hfortix` | Meta-package | All packages | You want everything |
+| `hfortix` | Meta-package | core + fortios (+ optional extras) | You want the suite |
 | `hfortix-fortios` | FortiOS API client | hfortix-core | FortiGate automation |
 | `hfortix-core` | Core infrastructure | httpx, typing-extensions | Building custom clients |
 
@@ -115,20 +123,21 @@ with FortiOS(host="192.168.1.99", token="token") as fgt:
 from hfortix_fortios import FortiOS
 
 with FortiOS(host="192.168.1.99", token="token") as fgt:
-    # Atomic batch operation
+    # Atomic batch operation - API calls made inside the block
+    # automatically join the transaction
     with fgt.transaction() as txn:
-        txn.add(fgt.api.cmdb.firewall.address.post, name="server1", subnet="10.0.1.1/32")
-        txn.add(fgt.api.cmdb.firewall.address.post, name="server2", subnet="10.0.1.2/32")
-        # Both addresses created or both rolled back on error
+        fgt.api.cmdb.firewall.address.post(name="server1", subnet="10.0.1.1/32")
+        fgt.api.cmdb.firewall.address.post(name="server2", subnet="10.0.1.2/32")
+        # Auto-commits on success; auto-aborts (rolls back) on error
 ```
 
 ### Async Support
 ```python
-from hfortix_fortios import AsyncFortiOS
+from hfortix_fortios import FortiOS
 
-async with AsyncFortiOS(host="192.168.1.99", token="token") as fgt:
-    status = await fgt.api.monitor.system.status.get()
-    addresses = await fgt.api.cmdb.firewall.address.get()
+fgt = FortiOS(host="192.168.1.99", token="token", mode="async")
+status = await fgt.api.monitor.system.status.get()
+addresses = await fgt.api.cmdb.firewall.address.get()
 ```
 
 ## 🤝 Contributing

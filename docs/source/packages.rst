@@ -1,44 +1,65 @@
 Package Details
 ===============
 
-HFortix provides three packages that can be installed individually or together, depending on
-your needs. Each package is published separately on PyPI and has its own documentation.
+HFortix is a family of packages that can be installed individually or together, depending
+on your needs. Each published package lives on PyPI and has its own documentation.
 
 Package Selection Guide
 -----------------------
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 40 40
+   :widths: 25 15 60
 
    * - Package
+     - Status
      - Install When
-     - Documentation
    * - ``hfortix``
-     - You want the complete suite with all components
-     - https://hfortix.readthedocs.io/
+     - Stable
+     - You want the common suite (core + fortios; extras add the cloud services)
    * - ``hfortix-fortios``
+     - Stable
      - You need FortiGate/FortiOS automation only
-     - https://hfortix-fortios.readthedocs.io/
    * - ``hfortix-core``
+     - Stable
      - You're building custom Fortinet integrations
-     - https://hfortix-core.readthedocs.io/
+   * - ``hfortix-forticare``
+     - Stable
+     - You need FortiCare asset management (registration, licensing, contracts)
+   * - ``hfortix-fortiztp``
+     - Stable
+     - You need FortiZTP zero-touch provisioning
+   * - ``hfortix-fortimanager``
+     - Alpha (0.1.0)
+     - You want an early preview of the FortiManager JSON-RPC client
+   * - ``hfortix-fortianalyzer``
+     - Coming soon
+     - FortiAnalyzer JSON-RPC client — not yet published to PyPI
 
 hfortix (Meta Package)
 ----------------------
 
-The meta-package that installs all HFortix components.
+The meta-package that installs the common HFortix components.
 
-**What It Includes:**
+**What It Includes (base install):**
 
 * ``hfortix-fortios`` - Complete FortiOS/FortiGate API client
 * ``hfortix-core`` - Foundation libraries and infrastructure
+
+**Optional Extras:**
+
+* ``hfortix[fortios]`` - explicit FortiOS extra (same as the base install)
+* ``hfortix[forticare]`` - adds ``hfortix-forticare`` (FortiCare asset management)
+* ``hfortix[fortiztp]`` - adds ``hfortix-fortiztp`` (FortiZTP provisioning)
+* ``hfortix[all]`` - adds fortios, forticare, and fortiztp
+* ``hfortix[docs]`` - Sphinx toolchain for building this documentation
 
 **Installation:**
 
 .. code-block:: bash
 
-   pip install hfortix
+   pip install hfortix           # core + fortios
+   pip install "hfortix[all]"    # + forticare + fortiztp
 
 **Package Info:**
 
@@ -165,9 +186,116 @@ used across all HFortix packages.
    
    # Add audit logging
    client.audit_handler = SyslogHandler("siem.company.com:514")
-   
+
    # Make API requests
    response = client.get("cmdb", "/api/v2/cmdb/system/global")
+
+hfortix-forticare
+-----------------
+
+FortiCare Asset Management REST API client (FortiCloud OAuth2).
+
+**Features:**
+
+* Product registration, licensing, contracts, and folder management
+* OAuth2 authentication via ``api_id``/``password``, a pre-obtained token,
+  or a shared ``CloudSession``
+* Shares one FortiCloud login with ``hfortix-fortiztp`` through
+  ``hfortix_core.session.CloudSession``
+
+**Installation:**
+
+.. code-block:: bash
+
+   pip install hfortix-forticare
+   # or as an extra of the meta package:
+   pip install "hfortix[forticare]"
+
+**Example:**
+
+.. code-block:: python
+
+   from hfortix_forticare import FortiCare
+
+   fcc = FortiCare(api_id="your_api_id", password="your_password")
+   products = fcc.api.products.list.post(serial_number="FGT*")
+
+**Package Info:**
+
+* **PyPI:** https://pypi.org/project/hfortix-forticare/
+
+hfortix-fortiztp
+----------------
+
+FortiZTP Zero Touch Provisioning cloud API client (FortiCloud OAuth2).
+
+**Features:**
+
+* Device provisioning status and lifecycle management
+* Pre-run CLI script management
+* FortiManager integration settings
+* Same authentication options as ``hfortix-forticare`` (credentials, token,
+  or shared ``CloudSession``)
+
+**Installation:**
+
+.. code-block:: bash
+
+   pip install hfortix-fortiztp
+   # or as an extra of the meta package:
+   pip install "hfortix[fortiztp]"
+
+**Example:**
+
+.. code-block:: python
+
+   from hfortix_fortiztp import FortiZTP
+
+   client = FortiZTP(api_id="your_api_id", password="your_password")
+   devices = client.devices.get()
+   status = client.system.system_get()
+
+**Package Info:**
+
+* **PyPI:** https://pypi.org/project/hfortix-fortiztp/
+
+hfortix-fortimanager (Alpha)
+----------------------------
+
+FortiManager JSON-RPC API client. Published to PyPI as an **alpha preview**
+(0.1.0) — the API surface may still change between releases.
+
+**Features:**
+
+* Generated endpoints from FortiManager 7.6.6 Swagger specs
+* Hierarchical dot-navigation with full ``.pyi`` type stubs
+* Session (username/password) or API-key authentication
+
+**Installation:**
+
+.. code-block:: bash
+
+   pip install hfortix-fortimanager
+
+**Example:**
+
+.. code-block:: python
+
+   from hfortix_fortimanager import FortiManager
+
+   with FortiManager(host="fmg.example.com", username="admin", password="pw") as fmg:
+       addresses = fmg.api.pm.config.adom.obj.firewall.address.get(adom="root")
+
+**Package Info:**
+
+* **PyPI:** https://pypi.org/project/hfortix-fortimanager/
+
+hfortix-fortianalyzer (Coming Soon)
+-----------------------------------
+
+FortiAnalyzer JSON-RPC API client — the sibling of ``hfortix-fortimanager``,
+built on the same shared JSON-RPC client from ``hfortix-core``. It is **not yet
+published to PyPI**.
 
 Dependency Chain
 ----------------
@@ -183,51 +311,35 @@ Understanding the dependency relationships:
    │   │   └── typing_extensions>=4.0.0
    │   ├── httpx>=0.27.0
    │   └── pydantic>=2.0.0
-   └── hfortix-core (same as above)
+   ├── hfortix-core (same as above)
+   ├── [forticare] → hfortix-forticare → hfortix-core
+   └── [fortiztp]  → hfortix-fortiztp  → hfortix-core
 
 **Key Points:**
 
 * ``hfortix-core`` has minimal dependencies and can be used standalone
-* ``hfortix-fortios`` requires ``hfortix-core`` for its HTTP client and utilities
-* ``hfortix`` installs all components for a complete automation platform
+* Every other package requires ``hfortix-core`` for its HTTP client and utilities
+* ``hfortix`` installs the common components; extras add the FortiCloud services
+* ``hfortix-fortimanager`` / ``hfortix-fortianalyzer`` are installed separately
+  (not pulled in by the meta package)
 
 Version Compatibility
 ---------------------
 
-All HFortix packages use synchronized versioning. When installing, ensure version compatibility:
+The stable packages (``hfortix``, ``hfortix-core``, ``hfortix-fortios``,
+``hfortix-forticare``, ``hfortix-fortiztp``) use synchronized ``0.5.x``
+versioning, and the meta package declares minimum compatible versions of its
+dependencies. In general, simply install the latest release:
 
 .. code-block:: bash
 
-   # Install specific version across all packages
-   pip install hfortix==0.5.156
-   
-   # Or install compatible versions individually
-   pip install hfortix-core==0.5.156 hfortix-fortios==0.5.156
+   pip install --upgrade hfortix
 
-**Compatibility Matrix:**
+   # Or upgrade individual packages together
+   pip install --upgrade hfortix-core hfortix-fortios
 
-.. list-table::
-   :header-rows: 1
-   :widths: 25 25 25 25
-
-   * - hfortix
-     - hfortix-fortios
-     - hfortix-core
-     - Python
-   * - 0.5.156
-     - 0.5.156
-     - 0.5.156
-     - 3.10+
-   * - 0.5.x
-     - 0.5.x
-     - 0.5.x
-     - 3.10+
-
-   hfortix (meta)
-   └── hfortix-fortios
-       └── hfortix-core
-           └── httpx[http2]
-           └── typing-extensions
+``hfortix-fortimanager`` versions independently (``0.1.x`` alpha) and only
+requires a compatible ``hfortix-core``.
 
 Installing ``hfortix-fortios`` automatically installs ``hfortix-core``.
-Installing ``hfortix`` automatically installs both component packages.
+Installing ``hfortix`` automatically installs both, plus any extras you select.

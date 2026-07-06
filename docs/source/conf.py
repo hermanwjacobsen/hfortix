@@ -10,9 +10,13 @@ project = 'HFortix'
 copyright = f'{datetime.now().year}, Herman W. Jacobsen'
 author = 'Herman W. Jacobsen'
 
-# The full version, including alpha/beta/rc tags
-release = '0.5.156'
-version = '0.5'
+# The full version, including alpha/beta/rc tags.
+# Resolved dynamically from the installed package so docs never go stale.
+try:
+    from hfortix import __version__ as release
+except ImportError:
+    release = '0.5.163'  # fallback when hfortix is not importable
+version = '.'.join(release.split('.')[:2])
 
 # -- General configuration ---------------------------------------------------
 

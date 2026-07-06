@@ -10,10 +10,31 @@ The easiest way to get started is to install the complete suite:
 
    pip install hfortix
 
-This installs all HFortix components:
+This installs the common HFortix components:
 
 * ``hfortix-core`` - Core infrastructure
 * ``hfortix-fortios`` - FortiOS/FortiGate API client
+
+Optional Extras
+---------------
+
+The FortiCloud service clients are available as extras:
+
+.. code-block:: bash
+
+   pip install "hfortix[forticare]"   # + hfortix-forticare (asset management)
+   pip install "hfortix[fortiztp]"    # + hfortix-fortiztp (zero-touch provisioning)
+   pip install "hfortix[all]"         # fortios + forticare + fortiztp
+   pip install "hfortix[docs]"        # Sphinx toolchain for building the docs
+
+The FortiManager client is an alpha preview and is installed separately
+(it is not an extra of the meta package):
+
+.. code-block:: bash
+
+   pip install hfortix-fortimanager   # 0.1.x alpha
+
+``hfortix-fortianalyzer`` is coming soon and is not yet on PyPI.
 
 Individual Packages
 -------------------

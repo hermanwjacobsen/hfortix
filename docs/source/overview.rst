@@ -44,6 +44,18 @@ When you install ``hfortix``, you get access to:
    Foundation libraries providing HTTP clients, audit logging, request hooks, exception handling,
    debugging utilities, and shared infrastructure used across all HFortix packages.
 
+Optional extras add the FortiCloud services:
+
+**hfortix-forticare** (``pip install hfortix[forticare]``)
+   FortiCare Asset Management REST client (OAuth2) — product registration, licensing,
+   contracts, and folder management.
+
+**hfortix-fortiztp** (``pip install hfortix[fortiztp]``)
+   FortiZTP Zero Touch Provisioning REST client (OAuth2) — device provisioning,
+   pre-run scripts, and FortiManager integration settings.
+
+``pip install hfortix[all]`` installs both cloud extras alongside the base packages.
+
 Architecture
 ------------
 
@@ -54,16 +66,25 @@ HFortix follows a modular architecture where each component can be used independ
    hfortix (meta-package)
    ├── hfortix-fortios (FortiOS/FortiGate client)
    │   └── hfortix-core (foundation)
-   ├── hfortix-fortimanager (coming soon)
+   ├── hfortix-forticare (extra: [forticare])
    │   └── hfortix-core
-   └── hfortix-fortianalyzer (coming soon)
+   ├── hfortix-fortiztp (extra: [fortiztp])
+   │   └── hfortix-core
+   ├── hfortix-fortimanager (separate install — 0.1.0 alpha on PyPI)
+   │   └── hfortix-core
+   └── hfortix-fortianalyzer (coming soon — not yet on PyPI)
        └── hfortix-core
 
 This design allows you to:
 
 * Install only what you need (e.g., just ``hfortix-fortios``)
 * Use ``hfortix-core`` for custom integrations
-* Get everything with a single ``pip install hfortix``
+* Get the common suite with a single ``pip install hfortix`` (add
+  ``[forticare]``, ``[fortiztp]``, or ``[all]`` for the cloud services)
+
+``hfortix-fortimanager`` (FortiManager JSON-RPC client) is published on PyPI as an
+alpha preview and is installed separately: ``pip install hfortix-fortimanager``. When
+installed, it is importable through the umbrella (``from hfortix import FortiManager``).
 
 Quick Example
 -------------
