@@ -69,7 +69,7 @@ except ImportError:
     _has_fortiztp = False
     FortiZTP = None  # type: ignore
 
-__version__ = "0.5.163"
+__version__ = "0.5.164"
 __author__ = "Herman W. Jacobsen"
 
 __all__ = [
